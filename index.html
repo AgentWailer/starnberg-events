@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events StarnbergAmmersee | Familie & Freizeit</title>
+    <meta name="description" content="Aktuelle Veranstaltungen in der Region Starnberg & Ammersee. Familien-Events, Kinderaktivitäten und Erwachsenen-Unterhaltung.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f97316;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --kinder: #8b5cf6;
+            --familie: #10b981;
+            --erwachsene: #f59e0b;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Filter Section */
+        .filters {
+            background: var(--card-bg);
+            margin: -1.5rem 1rem 2rem;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border);
+            background: var(--card-bg);
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .filter-btn.active.kinder {
+            background: var(--kinder);
+            border-color: var(--kinder);
+        }
+
+        .filter-btn.active.familie {
+            background: var(--familie);
+            border-color: var(--familie);
+        }
+
+        .filter-btn.active.erwachsene {
+            background: var(--erwachsene);
+            border-color: var(--erwachsene);
+        }
+
+        /* Section Titles */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-title h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Events Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Event Card */
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-card-header {
+            padding: 1.25rem 1.25rem 0;
+        }
+
+        .event-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+
+        .event-category.kinder {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--kinder);
+        }
+
+        .event-category.familie {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--familie);
+        }
+
+        .event-category.erwachsene {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--erwachsene);
+        }
+
+        .event-card-body {
+            padding: 1rem 1.25rem;
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .event-meta-item span {
+            flex: 1;
+        }
+
+        .event-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .event-card-footer {
+            padding: 1rem 1.25rem;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .event-tag {
+            padding: 0.25rem 0.6rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .event-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .event-link:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Date Badge */
+        .date-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg);
+            border-radius: 0.5rem;
+            min-width: 55px;
+        }
+
+        .date-badge .day {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .date-badge .month {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            opacity: 0.8;
+        }
+
+        footer a:hover {
+            opacity: 1;
+        }
+
+        .update-info {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .filters {
+                margin: -1.5rem 0.5rem 1.5rem;
+                padding: 1rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .event-card {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .events-grid .event-card:nth-child(1) { animation-delay: 0s; }
+        .events-grid .event-card:nth-child(2) { animation-delay: 0.05s; }
+        .events-grid .event-card:nth-child(3) { animation-delay: 0.1s; }
+        .events-grid .event-card:nth-child(4) { animation-delay: 0.15s; }
+        .events-grid .event-card:nth-child(5) { animation-delay: 0.2s; }
+        .events-grid .event-card:nth-child(6) { animation-delay: 0.25s; }
+
+        /* Highlight for today/tomorrow */
+        .event-card.highlight {
+            border: 2px solid var(--secondary);
+        }
+
+        .highlight-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.25rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-icon">🏔️</div>
+        <h1>Events StarnbergAmmersee</h1>
+        <p>Veranstaltungen für Familien, Kinder & Erwachsene</p>
+    </header>
+
+    <div class="container">
+        <div class="filters">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="alle">
+                    📅 Alle Events
+                </button>
+                <button class="filter-btn kinder" data-filter="kinder">
+                    👶 Kinder
+                </button>
+                <button class="filter-btn familie" data-filter="familie">
+                    👨‍👩‍👧‍👦 Familie
+                </button>
+                <button class="filter-btn erwachsene" data-filter="erwachsene">
+                    🎭 Erwachsene
+                </button>
+            </div>
+        </div>
+
+        <main id="events-container">
+            <!-- Events werden hier dynamisch eingefügt -->
+        </main>
+    </div>
+
+    <footer>
+        <p>Daten von <a href="https://www.starnbergammersee.de" target="_blank">StarnbergAmmersee.de</a></p>
+        <p class="update-info">Zuletzt aktualisiert: <span id="last-updated">-</span></p>
+    </footer>
+
+    <script>
+        // Hilfsfunktionen
+        const MONTHS = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+        const WEEKDAYS = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return {
+                day: date.getDate(),
+                month: MONTHS[date.getMonth()],
+                weekday: WEEKDAYS[date.getDay()],
+                full: `${WEEKDAYS[date.getDay()]}, ${date.getDate()}. ${MONTHS[date.getMonth()]}`
+            };
+        }
+
+        function isToday(dateStr) {
+            const today = new Date();
+            const date = new Date(dateStr);
+            return date.toDateString() === today.toDateString();
+        }
+
+        function isTomorrow(dateStr) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const date = new Date(dateStr);
+            return date.toDateString() === tomorrow.toDateString();
+        }
+
+        function isThisWeek(dateStr) {
+            const today = new Date();
+            const date = new Date(dateStr);
+            const weekEnd = new Date(today);
+            weekEnd.setDate(today.getDate() + 7);
+            return date >= today && date <= weekEnd;
+        }
+
+        function getCategoryEmoji(category) {
+            const emojis = {
+                'kinder': '👶',
+                'familie': '👨‍👩‍👧‍👦',
+                'erwachsene': '🎭'
+            };
+            return emojis[category] || '📅';
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'kinder': 'Kinder',
+                'familie': 'Familie',
+                'erwachsene': 'Erwachsene'
+            };
+            return labels[category] || category;
+        }
+
+        function createEventCard(event) {
+            const date = formatDate(event.date);
+            const highlight = isToday(event.date) || isTomorrow(event.date);
+            const highlightText = isToday(event.date) ? 'HEUTE' : (isTomorrow(event.date) ? 'MORGEN' : '');
+            
+            const endDateStr = event.endDate ? ` - ${formatDate(event.endDate).full}` : '';
+            
+            return `
+                <article class="event-card ${highlight ? 'highlight' : ''}">
+                    <div class="event-card-header">
+                        <span class="event-category ${event.category}">
+                            ${getCategoryEmoji(event.category)} ${getCategoryLabel(event.category)}
+                        </span>
+                        ${highlightText ? `<span class="highlight-badge">${highlightText}</span>` : ''}
+                    </div>
+                    <div class="event-card-body">
+                        <h3 class="event-title">${event.title}</h3>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <div class="date-badge">
+                                    <span class="day">${date.day}</span>
+                                    <span class="month">${date.month}</span>
+                                </div>
+                                <span>${date.weekday}, ${event.time} Uhr${endDateStr}</span>
+                            </div>
+                            <div class="event-meta-item">
+                                📍 <span>${event.location}</span>
+                            </div>
+                        </div>
+                        <p class="event-description">${event.description}</p>
+                    </div>
+                    <div class="event-card-footer">
+                        <div class="event-tags">
+                            ${event.tags.map(tag => `<span class="event-tag">#${tag}</span>`).join('')}
+                        </div>
+                        <a href="${event.url}" target="_blank" class="event-link">
+                            Mehr erfahren →
+                        </a>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderEvents(events, filter = 'alle') {
+            const container = document.getElementById('events-container');
+            
+            // Filter events
+            let filtered = events;
+            if (filter !== 'alle') {
+                filtered = events.filter(e => e.category === filter);
+            }
+
+            // Sort by date
+            filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            // Filter out past events (keep today and future)
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            filtered = filtered.filter(e => {
+                const eventDate = new Date(e.date);
+                const endDate = e.endDate ? new Date(e.endDate) : eventDate;
+                return endDate >= today;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <p>Keine Events in dieser Kategorie gefunden.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Group: This week vs Later
+            const thisWeek = filtered.filter(e => isThisWeek(e.date));
+            const later = filtered.filter(e => !isThisWeek(e.date));
+
+            let html = '';
+
+            if (thisWeek.length > 0) {
+                html += `
+                    <div class="section-title">
+                        <span class="section-icon">🔥</span>
+                        <h2>Diese Woche</h2>
+                    </div>
+                    <div class="events-grid">
+                        ${thisWeek.map(createEventCard).join('')}
+                    </div>
+                `;
+            }
+
+            if (later.length > 0) {
+                html += `
+                    <div class="section-title">
+                        <span class="section-icon">📆</span>
+                        <h2>Kommende Events</h2>
+                    </div>
+                    <div class="events-grid">
+                        ${later.map(createEventCard).join('')}
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // Load and initialize
+        async function init() {
+            try {
+                const response = await fetch('events.json');
+                const data = await response.json();
+                
+                // Update last updated
+                document.getElementById('last-updated').textContent = data.lastUpdated;
+                
+                // Initial render
+                renderEvents(data.events);
+
+                // Filter buttons
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        renderEvents(data.events, btn.dataset.filter);
+                    });
+                });
+
+            } catch (error) {
+                console.error('Fehler beim Laden der Events:', error);
+                document.getElementById('events-container').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">😕</div>
+                        <p>Events konnten nicht geladen werden.</p>
+                    </div>
+                `;
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
