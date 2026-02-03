@@ -125,6 +125,8 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 
 <script>
   const API = 'https://v6.db.transport.rest';
+  const MAX_RETRIES = 3;
+  const RETRY_DELAY = 2000;
 
   interface Departure {
     when: string | null;
@@ -135,9 +137,29 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     line: { name: string; product: string };
   }
 
+  async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<Response> {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeout);
+        if (res.ok) return res;
+        if (res.status >= 500 && i < retries - 1) {
+          await new Promise(r => setTimeout(r, RETRY_DELAY * (i + 1)));
+          continue;
+        }
+        throw new Error(`HTTP ${res.status}`);
+      } catch (e) {
+        if (i === retries - 1) throw e;
+        await new Promise(r => setTimeout(r, RETRY_DELAY * (i + 1)));
+      }
+    }
+    throw new Error('Max retries reached');
+  }
+
   async function fetchDepartures(stationId: string): Promise<Departure[]> {
-    const res = await fetch(`${API}/stops/${stationId}/departures?duration=120&results=12`);
-    if (!res.ok) throw new Error('API error');
+    const res = await fetchWithRetry(`${API}/stops/${stationId}/departures?duration=120&results=12`);
     return (await res.json()).departures || [];
   }
 
@@ -206,9 +228,11 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
       render(departures, container);
     } catch {
       container.innerHTML = `
-        <div style="padding:24px;text-align:center">
-          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" style="color:var(--color-primary);font-weight:500">
-            🔗 Live-Abfahrten bei DB öffnen
+        <div style="padding:20px;text-align:center;color:var(--color-text-secondary)">
+          <p style="font-weight:600;margin-bottom:8px">S6 Tutzing ↔ München Hbf</p>
+          <p style="font-size:0.85rem;opacity:0.8;margin-bottom:12px">ca. alle 20 Min · Fahrzeit ~35 Min</p>
+          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" style="color:var(--color-primary);font-weight:500;font-size:0.85rem">
+            → Live-Abfahrten bei DB
           </a>
         </div>
       `;
