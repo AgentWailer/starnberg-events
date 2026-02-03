@@ -146,8 +146,8 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     }
 
     let html = `
-      <div style="display:grid;grid-template-columns:auto auto 1fr auto;gap:0;font-size:0.85rem">
-        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:8px 12px;background:var(--color-bg);border-bottom:1px solid var(--color-border);font-size:0.7rem;font-weight:600;color:var(--color-muted);text-transform:uppercase;letter-spacing:0.3px">
+      <div style="display:grid;grid-template-columns:auto auto 1fr auto;gap:0 16px;font-size:0.85rem">
+        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:10px 16px;background:var(--color-bg);border-bottom:1px solid var(--color-border);font-size:0.7rem;font-weight:600;color:var(--color-muted);text-transform:uppercase;letter-spacing:0.3px">
           <span>Zeit</span>
           <span>Linie</span>
           <span>Richtung</span>
@@ -164,7 +164,7 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
       const bg = i % 2 === 0 ? 'var(--color-card)' : 'var(--color-bg)';
       
       html += `
-        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:10px 12px;background:${bg};align-items:center;border-bottom:1px solid var(--color-border)">
+        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:12px 16px;background:${bg};align-items:center;border-bottom:1px solid var(--color-border)">
           <span style="font-weight:600;color:var(--color-primary)">${time}${delayHtml}</span>
           <span style="background:#16a34a;color:white;padding:2px 8px;border-radius:4px;font-weight:600;font-size:0.8rem;justify-self:start">${t.line.name}</span>
           <span style="color:var(--color-text);font-weight:500">${shortenDest(t.direction)}</span>
