@@ -24,23 +24,35 @@ Object.keys(regions).forEach(r => {
 const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
-<div class="filter-container">
-  <!-- Quick Stats -->
-  <div class="stats-bar">
-    <span class="stat-item">📊 <strong>{events.length}</strong> Events</span>
-    <span class="stat-divider">•</span>
-    <span class="stat-item">🗺️ <strong>{Object.keys(regionCounts).filter(r => regionCounts[r] > 0).length}</strong> Regionen</span>
-  </div>
+<!-- Mobile: Bottom Sheet Trigger -->
+<button class="filter-fab" id="filter-fab" aria-label="Filter öffnen">
+  <span class="fab-icon">⚙️</span>
+  <span class="fab-text">Filter</span>
+  <span class="fab-badge" id="filter-badge" style="display:none">0</span>
+</button>
 
-  <!-- Filters Row -->
-  <div class="filters-row">
-    <!-- Region Filter (horizontal scroll on mobile) -->
+<!-- Bottom Sheet Overlay -->
+<div class="bottom-sheet-overlay" id="sheet-overlay"></div>
+
+<!-- Bottom Sheet -->
+<div class="bottom-sheet" id="bottom-sheet">
+  <div class="sheet-header">
+    <span class="sheet-title">Filter</span>
+    <button class="sheet-close" id="sheet-close">✕</button>
+  </div>
+  <div class="sheet-content">
+    <!-- Stats -->
+    <div class="stats-bar">
+      <span class="stat-item">📊 <strong id="mobile-event-count">{events.length}</strong> Events</span>
+      <span class="stat-divider">•</span>
+      <span class="stat-item">🗺️ <strong>{Object.keys(regionCounts).filter(r => regionCounts[r] > 0).length}</strong> Regionen</span>
+    </div>
+
+    <!-- Region Filter -->
     <div class="filter-group">
       <label class="filter-label">Region</label>
-      <div class="filter-scroll hide-scrollbar">
-        <button class="chip active" data-region="all">
-          Alle
-        </button>
+      <div class="filter-chips">
+        <button class="chip active" data-region="all">Alle</button>
         {Object.entries(regions).map(([id, region]) => (
           regionCounts[id] > 0 && (
             <button class="chip region-chip" data-region={id}>
@@ -56,7 +68,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     <!-- Category Filter -->
     <div class="filter-group">
       <label class="filter-label">Für wen?</label>
-      <div class="filter-scroll hide-scrollbar">
+      <div class="filter-chips">
         <button class="chip category-chip active" data-filter="all">Alle</button>
         <button class="chip category-chip" data-filter="kinder" data-color="kinder">
           👶 Kinder <span class="chip-count">{counts.kinder}</span>
@@ -70,10 +82,68 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </div>
     </div>
 
-    <!-- Location Dropdown -->
-    <div class="filter-group filter-group-select">
-      <label class="filter-label" for="location-filter">Ort</label>
+    <!-- Location Filter -->
+    <div class="filter-group">
+      <label class="filter-label">Ort</label>
       <select class="location-select" id="location-filter">
+        <option value="all">Alle Orte</option>
+        {locations.map(loc => (
+          <option value={loc}>{loc}</option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Apply Button -->
+    <button class="sheet-apply" id="sheet-apply">
+      <span id="apply-count">{events.length}</span> Events anzeigen
+    </button>
+  </div>
+</div>
+
+<!-- Desktop: Normal Filter Container -->
+<div class="filter-container desktop-only">
+  <div class="stats-bar">
+    <span class="stat-item">📊 <strong id="desktop-event-count">{events.length}</strong> Events</span>
+    <span class="stat-divider">•</span>
+    <span class="stat-item">🗺️ <strong>{Object.keys(regionCounts).filter(r => regionCounts[r] > 0).length}</strong> Regionen</span>
+  </div>
+
+  <div class="filters-row">
+    <div class="filter-group">
+      <label class="filter-label">Region</label>
+      <div class="filter-chips">
+        <button class="chip active" data-region="all">Alle</button>
+        {Object.entries(regions).map(([id, region]) => (
+          regionCounts[id] > 0 && (
+            <button class="chip region-chip" data-region={id}>
+              <span class="chip-emoji">{region.emoji}</span>
+              <span class="chip-text">{region.name}</span>
+              <span class="chip-count">{regionCounts[id]}</span>
+            </button>
+          )
+        ))}
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label class="filter-label">Für wen?</label>
+      <div class="filter-chips">
+        <button class="chip category-chip active" data-filter="all">Alle</button>
+        <button class="chip category-chip" data-filter="kinder" data-color="kinder">
+          👶 Kinder <span class="chip-count">{counts.kinder}</span>
+        </button>
+        <button class="chip category-chip" data-filter="familie" data-color="familie">
+          👨‍👩‍👧 Familie <span class="chip-count">{counts.familie}</span>
+        </button>
+        <button class="chip category-chip" data-filter="erwachsene" data-color="erwachsene">
+          🎭 Erwachsene <span class="chip-count">{counts.erwachsene}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label class="filter-label">Ort</label>
+      <select class="location-select desktop-location" id="desktop-location-filter">
         <option value="all">Alle Orte</option>
         {locations.map(loc => (
           <option value={loc}>{loc}</option>
@@ -84,6 +154,149 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 </div>
 
 <style>
+  /* ===== Mobile FAB Button ===== */
+  .filter-fab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 12px 20px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s;
+  }
+
+  .filter-fab:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+
+  .fab-icon {
+    font-size: 1rem;
+  }
+
+  .fab-badge {
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    margin-left: 2px;
+  }
+
+  /* ===== Bottom Sheet ===== */
+  .bottom-sheet-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .bottom-sheet-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+    background: var(--color-card);
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+
+  .bottom-sheet.active {
+    transform: translateY(0);
+  }
+
+  .sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-card);
+  }
+
+  .sheet-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .sheet-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--color-bg);
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+  }
+
+  .sheet-content {
+    padding: 16px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sheet-apply {
+    width: 100%;
+    padding: 14px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  /* Hide mobile elements on desktop */
+  @media (min-width: 1024px) {
+    .filter-fab,
+    .bottom-sheet-overlay,
+    .bottom-sheet {
+      display: none !important;
+    }
+  }
+
+  /* ===== Desktop Filter Container ===== */
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .desktop-only {
+      display: block;
+    }
+  }
+
   .filter-container {
     background: var(--color-card);
     border-radius: var(--radius-lg);
@@ -94,6 +307,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     overflow: hidden;
   }
 
+  /* ===== Shared Styles ===== */
   .stats-bar {
     display: flex;
     align-items: center;
@@ -116,44 +330,13 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filters-row {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
-
-  /* On tablet: horizontal layout */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .filters-row {
-      flex-direction: row;
-      align-items: flex-end;
-      gap: 16px;
-    }
-
-    .filter-group {
-      flex: 1;
-    }
-
-    .filter-group-select {
-      flex: 0 0 auto;
-      min-width: 180px;
-    }
-  }
-
-  /* On desktop: vertical layout in sidebar */
-  @media (min-width: 1024px) {
-    .filters-row {
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .filter-scroll {
-      flex-wrap: wrap;
-    }
+    gap: 16px;
   }
 
   .filter-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 0;
+    gap: 8px;
   }
 
   .filter-label {
@@ -164,25 +347,21 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: var(--color-muted);
   }
 
-  .filter-scroll {
+  .filter-chips {
     display: flex;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    margin-bottom: -4px;
-    min-width: 0;
-    flex: 1;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .chip {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 6px 12px;
+    padding: 8px 14px;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -202,12 +381,12 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   }
 
   .chip-emoji {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .chip-count {
     font-size: 0.7rem;
-    padding: 1px 5px;
+    padding: 2px 6px;
     background: rgba(0,0,0,0.08);
     border-radius: var(--radius-full);
   }
@@ -216,7 +395,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     background: rgba(255,255,255,0.25);
   }
 
-  /* Category color hints */
   .category-chip[data-color="kinder"]:not(.active):hover {
     border-color: var(--color-kinder);
     color: var(--color-kinder);
@@ -232,10 +410,10 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .location-select {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     background: var(--color-card);
     color: var(--color-text);
     cursor: pointer;
@@ -248,15 +426,43 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 </style>
 
 <script>
+  // Elements
+  const fab = document.getElementById('filter-fab');
+  const overlay = document.getElementById('sheet-overlay');
+  const sheet = document.getElementById('bottom-sheet');
+  const closeBtn = document.getElementById('sheet-close');
+  const applyBtn = document.getElementById('sheet-apply');
+  const badge = document.getElementById('filter-badge');
+
+  // All chips (mobile + desktop)
   const regionChips = document.querySelectorAll('.chip[data-region]');
   const categoryChips = document.querySelectorAll('.chip[data-filter]');
-  const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
+  const locationSelects = document.querySelectorAll('.location-select');
   const eventCards = document.querySelectorAll('.event-card');
 
   let activeRegion = 'all';
   let activeCategory = 'all';
   let activeLocation = 'all';
 
+  // Open/close sheet
+  function openSheet() {
+    sheet?.classList.add('active');
+    overlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    sheet?.classList.remove('active');
+    overlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  fab?.addEventListener('click', openSheet);
+  overlay?.addEventListener('click', closeSheet);
+  closeBtn?.addEventListener('click', closeSheet);
+  applyBtn?.addEventListener('click', closeSheet);
+
+  // Filter logic
   function filterEvents() {
     let visibleCount = 0;
     
@@ -274,31 +480,61 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       }
     });
 
-    // Update stats
-    const statsEl = document.querySelector('.stat-item strong');
-    if (statsEl) statsEl.textContent = String(visibleCount);
+    // Update counts everywhere
+    document.querySelectorAll('#mobile-event-count, #desktop-event-count, #apply-count').forEach(el => {
+      el.textContent = String(visibleCount);
+    });
+
+    // Update badge
+    const activeFilters = (activeRegion !== 'all' ? 1 : 0) + (activeCategory !== 'all' ? 1 : 0) + (activeLocation !== 'all' ? 1 : 0);
+    if (badge) {
+      if (activeFilters > 0) {
+        badge.style.display = 'inline';
+        badge.textContent = String(activeFilters);
+      } else {
+        badge.style.display = 'none';
+      }
+    }
   }
 
+  // Sync chips between mobile and desktop
+  function syncChips(type: 'region' | 'category', value: string) {
+    const selector = type === 'region' ? '.chip[data-region]' : '.chip[data-filter]';
+    document.querySelectorAll(selector).forEach(chip => {
+      const chipValue = type === 'region' 
+        ? (chip as HTMLElement).dataset.region 
+        : (chip as HTMLElement).dataset.filter;
+      chip.classList.toggle('active', chipValue === value);
+    });
+  }
+
+  // Region clicks
   regionChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      regionChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
       activeRegion = (chip as HTMLElement).dataset.region || 'all';
+      syncChips('region', activeRegion);
       filterEvents();
     });
   });
 
+  // Category clicks
   categoryChips.forEach(chip => {
     chip.addEventListener('click', () => {
-      categoryChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
       activeCategory = (chip as HTMLElement).dataset.filter || 'all';
+      syncChips('category', activeCategory);
       filterEvents();
     });
   });
 
-  locationSelect?.addEventListener('change', () => {
-    activeLocation = locationSelect.value;
-    filterEvents();
+  // Location selects
+  locationSelects.forEach(select => {
+    select.addEventListener('change', () => {
+      activeLocation = (select as HTMLSelectElement).value;
+      // Sync both selects
+      locationSelects.forEach(s => {
+        (s as HTMLSelectElement).value = activeLocation;
+      });
+      filterEvents();
+    });
   });
 </script>

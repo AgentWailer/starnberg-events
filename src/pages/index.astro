@@ -86,20 +86,13 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     margin-bottom: 16px;
   }
 
-  /* Mobile: stacked layout */
+  /* Mobile: hide sidebar, just show content */
   .layout-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: block;
   }
 
   .sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding-top: 12px;
-    padding-bottom: 4px;
-    background: linear-gradient(to bottom, var(--color-bg) 85%, transparent);
+    display: none;
   }
 
   /* Desktop: sidebar + content grid */
@@ -112,10 +105,9 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     }
 
     .sidebar {
+      display: block;
       position: sticky;
       top: 20px;
-      padding-top: 0;
-      background: transparent;
     }
   }
 
