@@ -214,6 +214,19 @@
     margin-left: 3px;
   }
 
+  /* Tomorrow/next day label */
+  :global(.tomorrow) {
+    color: var(--color-muted);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    margin-right: 3px;
+  }
+
+  /* No train available */
+  :global(.no-train) {
+    color: var(--color-muted);
+  }
+
   /* Reduced motion - no scroll, just static display */
   @media (prefers-reduced-motion: reduce) {
     .ticker-track {
@@ -428,6 +441,40 @@
     });
   }
 
+  // Format train time - show "morgen" if next day
+  function formatTrainTime(train: any): string {
+    const time = train.scheduledDeparture;
+    const delay = train.delayDeparture > 0 ? `<span class="delay">+${train.delayDeparture}</span>` : '';
+    
+    // Check if departure is tomorrow or later
+    if (train.scheduledDepartureDate) {
+      const today = new Date();
+      const depDate = new Date(train.scheduledDepartureDate);
+      
+      // Compare dates (ignoring time)
+      const todayStr = today.toISOString().split('T')[0];
+      const depStr = depDate.toISOString().split('T')[0];
+      
+      if (depStr > todayStr) {
+        // Tomorrow or later - show day
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const tomorrowStr = tomorrow.toISOString().split('T')[0];
+        
+        if (depStr === tomorrowStr) {
+          return `<span class="tomorrow">morgen</span> ${time}${delay}`;
+        } else {
+          // Show weekday
+          const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+          const dayName = days[depDate.getDay()];
+          return `<span class="tomorrow">${dayName}</span> ${time}${delay}`;
+        }
+      }
+    }
+    
+    return time + delay;
+  }
+
   // Load train departures
   async function loadTrains(): Promise<void> {
     try {
@@ -442,7 +489,7 @@
 
       const departures = data.departures || [];
 
-      // Filter for S-Bahn only
+      // Filter for S-Bahn only (not cancelled)
       const sBahns = departures.filter((d: any) =>
         !d.isCancelled && d.train && d.train.startsWith('S ')
       );
@@ -463,17 +510,25 @@
 
       // Update München
       if (toMunich) {
-        const delay = toMunich.delayDeparture > 0 ? `<span class="delay">+${toMunich.delayDeparture}</span>` : '';
+        const timeHtml = formatTrainTime(toMunich);
         document.querySelectorAll('#train-munich').forEach(el => {
-          el.innerHTML = toMunich.scheduledDeparture + delay;
+          el.innerHTML = timeHtml;
+        });
+      } else {
+        document.querySelectorAll('#train-munich').forEach(el => {
+          el.innerHTML = '<span class="no-train">–</span>';
         });
       }
 
       // Update Tutzing
       if (toTutzing) {
-        const delay = toTutzing.delayDeparture > 0 ? `<span class="delay">+${toTutzing.delayDeparture}</span>` : '';
+        const timeHtml = formatTrainTime(toTutzing);
         document.querySelectorAll('#train-tutzing').forEach(el => {
-          el.innerHTML = toTutzing.scheduledDeparture + delay;
+          el.innerHTML = timeHtml;
+        });
+      } else {
+        document.querySelectorAll('#train-tutzing').forEach(el => {
+          el.innerHTML = '<span class="no-train">–</span>';
         });
       }
     } catch (e) {
