@@ -24,19 +24,16 @@
   }
 
   .info-bar-inner {
-    display: flex;
-    animation: marquee 25s linear infinite;
+    display: inline-flex;
+    white-space: nowrap;
     padding: var(--space-3) 0;
-  }
-
-  .info-bar-inner:hover,
-  .info-bar-inner:active {
-    animation-play-state: paused;
+    animation: marquee 20s linear infinite;
+    will-change: transform;
   }
 
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   .info-bar .info-item {
