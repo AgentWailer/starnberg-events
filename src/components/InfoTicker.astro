@@ -1,149 +1,267 @@
 ---
-// Elegant info bar for mobile - matches site design
+// Mobile info carousel - cycles through weather, water, sun times, train
 ---
 
-<div class="info-bar" id="info-bar">
-  <div class="info-bar-inner" id="info-bar-inner">
-    <span class="info-item loading">Lädt...</span>
+<div class="info-carousel" id="info-carousel">
+  <div class="carousel-track" id="carousel-track">
+    <div class="carousel-slide active" data-slide="0">
+      <span class="slide-icon">☀️</span>
+      <span class="slide-content">
+        <span class="slide-value" id="temp-value">--°</span>
+        <span class="slide-label">Starnberg</span>
+      </span>
+    </div>
+    <div class="carousel-slide" data-slide="1">
+      <span class="slide-icon">💧</span>
+      <span class="slide-content">
+        <span class="slide-value">4°</span>
+        <span class="slide-label">Wassertemperatur</span>
+      </span>
+    </div>
+    <div class="carousel-slide" data-slide="2">
+      <span class="slide-icon">🌅</span>
+      <span class="slide-content">
+        <span class="slide-value" id="sun-value">--:-- – --:--</span>
+        <span class="slide-label">Sonnenauf- & untergang</span>
+      </span>
+    </div>
+    <div class="carousel-slide" data-slide="3">
+      <span class="slide-icon">🚆</span>
+      <span class="slide-content">
+        <span class="slide-value" id="train-value">--:--</span>
+        <span class="slide-label" id="train-label">S-Bahn Possenhofen</span>
+      </span>
+    </div>
+  </div>
+  <div class="carousel-dots">
+    <button class="dot active" data-dot="0" aria-label="Wetter"></button>
+    <button class="dot" data-dot="1" aria-label="Wassertemperatur"></button>
+    <button class="dot" data-dot="2" aria-label="Sonnenzeiten"></button>
+    <button class="dot" data-dot="3" aria-label="S-Bahn"></button>
   </div>
 </div>
 
 <style>
-  .info-bar {
+  .info-carousel {
     display: none;
-    background: var(--color-primary);
-    color: white;
-    overflow: hidden;
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-5);
     position: relative;
+    overflow: hidden;
   }
 
   @media (max-width: 767px) {
-    .info-bar {
+    .info-carousel {
       display: block;
     }
   }
 
-  .info-bar-inner {
-    display: inline-flex;
-    white-space: nowrap;
-    padding: var(--space-3) 0;
-    animation: marquee 20s linear infinite;
-    will-change: transform;
+  .carousel-track {
+    position: relative;
+    height: 48px;
   }
 
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .info-bar .info-item {
-    display: inline-flex;
+  .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
     align-items: center;
+    gap: var(--space-3);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .carousel-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .slide-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .slide-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .slide-value {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+  }
+
+  .slide-label {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
     gap: var(--space-2);
-    padding: 0 var(--space-5);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0.95;
+    margin-top: var(--space-3);
   }
 
-  .info-bar .info-item::after {
-    content: "·";
-    margin-left: var(--space-5);
-    opacity: 0.4;
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-border);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
   }
 
-  .info-bar .info-item:last-child::after {
-    content: none;
+  .dot:hover {
+    background: var(--color-muted);
   }
 
-  .info-bar .info-value {
-    font-weight: 700;
-  }
-
-  .info-bar .info-label {
-    opacity: 0.7;
-    font-weight: 400;
-  }
-
-  .info-bar .info-badge {
-    background: rgba(255,255,255,0.2);
-    padding: 1px 6px;
-    border-radius: var(--radius-sm);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  .info-bar .loading {
-    opacity: 0.6;
-    font-style: italic;
+  .dot.active {
+    background: var(--color-primary);
+    transform: scale(1.2);
   }
 </style>
 
 <script>
-  const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
-  const TRAIN_API = 'https://dbf.finalrewind.org';
+  const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
+  const TRAIN_API = 'https://dbf.finalrewind.org/Possenhofen.json?version=3';
 
-  const icons = {
-    sun: `<svg style="width:14px;height:14px;opacity:0.8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>`,
-    droplet: `<svg style="width:14px;height:14px;opacity:0.8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
-    sunrise: `<svg style="width:14px;height:14px;opacity:0.8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><polyline points="8 6 12 2 16 6"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/></svg>`,
-    train: `<svg style="width:14px;height:14px;opacity:0.8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>`,
-  };
+  let currentSlide = 0;
+  const totalSlides = 4;
+  let autoplayInterval = null;
 
-  function formatTime(iso: string): string {
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+    
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    showSlide((currentSlide + 1) % totalSlides);
+  }
+
+  function startAutoplay() {
+    if (autoplayInterval) clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(nextSlide, 4000);
+  }
+
+  function formatTime(iso) {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  async function loadInfo(): Promise<void> {
-    const container = document.getElementById('info-bar-inner');
-    if (!container) return;
-
-    const items: string[] = [];
-
-    // Weather
+  async function loadWeather() {
     try {
       const res = await fetch(WEATHER_API);
       const data = await res.json();
+      
+      // Temperature
       const temp = Math.round(data.current?.temperature_2m || 0);
-      const sunrise = data.daily?.sunrise?.[0] ? formatTime(data.daily.sunrise[0]) : '';
-      const sunset = data.daily?.sunset?.[0] ? formatTime(data.daily.sunset[0]) : '';
-
-      items.push(`<span class="info-item">${icons.sun} <span class="info-value">${temp}°</span> <span class="info-label">Starnberg</span></span>`);
-      items.push(`<span class="info-item">${icons.droplet} <span class="info-value">4°</span> <span class="info-label">Wassertemp</span></span>`);
+      const tempEl = document.getElementById('temp-value');
+      if (tempEl) tempEl.textContent = temp + '°';
+      
+      // Sunrise/Sunset
+      const sunrise = data.daily?.sunrise?.[0];
+      const sunset = data.daily?.sunset?.[0];
       if (sunrise && sunset) {
-        items.push(`<span class="info-item">${icons.sunrise} <span class="info-value">${sunrise}</span> – <span class="info-value">${sunset}</span></span>`);
+        const sunEl = document.getElementById('sun-value');
+        if (sunEl) sunEl.textContent = formatTime(sunrise) + ' – ' + formatTime(sunset);
       }
-    } catch {
-      items.push(`<span class="info-item">Wetter nicht verfügbar</span>`);
+    } catch (e) {
+      console.error('Weather error:', e);
     }
+  }
 
-    // Train
+  async function loadTrain() {
     try {
-      const res = await fetch(`${TRAIN_API}/Possenhofen.json?version=3`);
+      const res = await fetch(TRAIN_API);
       const data = await res.json();
+      
       const train = (data.departures || [])
-        .filter((d: any) => !d.isCancelled && d.train.startsWith('S '))
+        .filter(function(d) { return !d.isCancelled && d.train && d.train.startsWith('S '); })
         .slice(0, 1)[0];
-
+      
       if (train) {
+        const trainEl = document.getElementById('train-value');
+        const labelEl = document.getElementById('train-label');
+        
+        const delay = train.delayDeparture > 0 ? ' +' + train.delayDeparture : '';
         const dest = train.destination
           .replace(/\s*\([^)]*\)/g, '')
           .replace(/ Hbf$/, '')
           .replace(/^München /, 'M-');
-        const delay = train.delayDeparture > 0 ? ` +${train.delayDeparture}` : '';
         
-        items.push(`<span class="info-item">${icons.train} <span class="info-badge">S6</span> <span class="info-value">${train.scheduledDeparture}${delay}</span> → ${dest}</span>`);
+        if (trainEl) trainEl.textContent = train.scheduledDeparture + delay;
+        if (labelEl) labelEl.textContent = 'S6 → ' + dest;
       }
-    } catch {
-      // Skip
+    } catch (e) {
+      console.error('Train error:', e);
     }
-
-    // Duplicate for seamless loop
-    const content = items.join('');
-    container.innerHTML = content + content;
   }
 
-  document.addEventListener('DOMContentLoaded', loadInfo);
+  // Initialize
+  document.addEventListener('DOMContentLoaded', function() {
+    // Dot click handlers
+    document.querySelectorAll('.dot').forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-dot') || '0');
+        showSlide(index);
+        startAutoplay(); // Reset autoplay on manual navigation
+      });
+    });
+
+    // Touch swipe support
+    const carousel = document.getElementById('info-carousel');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (carousel) {
+      carousel.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            // Swipe left - next slide
+            showSlide((currentSlide + 1) % totalSlides);
+          } else {
+            // Swipe right - previous slide
+            showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+          }
+          startAutoplay();
+        }
+      }, { passive: true });
+    }
+
+    // Load data and start
+    loadWeather();
+    loadTrain();
+    startAutoplay();
+  });
 </script>
