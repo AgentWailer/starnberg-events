@@ -238,34 +238,48 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     right: 0;
     z-index: 1002;
     background: var(--color-card);
-    border-radius: 20px 20px 0 0;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     transform: translateY(100%);
-    transition: transform 0.3s ease-out, visibility 0s 0.3s;
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s 0.35s;
     max-height: 85vh;
     overflow-y: auto;
     visibility: hidden;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
   }
 
   .bottom-sheet.active {
     transform: translateY(0);
     visibility: visible;
-    transition: transform 0.3s ease-out, visibility 0s 0s;
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s 0s;
   }
 
   .sheet-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-light);
     position: sticky;
     top: 0;
     background: var(--color-card);
   }
 
+  .sheet-header::before {
+    content: '';
+    position: absolute;
+    top: var(--space-2);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+  }
+
   .sheet-title {
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 700;
+    padding-top: var(--space-2);
   }
 
   .sheet-close {
@@ -348,10 +362,11 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .filter-container {
     background: var(--color-card);
-    border-radius: var(--radius-md);
-    padding: 16px;
-    margin-bottom: 20px;
-    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-bottom: var(--space-6);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
   }
 
@@ -404,17 +419,17 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--space-2);
     /* Touch Target: minimum 44px height (Apple HIG) */
     min-height: var(--touch-target-min, 44px);
-    padding: 10px 14px;
-    border: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    border: 1.5px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--duration-fast, 100ms) ease;
+    transition: all var(--duration-normal) ease;
     white-space: nowrap;
     color: var(--color-text-secondary);
     /* Prevent text selection on rapid taps */
@@ -425,21 +440,22 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   /* Hover only on hover-capable devices */
   @media (hover: hover) {
     .chip:hover {
-      border-color: var(--color-text);
-      color: var(--color-text);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background: var(--color-bg-secondary);
     }
   }
 
   /* Active state - immediate touch feedback */
   .chip:active {
-    transform: scale(0.95);
-    opacity: 0.85;
+    transform: scale(0.96);
   }
 
   .chip.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: white;
+    box-shadow: var(--shadow-sm);
   }
 
   /* Dark mode adjustment for active chip */
@@ -483,21 +499,21 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     width: 100%;
     /* Touch Target: minimum 44px height */
     min-height: var(--touch-target-min, 44px);
-    padding: 10px 14px;
+    padding: var(--space-3) var(--space-4);
     border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     font-size: 0.9rem;
     background: var(--color-card);
     color: var(--color-text);
     cursor: pointer;
-    transition: border-color var(--duration-fast, 100ms) ease;
+    transition: border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease;
     /* Better touch behavior on iOS */
     -webkit-appearance: none;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
+    background-position: right var(--space-3) center;
+    padding-right: var(--space-10);
   }
 
   @media (hover: hover) {
@@ -508,6 +524,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .location-select:focus {
     border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.15);
   }
 
   /* Dark mode select */

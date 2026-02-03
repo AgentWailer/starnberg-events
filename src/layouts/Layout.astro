@@ -26,69 +26,98 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
 
 <style is:global>
   :root {
-    /* === Light Mode (Default) === */
-    --color-primary: #000000;
-    --color-primary-light: #333333;
-    --color-accent: #e85d04;
-    --color-kinder: #f59e0b;
-    --color-familie: #10b981;
-    --color-erwachsene: #8b5cf6;
+    /* === Light Mode (Default) - Warm & Einladend === */
     
-    /* Slightly off-white background */
-    --color-bg: #f5f5f5;
-    --color-bg-secondary: #eeeeee;
+    /* Primary - Tiefes Blau mit Charakter */
+    --color-primary: #1e3a5f;
+    --color-primary-light: #2d5a87;
+    
+    /* Accent - Warmes Koralle/Orange */
+    --color-accent: #e85d04;
+    --color-accent-light: #ff8534;
+    
+    /* Kategorien - Lebendig & Unterscheidbar */
+    --color-kinder: #f59e0b;
+    --color-familie: #059669;
+    --color-erwachsene: #7c3aed;
+    
+    /* Backgrounds - Warm Whites */
+    --color-bg: #fafaf9;
+    --color-bg-secondary: #f5f5f4;
     --color-card: #ffffff;
     
-    /* High contrast text */
-    --color-text: #031419;
-    --color-text-secondary: #555555;
-    --color-muted: #888888;
-    --color-border: #e5e5e5;
-    --color-border-light: #f0f0f0;
+    /* Text - Warm Neutrals */
+    --color-text: #1c1917;
+    --color-text-secondary: #57534e;
+    --color-muted: #a8a29e;
+    --color-border: #e7e5e4;
+    --color-border-light: #f5f5f4;
     
-    /* Minimal shadows */
-    --shadow-sm: none;
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
-    --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+    /* Elegante, mehrschichtige Schatten */
+    --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.07), 
+                 0 2px 4px -2px rgba(28, 25, 23, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.08), 
+                 0 4px 6px -4px rgba(28, 25, 23, 0.04);
+    --shadow-xl: 0 20px 25px -5px rgba(28, 25, 23, 0.1), 
+                 0 8px 10px -6px rgba(28, 25, 23, 0.05);
     
-    /* Sharp edges */
-    --radius-sm: 0px;
-    --radius-md: 0px;
-    --radius-lg: 0px;
+    /* Soft Border Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
     --radius-full: 9999px;
 
     /* Touch target minimum (44px per Apple HIG, 48px per Material) */
     --touch-target-min: 44px;
     
-    /* Animation durations */
-    --duration-fast: 100ms;
-    --duration-normal: 200ms;
-    --duration-slow: 300ms;
+    /* Animation durations - Smooth & Polished */
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 350ms;
+    
+    /* Spacing Scale (8px base) */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
   }
 
-  /* === Dark Mode === */
+  /* === Dark Mode - Elegant & Modern === */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-primary: #ffffff;
-      --color-primary-light: #e0e0e0;
+      --color-primary: #f5f5f4;
+      --color-primary-light: #e7e5e4;
       --color-accent: #ff8534;
+      --color-accent-light: #ffa654;
       --color-kinder: #fbbf24;
       --color-familie: #34d399;
       --color-erwachsene: #a78bfa;
       
-      --color-bg: #121212;
-      --color-bg-secondary: #1e1e1e;
-      --color-card: #1e1e1e;
+      --color-bg: #0c0a09;
+      --color-bg-secondary: #1c1917;
+      --color-card: #1c1917;
       
-      --color-text: #f5f5f5;
-      --color-text-secondary: #b0b0b0;
-      --color-muted: #888888;
-      --color-border: #333333;
-      --color-border-light: #2a2a2a;
+      --color-text: #fafaf9;
+      --color-text-secondary: #a8a29e;
+      --color-muted: #78716c;
+      --color-border: #292524;
+      --color-border-light: #1c1917;
       
-      --shadow-sm: none;
-      --shadow-md: 0 2px 8px rgba(0,0,0,0.3);
-      --shadow-lg: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
+                   0 2px 4px -2px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 
+                   0 4px 6px -4px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 
+                   0 8px 10px -6px rgba(0, 0, 0, 0.25);
     }
   }
 
@@ -118,21 +147,38 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
     font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
     background: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     /* Prevent text size adjustment on orientation change */
     -webkit-text-size-adjust: 100%;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
   }
 
   a {
     color: var(--color-primary);
     text-decoration: none;
-    transition: color var(--duration-fast);
+    transition: color var(--duration-fast) ease;
   }
 
   a:hover {
-    color: var(--color-primary-light);
+    color: var(--color-accent);
   }
 
   /* === Touch Feedback: Active States === */

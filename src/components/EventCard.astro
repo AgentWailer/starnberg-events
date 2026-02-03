@@ -99,9 +99,11 @@ const dateStr = `${day}. ${monthShort}`;
 <style>
   .event-card {
     background: var(--color-card);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform var(--duration-fast) ease, box-shadow var(--duration-normal) ease;
+    transition: transform var(--duration-normal) ease, 
+                box-shadow var(--duration-normal) ease;
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--color-border-light);
     /* CLS Prevention: consistent minimum height */
     min-height: 100px;
@@ -110,15 +112,16 @@ const dateStr = `${day}. ${monthShort}`;
   /* Hover state - only on devices that support hover */
   @media (hover: hover) {
     .event-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--color-border);
     }
   }
 
   /* Active state - immediate touch feedback */
   .event-card:active {
     transform: scale(0.98);
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
   }
 
   .card-link {
@@ -132,61 +135,68 @@ const dateStr = `${day}. ${monthShort}`;
   .accent-bar {
     height: 4px;
     background: var(--color-border);
+    transition: height var(--duration-fast) ease;
+  }
+
+  .event-card:hover .accent-bar {
+    height: 5px;
   }
 
   .accent-bar[data-cat="kinder"] {
-    background: var(--color-kinder);
+    background: linear-gradient(90deg, var(--color-kinder), #fbbf24);
   }
 
   .accent-bar[data-cat="familie"] {
-    background: var(--color-familie);
+    background: linear-gradient(90deg, var(--color-familie), #34d399);
   }
 
   .accent-bar[data-cat="erwachsene"] {
-    background: var(--color-erwachsene);
+    background: linear-gradient(90deg, var(--color-erwachsene), #a78bfa);
   }
 
   .card-content {
-    padding: 16px;
+    padding: var(--space-4);
   }
 
   @media (min-width: 640px) {
     .card-content {
-      padding: 20px;
+      padding: var(--space-5);
     }
   }
 
   .card-meta {
-    margin-bottom: 8px;
+    margin-bottom: var(--space-3);
   }
 
   .icon {
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+    opacity: 0.7;
   }
 
   .location {
-    font-size: 12px;
+    font-size: 0.8125rem;
     color: var(--color-text-secondary);
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-2);
   }
 
   .title {
     /* Mobile: minimum 16px for readability */
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-text);
     line-height: 1.4;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-3);
+    letter-spacing: -0.01em;
   }
 
   @media (min-width: 640px) {
     .title {
-      font-size: 16px;
+      font-size: 1.0625rem;
     }
   }
 
@@ -194,14 +204,23 @@ const dateStr = `${day}. ${monthShort}`;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
+    font-size: 0.8125rem;
     color: var(--color-muted);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-light);
   }
 
   .date, .category {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: var(--space-2);
     font-weight: 500;
+  }
+  
+  .category {
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
   }
 </style>
