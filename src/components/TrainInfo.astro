@@ -1,13 +1,12 @@
 ---
 interface Props {
   station?: string;
-  stationId?: string;
 }
 
-const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
+const { station = "Possenhofen" } = Astro.props;
 ---
 
-<div class="train-widget" data-station-id={stationId}>
+<div class="train-widget" data-station={station}>
   <div class="train-header">
     <div class="train-title">
       <svg class="db-logo" viewBox="0 0 100 70">
@@ -124,56 +123,46 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 </style>
 
 <script>
-  const API = 'https://v6.db.transport.rest';
-  const MAX_RETRIES = 3;
-  const RETRY_DELAY = 2000;
+  // Using dbf.finalrewind.org API (more stable than transport.rest)
+  const API = 'https://dbf.finalrewind.org';
 
   interface Departure {
-    when: string | null;
-    plannedWhen: string;
-    delay: number | null;
-    direction: string;
-    platform: string | null;
-    line: { name: string; product: string };
+    scheduledDeparture: string;
+    delayDeparture: number;
+    destination: string;
+    train: string;
+    platform: string;
+    isCancelled: number;
   }
 
-  async function fetchWithRetry(url: string, retries = MAX_RETRIES): Promise<Response> {
-    for (let i = 0; i < retries; i++) {
-      try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
-        const res = await fetch(url, { signal: controller.signal });
-        clearTimeout(timeout);
-        if (res.ok) return res;
-        if (res.status >= 500 && i < retries - 1) {
-          await new Promise(r => setTimeout(r, RETRY_DELAY * (i + 1)));
-          continue;
-        }
-        throw new Error(`HTTP ${res.status}`);
-      } catch (e) {
-        if (i === retries - 1) throw e;
-        await new Promise(r => setTimeout(r, RETRY_DELAY * (i + 1)));
-      }
-    }
-    throw new Error('Max retries reached');
-  }
-
-  async function fetchDepartures(stationId: string): Promise<Departure[]> {
-    const res = await fetchWithRetry(`${API}/stops/${stationId}/departures?duration=120&results=12`);
-    return (await res.json()).departures || [];
-  }
-
-  function formatTime(iso: string): string {
-    return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  async function fetchDepartures(station: string): Promise<Departure[]> {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    const res = await fetch(`${API}/${encodeURIComponent(station)}.json?version=3`, { 
+      signal: controller.signal 
+    });
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.departures || [];
   }
 
   function shortenDest(dest: string): string {
-    return dest.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf$/, '').replace(/ Bahnhof$/, '');
+    return dest
+      .replace(/\s*\([^)]*\)/g, '')
+      .replace(/ Hbf$/, '')
+      .replace(/ Bahnhof$/, '')
+      .replace(/^München /, 'M-');
+  }
+
+  function getLineName(train: string): string {
+    // train format: "S S6" or "RE 123"
+    return train.replace(/^S /, '').replace(/^RE /, 'RE');
   }
 
   function render(departures: Departure[], container: HTMLElement): void {
     const trains = departures
-      .filter(d => d.when && d.line && ['suburban', 'regional'].includes(d.line.product))
+      .filter(d => !d.isCancelled && d.train.startsWith('S '))
       .slice(0, 5);
     
     if (!trains.length) {
@@ -197,18 +186,19 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     `;
 
     trains.forEach((t, i) => {
-      const time = formatTime(t.when || t.plannedWhen);
-      const delayMin = t.delay && t.delay >= 60 ? Math.round(t.delay / 60) : 0;
+      const time = t.scheduledDeparture;
+      const delayMin = t.delayDeparture || 0;
       const delayHtml = delayMin > 0 
         ? `<span style="color:#dc2626;font-size:0.75rem;margin-left:4px">+${delayMin}</span>` 
         : '';
       const bg = i % 2 === 0 ? 'var(--color-card)' : 'var(--color-bg)';
+      const line = getLineName(t.train);
       
       html += `
         <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:12px 16px;background:${bg};align-items:center;border-bottom:1px solid var(--color-border)">
           <span style="font-weight:600;color:var(--color-primary)">${time}${delayHtml}</span>
-          <span style="background:#16a34a;color:white;padding:2px 8px;border-radius:4px;font-weight:600;font-size:0.8rem;justify-self:start">${t.line.name}</span>
-          <span style="color:var(--color-text);font-weight:500">${shortenDest(t.direction)}</span>
+          <span style="background:#16a34a;color:white;padding:2px 8px;border-radius:4px;font-weight:600;font-size:0.8rem;justify-self:start">${line}</span>
+          <span style="color:var(--color-text);font-weight:500">${shortenDest(t.destination)}</span>
           <span style="text-align:right;font-weight:500;color:var(--color-text-secondary)">${t.platform || '–'}</span>
         </div>
       `;
@@ -219,12 +209,12 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   }
 
   async function update(widget: HTMLElement): Promise<void> {
-    const stationId = widget.dataset.stationId;
+    const station = widget.dataset.station || 'Possenhofen';
     const container = widget.querySelector('#train-table') as HTMLElement;
-    if (!stationId || !container) return;
+    if (!container) return;
 
     try {
-      const departures = await fetchDepartures(stationId);
+      const departures = await fetchDepartures(station);
       render(departures, container);
     } catch {
       container.innerHTML = `
