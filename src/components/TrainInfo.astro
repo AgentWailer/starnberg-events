@@ -7,196 +7,277 @@ interface Props {
 const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 ---
 
-<section class="train-info" data-station-id={stationId}>
-  <div class="train-header">
-    <div class="train-icon">🚆</div>
-    <div class="train-title">
-      <h2>S-Bahn {station}</h2>
-      <p class="update-info">
-        <span class="live-dot"></span>
-        Live-Abfahrten
-        <span class="last-update"></span>
-      </p>
+<section class="departure-board" data-station-id={stationId}>
+  <div class="board-header">
+    <div class="station-name">
+      <span class="db-logo">DB</span>
+      {station}
     </div>
+    <div class="board-title">Abfahrt</div>
+    <div class="clock" id="station-clock">--:--</div>
+  </div>
+  
+  <div class="board-columns">
+    <span class="col-time">Zeit</span>
+    <span class="col-train">Zug</span>
+    <span class="col-destination">Richtung</span>
+    <span class="col-platform">Gl.</span>
   </div>
   
   <div class="departures-list" id="departures">
-    <div class="loading">Lade Abfahrten...</div>
+    <div class="loading-row">
+      <span class="loading-text">Daten werden geladen...</span>
+    </div>
   </div>
   
-  <div class="train-footer">
+  <div class="board-footer">
     <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" 
        target="_blank" 
        rel="noopener" 
        class="more-link">
-      Alle Verbindungen →
+      Alle Verbindungen anzeigen →
     </a>
   </div>
 </section>
 
 <style>
-  .train-info {
-    background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-    color: white;
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .train-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .train-icon {
-    font-size: 1.75rem;
-    background: rgba(255,255,255,0.15);
-    padding: 0.5rem;
+  .departure-board {
+    background: #1a1a2e;
+    color: #ffd700;
     border-radius: 8px;
-    line-height: 1;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    font-family: 'Roboto Mono', 'SF Mono', 'Consolas', monospace;
+    box-shadow: 
+      0 4px 20px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+    border: 2px solid #333;
   }
 
-  .train-title h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .update-info {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin: 0.25rem 0 0;
+  .board-header {
+    background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
+    padding: 0.75rem 1rem;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: space-between;
+    border-bottom: 2px solid #333;
   }
 
-  .live-dot {
-    width: 8px;
-    height: 8px;
-    background: #48bb78;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .departures-list {
+  .station-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
   }
 
-  .loading, .error {
-    text-align: center;
-    padding: 1rem;
-    opacity: 0.7;
-    font-size: 0.9rem;
+  .db-logo {
+    background: #ec0016;
+    color: white;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
   }
 
-  .error {
-    color: #feb2b2;
+  .board-title {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .clock {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255,215,0,0.5);
+  }
+
+  .board-columns {
+    display: grid;
+    grid-template-columns: 70px 60px 1fr 50px;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #252545;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+  }
+
+  .departures-list {
+    min-height: 200px;
+  }
+
+  .loading-row {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .loading-text {
+    color: #666;
+    font-size: 0.85rem;
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
   }
 
   .departure-row {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: 70px 60px 1fr 50px;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid #2a2a4a;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 0.75rem;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    font-size: 0.9rem;
+    transition: background 0.2s;
   }
 
-  .line-badge {
-    background: #38a169;
-    color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+  .departure-row:hover {
+    background: rgba(255,215,0,0.05);
+  }
+
+  .departure-row:last-child {
+    border-bottom: none;
+  }
+
+  .time-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .planned-time {
+    font-size: 1.1rem;
     font-weight: 700;
-    font-size: 0.85rem;
-    min-width: 2.5rem;
-    text-align: center;
+    color: #ffd700;
   }
 
-  .line-badge.suburban { background: #38a169; }
-  .line-badge.regional { background: #3182ce; }
-  .line-badge.bus { background: #805ad5; }
-  .line-badge.other { background: #718096; }
+  .delay-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
 
-  .destination {
-    font-weight: 500;
+  .delay-badge.late {
+    color: #ff4444;
+  }
+
+  .delay-badge.on-time {
+    color: #44ff44;
+  }
+
+  .train-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .line-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    background: #38a169;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .line-name.suburban { background: #38a169; }
+  .line-name.regional { background: #3182ce; }
+
+  .destination-cell {
+    font-size: 0.95rem;
+    color: #fff;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .platform {
-    font-size: 0.8rem;
-    opacity: 0.7;
+  .via-stops {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 2px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .time-info {
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .time {
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  .delay {
-    font-size: 0.75rem;
-    margin-left: 0.3rem;
-  }
-
-  .delay.late {
-    color: #fc8181;
-  }
-
-  .delay.on-time {
-    color: #68d391;
-  }
-
-  .train-footer {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(255,255,255,0.2);
+  .platform-cell {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
     text-align: center;
   }
 
+  .board-footer {
+    background: #252545;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    border-top: 1px solid #333;
+  }
+
   .more-link {
-    color: rgba(255,255,255,0.9);
+    color: #888;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: color 0.2s;
   }
 
   .more-link:hover {
-    color: white;
-    text-decoration: underline;
+    color: #ffd700;
   }
 
-  @media (max-width: 480px) {
-    .departure-row {
-      grid-template-columns: auto 1fr auto;
-      gap: 0.5rem;
+  .error-row {
+    padding: 1.5rem;
+    text-align: center;
+    color: #ff6b6b;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 500px) {
+    .board-columns {
+      grid-template-columns: 60px 50px 1fr 40px;
+      font-size: 0.65rem;
     }
-    
-    .platform {
+
+    .departure-row {
+      grid-template-columns: 60px 50px 1fr 40px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .planned-time {
+      font-size: 0.95rem;
+    }
+
+    .destination-cell {
+      font-size: 0.85rem;
+    }
+
+    .platform-cell {
+      font-size: 0.95rem;
+    }
+
+    .clock {
+      font-size: 1.1rem;
+    }
+
+    .station-name {
+      font-size: 0.95rem;
+    }
+
+    .board-title {
       display: none;
     }
-    
-    .destination {
-      font-size: 0.85rem;
+
+    .via-stops {
+      display: none;
     }
   }
 </style>
@@ -213,12 +294,23 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     line: {
       name: string;
       product: string;
-      mode: string;
     };
+    remarks?: Array<{ text: string }>;
+  }
+
+  function updateClock(): void {
+    const clock = document.getElementById('station-clock');
+    if (clock) {
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString('de-DE', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+      });
+    }
   }
 
   async function fetchDepartures(stationId: string): Promise<Departure[]> {
-    const url = `${API_BASE}/stops/${stationId}/departures?duration=90&results=10`;
+    const url = `${API_BASE}/stops/${stationId}/departures?duration=90&results=12`;
     const response = await fetch(url);
     
     if (!response.ok) {
@@ -237,75 +329,62 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     });
   }
 
-  function formatDelay(delaySeconds: number | null): { text: string; className: string } {
-    if (delaySeconds === null || delaySeconds === undefined) {
-      return { text: '', className: '' };
+  function getDelayInfo(delaySeconds: number | null): { text: string; className: string } {
+    if (delaySeconds === null || delaySeconds === undefined || delaySeconds <= 0) {
+      return { text: 'pünktlich', className: 'on-time' };
     }
     
-    const delayMinutes = Math.round(delaySeconds / 60);
-    
-    if (delayMinutes <= 0) {
-      return { text: '', className: 'on-time' };
-    }
-    
+    const minutes = Math.round(delaySeconds / 60);
     return { 
-      text: `+${delayMinutes}'`, 
+      text: `+${minutes} min`, 
       className: 'late' 
     };
   }
 
-  function getLineClass(product: string): string {
-    switch (product) {
-      case 'suburban': return 'suburban';
-      case 'regional': return 'regional';
-      case 'bus': return 'bus';
-      default: return 'other';
-    }
+  function shortenDestination(dest: string): string {
+    // Remove parentheses content and trim
+    let short = dest.replace(/\s*\([^)]*\)/g, '').trim();
+    
+    // Common shortenings
+    short = short.replace('München Hbf (tief)', 'München Hbf');
+    short = short.replace('Ebersberg(Oberbay)', 'Ebersberg');
+    
+    return short;
   }
 
   function renderDepartures(departures: Departure[], container: HTMLElement): void {
-    // Filter für Züge (S-Bahn & Regional), keine Busse
     const trainDepartures = departures
       .filter(d => d.when && (d.line.product === 'suburban' || d.line.product === 'regional'))
       .slice(0, 6);
     
     if (trainDepartures.length === 0) {
-      container.innerHTML = '<div class="error">Keine Abfahrten gefunden</div>';
+      container.innerHTML = '<div class="error-row">Keine Abfahrten gefunden</div>';
       return;
     }
     
     container.innerHTML = trainDepartures.map(dep => {
-      const time = formatTime(dep.when!);
-      const delay = formatDelay(dep.delay);
-      const lineClass = getLineClass(dep.line.product);
-      const platform = dep.platform ? `Gl. ${dep.platform}` : '';
-      
-      // Kürze lange Ziele
-      let destination = dep.direction;
-      if (destination.includes('(')) {
-        destination = destination.split('(')[0].trim();
-      }
+      const time = formatTime(dep.plannedWhen);
+      const delay = getDelayInfo(dep.delay);
+      const destination = shortenDestination(dep.direction);
+      const platform = dep.platform || '-';
+      const lineClass = dep.line.product === 'suburban' ? 'suburban' : 'regional';
       
       return `
         <div class="departure-row">
-          <span class="line-badge ${lineClass}">${dep.line.name}</span>
-          <span class="destination">→ ${destination}</span>
-          <span class="platform">${platform}</span>
-          <span class="time-info">
-            <span class="time">${time}</span>
-            ${delay.text ? `<span class="delay ${delay.className}">${delay.text}</span>` : ''}
-          </span>
+          <div class="time-cell">
+            <span class="planned-time">${time}</span>
+            <span class="delay-badge ${delay.className}">${delay.text}</span>
+          </div>
+          <div class="train-cell">
+            <span class="line-name ${lineClass}">${dep.line.name}</span>
+          </div>
+          <div class="destination-cell">
+            ${destination}
+          </div>
+          <div class="platform-cell">${platform}</div>
         </div>
       `;
     }).join('');
-  }
-
-  function updateTimestamp(container: HTMLElement): void {
-    const updateEl = container.querySelector('.last-update');
-    if (updateEl) {
-      const now = new Date();
-      updateEl.textContent = `• ${now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })}`;
-    }
   }
 
   async function updateDepartures(section: HTMLElement): Promise<void> {
@@ -317,23 +396,24 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     try {
       const departures = await fetchDepartures(stationId);
       renderDepartures(departures, container);
-      updateTimestamp(section);
     } catch (error) {
       console.error('Failed to fetch departures:', error);
-      container.innerHTML = '<div class="error">Verbindungsfehler – Daten konnten nicht geladen werden</div>';
+      container.innerHTML = '<div class="error-row">Verbindungsfehler</div>';
     }
   }
 
   // Initialize
   document.addEventListener('DOMContentLoaded', () => {
-    const trainSection = document.querySelector('.train-info') as HTMLElement;
+    const board = document.querySelector('.departure-board') as HTMLElement;
     
-    if (trainSection) {
-      // Initial load
-      updateDepartures(trainSection);
+    if (board) {
+      // Clock
+      updateClock();
+      setInterval(updateClock, 1000);
       
-      // Refresh every 60 seconds
-      setInterval(() => updateDepartures(trainSection), 60000);
+      // Departures
+      updateDepartures(board);
+      setInterval(() => updateDepartures(board), 60000);
     }
   });
 </script>
