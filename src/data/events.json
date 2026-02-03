@@ -34,7 +34,7 @@
       "emoji": "🎿"
     }
   },
-  "eventCount": 72,
+  "eventCount": 71,
   "events": [
     {
       "id": 1,
@@ -138,23 +138,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 6
-    },
-    {
-      "id": 7,
-      "title": "beccult: Willi live – UND WOVON TRÄUMST DU?",
-      "date": "2026-02-07",
-      "time": "15:00",
-      "location": "Pöcking",
-      "address": "82343 Pöcking",
-      "description": "Die Show über Träume, Mut und das Leben – für Kinder und alle, die es einmal gewesen sind",
-      "category": "kinder",
-      "tags": [
-        "kinder",
-        "theater"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=68da4b8550eea724c58423a5",
-      "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
     },
     {
       "title": "Willi live – Und wovon träumst du?",
