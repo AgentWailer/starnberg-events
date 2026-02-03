@@ -8,15 +8,16 @@ interface Props {
 
 const { showFullSchedule = false } = Astro.props;
 
-// Hauptsaison departures from Starnberg (01.05. - 04.10.2026)
+// Hauptsaison departures from Possenhofen (01.05. - 04.10.2026)
+// Possenhofen liegt zwischen Leoni und Tutzing
 const departures = [
-  { time: "10:15", via: ["Berg", "Leoni", "Possenhofen"], arrival: "11:14", destination: "Tutzing" },
-  { time: "10:55", via: ["Berg", "Leoni", "Possenhofen"], arrival: "11:54", destination: "Tutzing" },
-  { time: "11:35", via: [], arrival: "12:15", destination: "Tutzing (Direkt)" },
-  { time: "13:20", via: ["Berg", "Leoni", "Possenhofen"], arrival: "14:19", destination: "Tutzing" },
-  { time: "14:30", via: ["Berg", "Leoni", "Possenhofen"], arrival: "15:29", destination: "Tutzing" },
-  { time: "15:55", via: ["Berg", "Leoni", "Possenhofen"], arrival: null, destination: "Possenhofen" },
-  { time: "17:15", via: ["Berg", "Leoni"], arrival: null, destination: "Possenhofen" },
+  { time: "10:50", destination: "Tutzing", arrival: "11:14", direction: "süd" },
+  { time: "11:30", destination: "Starnberg", arrival: "12:05", direction: "nord" },
+  { time: "11:30", destination: "Tutzing", arrival: "11:54", direction: "süd" },
+  { time: "13:55", destination: "Tutzing", arrival: "14:19", direction: "süd" },
+  { time: "14:25", destination: "Starnberg", arrival: "15:00", direction: "nord" },
+  { time: "15:05", destination: "Tutzing", arrival: "15:29", direction: "süd" },
+  { time: "16:30", destination: "Starnberg", arrival: "17:05", direction: "nord" },
 ];
 
 // Rundfahrten (tours)
@@ -38,7 +39,7 @@ const seasons = [
   <div class="ferry-header">
     <div class="ferry-title">
       <span class="ferry-icon">⛴️</span>
-      <span>Schifffahrt Starnberger See</span>
+      <span>Schiff ab Possenhofen</span>
     </div>
     <a href="https://www.seenschifffahrt.de/de/starnberger-see/fahrplan/fahrplan/" target="_blank" class="ferry-link">
       Fahrplan
@@ -57,13 +58,14 @@ const seasons = [
       <span class="season-dates">Hauptsaison: 01.05. - 04.10.</span>
     </div>
 
-    <!-- Next Departures from Starnberg -->
+    <!-- Next Departures from Possenhofen -->
     <div class="departures-section">
-      <h4 class="section-title">Ab Starnberg Richtung Süden</h4>
+      <h4 class="section-title">Ab Possenhofen</h4>
       <div class="departures-grid">
-        {departures.slice(0, 5).map((dep, i) => (
+        {departures.slice(0, 6).map((dep, i) => (
           <div class="departure-row" style={`--row-bg: ${i % 2 === 0 ? 'var(--color-card)' : 'var(--color-bg)'}`}>
             <span class="dep-time">{dep.time}</span>
+            <span class={`dep-direction ${dep.direction}`}>{dep.direction === 'süd' ? '↓' : '↑'}</span>
             <span class="dep-dest">{dep.destination}</span>
             <span class="dep-arrival">{dep.arrival ? `an ${dep.arrival}` : ''}</span>
           </div>
@@ -214,8 +216,8 @@ const seasons = [
 
   .departure-row {
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 12px;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 8px;
     padding: 10px 16px;
     background: var(--row-bg);
     border-bottom: 1px solid var(--color-border);
@@ -226,6 +228,20 @@ const seasons = [
     font-weight: 600;
     color: var(--color-primary);
     font-size: 0.9rem;
+  }
+
+  .dep-direction {
+    font-size: 0.9rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  .dep-direction.süd {
+    color: #0284c7;
+  }
+
+  .dep-direction.nord {
+    color: #16a34a;
   }
 
   .dep-dest {
