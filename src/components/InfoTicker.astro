@@ -69,7 +69,7 @@
       <span class="ticker-divider">|</span>
 
       <!-- S-Bahn München -->
-      <span class="ticker-item" data-type="train">
+      <a class="ticker-item ticker-link" data-type="train" href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" rel="noopener">
         <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="4" y="3" width="16" height="16" rx="2"/>
           <path d="M4 11h16"/>
@@ -82,12 +82,12 @@
         <span class="ticker-badge">S6</span>
         <span class="ticker-value" id="train-munich">--:--</span>
         <span class="ticker-label">→ München</span>
-      </span>
+      </a>
 
       <span class="ticker-divider">|</span>
 
       <!-- S-Bahn Tutzing -->
-      <span class="ticker-item" data-type="train">
+      <a class="ticker-item ticker-link" data-type="train" href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" rel="noopener">
         <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="4" y="3" width="16" height="16" rx="2"/>
           <path d="M4 11h16"/>
@@ -100,7 +100,7 @@
         <span class="ticker-badge">S6</span>
         <span class="ticker-value" id="train-tutzing">--:--</span>
         <span class="ticker-label">→ Tutzing</span>
-      </span>
+      </a>
 
       <span class="ticker-divider">|</span>
     </div>
@@ -191,11 +191,27 @@
     opacity: 0.5;
   }
 
-  /* Train delay styling */
-  .ticker-value .delay {
-    color: #dc2626;
-    font-size: 0.6875rem;
-    margin-left: 2px;
+  /* Train link styling */
+  .ticker-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .ticker-link:hover {
+    opacity: 0.8;
+  }
+
+  .ticker-link:active {
+    opacity: 0.6;
+  }
+
+  /* Train delay styling - RED */
+  :global(.delay) {
+    color: #dc2626 !important;
+    font-weight: 600;
+    font-size: 0.75rem;
+    margin-left: 3px;
   }
 
   /* Reduced motion - no scroll, just static display */
@@ -272,9 +288,15 @@
     const ticker = document.getElementById('info-ticker');
     if (!ticker) return;
 
+    let hasMoved = false;
+    let touchTarget: EventTarget | null = null;
+    const TAP_THRESHOLD = 10; // pixels - if moved less, it's a tap
+
     // Touch start
     ticker.addEventListener('touchstart', (e) => {
       isDragging = true;
+      hasMoved = false;
+      touchTarget = e.target;
       startX = e.touches[0].clientX;
       startPosition = position;
       track!.classList.add('animating');
@@ -285,6 +307,12 @@
       if (!isDragging) return;
       const currentX = e.touches[0].clientX;
       const diff = currentX - startX;
+      
+      // Check if user has moved enough to consider it a drag
+      if (Math.abs(diff) > TAP_THRESHOLD) {
+        hasMoved = true;
+      }
+      
       position = startPosition + diff;
 
       // Keep position in bounds
@@ -294,15 +322,28 @@
       track!.style.transform = `translateX(${position}px)`;
     }, { passive: true });
 
-    // Touch end - resume auto-scroll
-    ticker.addEventListener('touchend', () => {
+    // Touch end - handle tap vs drag
+    ticker.addEventListener('touchend', (e) => {
       isDragging = false;
       track!.classList.remove('animating');
+      
+      // If it was a tap (not a drag), check if target was a link
+      if (!hasMoved && touchTarget) {
+        const link = (touchTarget as Element).closest('a.ticker-link');
+        if (link) {
+          // Open the link
+          window.open((link as HTMLAnchorElement).href, '_blank');
+        }
+      }
       // Auto-scroll continues from current position
     }, { passive: true });
 
     // Mouse support for desktop testing
     ticker.addEventListener('mousedown', (e) => {
+      // Don't prevent default on links
+      if ((e.target as Element).closest('a.ticker-link')) {
+        return; // Let the link work normally
+      }
       isDragging = true;
       startX = e.clientX;
       startPosition = position;
