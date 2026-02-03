@@ -127,21 +127,12 @@
   .ticker-track {
     display: flex;
     width: max-content;
-    animation: ticker-scroll 30s linear infinite;
+    will-change: transform;
+    /* Animation controlled by JS for drag support */
   }
 
-  .ticker-track:hover,
-  .ticker-track.paused {
-    animation-play-state: paused;
-  }
-
-  @keyframes ticker-scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
+  .ticker-track.animating {
+    transition: none;
   }
 
   .ticker-content {
@@ -223,6 +214,17 @@
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
   const TRAIN_API = 'https://dbf.finalrewind.org/Possenhofen.json?version=3';
 
+  // Ticker state
+  let track: HTMLElement | null = null;
+  let contentWidth = 0;
+  let position = 0;
+  let speed = 50; // pixels per second
+  let lastTime = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startPosition = 0;
+  let animationId: number | null = null;
+
   function formatTime(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
@@ -233,29 +235,98 @@
     const clone = document.querySelector('.ticker-clone') as HTMLElement;
     if (content && clone) {
       clone.innerHTML = content.innerHTML;
+      // Get width of single content block
+      contentWidth = content.offsetWidth;
     }
   }
 
-  // Tap to pause/resume
-  function setupTapToPause(): void {
-    const track = document.getElementById('ticker-track');
+  // Animation loop
+  function animate(currentTime: number): void {
     if (!track) return;
 
-    track.addEventListener('click', () => {
-      track.classList.toggle('paused');
+    if (lastTime === 0) lastTime = currentTime;
+    const delta = (currentTime - lastTime) / 1000; // seconds
+    lastTime = currentTime;
+
+    if (!isDragging) {
+      // Auto-scroll
+      position -= speed * delta;
+
+      // Loop when scrolled past content width
+      if (position <= -contentWidth) {
+        position += contentWidth;
+      }
+      if (position > 0) {
+        position -= contentWidth;
+      }
+
+      track.style.transform = `translateX(${position}px)`;
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Touch/drag handling
+  function setupDragHandling(): void {
+    if (!track) return;
+    const ticker = document.getElementById('info-ticker');
+    if (!ticker) return;
+
+    // Touch start
+    ticker.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      startPosition = position;
+      track!.classList.add('animating');
+    }, { passive: true });
+
+    // Touch move - drag the ticker
+    ticker.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const diff = currentX - startX;
+      position = startPosition + diff;
+
+      // Keep position in bounds
+      while (position <= -contentWidth) position += contentWidth;
+      while (position > 0) position -= contentWidth;
+
+      track!.style.transform = `translateX(${position}px)`;
+    }, { passive: true });
+
+    // Touch end - resume auto-scroll
+    ticker.addEventListener('touchend', () => {
+      isDragging = false;
+      track!.classList.remove('animating');
+      // Auto-scroll continues from current position
+    }, { passive: true });
+
+    // Mouse support for desktop testing
+    ticker.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startPosition = position;
+      track!.classList.add('animating');
+      e.preventDefault();
     });
 
-    // Touch also pauses while touching
-    track.addEventListener('touchstart', () => {
-      track.classList.add('paused');
-    }, { passive: true });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const diff = e.clientX - startX;
+      position = startPosition + diff;
 
-    track.addEventListener('touchend', () => {
-      // Resume after short delay
-      setTimeout(() => {
-        track.classList.remove('paused');
-      }, 2000);
-    }, { passive: true });
+      while (position <= -contentWidth) position += contentWidth;
+      while (position > 0) position -= contentWidth;
+
+      track!.style.transform = `translateX(${position}px)`;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        track!.classList.remove('animating');
+      }
+    });
   }
 
   // Load weather data
@@ -375,13 +446,16 @@
     const clone = document.querySelector('.ticker-clone') as HTMLElement;
     if (content && clone) {
       clone.innerHTML = content.innerHTML;
+      contentWidth = content.offsetWidth;
     }
   }
 
   // Initialize
   document.addEventListener('DOMContentLoaded', async () => {
+    track = document.getElementById('ticker-track');
+    
     setupTickerLoop();
-    setupTapToPause();
+    setupDragHandling();
 
     // Load data
     await Promise.all([
@@ -393,10 +467,20 @@
     // Update clone after data loaded
     updateClone();
 
+    // Start animation (respects reduced motion)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animationId = requestAnimationFrame(animate);
+    }
+
     // Refresh trains every minute
     setInterval(async () => {
       await loadTrains();
       updateClone();
     }, 60000);
+  });
+
+  // Cleanup
+  window.addEventListener('pagehide', () => {
+    if (animationId) cancelAnimationFrame(animationId);
   });
 </script>
