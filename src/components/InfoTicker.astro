@@ -1,245 +1,220 @@
 ---
-// Horizontal scroll carousel for mobile - Weather, Water temp, Sun times, S-Bahn München/Tutzing
+// Continuous news ticker for mobile - horizontal scrolling marquee
 ---
 
-<div class="info-carousel" id="info-carousel" role="region" aria-label="Aktuelle Informationen" aria-roledescription="Karussell">
-  <button class="carousel-pause" id="carousel-pause" aria-label="Automatisches Wechseln pausieren">
-    <svg aria-hidden="true" class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="6" y="4" width="4" height="16"></rect>
-      <rect x="14" y="4" width="4" height="16"></rect>
-    </svg>
-    <svg aria-hidden="true" class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-      <polygon points="5 3 19 12 5 21 5 3"></polygon>
-    </svg>
-  </button>
+<div class="info-ticker" id="info-ticker" role="marquee" aria-label="Aktuelle Informationen">
+  <div class="ticker-track" id="ticker-track">
+    <!-- Content will be duplicated for seamless loop -->
+    <div class="ticker-content" id="ticker-content">
+      <!-- Wetter -->
+      <span class="ticker-item" data-type="weather">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <span class="ticker-value" id="weather-temp">--°</span>
+        <span class="ticker-label">Starnberg</span>
+      </span>
 
-  <div class="carousel-viewport" id="carousel-viewport">
-    <div class="carousel-track" id="carousel-track">
-      <!-- Card 1: Wetter -->
-      <article class="carousel-card" data-type="weather" data-index="0">
-        <span class="card-icon">☀️</span>
-        <div class="card-content">
-          <span class="card-value" id="weather-temp">--°</span>
-          <span class="card-label">Starnberg</span>
-        </div>
-      </article>
+      <span class="ticker-divider">|</span>
 
-      <!-- Card 2: Wassertemperatur -->
-      <article class="carousel-card" data-type="water" data-index="1">
-        <span class="card-icon">💧</span>
-        <div class="card-content">
-          <span class="card-value" id="water-temp">--°</span>
-          <span class="card-label">Wassertemp.</span>
-        </div>
-      </article>
+      <!-- Wassertemperatur -->
+      <span class="ticker-item" data-type="water">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+        <span class="ticker-value" id="water-temp">--°</span>
+        <span class="ticker-label">Seetemperatur</span>
+      </span>
 
-      <!-- Card 3: Sonnenzeiten -->
-      <article class="carousel-card" data-type="sun" data-index="2">
-        <span class="card-icon">🌅</span>
-        <div class="card-content">
-          <span class="card-value" id="sun-times">--:-- – --:--</span>
-          <span class="card-label">Sonne</span>
-        </div>
-      </article>
+      <span class="ticker-divider">|</span>
 
-      <!-- Card 4: S-Bahn → München -->
-      <article class="carousel-card" data-type="train-munich" data-index="3">
-        <span class="card-icon">🚆</span>
-        <div class="card-content">
-          <span class="card-value" id="train-munich">--:--</span>
-          <span class="card-label">→ München</span>
-        </div>
-      </article>
+      <!-- Sonnenaufgang -->
+      <span class="ticker-item" data-type="sunrise">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 18a5 5 0 0 0-10 0"/>
+          <line x1="12" y1="2" x2="12" y2="9"/>
+          <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+          <line x1="1" y1="18" x2="3" y2="18"/>
+          <line x1="21" y1="18" x2="23" y2="18"/>
+          <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+          <polyline points="8 6 12 2 16 6"/>
+        </svg>
+        <span class="ticker-value" id="sunrise-time">--:--</span>
+      </span>
 
-      <!-- Card 5: S-Bahn → Tutzing -->
-      <article class="carousel-card" data-type="train-tutzing" data-index="4">
-        <span class="card-icon">🚆</span>
-        <div class="card-content">
-          <span class="card-value" id="train-tutzing">--:--</span>
-          <span class="card-label">→ Tutzing</span>
-        </div>
-      </article>
+      <span class="ticker-divider">|</span>
+
+      <!-- Sonnenuntergang -->
+      <span class="ticker-item" data-type="sunset">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 18a5 5 0 0 0-10 0"/>
+          <line x1="12" y1="9" x2="12" y2="2"/>
+          <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+          <line x1="1" y1="18" x2="3" y2="18"/>
+          <line x1="21" y1="18" x2="23" y2="18"/>
+          <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+          <polyline points="16 6 12 10 8 6"/>
+        </svg>
+        <span class="ticker-value" id="sunset-time">--:--</span>
+      </span>
+
+      <span class="ticker-divider">|</span>
+
+      <!-- S-Bahn München -->
+      <span class="ticker-item" data-type="train">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="3" width="16" height="16" rx="2"/>
+          <path d="M4 11h16"/>
+          <path d="M12 3v8"/>
+          <circle cx="8" cy="15" r="1"/>
+          <circle cx="16" cy="15" r="1"/>
+          <path d="M8 19l-2 3"/>
+          <path d="M16 19l2 3"/>
+        </svg>
+        <span class="ticker-badge">S6</span>
+        <span class="ticker-value" id="train-munich">--:--</span>
+        <span class="ticker-label">→ München</span>
+      </span>
+
+      <span class="ticker-divider">|</span>
+
+      <!-- S-Bahn Tutzing -->
+      <span class="ticker-item" data-type="train">
+        <svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="3" width="16" height="16" rx="2"/>
+          <path d="M4 11h16"/>
+          <path d="M12 3v8"/>
+          <circle cx="8" cy="15" r="1"/>
+          <circle cx="16" cy="15" r="1"/>
+          <path d="M8 19l-2 3"/>
+          <path d="M16 19l2 3"/>
+        </svg>
+        <span class="ticker-badge">S6</span>
+        <span class="ticker-value" id="train-tutzing">--:--</span>
+        <span class="ticker-label">→ Tutzing</span>
+      </span>
+
+      <span class="ticker-divider">|</span>
     </div>
+    <!-- Duplicate for seamless loop -->
+    <div class="ticker-content ticker-clone" aria-hidden="true"></div>
   </div>
 </div>
 
 <style>
-  .info-carousel {
+  .info-ticker {
     display: none;
-    position: relative;
     background: var(--color-bg-secondary);
     border-bottom: 1px solid var(--color-border);
-    padding: var(--space-3) 0;
+    overflow: hidden;
+    position: relative;
   }
 
   @media (max-width: 767px) {
-    .info-carousel {
+    .info-ticker {
       display: block;
     }
   }
 
-  .carousel-pause {
-    position: absolute;
-    top: var(--space-2);
-    right: var(--space-3);
-    width: 28px;
-    height: 28px;
+  .ticker-track {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: var(--color-card);
-    color: var(--color-text-secondary);
-    cursor: pointer;
-    border-radius: var(--radius-sm);
-    transition: all var(--duration-fast) ease;
-    z-index: 10;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .carousel-pause:hover {
-    background: var(--color-border);
-    color: var(--color-text);
-  }
-
-  .carousel-pause:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
-  .carousel-pause:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  .pause-icon,
-  .play-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .carousel-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .carousel-viewport::-webkit-scrollbar {
-    display: none;
-  }
-
-  .carousel-track {
-    display: flex;
-    gap: 12px;
-    padding: var(--space-2) var(--space-5);
     width: max-content;
+    animation: ticker-scroll 30s linear infinite;
   }
 
-  .carousel-card {
-    scroll-snap-align: center;
-    /* Responsive: ~2 cards visible, min 130px, max 160px */
-    width: clamp(130px, calc((100vw - 60px) / 2.3), 160px);
-    min-height: 64px;
-    padding: 12px 14px;
+  .ticker-track:hover,
+  .ticker-track.paused {
+    animation-play-state: paused;
+  }
 
+  @keyframes ticker-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .ticker-content {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: 0;
+    padding: var(--space-3) 0;
+    white-space: nowrap;
+  }
 
-    background: var(--color-card);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border-light);
-    box-shadow: var(--shadow-sm);
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: 0.8125rem;
+  }
 
+  .ticker-icon {
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    opacity: 0.7;
   }
 
-  .carousel-card:active {
-    cursor: grabbing;
-    transform: scale(0.98);
-  }
-
-  /* Accent borders per card type */
-  .carousel-card[data-type="weather"] {
-    border-left: 3px solid var(--color-accent);
-  }
-
-  .carousel-card[data-type="water"] {
-    border-left: 3px solid #0ea5e9;
-  }
-
-  .carousel-card[data-type="sun"] {
-    border-left: 3px solid #f59e0b;
-  }
-
-  .carousel-card[data-type="train-munich"],
-  .carousel-card[data-type="train-tutzing"] {
-    border-left: 3px solid #16a34a;
-  }
-
-  .card-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  .card-value {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 1.125rem;
+  .ticker-value {
     font-weight: 600;
     color: var(--color-text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-variant-numeric: tabular-nums;
   }
 
-  .card-label {
+  .ticker-label {
+    color: var(--color-muted);
+    font-size: 0.75rem;
+  }
+
+  .ticker-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 5px;
+    background: #16a34a;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ticker-divider {
+    color: var(--color-border);
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 0 var(--space-2);
+    opacity: 0.5;
+  }
+
+  /* Train delay styling */
+  .ticker-value .delay {
+    color: #dc2626;
     font-size: 0.6875rem;
-    color: var(--color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-left: 2px;
   }
 
-  /* Landscape mode - more compact */
-  @media (max-width: 767px) and (orientation: landscape) {
-    .carousel-card {
-      min-height: 56px;
-      padding: 8px 12px;
-    }
-
-    .card-icon {
-      font-size: 1.25rem;
-    }
-
-    .card-value {
-      font-size: 1rem;
-    }
-  }
-
-  /* Reduced motion */
+  /* Reduced motion - no scroll, just static display */
   @media (prefers-reduced-motion: reduce) {
-    .carousel-viewport {
-      scroll-behavior: auto;
+    .ticker-track {
+      animation: none;
     }
-
-    .carousel-card {
-      transition: none;
+    
+    .ticker-clone {
+      display: none;
     }
   }
 </style>
@@ -247,238 +222,40 @@
 <script>
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
   const TRAIN_API = 'https://dbf.finalrewind.org/Possenhofen.json?version=3';
-  // GKD Bayern water temperature - requires server-side proxy for CORS
-  const WATER_API = 'https://www.gkd.bayern.de/de/seen/wassertemperatur/isar/starnberg-16663002/messwerte/tabelle';
-
-  // Carousel state
-  let currentIndex = 0;
-  let isPaused = false;
-  let userPaused = false;
-  let autoplayInterval: ReturnType<typeof setInterval> | null = null;
-  let resumeTimeout: ReturnType<typeof setTimeout> | null = null;
-  const AUTOPLAY_DELAY = 4000;
-  const RESUME_DELAY = 8000;
-  const CARD_COUNT = 5;
-
-  // DOM elements
-  let viewport: HTMLElement | null = null;
-  let track: HTMLElement | null = null;
-  let cards: HTMLElement[] = [];
-  let pauseBtn: HTMLElement | null = null;
-  let pauseIcon: HTMLElement | null = null;
-  let playIcon: HTMLElement | null = null;
 
   function formatTime(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function scrollToCard(index: number, smooth = true): void {
-    if (!viewport || !cards.length) return;
+  // Clone ticker content for seamless loop
+  function setupTickerLoop(): void {
+    const content = document.getElementById('ticker-content');
+    const clone = document.querySelector('.ticker-clone') as HTMLElement;
+    if (content && clone) {
+      clone.innerHTML = content.innerHTML;
+    }
+  }
 
-    // Normalize index for endless loop
-    const normalizedIndex = ((index % CARD_COUNT) + CARD_COUNT) % CARD_COUNT;
-    const card = cards[normalizedIndex];
-    if (!card) return;
+  // Tap to pause/resume
+  function setupTapToPause(): void {
+    const track = document.getElementById('ticker-track');
+    if (!track) return;
 
-    // Calculate scroll position to center the card
-    const cardRect = card.getBoundingClientRect();
-    const viewportRect = viewport.getBoundingClientRect();
-    const scrollLeft = card.offsetLeft - (viewportRect.width / 2) + (cardRect.width / 2);
-
-    viewport.scrollTo({
-      left: Math.max(0, scrollLeft),
-      behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto'
+    track.addEventListener('click', () => {
+      track.classList.toggle('paused');
     });
 
-    currentIndex = normalizedIndex;
-  }
-
-  function nextCard(): void {
-    scrollToCard(currentIndex + 1);
-  }
-
-  function prevCard(): void {
-    scrollToCard(currentIndex - 1);
-  }
-
-  function updatePauseButton(): void {
-    if (!pauseIcon || !playIcon || !pauseBtn) return;
-
-    if (isPaused) {
-      pauseIcon.style.display = 'none';
-      playIcon.style.display = 'block';
-      pauseBtn.setAttribute('aria-label', 'Automatisches Wechseln fortsetzen');
-    } else {
-      pauseIcon.style.display = 'block';
-      playIcon.style.display = 'none';
-      pauseBtn.setAttribute('aria-label', 'Automatisches Wechseln pausieren');
-    }
-  }
-
-  function pause(): void {
-    isPaused = true;
-    updatePauseButton();
-  }
-
-  function resume(): void {
-    if (!userPaused) {
-      isPaused = false;
-      updatePauseButton();
-    }
-  }
-
-  function scheduleResume(): void {
-    if (resumeTimeout) clearTimeout(resumeTimeout);
-    resumeTimeout = setTimeout(() => {
-      if (!userPaused) resume();
-    }, RESUME_DELAY);
-  }
-
-  function startAutoplay(): void {
-    if (autoplayInterval) clearInterval(autoplayInterval);
-
-    // Respect reduced motion preference
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    autoplayInterval = setInterval(() => {
-      if (!isPaused) nextCard();
-    }, AUTOPLAY_DELAY);
-  }
-
-  function stopAutoplay(): void {
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      autoplayInterval = null;
-    }
-  }
-
-  // Touch handling for swipe
-  function initTouchHandling(): void {
-    if (!viewport) return;
-
-    let startX = 0;
-    let startScrollLeft = 0;
-    let isDragging = false;
-
-    viewport.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].pageX;
-      startScrollLeft = viewport!.scrollLeft;
-      isDragging = true;
-      pause();
+    // Touch also pauses while touching
+    track.addEventListener('touchstart', () => {
+      track.classList.add('paused');
     }, { passive: true });
 
-    viewport.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      // Let native scroll handle the movement
+    track.addEventListener('touchend', () => {
+      // Resume after short delay
+      setTimeout(() => {
+        track.classList.remove('paused');
+      }, 2000);
     }, { passive: true });
-
-    viewport.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      isDragging = false;
-
-      const endX = e.changedTouches[0].pageX;
-      const diff = startX - endX;
-      const threshold = 40;
-
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
-          nextCard();
-        } else {
-          prevCard();
-        }
-      } else {
-        // Snap to nearest card
-        detectCurrentCard();
-      }
-
-      scheduleResume();
-    }, { passive: true });
-
-    // Tap to pause
-    viewport.addEventListener('click', (e) => {
-      // Don't toggle on swipe end
-      if (Math.abs(startX - (e as MouseEvent).pageX) < 10) {
-        userPaused = !userPaused;
-        isPaused = userPaused;
-        updatePauseButton();
-        if (!userPaused) scheduleResume();
-      }
-    });
-  }
-
-  // Detect which card is currently visible
-  function detectCurrentCard(): void {
-    if (!viewport || !cards.length) return;
-
-    const viewportCenter = viewport.scrollLeft + viewport.offsetWidth / 2;
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    cards.forEach((card, index) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const distance = Math.abs(viewportCenter - cardCenter);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (closestIndex !== currentIndex) {
-      currentIndex = closestIndex;
-    }
-  }
-
-  // Scroll event for detecting manual scroll position
-  function initScrollDetection(): void {
-    if (!viewport) return;
-
-    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    viewport.addEventListener('scroll', () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        detectCurrentCard();
-      }, 100);
-    }, { passive: true });
-  }
-
-  // Keyboard navigation
-  function initKeyboardNav(): void {
-    const carousel = document.getElementById('info-carousel');
-    if (!carousel) return;
-
-    carousel.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case 'ArrowLeft':
-          prevCard();
-          pause();
-          scheduleResume();
-          e.preventDefault();
-          break;
-        case 'ArrowRight':
-          nextCard();
-          pause();
-          scheduleResume();
-          e.preventDefault();
-          break;
-        case 'Home':
-          scrollToCard(0);
-          e.preventDefault();
-          break;
-        case 'End':
-          scrollToCard(CARD_COUNT - 1);
-          e.preventDefault();
-          break;
-        case ' ':
-          userPaused = !userPaused;
-          isPaused = userPaused;
-          updatePauseButton();
-          e.preventDefault();
-          break;
-      }
-    });
   }
 
   // Load weather data
@@ -495,57 +272,33 @@
 
       // Temperature
       const temp = Math.round(data.current?.temperature_2m || 0);
-      const tempEl = document.getElementById('weather-temp');
-      if (tempEl) tempEl.textContent = temp + '°';
+      document.querySelectorAll('#weather-temp').forEach(el => {
+        el.textContent = temp + '°';
+      });
 
-      // Sunrise/Sunset
+      // Sunrise
       const sunrise = data.daily?.sunrise?.[0];
+      if (sunrise) {
+        document.querySelectorAll('#sunrise-time').forEach(el => {
+          el.textContent = formatTime(sunrise);
+        });
+      }
+
+      // Sunset
       const sunset = data.daily?.sunset?.[0];
-      if (sunrise && sunset) {
-        const sunEl = document.getElementById('sun-times');
-        if (sunEl) sunEl.textContent = formatTime(sunrise) + ' – ' + formatTime(sunset);
+      if (sunset) {
+        document.querySelectorAll('#sunset-time').forEach(el => {
+          el.textContent = formatTime(sunset);
+        });
       }
     } catch (e) {
       console.error('Weather error:', e);
     }
   }
 
-  // Load water temperature (with fallback due to CORS)
+  // Load water temperature (seasonal fallback due to CORS)
   async function loadWaterTemp(): Promise<void> {
-    const waterEl = document.getElementById('water-temp');
-    if (!waterEl) return;
-
-    // Note: Direct fetch from GKD Bayern fails due to CORS
-    // This would need a server-side proxy or API endpoint
-    // For now, use seasonal estimate based on current month
-
-    try {
-      // Attempt direct fetch (will likely fail due to CORS)
-      const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), 5000);
-
-      const res = await fetch(WATER_API, {
-        signal: ctrl.signal,
-        mode: 'cors'
-      });
-      clearTimeout(timer);
-
-      if (res.ok) {
-        const html = await res.text();
-        // Parse the HTML table for the first temperature value
-        const match = html.match(/<td[^>]*>(\d+[,.]?\d*)\s*°?C?<\/td>/i);
-        if (match) {
-          const temp = parseFloat(match[1].replace(',', '.'));
-          waterEl.textContent = Math.round(temp) + '°';
-          return;
-        }
-      }
-    } catch {
-      // CORS error expected - use fallback
-    }
-
-    // Fallback: seasonal estimate for Starnberger See
-    // Winter: ~4°C, Spring: ~8°C, Summer: ~20°C, Fall: ~12°C
+    // Seasonal estimate for Starnberger See (CORS prevents direct fetch)
     const month = new Date().getMonth();
     let estimate: number;
     if (month >= 5 && month <= 7) {
@@ -557,7 +310,10 @@
     } else {
       estimate = 4 + Math.floor(Math.random() * 2); // Winter: 4-5°C
     }
-    waterEl.textContent = estimate + '°';
+
+    document.querySelectorAll('#water-temp').forEach(el => {
+      el.textContent = estimate + '°';
+    });
   }
 
   // Load train departures
@@ -574,80 +330,73 @@
 
       const departures = data.departures || [];
 
-      // Filter for S-Bahn only, not cancelled
+      // Filter for S-Bahn only
       const sBahns = departures.filter((d: any) =>
         !d.isCancelled && d.train && d.train.startsWith('S ')
       );
 
-      // Direction: München (includes München, Pasing, Ostbahnhof, etc.)
+      // Find München direction
       const toMunich = sBahns.find((d: any) =>
         d.destination.includes('München') ||
         d.destination.includes('Pasing') ||
         d.destination.includes('Ostbahnhof')
       );
 
-      // Direction: Tutzing (opposite direction - Starnberg, Tutzing, or anything not München)
+      // Find Tutzing direction
       const toTutzing = sBahns.find((d: any) =>
         d.destination.includes('Tutzing') ||
         d.destination.includes('Starnberg') ||
         (!d.destination.includes('München') && !d.destination.includes('Pasing'))
       );
 
-      // Update München card
-      const munichEl = document.getElementById('train-munich');
-      if (munichEl && toMunich) {
-        const delay = toMunich.delayDeparture > 0 ? ` +${toMunich.delayDeparture}` : '';
-        munichEl.textContent = toMunich.scheduledDeparture + delay;
+      // Update München
+      if (toMunich) {
+        const delay = toMunich.delayDeparture > 0 ? `<span class="delay">+${toMunich.delayDeparture}</span>` : '';
+        document.querySelectorAll('#train-munich').forEach(el => {
+          el.innerHTML = toMunich.scheduledDeparture + delay;
+        });
       }
 
-      // Update Tutzing card
-      const tutzingEl = document.getElementById('train-tutzing');
-      if (tutzingEl && toTutzing) {
-        const delay = toTutzing.delayDeparture > 0 ? ` +${toTutzing.delayDeparture}` : '';
-        tutzingEl.textContent = toTutzing.scheduledDeparture + delay;
+      // Update Tutzing
+      if (toTutzing) {
+        const delay = toTutzing.delayDeparture > 0 ? `<span class="delay">+${toTutzing.delayDeparture}</span>` : '';
+        document.querySelectorAll('#train-tutzing').forEach(el => {
+          el.innerHTML = toTutzing.scheduledDeparture + delay;
+        });
       }
     } catch (e) {
       console.error('Train error:', e);
     }
   }
 
-  // Initialize carousel
-  document.addEventListener('DOMContentLoaded', () => {
-    viewport = document.getElementById('carousel-viewport');
-    track = document.getElementById('carousel-track');
-    cards = Array.from(document.querySelectorAll('.carousel-card'));
-    pauseBtn = document.getElementById('carousel-pause');
-    pauseIcon = pauseBtn?.querySelector('.pause-icon') as HTMLElement | null;
-    playIcon = pauseBtn?.querySelector('.play-icon') as HTMLElement | null;
+  // Update cloned content after data loads
+  function updateClone(): void {
+    const content = document.getElementById('ticker-content');
+    const clone = document.querySelector('.ticker-clone') as HTMLElement;
+    if (content && clone) {
+      clone.innerHTML = content.innerHTML;
+    }
+  }
 
-    // Pause button click handler
-    pauseBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      userPaused = !userPaused;
-      isPaused = userPaused;
-      updatePauseButton();
-    });
-
-    // Initialize interactions
-    initTouchHandling();
-    initScrollDetection();
-    initKeyboardNav();
+  // Initialize
+  document.addEventListener('DOMContentLoaded', async () => {
+    setupTickerLoop();
+    setupTapToPause();
 
     // Load data
-    loadWeather();
-    loadWaterTemp();
-    loadTrains();
+    await Promise.all([
+      loadWeather(),
+      loadWaterTemp(),
+      loadTrains()
+    ]);
 
-    // Start autoplay
-    startAutoplay();
+    // Update clone after data loaded
+    updateClone();
 
-    // Refresh train data every minute
-    setInterval(loadTrains, 60000);
-  });
-
-  // Cleanup on navigation
-  window.addEventListener('pagehide', () => {
-    stopAutoplay();
-    if (resumeTimeout) clearTimeout(resumeTimeout);
+    // Refresh trains every minute
+    setInterval(async () => {
+      await loadTrains();
+      updateClone();
+    }, 60000);
   });
 </script>
