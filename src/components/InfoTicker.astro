@@ -490,26 +490,40 @@
       // API returns { departures: [...] }
       const departures = data.departures || [];
 
-      // Filter for S-Bahn only (line.product === 'suburban' or line.name starts with 'S')
-      const sBahns = departures.filter((d: any) => {
+      // Filter for S-Bahn or SEV Bus (line.name contains 'S6' or similar)
+      // Also filter out "ghost trains" - trains with huge delays (>60 min) are likely cancelled
+      const validDepartures = departures.filter((d: any) => {
         const line = d.line;
         if (!line) return false;
-        return line.product === 'suburban' || (line.name && line.name.startsWith('S'));
+        
+        // Must be S-Bahn or SEV Bus
+        const isS6 = line.name && (line.name.includes('S6') || line.name === 'S6');
+        if (!isS6) return false;
+        
+        // Filter out cancelled
+        if (d.cancelled) return false;
+        
+        // Filter out ghost trains (delay > 60 minutes likely means cancelled)
+        const delayMin = d.delay ? d.delay / 60 : 0;
+        if (delayMin > 60) return false;
+        
+        return true;
       });
 
-      // Find München direction (direction contains München, Pasing, etc.)
-      const toMunich = sBahns.find((d: any) => {
+      // Find München/Gauting direction
+      const toMunich = validDepartures.find((d: any) => {
         const dir = d.direction || '';
         return dir.includes('München') || 
                dir.includes('Pasing') || 
                dir.includes('Ostbahnhof') ||
                dir.includes('Marienplatz') ||
                dir.includes('Ebersberg') ||
-               dir.includes('Grafing');
+               dir.includes('Grafing') ||
+               dir.includes('Gauting'); // SEV Bus goes to Gauting
       });
 
       // Find Tutzing direction
-      const toTutzing = sBahns.find((d: any) => {
+      const toTutzing = validDepartures.find((d: any) => {
         const dir = d.direction || '';
         return dir.includes('Tutzing') || 
                dir.includes('Starnberg') ||
@@ -519,8 +533,9 @@
       // Update München
       if (toMunich) {
         const timeHtml = formatTrainTime(toMunich);
+        const isBus = toMunich.line?.name?.includes('Bus');
         document.querySelectorAll('#train-munich').forEach(el => {
-          el.innerHTML = timeHtml;
+          el.innerHTML = (isBus ? '🚌 ' : '') + timeHtml;
         });
       } else {
         document.querySelectorAll('#train-munich').forEach(el => {
@@ -531,8 +546,9 @@
       // Update Tutzing
       if (toTutzing) {
         const timeHtml = formatTrainTime(toTutzing);
+        const isBus = toTutzing.line?.name?.includes('Bus');
         document.querySelectorAll('#train-tutzing').forEach(el => {
-          el.innerHTML = timeHtml;
+          el.innerHTML = (isBus ? '🚌 ' : '') + timeHtml;
         });
       } else {
         document.querySelectorAll('#train-tutzing').forEach(el => {
