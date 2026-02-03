@@ -66,12 +66,29 @@ const dateStr = `${day}. ${monthShort}`;
           {dateStr}{event.time && ` · ${event.time}`}
         </span>
         <span class="category">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-          </svg>
+          {event.category === 'kinder' && (
+            <!-- Baby/Child icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12h.01M15 12h.01M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          )}
+          {event.category === 'familie' && (
+            <!-- Family/Users icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          )}
+          {event.category === 'erwachsene' && (
+            <!-- Ticket/Theater icon -->
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 12a5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0 5 5 5 5 0 0 0 5-5V4H2v8z"></path>
+              <path d="M2 12v8h20v-8"></path>
+            </svg>
+          )}
           {cat.label}
         </span>
       </div>
