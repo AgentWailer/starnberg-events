@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import InfoTicker from '../components/InfoTicker.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
 import TrainInfo from '../components/TrainInfo.astro';
 import FerryInfo from '../components/FerryInfo.astro';
@@ -37,13 +38,18 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   
   <main class="main">
     <div class="container">
-      <!-- Weather Strip -->
-      <section class="section section-weather">
+      <!-- Mobile: Compact ticker carousel -->
+      <section class="section section-ticker">
+        <InfoTicker />
+      </section>
+
+      <!-- Desktop: Full weather strip -->
+      <section class="section section-weather desktop-only">
         <WeatherWidget />
       </section>
 
-      <!-- Quick Transport Info (prominent) -->
-      <section class="section section-transport">
+      <!-- Desktop: Quick Transport Info -->
+      <section class="section section-transport desktop-only">
         <div class="transport-grid">
           <TrainInfo station="Possenhofen" stationCode="MPH" />
           <FerryInfo />
@@ -108,6 +114,30 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     }
   }
 
+  /* Mobile Ticker */
+  .section-ticker {
+    margin-top: calc(-1 * var(--space-6));
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .section-ticker {
+      display: none;
+    }
+  }
+
+  /* Desktop only elements */
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-only {
+      display: block;
+    }
+  }
+
   /* Weather */
   .section-weather {
     margin-top: calc(-1 * var(--space-6));
@@ -115,7 +145,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     z-index: 10;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .section-weather {
       margin-top: calc(-1 * var(--space-8));
     }
