@@ -24,9 +24,9 @@ const day = date.getDate();
 const monthShort = date.toLocaleDateString('de-DE', { month: 'short' });
 
 const categoryConfig = {
-  kinder: { emoji: '👶', label: 'Kinder' },
-  familie: { emoji: '👨‍👩‍👧', label: 'Familie' },
-  erwachsene: { emoji: '🎭', label: 'Erwachsene' }
+  kinder: { icon: 'baby', label: 'Kinder' },
+  familie: { icon: 'users', label: 'Familie' },
+  erwachsene: { icon: 'ticket', label: 'Erwachsene' }
 };
 
 const cat = categoryConfig[event.category as keyof typeof categoryConfig] || categoryConfig.familie;
@@ -40,19 +40,27 @@ const dateStr = `${day}. ${monthShort}`;
   data-location={event.location}
 >
   <a href={event.url || '#'} target={event.url ? "_blank" : undefined} rel="noopener" class="card-link">
-    <!-- Color accent bar based on category -->
     <div class="accent-bar" data-cat={event.category}></div>
     
     <div class="card-content">
       <div class="card-meta">
-        <span class="location">📍 {event.location}</span>
+        <span class="location">
+          <i class="lucide-map-pin"></i>
+          {event.location}
+        </span>
       </div>
       
       <h3 class="title">{event.title}</h3>
       
       <div class="card-info">
-        <span class="date">{dateStr}{event.time && ` · ${event.time}`}</span>
-        <span class="category">{cat.emoji} {cat.label}</span>
+        <span class="date">
+          <i class="lucide-calendar"></i>
+          {dateStr}{event.time && ` · ${event.time}`}
+        </span>
+        <span class="category">
+          <i class={`lucide-${cat.icon}`}></i>
+          {cat.label}
+        </span>
       </div>
     </div>
   </a>
@@ -113,6 +121,13 @@ const dateStr = `${day}. ${monthShort}`;
     font-size: 12px;
     color: var(--color-text-secondary);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .location i {
+    font-size: 14px;
   }
 
   .title {
@@ -137,11 +152,14 @@ const dateStr = `${day}. ${monthShort}`;
     color: var(--color-muted);
   }
 
-  .date {
+  .date, .category {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     font-weight: 500;
   }
 
-  .category {
-    font-weight: 500;
+  .date i, .category i {
+    font-size: 13px;
   }
 </style>

@@ -10,11 +10,13 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 <div class="train-widget" data-station-id={stationId}>
   <div class="train-header">
     <div class="train-title">
-      <span class="train-icon">🚆</span>
+      <svg class="db-logo" viewBox="0 0 40 28" fill="currentColor">
+        <path d="M8.3 0C3.7 0 0 3.7 0 8.3v11.4C0 24.3 3.7 28 8.3 28h23.4c4.6 0 8.3-3.7 8.3-8.3V8.3C40 3.7 36.3 0 31.7 0H8.3zm2.2 5.7h8.2c5.2 0 8.3 2.8 8.3 8.3 0 5.5-3.1 8.3-8.3 8.3h-8.2V5.7zm4.5 3.8v9h3.2c2.8 0 4.3-1.5 4.3-4.5s-1.5-4.5-4.3-4.5H15z"/>
+      </svg>
       <span>S-Bahn {station}</span>
     </div>
     <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" class="db-link">
-      DB Live <span class="arrow">→</span>
+      Live-Abfahrten <i class="lucide-external-link"></i>
     </a>
   </div>
   <div class="train-body" id="train-table">
@@ -51,13 +53,14 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   .train-title {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-weight: 600;
     font-size: 0.95rem;
   }
 
-  .train-icon {
-    font-size: 1.1rem;
+  .db-logo {
+    width: 32px;
+    height: 22px;
   }
 
   .db-link {
