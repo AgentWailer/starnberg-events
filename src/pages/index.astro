@@ -4,7 +4,6 @@ import Header from '../components/Header.astro';
 import InfoTicker from '../components/InfoTicker.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
 import TrainInfo from '../components/TrainInfo.astro';
-import FerryInfo from '../components/FerryInfo.astro';
 import MarketInfo from '../components/MarketInfo.astro';
 import WebcamWidget from '../components/WebcamWidget.astro';
 import FilterBar from '../components/FilterBar.astro';
@@ -50,10 +49,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
       <!-- Desktop: Quick Transport Info -->
       <section class="section section-transport desktop-only">
-        <div class="transport-grid">
-          <TrainInfo station="Possenhofen" stationCode="MPH" />
-          <FerryInfo />
-        </div>
+        <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
 
       <!-- Filter Component -->
@@ -154,18 +150,6 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   /* Transport */
   .section-transport {
     margin-bottom: var(--space-8);
-  }
-
-  .transport-grid {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  @media (min-width: 768px) {
-    .transport-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-5);
-    }
   }
 
   /* Events */
