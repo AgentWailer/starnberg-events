@@ -21,6 +21,16 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     <link rel="dns-prefetch" href="https://dbf.finalrewind.org">
     <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
     <title>{title}</title>
+    
+    <!-- Flash prevention: Apply theme ASAP -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
@@ -94,34 +104,43 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     --space-24: 6rem;
   }
 
-  /* === Dark Mode - Elegant & Warm === */
-  @media (prefers-color-scheme: dark) {
+  /* === Dark Mode - Manually Toggled === */
+  :root.dark {
+    --color-primary: #4db6d1;
+    --color-primary-light: #6bc9e0;
+    --color-primary-dark: #3a9ab3;
+    
+    --color-accent: #d4be8a;
+    --color-accent-light: #e0cfa0;
+    
+    --color-kinder: #fbbf24;
+    --color-familie: #34d399;
+    --color-erwachsene: #a78bfa;
+    
+    --color-bg: #1a1816;
+    --color-bg-secondary: #252220;
+    --color-card: #2d2a26;
+    
+    --color-text: #faf8f6;
+    --color-text-secondary: #c4beb5;
+    --color-muted: #7a756d;
+    --color-border: #3d3a36;
+    --color-border-light: #2d2a26;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.35);
+  }
+  
+  /* Smooth transition when toggling theme */
+  :root {
+    transition: background-color var(--duration-normal) ease;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
     :root {
-      --color-primary: #4db6d1;
-      --color-primary-light: #6bc9e0;
-      --color-primary-dark: #3a9ab3;
-      
-      --color-accent: #d4be8a;
-      --color-accent-light: #e0cfa0;
-      
-      --color-kinder: #fbbf24;
-      --color-familie: #34d399;
-      --color-erwachsene: #a78bfa;
-      
-      --color-bg: #1a1816;
-      --color-bg-secondary: #252220;
-      --color-card: #2d2a26;
-      
-      --color-text: #faf8f6;
-      --color-text-secondary: #c4beb5;
-      --color-muted: #7a756d;
-      --color-border: #3d3a36;
-      --color-border-light: #2d2a26;
-      
-      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
-      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
-      --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.35);
+      transition: none;
     }
   }
 
@@ -134,6 +153,15 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transform: none !important;
+    }
+    
+    /* Disable hover effects that use transform */
+    .pill:active,
+    .clear-filters:active,
+    button:active,
+    [role="button"]:active {
+      transform: none !important;
     }
   }
 

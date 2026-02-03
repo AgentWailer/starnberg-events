@@ -44,7 +44,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   <details class="filter-details">
     <summary class="filter-more">
       <span class="filter-more-text">Mehr Filter</span>
-      <svg class="filter-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg aria-hidden="true" class="filter-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </summary>
@@ -71,6 +71,9 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </label>
     </div>
   </details>
+  
+  <!-- ARIA Live Region for screen readers -->
+  <div id="filter-status" aria-live="polite" class="sr-only"></div>
 </div>
 
 <style>
@@ -138,11 +141,9 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: white;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .pill.active {
-      background: var(--color-primary);
-      color: var(--color-bg);
-    }
+  :root.dark .pill.active {
+    background: var(--color-primary);
+    color: var(--color-bg);
   }
 
   /* Clear Filters Button */
@@ -314,6 +315,13 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
 
     if (countEl) countEl.textContent = String(count);
+    
+    // Update ARIA live region for screen readers
+    const statusEl = document.getElementById('filter-status');
+    if (statusEl) {
+      statusEl.textContent = `${count} Veranstaltungen gefunden`;
+    }
+    
     updateClearButton();
   }
 

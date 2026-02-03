@@ -7,6 +7,22 @@ const { lastUpdated } = Astro.props;
 ---
 
 <header class="header">
+  <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
+    <svg aria-hidden="true" class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg aria-hidden="true" class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
   <div class="header-inner">
     <p class="location">Starnberger See</p>
     <h1 class="title">
@@ -29,6 +45,97 @@ const { lastUpdated } = Astro.props;
       color-mix(in srgb, var(--color-primary) 5%, var(--color-bg-secondary)) 100%
     );
     overflow: hidden;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--color-card);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--duration-fast) ease;
+    z-index: 10;
+  }
+
+  .theme-toggle:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    transform: scale(1.05);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  .icon-sun,
+  .icon-moon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transition: all var(--duration-normal) ease;
+  }
+
+  /* Light mode: Show sun icon */
+  .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .icon-moon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.8);
+  }
+
+  /* Dark mode: Show moon icon */
+  :root.dark .icon-sun {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.8);
+  }
+
+  :root.dark .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle,
+    .icon-sun,
+    .icon-moon {
+      transition: none;
+    }
+    
+    .theme-toggle:hover {
+      transform: none;
+    }
+    
+    .theme-toggle:active {
+      transform: none;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .theme-toggle {
+      top: var(--space-6);
+      right: var(--space-6);
+    }
   }
 
   @media (min-width: 640px) {
@@ -109,22 +216,45 @@ const { lastUpdated } = Astro.props;
   }
 
   /* Dark mode adjustments */
-  @media (prefers-color-scheme: dark) {
-    .header {
-      background: linear-gradient(
-        165deg,
-        var(--color-bg) 0%,
-        var(--color-bg-secondary) 50%,
-        color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-secondary)) 100%
-      );
-    }
+  :root.dark .header {
+    background: linear-gradient(
+      165deg,
+      var(--color-bg) 0%,
+      var(--color-bg-secondary) 50%,
+      color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-secondary)) 100%
+    );
+  }
 
-    .header-visual {
-      background: radial-gradient(
-        ellipse at 70% 30%,
-        color-mix(in srgb, var(--color-primary) 12%, transparent) 0%,
-        transparent 60%
-      );
-    }
+  :root.dark .header-visual {
+    background: radial-gradient(
+      ellipse at 70% 30%,
+      color-mix(in srgb, var(--color-primary) 12%, transparent) 0%,
+      transparent 60%
+    );
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    if (!toggle) return;
+
+    // Update button state based on current theme
+    function updateToggleState() {
+      const isDark = root.classList.contains('dark');
+      toggle.setAttribute('aria-label', isDark ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln');
+    }
+
+    // Toggle theme
+    toggle.addEventListener('click', function() {
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateToggleState();
+    });
+
+    // Initialize button state
+    updateToggleState();
+  });
+</script>
