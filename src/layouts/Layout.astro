@@ -26,26 +26,46 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
 
 <style is:global>
   :root {
-    --color-primary: #4f46e5;
-    --color-primary-dark: #3730a3;
-    --color-secondary: #7c3aed;
+    /* Modern color palette with subtle gradients */
+    --color-primary: #6366f1;
+    --color-primary-dark: #4f46e5;
+    --color-primary-light: #818cf8;
+    --color-secondary: #8b5cf6;
     --color-accent: #06b6d4;
     --color-kinder: #f59e0b;
     --color-familie: #10b981;
     --color-erwachsene: #ec4899;
-    --color-bg: #f1f5f9;
+    
+    /* Softer background with subtle warmth */
+    --color-bg: #f8fafc;
+    --color-bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     --color-card: #ffffff;
-    --color-text: #0f172a;
-    --color-text-secondary: #475569;
+    --color-card-hover: #fafbfc;
+    
+    /* Refined text colors */
+    --color-text: #1e293b;
+    --color-text-secondary: #64748b;
     --color-muted: #94a3b8;
     --color-border: #e2e8f0;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
+    --color-border-light: #f1f5f9;
+    
+    /* Modern soft shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+    
+    /* Larger, softer radii */
+    --radius-sm: 12px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
     --radius-full: 9999px;
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: blur(12px);
   }
 
   * {
@@ -61,9 +81,12 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: var(--color-bg);
+    background-image: var(--color-bg-gradient);
+    background-attachment: fixed;
     color: var(--color-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
 
   a {
