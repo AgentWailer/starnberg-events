@@ -33,24 +33,27 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   
   <main class="main">
     <div class="container">
-      <!-- Train Info Widget -->
+      <!-- Train Info Widget (above layout on desktop) -->
       <section class="section-train">
         <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
       
-      <!-- Filters -->
-      <section class="section-filters">
-        <FilterBar events={events} regions={regions} />
-      </section>
-      
-      <!-- Events List -->
-      <section class="section-events">
-        <div class="events-list">
-          {events.map(event => (
-            <EventCard event={event} regions={regions} />
-          ))}
-        </div>
-      </section>
+      <!-- Desktop: Sidebar + Content Layout -->
+      <div class="layout-grid">
+        <!-- Filters (Sidebar on desktop) -->
+        <aside class="sidebar">
+          <FilterBar events={events} regions={regions} />
+        </aside>
+        
+        <!-- Events List -->
+        <section class="content">
+          <div class="events-list">
+            {events.map(event => (
+              <EventCard event={event} regions={regions} />
+            ))}
+          </div>
+        </section>
+      </div>
       
       <!-- Footer -->
       <footer class="footer">
@@ -80,10 +83,17 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   }
 
   .section-train {
-    margin-bottom: 4px;
+    margin-bottom: 16px;
   }
 
-  .section-filters {
+  /* Mobile: stacked layout */
+  .layout-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -92,11 +102,20 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     background: linear-gradient(to bottom, var(--color-bg) 85%, transparent);
   }
 
-  @media (min-width: 768px) {
-    .section-filters {
-      position: static;
-      background: transparent;
+  /* Desktop: sidebar + content grid */
+  @media (min-width: 1024px) {
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
       padding-top: 0;
+      background: transparent;
     }
   }
 

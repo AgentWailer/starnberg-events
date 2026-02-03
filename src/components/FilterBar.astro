@@ -119,7 +119,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     gap: 12px;
   }
 
-  @media (min-width: 768px) {
+  /* On tablet: horizontal layout */
+  @media (min-width: 768px) and (max-width: 1023px) {
     .filters-row {
       flex-direction: row;
       align-items: flex-end;
@@ -133,6 +134,18 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     .filter-group-select {
       flex: 0 0 auto;
       min-width: 180px;
+    }
+  }
+
+  /* On desktop: vertical layout in sidebar */
+  @media (min-width: 1024px) {
+    .filters-row {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .filter-scroll {
+      flex-wrap: wrap;
     }
   }
 
