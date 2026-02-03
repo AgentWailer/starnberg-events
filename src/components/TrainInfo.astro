@@ -13,7 +13,7 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
       <span class="train-badge">S6</span>
       <span>{station}</span>
     </div>
-    <a href={`https://iris.noncd.db.de/wbt/js/index.html?bhf=${stationCode}`} target="_blank" class="train-link">
+    <a href={`https://iris.noncd.db.de/wbt/js/index.html?bhf=${stationCode}`} target="_blank" rel="noopener" class="train-link">
       DB Live →
     </a>
   </div>
@@ -234,7 +234,7 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
         <div class="train-empty">
           <p><strong>S6</strong> Tutzing ↔ München Hbf</p>
           <p>ca. alle 20 Min · ~35 Min</p>
-          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">→ Live bei DB</a>
+          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" rel="noopener">→ Live bei DB</a>
         </div>
       `;
       return;
@@ -292,7 +292,7 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
         <div class="train-empty">
           <p><strong>S6</strong> Tutzing ↔ München Hbf</p>
           <p>ca. alle 20 Min</p>
-          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">→ Live bei DB</a>
+          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" rel="noopener">→ Live bei DB</a>
         </div>
       `;
     }

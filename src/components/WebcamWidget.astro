@@ -26,7 +26,7 @@ const onlineCount = webcams.filter(w => w.online).length;
   </div>
   <div class="webcam-body">
     {webcams.map(cam => (
-      <a href={cam.url} target="_blank" class:list={['webcam-item', { offline: !cam.online }]}>
+      <a href={cam.url} target="_blank" rel="noopener" class:list={['webcam-item', { offline: !cam.online }]}>
         <div class="webcam-info">
           <span class="webcam-name">{cam.name}</span>
           <span class="webcam-location">{cam.location}</span>
