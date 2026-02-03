@@ -14,6 +14,13 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" class="train-link">DB Live →</a>
   </div>
   
+  <div class="train-columns">
+    <span class="col-time">Zeit</span>
+    <span class="col-line">Linie</span>
+    <span class="col-dest">Ziel</span>
+    <span class="col-platform">Gleis</span>
+  </div>
+  
   <div class="train-departures" id="train-departures">
     <div class="train-loading">Abfahrten werden geladen...</div>
   </div>
@@ -60,6 +67,23 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     text-decoration: underline;
   }
 
+  .train-columns {
+    display: grid;
+    grid-template-columns: 70px 60px 1fr 60px;
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .col-platform {
+    text-align: center;
+  }
+
   .train-departures {
     padding: 0;
   }
@@ -71,57 +95,64 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   }
 
   .departure-row {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
+    display: grid;
+    grid-template-columns: 70px 60px 1fr 60px;
+    padding: 0.6rem 1rem;
     border-bottom: 1px solid #f0f0f0;
-    gap: 0.75rem;
+    align-items: center;
   }
 
   .departure-row:last-child {
     border-bottom: none;
   }
 
+  .departure-row:hover {
+    background: #fafafa;
+  }
+
+  .dep-time-cell {
+    display: flex;
+    flex-direction: column;
+  }
+
   .dep-time {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #1a73e8;
-    min-width: 50px;
-  }
-
-  .dep-line {
-    background: #4caf50;
-    color: white;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    min-width: 36px;
-    text-align: center;
-  }
-
-  .dep-line.s6 {
-    background: #00a651;
-  }
-
-  .dep-dest {
-    flex: 1;
-    font-weight: 500;
-    color: #333;
-    font-size: 0.95rem;
   }
 
   .dep-delay {
+    font-size: 0.7rem;
     color: #e53935;
-    font-size: 0.8rem;
     font-weight: 600;
   }
 
-  .dep-platform {
-    color: #666;
+  .dep-line {
+    background: #00a651;
+    color: white;
+    font-weight: 700;
     font-size: 0.85rem;
-    min-width: 45px;
-    text-align: right;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .dep-dest {
+    font-weight: 500;
+    color: #333;
+    font-size: 0.95rem;
+    padding-right: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dep-platform {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
   }
 
   .train-fallback {
@@ -139,20 +170,33 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     font-weight: 500;
   }
 
-  .no-trains {
-    padding: 1rem;
-    text-align: center;
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 400px) {
-    .dep-platform {
-      display: none;
+  @media (max-width: 480px) {
+    .train-columns {
+      grid-template-columns: 60px 50px 1fr 45px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.65rem;
     }
     
     .departure-row {
-      padding: 0.6rem 0.75rem;
+      grid-template-columns: 60px 50px 1fr 45px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .dep-time {
+      font-size: 0.9rem;
+    }
+
+    .dep-line {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.3rem;
+    }
+
+    .dep-dest {
+      font-size: 0.85rem;
+    }
+
+    .dep-platform {
+      font-size: 0.9rem;
     }
   }
 </style>
@@ -228,7 +272,7 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   function renderDepartures(departures: Departure[], container: HTMLElement): void {
     const trainDepartures = departures
       .filter(d => d.when && d.line && (d.line.product === 'suburban' || d.line.product === 'regional'))
-      .slice(0, 5);
+      .slice(0, 6);
     
     if (trainDepartures.length === 0) {
       container.innerHTML = `
@@ -245,15 +289,16 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
       const time = formatTime(dep.when || dep.plannedWhen);
       const delayText = getDelayText(dep.delay);
       const destination = shortenDestination(dep.direction);
-      const platform = dep.platform ? `Gl. ${dep.platform}` : '';
-      const lineClass = dep.line.name.toLowerCase().replace(/\s/g, '');
+      const platform = dep.platform || '—';
       
       return `
         <div class="departure-row">
-          <span class="dep-time">${time}</span>
-          <span class="dep-line ${lineClass}">${dep.line.name}</span>
+          <div class="dep-time-cell">
+            <span class="dep-time">${time}</span>
+            ${delayText ? `<span class="dep-delay">${delayText}</span>` : ''}
+          </div>
+          <span class="dep-line">${dep.line.name}</span>
           <span class="dep-dest">${destination}</span>
-          ${delayText ? `<span class="dep-delay">${delayText}</span>` : ''}
           <span class="dep-platform">${platform}</span>
         </div>
       `;
