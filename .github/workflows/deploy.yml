@@ -9,6 +9,11 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -28,6 +33,12 @@ jobs:
       
       - name: Build Astro
         run: npm run build
+
+      - name: Delete old artifacts
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: github-pages
+          failOnError: false
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
