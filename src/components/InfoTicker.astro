@@ -1,143 +1,123 @@
 ---
-// Compact info ticker for mobile
-// Shows: Weather, Water temp, Sunrise/Sunset, Train departures
-// Auto-advances or swipeable
+// Continuous scrolling ticker for mobile
+// Matches site design system
 ---
 
-<div class="info-ticker" id="info-ticker">
-  <div class="ticker-track" id="ticker-track">
-    <!-- Slides populated by JS -->
-    <div class="ticker-slide" data-slide="weather">
-      <span class="ticker-icon">☀️</span>
-      <span class="ticker-text">Wetter laden...</span>
-    </div>
+<div class="ticker" id="ticker">
+  <div class="ticker-content" id="ticker-content">
+    <!-- Content duplicated for seamless loop -->
   </div>
-  
-  <div class="ticker-dots" id="ticker-dots"></div>
 </div>
 
 <style>
-  .info-ticker {
+  .ticker {
     display: none;
     background: var(--color-card);
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border-light);
     overflow: hidden;
-    position: relative;
+    height: 48px;
   }
 
   @media (max-width: 767px) {
-    .info-ticker {
+    .ticker {
       display: block;
     }
   }
 
-  .ticker-track {
-    display: flex;
-    transition: transform 0.4s ease;
-  }
-
-  .ticker-slide {
-    min-width: 100%;
-    padding: var(--space-4) var(--space-5);
+  .ticker-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
+    height: 100%;
+    animation: scroll 20s linear infinite;
+    width: max-content;
   }
 
-  .ticker-icon {
-    font-size: 1.25rem;
+  .ticker-content:hover {
+    animation-play-state: paused;
   }
 
-  .ticker-text {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--color-text);
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
-  .ticker-subtext {
-    font-size: 0.8125rem;
-    color: var(--color-text-secondary);
-    margin-left: var(--space-1);
-  }
-
-  .ticker-dots {
-    position: absolute;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-  }
-
-  .ticker-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-border);
-    transition: all 0.2s ease;
-  }
-
-  .ticker-dot.active {
-    background: var(--color-primary);
-    width: 18px;
-    border-radius: 3px;
-  }
-
-  /* Train specific styling */
-  .ticker-train {
+  :global(.ticker-item) {
     display: flex;
     align-items: center;
     gap: var(--space-2);
+    padding: 0 var(--space-5);
+    white-space: nowrap;
+    font-size: 0.875rem;
+    color: var(--color-text);
+    border-right: 1px solid var(--color-border-light);
+    height: 100%;
   }
 
-  .ticker-badge {
-    background: #16a34a;
+  :global(.ticker-item:last-child) {
+    border-right: none;
+  }
+
+  :global(.ticker-icon) {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  :global(.ticker-label) {
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  :global(.ticker-value) {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  :global(.ticker-badge) {
+    background: var(--color-primary);
     color: white;
     padding: 2px 8px;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
     font-size: 0.75rem;
   }
 
-  .ticker-time {
-    font-weight: 700;
-    color: var(--color-primary);
-  }
-
-  .ticker-dest {
-    color: var(--color-text-secondary);
-    font-size: 0.8125rem;
+  :global(.ticker-muted) {
+    color: var(--color-muted);
   }
 </style>
 
 <script>
-  interface Slide {
-    icon: string;
-    text: string;
-    subtext?: string;
-    html?: string;
-  }
-
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
   const TRAIN_API = 'https://dbf.finalrewind.org';
 
-  function getWeatherEmoji(code: number): string {
-    if (code === 0) return '☀️';
-    if (code <= 3) return '⛅';
-    if (code <= 48) return '☁️';
-    if (code <= 67) return '🌧️';
-    if (code <= 77) return '🌨️';
-    return '☁️';
+  const icons = {
+    sun: `<svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>`,
+    cloud: `<svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
+    droplet: `<svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+    sunrise: `<svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><polyline points="8 6 12 2 16 6"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/></svg>`,
+    train: `<svg class="ticker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/></svg>`,
+  };
+
+  function getWeatherIcon(code: number): string {
+    if (code === 0) return icons.sun;
+    if (code <= 3) return icons.sun;
+    return icons.cloud;
   }
 
   function formatTime(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  async function fetchData(): Promise<Slide[]> {
-    const slides: Slide[] = [];
+  async function buildTicker(): Promise<string> {
+    const items: string[] = [];
 
     // Fetch weather
     try {
@@ -148,25 +128,31 @@
       const sunrise = data.daily?.sunrise?.[0] ? formatTime(data.daily.sunrise[0]) : '7:30';
       const sunset = data.daily?.sunset?.[0] ? formatTime(data.daily.sunset[0]) : '17:20';
 
-      slides.push({
-        icon: getWeatherEmoji(code),
-        text: `${temp}°C`,
-        subtext: 'Starnberg'
-      });
+      items.push(`
+        <div class="ticker-item">
+          ${getWeatherIcon(code)}
+          <span class="ticker-value">${temp}°</span>
+          <span class="ticker-label">Starnberg</span>
+        </div>
+      `);
 
-      slides.push({
-        icon: '💧',
-        text: '4°C',
-        subtext: 'Wassertemp.'
-      });
+      items.push(`
+        <div class="ticker-item">
+          ${icons.droplet}
+          <span class="ticker-value">4°</span>
+          <span class="ticker-label">See</span>
+        </div>
+      `);
 
-      slides.push({
-        icon: '🌅',
-        text: `↑ ${sunrise}`,
-        subtext: `↓ ${sunset}`
-      });
+      items.push(`
+        <div class="ticker-item">
+          ${icons.sunrise}
+          <span class="ticker-value">↑${sunrise}</span>
+          <span class="ticker-muted">&nbsp;↓${sunset}</span>
+        </div>
+      `);
     } catch {
-      slides.push({ icon: '🌡️', text: 'Wetter nicht verfügbar' });
+      items.push(`<div class="ticker-item">${icons.sun}<span class="ticker-muted">Wetter lädt...</span></div>`);
     }
 
     // Fetch trains
@@ -183,84 +169,30 @@
           .replace(/\s*\([^)]*\)/g, '')
           .replace(/ Hbf$/, '')
           .replace(/^München /, 'M-');
-        const delay = t.delayDeparture > 0 ? ` +${t.delayDeparture}` : '';
+        const delay = t.delayDeparture > 0 ? `<span class="ticker-muted"> +${t.delayDeparture}</span>` : '';
         
-        slides.push({
-          icon: '🚆',
-          text: '',
-          html: `<span class="ticker-train">
+        items.push(`
+          <div class="ticker-item">
+            ${icons.train}
             <span class="ticker-badge">S6</span>
-            <span class="ticker-time">${t.scheduledDeparture}${delay}</span>
-            <span class="ticker-dest">→ ${dest}</span>
-          </span>`
-        });
+            <span class="ticker-value">${t.scheduledDeparture}${delay}</span>
+            <span class="ticker-muted">→ ${dest}</span>
+          </div>
+        `);
       }
     } catch {
-      // Skip train if error
+      // Skip
     }
 
-    return slides;
-  }
-
-  function renderSlides(slides: Slide[]): void {
-    const track = document.getElementById('ticker-track');
-    const dots = document.getElementById('ticker-dots');
-    if (!track || !dots) return;
-
-    track.innerHTML = slides.map((s, i) => `
-      <div class="ticker-slide" data-slide="${i}">
-        <span class="ticker-icon">${s.icon}</span>
-        ${s.html || `<span class="ticker-text">${s.text}</span>${s.subtext ? `<span class="ticker-subtext">${s.subtext}</span>` : ''}`}
-      </div>
-    `).join('');
-
-    dots.innerHTML = slides.map((_, i) => `
-      <div class="ticker-dot${i === 0 ? ' active' : ''}" data-dot="${i}"></div>
-    `).join('');
-  }
-
-  function startCarousel(slideCount: number): void {
-    const track = document.getElementById('ticker-track');
-    const dots = document.getElementById('ticker-dots');
-    if (!track || !dots || slideCount < 2) return;
-
-    let current = 0;
-    const interval = 4000; // 4 seconds per slide
-
-    setInterval(() => {
-      current = (current + 1) % slideCount;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      
-      dots.querySelectorAll('.ticker-dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
-      });
-    }, interval);
-
-    // Touch swipe support
-    let touchStart = 0;
-    track.addEventListener('touchstart', (e) => {
-      touchStart = e.touches[0].clientX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
-      const diff = touchStart - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          current = (current + 1) % slideCount;
-        } else {
-          current = (current - 1 + slideCount) % slideCount;
-        }
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.querySelectorAll('.ticker-dot').forEach((dot, i) => {
-          dot.classList.toggle('active', i === current);
-        });
-      }
-    }, { passive: true });
+    // Duplicate for seamless loop
+    const content = items.join('');
+    return content + content;
   }
 
   document.addEventListener('DOMContentLoaded', async () => {
-    const slides = await fetchData();
-    renderSlides(slides);
-    startCarousel(slides.length);
+    const container = document.getElementById('ticker-content');
+    if (!container) return;
+    
+    container.innerHTML = await buildTicker();
   });
 </script>
