@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
-import CollapsibleSection from '../components/CollapsibleSection.astro';
 import TrainInfo from '../components/TrainInfo.astro';
 import FerryInfo from '../components/FerryInfo.astro';
 import MarketInfo from '../components/MarketInfo.astro';
@@ -43,6 +42,14 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <WeatherWidget />
       </section>
 
+      <!-- Quick Transport Info (prominent) -->
+      <section class="section section-transport">
+        <div class="transport-grid">
+          <TrainInfo station="Possenhofen" stationCode="MPH" />
+          <FerryInfo />
+        </div>
+      </section>
+
       <!-- Filter Component -->
       <FilterBar events={events} regions={regions} />
 
@@ -62,21 +69,10 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
       <!-- Local Info (Collapsed) -->
       <section class="section section-info">
-        <h2 class="section-title">Praktische Infos</h2>
-        <div class="info-grid">
-          <CollapsibleSection id="transport" title="Anreise" icon="🚆">
-            <div class="info-inner">
-              <TrainInfo station="Possenhofen" stationCode="MPH" />
-              <FerryInfo />
-            </div>
-          </CollapsibleSection>
-          
-          <CollapsibleSection id="local" title="Vor Ort" icon="📍">
-            <div class="info-inner">
-              <MarketInfo />
-              <WebcamWidget />
-            </div>
-          </CollapsibleSection>
+        <h2 class="section-title">Vor Ort</h2>
+        <div class="info-grid-single">
+          <MarketInfo />
+          <WebcamWidget />
         </div>
       </section>
     </div>
@@ -122,6 +118,23 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   @media (min-width: 640px) {
     .section-weather {
       margin-top: calc(-1 * var(--space-8));
+    }
+  }
+
+  /* Transport */
+  .section-transport {
+    margin-bottom: var(--space-8);
+  }
+
+  .transport-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .transport-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
     }
   }
 
@@ -172,24 +185,16 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     letter-spacing: 0.05em;
   }
 
-  .info-grid {
+  .info-grid-single {
     display: grid;
     gap: var(--space-4);
   }
 
   @media (min-width: 640px) {
-    .info-grid {
+    .info-grid-single {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-5);
     }
-  }
-
-  :global(.info-inner) {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    padding: var(--space-4);
-    background: var(--color-bg);
   }
 
   /* Footer */
