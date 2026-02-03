@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import TrainInfo from '../components/TrainInfo.astro';
 import FilterBar from '../components/FilterBar.astro';
 import EventCard from '../components/EventCard.astro';
 import eventsData from '../data/events.json';
@@ -23,6 +24,8 @@ const counts = {
   <Header lastUpdated={eventsData.lastUpdated} />
   
   <main class="main">
+    <TrainInfo station="Possenhofen" stationCode="MPH" />
+    
     <FilterBar counts={counts} />
     
     <section class="events-grid">
