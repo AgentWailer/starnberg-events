@@ -15,11 +15,12 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
-    padding: 10px 16px;
+    padding: 12px 16px;
     background: var(--color-card);
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-border-light);
-    min-height: 44px;
+    /* Touch Target consideration + CLS: consistent minimum height */
+    min-height: 48px;
     flex-wrap: wrap;
   }
 

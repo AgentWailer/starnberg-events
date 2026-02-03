@@ -101,19 +101,32 @@ const dateStr = `${day}. ${monthShort}`;
     background: var(--color-card);
     border-radius: var(--radius-sm);
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform var(--duration-fast) ease, box-shadow var(--duration-normal) ease;
     border: 1px solid var(--color-border-light);
+    /* CLS Prevention: consistent minimum height */
+    min-height: 100px;
   }
 
-  .event-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+  /* Hover state - only on devices that support hover */
+  @media (hover: hover) {
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+
+  /* Active state - immediate touch feedback */
+  .event-card:active {
+    transform: scale(0.98);
+    box-shadow: none;
   }
 
   .card-link {
     display: block;
     color: inherit;
     text-decoration: none;
+    /* Ensure entire card is touch target - minimum 44px height already met by card */
+    min-height: var(--touch-target-min);
   }
 
   .accent-bar {
@@ -163,7 +176,8 @@ const dateStr = `${day}. ${monthShort}`;
   }
 
   .title {
-    font-size: 14px;
+    /* Mobile: minimum 16px for readability */
+    font-size: 15px;
     font-weight: 600;
     color: var(--color-text);
     line-height: 1.4;
@@ -172,7 +186,7 @@ const dateStr = `${day}. ${monthShort}`;
 
   @media (min-width: 640px) {
     .title {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
 
@@ -180,7 +194,7 @@ const dateStr = `${day}. ${monthShort}`;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--color-muted);
   }
 

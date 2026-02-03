@@ -151,6 +151,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filter-fab {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     position: fixed;
     bottom: 24px;
@@ -158,20 +159,40 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    padding: 14px 24px;
-    background: #000;
-    color: white;
+    /* Touch Target: minimum 48px height for primary action */
+    min-height: 48px;
+    padding: 14px 28px;
+    background: var(--color-primary);
+    color: var(--color-bg);
     border: none;
     border-radius: var(--radius-full);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    transition: all 0.2s;
+    transition: transform var(--duration-fast, 100ms) ease, box-shadow var(--duration-normal, 200ms) ease;
   }
 
-  .filter-fab:hover {
-    transform: translateX(-50%) scale(1.05);
+  /* Hover only on hover-capable devices */
+  @media (hover: hover) {
+    .filter-fab:hover {
+      transform: translateX(-50%) scale(1.05);
+    }
+  }
+
+  /* Active state - immediate touch feedback */
+  .filter-fab:active {
+    transform: translateX(-50%) scale(0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Dark mode FAB */
+  @media (prefers-color-scheme: dark) {
+    .filter-fab {
+      background: var(--color-accent);
+      color: #000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
   }
 
   /* Make sure it's visible on all mobile */
@@ -248,21 +269,29 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   }
 
   .sheet-close {
-    width: 28px;
-    height: 28px;
+    /* Touch Target: minimum 44px */
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     background: var(--color-bg);
     border-radius: 50%;
-    font-size: 0.9rem;
+    font-size: 1rem;
     cursor: pointer;
     color: var(--color-text-secondary);
+    transition: transform var(--duration-fast, 100ms) ease;
+  }
+
+  .sheet-close:active {
+    transform: scale(0.9);
+    background: var(--color-border);
   }
 
   .sheet-content {
     padding: 12px 16px 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -270,15 +299,31 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .sheet-apply {
     width: 100%;
-    padding: 12px;
+    /* Touch Target: minimum 48px for primary action */
+    min-height: 48px;
+    padding: 14px;
     background: var(--color-primary);
-    color: white;
+    color: var(--color-bg);
     border: none;
     border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     margin-top: 4px;
+    transition: transform var(--duration-fast, 100ms) ease;
+  }
+
+  .sheet-apply:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  /* Dark mode for apply button */
+  @media (prefers-color-scheme: dark) {
+    .sheet-apply {
+      background: var(--color-accent);
+      color: #000;
+    }
   }
 
   /* Hide mobile elements on desktop */
@@ -360,27 +405,50 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 8px 12px;
+    /* Touch Target: minimum 44px height (Apple HIG) */
+    min-height: var(--touch-target-min, 44px);
+    padding: 10px 14px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all var(--duration-fast, 100ms) ease;
     white-space: nowrap;
     color: var(--color-text-secondary);
+    /* Prevent text selection on rapid taps */
+    user-select: none;
+    -webkit-user-select: none;
   }
 
-  .chip:hover {
-    border-color: var(--color-text);
-    color: var(--color-text);
+  /* Hover only on hover-capable devices */
+  @media (hover: hover) {
+    .chip:hover {
+      border-color: var(--color-text);
+      color: var(--color-text);
+    }
+  }
+
+  /* Active state - immediate touch feedback */
+  .chip:active {
+    transform: scale(0.95);
+    opacity: 0.85;
   }
 
   .chip.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: white;
+  }
+
+  /* Dark mode adjustment for active chip */
+  @media (prefers-color-scheme: dark) {
+    .chip.active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #000;
+    }
   }
 
   .chip-emoji {
@@ -413,18 +481,40 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .location-select {
     width: 100%;
-    padding: 8px 12px;
+    /* Touch Target: minimum 44px height */
+    min-height: var(--touch-target-min, 44px);
+    padding: 10px 14px;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     background: var(--color-card);
     color: var(--color-text);
     cursor: pointer;
-    transition: border-color 0.2s;
+    transition: border-color var(--duration-fast, 100ms) ease;
+    /* Better touch behavior on iOS */
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
   }
 
-  .location-select:hover {
-    border-color: var(--color-primary);
+  @media (hover: hover) {
+    .location-select:hover {
+      border-color: var(--color-primary);
+    }
+  }
+
+  .location-select:focus {
+    border-color: var(--color-accent);
+  }
+
+  /* Dark mode select */
+  @media (prefers-color-scheme: dark) {
+    .location-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    }
   }
 </style>
 

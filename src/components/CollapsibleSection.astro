@@ -41,16 +41,36 @@ const { title, icon = '', defaultOpen = false, id } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Touch Target: minimum 44px */
+    min-height: var(--touch-target-min, 44px);
     padding: 12px 16px;
     cursor: pointer;
     user-select: none;
+    -webkit-user-select: none;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark, #c2410c) 100%);
     color: white;
-    transition: all 0.2s;
+    transition: transform var(--duration-fast, 100ms) ease, filter var(--duration-normal, 200ms) ease;
   }
 
-  .collapsible-header:hover {
-    filter: brightness(1.05);
+  /* Hover only on hover-capable devices */
+  @media (hover: hover) {
+    .collapsible-header:hover {
+      filter: brightness(1.05);
+    }
+  }
+
+  /* Active state - immediate touch feedback */
+  .collapsible-header:active {
+    transform: scale(0.99);
+    filter: brightness(0.95);
+  }
+
+  /* Dark mode gradient */
+  @media (prefers-color-scheme: dark) {
+    .collapsible-header {
+      background: linear-gradient(135deg, var(--color-accent) 0%, #c44902 100%);
+      color: #000;
+    }
   }
 
   .collapsible-title {
@@ -71,12 +91,23 @@ const { title, icon = '', defaultOpen = false, id } = Astro.props;
     height: 18px;
     color: white;
     opacity: 0.9;
-    transition: transform 0.2s ease;
+    transition: transform var(--duration-normal, 200ms) ease;
     flex-shrink: 0;
   }
 
   .collapsible[open] .chevron {
     transform: rotate(180deg);
+  }
+
+  /* Dark mode chevron */
+  @media (prefers-color-scheme: dark) {
+    .chevron {
+      color: #000;
+    }
+    
+    .collapsible-title {
+      color: #000;
+    }
   }
 
   .collapsible-content {
