@@ -208,11 +208,20 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
     }
   }
 
+  let refreshInterval: number | null = null;
+
   document.addEventListener('DOMContentLoaded', () => {
     const widget = document.querySelector('.train-widget') as HTMLElement;
     if (widget) {
       loadTrain(widget);
-      setInterval(() => loadTrain(widget), 60000);
+      refreshInterval = setInterval(() => loadTrain(widget), 60000);
+    }
+  });
+
+  // Cleanup interval on navigation
+  window.addEventListener('pagehide', () => {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
     }
   });
 </script>

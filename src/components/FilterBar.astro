@@ -32,8 +32,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       <button class="pill" data-filter="familie">Familie</button>
       <button class="pill" data-filter="erwachsene">Kultur</button>
     </div>
-    <button class="clear-filters" id="clear-filters" style="display: none;">
-      <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <button class="clear-filters" id="clear-filters">
+      <svg aria-hidden="true" class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
       </svg>
       <span>Zurücksetzen</span>
@@ -164,8 +164,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     user-select: none;
   }
 
-  .clear-filters[style*="display: flex"] {
-    display: flex !important;
+  .clear-filters.visible {
+    display: flex;
   }
 
   @media (hover: hover) {
@@ -178,6 +178,15 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .clear-filters:active {
     transform: scale(0.97);
+  }
+
+  .clear-filters:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .clear-filters:focus:not(:focus-visible) {
+    outline: none;
   }
 
   .clear-icon {
@@ -285,9 +294,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   function updateClearButton() {
     const hasActiveFilters = activeCategory !== 'all' || activeRegion !== 'all' || activeLocation !== 'all';
-    if (clearBtn) {
-      clearBtn.style.display = hasActiveFilters ? 'flex' : 'none';
-    }
+    clearBtn?.classList.toggle('visible', hasActiveFilters);
   }
 
   function filterEvents() {

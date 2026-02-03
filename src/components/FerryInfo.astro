@@ -199,8 +199,17 @@
     `).join('');
   }
 
+  let refreshInterval: number | null = null;
+
   document.addEventListener('DOMContentLoaded', () => {
     render();
-    setInterval(render, 60000);
+    refreshInterval = setInterval(render, 60000);
+  });
+
+  // Cleanup interval on navigation
+  window.addEventListener('pagehide', () => {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
+    }
   });
 </script>

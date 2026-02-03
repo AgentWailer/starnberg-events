@@ -116,13 +116,14 @@
   }
 
   .dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     border: none;
     background: var(--color-border);
     cursor: pointer;
-    padding: 0;
+    padding: 18px;
+    margin: -18px var(--space-1);
     transition: background 0.2s ease, transform 0.2s ease;
   }
 
@@ -133,6 +134,25 @@
   .dot.active {
     background: var(--color-primary);
     transform: scale(1.2);
+  }
+
+  .dot:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .dot:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-slide {
+      transition: none;
+    }
+    
+    .dot {
+      transition: none;
+    }
   }
 </style>
 
@@ -281,5 +301,12 @@
     loadWeather();
     loadTrain();
     startAutoplay();
+  });
+
+  // Cleanup interval on navigation
+  window.addEventListener('pagehide', function() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+    }
   });
 </script>
