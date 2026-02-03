@@ -37,10 +37,10 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   
   <main class="main">
     <div class="container">
-      <!-- Mobile: Compact ticker carousel -->
-      <section class="section section-ticker">
+      <!-- Mobile: Elegant info bar -->
+      <div class="mobile-info-bar">
         <InfoTicker />
-      </section>
+      </div>
 
       <!-- Desktop: Full weather strip -->
       <section class="section section-weather desktop-only">
@@ -110,15 +110,13 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     }
   }
 
-  /* Mobile Ticker */
-  .section-ticker {
-    margin-top: calc(-1 * var(--space-6));
-    position: relative;
-    z-index: 10;
+  /* Mobile Info Bar */
+  .mobile-info-bar {
+    margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) var(--space-6);
   }
 
   @media (min-width: 768px) {
-    .section-ticker {
+    .mobile-info-bar {
       display: none;
     }
   }
