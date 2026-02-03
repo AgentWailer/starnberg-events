@@ -241,7 +241,8 @@
 
 <script>
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
-  const TRAIN_API = 'https://dbf.finalrewind.org/Possenhofen.json?version=3';
+  // Use transport.rest API - shows more departures including next day
+  const TRAIN_API = 'https://v6.db.transport.rest/stops/8004874/departures?duration=1440&suburban=true';
 
   // Ticker state
   let track: HTMLElement | null = null;
@@ -442,37 +443,36 @@
   }
 
   // Format train time - show "morgen" if next day
-  function formatTrainTime(train: any): string {
-    const time = train.scheduledDeparture;
-    const delay = train.delayDeparture > 0 ? `<span class="delay">+${train.delayDeparture}</span>` : '';
+  function formatTrainTime(dep: any): string {
+    const when = new Date(dep.when || dep.plannedWhen);
+    const time = when.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    
+    // Calculate delay in minutes
+    const delayMin = dep.delay ? Math.round(dep.delay / 60) : 0;
+    const delayHtml = delayMin > 0 ? `<span class="delay">+${delayMin}</span>` : '';
     
     // Check if departure is tomorrow or later
-    if (train.scheduledDepartureDate) {
-      const today = new Date();
-      const depDate = new Date(train.scheduledDepartureDate);
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    const depStr = when.toISOString().split('T')[0];
+    
+    if (depStr > todayStr) {
+      // Tomorrow or later - show day
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
       
-      // Compare dates (ignoring time)
-      const todayStr = today.toISOString().split('T')[0];
-      const depStr = depDate.toISOString().split('T')[0];
-      
-      if (depStr > todayStr) {
-        // Tomorrow or later - show day
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowStr = tomorrow.toISOString().split('T')[0];
-        
-        if (depStr === tomorrowStr) {
-          return `<span class="tomorrow">morgen</span> ${time}${delay}`;
-        } else {
-          // Show weekday
-          const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-          const dayName = days[depDate.getDay()];
-          return `<span class="tomorrow">${dayName}</span> ${time}${delay}`;
-        }
+      if (depStr === tomorrowStr) {
+        return `<span class="tomorrow">morgen</span> ${time}${delayHtml}`;
+      } else {
+        // Show weekday
+        const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+        const dayName = days[when.getDay()];
+        return `<span class="tomorrow">${dayName}</span> ${time}${delayHtml}`;
       }
     }
     
-    return time + delay;
+    return time + delayHtml;
   }
 
   // Load train departures
@@ -487,26 +487,34 @@
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
 
+      // API returns { departures: [...] }
       const departures = data.departures || [];
 
-      // Filter for S-Bahn only (not cancelled)
-      const sBahns = departures.filter((d: any) =>
-        !d.isCancelled && d.train && d.train.startsWith('S ')
-      );
+      // Filter for S-Bahn only (line.product === 'suburban' or line.name starts with 'S')
+      const sBahns = departures.filter((d: any) => {
+        const line = d.line;
+        if (!line) return false;
+        return line.product === 'suburban' || (line.name && line.name.startsWith('S'));
+      });
 
-      // Find München direction
-      const toMunich = sBahns.find((d: any) =>
-        d.destination.includes('München') ||
-        d.destination.includes('Pasing') ||
-        d.destination.includes('Ostbahnhof')
-      );
+      // Find München direction (direction contains München, Pasing, etc.)
+      const toMunich = sBahns.find((d: any) => {
+        const dir = d.direction || '';
+        return dir.includes('München') || 
+               dir.includes('Pasing') || 
+               dir.includes('Ostbahnhof') ||
+               dir.includes('Marienplatz') ||
+               dir.includes('Ebersberg') ||
+               dir.includes('Grafing');
+      });
 
       // Find Tutzing direction
-      const toTutzing = sBahns.find((d: any) =>
-        d.destination.includes('Tutzing') ||
-        d.destination.includes('Starnberg') ||
-        (!d.destination.includes('München') && !d.destination.includes('Pasing'))
-      );
+      const toTutzing = sBahns.find((d: any) => {
+        const dir = d.direction || '';
+        return dir.includes('Tutzing') || 
+               dir.includes('Starnberg') ||
+               dir.includes('Feldafing');
+      });
 
       // Update München
       if (toMunich) {
