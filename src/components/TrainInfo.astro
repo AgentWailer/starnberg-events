@@ -7,293 +7,145 @@ interface Props {
 const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 ---
 
-<section class="train-board" data-station-id={stationId}>
+<div class="train-widget" data-station-id={stationId}>
   <div class="train-header">
-    <span class="train-icon">🚆</span>
-    <span class="train-title">S-Bahn {station}</span>
-    <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" class="train-link">DB Live →</a>
+    <span>🚆 S-Bahn {station}</span>
+    <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">DB Live →</a>
   </div>
-  
-  <div class="train-columns">
-    <span>Zeit</span>
-    <span>Linie</span>
-    <span>Ziel</span>
-    <span class="text-center">Gleis</span>
+  <div class="train-table" id="train-table">
+    <div class="train-loading">Laden...</div>
   </div>
-  
-  <div class="train-departures" id="train-departures">
-    <div class="train-loading">Lade Abfahrten...</div>
-  </div>
-</section>
+</div>
 
 <style>
-  .train-board {
-    background: #ffffff;
+  .train-widget {
+    background: #fff;
     border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e5e5e5;
     overflow: hidden;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
   }
 
   .train-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
-    color: white;
-  }
-
-  .train-icon {
-    font-size: 1.2rem;
-  }
-
-  .train-title {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #0066cc, #004499);
+    color: #fff;
     font-weight: 600;
-    font-size: 1rem;
-    flex: 1;
   }
 
-  .train-link {
-    color: white;
-    font-size: 0.8rem;
-    opacity: 0.9;
+  .train-header a {
+    color: #fff;
+    opacity: 0.85;
+    font-size: 0.85rem;
     text-decoration: none;
   }
 
-  .train-link:hover {
+  .train-header a:hover {
     opacity: 1;
     text-decoration: underline;
   }
 
-  .train-columns {
-    display: grid;
-    grid-template-columns: 70px 55px 1fr 50px;
-    padding: 0.5rem 1rem;
-    background: #f5f5f5;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
-  .train-departures {
-    min-height: 100px;
+  .train-table {
+    min-height: 80px;
   }
 
   .train-loading {
-    padding: 2rem 1rem;
+    padding: 24px;
     text-align: center;
-    color: #999;
-    font-size: 0.9rem;
-  }
-</style>
-
-<!-- Separate global styles for JS-generated content -->
-<style is:global>
-  .dep-row {
-    display: grid;
-    grid-template-columns: 70px 55px 1fr 50px;
-    padding: 0.65rem 1rem;
-    border-bottom: 1px solid #f0f0f0;
-    align-items: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  .dep-row:last-child {
-    border-bottom: none;
-  }
-
-  .dep-time {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .dep-time-val {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #1a73e8;
-  }
-
-  .dep-time-delay {
-    font-size: 0.7rem;
-    color: #d32f2f;
-    font-weight: 600;
-  }
-
-  .dep-line-badge {
-    background: #43a047;
-    color: white;
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 3px 6px;
-    border-radius: 4px;
-    text-align: center;
-    display: inline-block;
-  }
-
-  .dep-dest {
-    font-weight: 500;
-    color: #212121;
-    font-size: 0.95rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .dep-platform {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #424242;
-    text-align: center;
-  }
-
-  .train-fallback {
-    padding: 1.5rem 1rem;
-    text-align: center;
-    color: #666;
-    font-size: 0.9rem;
-  }
-
-  .train-fallback a {
-    color: #1a73e8;
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .train-fallback a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 400px) {
-    .train-columns,
-    .dep-row {
-      grid-template-columns: 55px 45px 1fr 40px;
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-    }
-
-    .dep-time-val {
-      font-size: 0.95rem;
-    }
-
-    .dep-line-badge {
-      font-size: 0.7rem;
-      padding: 2px 4px;
-    }
-
-    .dep-dest {
-      font-size: 0.85rem;
-    }
-
-    .dep-platform {
-      font-size: 0.95rem;
-    }
+    color: #888;
   }
 </style>
 
 <script>
-  const API_BASE = 'https://v6.db.transport.rest';
+  const API = 'https://v6.db.transport.rest';
 
-  interface Departure {
+  interface Dep {
     when: string | null;
     plannedWhen: string;
     delay: number | null;
     direction: string;
     platform: string | null;
-    line: {
-      name: string;
-      product: string;
-    };
+    line: { name: string; product: string };
   }
 
-  async function fetchDepartures(stationId: string): Promise<Departure[]> {
-    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=12`;
-    
-    try {
-      const res = await fetch(url, { headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error(`${res.status}`);
-      const data = await res.json();
-      return data.departures || [];
-    } catch (e) {
-      console.error('API fetch failed:', e);
-      throw e;
-    }
+  async function load(id: string): Promise<Dep[]> {
+    const r = await fetch(`${API}/stops/${id}/departures?duration=120&results=12`);
+    if (!r.ok) throw new Error('API error');
+    return (await r.json()).departures || [];
   }
 
-  function fmtTime(iso: string): string {
+  function time(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function fmtDelay(sec: number | null): string {
-    if (!sec || sec < 60) return '';
-    return `+${Math.round(sec / 60)}`;
+  function dest(d: string): string {
+    return d.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf$/, '').replace(/ Bahnhof$/, '');
   }
 
-  function shortDest(d: string): string {
-    return d.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf.*$/, '').replace(/ Bahnhof/, '').trim();
-  }
-
-  function render(deps: Departure[], el: HTMLElement): void {
-    const trains = deps
-      .filter(d => d.when && d.line && ['suburban', 'regional'].includes(d.line.product))
-      .slice(0, 6);
-
+  function render(deps: Dep[], el: HTMLElement): void {
+    const trains = deps.filter(d => d.when && d.line && ['suburban','regional'].includes(d.line.product)).slice(0, 6);
+    
     if (!trains.length) {
-      el.innerHTML = `<div class="train-fallback">
-        <p><strong>S6</strong> nach Tutzing / München — ca. alle 20 min</p>
-        <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten →</a></p>
+      el.innerHTML = `<div style="padding:20px;text-align:center;color:#666">
+        <p><b>S6</b> Tutzing ↔ München</p>
+        <p style="font-size:0.9em">ca. alle 20 min</p>
       </div>`;
       return;
     }
 
-    el.innerHTML = trains.map(t => {
-      const time = fmtTime(t.when || t.plannedWhen);
-      const delay = fmtDelay(t.delay);
-      const dest = shortDest(t.direction);
-      const plat = t.platform || '–';
+    // Table with inline styles for guaranteed rendering
+    let html = `<table style="width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif">
+      <thead>
+        <tr style="background:#f5f5f5;font-size:0.75rem;color:#666;text-transform:uppercase">
+          <th style="padding:8px 12px;text-align:left;font-weight:600">Zeit</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:600">Linie</th>
+          <th style="padding:8px 12px;text-align:left;font-weight:600">Ziel</th>
+          <th style="padding:8px 12px;text-align:center;font-weight:600">Gleis</th>
+        </tr>
+      </thead>
+      <tbody>`;
 
-      return `<div class="dep-row">
-        <div class="dep-time">
-          <span class="dep-time-val">${time}</span>
-          ${delay ? `<span class="dep-time-delay">${delay}</span>` : ''}
-        </div>
-        <span class="dep-line-badge">${t.line.name}</span>
-        <span class="dep-dest">${dest}</span>
-        <span class="dep-platform">${plat}</span>
-      </div>`;
-    }).join('');
+    trains.forEach((t, i) => {
+      const tm = time(t.when || t.plannedWhen);
+      const delay = t.delay && t.delay >= 60 ? `<span style="color:#d32f2f;font-size:0.8em;margin-left:4px">+${Math.round(t.delay/60)}</span>` : '';
+      const bg = i % 2 === 0 ? '#fff' : '#fafafa';
+      
+      html += `<tr style="background:${bg};border-bottom:1px solid #eee">
+        <td style="padding:10px 12px;font-weight:700;color:#0066cc;font-size:1rem;white-space:nowrap">${tm}${delay}</td>
+        <td style="padding:10px 12px"><span style="background:#43a047;color:#fff;padding:3px 8px;border-radius:4px;font-weight:700;font-size:0.85rem">${t.line.name}</span></td>
+        <td style="padding:10px 12px;font-weight:500;color:#222">${dest(t.direction)}</td>
+        <td style="padding:10px 12px;text-align:center;font-weight:600;color:#444">${t.platform || '–'}</td>
+      </tr>`;
+    });
+
+    html += '</tbody></table>';
+    el.innerHTML = html;
   }
 
-  async function update(board: HTMLElement): Promise<void> {
-    const id = board.dataset.stationId;
-    const container = board.querySelector('#train-departures') as HTMLElement;
-    if (!id || !container) return;
+  async function update(w: HTMLElement): Promise<void> {
+    const id = w.dataset.stationId;
+    const el = w.querySelector('#train-table') as HTMLElement;
+    if (!id || !el) return;
 
     try {
-      const deps = await fetchDepartures(id);
-      render(deps, container);
+      const deps = await load(id);
+      render(deps, el);
     } catch {
-      container.innerHTML = `<div class="train-fallback">
-        <p>Verbindung fehlgeschlagen</p>
-        <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten →</a></p>
+      el.innerHTML = `<div style="padding:20px;text-align:center;color:#666">
+        <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" style="color:#0066cc">Live-Abfahrten öffnen →</a>
       </div>`;
     }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const board = document.querySelector('.train-board') as HTMLElement;
-    if (board) {
-      update(board);
-      setInterval(() => update(board), 60000);
+    const w = document.querySelector('.train-widget') as HTMLElement;
+    if (w) {
+      update(w);
+      setInterval(() => update(w), 60000);
     }
   });
 </script>
