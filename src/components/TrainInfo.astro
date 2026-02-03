@@ -9,22 +9,30 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 
 <div class="train-widget" data-station-id={stationId}>
   <div class="train-header">
-    <span>🚆 S-Bahn {station}</span>
-    <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">DB Live →</a>
+    <div class="train-title">
+      <span class="train-icon">🚆</span>
+      <span>S-Bahn {station}</span>
+    </div>
+    <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" class="db-link">
+      DB Live <span class="arrow">→</span>
+    </a>
   </div>
-  <div class="train-table" id="train-table">
-    <div class="train-loading">Laden...</div>
+  <div class="train-body" id="train-table">
+    <div class="train-loading">
+      <span class="spinner"></span>
+      Abfahrten laden...
+    </div>
   </div>
 </div>
 
 <style>
   .train-widget {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #e5e5e5;
+    background: var(--color-card);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
   }
 
   .train-header {
@@ -32,38 +40,74 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px;
-    background: linear-gradient(135deg, #0066cc, #004499);
-    color: #fff;
-    font-weight: 600;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
   }
 
-  .train-header a {
-    color: #fff;
-    opacity: 0.85;
-    font-size: 0.85rem;
+  .train-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .train-icon {
+    font-size: 1.1rem;
+  }
+
+  .db-link {
+    color: white;
+    opacity: 0.9;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-full);
+    transition: all 0.2s;
+  }
+
+  .db-link:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.25);
     text-decoration: none;
   }
 
-  .train-header a:hover {
-    opacity: 1;
-    text-decoration: underline;
-  }
-
-  .train-table {
-    min-height: 80px;
+  .train-body {
+    min-height: 100px;
   }
 
   .train-loading {
-    padding: 24px;
-    text-align: center;
-    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 32px;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 </style>
 
 <script>
   const API = 'https://v6.db.transport.rest';
 
-  interface Dep {
+  interface Departure {
     when: string | null;
     plannedWhen: string;
     delay: number | null;
@@ -72,80 +116,91 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     line: { name: string; product: string };
   }
 
-  async function load(id: string): Promise<Dep[]> {
-    const r = await fetch(`${API}/stops/${id}/departures?duration=120&results=12`);
-    if (!r.ok) throw new Error('API error');
-    return (await r.json()).departures || [];
+  async function fetchDepartures(stationId: string): Promise<Departure[]> {
+    const res = await fetch(`${API}/stops/${stationId}/departures?duration=120&results=12`);
+    if (!res.ok) throw new Error('API error');
+    return (await res.json()).departures || [];
   }
 
-  function time(iso: string): string {
+  function formatTime(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function dest(d: string): string {
-    return d.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf$/, '').replace(/ Bahnhof$/, '');
+  function shortenDest(dest: string): string {
+    return dest.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf$/, '').replace(/ Bahnhof$/, '');
   }
 
-  function render(deps: Dep[], el: HTMLElement): void {
-    const trains = deps.filter(d => d.when && d.line && ['suburban','regional'].includes(d.line.product)).slice(0, 6);
+  function render(departures: Departure[], container: HTMLElement): void {
+    const trains = departures
+      .filter(d => d.when && d.line && ['suburban', 'regional'].includes(d.line.product))
+      .slice(0, 5);
     
     if (!trains.length) {
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:#666">
-        <p><b>S6</b> Tutzing ↔ München</p>
-        <p style="font-size:0.9em">ca. alle 20 min</p>
-      </div>`;
+      container.innerHTML = `
+        <div style="padding:24px;text-align:center;color:var(--color-text-secondary)">
+          <p style="font-weight:600;margin-bottom:4px">S6 Tutzing ↔ München</p>
+          <p style="font-size:0.85rem;opacity:0.8">ca. alle 20 Minuten</p>
+        </div>
+      `;
       return;
     }
 
-    // Table with inline styles for guaranteed rendering
-    let html = `<table style="width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif">
-      <thead>
-        <tr style="background:#f5f5f5;font-size:0.75rem;color:#666;text-transform:uppercase">
-          <th style="padding:8px 12px;text-align:left;font-weight:600">Zeit</th>
-          <th style="padding:8px 12px;text-align:left;font-weight:600">Linie</th>
-          <th style="padding:8px 12px;text-align:left;font-weight:600">Ziel</th>
-          <th style="padding:8px 12px;text-align:center;font-weight:600">Gleis</th>
-        </tr>
-      </thead>
-      <tbody>`;
+    let html = `
+      <div style="display:grid;grid-template-columns:auto auto 1fr auto;gap:0;font-size:0.85rem">
+        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:8px 12px;background:var(--color-bg);border-bottom:1px solid var(--color-border);font-size:0.7rem;font-weight:600;color:var(--color-muted);text-transform:uppercase;letter-spacing:0.3px">
+          <span>Zeit</span>
+          <span>Linie</span>
+          <span>Richtung</span>
+          <span style="text-align:right">Gl.</span>
+        </div>
+    `;
 
     trains.forEach((t, i) => {
-      const tm = time(t.when || t.plannedWhen);
-      const delay = t.delay && t.delay >= 60 ? `<span style="color:#d32f2f;font-size:0.8em;margin-left:4px">+${Math.round(t.delay/60)}</span>` : '';
-      const bg = i % 2 === 0 ? '#fff' : '#fafafa';
+      const time = formatTime(t.when || t.plannedWhen);
+      const delayMin = t.delay && t.delay >= 60 ? Math.round(t.delay / 60) : 0;
+      const delayHtml = delayMin > 0 
+        ? `<span style="color:#dc2626;font-size:0.75rem;margin-left:4px">+${delayMin}</span>` 
+        : '';
+      const bg = i % 2 === 0 ? 'var(--color-card)' : 'var(--color-bg)';
       
-      html += `<tr style="background:${bg};border-bottom:1px solid #eee">
-        <td style="padding:10px 12px;font-weight:700;color:#0066cc;font-size:1rem;white-space:nowrap">${tm}${delay}</td>
-        <td style="padding:10px 12px"><span style="background:#43a047;color:#fff;padding:3px 8px;border-radius:4px;font-weight:700;font-size:0.85rem">${t.line.name}</span></td>
-        <td style="padding:10px 12px;font-weight:500;color:#222">${dest(t.direction)}</td>
-        <td style="padding:10px 12px;text-align:center;font-weight:600;color:#444">${t.platform || '–'}</td>
-      </tr>`;
+      html += `
+        <div style="grid-column:1/-1;display:grid;grid-template-columns:subgrid;padding:10px 12px;background:${bg};align-items:center;border-bottom:1px solid var(--color-border)">
+          <span style="font-weight:600;color:var(--color-primary)">${time}${delayHtml}</span>
+          <span style="background:#16a34a;color:white;padding:2px 8px;border-radius:4px;font-weight:600;font-size:0.8rem;justify-self:start">${t.line.name}</span>
+          <span style="color:var(--color-text);font-weight:500">${shortenDest(t.direction)}</span>
+          <span style="text-align:right;font-weight:500;color:var(--color-text-secondary)">${t.platform || '–'}</span>
+        </div>
+      `;
     });
 
-    html += '</tbody></table>';
-    el.innerHTML = html;
+    html += '</div>';
+    container.innerHTML = html;
   }
 
-  async function update(w: HTMLElement): Promise<void> {
-    const id = w.dataset.stationId;
-    const el = w.querySelector('#train-table') as HTMLElement;
-    if (!id || !el) return;
+  async function update(widget: HTMLElement): Promise<void> {
+    const stationId = widget.dataset.stationId;
+    const container = widget.querySelector('#train-table') as HTMLElement;
+    if (!stationId || !container) return;
 
     try {
-      const deps = await load(id);
-      render(deps, el);
+      const departures = await fetchDepartures(stationId);
+      render(departures, container);
     } catch {
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:#666">
-        <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" style="color:#0066cc">Live-Abfahrten öffnen →</a>
-      </div>`;
+      container.innerHTML = `
+        <div style="padding:24px;text-align:center">
+          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" style="color:var(--color-primary);font-weight:500">
+            🔗 Live-Abfahrten bei DB öffnen
+          </a>
+        </div>
+      `;
     }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const w = document.querySelector('.train-widget') as HTMLElement;
-    if (w) {
-      update(w);
-      setInterval(() => update(w), 60000);
+    const widget = document.querySelector('.train-widget') as HTMLElement;
+    if (widget) {
+      update(widget);
+      setInterval(() => update(widget), 60000);
     }
   });
 </script>

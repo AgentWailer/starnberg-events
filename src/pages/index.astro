@@ -24,91 +24,133 @@ const events = eventsData.events.sort((a, b) => {
   return a.time.localeCompare(b.time);
 });
 
-// Get unique sources for footer
+// Get unique sources
 const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
-const sourceCount = sources.length;
 ---
 
 <Layout title="Events Oberbayern - Veranstaltungen für Familien">
   <Header lastUpdated={eventsData.lastUpdated} />
   
   <main class="main">
-    <TrainInfo station="Possenhofen" stationCode="MPH" />
-    
-    <FilterBar events={events} regions={regions} />
-    
-    <section class="events-grid">
-      {events.map(event => (
-        <EventCard event={event} regions={regions} />
-      ))}
-    </section>
-    
-    <footer class="footer">
-      <p class="source-info">
-        📊 {events.length} Events aus {sourceCount} Quellen
-      </p>
-      <p class="sources-list">
-        {sources.length > 0 ? (
-          <>
-            Daten von: {' '}
-            {sources.includes('beccult') && <a href="https://www.beccult.de" target="_blank">beccult</a>}
-            {sources.includes('starnbergammersee') && <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>}
-            {sources.includes('muenchen') && <a href="https://www.muenchen.de" target="_blank">muenchen.de</a>}
-            {sources.includes('olympiapark') && <a href="https://www.olympiapark.de" target="_blank">olympiapark.de</a>}
-            {sources.includes('tegernsee') && <a href="https://www.tegernsee.com" target="_blank">tegernsee.com</a>}
-            {sources.includes('gapa') && <a href="https://www.gapa-tourismus.de" target="_blank">gapa.de</a>}
-          </>
-        ) : (
-          <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>
-        )}
-      </p>
-      <p>Made with ❤️ für Oberbayern</p>
-    </footer>
+    <div class="container">
+      <!-- Train Info Widget -->
+      <section class="section-train">
+        <TrainInfo station="Possenhofen" stationCode="MPH" />
+      </section>
+      
+      <!-- Filters -->
+      <section class="section-filters">
+        <FilterBar events={events} regions={regions} />
+      </section>
+      
+      <!-- Events List -->
+      <section class="section-events">
+        <div class="events-list">
+          {events.map(event => (
+            <EventCard event={event} regions={regions} />
+          ))}
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <p class="footer-stats">
+            <strong>{events.length}</strong> Events aus <strong>{sources.length}</strong> Quellen
+          </p>
+          <div class="footer-sources">
+            Daten von
+            <a href="https://www.beccult.de" target="_blank">beccult</a>,
+            <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>,
+            <a href="https://www.muenchen.de" target="_blank">muenchen.de</a>,
+            <a href="https://www.olympiapark.de" target="_blank">olympiapark.de</a>
+            & mehr
+          </div>
+          <p class="footer-credit">Made with ❤️ für Oberbayern</p>
+        </div>
+      </footer>
+    </div>
   </main>
 </Layout>
 
 <style>
   .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
 
-  .events-grid {
+  .section-train {
+    margin-bottom: 4px;
+  }
+
+  .section-filters {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding-top: 12px;
+    padding-bottom: 4px;
+    background: linear-gradient(to bottom, var(--color-bg) 85%, transparent);
+  }
+
+  @media (min-width: 768px) {
+    .section-filters {
+      position: static;
+      background: transparent;
+      padding-top: 0;
+    }
+  }
+
+  .events-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .events-list {
+      gap: 16px;
+    }
   }
 
   .footer {
-    margin-top: 3rem;
-    padding: 2rem 1rem;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
     text-align: center;
-    color: var(--color-muted);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-stats {
     font-size: 0.9rem;
+    color: var(--color-text-secondary);
   }
 
-  .footer p {
-    margin: 0.25rem 0;
+  .footer-stats strong {
+    color: var(--color-primary);
   }
 
-  .source-info {
-    font-weight: 600;
-    color: #667eea;
+  .footer-sources {
+    font-size: 0.75rem;
+    color: var(--color-muted);
   }
 
-  .sources-list {
+  .footer-sources a {
+    color: var(--color-muted);
+    margin: 0 2px;
+  }
+
+  .footer-sources a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-credit {
     font-size: 0.8rem;
-  }
-
-  .sources-list a {
-    color: #666;
-    margin: 0 4px;
-  }
-
-  .sources-list a:hover {
-    color: #667eea;
+    color: var(--color-muted);
+    margin-top: 8px;
   }
 </style>
-<!-- Build trigger: 1770111626 -->

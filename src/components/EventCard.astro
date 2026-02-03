@@ -22,56 +22,47 @@ const { event, regions = {} } = Astro.props;
 const date = new Date(event.date);
 const day = date.getDate();
 const month = date.toLocaleDateString('de-DE', { month: 'short' });
+const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' });
 
-const categoryEmoji = {
-  kinder: '👶',
-  familie: '👨‍👩‍👧‍👦',
-  erwachsene: '🎭'
+const categoryConfig = {
+  kinder: { emoji: '👶', label: 'Kinder', color: 'var(--color-kinder)' },
+  familie: { emoji: '👨‍👩‍👧', label: 'Familie', color: 'var(--color-familie)' },
+  erwachsene: { emoji: '🎭', label: 'Erwachsene', color: 'var(--color-erwachsene)' }
 };
 
-const categoryLabel = {
-  kinder: 'Kinder',
-  familie: 'Familie',
-  erwachsene: 'Erwachsene'
-};
-
-const sourceLabels: Record<string, string> = {
-  'beccult': 'beccult',
-  'starnbergammersee': 'StarnbergAmmersee',
-  'muenchen': 'münchen.de',
-  'olympiapark': 'Olympiapark',
-  'hellabrunn': 'Hellabrunn',
-  'deutsches-museum': 'Dt. Museum',
-  'tegernsee': 'Tegernsee',
-  'gapa': 'Garmisch'
-};
-
+const cat = categoryConfig[event.category as keyof typeof categoryConfig] || categoryConfig.familie;
 const regionInfo = event.region && regions[event.region];
 ---
 
 <article 
-  class="event-card" 
-  class:list={[{ highlight: event.isHighlight }]}
+  class="event-card"
+  class:list={[{ 'is-highlight': event.isHighlight }]}
   data-category={event.category}
   data-region={event.region}
   data-location={event.location}
-  data-source={event.source}
 >
-  <div class="date-badge">
-    <span class="day">{day}</span>
-    <span class="month">{month}</span>
+  <!-- Date Column -->
+  <div class="date-col">
+    <div class="date-badge">
+      <span class="date-weekday">{weekday}</span>
+      <span class="date-day">{day}</span>
+      <span class="date-month">{month}</span>
+    </div>
+    {event.isHighlight && <span class="highlight-star" title="Highlight Event">⭐</span>}
   </div>
   
-  <div class="event-content">
-    <div class="event-meta">
-      <span class="category-tag" data-category={event.category}>
-        {categoryEmoji[event.category as keyof typeof categoryEmoji]} {categoryLabel[event.category as keyof typeof categoryLabel]}
+  <!-- Content Column -->
+  <div class="content-col">
+    <!-- Header Row -->
+    <div class="card-header">
+      <span class="category-badge" style={`--cat-color: ${cat.color}`}>
+        {cat.emoji} {cat.label}
       </span>
-      {event.time && <span class="time">🕐 {event.time} Uhr</span>}
-      {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
+      {event.time && <span class="time-badge">{event.time}</span>}
     </div>
     
-    <h3 class="event-title">
+    <!-- Title -->
+    <h3 class="title">
       {event.url ? (
         <a href={event.url} target="_blank" rel="noopener">{event.title}</a>
       ) : (
@@ -79,27 +70,31 @@ const regionInfo = event.region && regions[event.region];
       )}
     </h3>
     
-    <p class="event-location">
-      📍 {event.location}
-      {regionInfo && event.location !== regionInfo.name && (
-        <span class="region-info"> · {regionInfo.emoji} {regionInfo.name}</span>
+    <!-- Location -->
+    <div class="location">
+      <span class="location-pin">📍</span>
+      <span class="location-text">{event.location}</span>
+      {regionInfo && (
+        <span class="region-badge">{regionInfo.emoji}</span>
       )}
-    </p>
+    </div>
     
-    {event.description && <p class="event-description">{event.description}</p>}
+    <!-- Description -->
+    {event.description && (
+      <p class="description">{event.description}</p>
+    )}
     
-    <div class="event-footer">
+    <!-- Footer -->
+    <div class="card-footer">
       {event.tags && event.tags.length > 0 && (
         <div class="tags">
-          {event.tags.map(tag => (
+          {event.tags.slice(0, 2).map(tag => (
             <span class="tag">#{tag}</span>
           ))}
         </div>
       )}
       {event.source && (
-        <span class="source-badge" data-source={event.source}>
-          {sourceLabels[event.source] || event.source}
-        </span>
+        <span class="source">{event.source}</span>
       )}
     </div>
   </div>
@@ -108,195 +103,192 @@ const regionInfo = event.region && regions[event.region];
 <style>
   .event-card {
     display: flex;
-    gap: 16px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    border: 1px solid #e5e5e5;
-    transition: transform 0.2s, box-shadow 0.2s;
+    gap: 12px;
+    background: var(--color-card);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .event-card {
+      gap: 16px;
+      padding: 16px;
+    }
   }
 
   .event-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
   }
 
-  .event-card.highlight {
-    border-color: #ffc107;
-    background: linear-gradient(135deg, #fffef5 0%, #fff 100%);
+  .event-card.is-highlight {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fcd34d;
   }
 
-  .date-badge {
+  /* Date Column */
+  .date-col {
     flex-shrink: 0;
-    width: 56px;
-    height: 64px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: #fff;
+    gap: 6px;
   }
 
-  .date-badge .day {
-    font-size: 1.5rem;
+  .date-badge {
+    width: 52px;
+    padding: 8px 4px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .date-badge {
+      width: 60px;
+      padding: 10px 6px;
+    }
+  }
+
+  .date-weekday {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+  }
+
+  .date-day {
+    font-size: 1.4rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.1;
   }
 
-  .date-badge .month {
-    font-size: 0.75rem;
+  @media (min-width: 640px) {
+    .date-day {
+      font-size: 1.6rem;
+    }
+  }
+
+  .date-month {
+    font-size: 0.7rem;
     text-transform: uppercase;
     opacity: 0.9;
   }
 
-  .event-content {
+  .highlight-star {
+    font-size: 1rem;
+  }
+
+  /* Content Column */
+  .content-col {
     flex: 1;
     min-width: 0;
-  }
-
-  .event-meta {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 8px;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-header {
+    display: flex;
     align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
-  .category-tag {
-    font-size: 0.75rem;
-    padding: 3px 8px;
-    border-radius: 12px;
-    background: #f0f0f0;
-  }
-
-  .category-tag[data-category="kinder"] {
-    background: #e3f2fd;
-    color: #1565c0;
-  }
-
-  .category-tag[data-category="familie"] {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-
-  .category-tag[data-category="erwachsene"] {
-    background: #fce4ec;
-    color: #c2185b;
-  }
-
-  .time {
-    font-size: 0.8rem;
-    color: #666;
-  }
-
-  .highlight-badge {
+  .category-badge {
     font-size: 0.7rem;
-    padding: 2px 6px;
-    border-radius: 8px;
-    background: #fff3cd;
-    color: #856404;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+    color: color-mix(in srgb, var(--cat-color) 80%, black);
   }
 
-  .event-title {
-    font-size: 1.1rem;
+  .time-badge {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .title {
+    font-size: 1rem;
     font-weight: 600;
-    margin: 0 0 6px;
     line-height: 1.3;
+    color: var(--color-text);
   }
 
-  .event-title a {
+  @media (min-width: 640px) {
+    .title {
+      font-size: 1.05rem;
+    }
+  }
+
+  .title a {
     color: inherit;
-    text-decoration: none;
   }
 
-  .event-title a:hover {
-    color: #667eea;
+  .title a:hover {
+    color: var(--color-primary);
   }
 
-  .event-location {
+  .location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .location-pin {
+    font-size: 0.75rem;
+  }
+
+  .region-badge {
+    margin-left: 4px;
     font-size: 0.85rem;
-    color: #666;
-    margin: 0 0 6px;
   }
 
-  .region-info {
-    opacity: 0.7;
-  }
-
-  .event-description {
-    font-size: 0.85rem;
-    color: #555;
-    margin: 0 0 8px;
+  .description {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
     line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
-  .event-footer {
+  .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    margin-top: auto;
+    padding-top: 4px;
   }
 
   .tags {
     display: flex;
-    flex-wrap: wrap;
     gap: 6px;
   }
 
   .tag {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    background: #f5f5f5;
-    border-radius: 10px;
-    color: #666;
+    font-size: 0.65rem;
+    color: var(--color-muted);
+    background: var(--color-bg);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
   }
 
-  .source-badge {
-    font-size: 0.65rem;
-    padding: 2px 6px;
-    border-radius: 6px;
-    background: #e0e0e0;
-    color: #666;
+  .source {
+    font-size: 0.6rem;
+    color: var(--color-muted);
     text-transform: uppercase;
     letter-spacing: 0.3px;
-  }
-
-  .source-badge[data-source="beccult"] {
-    background: #e8f5e9;
-    color: #2e7d32;
-  }
-
-  .source-badge[data-source="olympiapark"] {
-    background: #fff3e0;
-    color: #e65100;
-  }
-
-  .source-badge[data-source="tegernsee"],
-  .source-badge[data-source="gapa"] {
-    background: #e3f2fd;
-    color: #1565c0;
-  }
-
-  @media (max-width: 500px) {
-    .event-card {
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .date-badge {
-      width: 100%;
-      height: auto;
-      flex-direction: row;
-      gap: 8px;
-      padding: 10px;
-    }
-
-    .date-badge .day {
-      font-size: 1.2rem;
-    }
   }
 </style>
