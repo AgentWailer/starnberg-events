@@ -150,9 +150,11 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .clear-filters {
     display: none;
     align-items: center;
+    justify-content: center;
     gap: var(--space-2);
-    min-height: var(--touch-target-min);
-    padding: var(--space-2) var(--space-4);
+    min-width: 36px;
+    min-height: 36px;
+    padding: var(--space-2);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
@@ -163,6 +165,21 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     white-space: nowrap;
     transition: all var(--duration-fast) ease;
     user-select: none;
+    flex-shrink: 0;
+  }
+
+  .clear-filters span {
+    display: none;
+  }
+
+  @media (min-width: 480px) {
+    .clear-filters {
+      padding: var(--space-2) var(--space-4);
+    }
+    
+    .clear-filters span {
+      display: inline;
+    }
   }
 
   .clear-filters.visible {
