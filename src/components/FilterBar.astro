@@ -158,26 +158,34 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filter-fab {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     position: fixed;
-    bottom: 20px;
+    bottom: 24px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    padding: 12px 20px;
+    padding: 14px 24px;
     background: var(--color-primary);
     color: white;
     border: none;
     border-radius: var(--radius-full);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 24px rgba(99, 102, 241, 0.5);
     transition: all 0.2s;
   }
 
   .filter-fab:hover {
     transform: translateX(-50%) scale(1.05);
+  }
+
+  /* Make sure it's visible on all mobile */
+  @media (max-width: 1023px) {
+    .filter-fab {
+      display: flex !important;
+    }
   }
 
   .fab-icon {

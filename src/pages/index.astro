@@ -38,21 +38,16 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
       
-      <!-- Desktop: Sidebar + Content Layout -->
-      <div class="layout-grid">
-        <!-- Filters (Sidebar on desktop) -->
-        <aside class="sidebar">
-          <FilterBar events={events} regions={regions} />
-        </aside>
-        
-        <!-- Events List -->
-        <section class="content">
-          <div class="events-list">
-            {events.map(event => (
-              <EventCard event={event} regions={regions} />
-            ))}
-          </div>
-        </section>
+      <!-- Filter Component (handles mobile FAB + bottom sheet + desktop sidebar) -->
+      <FilterBar events={events} regions={regions} />
+      
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <div class="events-list">
+          {events.map(event => (
+            <EventCard event={event} regions={regions} />
+          ))}
+        </div>
       </div>
       
       <!-- Footer -->
@@ -86,28 +81,33 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     margin-bottom: 16px;
   }
 
-  /* Mobile: hide sidebar, just show content */
-  .layout-grid {
-    display: block;
-  }
-
-  .sidebar {
-    display: none;
-  }
-
-  /* Desktop: sidebar + content grid */
+  /* Desktop: sidebar + content layout */
   @media (min-width: 1024px) {
-    .layout-grid {
+    .container {
       display: grid;
       grid-template-columns: 280px 1fr;
       gap: 24px;
-      align-items: start;
+      grid-template-rows: auto auto 1fr auto;
     }
-
-    .sidebar {
-      display: block;
+    
+    .section-train {
+      grid-column: 1 / -1;
+    }
+    
+    /* FilterBar's .desktop-only sidebar */
+    .container > :global(.filter-container) {
       position: sticky;
       top: 20px;
+      align-self: start;
+    }
+    
+    .main-content {
+      grid-column: 2;
+      grid-row: 2 / 4;
+    }
+    
+    .footer {
+      grid-column: 1 / -1;
     }
   }
 
