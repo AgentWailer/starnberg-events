@@ -184,7 +184,7 @@
     },
     {
       "id": 16,
-      "title": "Klassik 2.0 / Club - „Paris trifft See"",
+      "title": "Klassik 2.0 / Club - Paris trifft See",
       "date": "2026-02-14",
       "time": "19:30",
       "location": "Berg",
@@ -268,7 +268,7 @@
     },
     {
       "id": 23,
-      "title": "„Fremd ist der Fremde nur in der Fremde."",
+      "title": "Fremd ist der Fremde nur in der Fremde",
       "date": "2026-02-22",
       "time": "19:30",
       "location": "Dießen",
@@ -280,3 +280,4 @@
     }
   ]
 }
+
