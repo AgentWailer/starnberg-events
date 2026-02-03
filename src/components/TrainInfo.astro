@@ -241,6 +241,28 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     font-size: 0.85rem;
   }
 
+  .info-row {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    color: #ffd700;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #2a2a4a;
+  }
+
+  .info-row.secondary {
+    color: #888;
+    font-size: 0.85rem;
+  }
+
+  .info-row a {
+    color: #6b9fff;
+    text-decoration: none;
+  }
+
+  .info-row a:hover {
+    text-decoration: underline;
+  }
+
   @media (max-width: 500px) {
     .board-columns {
       grid-template-columns: 60px 50px 1fr 40px;
@@ -309,16 +331,31 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     }
   }
 
-  async function fetchDepartures(stationId: string): Promise<Departure[]> {
-    const url = `${API_BASE}/stops/${stationId}/departures?duration=90&results=12`;
-    const response = await fetch(url);
+  async function fetchDepartures(stationId: string, retries = 2): Promise<Departure[]> {
+    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=15&suburban=true&regional=true`;
     
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        const response = await fetch(url, {
+          headers: { 'Accept': 'application/json' }
+        });
+        
+        if (!response.ok) {
+          if (attempt < retries) {
+            await new Promise(r => setTimeout(r, 1000));
+            continue;
+          }
+          throw new Error(`API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data.departures || [];
+      } catch (e) {
+        if (attempt === retries) throw e;
+        await new Promise(r => setTimeout(r, 1000));
+      }
     }
-    
-    const data = await response.json();
-    return data.departures || [];
+    return [];
   }
 
   function formatTime(isoString: string): string {
@@ -353,12 +390,24 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   }
 
   function renderDepartures(departures: Departure[], container: HTMLElement): void {
+    // Filter for trains (S-Bahn and Regional), exclude buses
     const trainDepartures = departures
-      .filter(d => d.when && (d.line.product === 'suburban' || d.line.product === 'regional'))
+      .filter(d => d.when && d.line && (d.line.product === 'suburban' || d.line.product === 'regional'))
       .slice(0, 6);
     
     if (trainDepartures.length === 0) {
-      container.innerHTML = '<div class="error-row">Keine Abfahrten gefunden</div>';
+      // Show fallback with typical schedule info
+      container.innerHTML = `
+        <div class="info-row">
+          <span>S6 Richtung Tutzing / München</span>
+        </div>
+        <div class="info-row secondary">
+          <span>Abfahrten ca. alle 20 Minuten</span>
+        </div>
+        <div class="info-row secondary">
+          <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">→ Live-Daten auf bahn.de</a>
+        </div>
+      `;
       return;
     }
     
