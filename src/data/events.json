@@ -34,7 +34,7 @@
       "emoji": "🎿"
     }
   },
-  "eventCount": 72,
+  "eventCount": 73,
   "events": [
     {
       "id": 1,
@@ -1028,7 +1028,10 @@
       "description": "Vortrag über die Künstlerin der Avantgarde im Alten Pfarrhaus",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["literatur", "kunst"]
+      "tags": [
+        "literatur",
+        "kunst"
+      ]
     },
     {
       "id": 58,
@@ -1043,7 +1046,10 @@
       "description": "Faschingsfeier für Senioren im Sozialdienst",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["fest", "senioren"]
+      "tags": [
+        "fest",
+        "senioren"
+      ]
     },
     {
       "id": 59,
@@ -1058,7 +1064,9 @@
       "description": "Regelmäßiger Treff für Frauen zum Austausch",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["treffen"]
+      "tags": [
+        "treffen"
+      ]
     },
     {
       "id": 60,
@@ -1073,7 +1081,9 @@
       "description": "Komödie der Theatergruppe Pöcking – mehrere Vorstellungen bis 22.03.",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["theater"]
+      "tags": [
+        "theater"
+      ]
     },
     {
       "id": 61,
@@ -1088,7 +1098,10 @@
       "description": "Traditioneller Ostermarkt mit Kunsthandwerk und regionalen Produkten",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["markt", "ostern"]
+      "tags": [
+        "markt",
+        "ostern"
+      ]
     },
     {
       "id": 62,
@@ -1103,7 +1116,10 @@
       "description": "Lesung im gemütlichen Literaturcafé",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["literatur", "lesung"]
+      "tags": [
+        "literatur",
+        "lesung"
+      ]
     },
     {
       "id": 63,
@@ -1118,7 +1134,10 @@
       "description": "Lesung im Alten Pfarrhaus",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["literatur", "lesung"]
+      "tags": [
+        "literatur",
+        "lesung"
+      ]
     },
     {
       "id": 64,
@@ -1133,7 +1152,11 @@
       "description": "Konzertabend mit deutsch-kubanischer Mezzosopranistin Katarina Morfa – Tangos und mehr",
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender",
       "source": "beccult",
-      "tags": ["musik", "konzert", "tango"]
+      "tags": [
+        "musik",
+        "konzert",
+        "tango"
+      ]
     },
     {
       "id": 65,
@@ -1148,7 +1171,10 @@
       "description": "Country-Musik und gute Stimmung für alle Altersgruppen",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["musik", "fest"]
+      "tags": [
+        "musik",
+        "fest"
+      ]
     },
     {
       "id": 66,
@@ -1162,7 +1188,10 @@
       "description": "Sonntags-Brunch nach Herzenslust auf dem MS STARNBERG. Jeden Sonntag vom 03.05. bis 28.06.2026",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": ["kulinarisch", "schifffahrt"]
+      "tags": [
+        "kulinarisch",
+        "schifffahrt"
+      ]
     },
     {
       "id": 67,
@@ -1177,7 +1206,10 @@
       "description": "Vintage-Schätze und Second-Hand-Fundstücke",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["markt", "flohmarkt"]
+      "tags": [
+        "markt",
+        "flohmarkt"
+      ]
     },
     {
       "id": 68,
@@ -1192,7 +1224,10 @@
       "description": "Party auf dem See mit DJ – Hitmix für die Generation Ü30",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": ["party", "schifffahrt"]
+      "tags": [
+        "party",
+        "schifffahrt"
+      ]
     },
     {
       "id": 69,
@@ -1207,7 +1242,9 @@
       "description": "Komödie der Theatergruppe Pöcking – Sonntagsvorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["theater"]
+      "tags": [
+        "theater"
+      ]
     },
     {
       "id": 70,
@@ -1222,7 +1259,9 @@
       "description": "Komödie der Theatergruppe Pöcking – letzte Vorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": ["theater"]
+      "tags": [
+        "theater"
+      ]
     },
     {
       "id": 71,
@@ -1236,7 +1275,10 @@
       "description": "Genussfahrt mit verschiedenen Pastavariationen auf dem Starnberger See",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": ["kulinarisch", "schifffahrt"]
+      "tags": [
+        "kulinarisch",
+        "schifffahrt"
+      ]
     },
     {
       "id": 72,
@@ -1250,7 +1292,29 @@
       "description": "Entdeckungsreise mit Historikerin, 3-Gänge Menü, Musik und Erzählungen über König Ludwig II.",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": ["kultur", "schifffahrt", "kulinarisch"]
+      "tags": [
+        "kultur",
+        "schifffahrt",
+        "kulinarisch"
+      ]
+    },
+    {
+      "id": 73,
+      "title": "Rosenmontagsball",
+      "date": "2026-02-16",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
+      "description": "Rosenmontagsball des Pöckinger Faschings Clubs. Einlass & Beginn 19:00 Uhr, ab 16 Jahren.",
+      "category": "erwachsene",
+      "tags": [
+        "fasching",
+        "ball",
+        "party"
+      ],
+      "url": "https://www.pfc.de/veranstaltungen/",
+      "region": "poecking",
+      "source": "pfc"
     }
   ]
 }
