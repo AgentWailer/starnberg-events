@@ -15,14 +15,14 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   </div>
   
   <div class="train-columns">
-    <span class="col-time">Zeit</span>
-    <span class="col-line">Linie</span>
-    <span class="col-dest">Ziel</span>
-    <span class="col-platform">Gleis</span>
+    <span>Zeit</span>
+    <span>Linie</span>
+    <span>Ziel</span>
+    <span class="text-center">Gleis</span>
   </div>
   
   <div class="train-departures" id="train-departures">
-    <div class="train-loading">Abfahrten werden geladen...</div>
+    <div class="train-loading">Lade Abfahrten...</div>
   </div>
 </section>
 
@@ -69,135 +69,133 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 
   .train-columns {
     display: grid;
-    grid-template-columns: 70px 60px 1fr 60px;
+    grid-template-columns: 70px 55px 1fr 50px;
     padding: 0.5rem 1rem;
     background: #f5f5f5;
     border-bottom: 1px solid #e0e0e0;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    color: #666;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
-  .col-platform {
+  .text-center {
     text-align: center;
   }
 
   .train-departures {
-    padding: 0;
+    min-height: 100px;
   }
 
   .train-loading {
-    padding: 1.5rem;
+    padding: 2rem 1rem;
     text-align: center;
-    color: #666;
+    color: #999;
+    font-size: 0.9rem;
   }
+</style>
 
-  /* Use :global() for dynamically generated content */
-  :global(.departure-row) {
+<!-- Separate global styles for JS-generated content -->
+<style is:global>
+  .dep-row {
     display: grid;
-    grid-template-columns: 70px 60px 1fr 60px;
-    padding: 0.6rem 1rem;
+    grid-template-columns: 70px 55px 1fr 50px;
+    padding: 0.65rem 1rem;
     border-bottom: 1px solid #f0f0f0;
     align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  :global(.departure-row:last-child) {
+  .dep-row:last-child {
     border-bottom: none;
   }
 
-  :global(.departure-row:hover) {
-    background: #fafafa;
-  }
-
-  :global(.dep-time-cell) {
+  .dep-time {
     display: flex;
     flex-direction: column;
+    gap: 2px;
   }
 
-  :global(.dep-time) {
-    font-size: 1rem;
+  .dep-time-val {
+    font-size: 1.05rem;
     font-weight: 700;
     color: #1a73e8;
   }
 
-  :global(.dep-delay) {
+  .dep-time-delay {
     font-size: 0.7rem;
-    color: #e53935;
+    color: #d32f2f;
     font-weight: 600;
   }
 
-  :global(.dep-line) {
-    background: #00a651;
+  .dep-line-badge {
+    background: #43a047;
     color: white;
     font-weight: 700;
-    font-size: 0.85rem;
-    padding: 0.2rem 0.4rem;
+    font-size: 0.8rem;
+    padding: 3px 6px;
     border-radius: 4px;
     text-align: center;
-    width: fit-content;
+    display: inline-block;
   }
 
-  :global(.dep-dest) {
+  .dep-dest {
     font-weight: 500;
-    color: #333;
+    color: #212121;
     font-size: 0.95rem;
-    padding-right: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  :global(.dep-platform) {
-    font-size: 1rem;
+  .dep-platform {
+    font-size: 1.05rem;
     font-weight: 600;
-    color: #333;
+    color: #424242;
     text-align: center;
   }
 
-  :global(.train-fallback) {
-    padding: 1.5rem;
+  .train-fallback {
+    padding: 1.5rem 1rem;
     text-align: center;
-  }
-
-  :global(.train-fallback p) {
-    margin: 0.25rem 0;
     color: #666;
+    font-size: 0.9rem;
   }
 
-  :global(.train-fallback a) {
+  .train-fallback a {
     color: #1a73e8;
+    text-decoration: none;
     font-weight: 500;
   }
 
-  @media (max-width: 480px) {
-    .train-columns {
-      grid-template-columns: 60px 50px 1fr 45px;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.65rem;
-    }
-    
-    :global(.departure-row) {
-      grid-template-columns: 60px 50px 1fr 45px;
-      padding: 0.5rem 0.75rem;
+  .train-fallback a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 400px) {
+    .train-columns,
+    .dep-row {
+      grid-template-columns: 55px 45px 1fr 40px;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
     }
 
-    :global(.dep-time) {
-      font-size: 0.9rem;
+    .dep-time-val {
+      font-size: 0.95rem;
     }
 
-    :global(.dep-line) {
-      font-size: 0.75rem;
-      padding: 0.15rem 0.3rem;
+    .dep-line-badge {
+      font-size: 0.7rem;
+      padding: 2px 4px;
     }
 
-    :global(.dep-dest) {
+    .dep-dest {
       font-size: 0.85rem;
     }
 
-    :global(.dep-platform) {
-      font-size: 0.9rem;
+    .dep-platform {
+      font-size: 0.95rem;
     }
   }
 </style>
@@ -217,121 +215,85 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
     };
   }
 
-  async function fetchDepartures(stationId: string, retries = 2): Promise<Departure[]> {
-    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=15`;
+  async function fetchDepartures(stationId: string): Promise<Departure[]> {
+    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=12`;
     
-    for (let attempt = 0; attempt <= retries; attempt++) {
-      try {
-        const response = await fetch(url, {
-          headers: { 'Accept': 'application/json' }
-        });
-        
-        if (!response.ok) {
-          if (attempt < retries) {
-            await new Promise(r => setTimeout(r, 1000));
-            continue;
-          }
-          throw new Error(`API error: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        return data.departures || [];
-      } catch (e) {
-        if (attempt === retries) throw e;
-        await new Promise(r => setTimeout(r, 1000));
-      }
+    try {
+      const res = await fetch(url, { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(`${res.status}`);
+      const data = await res.json();
+      return data.departures || [];
+    } catch (e) {
+      console.error('API fetch failed:', e);
+      throw e;
     }
-    return [];
   }
 
-  function formatTime(isoString: string): string {
-    const date = new Date(isoString);
-    return date.toLocaleTimeString('de-DE', { 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    });
+  function fmtTime(iso: string): string {
+    return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   }
 
-  function getDelayText(delaySeconds: number | null): string {
-    if (delaySeconds === null || delaySeconds === undefined || delaySeconds < 60) {
-      return '';
-    }
-    const minutes = Math.round(delaySeconds / 60);
-    return `+${minutes} min`;
+  function fmtDelay(sec: number | null): string {
+    if (!sec || sec < 60) return '';
+    return `+${Math.round(sec / 60)}`;
   }
 
-  function shortenDestination(dest: string): string {
-    return dest
-      .replace(/\s*\([^)]*\)/g, '')
-      .replace('Ebersberg(Oberbay)', 'Ebersberg')
-      .replace(' Hbf (tief)', '')
-      .replace(' Hbf', '')
-      .replace(' Bahnhof', '')
-      .trim();
+  function shortDest(d: string): string {
+    return d.replace(/\s*\([^)]*\)/g, '').replace(/ Hbf.*$/, '').replace(/ Bahnhof/, '').trim();
   }
 
-  function renderDepartures(departures: Departure[], container: HTMLElement): void {
-    const trainDepartures = departures
-      .filter(d => d.when && d.line && (d.line.product === 'suburban' || d.line.product === 'regional'))
+  function render(deps: Departure[], el: HTMLElement): void {
+    const trains = deps
+      .filter(d => d.when && d.line && ['suburban', 'regional'].includes(d.line.product))
       .slice(0, 6);
-    
-    if (trainDepartures.length === 0) {
-      container.innerHTML = `
-        <div class="train-fallback">
-          <p><strong>S6</strong> Richtung Tutzing / München</p>
-          <p>ca. alle 20 Minuten</p>
-          <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten ansehen →</a></p>
-        </div>
-      `;
+
+    if (!trains.length) {
+      el.innerHTML = `<div class="train-fallback">
+        <p><strong>S6</strong> nach Tutzing / München — ca. alle 20 min</p>
+        <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten →</a></p>
+      </div>`;
       return;
     }
-    
-    container.innerHTML = trainDepartures.map(dep => {
-      const time = formatTime(dep.when || dep.plannedWhen);
-      const delayText = getDelayText(dep.delay);
-      const destination = shortenDestination(dep.direction);
-      const platform = dep.platform || '—';
-      
-      return `
-        <div class="departure-row">
-          <div class="dep-time-cell">
-            <span class="dep-time">${time}</span>
-            ${delayText ? `<span class="dep-delay">${delayText}</span>` : ''}
-          </div>
-          <span class="dep-line">${dep.line.name}</span>
-          <span class="dep-dest">${destination}</span>
-          <span class="dep-platform">${platform}</span>
+
+    el.innerHTML = trains.map(t => {
+      const time = fmtTime(t.when || t.plannedWhen);
+      const delay = fmtDelay(t.delay);
+      const dest = shortDest(t.direction);
+      const plat = t.platform || '–';
+
+      return `<div class="dep-row">
+        <div class="dep-time">
+          <span class="dep-time-val">${time}</span>
+          ${delay ? `<span class="dep-time-delay">${delay}</span>` : ''}
         </div>
-      `;
+        <span class="dep-line-badge">${t.line.name}</span>
+        <span class="dep-dest">${dest}</span>
+        <span class="dep-platform">${plat}</span>
+      </div>`;
     }).join('');
   }
 
-  async function updateDepartures(board: HTMLElement): Promise<void> {
-    const stationId = board.dataset.stationId;
+  async function update(board: HTMLElement): Promise<void> {
+    const id = board.dataset.stationId;
     const container = board.querySelector('#train-departures') as HTMLElement;
-    
-    if (!stationId || !container) return;
-    
+    if (!id || !container) return;
+
     try {
-      const departures = await fetchDepartures(stationId);
-      renderDepartures(departures, container);
-    } catch (error) {
-      console.error('Failed to fetch departures:', error);
-      container.innerHTML = `
-        <div class="train-fallback">
-          <p>Verbindung fehlgeschlagen</p>
-          <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten öffnen →</a></p>
-        </div>
-      `;
+      const deps = await fetchDepartures(id);
+      render(deps, container);
+    } catch {
+      container.innerHTML = `<div class="train-fallback">
+        <p>Verbindung fehlgeschlagen</p>
+        <p><a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank">Live-Abfahrten →</a></p>
+      </div>`;
     }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     const board = document.querySelector('.train-board') as HTMLElement;
-    
     if (board) {
-      updateDepartures(board);
-      setInterval(() => updateDepartures(board), 60000);
+      update(board);
+      setInterval(() => update(board), 60000);
     }
   });
 </script>
