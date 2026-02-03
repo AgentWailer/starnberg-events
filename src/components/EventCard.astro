@@ -27,10 +27,13 @@ const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' });
 const categoryLabels: Record<string, string> = {
   kinder: 'Kinder',
   familie: 'Familie',
-  erwachsene: 'Erwachsene'
+  erwachsene: 'Erwachsene',
+  culture: 'Kultur',
+  music: 'Musik',
+  market: 'Markt'
 };
 
-const catLabel = categoryLabels[event.category] || 'Familie';
+const catLabel = categoryLabels[event.category] || event.category;
 ---
 
 <article 
@@ -185,6 +188,21 @@ const catLabel = categoryLabels[event.category] || 'Familie';
   .card-category[data-cat="erwachsene"] {
     background: color-mix(in srgb, var(--color-erwachsene) 12%, transparent);
     color: var(--color-erwachsene);
+  }
+
+  .card-category[data-cat="culture"] {
+    background: color-mix(in srgb, var(--color-culture) 12%, transparent);
+    color: var(--color-culture);
+  }
+
+  .card-category[data-cat="music"] {
+    background: color-mix(in srgb, var(--color-music) 12%, transparent);
+    color: var(--color-music);
+  }
+
+  .card-category[data-cat="market"] {
+    background: color-mix(in srgb, var(--color-market) 12%, transparent);
+    color: var(--color-market);
   }
 
   .card-time {
