@@ -2,6 +2,8 @@
 
 Eine moderne Landing Page für Veranstaltungen in der Region Starnberg & Ammersee.
 
+🔗 **Live:** https://agentwailer.github.io/starnberg-events/
+
 ## Features
 
 - 📅 **Aktuelle Events** aus der Region
@@ -10,19 +12,24 @@ Eine moderne Landing Page für Veranstaltungen in der Region Starnberg & Ammerse
 - 🎭 **Erwachsenen-Unterhaltung**
 - 🔍 **Filter** nach Kategorien
 - 📱 **Responsive Design**
-- ⚡ **Schnell & leichtgewichtig** (keine Dependencies)
+- ⚡ **Schnell & leichtgewichtig**
 
 ## Struktur
 
 ```
 ├── index.html      # Hauptseite (HTML + CSS + JS)
-├── events.json     # Event-Daten (leicht erweiterbar)
+├── events.json     # Event-Daten
+├── scraper.js      # Event-Scraper (via OpenClaw)
 └── README.md
 ```
 
-## Events aktualisieren
+## Automatische Updates
 
-Events werden in `events.json` gepflegt. Format:
+Events werden täglich via OpenClaw automatisch aktualisiert.
+
+**Quelle:** [starnbergammersee.de](https://www.starnbergammersee.de/entdecken-erleben/veranstaltungskalender)
+
+## Events Format
 
 ```json
 {
@@ -44,27 +51,6 @@ Events werden in `events.json` gepflegt. Format:
 - `kinder` - Kinderaktivitäten (👶)
 - `familie` - Familienfreundlich (👨‍👩‍👧‍👦)
 - `erwachsene` - Erwachsenen-Unterhaltung (🎭)
-
-## Deployment
-
-Die Seite ist statisch und kann auf jedem Webserver gehostet werden:
-- GitHub Pages
-- Cloudflare Pages
-- Netlify
-- Vercel
-
-## Datenquelle
-
-Events stammen von [StarnbergAmmersee.de](https://www.starnbergammersee.de/entdecken-erleben/veranstaltungskalender)
-
-## Roadmap
-
-- [ ] Automatisches Event-Scraping
-- [ ] Kalender-Ansicht
-- [ ] Event-Benachrichtigungen
-- [ ] Wetter-Integration
-- [ ] Karten-Ansicht
-- [ ] Favoriten speichern
 
 ---
 
