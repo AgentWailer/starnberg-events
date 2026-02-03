@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import InfoTicker from '../components/InfoTicker.astro';
+import WeatherWidget from '../components/WeatherWidget.astro';
+import TrainInfo from '../components/TrainInfo.astro';
 import MarketInfo from '../components/MarketInfo.astro';
 import WebcamWidget from '../components/WebcamWidget.astro';
 import FilterBar from '../components/FilterBar.astro';
@@ -35,10 +37,20 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   
   <main class="main" id="main-content">
     <div class="container">
-      <!-- Info Ticker (Mobile + Desktop) -->
-      <div class="info-bar">
+      <!-- Mobile: Ticker -->
+      <div class="mobile-info-bar">
         <InfoTicker />
       </div>
+
+      <!-- Desktop: Full weather strip -->
+      <section class="section section-weather desktop-only">
+        <WeatherWidget />
+      </section>
+
+      <!-- Desktop: Quick Transport Info -->
+      <section class="section section-transport desktop-only">
+        <TrainInfo station="Possenhofen" stationCode="MPH" />
+      </section>
 
       <!-- Filter Component -->
       <FilterBar events={events} regions={regions} />
@@ -98,17 +110,44 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     }
   }
 
-  /* Info Bar (Mobile + Desktop) */
-  .info-bar {
+  /* Mobile Info Bar */
+  .mobile-info-bar {
     margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) var(--space-6);
   }
 
   @media (min-width: 768px) {
-    .info-bar {
-      margin: 0 0 var(--space-8);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
+    .mobile-info-bar {
+      display: none;
     }
+  }
+
+  /* Desktop only elements */
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-only {
+      display: block;
+    }
+  }
+
+  /* Weather */
+  .section-weather {
+    margin-top: calc(-1 * var(--space-6));
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .section-weather {
+      margin-top: calc(-1 * var(--space-8));
+    }
+  }
+
+  /* Transport */
+  .section-transport {
+    margin-bottom: var(--space-8);
   }
 
   /* Events */

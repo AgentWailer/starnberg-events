@@ -111,11 +111,17 @@
 
 <style>
   .info-ticker {
-    display: block;
+    display: none;
     background: var(--color-bg-secondary);
     border-bottom: 1px solid var(--color-border);
     overflow: hidden;
     position: relative;
+  }
+
+  @media (max-width: 767px) {
+    .info-ticker {
+      display: block;
+    }
   }
 
   .ticker-track {
