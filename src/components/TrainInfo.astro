@@ -245,7 +245,7 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   }
 
   async function fetchDepartures(stationId: string, retries = 2): Promise<Departure[]> {
-    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=15&stopovers=true`;
+    const url = `${API_BASE}/stops/${stationId}/departures?duration=120&results=15`;
     
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
@@ -297,15 +297,14 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
   }
 
   function getViaStops(dep: Departure): string {
-    if (!dep.nextStopovers || dep.nextStopovers.length < 2) {
-      return '';
+    // API doesn't support stopovers, show direction hints based on destination
+    const dest = dep.direction.toLowerCase();
+    if (dest.includes('tutzing') || dest.includes('weilheim') || dest.includes('garmisch')) {
+      return 'Feldafing, Tutzing';
+    } else if (dest.includes('münchen') || dest.includes('ebersberg') || dest.includes('erding')) {
+      return 'Starnberg, Pasing';
     }
-    // Get first 3 stops after current station
-    const stops = dep.nextStopovers
-      .slice(1, 4)
-      .map(s => s.stop.name.replace(/\s*\([^)]*\)/g, '').replace(', Pöcking', ''))
-      .join(', ');
-    return stops;
+    return '';
   }
 
   function renderDepartures(departures: Departure[], container: HTMLElement): void {
