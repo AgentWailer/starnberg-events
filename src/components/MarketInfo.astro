@@ -1,0 +1,310 @@
+---
+// Wochenmärkte in der Region
+// Source: starnberg.de, poecking.de
+
+interface Market {
+  location: string;
+  place: string;
+  days: { day: string; dayNum: number; time: string }[];
+  note?: string;
+}
+
+const markets: Market[] = [
+  {
+    location: "Starnberg",
+    place: "Kirchplatz",
+    days: [
+      { day: "Do", dayNum: 4, time: "7-13 Uhr" },
+      { day: "Sa", dayNum: 6, time: "7-13 Uhr" }
+    ]
+  },
+  {
+    location: "Söcking",
+    place: "St. Ulrich",
+    days: [
+      { day: "Fr", dayNum: 5, time: "vormittags" }
+    ]
+  }
+];
+
+// Check if today is a market day
+const today = new Date();
+const dayOfWeek = today.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+const isMarketToday = markets.some(m => m.days.some(d => d.dayNum === dayOfWeek));
+
+// Find next market
+function getNextMarket(): { market: Market; day: { day: string; dayNum: number; time: string }; daysUntil: number } | null {
+  let minDays = 8;
+  let nextMarket = null;
+  
+  for (const market of markets) {
+    for (const day of market.days) {
+      let daysUntil = day.dayNum - dayOfWeek;
+      if (daysUntil <= 0) daysUntil += 7;
+      if (daysUntil < minDays) {
+        minDays = daysUntil;
+        nextMarket = { market, day, daysUntil };
+      }
+    }
+  }
+  return nextMarket;
+}
+
+const nextMarket = getNextMarket();
+---
+
+<div class="market-widget">
+  <div class="market-header">
+    <div class="market-title">
+      <span class="market-icon">🥬</span>
+      <span>Wochenmärkte</span>
+    </div>
+    {isMarketToday && (
+      <span class="today-badge">Heute!</span>
+    )}
+  </div>
+  
+  <div class="market-body">
+    {isMarketToday ? (
+      <div class="market-today">
+        <span class="today-icon">🛒</span>
+        <div class="today-info">
+          <strong>Heute ist Markttag!</strong>
+          {markets.map(m => 
+            m.days.filter(d => d.dayNum === dayOfWeek).map(d => (
+              <span class="today-detail">{m.location} · {m.place} · {d.time}</span>
+            ))
+          )}
+        </div>
+      </div>
+    ) : nextMarket && (
+      <div class="market-next">
+        <span class="next-label">Nächster Markt:</span>
+        <span class="next-info">
+          {nextMarket.day.day} · {nextMarket.market.location}
+          {nextMarket.daysUntil === 1 ? ' (morgen)' : ` (in ${nextMarket.daysUntil} Tagen)`}
+        </span>
+      </div>
+    )}
+    
+    <div class="market-schedule">
+      {markets.map(market => (
+        <div class="market-item">
+          <div class="market-location">
+            <span class="location-name">{market.location}</span>
+            <span class="location-place">{market.place}</span>
+          </div>
+          <div class="market-days">
+            {market.days.map(d => (
+              <span class={`day-badge ${d.dayNum === dayOfWeek ? 'active' : ''}`}>
+                {d.day} {d.time}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="market-footer">
+      <a href="https://www.starnberg.de/kultur-freizeit/einkaufs-und-erlebnisstadt/wochenmaerkte/" target="_blank" class="market-link">
+        Mehr Info
+        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .market-widget {
+    background: var(--color-card);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+    transition: all 0.2s ease;
+  }
+
+  .market-widget:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .market-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: white;
+  }
+
+  .market-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .market-icon {
+    font-size: 1.1rem;
+  }
+
+  .today-badge {
+    background: #fbbf24;
+    color: #78350f;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .market-body {
+    padding: 0;
+  }
+
+  .market-today {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-bottom: 1px solid #bbf7d0;
+  }
+
+  .today-icon {
+    font-size: 1.5rem;
+  }
+
+  .today-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .today-info strong {
+    color: #166534;
+    font-size: 0.95rem;
+  }
+
+  .today-detail {
+    font-size: 0.85rem;
+    color: #15803d;
+  }
+
+  .market-next {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.85rem;
+  }
+
+  .next-label {
+    color: var(--color-muted);
+  }
+
+  .next-info {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .market-schedule {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .market-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    gap: 12px;
+  }
+
+  .market-item:last-child {
+    border-bottom: none;
+  }
+
+  .market-location {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .location-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .location-place {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+  }
+
+  .market-days {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .day-badge {
+    background: var(--color-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .day-badge.active {
+    background: #16a34a;
+    color: white;
+  }
+
+  .market-footer {
+    padding: 10px 16px;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .market-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .market-link:hover {
+    text-decoration: underline;
+  }
+
+  .icon-xs {
+    width: 12px;
+    height: 12px;
+  }
+
+  @media (max-width: 400px) {
+    .market-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+</style>

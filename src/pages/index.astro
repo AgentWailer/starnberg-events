@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import WeatherWidget from '../components/WeatherWidget.astro';
 import TrainInfo from '../components/TrainInfo.astro';
+import FerryInfo from '../components/FerryInfo.astro';
+import MarketInfo from '../components/MarketInfo.astro';
+import WebcamWidget from '../components/WebcamWidget.astro';
 import FilterBar from '../components/FilterBar.astro';
 import EventCard from '../components/EventCard.astro';
 import eventsData from '../data/events.json';
@@ -33,9 +37,23 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   
   <main class="main">
     <div class="container">
-      <!-- Train Info Widget (above layout on desktop) -->
-      <section class="section-train">
-        <TrainInfo station="Possenhofen" stationCode="MPH" />
+      <!-- Weather Widget (compact, spans full width) -->
+      <section class="section-weather">
+        <WeatherWidget />
+      </section>
+
+      <!-- Local Info Section: Train, Ferry, Market, Webcam -->
+      <section class="section-local">
+        <div class="local-grid">
+          <div class="local-transport">
+            <TrainInfo station="Possenhofen" stationCode="MPH" />
+            <FerryInfo />
+          </div>
+          <div class="local-extras">
+            <MarketInfo />
+            <WebcamWidget />
+          </div>
+        </div>
       </section>
       
       <!-- Filter Component (handles mobile FAB + bottom sheet + desktop sidebar) -->
@@ -77,8 +95,45 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: 40px;
   }
 
-  .section-train {
+  .section-weather {
     margin-bottom: 16px;
+  }
+
+  .section-local {
+    margin-bottom: 24px;
+  }
+
+  .local-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .local-transport {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .local-extras {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .local-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .local-transport,
+    .local-extras {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
   }
 
   /* Desktop: sidebar + content layout */
@@ -90,7 +145,11 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
       grid-template-rows: auto auto 1fr auto;
     }
     
-    .section-train {
+    .section-weather {
+      grid-column: 1 / -1;
+    }
+    
+    .section-local {
       grid-column: 1 / -1;
     }
     
