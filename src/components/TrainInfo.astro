@@ -148,6 +148,18 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
     font-weight: 500;
     margin-right: 3px;
   }
+
+  :global(.train-sev) {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 5px;
+    background: #dc2626;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    margin-right: 6px;
+  }
 </style>
 
 <script>
@@ -232,15 +244,27 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
     const toShow = validDepartures.slice(0, 4);
 
     container.innerHTML = toShow.map(d => {
-      const dest = d.destination?.name || d.direction || '–';
+      const direction = d.direction || d.destination?.name || '–';
       const platform = d.platform || '–';
       const lineName = d.line?.name || 'S6';
+      const isSEV = lineName.toLowerCase().includes('bus');
+      
+      // Determine direction arrow
+      const isMunich = direction.includes('München') || 
+                       direction.includes('Pasing') || 
+                       direction.includes('Gauting') ||
+                       direction.includes('Ebersberg') ||
+                       direction.includes('Ostbahnhof');
+      const dirLabel = isMunich ? '→ München' : '→ Tutzing';
       
       return `
         <div class="train-row">
           <span class="train-time">${formatTrainTime(d)}</span>
-          <span class="train-dest">${shortDest(dest)}</span>
-          <span class="train-platform">Gl. ${platform}</span>
+          <span class="train-dest">
+            ${isSEV ? '<span class="train-sev">SEV</span>' : ''}
+            ${dirLabel}
+          </span>
+          <span class="train-platform">${platform !== '–' ? 'Gl. ' + platform : ''}</span>
         </div>
       `;
     }).join('');
