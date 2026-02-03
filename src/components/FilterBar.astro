@@ -91,6 +91,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     margin-bottom: 20px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--color-border);
+    overflow: hidden;
   }
 
   .stats-bar {
@@ -139,6 +140,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
   }
 
   .filter-label {
@@ -155,6 +157,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     overflow-x: auto;
     padding-bottom: 4px;
     margin-bottom: -4px;
+    min-width: 0;
+    flex: 1;
   }
 
   .chip {
