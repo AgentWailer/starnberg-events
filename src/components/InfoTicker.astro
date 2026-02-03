@@ -442,7 +442,7 @@
     });
   }
 
-  // Format train time - show "morgen" if next day
+  // Format train time - show "morgen" if next day (using local time!)
   function formatTrainTime(dep: any): string {
     const when = new Date(dep.when || dep.plannedWhen);
     const time = when.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
@@ -451,18 +451,18 @@
     const delayMin = dep.delay ? Math.round(dep.delay / 60) : 0;
     const delayHtml = delayMin > 0 ? `<span class="delay">+${delayMin}</span>` : '';
     
-    // Check if departure is tomorrow or later
+    // Check if departure is tomorrow or later (LOCAL time comparison!)
     const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
-    const depStr = when.toISOString().split('T')[0];
+    const todayDate = today.toLocaleDateString('de-DE');
+    const depDate = when.toLocaleDateString('de-DE');
     
-    if (depStr > todayStr) {
+    if (depDate !== todayDate) {
       // Tomorrow or later - show day
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+      const tomorrowDate = tomorrow.toLocaleDateString('de-DE');
       
-      if (depStr === tomorrowStr) {
+      if (depDate === tomorrowDate) {
         return `<span class="tomorrow">morgen</span> ${time}${delayHtml}`;
       } else {
         // Show weekday
