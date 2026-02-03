@@ -24,12 +24,20 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
 <div class="filter-bar">
-  <!-- Category Pills -->
-  <div class="filter-row" role="group" aria-label="Filter nach Kategorie">
-    <button class="pill active" data-filter="all">Alle</button>
-    <button class="pill" data-filter="kinder">Kinder</button>
-    <button class="pill" data-filter="familie">Familie</button>
-    <button class="pill" data-filter="erwachsene">Kultur</button>
+  <!-- Category Pills & Clear Button -->
+  <div class="filter-row-wrapper">
+    <div class="filter-row" role="group" aria-label="Filter nach Kategorie">
+      <button class="pill active" data-filter="all">Alle</button>
+      <button class="pill" data-filter="kinder">Kinder</button>
+      <button class="pill" data-filter="familie">Familie</button>
+      <button class="pill" data-filter="erwachsene">Kultur</button>
+    </div>
+    <button class="clear-filters" id="clear-filters" style="display: none;">
+      <svg class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+      </svg>
+      <span>Zurücksetzen</span>
+    </button>
   </div>
 
   <!-- Location Select (hidden until expanded) -->
@@ -73,8 +81,16 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     margin-bottom: var(--space-6);
   }
 
+  /* Filter Row Wrapper */
+  .filter-row-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
   /* Category Pills */
   .filter-row {
+    flex: 1;
     display: flex;
     gap: var(--space-2);
     overflow-x: auto;
@@ -127,6 +143,47 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       background: var(--color-primary);
       color: var(--color-bg);
     }
+  }
+
+  /* Clear Filters Button */
+  .clear-filters {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--touch-target-min);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-card);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--duration-fast) ease;
+    user-select: none;
+  }
+
+  .clear-filters[style*="display: flex"] {
+    display: flex !important;
+  }
+
+  @media (hover: hover) {
+    .clear-filters:hover {
+      border-color: var(--color-accent);
+      color: var(--color-text);
+      background: var(--color-bg-secondary);
+    }
+  }
+
+  .clear-filters:active {
+    transform: scale(0.97);
+  }
+
+  .clear-icon {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
   }
 
   /* More Filters */
@@ -220,10 +277,18 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
   const eventCards = document.querySelectorAll('.event-card');
   const countEl = document.getElementById('visible-count');
+  const clearBtn = document.getElementById('clear-filters');
 
   let activeCategory = 'all';
   let activeRegion = 'all';
   let activeLocation = 'all';
+
+  function updateClearButton() {
+    const hasActiveFilters = activeCategory !== 'all' || activeRegion !== 'all' || activeLocation !== 'all';
+    if (clearBtn) {
+      clearBtn.style.display = hasActiveFilters ? 'flex' : 'none';
+    }
+  }
 
   function filterEvents() {
     let count = 0;
@@ -242,6 +307,25 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
 
     if (countEl) countEl.textContent = String(count);
+    updateClearButton();
+  }
+
+  function clearAllFilters() {
+    // Reset to defaults
+    activeCategory = 'all';
+    activeRegion = 'all';
+    activeLocation = 'all';
+
+    // Reset UI
+    pills.forEach(p => p.classList.remove('active'));
+    const allPill = document.querySelector('.pill[data-filter="all"]');
+    if (allPill) allPill.classList.add('active');
+
+    if (regionSelect) regionSelect.value = 'all';
+    if (locationSelect) locationSelect.value = 'all';
+
+    // Re-filter
+    filterEvents();
   }
 
   // Pills
@@ -264,4 +348,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     activeLocation = locationSelect.value;
     filterEvents();
   });
+
+  // Clear button
+  clearBtn?.addEventListener('click', clearAllFilters);
 </script>

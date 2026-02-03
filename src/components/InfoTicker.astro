@@ -143,6 +143,7 @@
   let currentSlide = 0;
   const totalSlides = 4;
   let autoplayInterval = null;
+  let isPaused = false;
 
   function showSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
@@ -160,7 +161,12 @@
   }
 
   function nextSlide() {
-    showSlide((currentSlide + 1) % totalSlides);
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!isPaused && !prefersReducedMotion) {
+      showSlide((currentSlide + 1) % totalSlides);
+    }
   }
 
   function startAutoplay() {
@@ -223,6 +229,21 @@
 
   // Initialize
   document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('info-carousel');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Pause on hover
+    if (carousel) {
+      carousel.addEventListener('mouseenter', function() {
+        isPaused = true;
+      });
+      
+      carousel.addEventListener('mouseleave', function() {
+        isPaused = false;
+      });
+    }
+
     // Dot click handlers
     document.querySelectorAll('.dot').forEach(function(dot) {
       dot.addEventListener('click', function() {
@@ -233,9 +254,6 @@
     });
 
     // Touch swipe support
-    const carousel = document.getElementById('info-carousel');
-    let touchStartX = 0;
-    let touchEndX = 0;
 
     if (carousel) {
       carousel.addEventListener('touchstart', function(e) {

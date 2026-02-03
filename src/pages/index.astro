@@ -35,7 +35,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
   <Header lastUpdated={eventsData.lastUpdated} />
   
-  <main class="main">
+  <main class="main" id="main-content">
     <div class="container">
       <!-- Mobile: Elegant info bar -->
       <div class="mobile-info-bar">

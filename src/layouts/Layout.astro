@@ -17,9 +17,13 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://api.open-meteo.com">
+    <link rel="dns-prefetch" href="https://dbf.finalrewind.org">
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
     <title>{title}</title>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <slot />
   </body>
 </html>
@@ -281,5 +285,28 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Skip Link */
+  .skip-link {
+    position: absolute;
+    top: calc(-1 * var(--touch-target-min));
+    left: var(--space-4);
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    z-index: 9999;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    transition: top var(--duration-fast) ease;
+  }
+
+  .skip-link:focus {
+    top: var(--space-4);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 </style>
