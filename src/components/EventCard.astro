@@ -22,86 +22,54 @@ const { event, regions = {} } = Astro.props;
 const date = new Date(event.date);
 const day = date.getDate();
 const monthShort = date.toLocaleDateString('de-DE', { month: 'short' });
-const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' });
 
 const categoryConfig = {
-  kinder: { emoji: '👶', label: 'Kinder', color: 'var(--color-kinder)' },
-  familie: { emoji: '👨‍👩‍👧', label: 'Familie', color: 'var(--color-familie)' },
-  erwachsene: { emoji: '🎭', label: 'Erwachsene', color: 'var(--color-erwachsene)' }
+  kinder: { emoji: '👶', label: 'Kinder' },
+  familie: { emoji: '👨‍👩‍👧', label: 'Familie' },
+  erwachsene: { emoji: '🎭', label: 'Erwachsene' }
 };
 
 const cat = categoryConfig[event.category as keyof typeof categoryConfig] || categoryConfig.familie;
-const regionInfo = event.region && regions[event.region];
-
-const dateStr = `${weekday}, ${day}. ${monthShort}`;
+const dateStr = `${day}. ${monthShort}`;
 ---
 
 <article 
   class="event-card"
-  class:list={[{ 'is-highlight': event.isHighlight }]}
   data-category={event.category}
   data-region={event.region}
   data-location={event.location}
 >
-  {event.url ? (
-    <a href={event.url} target="_blank" rel="noopener" class="card-link">
-      <div class="card-inner">
-        <div class="card-top">
-          <span class="location">📍 {event.location}</span>
-          {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
-        </div>
-        <h3 class="title">{event.title}</h3>
-        <p class="date">{dateStr}{event.time && ` · ${event.time}`}</p>
-        {event.description && (
-          <p class="description">{event.description}</p>
-        )}
-        <div class="card-bottom">
-          <span class="category" style={`--cat-color: ${cat.color}`}>{cat.emoji} {cat.label}</span>
-          {event.tags && event.tags.length > 0 && (
-            <span class="tag">#{event.tags[0]}</span>
-          )}
-        </div>
-      </div>
-    </a>
-  ) : (
-    <div class="card-inner">
-      <div class="card-top">
+  <a href={event.url || '#'} target={event.url ? "_blank" : undefined} rel="noopener" class="card-link">
+    <!-- Color accent bar based on category -->
+    <div class="accent-bar" data-cat={event.category}></div>
+    
+    <div class="card-content">
+      <div class="card-meta">
         <span class="location">📍 {event.location}</span>
-        {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
       </div>
+      
       <h3 class="title">{event.title}</h3>
-      <p class="date">{dateStr}{event.time && ` · ${event.time}`}</p>
-      {event.description && (
-        <p class="description">{event.description}</p>
-      )}
-      <div class="card-bottom">
-        <span class="category" style={`--cat-color: ${cat.color}`}>{cat.emoji} {cat.label}</span>
-        {event.tags && event.tags.length > 0 && (
-          <span class="tag">#{event.tags[0]}</span>
-        )}
+      
+      <div class="card-info">
+        <span class="date">{dateStr}{event.time && ` · ${event.time}`}</span>
+        <span class="category">{cat.emoji} {cat.label}</span>
       </div>
     </div>
-  )}
+  </a>
 </article>
 
 <style>
   .event-card {
     background: var(--color-card);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    transition: all 0.2s ease;
+    border-radius: var(--radius-sm);
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--color-border-light);
   }
 
   .event-card:hover {
-    border-color: var(--color-text);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-  }
-
-  .event-card.is-highlight {
-    border-color: var(--color-kinder);
-    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
   }
 
   .card-link {
@@ -110,87 +78,70 @@ const dateStr = `${weekday}, ${day}. ${monthShort}`;
     text-decoration: none;
   }
 
-  .card-inner {
+  .accent-bar {
+    height: 4px;
+    background: var(--color-border);
+  }
+
+  .accent-bar[data-cat="kinder"] {
+    background: var(--color-kinder);
+  }
+
+  .accent-bar[data-cat="familie"] {
+    background: var(--color-familie);
+  }
+
+  .accent-bar[data-cat="erwachsene"] {
+    background: var(--color-erwachsene);
+  }
+
+  .card-content {
     padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
   }
 
   @media (min-width: 640px) {
-    .card-inner {
+    .card-content {
       padding: 20px;
-      gap: 10px;
     }
   }
 
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+  .card-meta {
+    margin-bottom: 8px;
   }
 
   .location {
-    font-size: 0.8rem;
+    font-size: 12px;
     color: var(--color-text-secondary);
     font-weight: 500;
   }
 
-  .highlight-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--color-kinder);
-  }
-
   .title {
-    font-size: 1.1rem;
+    font-size: 14px;
     font-weight: 600;
     color: var(--color-text);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    line-height: 1.4;
+    margin-bottom: 12px;
   }
 
   @media (min-width: 640px) {
     .title {
-      font-size: 1.2rem;
+      font-size: 15px;
     }
   }
 
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
   .date {
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
     font-weight: 500;
   }
 
-  .description {
-    font-size: 0.85rem;
-    color: var(--color-muted);
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .card-bottom {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 4px;
-    padding-top: 12px;
-    border-top: 1px solid var(--color-border-light);
-  }
-
   .category {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--cat-color);
-  }
-
-  .tag {
-    font-size: 0.7rem;
-    color: var(--color-muted);
     font-weight: 500;
   }
 </style>
