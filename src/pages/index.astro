@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import FilterBar from '../components/FilterBar.astro';
+import EventCard from '../components/EventCard.astro';
+import eventsData from '../data/events.json';
+
+// Sort events by date
+const events = eventsData.events.sort((a, b) => 
+  a.date.localeCompare(b.date) || a.time.localeCompare(b.time)
+);
+
+// Count by category
+const counts = {
+  all: events.length,
+  kinder: events.filter(e => e.category === 'kinder').length,
+  familie: events.filter(e => e.category === 'familie').length,
+  erwachsene: events.filter(e => e.category === 'erwachsene').length,
+};
+---
+
+<Layout title="Events StarnbergAmmersee - Veranstaltungen für Familien">
+  <Header lastUpdated={eventsData.lastUpdated} />
+  
+  <main class="main">
+    <FilterBar counts={counts} />
+    
+    <section class="events-grid">
+      {events.map(event => (
+        <EventCard event={event} />
+      ))}
+    </section>
+    
+    <footer class="footer">
+      <p>
+        Daten von <a href={eventsData.source} target="_blank" rel="noopener">starnbergammersee.de</a>
+      </p>
+      <p>Made with ❤️ für die Region</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .footer p {
+    margin: 0.25rem 0;
+  }
+</style>

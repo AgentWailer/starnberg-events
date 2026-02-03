@@ -1,0 +1,79 @@
+---
+interface Props {
+  lastUpdated: string;
+}
+
+const { lastUpdated } = Astro.props;
+
+function formatDate(dateStr: string): string {
+  return new Date(dateStr).toLocaleDateString('de-DE', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+---
+
+<header class="header">
+  <div class="header-content">
+    <h1>
+      <span class="emoji">🏔️</span>
+      Events StarnbergAmmersee
+    </h1>
+    <p class="subtitle">
+      Veranstaltungen für Familien & Kinder in der Region
+    </p>
+    <p class="updated">
+      Aktualisiert: {formatDate(lastUpdated)}
+    </p>
+  </div>
+</header>
+
+<style>
+  .header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .header-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+  }
+
+  .updated {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+</style>

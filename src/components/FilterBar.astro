@@ -1,0 +1,100 @@
+---
+interface Props {
+  counts: {
+    all: number;
+    kinder: number;
+    familie: number;
+    erwachsene: number;
+  };
+}
+
+const { counts } = Astro.props;
+---
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">
+    🎪 Alle <span class="count">{counts.all}</span>
+  </button>
+  <button class="filter-btn" data-filter="kinder">
+    👶 Kinder <span class="count">{counts.kinder}</span>
+  </button>
+  <button class="filter-btn" data-filter="familie">
+    👨‍👩‍👧‍👦 Familie <span class="count">{counts.familie}</span>
+  </button>
+  <button class="filter-btn" data-filter="erwachsene">
+    🎭 Erwachsene <span class="count">{counts.erwachsene}</span>
+  </button>
+</div>
+
+<style>
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    background: white;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    background: rgba(30, 64, 175, 0.05);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+
+  .count {
+    background: rgba(0,0,0,0.1);
+    padding: 0.1rem 0.4rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+  }
+
+  .filter-btn.active .count {
+    background: rgba(255,255,255,0.2);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const eventCards = document.querySelectorAll('.event-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Filter cards
+        eventCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
