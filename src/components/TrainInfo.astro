@@ -199,14 +199,14 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
   }
 
   function renderDepartures(departures: any[], container: HTMLElement): void {
-    // Filter valid S-Bahn/SEV departures (same logic as InfoTicker)
+    // Simple filter: just check for S6 in line name (same as InfoTicker)
     const validDepartures = departures.filter((d: any) => {
       const line = d.line;
       if (!line) return false;
       
-      const isSuburban = line.product === 'suburban' || line.mode === 'train';
-      const isSEV = line.product === 'bus' && line.name?.includes('S');
-      if (!isSuburban && !isSEV) return false;
+      // Must be S6 (S-Bahn or SEV Bus)
+      const isS6 = line.name && (line.name.includes('S6') || line.name === 'S6');
+      if (!isS6) return false;
       
       if (d.cancelled) return false;
       
