@@ -1,42 +1,36 @@
 ---
 interface Props {
   station?: string;
-  stationCode?: string;
+  stationId?: string;
 }
 
-const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
-const dbUrl = `https://iris.noncd.db.de/wbt/js/index.html?bhf=${stationCode}`;
-const mobileUrl = `https://reiseauskunft.bahn.de/bin/bhftafel.exe/dn?input=${station}&boardType=dep&time=actual&productsFilter=1111111111&start=yes`;
+const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 ---
 
-<section class="train-info">
-  <div class="train-content">
+<section class="train-info" data-station-id={stationId}>
+  <div class="train-header">
     <div class="train-icon">🚆</div>
-    <div class="train-text">
+    <div class="train-title">
       <h2>S-Bahn {station}</h2>
-      <p>Live-Abfahrten der S6</p>
-    </div>
-    <div class="train-actions">
-      <a href={dbUrl} target="_blank" rel="noopener" class="train-btn primary">
-        Abfahrten ansehen →
-      </a>
-      <a href={mobileUrl} target="_blank" rel="noopener" class="train-btn secondary">
-        DB Navigator
-      </a>
+      <p class="update-info">
+        <span class="live-dot"></span>
+        Live-Abfahrten
+        <span class="last-update"></span>
+      </p>
     </div>
   </div>
   
-  <div class="train-schedule">
-    <div class="schedule-item">
-      <span class="line">S6</span>
-      <span class="dest">→ Tutzing</span>
-      <span class="freq">alle 20 Min</span>
-    </div>
-    <div class="schedule-item">
-      <span class="line">S6</span>
-      <span class="dest">→ München</span>
-      <span class="freq">alle 20 Min</span>
-    </div>
+  <div class="departures-list" id="departures">
+    <div class="loading">Lade Abfahrten...</div>
+  </div>
+  
+  <div class="train-footer">
+    <a href={`https://reiseauskunft.bahn.de/bin/bhftafel.exe/dn?input=${station}&boardType=dep&time=actual&start=yes`} 
+       target="_blank" 
+       rel="noopener" 
+       class="more-link">
+      Alle Verbindungen →
+    </a>
   </div>
 </section>
 
@@ -49,115 +43,297 @@ const mobileUrl = `https://reiseauskunft.bahn.de/bin/bhftafel.exe/dn?input=${sta
     margin-bottom: 1.5rem;
   }
 
-  .train-content {
+  .train-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
 
   .train-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
     background: rgba(255,255,255,0.15);
     padding: 0.5rem;
     border-radius: 8px;
+    line-height: 1;
   }
 
-  .train-text {
-    flex: 1;
-    min-width: 150px;
-  }
-
-  .train-text h2 {
+  .train-title h2 {
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
   }
 
-  .train-text p {
-    font-size: 0.85rem;
+  .update-info {
+    font-size: 0.8rem;
     opacity: 0.8;
     margin: 0.25rem 0 0;
-  }
-
-  .train-actions {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .train-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .train-btn.primary {
-    background: white;
-    color: #1a365d;
-  }
-
-  .train-btn.primary:hover {
-    background: #e2e8f0;
-    text-decoration: none;
-  }
-
-  .train-btn.secondary {
-    background: rgba(255,255,255,0.15);
-    color: white;
-  }
-
-  .train-btn.secondary:hover {
-    background: rgba(255,255,255,0.25);
-    text-decoration: none;
-  }
-
-  .train-schedule {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    flex-wrap: wrap;
-  }
-
-  .schedule-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
+    gap: 0.4rem;
   }
 
-  .line {
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    background: #48bb78;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .departures-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .loading, .error {
+    text-align: center;
+    padding: 1rem;
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+
+  .error {
+    color: #feb2b2;
+  }
+
+  .departure-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .line-badge {
     background: #38a169;
     color: white;
-    padding: 0.15rem 0.4rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.75rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    min-width: 2.5rem;
+    text-align: center;
   }
 
-  .dest {
+  .line-badge.suburban { background: #38a169; }
+  .line-badge.regional { background: #3182ce; }
+  .line-badge.bus { background: #805ad5; }
+  .line-badge.other { background: #718096; }
+
+  .destination {
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .freq {
-    opacity: 0.7;
+  .platform {
     font-size: 0.8rem;
+    opacity: 0.7;
+    white-space: nowrap;
   }
 
-  @media (max-width: 500px) {
-    .train-content {
-      flex-direction: column;
-      text-align: center;
-    }
+  .time-info {
+    text-align: right;
+    white-space: nowrap;
+  }
 
-    .train-actions {
-      width: 100%;
-      justify-content: center;
+  .time {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .delay {
+    font-size: 0.75rem;
+    margin-left: 0.3rem;
+  }
+
+  .delay.late {
+    color: #fc8181;
+  }
+
+  .delay.on-time {
+    color: #68d391;
+  }
+
+  .train-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+  }
+
+  .more-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .more-link:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    .departure-row {
+      grid-template-columns: auto 1fr auto;
+      gap: 0.5rem;
+    }
+    
+    .platform {
+      display: none;
+    }
+    
+    .destination {
+      font-size: 0.85rem;
     }
   }
 </style>
+
+<script>
+  const API_BASE = 'https://v6.db.transport.rest';
+  
+  interface Departure {
+    when: string | null;
+    plannedWhen: string;
+    delay: number | null;
+    direction: string;
+    platform: string | null;
+    line: {
+      name: string;
+      product: string;
+      mode: string;
+    };
+  }
+
+  async function fetchDepartures(stationId: string): Promise<Departure[]> {
+    const url = `${API_BASE}/stops/${stationId}/departures?duration=90&results=10`;
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.departures || [];
+  }
+
+  function formatTime(isoString: string): string {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString('de-DE', { 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    });
+  }
+
+  function formatDelay(delaySeconds: number | null): { text: string; className: string } {
+    if (delaySeconds === null || delaySeconds === undefined) {
+      return { text: '', className: '' };
+    }
+    
+    const delayMinutes = Math.round(delaySeconds / 60);
+    
+    if (delayMinutes <= 0) {
+      return { text: '', className: 'on-time' };
+    }
+    
+    return { 
+      text: `+${delayMinutes}'`, 
+      className: 'late' 
+    };
+  }
+
+  function getLineClass(product: string): string {
+    switch (product) {
+      case 'suburban': return 'suburban';
+      case 'regional': return 'regional';
+      case 'bus': return 'bus';
+      default: return 'other';
+    }
+  }
+
+  function renderDepartures(departures: Departure[], container: HTMLElement): void {
+    // Filter für Züge (S-Bahn & Regional), keine Busse
+    const trainDepartures = departures
+      .filter(d => d.when && (d.line.product === 'suburban' || d.line.product === 'regional'))
+      .slice(0, 6);
+    
+    if (trainDepartures.length === 0) {
+      container.innerHTML = '<div class="error">Keine Abfahrten gefunden</div>';
+      return;
+    }
+    
+    container.innerHTML = trainDepartures.map(dep => {
+      const time = formatTime(dep.when!);
+      const delay = formatDelay(dep.delay);
+      const lineClass = getLineClass(dep.line.product);
+      const platform = dep.platform ? `Gl. ${dep.platform}` : '';
+      
+      // Kürze lange Ziele
+      let destination = dep.direction;
+      if (destination.includes('(')) {
+        destination = destination.split('(')[0].trim();
+      }
+      
+      return `
+        <div class="departure-row">
+          <span class="line-badge ${lineClass}">${dep.line.name}</span>
+          <span class="destination">→ ${destination}</span>
+          <span class="platform">${platform}</span>
+          <span class="time-info">
+            <span class="time">${time}</span>
+            ${delay.text ? `<span class="delay ${delay.className}">${delay.text}</span>` : ''}
+          </span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function updateTimestamp(container: HTMLElement): void {
+    const updateEl = container.querySelector('.last-update');
+    if (updateEl) {
+      const now = new Date();
+      updateEl.textContent = `• ${now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })}`;
+    }
+  }
+
+  async function updateDepartures(section: HTMLElement): Promise<void> {
+    const stationId = section.dataset.stationId;
+    const container = section.querySelector('#departures') as HTMLElement;
+    
+    if (!stationId || !container) return;
+    
+    try {
+      const departures = await fetchDepartures(stationId);
+      renderDepartures(departures, container);
+      updateTimestamp(section);
+    } catch (error) {
+      console.error('Failed to fetch departures:', error);
+      container.innerHTML = '<div class="error">Verbindungsfehler – Daten konnten nicht geladen werden</div>';
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    const trainSection = document.querySelector('.train-info') as HTMLElement;
+    
+    if (trainSection) {
+      // Initial load
+      updateDepartures(trainSection);
+      
+      // Refresh every 60 seconds
+      setInterval(() => updateDepartures(trainSection), 60000);
+    }
+  });
+</script>
