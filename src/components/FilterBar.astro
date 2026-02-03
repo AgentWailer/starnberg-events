@@ -11,9 +11,6 @@ const counts = {
   kinder: events.filter(e => e.category === 'kinder').length,
   familie: events.filter(e => e.category === 'familie').length,
   erwachsene: events.filter(e => e.category === 'erwachsene').length,
-  culture: events.filter(e => e.category === 'culture').length,
-  music: events.filter(e => e.category === 'music').length,
-  market: events.filter(e => e.category === 'market').length,
 };
 
 // Count by region
@@ -34,9 +31,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       <button class="pill" data-filter="kinder">Kinder</button>
       <button class="pill" data-filter="familie">Familie</button>
       <button class="pill" data-filter="erwachsene">Erwachsene</button>
-      <button class="pill" data-filter="culture">Kultur</button>
-      <button class="pill" data-filter="music">Musik</button>
-      <button class="pill" data-filter="market">Markt</button>
     </div>
     <button class="clear-filters" id="clear-filters">
       <svg aria-hidden="true" class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
