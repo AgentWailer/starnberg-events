@@ -32,7 +32,7 @@
       "emoji": "🎿"
     }
   },
-  "eventCount": 42,
+  "eventCount": 56,
   "events": [
     {
       "id": 1,
@@ -120,7 +120,25 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 6,
+      "title": "Vorführung: Amateurfunk",
+      "date": "2026-02-07",
+      "time": "11:00",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Live-Vorführung – wie man mit Funkamateuren in aller Welt kommuniziert",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 6
+    },
+    {
+      "id": 7,
       "title": "beccult: Willi live – UND WOVON TRÄUMST DU?",
       "date": "2026-02-07",
       "time": "15:00",
@@ -152,10 +170,10 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 7
+      "id": 8
     },
     {
-      "id": 8,
+      "id": 9,
       "title": "Henschel-Quartett & Hendrik Blumenroth",
       "date": "2026-02-07",
       "time": "19:00",
@@ -171,7 +189,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 9,
+      "id": 10,
       "title": "1. Starnberger Ballnacht – Die Redoute im neuen Gwand",
       "date": "2026-02-07",
       "time": "19:30",
@@ -188,7 +206,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 10,
+      "id": 11,
       "title": "2. Tutzinger Kurzfilmnacht",
       "date": "2026-02-07",
       "time": "19:30",
@@ -204,7 +222,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 11,
+      "id": 12,
       "title": "Yasi Hofer Trio – Best Of Tour",
       "date": "2026-02-07",
       "time": "20:00",
@@ -236,10 +254,45 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 12
+      "id": 13
     },
     {
-      "id": 13,
+      "title": "Science Show: Flüssiger Stickstoff",
+      "date": "2026-02-08",
+      "time": "11:30",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Spektakuläre Experimente mit minus 200°C – Supraleiter schweben und Blumen zerbersten",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 14
+    },
+    {
+      "title": "Familienführung: Was die Welt antreibt",
+      "date": "2026-02-08",
+      "time": "14:00",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Motoren, Turbinen und mehr – die Vielfalt der Antriebe entdecken",
+      "category": "familie",
+      "tags": [
+        "führung",
+        "kinder"
+      ],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 15
+    },
+    {
+      "id": 16,
       "title": "Umgedreht Unterwegs - ein Kinderkonzert rund um die Welt",
       "date": "2026-02-08",
       "time": "16:00",
@@ -256,7 +309,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 14,
+      "id": 17,
       "title": "Weiberfasching",
       "date": "2026-02-12",
       "time": "19:00",
@@ -288,10 +341,10 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 15
+      "id": 18
     },
     {
-      "id": 16,
+      "id": 19,
       "title": "Fasching mit der GROUNDLIFT Band",
       "date": "2026-02-13",
       "time": "20:00",
@@ -323,7 +376,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 17
+      "id": 20
     },
     {
       "title": "Flohmarkt im Olympiapark",
@@ -339,10 +392,10 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 18
+      "id": 21
     },
     {
-      "id": 19,
+      "id": 22,
       "title": "Starnberger Brauhaus: öffentliche Brauereiführung",
       "date": "2026-02-14",
       "time": "11:00",
@@ -359,7 +412,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 20,
+      "id": 23,
       "title": "That's amore! - Valentins-Candlelight-Dinner",
       "date": "2026-02-14",
       "time": "18:00",
@@ -373,6 +426,22 @@
       "url": "https://www.starnbergammersee.de/detail/id=6971d9e59f949426f44be8e8",
       "region": "starnberg-ammersee",
       "source": "starnbergammersee"
+    },
+    {
+      "title": "Valentinstag im Tierpark Hellabrunn",
+      "date": "2026-02-14",
+      "time": "18:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Wenn die Liebe durch den Zoo spaziert – romantischer Abend im Tierpark",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 24
     },
     {
       "title": "Glamour Schlager und Discofox Night 2026",
@@ -391,10 +460,10 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 21
+      "id": 25
     },
     {
-      "id": 22,
+      "id": 26,
       "title": "Klassik 2.0 / Club - Paris trifft See",
       "date": "2026-02-14",
       "time": "19:30",
@@ -410,7 +479,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 23,
+      "id": 27,
       "title": "Starnberger Faschingssause 2026",
       "date": "2026-02-14",
       "time": "20:00",
@@ -441,7 +510,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 24
+      "id": 28
     },
     {
       "title": "Kinderfasching",
@@ -461,10 +530,30 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 25
+      "id": 29
     },
     {
-      "id": 26,
+      "title": "Familienführung: Reise ins All",
+      "date": "2026-02-15",
+      "time": "14:00",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Erfahrt mehr über die Raumfahrt und den Transport von Menschen ins All",
+      "category": "familie",
+      "tags": [
+        "führung",
+        "kinder",
+        "sport"
+      ],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 30
+    },
+    {
+      "id": 31,
       "title": "FILMWORKSHOP (Faschingsferien)",
       "date": "2026-02-16",
       "time": "10:00",
@@ -482,7 +571,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 27,
+      "id": 32,
       "title": "16. Starnberger Garderevue – Perchalla",
       "date": "2026-02-16",
       "time": "18:00",
@@ -514,10 +603,10 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 28
+      "id": 33
     },
     {
-      "id": 29,
+      "id": 34,
       "title": "Diessener Kneipen-Chor",
       "date": "2026-02-17",
       "time": "18:30",
@@ -533,7 +622,7 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 30,
+      "id": 35,
       "title": "Aschermittwoch im Theodor",
       "date": "2026-02-18",
       "time": "18:00",
@@ -549,7 +638,26 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 31,
+      "title": "Großer Lesetag 2026",
+      "date": "2026-02-20",
+      "time": "10:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Lesungen und Aktionen für Kinder und Familien im Tierpark",
+      "category": "kinder",
+      "tags": [
+        "kinder",
+        "literatur"
+      ],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 36
+    },
+    {
+      "id": 37,
       "title": "Vincent Meissner Trio",
       "date": "2026-02-21",
       "time": "19:00",
@@ -565,7 +673,26 @@
       "source": "starnbergammersee"
     },
     {
-      "id": 32,
+      "title": "Kinderführung: Willkommen an Bord unserer Maschine",
+      "date": "2026-02-22",
+      "time": "10:30",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Zwischen Flugzeugen und Hubschraubern – wie fliegen Maschinen?",
+      "category": "kinder",
+      "tags": [
+        "führung",
+        "kinder"
+      ],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 38
+    },
+    {
+      "id": 39,
       "title": "Fremd ist der Fremde nur in der Fremde",
       "date": "2026-02-22",
       "time": "19:30",
@@ -597,7 +724,42 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 33
+      "id": 40
+    },
+    {
+      "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
+      "date": "2026-02-24",
+      "time": "19:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 41
+    },
+    {
+      "title": "Führung auf die Zugspitze",
+      "date": "2026-02-28",
+      "time": "08:00",
+      "location": "Zugspitze",
+      "address": "",
+      "description": "Geführte Bergwanderung auf Deutschlands höchsten Gipfel",
+      "category": "familie",
+      "tags": [
+        "führung",
+        "natur"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 42
     },
     {
       "title": "Ehrlich Brothers - Dream & Fly",
@@ -613,7 +775,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 34
+      "id": 43
     },
     {
       "title": "Cavalluna - Legende der Wüste",
@@ -631,7 +793,27 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 35
+      "id": 44
+    },
+    {
+      "title": "Banff Mountain Film Festival World Tour",
+      "date": "2026-03-08",
+      "time": "19:00",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Die besten Bergfilme des Jahres – Abenteuer, Outdoor und Extremsport",
+      "category": "familie",
+      "tags": [
+        "kino",
+        "führung",
+        "fest"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 45
     },
     {
       "title": "Tegernseer Bergfilm-Festival 2026",
@@ -651,7 +833,7 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 36
+      "id": 46
     },
     {
       "title": "Kulturmontag - Comedy in Pöcking?",
@@ -669,7 +851,23 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 37
+      "id": 47
+    },
+    {
+      "title": "Bedrohte Pioniere: Wechselkröte und Laubfrosch",
+      "date": "2026-04-16",
+      "time": "19:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Vortrag über bedrohte Amphibien in München",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 48
     },
     {
       "title": "Amelie Fried - Lesung",
@@ -687,7 +885,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 38
+      "id": 49
     },
     {
       "title": "Konzert der Philharmonie Starnberger See",
@@ -706,7 +904,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 39
+      "id": 50
     },
     {
       "title": "André Rieu - Konzert 2026",
@@ -724,7 +922,41 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 40
+      "id": 51
+    },
+    {
+      "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
+      "date": "2026-05-19",
+      "time": "19:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 52
+    },
+    {
+      "title": "Richard Strauss Festival 2026",
+      "date": "2026-06-20",
+      "time": "19:00",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
+      "category": "familie",
+      "tags": [
+        "fest"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 53
     },
     {
       "title": "Der König der Löwen - Musical",
@@ -740,7 +972,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 41
+      "id": 54
     },
     {
       "title": "Tegernseer Seefest mit Brillantfeuerwerk",
@@ -760,7 +992,26 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 42
+      "id": 55
+    },
+    {
+      "title": "Neujahrsskispringen 2027",
+      "date": "2027-01-01",
+      "time": "14:00",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Vierschanzentournee – Weltcup-Skispringen an der Olympiaschanze",
+      "category": "familie",
+      "tags": [
+        "führung",
+        "sport"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 56
     }
   ]
 }
