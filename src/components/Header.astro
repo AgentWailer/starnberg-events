@@ -16,26 +16,21 @@ function formatDate(dateStr: string): string {
 
 <header class="header">
   <div class="header-content">
-    <div class="header-main">
-      <h1>
-        <span class="logo">🏔️</span>
-        <span class="title">Raus ins Voralpenland</span>
-      </h1>
-      <span class="updated">{formatDate(lastUpdated)}</span>
-    </div>
+    <h1>Raus ins Voralpenland</h1>
+    <p class="tagline">Events & Erlebnisse in Oberbayern</p>
   </div>
 </header>
 
 <style>
   .header {
-    background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
-    color: white;
-    padding: 16px;
+    background: var(--color-bg);
+    padding: 32px 16px 24px;
+    border-bottom: 1px solid var(--color-border);
   }
 
   @media (min-width: 640px) {
     .header {
-      padding: 20px 24px;
+      padding: 40px 24px 32px;
     }
   }
 
@@ -44,48 +39,30 @@ function formatDate(dateStr: string): string {
     margin: 0 auto;
   }
 
-  .header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-
   h1 {
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 8px;
   }
 
   @media (min-width: 640px) {
     h1 {
-      font-size: 1.5rem;
+      font-size: 2.75rem;
     }
   }
 
-  .logo {
-    font-size: 1.5rem;
+  .tagline {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-weight: 400;
   }
 
   @media (min-width: 640px) {
-    .logo {
-      font-size: 1.75rem;
+    .tagline {
+      font-size: 1.1rem;
     }
-  }
-
-  .updated {
-    font-size: 0.65rem;
-    font-weight: 500;
-    opacity: 0.9;
-    white-space: nowrap;
-    padding: 4px 10px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: var(--radius-full);
   }
 </style>

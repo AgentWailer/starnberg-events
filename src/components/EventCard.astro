@@ -21,7 +21,7 @@ const { event, regions = {} } = Astro.props;
 
 const date = new Date(event.date);
 const day = date.getDate();
-const month = date.toLocaleDateString('de-DE', { month: 'short' });
+const monthShort = date.toLocaleDateString('de-DE', { month: 'short' });
 const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' });
 
 const categoryConfig = {
@@ -32,6 +32,8 @@ const categoryConfig = {
 
 const cat = categoryConfig[event.category as keyof typeof categoryConfig] || categoryConfig.familie;
 const regionInfo = event.region && regions[event.region];
+
+const dateStr = `${weekday}, ${day}. ${monthShort}`;
 ---
 
 <article 
@@ -41,253 +43,129 @@ const regionInfo = event.region && regions[event.region];
   data-region={event.region}
   data-location={event.location}
 >
-  <!-- Date Column -->
-  <div class="date-col">
-    <div class="date-badge">
-      <span class="date-weekday">{weekday}</span>
-      <span class="date-day">{day}</span>
-      <span class="date-month">{month}</span>
-    </div>
-    {event.isHighlight && <span class="highlight-star" title="Highlight Event">⭐</span>}
-  </div>
-  
-  <!-- Content Column -->
-  <div class="content-col">
-    <!-- Header Row -->
-    <div class="card-header">
-      <span class="category-badge" style={`--cat-color: ${cat.color}`}>
-        {cat.emoji} {cat.label}
-      </span>
-      {event.time && <span class="time-badge">{event.time}</span>}
-    </div>
-    
-    <!-- Title -->
-    <h3 class="title">
-      {event.url ? (
-        <a href={event.url} target="_blank" rel="noopener">{event.title}</a>
-      ) : (
-        event.title
-      )}
-    </h3>
-    
-    <!-- Location -->
-    <div class="location">
-      <span class="location-pin">📍</span>
-      <span class="location-text">{event.location}</span>
-      {regionInfo && (
-        <span class="region-badge">{regionInfo.emoji}</span>
-      )}
-    </div>
-    
-    <!-- Description -->
-    {event.description && (
-      <p class="description">{event.description}</p>
-    )}
-    
-    <!-- Footer -->
-    <div class="card-footer">
-      {event.tags && event.tags.length > 0 && (
-        <div class="tags">
-          {event.tags.slice(0, 2).map(tag => (
-            <span class="tag">#{tag}</span>
-          ))}
+  {event.url ? (
+    <a href={event.url} target="_blank" rel="noopener" class="card-link">
+      <div class="card-inner">
+        <div class="card-top">
+          <span class="location">📍 {event.location}</span>
+          {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
         </div>
+        <h3 class="title">{event.title}</h3>
+        <p class="date">{dateStr}{event.time && ` · ${event.time}`}</p>
+        {event.description && (
+          <p class="description">{event.description}</p>
+        )}
+        <div class="card-bottom">
+          <span class="category" style={`--cat-color: ${cat.color}`}>{cat.emoji} {cat.label}</span>
+          {event.tags && event.tags.length > 0 && (
+            <span class="tag">#{event.tags[0]}</span>
+          )}
+        </div>
+      </div>
+    </a>
+  ) : (
+    <div class="card-inner">
+      <div class="card-top">
+        <span class="location">📍 {event.location}</span>
+        {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
+      </div>
+      <h3 class="title">{event.title}</h3>
+      <p class="date">{dateStr}{event.time && ` · ${event.time}`}</p>
+      {event.description && (
+        <p class="description">{event.description}</p>
       )}
-      {event.source && (
-        <span class="source">{event.source}</span>
-      )}
+      <div class="card-bottom">
+        <span class="category" style={`--cat-color: ${cat.color}`}>{cat.emoji} {cat.label}</span>
+        {event.tags && event.tags.length > 0 && (
+          <span class="tag">#{event.tags[0]}</span>
+        )}
+      </div>
     </div>
-  </div>
+  )}
 </article>
 
 <style>
   .event-card {
-    display: flex;
-    gap: 14px;
     background: var(--color-card);
-    border-radius: var(--radius-lg);
-    padding: 16px;
-    border: 1px solid var(--color-border-light);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
     overflow: hidden;
   }
 
-  @media (min-width: 640px) {
-    .event-card {
-      gap: 18px;
-      padding: 20px;
-    }
-  }
-
-  .event-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 50%, rgba(234, 88, 12, 0.02) 100%);
-    opacity: 0;
-    transition: opacity 0.25s;
-    pointer-events: none;
-  }
-
   .event-card:hover {
+    border-color: var(--color-text);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(234, 88, 12, 0.15);
-  }
-
-  .event-card:hover::before {
-    opacity: 1;
+    box-shadow: var(--shadow-md);
   }
 
   .event-card.is-highlight {
-    background: linear-gradient(135deg, #fffbeb 0%, #fef9e7 100%);
-    border-color: rgba(251, 191, 36, 0.3);
+    border-color: var(--color-kinder);
+    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%);
   }
 
-  .event-card.is-highlight::before {
-    background: linear-gradient(135deg, transparent 50%, rgba(251, 191, 36, 0.05) 100%);
+  .card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
   }
 
-  /* Date Column */
-  .date-col {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .date-badge {
-    width: 56px;
-    padding: 10px 6px;
-    background: linear-gradient(145deg, #ea580c 0%, #f97316 100%);
-    border-radius: var(--radius-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
-  }
-
-  @media (min-width: 640px) {
-    .date-badge {
-      width: 64px;
-      padding: 12px 8px;
-    }
-  }
-
-  .date-weekday {
-    font-size: 0.6rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    opacity: 0.85;
-  }
-
-  .date-day {
-    font-size: 1.5rem;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  @media (min-width: 640px) {
-    .date-day {
-      font-size: 1.75rem;
-    }
-  }
-
-  .date-month {
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    opacity: 0.9;
-    letter-spacing: 0.3px;
-  }
-
-  .highlight-star {
-    font-size: 1.1rem;
-    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4));
-  }
-
-  /* Content Column */
-  .content-col {
-    flex: 1;
-    min-width: 0;
+  .card-inner {
+    padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+  @media (min-width: 640px) {
+    .card-inner {
+      padding: 20px;
+      gap: 10px;
+    }
   }
 
-  .category-badge {
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .location {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .highlight-badge {
     font-size: 0.7rem;
     font-weight: 600;
-    padding: 4px 10px;
-    border-radius: var(--radius-full);
-    background: color-mix(in srgb, var(--cat-color) 12%, transparent);
-    color: color-mix(in srgb, var(--cat-color) 85%, black);
-  }
-
-  .time-badge {
-    font-size: 0.75rem;
-    color: var(--color-text-secondary);
-    font-weight: 600;
-    padding: 2px 0;
+    color: var(--color-kinder);
   }
 
   .title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.35;
+    font-size: 1.1rem;
+    font-weight: 600;
     color: var(--color-text);
+    line-height: 1.3;
     letter-spacing: -0.01em;
   }
 
   @media (min-width: 640px) {
     .title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
   }
 
-  .title a {
-    color: inherit;
-    transition: color 0.2s;
-  }
-
-  .title a:hover {
-    color: var(--color-primary);
-  }
-
-  .location {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-  }
-
-  .location-pin {
-    font-size: 0.75rem;
-  }
-
-  .region-badge {
-    margin-left: 4px;
+  .date {
     font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
   }
 
   .description {
-    font-size: 0.82rem;
-    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    color: var(--color-muted);
     line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -295,39 +173,24 @@ const regionInfo = event.region && regions[event.region];
     overflow: hidden;
   }
 
-  .card-footer {
+  .card-bottom {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-top: auto;
-    padding-top: 6px;
+    gap: 12px;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border-light);
   }
 
-  .tags {
-    display: flex;
-    gap: 6px;
+  .category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cat-color);
   }
 
   .tag {
-    font-size: 0.65rem;
-    font-weight: 500;
+    font-size: 0.7rem;
     color: var(--color-muted);
-    background: var(--color-bg);
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-    transition: all 0.2s;
-  }
-
-  .event-card:hover .tag {
-    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-bg));
-    color: var(--color-text-secondary);
-  }
-
-  .source {
-    font-size: 0.6rem;
     font-weight: 500;
-    color: var(--color-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
 </style>

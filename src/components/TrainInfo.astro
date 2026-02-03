@@ -28,24 +28,23 @@ const { station = "Possenhofen", stationId = "8004874" } = Astro.props;
 <style>
   .train-widget {
     background: var(--color-card);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--color-border-light);
-    transition: all 0.25s ease;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
   }
 
   .train-widget:hover {
-    box-shadow: var(--shadow-lg);
+    border-color: var(--color-text);
   }
 
   .train-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 18px;
-    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #0ea5e9 100%);
+    padding: 12px 16px;
+    background: var(--color-primary);
     color: white;
   }
 
