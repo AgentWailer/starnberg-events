@@ -41,13 +41,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     <button class="sheet-close" id="sheet-close">✕</button>
   </div>
   <div class="sheet-content">
-    <!-- Stats -->
-    <div class="stats-bar">
-      <span class="stat-item">📊 <strong id="mobile-event-count">{events.length}</strong> Events</span>
-      <span class="stat-divider">•</span>
-      <span class="stat-item">🗺️ <strong>{Object.keys(regionCounts).filter(r => regionCounts[r] > 0).length}</strong> Regionen</span>
-    </div>
-
     <!-- Region Filter -->
     <div class="filter-group">
       <label class="filter-label">Region</label>
@@ -242,7 +235,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--color-border);
     position: sticky;
     top: 0;
@@ -250,42 +243,42 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   }
 
   .sheet-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
   }
 
   .sheet-close {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     background: var(--color-bg);
     border-radius: 50%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
     color: var(--color-text-secondary);
   }
 
   .sheet-content {
-    padding: 16px 20px 24px;
+    padding: 12px 16px 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
   }
 
   .sheet-apply {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     background: var(--color-primary);
     color: white;
     border: none;
     border-radius: var(--radius-sm);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 8px;
+    margin-top: 4px;
   }
 
   /* Hide mobile elements on desktop */
@@ -323,10 +316,10 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: flex;
     align-items: center;
     gap: 8px;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     border-bottom: 1px solid var(--color-border);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--color-text-secondary);
   }
 
@@ -341,17 +334,17 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filters-row {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
   }
 
   .filter-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .filter-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -361,18 +354,18 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 8px 14px;
+    gap: 3px;
+    padding: 6px 10px;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -392,12 +385,12 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   }
 
   .chip-emoji {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
   }
 
   .chip-count {
-    font-size: 0.7rem;
-    padding: 2px 6px;
+    font-size: 0.65rem;
+    padding: 1px 5px;
     background: rgba(0,0,0,0.08);
     border-radius: var(--radius-full);
   }
@@ -421,10 +414,10 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .location-select {
     width: 100%;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     background: var(--color-card);
     color: var(--color-text);
     cursor: pointer;
