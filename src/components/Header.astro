@@ -15,117 +15,77 @@ function formatDate(dateStr: string): string {
 ---
 
 <header class="header">
-  <div class="header-bg"></div>
   <div class="header-content">
-    <div class="header-top">
+    <div class="header-main">
       <h1>
         <span class="logo">🏔️</span>
-        <span class="title">Events Oberbayern</span>
+        <span class="title">Raus ins Voralpenland</span>
       </h1>
-      <span class="updated">Stand: {formatDate(lastUpdated)}</span>
+      <span class="updated">{formatDate(lastUpdated)}</span>
     </div>
-    <p class="subtitle">
-      Veranstaltungen für Familien in München, Starnberg & Umgebung
-    </p>
   </div>
 </header>
 
 <style>
   .header {
-    position: relative;
+    background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
     color: white;
-    padding: 28px 16px 32px;
-    overflow: hidden;
-  }
-
-  .header-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
-    z-index: -2;
-  }
-
-  .header-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 40%);
-    z-index: -1;
+    padding: 16px;
   }
 
   @media (min-width: 640px) {
     .header {
-      padding: 36px 24px 40px;
+      padding: 20px 24px;
     }
   }
 
   .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
   }
 
-  .header-top {
+  .header-main {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 12px;
+    align-items: center;
+    gap: 12px;
   }
 
   h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 
   @media (min-width: 640px) {
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
     }
   }
 
   .logo {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    font-size: 1.5rem;
   }
 
   @media (min-width: 640px) {
     .logo {
-      font-size: 2.75rem;
+      font-size: 1.75rem;
     }
   }
 
   .updated {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 500;
-    opacity: 0.95;
+    opacity: 0.9;
     white-space: nowrap;
-    padding: 6px 14px;
+    padding: 4px 10px;
     background: rgba(255,255,255,0.2);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.25);
     border-radius: var(--radius-full);
-  }
-
-  .subtitle {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    max-width: 420px;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  @media (min-width: 640px) {
-    .subtitle {
-      font-size: 1.1rem;
-    }
   }
 </style>
