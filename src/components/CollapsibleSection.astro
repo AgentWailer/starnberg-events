@@ -1,18 +1,18 @@
 ---
 interface Props {
-  title: string;
-  icon?: string;
-  defaultOpen?: boolean;
   id: string;
+  title: string;
+  icon: string;
+  defaultOpen?: boolean;
 }
 
-const { title, icon = '', defaultOpen = false, id } = Astro.props;
+const { id, title, icon, defaultOpen = false } = Astro.props;
 ---
 
-<details class="collapsible" id={id} open={defaultOpen}>
+<details class="collapsible" id={id}>
   <summary class="collapsible-header">
     <div class="collapsible-title">
-      {icon && <span class="collapsible-icon">{icon}</span>}
+      <span class="collapsible-icon">{icon}</span>
       <span>{title}</span>
     </div>
     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -24,79 +24,70 @@ const { title, icon = '', defaultOpen = false, id } = Astro.props;
   </div>
 </details>
 
+<script define:vars={{ id, defaultOpen }}>
+  const storageKey = `collapsible-${id}`;
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const details = document.getElementById(id);
+    if (!details) return;
+    
+    const savedState = localStorage.getItem(storageKey);
+    if (savedState !== null) {
+      details.open = savedState === 'true';
+    }
+    
+    details.addEventListener('toggle', () => {
+      localStorage.setItem(storageKey, details.open.toString());
+    });
+  });
+</script>
+
 <style>
   .collapsible {
     background: var(--color-card);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-border-light);
     overflow: hidden;
-    transition: all var(--duration-normal) ease;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .collapsible:hover {
-    box-shadow: var(--shadow-md);
   }
 
   .collapsible-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    /* Touch Target: minimum 44px */
-    min-height: var(--touch-target-min, 44px);
-    padding: var(--space-4) var(--space-5);
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4);
     cursor: pointer;
     user-select: none;
-    -webkit-user-select: none;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    color: white;
-    transition: transform var(--duration-fast) ease, filter var(--duration-normal) ease;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    list-style: none;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: background var(--duration-fast) ease;
   }
 
-  .collapsible:not([open]) .collapsible-header {
-    border-radius: var(--radius-lg);
+  .collapsible-header::-webkit-details-marker {
+    display: none;
   }
 
-  /* Hover only on hover-capable devices */
-  @media (hover: hover) {
-    .collapsible-header:hover {
-      filter: brightness(1.08);
-    }
-  }
-
-  /* Active state - immediate touch feedback */
-  .collapsible-header:active {
-    transform: scale(0.99);
-    filter: brightness(0.95);
-  }
-
-  /* Dark mode gradient */
-  @media (prefers-color-scheme: dark) {
-    .collapsible-header {
-      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-      color: #0c0a09;
-    }
+  .collapsible-header:hover {
+    background: var(--color-bg-secondary);
   }
 
   .collapsible-title {
     display: flex;
     align-items: center;
     gap: var(--space-3);
-    font-weight: 600;
-    font-size: 1rem;
-    color: white;
   }
 
   .collapsible-icon {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1;
   }
 
   .chevron {
-    width: 20px;
-    height: 20px;
-    color: white;
-    opacity: 0.9;
+    width: 18px;
+    height: 18px;
+    color: var(--color-muted);
     transition: transform var(--duration-normal) ease;
     flex-shrink: 0;
   }
@@ -105,63 +96,7 @@ const { title, icon = '', defaultOpen = false, id } = Astro.props;
     transform: rotate(180deg);
   }
 
-  /* Dark mode chevron */
-  @media (prefers-color-scheme: dark) {
-    .chevron {
-      color: #0c0a09;
-    }
-    
-    .collapsible-title {
-      color: #0c0a09;
-    }
-  }
-
   .collapsible-content {
-    animation: slideDown var(--duration-normal) ease-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Remove default marker */
-  summary {
-    list-style: none;
-  }
-
-  summary::-webkit-details-marker {
-    display: none;
-  }
-
-  summary::marker {
-    display: none;
+    border-top: 1px solid var(--color-border-light);
   }
 </style>
-
-<script define:vars={{ id, defaultOpen }}>
-  // Persist open/closed state in localStorage
-  const storageKey = `collapsible-${id}`;
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const details = document.getElementById(id);
-    if (!details) return;
-    
-    // Restore state from localStorage
-    const savedState = localStorage.getItem(storageKey);
-    if (savedState !== null) {
-      details.open = savedState === 'true';
-    }
-    
-    // Save state on toggle
-    details.addEventListener('toggle', () => {
-      localStorage.setItem(storageKey, details.open.toString());
-    });
-  });
-</script>

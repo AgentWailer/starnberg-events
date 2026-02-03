@@ -33,189 +33,186 @@ const events = eventsData.events.sort((a, b) => {
 const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 ---
 
-<Layout title="Events Oberbayern - Veranstaltungen für Familien">
+<Layout title="Starnberg Events — Was ist los in Pöcking?">
   <Header lastUpdated={eventsData.lastUpdated} />
   
   <main class="main">
     <div class="container">
-      <!-- Weather Widget (compact, spans full width) -->
-      <section class="section-weather">
+      <!-- Weather Strip -->
+      <section class="section section-weather">
         <WeatherWidget />
       </section>
 
-      <!-- Local Info Section: Collapsible -->
-      <section class="section-local">
-        <div class="local-grid">
-          <CollapsibleSection id="transport" title="Anreise & Verbindungen" icon="🚆">
-            <div class="collapsible-inner">
+      <!-- Filter Component -->
+      <FilterBar events={events} regions={regions} />
+
+      <!-- Events List -->
+      <section class="section section-events">
+        <div class="events-header">
+          <h2 class="events-title">Kommende Events</h2>
+          <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+        </div>
+        
+        <div class="events-list">
+          {events.map(event => (
+            <EventCard event={event} regions={regions} />
+          ))}
+        </div>
+      </section>
+
+      <!-- Local Info (Collapsed) -->
+      <section class="section section-info">
+        <h2 class="section-title">Praktische Infos</h2>
+        <div class="info-grid">
+          <CollapsibleSection id="transport" title="Anreise" icon="🚆">
+            <div class="info-inner">
               <TrainInfo station="Possenhofen" stationCode="MPH" />
               <FerryInfo />
             </div>
           </CollapsibleSection>
           
-          <CollapsibleSection id="local-info" title="Vor Ort" icon="📍">
-            <div class="collapsible-inner">
+          <CollapsibleSection id="local" title="Vor Ort" icon="📍">
+            <div class="info-inner">
               <MarketInfo />
               <WebcamWidget />
             </div>
           </CollapsibleSection>
         </div>
       </section>
-      
-      <!-- Filter Component (handles mobile FAB + bottom sheet + desktop sidebar) -->
-      <FilterBar events={events} regions={regions} />
-      
-      <!-- Main Content Area -->
-      <div class="main-content">
-        <div class="events-list">
-          {events.map(event => (
-            <EventCard event={event} regions={regions} />
-          ))}
-        </div>
-      </div>
-      
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-          <p class="footer-stats">
-            <strong>{events.length}</strong> Events aus <strong>{sources.length}</strong> Quellen
-          </p>
-          <div class="footer-sources">
-            Daten von
-            <a href="https://www.beccult.de" target="_blank">beccult</a>,
-            <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>,
-            <a href="https://www.muenchen.de" target="_blank">muenchen.de</a>,
-            <a href="https://www.olympiapark.de" target="_blank">olympiapark.de</a>
-            & mehr
-          </div>
-          <p class="footer-credit">Made with ❤️ für Oberbayern</p>
-        </div>
-      </footer>
     </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        {events.length} Events aus {sources.length} Quellen ·
+        <span class="footer-links">
+          <a href="https://www.beccult.de" target="_blank">beccult</a>,
+          <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>,
+          <a href="https://www.muenchen.de" target="_blank">muenchen.de</a>
+        </span>
+      </p>
+    </div>
+  </footer>
 </Layout>
 
 <style>
   .main {
-    padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: var(--space-16);
   }
 
+  .section {
+    margin-bottom: var(--space-10);
+  }
+
+  @media (min-width: 640px) {
+    .section {
+      margin-bottom: var(--space-12);
+    }
+  }
+
+  /* Weather */
   .section-weather {
-    margin-bottom: 16px;
+    margin-top: calc(-1 * var(--space-6));
+    position: relative;
+    z-index: 10;
   }
 
-  .section-local {
-    margin-bottom: 24px;
-  }
-
-  .local-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  :global(.collapsible-inner) {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px;
-    background: var(--color-bg);
-  }
-
-  @media (min-width: 768px) {
-    .local-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-  }
-
-  /* Desktop: sidebar + content layout */
-  @media (min-width: 1024px) {
-    .container {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 24px;
-      grid-template-rows: auto auto 1fr auto;
-    }
-    
+  @media (min-width: 640px) {
     .section-weather {
-      grid-column: 1 / -1;
+      margin-top: calc(-1 * var(--space-8));
     }
-    
-    .section-local {
-      grid-column: 1 / -1;
-    }
-    
-    /* FilterBar's .desktop-only sidebar */
-    .container > :global(.filter-container) {
-      position: sticky;
-      top: 20px;
-      align-self: start;
-    }
-    
-    .main-content {
-      grid-column: 2;
-      grid-row: 2 / 4;
-    }
-    
-    .footer {
-      grid-column: 1 / -1;
-    }
+  }
+
+  /* Events */
+  .events-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .events-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .events-count {
+    font-size: 0.875rem;
+    color: var(--color-muted);
   }
 
   .events-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-4);
   }
 
   @media (min-width: 640px) {
     .events-list {
-      gap: 16px;
+      gap: var(--space-5);
     }
   }
 
+  /* Info Section */
+  .section-info {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .info-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .info-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+  }
+
+  :global(.info-inner) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-bg);
+  }
+
+  /* Footer */
   .footer {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--color-border);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-border-light);
+    background: var(--color-bg-secondary);
+  }
+
+  .footer-text {
+    font-size: 0.8125rem;
+    color: var(--color-muted);
     text-align: center;
   }
 
-  .footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .footer-stats {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-  }
-
-  .footer-stats strong {
-    color: var(--color-primary);
-  }
-
-  .footer-sources {
-    font-size: 0.75rem;
+  .footer-links a {
     color: var(--color-muted);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--duration-fast) ease;
   }
 
-  .footer-sources a {
-    color: var(--color-muted);
-    margin: 0 2px;
-  }
-
-  .footer-sources a:hover {
-    color: var(--color-primary);
-  }
-
-  .footer-credit {
-    font-size: 0.8rem;
-    color: var(--color-muted);
-    margin-top: 8px;
+  .footer-links a:hover {
+    text-decoration-color: var(--color-muted);
   }
 </style>

@@ -22,15 +22,15 @@ const { event, regions = {} } = Astro.props;
 const date = new Date(event.date);
 const day = date.getDate();
 const monthShort = date.toLocaleDateString('de-DE', { month: 'short' });
+const weekday = date.toLocaleDateString('de-DE', { weekday: 'short' });
 
-const categoryConfig = {
-  kinder: { label: 'Kinder' },
-  familie: { label: 'Familie' },
-  erwachsene: { label: 'Erwachsene' }
+const categoryLabels: Record<string, string> = {
+  kinder: 'Kinder',
+  familie: 'Familie',
+  erwachsene: 'Erwachsene'
 };
 
-const cat = categoryConfig[event.category as keyof typeof categoryConfig] || categoryConfig.familie;
-const dateStr = `${day}. ${monthShort}`;
+const catLabel = categoryLabels[event.category] || 'Familie';
 ---
 
 <article 
@@ -40,11 +40,21 @@ const dateStr = `${day}. ${monthShort}`;
   data-location={event.location}
 >
   <a href={event.url || '#'} target={event.url ? "_blank" : undefined} rel="noopener" class="card-link">
-    <div class="accent-bar" data-cat={event.category}></div>
+    <div class="card-date">
+      <span class="date-day">{day}</span>
+      <span class="date-month">{monthShort}</span>
+    </div>
     
-    <div class="card-content">
-      <div class="card-meta">
-        <span class="location">
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-category" data-cat={event.category}>{catLabel}</span>
+        {event.time && <span class="card-time">{event.time} Uhr</span>}
+      </div>
+      
+      <h3 class="card-title">{event.title}</h3>
+      
+      <div class="card-footer">
+        <span class="card-location">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
             <circle cx="12" cy="10" r="3"></circle>
@@ -52,47 +62,11 @@ const dateStr = `${day}. ${monthShort}`;
           {event.location}
         </span>
       </div>
-      
-      <h3 class="title">{event.title}</h3>
-      
-      <div class="card-info">
-        <span class="date">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-            <line x1="16" y1="2" x2="16" y2="6"></line>
-            <line x1="8" y1="2" x2="8" y2="6"></line>
-            <line x1="3" y1="10" x2="21" y2="10"></line>
-          </svg>
-          {dateStr}{event.time && ` · ${event.time}`}
-        </span>
-        <span class="category">
-          {event.category === 'kinder' && (
-            <!-- Baby/Child icon -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 12h.01M15 12h.01M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path>
-              <circle cx="12" cy="12" r="10"></circle>
-            </svg>
-          )}
-          {event.category === 'familie' && (
-            <!-- Family/Users icon -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          )}
-          {event.category === 'erwachsene' && (
-            <!-- Ticket/Theater icon -->
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M2 12a5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0 5 5 5 5 0 0 0 5-5V4H2v8z"></path>
-              <path d="M2 12v8h20v-8"></path>
-            </svg>
-          )}
-          {cat.label}
-        </span>
-      </div>
     </div>
+
+    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+    </svg>
   </a>
 </article>
 
@@ -101,126 +75,183 @@ const dateStr = `${day}. ${monthShort}`;
     background: var(--color-card);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: transform var(--duration-normal) ease, 
-                box-shadow var(--duration-normal) ease;
+    transition: 
+      transform var(--duration-normal) ease,
+      box-shadow var(--duration-normal) ease;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--color-border-light);
-    /* CLS Prevention: consistent minimum height */
-    min-height: 100px;
   }
 
-  /* Hover state - only on devices that support hover */
   @media (hover: hover) {
     .event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--color-border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .event-card:hover .card-arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .event-card:hover .card-title {
+      color: var(--color-primary);
     }
   }
 
-  /* Active state - immediate touch feedback */
   .event-card:active {
-    transform: scale(0.98);
-    box-shadow: var(--shadow-sm);
+    transform: scale(0.99);
   }
 
   .card-link {
-    display: block;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-4);
+    padding: var(--space-5);
     color: inherit;
     text-decoration: none;
-    /* Ensure entire card is touch target - minimum 44px height already met by card */
+    align-items: start;
     min-height: var(--touch-target-min);
   }
 
-  .accent-bar {
-    height: 4px;
-    background: var(--color-border);
-    transition: height var(--duration-fast) ease;
-  }
-
-  .event-card:hover .accent-bar {
-    height: 5px;
-  }
-
-  .accent-bar[data-cat="kinder"] {
-    background: linear-gradient(90deg, var(--color-kinder), #fbbf24);
-  }
-
-  .accent-bar[data-cat="familie"] {
-    background: linear-gradient(90deg, var(--color-familie), #34d399);
-  }
-
-  .accent-bar[data-cat="erwachsene"] {
-    background: linear-gradient(90deg, var(--color-erwachsene), #a78bfa);
-  }
-
-  .card-content {
-    padding: var(--space-4);
-  }
-
   @media (min-width: 640px) {
-    .card-content {
-      padding: var(--space-5);
+    .card-link {
+      padding: var(--space-6);
+      gap: var(--space-5);
     }
   }
 
-  .card-meta {
+  /* Date Column */
+  .card-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+
+  .date-day {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .date-month {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    margin-top: 2px;
+  }
+
+  /* Body Column */
+  .card-body {
+    min-width: 0;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+
+  .card-category {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-secondary);
+    color: var(--color-muted);
+  }
+
+  .card-category[data-cat="kinder"] {
+    background: color-mix(in srgb, var(--color-kinder) 12%, transparent);
+    color: var(--color-kinder);
+  }
+
+  .card-category[data-cat="familie"] {
+    background: color-mix(in srgb, var(--color-familie) 12%, transparent);
+    color: var(--color-familie);
+  }
+
+  .card-category[data-cat="erwachsene"] {
+    background: color-mix(in srgb, var(--color-erwachsene) 12%, transparent);
+    color: var(--color-erwachsene);
+  }
+
+  .card-time {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-text);
     margin-bottom: var(--space-3);
+    transition: color var(--duration-fast) ease;
+    /* Clamp to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .card-title {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+  }
+
+  .card-location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 0.8125rem;
+    color: var(--color-muted);
   }
 
   .icon {
     width: 14px;
     height: 14px;
     flex-shrink: 0;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
-  .location {
-    font-size: 0.8125rem;
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  .title {
-    /* Mobile: minimum 16px for readability */
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    line-height: 1.4;
-    margin-bottom: var(--space-3);
-    letter-spacing: -0.01em;
-  }
-
-  @media (min-width: 640px) {
-    .title {
-      font-size: 1.0625rem;
-    }
-  }
-
-  .card-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8125rem;
+  /* Arrow */
+  .card-arrow {
+    width: 20px;
+    height: 20px;
     color: var(--color-muted);
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--color-border-light);
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: 
+      opacity var(--duration-normal) ease,
+      transform var(--duration-normal) ease;
+    align-self: center;
+    flex-shrink: 0;
   }
 
-  .date, .category {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-weight: 500;
-  }
-  
-  .category {
-    padding: var(--space-1) var(--space-2);
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+  /* Mobile: Always show arrow */
+  @media (hover: none) {
+    .card-arrow {
+      opacity: 0.4;
+      transform: none;
+    }
   }
 </style>

@@ -1,105 +1,130 @@
 ---
 interface Props {
-  lastUpdated: string;
+  lastUpdated?: string;
 }
 
 const { lastUpdated } = Astro.props;
 ---
 
 <header class="header">
-  <div class="header-content">
-    <div class="header-badge">
-      <span class="badge-icon">📍</span>
-      <span class="badge-text">Starnberger See & Umgebung</span>
-    </div>
-    <h1>Was ist los in <span class="highlight">Pöcking</span>?</h1>
-    <p class="subtitle">Veranstaltungen, Events & Tipps für Familien in Oberbayern</p>
+  <div class="header-inner">
+    <p class="location">Starnberger See</p>
+    <h1 class="title">
+      Was ist los<br/>
+      <span class="title-accent">in Pöcking?</span>
+    </h1>
+    <p class="tagline">Events & Veranstaltungen für die ganze Familie</p>
   </div>
-  <div class="header-decoration"></div>
+  <div class="header-visual" aria-hidden="true"></div>
 </header>
 
 <style>
   .header {
     position: relative;
-    padding: var(--space-12) var(--space-4) var(--space-8);
-    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+    padding: var(--space-16) var(--space-5) var(--space-12);
+    background: linear-gradient(
+      165deg,
+      var(--color-bg) 0%,
+      var(--color-bg-secondary) 50%,
+      color-mix(in srgb, var(--color-primary) 5%, var(--color-bg-secondary)) 100%
+    );
     overflow: hidden;
   }
 
   @media (min-width: 640px) {
     .header {
-      padding: var(--space-16) var(--space-6) var(--space-10);
+      padding: var(--space-20) var(--space-8) var(--space-16);
     }
   }
 
-  .header-content {
-    max-width: 1000px;
+  .header-inner {
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
   }
 
-  .header-badge {
-    display: inline-flex;
+  .location {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    display: flex;
     align-items: center;
     gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    background: var(--color-card);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm);
-    margin-bottom: var(--space-5);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
   }
 
-  .badge-icon {
-    font-size: 1rem;
+  .location::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 1px;
   }
 
-  h1 {
-    font-size: clamp(1.75rem, 6vw, 3rem);
+  .title {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
     color: var(--color-text);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
   }
 
-  .highlight {
-    color: var(--color-accent);
-    position: relative;
+  .title-accent {
+    color: var(--color-primary);
   }
 
-  .subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
+  .tagline {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
     color: var(--color-text-secondary);
-    max-width: 500px;
+    max-width: 400px;
     line-height: 1.5;
   }
 
-  /* Decorative Background Element */
-  .header-decoration {
+  /* Decorative visual element */
+  .header-visual {
     position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 60%;
-    height: 200%;
-    background: radial-gradient(ellipse at center, 
-      rgba(232, 93, 4, 0.06) 0%, 
-      transparent 70%);
+    top: 0;
+    right: -10%;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at 70% 30%,
+      color-mix(in srgb, var(--color-primary) 8%, transparent) 0%,
+      transparent 60%
+    );
     pointer-events: none;
   }
 
+  @media (min-width: 768px) {
+    .header-visual {
+      right: 0;
+      width: 40%;
+    }
+  }
+
+  /* Dark mode adjustments */
   @media (prefers-color-scheme: dark) {
     .header {
-      background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+      background: linear-gradient(
+        165deg,
+        var(--color-bg) 0%,
+        var(--color-bg-secondary) 50%,
+        color-mix(in srgb, var(--color-primary) 8%, var(--color-bg-secondary)) 100%
+      );
     }
-    
-    .header-decoration {
-      background: radial-gradient(ellipse at center, 
-        rgba(255, 133, 52, 0.08) 0%, 
-        transparent 70%);
+
+    .header-visual {
+      background: radial-gradient(
+        ellipse at 70% 30%,
+        color-mix(in srgb, var(--color-primary) 12%, transparent) 0%,
+        transparent 60%
+      );
     }
   }
 </style>

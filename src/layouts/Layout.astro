@@ -4,7 +4,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Veranstaltungen für Familien in Oberbayern" } = Astro.props;
+const { title, description = "Events & Veranstaltungen am Starnberger See" } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +16,7 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
   <body>
@@ -26,58 +26,56 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
 
 <style is:global>
   :root {
-    /* === Light Mode (Default) - Warm & Einladend === */
+    /* === ALPENSEE Color Palette === */
     
-    /* Primary - Tiefes Blau mit Charakter */
-    --color-primary: #1e3a5f;
-    --color-primary-light: #2d5a87;
+    /* Primary - Der See (Deep Teal-Blue) */
+    --color-primary: #0d4a5c;
+    --color-primary-light: #1a6a82;
+    --color-primary-dark: #0a3a48;
     
-    /* Accent - Warmes Koralle/Orange */
-    --color-accent: #e85d04;
-    --color-accent-light: #ff8534;
+    /* Accent - Dezentes Gold */
+    --color-accent: #c9a962;
+    --color-accent-light: #d4be8a;
     
-    /* Kategorien - Lebendig & Unterscheidbar */
-    --color-kinder: #f59e0b;
+    /* Kategorien - Gedämpft, nicht schrill */
+    --color-kinder: #d97706;
     --color-familie: #059669;
     --color-erwachsene: #7c3aed;
     
-    /* Backgrounds - Warm Whites */
-    --color-bg: #fafaf9;
-    --color-bg-secondary: #f5f5f4;
+    /* Backgrounds - Warme Töne */
+    --color-bg: #faf8f6;
+    --color-bg-secondary: #f3f0ed;
     --color-card: #ffffff;
     
-    /* Text - Warm Neutrals */
-    --color-text: #1c1917;
-    --color-text-secondary: #57534e;
-    --color-muted: #a8a29e;
-    --color-border: #e7e5e4;
-    --color-border-light: #f5f5f4;
+    /* Text - Warme Neutrals */
+    --color-text: #2d2a26;
+    --color-text-secondary: #5c5650;
+    --color-muted: #a8a095;
+    --color-border: #e8e4e0;
+    --color-border-light: #f3f0ed;
     
-    /* Elegante, mehrschichtige Schatten */
-    --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
-    --shadow-md: 0 4px 6px -1px rgba(28, 25, 23, 0.07), 
-                 0 2px 4px -2px rgba(28, 25, 23, 0.05);
-    --shadow-lg: 0 10px 15px -3px rgba(28, 25, 23, 0.08), 
-                 0 4px 6px -4px rgba(28, 25, 23, 0.04);
-    --shadow-xl: 0 20px 25px -5px rgba(28, 25, 23, 0.1), 
-                 0 8px 10px -6px rgba(28, 25, 23, 0.05);
+    /* Schatten - Weich und subtil */
+    --shadow-sm: 0 1px 2px rgba(45, 42, 38, 0.04);
+    --shadow-md: 0 4px 12px rgba(45, 42, 38, 0.06);
+    --shadow-lg: 0 12px 24px rgba(45, 42, 38, 0.08);
+    --shadow-xl: 0 24px 48px rgba(45, 42, 38, 0.1);
     
-    /* Soft Border Radii */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 24px;
+    /* Border Radii - Soft */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
     --radius-full: 9999px;
 
-    /* Touch target minimum (44px per Apple HIG, 48px per Material) */
+    /* Touch targets */
     --touch-target-min: 44px;
     
-    /* Animation durations - Smooth & Polished */
-    --duration-fast: 150ms;
-    --duration-normal: 250ms;
-    --duration-slow: 350ms;
+    /* Animation */
+    --duration-fast: 120ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
     
-    /* Spacing Scale (8px base) */
+    /* Spacing Scale */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 0.75rem;
@@ -88,36 +86,38 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
     --space-10: 2.5rem;
     --space-12: 3rem;
     --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
   }
 
-  /* === Dark Mode - Elegant & Modern === */
+  /* === Dark Mode - Elegant & Warm === */
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-primary: #f5f5f4;
-      --color-primary-light: #e7e5e4;
-      --color-accent: #ff8534;
-      --color-accent-light: #ffa654;
+      --color-primary: #4db6d1;
+      --color-primary-light: #6bc9e0;
+      --color-primary-dark: #3a9ab3;
+      
+      --color-accent: #d4be8a;
+      --color-accent-light: #e0cfa0;
+      
       --color-kinder: #fbbf24;
       --color-familie: #34d399;
       --color-erwachsene: #a78bfa;
       
-      --color-bg: #0c0a09;
-      --color-bg-secondary: #1c1917;
-      --color-card: #1c1917;
+      --color-bg: #1a1816;
+      --color-bg-secondary: #252220;
+      --color-card: #2d2a26;
       
-      --color-text: #fafaf9;
-      --color-text-secondary: #a8a29e;
-      --color-muted: #78716c;
-      --color-border: #292524;
-      --color-border-light: #1c1917;
+      --color-text: #faf8f6;
+      --color-text-secondary: #c4beb5;
+      --color-muted: #7a756d;
+      --color-border: #3d3a36;
+      --color-border-light: #2d2a26;
       
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
-                   0 2px 4px -2px rgba(0, 0, 0, 0.2);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 
-                   0 4px 6px -4px rgba(0, 0, 0, 0.2);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 
-                   0 8px 10px -6px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
+      --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.35);
     }
   }
 
@@ -144,31 +144,40 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
   }
 
   body {
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     background: var(--color-bg);
     color: var(--color-text);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
-    /* Prevent text size adjustment on orientation change */
     -webkit-text-size-adjust: 100%;
-    font-feature-settings: "kern" 1, "liga" 1;
   }
 
-  /* Typography Hierarchy */
+  /* === Typography - Space Grotesk for Headlines === */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
   }
 
   h1 {
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
   }
 
   h2 {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  h3 {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+  }
+
+  p {
+    max-width: 65ch;
   }
 
   a {
@@ -178,11 +187,10 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
   }
 
   a:hover {
-    color: var(--color-accent);
+    color: var(--color-primary-light);
   }
 
-  /* === Touch Feedback: Active States === */
-  /* Apply to all interactive elements for immediate touch feedback */
+  /* === Touch Feedback === */
   button,
   a,
   [role="button"],
@@ -196,41 +204,39 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
   button:active,
   [role="button"]:active,
   summary:active {
-    transform: scale(0.97);
-    opacity: 0.9;
+    transform: scale(0.98);
   }
 
-  /* Utility classes */
+  /* Container - Generous */
   .container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 var(--space-5);
   }
 
   @media (min-width: 640px) {
     .container {
-      padding: 0 24px;
+      padding: 0 var(--space-8);
     }
   }
 
-  /* Focus states for accessibility - visible ring */
+  /* Focus states */
   button:focus-visible,
   a:focus-visible,
   input:focus-visible,
   select:focus-visible,
   summary:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 
-  /* Remove default focus outline when not using keyboard */
   :focus:not(:focus-visible) {
     outline: none;
   }
 
-  /* Hide scrollbar but keep functionality */
+  /* Hide scrollbar utility */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -239,14 +245,10 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
     display: none;
   }
 
-  /* === Skeleton Loading Animation === */
+  /* Skeleton Loading */
   @keyframes skeleton-shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
   }
 
   .skeleton {
@@ -261,11 +263,23 @@ const { title, description = "Veranstaltungen für Familien in Oberbayern" } = A
     border-radius: var(--radius-sm);
   }
 
-  /* Skeleton respects reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .skeleton {
       animation: none;
       background: var(--color-border-light);
     }
+  }
+
+  /* Utility: Visually hidden but accessible */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>

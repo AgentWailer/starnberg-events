@@ -1,68 +1,39 @@
 ---
-// Webcam links for Starnberger See
-// BYC is the only reliably available one
-
-interface Webcam {
-  name: string;
-  location: string;
-  url: string;
-  status: 'online' | 'offline' | 'unknown';
-  hasWeather?: boolean;
-}
-
-const webcams: Webcam[] = [
-  {
-    name: "BYC Starnberg",
-    location: "Yachthafen Starnberg",
-    url: "https://www.byc.de/webcams-wetter/",
-    status: "online",
-    hasWeather: true
+// Webcam links widget
+const webcams = [
+  { 
+    name: 'BYC Starnberg', 
+    location: 'Yachthafen', 
+    url: 'https://www.byc.de/webcams-wetter/',
+    online: true
   },
-  {
-    name: "DTYC Tutzing",
-    location: "Seestraße, Tutzing",
-    url: "https://www.dtyc.de/webcam",
-    status: "offline"
-  }
+  { 
+    name: 'DTYC Tutzing', 
+    location: 'Seestraße', 
+    url: 'https://www.dtyc.de/webcam',
+    online: false
+  },
 ];
 
-const onlineWebcams = webcams.filter(w => w.status === 'online');
+const onlineCount = webcams.filter(w => w.online).length;
 ---
 
 <div class="webcam-widget">
   <div class="webcam-header">
-    <div class="webcam-title">
-      <span class="webcam-icon">📹</span>
-      <span>Webcams</span>
-    </div>
-    <span class="webcam-count">{onlineWebcams.length} online</span>
+    <span class="webcam-icon">📹</span>
+    <span class="webcam-title">Webcams</span>
+    <span class="webcam-count">{onlineCount} live</span>
   </div>
-  
   <div class="webcam-body">
     {webcams.map(cam => (
-      <a href={cam.url} target="_blank" class={`webcam-item ${cam.status}`}>
+      <a href={cam.url} target="_blank" class:list={['webcam-item', { offline: !cam.online }]}>
         <div class="webcam-info">
           <span class="webcam-name">{cam.name}</span>
           <span class="webcam-location">{cam.location}</span>
         </div>
-        <div class="webcam-status">
-          {cam.status === 'online' ? (
-            <span class="status-badge online">
-              <span class="status-dot"></span>
-              Live
-            </span>
-          ) : (
-            <span class="status-badge offline">Offline</span>
-          )}
-          {cam.hasWeather && (
-            <span class="weather-badge">+ Wetter</span>
-          )}
-        </div>
-        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
+        <span class:list={['webcam-status', { online: cam.online }]}>
+          {cam.online ? '● Live' : 'Offline'}
+        </span>
       </a>
     ))}
   </div>
@@ -71,31 +42,20 @@ const onlineWebcams = webcams.filter(w => w.status === 'online');
 <style>
   .webcam-widget {
     background: var(--color-card);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--color-border-light);
-    transition: all 0.2s ease;
-  }
-
-  .webcam-widget:hover {
-    box-shadow: var(--shadow-md);
   }
 
   .webcam-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-    color: white;
-  }
-
-  .webcam-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-secondary);
+    border-bottom: 1px solid var(--color-border-light);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
   }
 
   .webcam-icon {
@@ -103,11 +63,12 @@ const onlineWebcams = webcams.filter(w => w.status === 'online');
   }
 
   .webcam-count {
-    font-size: 0.75rem;
-    opacity: 0.9;
-    background: rgba(255,255,255,0.2);
-    padding: 3px 10px;
-    border-radius: var(--radius-full);
+    margin-left: auto;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-muted);
   }
 
   .webcam-body {
@@ -117,12 +78,13 @@ const onlineWebcams = webcams.filter(w => w.status === 'online');
 
   .webcam-item {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border-light);
+    color: inherit;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background var(--duration-fast) ease;
   }
 
   .webcam-item:last-child {
@@ -134,83 +96,33 @@ const onlineWebcams = webcams.filter(w => w.status === 'online');
   }
 
   .webcam-item.offline {
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .webcam-info {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
 
   .webcam-name {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 500;
+    font-size: 0.8125rem;
     color: var(--color-text);
   }
 
   .webcam-location {
-    font-size: 0.75rem;
-    color: var(--color-text-secondary);
+    font-size: 0.6875rem;
+    color: var(--color-muted);
   }
 
   .webcam-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .status-badge {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    border-radius: var(--radius-full);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  .status-badge.online {
-    background: #dcfce7;
-    color: #166534;
-  }
-
-  .status-badge.offline {
-    background: var(--color-bg);
+    font-size: 0.6875rem;
+    font-weight: 500;
     color: var(--color-muted);
   }
 
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    background: #22c55e;
-    border-radius: 50%;
-    animation: blink 2s ease-in-out infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  .weather-badge {
-    font-size: 0.65rem;
-    color: var(--color-text-secondary);
-    background: var(--color-bg);
-    padding: 2px 6px;
-    border-radius: var(--radius-full);
-  }
-
-  .link-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--color-muted);
-    flex-shrink: 0;
-  }
-
-  .webcam-item:hover .link-icon {
-    color: var(--color-primary);
+  .webcam-status.online {
+    color: #16a34a;
   }
 </style>
