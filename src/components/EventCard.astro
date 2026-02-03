@@ -4,17 +4,24 @@ interface Props {
     id: number;
     title: string;
     date: string;
-    time: string;
+    time?: string;
     location: string;
-    address: string;
-    description: string;
-    category: 'kinder' | 'familie' | 'erwachsene';
-    tags: string[];
-    url: string;
+    description?: string;
+    category: string;
+    tags?: string[];
+    url?: string;
+    source?: string;
+    region?: string;
+    isHighlight?: boolean;
   };
+  regions?: Record<string, { name: string; emoji: string }>;
 }
 
-const { event } = Astro.props;
+const { event, regions = {} } = Astro.props;
+
+const date = new Date(event.date);
+const day = date.getDate();
+const month = date.toLocaleDateString('de-DE', { month: 'short' });
 
 const categoryEmoji = {
   kinder: '👶',
@@ -28,180 +35,268 @@ const categoryLabel = {
   erwachsene: 'Erwachsene'
 };
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('de-DE', { 
-    weekday: 'short', 
-    day: 'numeric', 
-    month: 'short' 
-  });
-}
+const sourceLabels: Record<string, string> = {
+  'beccult': 'beccult',
+  'starnbergammersee': 'StarnbergAmmersee',
+  'muenchen': 'münchen.de',
+  'olympiapark': 'Olympiapark',
+  'hellabrunn': 'Hellabrunn',
+  'deutsches-museum': 'Dt. Museum',
+  'tegernsee': 'Tegernsee',
+  'gapa': 'Garmisch'
+};
+
+const regionInfo = event.region && regions[event.region];
 ---
 
-<article class="event-card" data-category={event.category}>
-  <div class="event-date">
-    <span class="day">{new Date(event.date).getDate()}</span>
-    <span class="month">{new Date(event.date).toLocaleDateString('de-DE', { month: 'short' })}</span>
+<article 
+  class="event-card" 
+  class:list={[{ highlight: event.isHighlight }]}
+  data-category={event.category}
+  data-region={event.region}
+  data-location={event.location}
+  data-source={event.source}
+>
+  <div class="date-badge">
+    <span class="day">{day}</span>
+    <span class="month">{month}</span>
   </div>
   
   <div class="event-content">
-    <div class="event-header">
-      <span class={`category-badge ${event.category}`}>
-        {categoryEmoji[event.category]} {categoryLabel[event.category]}
+    <div class="event-meta">
+      <span class="category-tag" data-category={event.category}>
+        {categoryEmoji[event.category as keyof typeof categoryEmoji]} {categoryLabel[event.category as keyof typeof categoryLabel]}
       </span>
-      <span class="event-time">🕐 {event.time} Uhr</span>
+      {event.time && <span class="time">🕐 {event.time} Uhr</span>}
+      {event.isHighlight && <span class="highlight-badge">⭐ Highlight</span>}
     </div>
     
     <h3 class="event-title">
-      <a href={event.url} target="_blank" rel="noopener">{event.title}</a>
+      {event.url ? (
+        <a href={event.url} target="_blank" rel="noopener">{event.title}</a>
+      ) : (
+        event.title
+      )}
     </h3>
     
-    <p class="event-location">📍 {event.location}</p>
+    <p class="event-location">
+      📍 {event.location}
+      {regionInfo && event.location !== regionInfo.name && (
+        <span class="region-info"> · {regionInfo.emoji} {regionInfo.name}</span>
+      )}
+    </p>
     
-    {event.description && (
-      <p class="event-description">{event.description}</p>
-    )}
+    {event.description && <p class="event-description">{event.description}</p>}
     
-    {event.tags.length > 0 && (
-      <div class="event-tags">
-        {event.tags.map(tag => (
-          <span class="tag">#{tag}</span>
-        ))}
-      </div>
-    )}
+    <div class="event-footer">
+      {event.tags && event.tags.length > 0 && (
+        <div class="tags">
+          {event.tags.map(tag => (
+            <span class="tag">#{tag}</span>
+          ))}
+        </div>
+      )}
+      {event.source && (
+        <span class="source-badge" data-source={event.source}>
+          {sourceLabels[event.source] || event.source}
+        </span>
+      )}
+    </div>
   </div>
 </article>
 
 <style>
   .event-card {
     display: flex;
-    gap: 1rem;
-    background: var(--color-card);
+    gap: 16px;
+    background: #fff;
     border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e5e5e5;
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
   .event-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   }
 
-  .event-date {
+  .event-card.highlight {
+    border-color: #ffc107;
+    background: linear-gradient(135deg, #fffef5 0%, #fff 100%);
+  }
+
+  .date-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 64px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 60px;
-    padding: 0.5rem;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    border-radius: 8px;
-    color: white;
+    color: #fff;
   }
 
-  .event-date .day {
+  .date-badge .day {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
   }
 
-  .event-date .month {
+  .date-badge .month {
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    opacity: 0.9;
   }
 
   .event-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    min-width: 0;
   }
 
-  .event-header {
+  .event-meta {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
     flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
   }
 
-  .category-badge {
+  .category-tag {
     font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 20px;
-    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #f0f0f0;
   }
 
-  .category-badge.kinder {
-    background: rgba(245, 158, 11, 0.15);
-    color: #b45309;
+  .category-tag[data-category="kinder"] {
+    background: #e3f2fd;
+    color: #1565c0;
   }
 
-  .category-badge.familie {
-    background: rgba(16, 185, 129, 0.15);
-    color: #047857;
+  .category-tag[data-category="familie"] {
+    background: #e8f5e9;
+    color: #2e7d32;
   }
 
-  .category-badge.erwachsene {
-    background: rgba(139, 92, 246, 0.15);
-    color: #6d28d9;
+  .category-tag[data-category="erwachsene"] {
+    background: #fce4ec;
+    color: #c2185b;
   }
 
-  .event-time {
-    font-size: 0.85rem;
-    color: var(--color-muted);
+  .time {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .highlight-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: #fff3cd;
+    color: #856404;
   }
 
   .event-title {
     font-size: 1.1rem;
     font-weight: 600;
+    margin: 0 0 6px;
     line-height: 1.3;
   }
 
   .event-title a {
     color: inherit;
+    text-decoration: none;
   }
 
   .event-title a:hover {
-    color: var(--color-primary);
+    color: #667eea;
   }
 
   .event-location {
-    font-size: 0.9rem;
-    color: var(--color-muted);
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 6px;
+  }
+
+  .region-info {
+    opacity: 0.7;
   }
 
   .event-description {
-    font-size: 0.9rem;
-    color: var(--color-text);
-    opacity: 0.8;
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0 0 8px;
+    line-height: 1.4;
   }
 
-  .event-tags {
+  .event-footer {
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    margin-top: 0.25rem;
+    gap: 8px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
   }
 
   .tag {
-    font-size: 0.75rem;
-    color: var(--color-muted);
-    background: var(--color-bg);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    color: #666;
   }
 
-  @media (max-width: 480px) {
+  .source-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: #e0e0e0;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .source-badge[data-source="beccult"] {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .source-badge[data-source="olympiapark"] {
+    background: #fff3e0;
+    color: #e65100;
+  }
+
+  .source-badge[data-source="tegernsee"],
+  .source-badge[data-source="gapa"] {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  @media (max-width: 500px) {
     .event-card {
       flex-direction: column;
+      gap: 12px;
     }
 
-    .event-date {
+    .date-badge {
+      width: 100%;
+      height: auto;
       flex-direction: row;
-      gap: 0.5rem;
-      width: fit-content;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .date-badge .day {
+      font-size: 1.2rem;
     }
   }
 </style>

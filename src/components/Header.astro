@@ -18,11 +18,18 @@ function formatDate(dateStr: string): string {
   <div class="header-content">
     <h1>
       <span class="emoji">🏔️</span>
-      Events StarnbergAmmersee
+      Events Oberbayern
     </h1>
     <p class="subtitle">
-      Veranstaltungen für Familien & Kinder in der Region
+      Veranstaltungen für Familien in München, Starnberg, Tegernsee & mehr
     </p>
+    <div class="region-tags">
+      <span class="region-tag">🏠 Pöcking</span>
+      <span class="region-tag">🏔️ Starnberg</span>
+      <span class="region-tag">🏙️ München</span>
+      <span class="region-tag">⛰️ Tegernsee</span>
+      <span class="region-tag">🎿 Werdenfels</span>
+    </div>
     <p class="updated">
       Aktualisiert: {formatDate(lastUpdated)}
     </p>
@@ -33,7 +40,7 @@ function formatDate(dateStr: string): string {
   .header {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     color: white;
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
     text-align: center;
   }
 
@@ -59,7 +66,23 @@ function formatDate(dateStr: string): string {
   .subtitle {
     font-size: 1.1rem;
     opacity: 0.9;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .region-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .region-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(4px);
   }
 
   .updated {
@@ -73,7 +96,12 @@ function formatDate(dateStr: string): string {
     }
 
     .subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .region-tag {
+      font-size: 0.7rem;
+      padding: 3px 8px;
     }
   }
 </style>

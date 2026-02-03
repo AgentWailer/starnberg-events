@@ -1,0 +1,85 @@
+{
+  "sources": [
+    {
+      "id": "beccult",
+      "name": "beccult Pöcking",
+      "url": "https://www.beccult.de/veranstaltungen",
+      "region": "poecking",
+      "type": "local",
+      "priority": 1,
+      "filter": "all"
+    },
+    {
+      "id": "starnbergammersee",
+      "name": "StarnbergAmmersee",
+      "url": "https://www.starnbergammersee.de/entdecken-erleben/veranstaltungskalender",
+      "region": "starnberg-ammersee",
+      "type": "regional",
+      "priority": 2,
+      "filter": "all"
+    },
+    {
+      "id": "muenchen",
+      "name": "muenchen.de",
+      "url": "https://www.muenchen.de/veranstaltungen/events",
+      "region": "muenchen",
+      "type": "official",
+      "priority": 3,
+      "filter": "all"
+    },
+    {
+      "id": "olympiapark",
+      "name": "Olympiapark",
+      "url": "https://www.olympiapark.de/de/veranstaltungen",
+      "region": "muenchen",
+      "type": "venue",
+      "priority": 3,
+      "filter": "all"
+    },
+    {
+      "id": "hellabrunn",
+      "name": "Tierpark Hellabrunn",
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "region": "muenchen",
+      "type": "family",
+      "priority": 4,
+      "filter": "family"
+    },
+    {
+      "id": "deutsches-museum",
+      "name": "Deutsches Museum",
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
+      "region": "muenchen",
+      "type": "family",
+      "priority": 4,
+      "filter": "family"
+    },
+    {
+      "id": "tegernsee",
+      "name": "Tegernsee",
+      "url": "https://www.tegernsee.com/veranstaltungen",
+      "region": "tegernsee",
+      "type": "highlights",
+      "priority": 5,
+      "filter": "highlights",
+      "highlightKeywords": ["festival", "montgolfiade", "seefest", "rosstag", "bergfilm", "musikfest", "advent"]
+    },
+    {
+      "id": "gapa",
+      "name": "Garmisch-Partenkirchen",
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "region": "werdenfels",
+      "type": "highlights",
+      "priority": 5,
+      "filter": "highlights",
+      "highlightKeywords": ["festival", "skisprung", "neujahr", "richard-strauss", "zugspitz"]
+    }
+  ],
+  "regions": {
+    "poecking": { "name": "Pöcking", "emoji": "🏠" },
+    "starnberg-ammersee": { "name": "Starnberg-Ammersee", "emoji": "🏔️" },
+    "muenchen": { "name": "München", "emoji": "🏙️" },
+    "tegernsee": { "name": "Tegernsee", "emoji": "⛰️" },
+    "werdenfels": { "name": "Werdenfelser Land", "emoji": "🎿" }
+  }
+}

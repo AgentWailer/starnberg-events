@@ -6,39 +6,63 @@ import FilterBar from '../components/FilterBar.astro';
 import EventCard from '../components/EventCard.astro';
 import eventsData from '../data/events.json';
 
-// Sort events by date
-const events = eventsData.events.sort((a, b) => 
-  a.date.localeCompare(b.date) || a.time.localeCompare(b.time)
-);
-
-// Count by category
-const counts = {
-  all: events.length,
-  kinder: events.filter(e => e.category === 'kinder').length,
-  familie: events.filter(e => e.category === 'familie').length,
-  erwachsene: events.filter(e => e.category === 'erwachsene').length,
+// Get regions from data or use defaults
+const regions = eventsData.regions || {
+  "poecking": { "name": "Pöcking", "emoji": "🏠" },
+  "starnberg-ammersee": { "name": "Starnberg-Ammersee", "emoji": "🏔️" },
+  "muenchen": { "name": "München", "emoji": "🏙️" },
+  "tegernsee": { "name": "Tegernsee", "emoji": "⛰️" },
+  "werdenfels": { "name": "Werdenfelser Land", "emoji": "🎿" }
 };
+
+// Sort events by date
+const events = eventsData.events.sort((a, b) => {
+  const dateCompare = a.date.localeCompare(b.date);
+  if (dateCompare !== 0) return dateCompare;
+  if (!a.time) return 1;
+  if (!b.time) return -1;
+  return a.time.localeCompare(b.time);
+});
+
+// Get unique sources for footer
+const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
+const sourceCount = sources.length;
 ---
 
-<Layout title="Events StarnbergAmmersee - Veranstaltungen für Familien">
+<Layout title="Events Oberbayern - Veranstaltungen für Familien">
   <Header lastUpdated={eventsData.lastUpdated} />
   
   <main class="main">
     <TrainInfo station="Possenhofen" stationCode="MPH" />
     
-    <FilterBar counts={counts} />
+    <FilterBar events={events} regions={regions} />
     
     <section class="events-grid">
       {events.map(event => (
-        <EventCard event={event} />
+        <EventCard event={event} regions={regions} />
       ))}
     </section>
     
     <footer class="footer">
-      <p>
-        Daten von <a href={eventsData.source} target="_blank" rel="noopener">starnbergammersee.de</a>
+      <p class="source-info">
+        📊 {events.length} Events aus {sourceCount} Quellen
       </p>
-      <p>Made with ❤️ für die Region</p>
+      <p class="sources-list">
+        {sources.length > 0 ? (
+          <>
+            Daten von: {' '}
+            {sources.includes('beccult') && <a href="https://www.beccult.de" target="_blank">beccult</a>}
+            {sources.includes('starnbergammersee') && <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>}
+            {sources.includes('muenchen') && <a href="https://www.muenchen.de" target="_blank">muenchen.de</a>}
+            {sources.includes('olympiapark') && <a href="https://www.olympiapark.de" target="_blank">olympiapark.de</a>}
+            {sources.includes('tegernsee') && <a href="https://www.tegernsee.com" target="_blank">tegernsee.com</a>}
+            {sources.includes('gapa') && <a href="https://www.gapa-tourismus.de" target="_blank">gapa.de</a>}
+          </>
+        ) : (
+          <a href="https://www.starnbergammersee.de" target="_blank">starnbergammersee.de</a>
+        )}
+      </p>
+      <p>Made with ❤️ für Oberbayern</p>
     </footer>
   </main>
 </Layout>
@@ -67,5 +91,23 @@ const counts = {
 
   .footer p {
     margin: 0.25rem 0;
+  }
+
+  .source-info {
+    font-weight: 600;
+    color: #667eea;
+  }
+
+  .sources-list {
+    font-size: 0.8rem;
+  }
+
+  .sources-list a {
+    color: #666;
+    margin: 0 4px;
+  }
+
+  .sources-list a:hover {
+    color: #667eea;
   }
 </style>

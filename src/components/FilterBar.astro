@@ -1,100 +1,244 @@
 ---
 interface Props {
-  counts: {
-    all: number;
-    kinder: number;
-    familie: number;
-    erwachsene: number;
-  };
+  events: any[];
+  regions: Record<string, { name: string; emoji: string }>;
 }
 
-const { counts } = Astro.props;
+const { events, regions } = Astro.props;
+
+// Count events by category
+const counts = {
+  all: events.length,
+  kinder: events.filter(e => e.category === 'kinder').length,
+  familie: events.filter(e => e.category === 'familie').length,
+  erwachsene: events.filter(e => e.category === 'erwachsene').length,
+};
+
+// Count events by region
+const regionCounts: Record<string, number> = {};
+Object.keys(regions).forEach(r => {
+  regionCounts[r] = events.filter(e => e.region === r).length;
+});
+
+// Get unique locations
+const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
-<div class="filter-bar">
-  <button class="filter-btn active" data-filter="all">
-    🎪 Alle <span class="count">{counts.all}</span>
-  </button>
-  <button class="filter-btn" data-filter="kinder">
-    👶 Kinder <span class="count">{counts.kinder}</span>
-  </button>
-  <button class="filter-btn" data-filter="familie">
-    👨‍👩‍👧‍👦 Familie <span class="count">{counts.familie}</span>
-  </button>
-  <button class="filter-btn" data-filter="erwachsene">
-    🎭 Erwachsene <span class="count">{counts.erwachsene}</span>
-  </button>
+<div class="filter-container">
+  <!-- Region Filter -->
+  <div class="filter-section">
+    <div class="filter-label">🗺️ Region</div>
+    <div class="filter-bar region-filter" id="region-filter">
+      <button class="filter-btn region-btn active" data-region="all">
+        Alle <span class="count">{events.length}</span>
+      </button>
+      {Object.entries(regions).map(([id, region]) => (
+        regionCounts[id] > 0 && (
+          <button class="filter-btn region-btn" data-region={id}>
+            {region.emoji} {region.name} <span class="count">{regionCounts[id]}</span>
+          </button>
+        )
+      ))}
+    </div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="filter-section">
+    <div class="filter-label">👥 Kategorie</div>
+    <div class="filter-bar category-filter" id="category-filter">
+      <button class="filter-btn category-btn active" data-filter="all">
+        🎪 Alle <span class="count">{counts.all}</span>
+      </button>
+      <button class="filter-btn category-btn" data-filter="kinder">
+        👶 Kinder <span class="count">{counts.kinder}</span>
+      </button>
+      <button class="filter-btn category-btn" data-filter="familie">
+        👨‍👩‍👧‍👦 Familie <span class="count">{counts.familie}</span>
+      </button>
+      <button class="filter-btn category-btn" data-filter="erwachsene">
+        🎭 Erwachsene <span class="count">{counts.erwachsene}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Location Filter (Dropdown) -->
+  <div class="filter-section">
+    <div class="filter-label">📍 Ort</div>
+    <select class="location-select" id="location-filter">
+      <option value="all">Alle Orte</option>
+      {locations.map(loc => (
+        <option value={loc}>{loc}</option>
+      ))}
+    </select>
+  </div>
 </div>
 
 <style>
+  .filter-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e5e5e5;
+  }
+
+  .filter-section {
+    margin-bottom: 12px;
+  }
+
+  .filter-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .filter-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
   .filter-bar {
     display: flex;
-    gap: 0.5rem;
     flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem 0;
+    gap: 8px;
   }
 
   .filter-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 25px;
-    background: white;
-    color: var(--color-text);
+    gap: 6px;
+    padding: 8px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    background: #fff;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    white-space: nowrap;
   }
 
   .filter-btn:hover {
-    border-color: var(--color-primary);
-    background: rgba(30, 64, 175, 0.05);
+    border-color: #667eea;
+    background: #f8f9ff;
   }
 
   .filter-btn.active {
-    background: var(--color-primary);
-    border-color: var(--color-primary);
-    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border-color: transparent;
   }
 
-  .count {
+  .filter-btn .count {
     background: rgba(0,0,0,0.1);
-    padding: 0.1rem 0.4rem;
+    padding: 2px 8px;
     border-radius: 10px;
     font-size: 0.8rem;
   }
 
   .filter-btn.active .count {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.25);
+  }
+
+  /* Region buttons - slightly different style */
+  .region-btn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .location-select {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .location-select:hover,
+  .location-select:focus {
+    border-color: #667eea;
+    outline: none;
+  }
+
+  @media (max-width: 600px) {
+    .filter-btn {
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+    
+    .region-btn {
+      font-size: 0.75rem;
+      padding: 5px 8px;
+    }
   }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const eventCards = document.querySelectorAll('.event-card');
+  // Get all filter elements
+  const regionBtns = document.querySelectorAll('.region-btn');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
+  const eventCards = document.querySelectorAll('.event-card');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
-        
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Filter cards
-        eventCards.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
+  let activeRegion = 'all';
+  let activeCategory = 'all';
+  let activeLocation = 'all';
+
+  function filterEvents() {
+    let visibleCount = 0;
+    
+    eventCards.forEach(card => {
+      const cardEl = card as HTMLElement;
+      const region = cardEl.dataset.region || '';
+      const category = cardEl.dataset.category || '';
+      const location = cardEl.dataset.location || '';
+
+      const matchesRegion = activeRegion === 'all' || region === activeRegion;
+      const matchesCategory = activeCategory === 'all' || category === activeCategory;
+      const matchesLocation = activeLocation === 'all' || location === activeLocation;
+
+      if (matchesRegion && matchesCategory && matchesLocation) {
+        cardEl.style.display = '';
+        visibleCount++;
+      } else {
+        cardEl.style.display = 'none';
+      }
     });
+
+    // Update visible count (optional: update a counter element)
+    console.log(`Showing ${visibleCount} events`);
+  }
+
+  // Region filter
+  regionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      regionBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeRegion = (btn as HTMLElement).dataset.region || 'all';
+      filterEvents();
+    });
+  });
+
+  // Category filter
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      categoryBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = (btn as HTMLElement).dataset.filter || 'all';
+      filterEvents();
+    });
+  });
+
+  // Location filter
+  locationSelect?.addEventListener('change', () => {
+    activeLocation = locationSelect.value;
+    filterEvents();
   });
 </script>
