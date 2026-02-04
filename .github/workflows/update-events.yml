@@ -1,0 +1,49 @@
+name: Auto-Update Events
+
+on:
+  # Run daily at 6:00 AM Europe/Berlin
+  schedule:
+    - cron: '0 5 * * *'  # 5 UTC = 6 CET / 7 CEST
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: npm install
+      
+      - name: 🤖 Run scraper
+        run: npm run scrape
+      
+      - name: 🔍 Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code src/data/events.json || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: 📝 Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/data/events.json
+          git commit -m "chore: auto-update events [skip ci]"
+          git push
+      
+      - name: ✅ No changes
+        if: steps.git-check.outputs.changed != 'true'
+        run: echo "No changes to events.json"

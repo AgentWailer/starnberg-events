@@ -1,0 +1,324 @@
+{
+  "restaurants": [
+    {
+      "name": "Kloster Andechs Bräustüberl",
+      "address": "Bergstraße 2, 82346 Andechs",
+      "description": "Legendärer Kloster-Biergarten mit hauseigenem Bier, bayerischer Küche und spektakulärem Alpenblick. Ein absolutes Muss für Biergarten-Fans!",
+      "priceRange": "€€",
+      "googleRating": 4.5,
+      "category": "biergarten",
+      "url": "https://www.andechs.de",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9747,
+        "lng": 11.1836
+      }
+    },
+    {
+      "name": "Seehotel Leoni",
+      "address": "Assenbucher Straße 44, 82319 Starnberg-Berg",
+      "description": "Elegantes 4-Sterne-Superior Hotel mit gehobener Küche, Wintergarten-Restaurant und traumhaftem Seeblick direkt am Ostufer des Starnberger Sees.",
+      "priceRange": "€€€",
+      "googleRating": 4.4,
+      "category": "gehoben",
+      "url": "https://www.seehotel-leoni.com",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9556,
+        "lng": 11.3425
+      }
+    },
+    {
+      "name": "Tutzinger Hof",
+      "address": "Hauptstraße 32, 82327 Tutzing",
+      "description": "Gemütliches Hotel-Restaurant mit bürgerlich-bodenständiger Küche im Herzen von Tutzing, nur zwei Minuten vom Starnberger See entfernt.",
+      "priceRange": "€€",
+      "googleRating": 4.2,
+      "category": "bayerisch",
+      "url": "https://www.tutzinger-hof.de",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": false,
+      "location": {
+        "lat": 47.9092,
+        "lng": 11.2785
+      }
+    },
+    {
+      "name": "Forsthaus am See",
+      "address": "Maximilianstraße 2, 82319 Starnberg",
+      "description": "Traditionsreiches Seerestaurant mit großem Biergarten direkt am Wasser. Bayerische Küche trifft auf moderne Einflüsse mit traumhaftem Seeblick.",
+      "priceRange": "€€",
+      "googleRating": 4.3,
+      "category": "biergarten",
+      "url": "https://www.forsthaus-am-see.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9972,
+        "lng": 11.3394
+      }
+    },
+    {
+      "name": "Schlosshotel Berg",
+      "address": "Seestraße 17, 82335 Berg",
+      "description": "Ehemaliges Adelsschloss mit Fine-Dining-Restaurant, eleganter Terrasse und direktem Seezugang. Perfekt für besondere Anlässe.",
+      "priceRange": "€€€",
+      "googleRating": 4.5,
+      "category": "gehoben",
+      "url": "https://www.schlosshotel-berg.de",
+      "seeblick": true,
+      "kinderfreundlich": false,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9744,
+        "lng": 11.3472
+      }
+    },
+    {
+      "name": "Undosa",
+      "address": "Seepromenade 1, 82319 Starnberg",
+      "description": "Modernes italienisches Restaurant direkt an der Starnberger Seepromenade mit frischer Pasta, Fisch und großartiger Weinauswahl.",
+      "priceRange": "€€",
+      "googleRating": 4.4,
+      "category": "italienisch",
+      "url": "https://www.undosa.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9973,
+        "lng": 11.3397
+      }
+    },
+    {
+      "name": "La Villa am Starnberger See",
+      "address": "Seestraße 110, 82335 Berg",
+      "description": "Romantisches italienisches Restaurant in einer historischen Villa mit mediterraner Küche, Pizza aus dem Steinofen und Seeblick-Terrasse.",
+      "priceRange": "€€",
+      "googleRating": 4.3,
+      "category": "italienisch",
+      "url": "https://www.la-villa-starnbergersee.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9685,
+        "lng": 11.3451
+      }
+    },
+    {
+      "name": "Alter Wirt Bernried",
+      "address": "Dorfplatz 1, 82347 Bernried",
+      "description": "Traditioneller bayerischer Gasthof mit regionalen Spezialitäten, Biergarten und authentischem Charme am südlichen Starnberger See.",
+      "priceRange": "€",
+      "googleRating": 4.2,
+      "category": "bayerisch",
+      "url": "https://www.alter-wirt-bernried.de",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.8650,
+        "lng": 11.2925
+      }
+    },
+    {
+      "name": "Seerestaurant Feldafing",
+      "address": "Seeweg, 82340 Feldafing",
+      "description": "Idyllisches Restaurant direkt am Wasser mit Sonnenterrasse, bayerisch-internationaler Küche und eigenem Badesteg.",
+      "priceRange": "€€",
+      "googleRating": 4.1,
+      "category": "bayerisch",
+      "url": "https://www.seerestaurant-feldafing.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9506,
+        "lng": 11.2903
+      }
+    },
+    {
+      "name": "Seehof Herrsching",
+      "address": "Seestraße 42, 82211 Herrsching",
+      "description": "Beliebter Biergarten am Ammersee mit großer Sonnenterrasse, bayerischer Küche und direktem Seezugang. Ideal nach einer Wanderung von Andechs.",
+      "priceRange": "€",
+      "googleRating": 4.3,
+      "category": "biergarten",
+      "url": "https://www.seehof-herrsching.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9972,
+        "lng": 11.1789
+      }
+    },
+    {
+      "name": "Strandhaus am Starnberger See",
+      "address": "Seestraße 81, 82335 Berg",
+      "description": "Stilvolles Beach-Restaurant mit mediterranem Flair, frischen Fischgerichten und einzigartiger Atmosphäre direkt am Wasser.",
+      "priceRange": "€€€",
+      "googleRating": 4.4,
+      "category": "gehoben",
+      "url": "https://www.strandhaus-berg.de",
+      "seeblick": true,
+      "kinderfreundlich": false,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9703,
+        "lng": 11.3458
+      }
+    },
+    {
+      "name": "Café Schlossberg Tutzing",
+      "address": "Schloßbergstraße 3, 82327 Tutzing",
+      "description": "Charmantes Café mit hausgemachten Kuchen, Torten und herrlichem Seeblick. Perfekt für Kaffee und Kuchen am Nachmittag.",
+      "priceRange": "€",
+      "googleRating": 4.5,
+      "category": "cafe",
+      "url": "https://www.cafe-schlossberg-tutzing.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9142,
+        "lng": 11.2794
+      }
+    },
+    {
+      "name": "Maisinger Seehof",
+      "address": "Maisinger See 1, 82319 Starnberg",
+      "description": "Idyllischer Biergarten am Maisinger See mit großem Spielplatz, familienfreundlicher Atmosphäre und regionaler Küche.",
+      "priceRange": "€",
+      "googleRating": 4.2,
+      "category": "familien",
+      "url": "https://www.maisinger-seehof.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9831,
+        "lng": 11.2981
+      }
+    },
+    {
+      "name": "Seehaus Schreyegg",
+      "address": "Seeweg 1, 82335 Berg-Allmannshausen",
+      "description": "Traditionelles Seehaus mit gehobener bayerischer Küche, wunderschöner Seeterrasse und eigenem Bootssteg. Romantisch und exklusiv.",
+      "priceRange": "€€€",
+      "googleRating": 4.6,
+      "category": "gehoben",
+      "url": "https://www.seehaus-schreyegg.de",
+      "seeblick": true,
+      "kinderfreundlich": false,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9636,
+        "lng": 11.3389
+      }
+    },
+    {
+      "name": "Ristorante Da Nino",
+      "address": "Hauptstraße 21, 82319 Starnberg",
+      "description": "Authentisches italienisches Restaurant im Herzen von Starnberg mit klassischen Gerichten, Pizza und herzlichem Service.",
+      "priceRange": "€€",
+      "googleRating": 4.3,
+      "category": "italienisch",
+      "url": "https://www.danino-starnberg.de",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": false,
+      "location": {
+        "lat": 47.9972,
+        "lng": 11.3428
+      }
+    },
+    {
+      "name": "Fischerei Eberl Bernried",
+      "address": "Fischerei 1, 82347 Bernried",
+      "description": "Fischrestaurant direkt am Hafen mit fangfrischem Starnberger See-Fisch, Räucherei und urigem Biergarten am Wasser.",
+      "priceRange": "€€",
+      "googleRating": 4.4,
+      "category": "bayerisch",
+      "url": "https://www.fischerei-eberl.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.8639,
+        "lng": 11.2958
+      }
+    },
+    {
+      "name": "Golfclub Restaurant Feldafing",
+      "address": "Tutzinger Straße 15, 82340 Feldafing",
+      "description": "Gehoben-sportliches Restaurant im traditionsreichen Golfclub mit Panoramablick über den Platz zum See. Auch für Nicht-Golfer zugänglich.",
+      "priceRange": "€€€",
+      "category": "gehoben",
+      "googleRating": 4.3,
+      "url": "https://www.gcf-ev.de",
+      "seeblick": true,
+      "kinderfreundlich": false,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9478,
+        "lng": 11.2869
+      }
+    },
+    {
+      "name": "Ammersee Hotel Dießen",
+      "address": "Seestraße 10, 86911 Dießen",
+      "description": "Familienfreundliches Hotel-Restaurant am Ammersee mit großzügiger Terrasse, Spielplatz und regionaler bayerischer Küche.",
+      "priceRange": "€€",
+      "googleRating": 4.2,
+      "category": "familien",
+      "url": "https://www.ammersee-hotel.de",
+      "seeblick": true,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9481,
+        "lng": 11.0997
+      }
+    },
+    {
+      "name": "Café Panorama Tutzing",
+      "address": "Hauptstraße 37, 82327 Tutzing",
+      "description": "Beliebtes Café mit hausgemachten Kuchen, Eis und kleinen Snacks. Gemütliche Atmosphäre und zentrale Lage in Tutzing.",
+      "priceRange": "€",
+      "googleRating": 4.4,
+      "category": "cafe",
+      "url": "",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": true,
+      "location": {
+        "lat": 47.9089,
+        "lng": 11.2792
+      }
+    },
+    {
+      "name": "Altwirt Starnberg",
+      "address": "Maximilianstraße 4, 82319 Starnberg",
+      "description": "Traditioneller bayerischer Gasthof mit regionalen Klassikern, Wirtshausatmosphäre und herzlicher Gastfreundschaft im Zentrum von Starnberg.",
+      "priceRange": "€€",
+      "googleRating": 4.1,
+      "category": "bayerisch",
+      "url": "https://www.altwirt-starnberg.de",
+      "seeblick": false,
+      "kinderfreundlich": true,
+      "outdoor": false,
+      "location": {
+        "lat": 47.9968,
+        "lng": 11.3401
+      }
+    }
+  ]
+}

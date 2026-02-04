@@ -8,6 +8,7 @@ import MarketInfo from '../components/MarketInfo.astro';
 import WebcamWidget from '../components/WebcamWidget.astro';
 import FilterBar from '../components/FilterBar.astro';
 import EventCard from '../components/EventCard.astro';
+import EventModal from '../components/EventModal.astro';
 import eventsData from '../data/events.json';
 
 // Get regions from data or use defaults
@@ -18,6 +19,9 @@ const regions = eventsData.regions || {
   "tegernsee": { "name": "Tegernsee", "emoji": "⛰️" },
   "werdenfels": { "name": "Werdenfelser Land", "emoji": "🎿" }
 };
+
+// Get artTags from data
+const artTags = eventsData.artTags || {};
 
 // Sort events by date
 const events = eventsData.events.sort((a, b) => {
@@ -30,6 +34,29 @@ const events = eventsData.events.sort((a, b) => {
 
 // Get unique sources
 const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
+
+// Weekend Highlights - get events for next weekend (Sa+So)
+const today = new Date();
+const dayOfWeek = today.getDay();
+const daysUntilSaturday = dayOfWeek === 6 ? 7 : (6 - dayOfWeek + 7) % 7;
+
+const nextSaturday = new Date(today);
+nextSaturday.setDate(today.getDate() + daysUntilSaturday);
+nextSaturday.setHours(0, 0, 0, 0);
+
+const nextSunday = new Date(nextSaturday);
+nextSunday.setDate(nextSaturday.getDate() + 1);
+
+const weekendEvents = events.filter(event => {
+  const eventDate = new Date(event.date);
+  eventDate.setHours(0, 0, 0, 0);
+  return (eventDate.getTime() === nextSaturday.getTime() || 
+          eventDate.getTime() === nextSunday.getTime()) &&
+         (event.isHighlight || true); // Can filter by isHighlight later
+}).slice(0, 4);
+
+const hasWeekendEvents = weekendEvents.length > 0;
+const weekendTitle = daysUntilSaturday === 0 ? "Heute & Morgen" : "Dieses Wochenende";
 ---
 
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
@@ -45,7 +72,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
       <!-- Content Grid: Sidebar + Main Content -->
       <div class="content-grid">
         <!-- Desktop Sidebar -->
-        <FilterBar events={events} regions={regions} />
+        <FilterBar events={events} regions={regions} artTags={artTags} />
 
         <!-- Main Content Column -->
         <div class="main-content">
@@ -53,6 +80,18 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
           <section class="section section-transport desktop-only">
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </section>
+
+          <!-- Weekend Highlights -->
+          {hasWeekendEvents && (
+            <section class="section-highlights">
+              <h2 class="highlights-title">{weekendTitle}</h2>
+              <div class="highlights-grid">
+                {weekendEvents.map(event => (
+                  <EventCard event={event} regions={regions} artTagsData={artTags} />
+                ))}
+              </div>
+            </section>
+          )}
 
           <!-- Events List -->
           <section class="section-events">
@@ -63,7 +102,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
             
             <div class="events-list">
               {events.map(event => (
-                <EventCard event={event} regions={regions} />
+                <EventCard event={event} regions={regions} artTagsData={artTags} />
               ))}
             </div>
           </section>
@@ -94,6 +133,9 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
       </p>
     </div>
   </footer>
+
+  <!-- Event Modal -->
+  <EventModal />
 </Layout>
 
 <style>
@@ -176,6 +218,53 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   /* Transport */
   .section-transport {
     margin-bottom: var(--space-8);
+  }
+
+  /* Weekend Highlights */
+  .section-highlights {
+    margin-bottom: var(--space-10);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 640px) {
+    .section-highlights {
+      padding: var(--space-8);
+    }
+  }
+
+  .highlights-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--space-6);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .highlights-title {
+      font-size: 1.75rem;
+    }
+  }
+
+  .highlights-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .highlights-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .highlights-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .section-events {

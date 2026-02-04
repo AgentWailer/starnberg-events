@@ -1,15 +1,16 @@
 {
   "lastUpdated": "2026-02-04",
   "sources": [
-    "beccult",
     "starnbergammersee",
-    "muenchen",
+    "poecking.de",
+    "deutsches-museum",
+    "beccult",
+    "gapa",
+    "tegernsee",
     "olympiapark",
     "hellabrunn",
-    "deutsches-museum",
-    "tegernsee",
-    "gapa",
-    "pfc"
+    "pfc",
+    "seenschifffahrt.de"
   ],
   "regions": {
     "poecking": {
@@ -43,8 +44,9 @@
       "address": "82346 Andechs",
       "description": "Jeden Donnerstag öffentliche Führung",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "kunst",
+        "bildung"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=692466e7205b8f3bc56641c7",
       "source": "starnbergammersee",
@@ -61,8 +63,9 @@
       "address": "82343 Pöcking",
       "description": "Kreativkurs im professionellen Atelier",
       "category": "familie",
-      "tags": [
-        "workshop"
+      "artTags": [
+        "kunst",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6968e09c9f949426f44bdd4f",
       "source": "starnbergammersee",
@@ -84,9 +87,10 @@
       "description": "Vortrag über die Künstlerin der Avantgarde im Alten Pfarrhaus",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "literatur",
-        "kunst"
+      "artTags": [
+        "kunst",
+        "bildung",
+        "indoor"
       ]
     },
     {
@@ -97,8 +101,9 @@
       "address": "86911 Dießen am Ammersee",
       "description": "Für Groß und Klein: Warmherzige Kuschelein!",
       "category": "kinder",
-      "tags": [
-        "kinder"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=68e39acbdd2dd53cd0779a90",
       "source": "starnbergammersee",
@@ -115,9 +120,10 @@
       "address": "82347 Bernried am Starnberger See",
       "description": "Musikkabarett",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "theater"
+        "theater",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6911b46f35610140e567d18b",
       "source": "starnbergammersee",
@@ -134,8 +140,10 @@
       "address": "",
       "description": "Sonderausstellung in der Bibliothek – faszinierende Astrofotos von Freizeit-Astronomen: Nachtlandschaften, Sonnensystem und Deep Sky",
       "category": "familie",
-      "tags": [
-        "kunst"
+      "artTags": [
+        "kunst",
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
       "source": "deutsches-museum",
@@ -152,7 +160,10 @@
       "address": "80225 Gilching",
       "description": "Humorvoller Einblick in Sprache und Kultur der Bayern",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "bildung",
+        "indoor"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69412e13ec880c50d43641be",
       "source": "starnbergammersee",
       "region": "starnberg-ammersee",
@@ -168,8 +179,9 @@
       "address": "",
       "description": "Live-Vorführung – wie man mit Funkamateuren in aller Welt kommuniziert",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
       "source": "deutsches-museum",
@@ -191,9 +203,9 @@
       "description": "Faschingsfeier für Senioren im Sozialdienst",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
+      "artTags": [
         "fest",
-        "senioren"
+        "indoor"
       ]
     },
     {
@@ -204,8 +216,9 @@
       "address": "",
       "description": "Die neue Show über Träume, Mut und das Leben – Für Kinder und alle, die es einmal gewesen sind",
       "category": "kinder",
-      "tags": [
-        "kinder"
+      "artTags": [
+        "show",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender",
       "source": "beccult",
@@ -222,10 +235,9 @@
       "address": "82211 Herrsching",
       "description": "Ein Stück gelebte Tradition am Ammersee",
       "category": "familie",
-      "tags": [
-        "tanz",
-        "natur",
-        "brauchtum"
+      "artTags": [
+        "show",
+        "natur"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6981f3ab65ab70fff9df049e",
       "source": "starnbergammersee",
@@ -242,8 +254,9 @@
       "address": "82229 Seefeld",
       "description": "Klassikkonzert",
       "category": "erwachsene",
-      "tags": [
-        "musik"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3df1ec880c50d436388e",
       "source": "starnbergammersee",
@@ -260,10 +273,10 @@
       "address": "82319 Starnberg",
       "description": "Stilvolle Balltradition",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "fest",
-        "natur",
-        "brauchtum"
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6941226aec880c50d436419a",
       "source": "starnbergammersee",
@@ -280,8 +293,9 @@
       "address": "82327 Tutzing",
       "description": "Kurzfilme von Nachwuchs-Filmemachern mit Filmgespräch",
       "category": "familie",
-      "tags": [
-        "kino"
+      "artTags": [
+        "kunst",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69677121c8652f72520d808d",
       "source": "starnbergammersee",
@@ -298,10 +312,10 @@
       "address": "",
       "description": "Die besten Bergfilme des Jahres – Abenteuer, Outdoor und Extremsport. Kongresshaus, Konzertsaal Richard Strauß",
       "category": "erwachsene",
-      "tags": [
-        "musik",
-        "kino",
-        "führung"
+      "artTags": [
+        "natur",
+        "sport",
+        "indoor"
       ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
       "source": "gapa",
@@ -318,8 +332,9 @@
       "address": "82266 Inning am Ammersee",
       "description": "Gitarristin Yasi Hofer und ihr Trio",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69305e44d5d91861c35733e5",
       "source": "starnbergammersee",
@@ -336,7 +351,7 @@
       "address": "",
       "description": "Großes Finale des Ballonfestivals – Heißluftballons über den Alpen",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "fest",
         "natur"
       ],
@@ -355,7 +370,11 @@
       "address": "",
       "description": "Spektakuläre Experimente mit minus 200°C – Supraleiter schweben und Blumen zerbersten",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "show",
+        "bildung",
+        "indoor"
+      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -371,9 +390,9 @@
       "address": "",
       "description": "Motoren, Turbinen und mehr – die Vielfalt der Antriebe entdecken",
       "category": "familie",
-      "tags": [
-        "führung",
-        "kinder"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
       "source": "deutsches-museum",
@@ -390,9 +409,9 @@
       "address": "82229 Seefeld",
       "description": "Kinderkonzert",
       "category": "kinder",
-      "tags": [
+      "artTags": [
         "musik",
-        "kinder"
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3eebec880c50d4363894",
       "source": "starnbergammersee",
@@ -414,8 +433,8 @@
       "description": "Regelmäßiger Treff für Frauen zum Austausch",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "treffen"
+      "artTags": [
+        "indoor"
       ]
     },
     {
@@ -426,9 +445,9 @@
       "address": "82319 Starnberg",
       "description": "ATTENTION LADIES! Kreative Kostüme, tolle Stimmung und viel Girls-Power!",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "fest",
-        "natur"
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d02b9fc49d222d537304",
       "source": "starnbergammersee",
@@ -445,8 +464,9 @@
       "address": "",
       "description": "Weiberfasching im beccult",
       "category": "erwachsene",
-      "tags": [
-        "fest"
+      "artTags": [
+        "fest",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -463,8 +483,9 @@
       "address": "82319 Starnberg",
       "description": "Wilfried vom Ammersee präsentiert Karl Valentin und die Liebe",
       "category": "familie",
-      "tags": [
-        "natur"
+      "artTags": [
+        "theater",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6981f7a365ab70fff9dfd998",
       "source": "starnbergammersee",
@@ -481,8 +502,10 @@
       "address": "",
       "description": "Die große Malle-Party in Pöcking",
       "category": "erwachsene",
-      "tags": [
-        "fest"
+      "artTags": [
+        "fest",
+        "musik",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -499,8 +522,10 @@
       "address": "82266 Inning am Ammersee",
       "description": "Faschingsparty mit Live-Band",
       "category": "erwachsene",
-      "tags": [
-        "fest"
+      "artTags": [
+        "fest",
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69305fb3d5d91861c3573446",
       "source": "starnbergammersee",
@@ -517,7 +542,9 @@
       "address": "",
       "description": "Bayerns größter Flohmarkt auf dem Olympiagelände – jeden 2. Samstag",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "markt"
+      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/flohmarkt-im-olympiapark-n3370",
       "source": "olympiapark",
       "region": "muenchen",
@@ -533,10 +560,8 @@
       "address": "82340 Feldafing",
       "description": "Führung durch die Brauerei mit Erklärung der Brauprozesse",
       "category": "familie",
-      "tags": [
-        "führung",
-        "natur",
-        "kulinarisch"
+      "artTags": [
+        "bildung"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69245abd205b8f3bc566419e",
       "source": "starnbergammersee",
@@ -553,7 +578,9 @@
       "address": "82327 Tutzing",
       "description": "Romantisches Dinner im Restaurant Theodor",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "indoor"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6971d9e59f949426f44be8e8",
       "source": "starnbergammersee",
       "region": "starnberg-ammersee",
@@ -569,7 +596,9 @@
       "address": "",
       "description": "Wenn die Liebe durch den Zoo spaziert – romantischer Abend im Tierpark",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "natur"
+      ],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
@@ -585,9 +614,10 @@
       "address": "",
       "description": "Valentinstag mal anders – Schlager und Discofox",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "tanz"
+        "fest",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -604,8 +634,9 @@
       "address": "82335 Berg",
       "description": "Julian Schad & Quartett mit Sopranistin Clara Orif aus Paris",
       "category": "familie",
-      "tags": [
-        "natur"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69666943f3edc40bae3ad4a1",
       "source": "starnbergammersee",
@@ -622,9 +653,9 @@
       "address": "82319 Starnberg",
       "description": "Präsentiert von Perchalla e.V. & DJ Hap",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "fest",
-        "natur"
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=67877e6d74da950e18c95ec0",
       "source": "starnbergammersee",
@@ -641,7 +672,10 @@
       "address": "",
       "description": "Herbert Grönemeyer live in der Olympiahalle – akustisch und hautnah",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "musik",
+        "indoor"
+      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/herbert-gronemeyer-n5395",
       "source": "olympiapark",
       "region": "muenchen",
@@ -657,10 +691,9 @@
       "address": "",
       "description": "Buntes Treiben beim Kinderfasching! Mit Spielen, Tanz und vielen Überraschungen für unsere kleinen Faschingsfans",
       "category": "kinder",
-      "tags": [
-        "kinder",
+      "artTags": [
         "fest",
-        "tanz"
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -677,10 +710,9 @@
       "address": "",
       "description": "Erfahrt mehr über die Raumfahrt und den Transport von Menschen ins All",
       "category": "familie",
-      "tags": [
-        "führung",
-        "kinder",
-        "sport"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
       "source": "deutsches-museum",
@@ -697,10 +729,10 @@
       "address": "82319 Starnberg",
       "description": "Gemeinsam einen Kurzfilm drehen – für Anfänger und Fortgeschrittene",
       "category": "erwachsene",
-      "tags": [
-        "kino",
-        "workshop",
-        "fest"
+      "artTags": [
+        "kunst",
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=697b27af9fcdb03730df2bd2",
       "source": "starnbergammersee",
@@ -717,9 +749,9 @@
       "address": "82319 Starnberg",
       "description": "Auftritte der Perchalla-Garden und Showeinlagen",
       "category": "familie",
-      "tags": [
-        "natur",
-        "kulinarisch"
+      "artTags": [
+        "show",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d3ae9fc49d222d53bb24",
       "source": "starnbergammersee",
@@ -737,10 +769,10 @@
       "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Rosenmontagsball des Pöckinger Faschings Clubs. Einlass & Beginn 19:00 Uhr, ab 16 Jahren.",
       "category": "erwachsene",
-      "tags": [
-        "fasching",
-        "ball",
-        "party"
+      "artTags": [
+        "fest",
+        "musik",
+        "indoor"
       ],
       "url": "https://www.pfc.de/veranstaltungen/",
       "region": "poecking",
@@ -754,8 +786,9 @@
       "address": "",
       "description": "Faschingsdienstag – wir feiern den letzten Tag der närrischen Zeit",
       "category": "erwachsene",
-      "tags": [
-        "fest"
+      "artTags": [
+        "fest",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -772,9 +805,9 @@
       "address": "86911 Dießen",
       "description": "Kneipen-Chor im Craftbräu",
       "category": "familie",
-      "tags": [
+      "artTags": [
         "musik",
-        "kulinarisch"
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6647643502d3e043d16976bc",
       "source": "starnbergammersee",
@@ -791,8 +824,9 @@
       "address": "",
       "description": "Machine Gun Kelly live",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/mgk-n5306",
       "source": "olympiapark",
@@ -809,9 +843,8 @@
       "address": "82327 Tutzing",
       "description": "Traditionelles Fischessen",
       "category": "familie",
-      "tags": [
-        "kulinarisch",
-        "brauchtum"
+      "artTags": [
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6971e7229f949426f44be901",
       "source": "starnbergammersee",
@@ -828,9 +861,9 @@
       "address": "",
       "description": "Lesungen und Aktionen für Kinder und Familien im Tierpark",
       "category": "kinder",
-      "tags": [
-        "kinder",
-        "literatur"
+      "artTags": [
+        "bildung",
+        "natur"
       ],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
@@ -847,8 +880,9 @@
       "address": "",
       "description": "Die Pferdeshow für die ganze Familie",
       "category": "familie",
-      "tags": [
-        "kinder"
+      "artTags": [
+        "show",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/cavalluna-n4800",
       "source": "olympiapark",
@@ -865,8 +899,9 @@
       "address": "82229 Seefeld",
       "description": "Jazzkonzert",
       "category": "erwachsene",
-      "tags": [
-        "musik"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3fdeec880c50d436389a",
       "source": "starnbergammersee",
@@ -883,7 +918,10 @@
       "address": "",
       "description": "Das Disney-Meisterwerk als Live-in-Concert-Erlebnis",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "musik",
+        "indoor"
+      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/der-konig-der-lowen-n5156",
       "source": "olympiapark",
       "region": "muenchen",
@@ -899,9 +937,9 @@
       "address": "",
       "description": "Zwischen Flugzeugen und Hubschraubern – wie fliegen Maschinen?",
       "category": "kinder",
-      "tags": [
-        "führung",
-        "kinder"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/kalender",
       "source": "deutsches-museum",
@@ -918,8 +956,10 @@
       "address": "86911 Dießen",
       "description": "Literarisches Jazzkonzert",
       "category": "erwachsene",
-      "tags": [
-        "musik"
+      "artTags": [
+        "musik",
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69707b3940fda3056402d3a0",
       "source": "starnbergammersee",
@@ -936,8 +976,10 @@
       "address": "",
       "description": "Der Musical-Erfolg des Autorenteams Sasson/Sautter",
       "category": "familie",
-      "tags": [
-        "literatur"
+      "artTags": [
+        "theater",
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/das-phantom-der-oper-n5115",
       "source": "olympiapark",
@@ -954,8 +996,9 @@
       "address": "",
       "description": "Why Do Germans Love the Blues – Road Movie mit Filmgespräch",
       "category": "familie",
-      "tags": [
-        "kino"
+      "artTags": [
+        "kunst",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -972,7 +1015,11 @@
       "address": "",
       "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "bildung",
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
@@ -988,8 +1035,9 @@
       "address": "",
       "description": "Eros Ramazzotti live auf Welttournee",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/eros-ramazzotti-n4981",
       "source": "olympiapark",
@@ -1006,8 +1054,9 @@
       "address": "",
       "description": "Jason Derulo live in München",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/jason-derulo-n5021",
       "source": "olympiapark",
@@ -1024,9 +1073,9 @@
       "address": "",
       "description": "Geführte Bergwanderung auf Deutschlands höchsten Gipfel",
       "category": "familie",
-      "tags": [
-        "führung",
-        "natur"
+      "artTags": [
+        "natur",
+        "sport"
       ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
       "source": "gapa",
@@ -1043,7 +1092,10 @@
       "address": "",
       "description": "Die große Magie-Show der Ehrlich Brothers – Diamonds",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "show",
+        "indoor"
+      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/ehrlich-brothers-n4940",
       "source": "olympiapark",
       "region": "muenchen",
@@ -1059,9 +1111,9 @@
       "address": "",
       "description": "Konzert der britischen Indie-Rock-Band",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "führung"
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/florence-the-machine-n5244",
       "source": "olympiapark",
@@ -1083,8 +1135,9 @@
       "description": "Komödie der Theatergruppe Pöcking – mehrere Vorstellungen bis 22.03.",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "theater"
+      "artTags": [
+        "theater",
+        "indoor"
       ]
     },
     {
@@ -1095,8 +1148,9 @@
       "address": "",
       "description": "Kraftklub live auf Tour",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/kraftklub-n5069",
       "source": "olympiapark",
@@ -1113,8 +1167,9 @@
       "address": "",
       "description": "Sean Paul live in München",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/sean-paul-n5460",
       "source": "olympiapark",
@@ -1131,8 +1186,9 @@
       "address": "",
       "description": "Comedy-Show",
       "category": "erwachsene",
-      "tags": [
-        "theater"
+      "artTags": [
+        "theater",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/mario-barth-n4915",
       "source": "olympiapark",
@@ -1149,8 +1205,9 @@
       "address": "",
       "description": "Bushido live in München",
       "category": "familie",
-      "tags": [
-        "führung"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/bushido-n5062",
       "source": "olympiapark",
@@ -1167,9 +1224,9 @@
       "address": "",
       "description": "Schlager-Star Ben Zucker live",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "führung"
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/ben-zucker-n4724",
       "source": "olympiapark",
@@ -1186,9 +1243,9 @@
       "address": "",
       "description": "Der König des Walzers live mit seinem Johann Strauss Orchester",
       "category": "familie",
-      "tags": [
+      "artTags": [
         "musik",
-        "führung"
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/andr-rieu-n4916",
       "source": "olympiapark",
@@ -1210,9 +1267,8 @@
       "description": "Traditioneller Ostermarkt mit Kunsthandwerk und regionalen Produkten",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "markt",
-        "ostern"
+      "artTags": [
+        "markt"
       ]
     },
     {
@@ -1223,9 +1279,10 @@
       "address": "",
       "description": "Live-to-Film-Konzert mit dem kompletten Film und Live-Orchester",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "kino"
+        "kunst",
+        "indoor"
       ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/der-herr-der-ringe-die-ruckkehr-des-konigs-n4949",
       "source": "olympiapark",
@@ -1247,8 +1304,9 @@
       "description": "Komödie der Theatergruppe Pöcking – Sonntagsvorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "theater"
+      "artTags": [
+        "theater",
+        "indoor"
       ]
     },
     {
@@ -1259,10 +1317,10 @@
       "address": "",
       "description": "Internationales Bergfilm-Festival mit Filmvorführungen und Gesprächen",
       "category": "familie",
-      "tags": [
-        "kino",
-        "führung",
-        "fest"
+      "artTags": [
+        "kunst",
+        "natur",
+        "indoor"
       ],
       "url": "https://www.tegernsee.com/bergfilmfestival-tegernsee",
       "source": "tegernsee",
@@ -1284,9 +1342,9 @@
       "description": "Lesung im gemütlichen Literaturcafé",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "literatur",
-        "lesung"
+      "artTags": [
+        "bildung",
+        "indoor"
       ]
     },
     {
@@ -1302,8 +1360,9 @@
       "description": "Komödie der Theatergruppe Pöcking – letzte Vorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "theater"
+      "artTags": [
+        "theater",
+        "indoor"
       ]
     },
     {
@@ -1314,8 +1373,9 @@
       "address": "",
       "description": "Comedy-Abend mit Moderation von Cornelia Grün",
       "category": "erwachsene",
-      "tags": [
-        "theater"
+      "artTags": [
+        "theater",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1332,7 +1392,11 @@
       "address": "",
       "description": "Vortrag über bedrohte Amphibien in München",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "bildung",
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
@@ -1353,9 +1417,9 @@
       "description": "Lesung im Alten Pfarrhaus",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "literatur",
-        "lesung"
+      "artTags": [
+        "bildung",
+        "indoor"
       ]
     },
     {
@@ -1366,8 +1430,9 @@
       "address": "",
       "description": "Lesung aus dem aktuellen Roman Eine von uns",
       "category": "erwachsene",
-      "tags": [
-        "literatur"
+      "artTags": [
+        "bildung",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1388,9 +1453,8 @@
       "description": "Sonntags-Brunch nach Herzenslust auf dem MS STARNBERG. Jeden Sonntag vom 03.05. bis 28.06.2026",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": [
-        "kulinarisch",
-        "schifffahrt"
+      "artTags": [
+        "natur"
       ]
     },
     {
@@ -1401,9 +1465,9 @@
       "address": "",
       "description": "Werke von Mozart, Bruch und Dvorak – Solist: Maurice Poschenrieder",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "natur"
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1420,8 +1484,9 @@
       "address": "",
       "description": "Konzertabend mit deutsch-kubanischer Mezzosopranistin Katarina Morfa – Tangos und mehr",
       "category": "erwachsene",
-      "tags": [
-        "musik"
+      "artTags": [
+        "musik",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1438,7 +1503,11 @@
       "address": "",
       "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "bildung",
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
@@ -1459,7 +1528,7 @@
       "description": "Country-Musik und gute Stimmung für alle Altersgruppen",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
+      "artTags": [
         "musik",
         "fest"
       ]
@@ -1472,8 +1541,10 @@
       "address": "",
       "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
       "category": "familie",
-      "tags": [
-        "fest"
+      "artTags": [
+        "musik",
+        "fest",
+        "indoor"
       ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
       "source": "gapa",
@@ -1495,9 +1566,8 @@
       "description": "Vintage-Schätze und Second-Hand-Fundstücke",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
-      "tags": [
-        "markt",
-        "flohmarkt"
+      "artTags": [
+        "markt"
       ]
     },
     {
@@ -1513,9 +1583,10 @@
       "description": "Party auf dem See mit DJ – Hitmix für die Generation Ü30",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": [
-        "party",
-        "schifffahrt"
+      "artTags": [
+        "fest",
+        "musik",
+        "natur"
       ]
     },
     {
@@ -1530,9 +1601,8 @@
       "description": "Genussfahrt mit verschiedenen Pastavariationen auf dem Starnberger See",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": [
-        "kulinarisch",
-        "schifffahrt"
+      "artTags": [
+        "natur"
       ]
     },
     {
@@ -1547,10 +1617,9 @@
       "description": "Entdeckungsreise mit Historikerin, 3-Gänge Menü, Musik und Erzählungen über König Ludwig II.",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
-      "tags": [
-        "kultur",
-        "schifffahrt",
-        "kulinarisch"
+      "artTags": [
+        "bildung",
+        "natur"
       ]
     },
     {
@@ -1561,10 +1630,9 @@
       "address": "",
       "description": "Das traditionelle Seefest mit spektakulärem Feuerwerk über dem See",
       "category": "familie",
-      "tags": [
+      "artTags": [
         "fest",
-        "natur",
-        "brauchtum"
+        "natur"
       ],
       "url": "https://www.tegernsee.com/seefeste",
       "source": "tegernsee",
@@ -1581,8 +1649,9 @@
       "address": "",
       "description": "Traditioneller Rosstag mit Pferdewagen-Prozession, Brauchtumsumzug und Pferdesegnung",
       "category": "familie",
-      "tags": [
-        "brauchtum"
+      "artTags": [
+        "show",
+        "natur"
       ],
       "url": "https://www.tegernsee.com/rosstag",
       "source": "tegernsee",
@@ -1599,7 +1668,7 @@
       "address": "",
       "description": "Klassik-Konzerte internationaler Künstler in einzigartiger Bergkulisse",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
         "fest",
         "natur"
@@ -1619,7 +1688,10 @@
       "address": "",
       "description": "Ein humoristischer Streifzug zum Schmunzeln und Schunkeln, zum Lachen und Genießen",
       "category": "familie",
-      "tags": [],
+      "artTags": [
+        "theater",
+        "indoor"
+      ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
       "region": "poecking",
@@ -1635,10 +1707,9 @@
       "address": "",
       "description": "Erich Kasberger – Was die Welt nicht braucht. Kabarett-Abend.",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "theater",
-        "natur",
-        "brauchtum"
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1655,9 +1726,10 @@
       "address": "",
       "description": "Die Schlagergang – Aber bitte mit Schlager! Schlagerparty im beccult.",
       "category": "erwachsene",
-      "tags": [
+      "artTags": [
         "musik",
-        "fest"
+        "fest",
+        "indoor"
       ],
       "url": "https://www.beccult.de/veranstaltungen",
       "source": "beccult",
@@ -1674,8 +1746,7 @@
       "address": "",
       "description": "Vierschanzentournee – Weltcup-Skispringen an der Olympiaschanze",
       "category": "familie",
-      "tags": [
-        "führung",
+      "artTags": [
         "sport"
       ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
@@ -1685,5 +1756,47 @@
       "isHighlight": true,
       "id": 91
     }
-  ]
+  ],
+  "artTags": {
+    "musik": {
+      "name": "Musik",
+      "emoji": "🎵"
+    },
+    "theater": {
+      "name": "Theater",
+      "emoji": "🎭"
+    },
+    "kunst": {
+      "name": "Kunst",
+      "emoji": "🎨"
+    },
+    "sport": {
+      "name": "Sport",
+      "emoji": "🏃"
+    },
+    "natur": {
+      "name": "Natur",
+      "emoji": "🌲"
+    },
+    "markt": {
+      "name": "Markt",
+      "emoji": "🛒"
+    },
+    "bildung": {
+      "name": "Bildung",
+      "emoji": "📚"
+    },
+    "fest": {
+      "name": "Fest",
+      "emoji": "🎉"
+    },
+    "show": {
+      "name": "Show",
+      "emoji": "🎪"
+    },
+    "indoor": {
+      "name": "Indoor",
+      "emoji": "☂️"
+    }
+  }
 }

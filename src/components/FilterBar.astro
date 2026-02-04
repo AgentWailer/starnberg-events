@@ -2,9 +2,10 @@
 interface Props {
   events: any[];
   regions: Record<string, { name: string; emoji: string }>;
+  artTags: Record<string, { name: string; emoji: string }>;
 }
 
-const { events, regions } = Astro.props;
+const { events, regions, artTags } = Astro.props;
 
 // Count events by category
 const counts = {
@@ -19,12 +20,64 @@ Object.keys(regions).forEach(r => {
   regionCounts[r] = events.filter(e => e.region === r).length;
 });
 
+// Count by art tag
+const artTagCounts: Record<string, number> = {};
+Object.keys(artTags).forEach(tag => {
+  artTagCounts[tag] = events.filter(e => e.artTags?.includes(tag)).length;
+});
+
 // Unique locations
 const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
 <!-- Desktop Sidebar -->
 <aside class="filter-sidebar" id="filter-sidebar">
+  <!-- Search Field -->
+  <div class="filter-section">
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Event, Ort oder Stichwort..."
+        autocomplete="off"
+      />
+      <button class="search-clear" id="search-clear" aria-label="Suche löschen" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Favorites Filter -->
+  <div class="filter-section">
+    <button class="favorites-filter-btn" id="favorites-filter-btn">
+      <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <span>Favoriten</span>
+      <span class="favorites-badge" id="favorites-badge">0</span>
+    </button>
+  </div>
+
+  <!-- Time Filter -->
+  <div class="filter-section">
+    <h3 class="filter-section-title">Zeitraum</h3>
+    <div class="filter-chips" role="group" aria-label="Filter nach Zeitraum">
+      <button class="chip active" data-filter="all" data-type="time">Alle</button>
+      <button class="chip" data-filter="today" data-type="time">Heute</button>
+      <button class="chip" data-filter="week" data-type="time">Diese Woche</button>
+      <button class="chip" data-filter="weekend" data-type="time">Wochenende</button>
+    </div>
+  </div>
+
+  <!-- Category Filter -->
   <div class="filter-section">
     <h3 class="filter-section-title">Kategorie</h3>
     <div class="filter-chips" role="group" aria-label="Filter nach Kategorie">
@@ -41,6 +94,22 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     </div>
   </div>
 
+  <!-- Art Tags Filter -->
+  <div class="filter-section">
+    <h3 class="filter-section-title">Art</h3>
+    <div class="filter-chips" role="group" aria-label="Filter nach Art">
+      <button class="chip active" data-filter="all" data-type="art-tag">Alle</button>
+      {Object.entries(artTags).map(([id, tag]) => (
+        artTagCounts[id] > 0 && (
+          <button class="chip" data-filter={id} data-type="art-tag">
+            {tag.emoji} {tag.name} <span class="chip-count">{artTagCounts[id]}</span>
+          </button>
+        )
+      ))}
+    </div>
+  </div>
+
+  <!-- Region Filter -->
   <div class="filter-section">
     <h3 class="filter-section-title">Region</h3>
     <div class="filter-chips" role="group" aria-label="Filter nach Region">
@@ -55,6 +124,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     </div>
   </div>
 
+  <!-- Location Select -->
   <div class="filter-section">
     <h3 class="filter-section-title">Ort</h3>
     <select class="filter-select" id="location-filter">
@@ -78,6 +148,12 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 <!-- Mobile: Fixed bottom filter bar -->
 <div class="mobile-filter-bar" id="mobile-filter-bar">
   <div class="mobile-filter-row">
+    <button class="mobile-pill mobile-favorites" id="mobile-favorites-btn">
+      <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <span class="favorites-badge" id="mobile-favorites-badge">0</span>
+    </button>
     <button class="mobile-pill active" data-filter="all" data-type="category">Alle</button>
     <button class="mobile-pill" data-filter="kinder" data-type="category">Kinder</button>
     <button class="mobile-pill" data-filter="familie" data-type="category">Familie</button>
@@ -113,6 +189,57 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   </div>
   
   <div class="filter-sheet-content">
+    <!-- Mobile Search -->
+    <div class="filter-section">
+      <h4 class="filter-section-title">Suche</h4>
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="mobile-search-input" 
+          class="search-input" 
+          placeholder="Event, Ort oder Stichwort..."
+          autocomplete="off"
+        />
+        <button class="search-clear" id="mobile-search-clear" aria-label="Suche löschen" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Time Filter -->
+    <div class="filter-section">
+      <h4 class="filter-section-title">Zeitraum</h4>
+      <div class="filter-chips" id="mobile-time-chips">
+        <button class="chip active" data-filter="all" data-type="time">Alle</button>
+        <button class="chip" data-filter="today" data-type="time">Heute</button>
+        <button class="chip" data-filter="week" data-type="time">Diese Woche</button>
+        <button class="chip" data-filter="weekend" data-type="time">Wochenende</button>
+      </div>
+    </div>
+
+    <!-- Mobile Art Tags -->
+    <div class="filter-section">
+      <h4 class="filter-section-title">Art</h4>
+      <div class="filter-chips" id="mobile-art-tag-chips">
+        <button class="chip active" data-filter="all" data-type="art-tag">Alle</button>
+        {Object.entries(artTags).map(([id, tag]) => (
+          artTagCounts[id] > 0 && (
+            <button class="chip" data-filter={id} data-type="art-tag">
+              {tag.emoji} {tag.name}
+            </button>
+          )
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile Region -->
     <div class="filter-section">
       <h4 class="filter-section-title">Region</h4>
       <div class="filter-chips" id="mobile-region-chips">
@@ -127,6 +254,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </div>
     </div>
 
+    <!-- Mobile Location -->
     <div class="filter-section">
       <h4 class="filter-section-title">Ort</h4>
       <select class="filter-select" id="mobile-location-filter">
@@ -171,6 +299,129 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     .filter-sidebar {
       display: flex;
     }
+  }
+
+  /* Search Field */
+  .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    color: var(--color-muted);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-10);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.875rem;
+    color: var(--color-text);
+    transition: border-color var(--duration-fast) ease;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .search-input::placeholder {
+    color: var(--color-muted);
+  }
+
+  .search-clear {
+    position: absolute;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--color-muted);
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    transition: background var(--duration-fast) ease;
+  }
+
+  .search-clear:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  .search-clear svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Favorites Filter Button */
+  .favorites-filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    position: relative;
+  }
+
+  .favorites-filter-btn:hover {
+    border-color: #e74c3c;
+    color: #e74c3c;
+    background: color-mix(in srgb, #e74c3c 5%, transparent);
+  }
+
+  .favorites-filter-btn.active {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: white;
+  }
+
+  .favorites-filter-btn .heart-icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    transition: fill var(--duration-fast) ease;
+  }
+
+  .favorites-filter-btn.active .heart-icon {
+    fill: white;
+  }
+
+  .favorites-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--color-border);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+
+  .favorites-filter-btn.active .favorites-badge {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
   }
 
   .filter-section {
@@ -350,6 +601,50 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: white;
   }
 
+  .mobile-favorites {
+    padding: var(--space-2) var(--space-3);
+    position: relative;
+  }
+
+  .mobile-favorites .heart-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+  }
+
+  .mobile-favorites.active {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: white;
+  }
+
+  .mobile-favorites.active .heart-icon {
+    fill: white;
+  }
+
+  .mobile-favorites .favorites-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: #e74c3c;
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: 0.625rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-card);
+  }
+
+  .mobile-favorites.active .favorites-badge {
+    background: white;
+    color: #e74c3c;
+  }
+
   .mobile-more {
     padding: var(--space-2) var(--space-3);
   }
@@ -509,13 +804,30 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       padding-bottom: 80px;
     }
   }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 </style>
 
 <script>
   // State
   let activeCategories: Set<string> = new Set(['all']);
   let activeRegions: Set<string> = new Set(['all']);
+  let activeArtTags: Set<string> = new Set(['all']);
+  let activeTimeFilter = 'all';
   let activeLocation = 'all';
+  let searchQuery = '';
+  let favoritesOnly = false;
+  let userFavorites: Set<number> = new Set();
 
   // Elements
   const eventCards = document.querySelectorAll('.event-card');
@@ -524,22 +836,104 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   // Desktop
   const clearBtnDesktop = document.getElementById('clear-filters');
   const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchClear = document.getElementById('search-clear');
   const categoryChips = document.querySelectorAll('.filter-sidebar .chip[data-type="category"]');
   const regionChips = document.querySelectorAll('.filter-sidebar .chip[data-type="region"]');
+  const artTagChips = document.querySelectorAll('.filter-sidebar .chip[data-type="art-tag"]');
+  const timeChips = document.querySelectorAll('.filter-sidebar .chip[data-type="time"]');
+  const favoritesBtn = document.getElementById('favorites-filter-btn');
+  const favoritesBadge = document.getElementById('favorites-badge');
 
   // Mobile
   const mobilePills = document.querySelectorAll('.mobile-filter-bar .mobile-pill[data-type="category"]');
   const moreBtn = document.getElementById('mobile-more-btn');
+  const mobileFavoritesBtn = document.getElementById('mobile-favorites-btn');
+  const mobileFavoritesBadge = document.getElementById('mobile-favorites-badge');
   const sheet = document.getElementById('filter-sheet');
   const backdrop = document.getElementById('filter-sheet-backdrop');
   const closeBtn = document.getElementById('filter-sheet-close');
   const applyBtn = document.getElementById('filter-sheet-apply');
   const resetBtn = document.getElementById('filter-sheet-reset');
   const mobileRegionChips = document.querySelectorAll('#mobile-region-chips .chip');
+  const mobileArtTagChips = document.querySelectorAll('#mobile-art-tag-chips .chip');
+  const mobileTimeChips = document.querySelectorAll('#mobile-time-chips .chip');
   const mobileLocationSelect = document.getElementById('mobile-location-filter') as HTMLSelectElement;
+  const mobileSearchInput = document.getElementById('mobile-search-input') as HTMLInputElement;
+  const mobileSearchClear = document.getElementById('mobile-search-clear');
+
+  // Time filter helpers
+  function getDateRange(filter: string): { start: Date; end: Date } | null {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (filter === 'today') {
+      const end = new Date(today);
+      end.setHours(23, 59, 59, 999);
+      return { start: today, end };
+    }
+
+    if (filter === 'week') {
+      const end = new Date(today);
+      end.setDate(today.getDate() + 7);
+      end.setHours(23, 59, 59, 999);
+      return { start: today, end };
+    }
+
+    if (filter === 'weekend') {
+      const dayOfWeek = today.getDay();
+      const daysUntilSaturday = dayOfWeek === 6 ? 0 : (6 - dayOfWeek + 7) % 7;
+      
+      const saturday = new Date(today);
+      saturday.setDate(today.getDate() + daysUntilSaturday);
+      saturday.setHours(0, 0, 0, 0);
+      
+      const sunday = new Date(saturday);
+      sunday.setDate(saturday.getDate() + 1);
+      sunday.setHours(23, 59, 59, 999);
+      
+      return { start: saturday, end: sunday };
+    }
+
+    return null;
+  }
+
+  function matchesTimeFilter(eventDate: string): boolean {
+    if (activeTimeFilter === 'all') return true;
+    
+    const range = getDateRange(activeTimeFilter);
+    if (!range) return true;
+    
+    const date = new Date(eventDate);
+    date.setHours(0, 0, 0, 0);
+    
+    return date >= range.start && date <= range.end;
+  }
+
+  // Favorites helpers
+  function loadFavorites() {
+    if (typeof (window as any).getFavorites === 'function') {
+      userFavorites = (window as any).getFavorites();
+    }
+    updateFavoritesBadge();
+  }
+
+  function updateFavoritesBadge() {
+    const count = userFavorites.size;
+    if (favoritesBadge) favoritesBadge.textContent = String(count);
+    if (mobileFavoritesBadge) mobileFavoritesBadge.textContent = String(count);
+    
+    // Hide badge if count is 0
+    if (favoritesBadge) favoritesBadge.style.display = count > 0 ? '' : 'none';
+    if (mobileFavoritesBadge) mobileFavoritesBadge.style.display = count > 0 ? '' : 'none';
+  }
 
   function updateMoreBtnState() {
-    const hasExtraFilters = !activeRegions.has('all') || activeLocation !== 'all';
+    const hasExtraFilters = !activeRegions.has('all') || 
+                           activeLocation !== 'all' || 
+                           !activeArtTags.has('all') || 
+                           activeTimeFilter !== 'all' ||
+                           searchQuery !== '';
     moreBtn?.classList.toggle('has-filters', hasExtraFilters);
   }
 
@@ -550,12 +944,23 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       const cat = el.dataset.category || '';
       const reg = el.dataset.region || '';
       const loc = el.dataset.location || '';
+      const artTagsStr = el.dataset.artTags || '';
+      const artTagsArr = artTagsStr ? artTagsStr.split(',') : [];
+      const searchText = el.dataset.searchText || '';
+      const eventDate = el.querySelector('.card-date')?.getAttribute('data-date') || 
+                       el.querySelector('[data-date]')?.getAttribute('data-date') || '';
+      const eventId = parseInt(el.dataset.eventId || '0');
 
       const matchCat = activeCategories.has('all') || activeCategories.has(cat);
       const matchReg = activeRegions.has('all') || activeRegions.has(reg);
       const matchLoc = activeLocation === 'all' || loc === activeLocation;
+      const matchArtTag = activeArtTags.has('all') || 
+                         artTagsArr.some(tag => activeArtTags.has(tag));
+      const matchTime = matchesTimeFilter(eventDate || new Date().toISOString().split('T')[0]);
+      const matchSearch = searchQuery === '' || searchText.includes(searchQuery.toLowerCase());
+      const matchFavorite = !favoritesOnly || userFavorites.has(eventId);
 
-      if (matchCat && matchReg && matchLoc) {
+      if (matchCat && matchReg && matchLoc && matchArtTag && matchTime && matchSearch && matchFavorite) {
         el.style.display = '';
         count++;
       } else {
@@ -565,7 +970,13 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
     if (countEl) countEl.textContent = String(count);
     
-    const hasFilters = !activeCategories.has('all') || !activeRegions.has('all') || activeLocation !== 'all';
+    const hasFilters = !activeCategories.has('all') || 
+                      !activeRegions.has('all') || 
+                      !activeArtTags.has('all') || 
+                      activeLocation !== 'all' || 
+                      activeTimeFilter !== 'all' ||
+                      searchQuery !== '' ||
+                      favoritesOnly;
     clearBtnDesktop?.classList.toggle('visible', hasFilters);
     updateMoreBtnState();
   }
@@ -573,15 +984,35 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   function clearAllFilters() {
     activeCategories = new Set(['all']);
     activeRegions = new Set(['all']);
+    activeArtTags = new Set(['all']);
+    activeTimeFilter = 'all';
     activeLocation = 'all';
+    searchQuery = '';
+    favoritesOnly = false;
 
     // Update all UI
     categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
     regionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    artTagChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    timeChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
     mobilePills.forEach(p => p.classList.toggle('active', (p as HTMLElement).dataset.filter === 'all'));
     mobileRegionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    mobileArtTagChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    mobileTimeChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    
+    favoritesBtn?.classList.remove('active');
+    mobileFavoritesBtn?.classList.remove('active');
+    
     if (locationSelect) locationSelect.value = 'all';
     if (mobileLocationSelect) mobileLocationSelect.value = 'all';
+    if (searchInput) {
+      searchInput.value = '';
+      if (searchClear) searchClear.style.display = 'none';
+    }
+    if (mobileSearchInput) {
+      mobileSearchInput.value = '';
+      if (mobileSearchClear) mobileSearchClear.style.display = 'none';
+    }
 
     filterEvents();
   }
@@ -597,6 +1028,72 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     backdrop?.classList.remove('visible');
     document.body.style.overflow = '';
   }
+
+  // Search functionality
+  searchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    if (searchClear) searchClear.style.display = searchQuery ? 'flex' : 'none';
+    if (mobileSearchInput) mobileSearchInput.value = searchQuery;
+    if (mobileSearchClear) mobileSearchClear.style.display = searchQuery ? 'flex' : 'none';
+    filterEvents();
+  });
+
+  searchClear?.addEventListener('click', () => {
+    searchQuery = '';
+    if (searchInput) searchInput.value = '';
+    if (mobileSearchInput) mobileSearchInput.value = '';
+    if (searchClear) searchClear.style.display = 'none';
+    if (mobileSearchClear) mobileSearchClear.style.display = 'none';
+    filterEvents();
+  });
+
+  mobileSearchInput?.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    if (mobileSearchClear) mobileSearchClear.style.display = searchQuery ? 'flex' : 'none';
+    if (searchInput) searchInput.value = searchQuery;
+    if (searchClear) searchClear.style.display = searchQuery ? 'flex' : 'none';
+    filterEvents();
+  });
+
+  mobileSearchClear?.addEventListener('click', () => {
+    searchQuery = '';
+    if (searchInput) searchInput.value = '';
+    if (mobileSearchInput) mobileSearchInput.value = '';
+    if (searchClear) searchClear.style.display = 'none';
+    if (mobileSearchClear) mobileSearchClear.style.display = 'none';
+    filterEvents();
+  });
+
+  // Time filter
+  timeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+      activeTimeFilter = filter;
+      timeChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      
+      // Sync mobile
+      mobileTimeChips.forEach(c => {
+        c.classList.toggle('active', (c as HTMLElement).dataset.filter === filter);
+      });
+      
+      filterEvents();
+    });
+  });
+
+  mobileTimeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+      activeTimeFilter = filter;
+      mobileTimeChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      
+      // Sync desktop
+      timeChips.forEach(c => {
+        c.classList.toggle('active', (c as HTMLElement).dataset.filter === filter);
+      });
+    });
+  });
 
   // Desktop: Multi-select for categories
   categoryChips.forEach(chip => {
@@ -674,6 +1171,44 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
   });
 
+  // Desktop: Multi-select for art tags
+  artTagChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+
+      if (filter === 'all') {
+        activeArtTags = new Set(['all']);
+        artTagChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        activeArtTags.delete('all');
+        if (activeArtTags.has(filter)) {
+          activeArtTags.delete(filter);
+          chip.classList.remove('active');
+        } else {
+          activeArtTags.add(filter);
+          chip.classList.add('active');
+        }
+        if (activeArtTags.size === 0) {
+          activeArtTags.add('all');
+          artTagChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+        } else {
+          artTagChips.forEach(c => {
+            if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
+          });
+        }
+      }
+
+      // Sync mobile
+      mobileArtTagChips.forEach(c => {
+        const f = (c as HTMLElement).dataset.filter || 'all';
+        c.classList.toggle('active', activeArtTags.has(f));
+      });
+
+      filterEvents();
+    });
+  });
+
   // Desktop location select
   locationSelect?.addEventListener('change', () => {
     activeLocation = locationSelect.value;
@@ -743,6 +1278,42 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
   });
 
+  // Mobile sheet: Art tag chips
+  mobileArtTagChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+
+      if (filter === 'all') {
+        activeArtTags = new Set(['all']);
+        mobileArtTagChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        activeArtTags.delete('all');
+        if (activeArtTags.has(filter)) {
+          activeArtTags.delete(filter);
+          chip.classList.remove('active');
+        } else {
+          activeArtTags.add(filter);
+          chip.classList.add('active');
+        }
+        if (activeArtTags.size === 0) {
+          activeArtTags.add('all');
+          mobileArtTagChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+        } else {
+          mobileArtTagChips.forEach(c => {
+            if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
+          });
+        }
+      }
+
+      // Sync desktop
+      artTagChips.forEach(c => {
+        const f = (c as HTMLElement).dataset.filter || 'all';
+        c.classList.toggle('active', activeArtTags.has(f));
+      });
+    });
+  });
+
   // Mobile sheet: Location select
   mobileLocationSelect?.addEventListener('change', () => {
     activeLocation = mobileLocationSelect.value;
@@ -759,5 +1330,57 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   resetBtn?.addEventListener('click', () => {
     clearAllFilters();
     closeSheet();
+  });
+
+  // Favorites filter buttons
+  favoritesBtn?.addEventListener('click', () => {
+    favoritesOnly = !favoritesOnly;
+    favoritesBtn.classList.toggle('active', favoritesOnly);
+    mobileFavoritesBtn?.classList.toggle('active', favoritesOnly);
+    filterEvents();
+  });
+
+  mobileFavoritesBtn?.addEventListener('click', () => {
+    favoritesOnly = !favoritesOnly;
+    mobileFavoritesBtn.classList.toggle('active', favoritesOnly);
+    favoritesBtn?.classList.toggle('active', favoritesOnly);
+    filterEvents();
+  });
+
+  // Listen for favorites changes from EventCard
+  window.addEventListener('favoritesChanged', ((e: CustomEvent) => {
+    userFavorites = new Set(e.detail.favorites);
+    updateFavoritesBadge();
+    // Re-filter if favorites-only is active
+    if (favoritesOnly) {
+      filterEvents();
+    }
+  }) as EventListener);
+
+  // Add event date to cards for time filtering
+  document.addEventListener('DOMContentLoaded', () => {
+    // Load favorites on page load
+    loadFavorites();
+    eventCards.forEach(card => {
+      const dateEl = card.querySelector('.card-date');
+      if (dateEl) {
+        const dayEl = dateEl.querySelector('.date-day');
+        const monthEl = dateEl.querySelector('.date-month');
+        if (dayEl && monthEl) {
+          const day = dayEl.textContent?.trim();
+          const month = monthEl.textContent?.trim();
+          // Parse German month abbreviation
+          const monthMap: Record<string, string> = {
+            'Jan': '01', 'Feb': '02', 'Mär': '03', 'Apr': '04',
+            'Mai': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+            'Sep': '09', 'Okt': '10', 'Nov': '11', 'Dez': '12'
+          };
+          const year = new Date().getFullYear();
+          const monthNum = month ? monthMap[month.charAt(0).toUpperCase() + month.slice(1).toLowerCase()] : '01';
+          const dateStr = `${year}-${monthNum}-${day?.padStart(2, '0')}`;
+          (card as HTMLElement).dataset.date = dateStr;
+        }
+      }
+    });
   });
 </script>

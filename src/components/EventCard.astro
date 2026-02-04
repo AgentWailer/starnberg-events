@@ -8,16 +8,17 @@ interface Props {
     location: string;
     description?: string;
     category: string;
-    tags?: string[];
+    artTags?: string[];
     url?: string;
     source?: string;
     region?: string;
     isHighlight?: boolean;
   };
   regions?: Record<string, { name: string; emoji: string }>;
+  artTagsData?: Record<string, { name: string; emoji: string }>;
 }
 
-const { event, regions = {} } = Astro.props;
+const { event, regions = {}, artTagsData = {} } = Astro.props;
 
 const date = new Date(event.date);
 const day = date.getDate();
@@ -38,8 +39,23 @@ const catLabel = categoryLabels[event.category] || 'Familie';
   data-category={event.category}
   data-region={event.region}
   data-location={event.location}
+  data-art-tags={event.artTags?.join(',')}
+  data-search-text={`${event.title} ${event.location} ${event.description || ''}`.toLowerCase()}
+  data-date={event.date}
+  data-event-id={event.id}
+  data-event-title={event.title}
+  data-event-time={event.time}
+  data-event-description={event.description}
+  data-event-url={event.url}
 >
-  <a href={event.url || '#'} target={event.url ? "_blank" : undefined} rel="noopener" class="card-link">
+  <!-- Favorite Heart Icon -->
+  <button class="favorite-btn" data-event-id={event.id} aria-label="Zu Favoriten hinzufügen" title="Zu Favoriten hinzufügen">
+    <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </svg>
+  </button>
+
+  <button class="card-link" data-event-card-btn>
     <div class="card-date">
       <span class="date-day">{day}</span>
       <span class="date-month">{monthShort}</span>
@@ -52,6 +68,19 @@ const catLabel = categoryLabels[event.category] || 'Familie';
       </div>
       
       <h3 class="card-title">{event.title}</h3>
+      
+      {event.artTags && event.artTags.length > 0 && (
+        <div class="card-art-tags">
+          {event.artTags.map(tag => {
+            const tagData = artTagsData[tag];
+            return tagData ? (
+              <span class="art-tag" data-tag={tag}>
+                {tagData.emoji} {tagData.name}
+              </span>
+            ) : null;
+          })}
+        </div>
+      )}
       
       <div class="card-footer">
         <span class="card-location">
@@ -67,11 +96,12 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M7 17L17 7M17 7H7M17 7V17"></path>
     </svg>
-  </a>
+  </button>
 </article>
 
 <style>
   .event-card {
+    position: relative;
     background: var(--color-card);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -102,6 +132,46 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     transform: scale(0.99);
   }
 
+  /* Favorite Button */
+  .favorite-btn {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    z-index: 10;
+    transition: all var(--duration-fast) ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .favorite-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+
+  .favorite-btn:active {
+    transform: scale(0.95);
+  }
+
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-muted);
+    transition: all var(--duration-fast) ease;
+  }
+
+  .favorite-btn.is-favorite .heart-icon {
+    fill: #e74c3c;
+    stroke: #e74c3c;
+  }
+
   .card-link {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -111,6 +181,12 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     text-decoration: none;
     align-items: start;
     min-height: var(--touch-target-min);
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
   }
 
   @media (min-width: 640px) {
@@ -213,6 +289,26 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     }
   }
 
+  /* Art Tags */
+  .card-art-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .art-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.6875rem;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
   .card-footer {
     display: flex;
     align-items: center;
@@ -255,3 +351,101 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     }
   }
 </style>
+
+<script>
+  // Favorites functionality
+  const FAVORITES_KEY = 'starnberg-events-favorites';
+
+  function getFavorites(): Set<number> {
+    try {
+      const data = localStorage.getItem(FAVORITES_KEY);
+      return data ? new Set(JSON.parse(data)) : new Set();
+    } catch {
+      return new Set();
+    }
+  }
+
+  function saveFavorites(favorites: Set<number>) {
+    try {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+      // Dispatch custom event for filter bar to update count
+      window.dispatchEvent(new CustomEvent('favoritesChanged', { 
+        detail: { count: favorites.size, favorites: [...favorites] } 
+      }));
+    } catch (e) {
+      console.error('Could not save favorites', e);
+    }
+  }
+
+  function toggleFavorite(eventId: number): boolean {
+    const favorites = getFavorites();
+    if (favorites.has(eventId)) {
+      favorites.delete(eventId);
+    } else {
+      favorites.add(eventId);
+    }
+    saveFavorites(favorites);
+    return favorites.has(eventId);
+  }
+
+  // Initialize favorites on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const favorites = getFavorites();
+    
+    // Update all favorite buttons
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      const eventId = parseInt((btn as HTMLElement).dataset.eventId || '0');
+      if (favorites.has(eventId)) {
+        btn.classList.add('is-favorite');
+        btn.setAttribute('aria-label', 'Von Favoriten entfernen');
+        btn.setAttribute('title', 'Von Favoriten entfernen');
+      }
+    });
+
+    // Add click handlers to favorite buttons
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent card click
+        const eventId = parseInt((btn as HTMLElement).dataset.eventId || '0');
+        const isFavorite = toggleFavorite(eventId);
+        
+        btn.classList.toggle('is-favorite', isFavorite);
+        if (isFavorite) {
+          btn.setAttribute('aria-label', 'Von Favoriten entfernen');
+          btn.setAttribute('title', 'Von Favoriten entfernen');
+        } else {
+          btn.setAttribute('aria-label', 'Zu Favoriten hinzufügen');
+          btn.setAttribute('title', 'Zu Favoriten hinzufügen');
+        }
+      });
+    });
+
+    // Add click handlers to card buttons (open modal)
+    document.querySelectorAll('[data-event-card-btn]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.event-card') as HTMLElement;
+        if (!card) return;
+
+        const eventData = {
+          id: card.dataset.eventId,
+          title: card.dataset.eventTitle,
+          date: card.dataset.date,
+          time: card.dataset.eventTime,
+          location: card.dataset.location,
+          description: card.dataset.eventDescription,
+          category: card.dataset.category,
+          url: card.dataset.eventUrl,
+          tags: card.dataset.artTags?.split(',').filter(Boolean) || []
+        };
+
+        // Call global function from EventModal
+        if (typeof (window as any).openEventModal === 'function') {
+          (window as any).openEventModal(eventData);
+        }
+      });
+    });
+  });
+
+  // Export for filter bar
+  (window as any).getFavorites = getFavorites;
+</script>
