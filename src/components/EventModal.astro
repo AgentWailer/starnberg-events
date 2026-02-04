@@ -1,5 +1,5 @@
 ---
-// EventModal.astro - Modal component for event details
+// EventModal.astro - Mobile-optimized bottom sheet modal for event details
 ---
 
 <!-- Modal Backdrop -->
@@ -8,6 +8,11 @@
 <!-- Modal Container -->
 <div class="event-modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal-content">
+    <!-- Drag Handle (mobile only) -->
+    <div class="modal-drag-handle" id="modal-drag-handle">
+      <div class="drag-indicator"></div>
+    </div>
+
     <!-- Close Button -->
     <button class="modal-close" id="modal-close" aria-label="Modal schließen">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -16,43 +21,57 @@
       </svg>
     </button>
 
-    <!-- Modal Header -->
-    <div class="modal-header">
-      <h2 class="modal-title" id="modal-title"></h2>
-      <div class="modal-category"></div>
-    </div>
-
-    <!-- Modal Body -->
-    <div class="modal-body">
-      <div class="modal-datetime">
-        <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        <span class="modal-datetime-text"></span>
+    <!-- Scrollable area: header + body together -->
+    <div class="modal-scroll" id="modal-scroll">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-category"></div>
       </div>
 
-      <div class="modal-location">
-        <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-        <span class="modal-location-text"></span>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div class="modal-datetime">
+          <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span class="modal-datetime-text"></span>
+        </div>
+
+        <div class="modal-location">
+          <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span class="modal-location-text"></span>
+        </div>
+
+        <!-- Map with touch-through overlay to prevent scroll hijacking -->
+        <div class="modal-map-wrapper" id="modal-map-wrapper">
+          <div class="modal-map" id="modal-map"></div>
+          <div class="modal-map-overlay" id="modal-map-overlay">
+            <span class="map-overlay-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Karte antippen zum Interagieren
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="modal-description" id="modal-description"></div>
+
+        <!-- Tags -->
+        <div class="modal-tags" id="modal-tags"></div>
       </div>
-
-      <!-- Map -->
-      <div class="modal-map" id="modal-map"></div>
-
-      <!-- Description -->
-      <div class="modal-description" id="modal-description"></div>
-
-      <!-- Tags -->
-      <div class="modal-tags" id="modal-tags"></div>
     </div>
 
-    <!-- Modal Footer -->
+    <!-- Modal Footer (always visible at bottom) -->
     <div class="modal-footer">
       <button class="modal-btn modal-btn-secondary" id="modal-download-ics">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -60,7 +79,7 @@
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        In Kalender speichern
+        Kalender
       </button>
       <a class="modal-btn modal-btn-primary" id="modal-external-link" target="_blank" rel="noopener">
         Zur Event-Seite
@@ -80,11 +99,12 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 400;
     opacity: 0;
-    transition: opacity var(--duration-normal) ease;
+    transition: opacity 0.25s ease;
+    touch-action: none;
   }
 
   .event-modal-backdrop.visible {
@@ -92,11 +112,7 @@
     opacity: 1;
   }
 
-  .event-modal-backdrop {
-    touch-action: none;
-  }
-
-  /* === MODAL === */
+  /* === MODAL (Mobile-first: bottom sheet) === */
   .event-modal {
     display: none;
     position: fixed;
@@ -104,13 +120,14 @@
     bottom: 0;
     left: 0;
     right: 0;
-    max-height: 90vh;
+    max-height: 75vh;
     background: var(--color-card);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.25);
     transform: translateY(100%);
-    transition: transform var(--duration-normal) ease;
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     overflow: hidden;
+    /* Prevent overscroll bounce from leaking to body */
     overscroll-behavior: contain;
   }
 
@@ -120,21 +137,29 @@
     transform: translateY(0);
   }
 
+  /* Swipe-dismiss transition */
+  .event-modal.dragging {
+    transition: none;
+  }
+
+  /* Desktop: centered dialog */
   @media (min-width: 768px) {
     .event-modal {
       top: 50%;
       left: 50%;
       right: auto;
       bottom: auto;
-      transform: translate(-50%, -50%) scale(0.9);
-      max-width: 600px;
+      transform: translate(-50%, -50%) scale(0.95);
+      opacity: 0;
+      max-width: 560px;
       width: 90%;
-      max-height: 85vh;
-      border-radius: var(--radius-xl);
+      max-height: 80vh;
+      border-radius: 16px;
     }
 
     .event-modal.visible {
       transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
     }
   }
 
@@ -142,34 +167,62 @@
   .modal-content {
     display: flex;
     flex-direction: column;
-    min-height: 0; /* Allow flex shrinking */
-    max-height: 90vh;
+    min-height: 0;
+    max-height: 75vh;
     flex: 1;
   }
 
   @media (min-width: 768px) {
     .modal-content {
-      max-height: 85vh;
+      max-height: 80vh;
+    }
+  }
+
+  /* === DRAG HANDLE === */
+  .modal-drag-handle {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 4px;
+    flex-shrink: 0;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .modal-drag-handle:active {
+    cursor: grabbing;
+  }
+
+  .drag-indicator {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-border);
+    opacity: 0.6;
+  }
+
+  @media (min-width: 768px) {
+    .modal-drag-handle {
+      display: none;
     }
   }
 
   /* === CLOSE BUTTON === */
   .modal-close {
     position: absolute;
-    top: var(--space-4);
-    right: var(--space-4);
-    width: 44px;
-    height: 44px;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--color-bg-secondary);
     border: none;
-    border-radius: var(--radius-full);
+    border-radius: 50%;
     color: var(--color-text);
     cursor: pointer;
     z-index: 10;
-    transition: all var(--duration-fast) ease;
+    transition: background 0.15s ease, transform 0.15s ease;
   }
 
   .modal-close:hover {
@@ -178,46 +231,70 @@
   }
 
   .modal-close svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
-  /* === HEADER === */
+  /* === SCROLLABLE AREA === */
+  .modal-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  /* === HEADER (inside scroll) === */
   .modal-header {
-    padding: var(--space-6) var(--space-5);
-    padding-right: calc(var(--space-5) + 52px); /* Space for close button */
-    border-bottom: 1px solid var(--color-border-light);
-    flex-shrink: 0;
+    padding: 8px 20px 16px;
+    padding-right: 56px; /* space for close btn */
   }
 
   @media (min-width: 768px) {
     .modal-header {
-      padding: var(--space-8) var(--space-6);
-      padding-right: calc(var(--space-6) + 52px);
+      padding: 20px 24px 16px;
+      padding-right: 60px;
     }
   }
 
   .modal-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.3;
     color: var(--color-text);
-    margin-bottom: var(--space-3);
+    margin-bottom: 8px;
   }
 
   @media (min-width: 768px) {
     .modal-title {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
     }
   }
 
   .modal-category {
     display: inline-flex;
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: var(--space-1) var(--space-3);
+    padding: 3px 10px;
     border-radius: var(--radius-sm);
   }
 
@@ -236,20 +313,18 @@
     color: var(--color-erwachsene);
   }
 
-  /* === BODY === */
+  /* === BODY (inside scroll) === */
   .modal-body {
-    flex: 1;
-    min-height: 0; /* Critical: allow flex item to shrink below content height */
-    overflow-y: auto;
-    padding: var(--space-5);
+    padding: 0 20px 20px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: 16px;
   }
 
   @media (min-width: 768px) {
     .modal-body {
-      padding: var(--space-6);
+      padding: 0 24px 24px;
+      gap: 20px;
     }
   }
 
@@ -257,32 +332,36 @@
   .modal-location {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: 10px;
   }
 
   .modal-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     color: var(--color-primary);
     flex-shrink: 0;
   }
 
   .modal-datetime-text,
   .modal-location-text {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     color: var(--color-text);
     font-weight: 500;
   }
 
+  /* === MAP (with overlay to prevent scroll hijacking) === */
+  .modal-map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--color-border-light);
+  }
+
   .modal-map {
     width: 100%;
-    aspect-ratio: 16 / 9;
-    max-height: 240px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+    aspect-ratio: 2 / 1;
     background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-light);
-    box-shadow: var(--shadow-sm);
   }
 
   .modal-map iframe {
@@ -292,8 +371,42 @@
     display: block;
   }
 
+  /* Overlay prevents iframe from stealing touch — user taps to activate */
+  .modal-map-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 10px;
+    cursor: pointer;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .modal-map-overlay:active {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .map-overlay-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.92);
+    padding: 5px 12px;
+    border-radius: 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+  }
+
+  .modal-map-overlay.hidden {
+    display: none;
+  }
+
   .modal-description {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     line-height: 1.6;
     color: var(--color-text-secondary);
   }
@@ -305,7 +418,7 @@
   .modal-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: 6px;
   }
 
   .modal-tags:empty {
@@ -315,26 +428,27 @@
   .modal-tag {
     display: inline-flex;
     align-items: center;
-    padding: var(--space-1) var(--space-3);
+    padding: 3px 10px;
     background: var(--color-bg-secondary);
-    border-radius: var(--radius-full);
-    font-size: 0.8125rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
     color: var(--color-text-secondary);
   }
 
-  /* === FOOTER === */
+  /* === FOOTER (sticky at bottom) === */
   .modal-footer {
-    padding: var(--space-5);
+    padding: 12px 20px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--color-border-light);
     display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+    gap: 10px;
     flex-shrink: 0;
+    background: var(--color-card);
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .modal-footer {
-      flex-direction: row;
+      padding: 16px 24px;
     }
   }
 
@@ -342,65 +456,43 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    padding: var(--space-4) var(--space-5);
-    border-radius: var(--radius-md);
-    font-size: 0.9375rem;
+    gap: 6px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--duration-fast) ease;
+    transition: all 0.15s ease;
     text-decoration: none;
-    min-height: 48px;
-    flex: 1;
+    min-height: 44px;
   }
 
   .modal-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   .modal-btn-primary {
     background: var(--color-primary);
     color: white;
     border: none;
+    flex: 1;
   }
 
   .modal-btn-primary:hover {
-    background: color-mix(in srgb, var(--color-primary) 90%, black);
+    filter: brightness(0.9);
     transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
   }
 
   .modal-btn-secondary {
     background: var(--color-bg-secondary);
     color: var(--color-text);
     border: 1px solid var(--color-border);
+    flex: 0 0 auto;
   }
 
   .modal-btn-secondary:hover {
     background: var(--color-border);
-  }
-
-  /* Smooth scrolling in modal — prevent scroll-through on mobile */
-  .modal-body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    touch-action: pan-y; /* Explicitly allow vertical scroll via touch */
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-  }
-
-  .modal-body::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .modal-body::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .modal-body::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 3px;
   }
 </style>
 
@@ -412,12 +504,118 @@
   const backdrop = document.getElementById('event-modal-backdrop');
   const closeBtn = document.getElementById('modal-close');
   const downloadIcsBtn = document.getElementById('modal-download-ics');
+  const dragHandle = document.getElementById('modal-drag-handle');
+  const modalScroll = document.getElementById('modal-scroll');
+  const mapOverlay = document.getElementById('modal-map-overlay');
 
-  // Open modal with event data
+  // ─── Map overlay: tap to activate iframe interaction ───
+  mapOverlay?.addEventListener('click', () => {
+    mapOverlay.classList.add('hidden');
+  });
+
+  // Re-enable overlay when modal closes (handled in closeEventModal)
+
+  // ─── Swipe-to-dismiss ───
+  let dragStartY = 0;
+  let dragCurrentY = 0;
+  let isDragging = false;
+
+  function onDragStart(e: TouchEvent) {
+    // Only allow drag from handle area or when scroll is at top
+    const touch = e.touches[0];
+    dragStartY = touch.clientY;
+    dragCurrentY = touch.clientY;
+    isDragging = true;
+    modal?.classList.add('dragging');
+  }
+
+  function onDragMove(e: TouchEvent) {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    dragCurrentY = touch.clientY;
+    const deltaY = dragCurrentY - dragStartY;
+    
+    // Only allow dragging downward
+    if (deltaY > 0 && modal) {
+      modal.style.transform = `translateY(${deltaY}px)`;
+      // Fade backdrop
+      if (backdrop) {
+        backdrop.style.opacity = `${Math.max(0, 1 - deltaY / 300)}`;
+      }
+    }
+  }
+
+  function onDragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    modal?.classList.remove('dragging');
+    
+    const deltaY = dragCurrentY - dragStartY;
+    
+    if (deltaY > 120) {
+      // Dismiss
+      closeEventModal();
+    } else {
+      // Snap back
+      if (modal) {
+        modal.style.transform = '';
+      }
+      if (backdrop) {
+        backdrop.style.opacity = '';
+      }
+    }
+  }
+
+  // Attach drag listeners to handle
+  dragHandle?.addEventListener('touchstart', onDragStart, { passive: true });
+  dragHandle?.addEventListener('touchmove', onDragMove, { passive: true });
+  dragHandle?.addEventListener('touchend', onDragEnd);
+
+  // Also allow swipe-down from scroll area when scrolled to top
+  let scrollDragActive = false;
+
+  modalScroll?.addEventListener('touchstart', (e) => {
+    if (modalScroll.scrollTop <= 0) {
+      scrollDragActive = true;
+      const touch = e.touches[0];
+      dragStartY = touch.clientY;
+      dragCurrentY = touch.clientY;
+    }
+  }, { passive: true });
+
+  modalScroll?.addEventListener('touchmove', (e) => {
+    if (!scrollDragActive) return;
+    const touch = e.touches[0];
+    const deltaY = touch.clientY - dragStartY;
+    
+    // If we're pulling down and scroll is at top, start dragging modal
+    if (deltaY > 10 && modalScroll.scrollTop <= 0) {
+      isDragging = true;
+      modal?.classList.add('dragging');
+      dragCurrentY = touch.clientY;
+      if (modal) {
+        modal.style.transform = `translateY(${deltaY}px)`;
+      }
+      if (backdrop) {
+        backdrop.style.opacity = `${Math.max(0, 1 - deltaY / 300)}`;
+      }
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  modalScroll?.addEventListener('touchend', () => {
+    if (scrollDragActive) {
+      scrollDragActive = false;
+      if (isDragging) {
+        onDragEnd();
+      }
+    }
+  });
+
+  // ─── Open modal ───
   function openEventModal(eventData: any) {
     currentEventData = eventData;
     
-    // Populate modal
     const titleEl = document.getElementById('modal-title');
     const categoryEl = document.querySelector('.modal-category') as HTMLElement;
     const datetimeEl = document.querySelector('.modal-datetime-text');
@@ -454,12 +652,12 @@
       datetimeEl.textContent = dateStr + timeStr;
     }
 
-    // Location — show full address if available, otherwise city name
+    // Location
     if (locationEl) {
       locationEl.textContent = eventData.address || eventData.location;
     }
 
-    // Map — Google Maps Embed using address for precise pin
+    // Map
     if (mapEl) {
       const mapQuery = eventData.address || (eventData.location + ', Bayern, Deutschland');
       const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
@@ -475,29 +673,24 @@
       `;
     }
 
+    // Reset map overlay
+    mapOverlay?.classList.remove('hidden');
+
     // Description
     if (descriptionEl) {
-      if (eventData.description) {
-        descriptionEl.textContent = eventData.description;
-      } else {
-        descriptionEl.textContent = '';
-      }
+      descriptionEl.textContent = eventData.description || '';
     }
 
-    // Tags — show emoji + label instead of raw IDs
+    // Tags
     const artTagLabels: Record<string, string> = {
       musik: '🎵 Musik', theater: '🎭 Theater', kunst: '🎨 Kunst',
       sport: '🏃 Sport', natur: '🌲 Natur', markt: '🛒 Markt',
       bildung: '📚 Bildung', fest: '🎉 Fest', show: '🎪 Show', indoor: '☂️ Indoor'
     };
     if (tagsEl) {
-      if (eventData.tags && eventData.tags.length > 0) {
-        tagsEl.innerHTML = eventData.tags
-          .map((tag: string) => `<span class="modal-tag">${artTagLabels[tag] || tag}</span>`)
-          .join('');
-      } else {
-        tagsEl.innerHTML = '';
-      }
+      tagsEl.innerHTML = (eventData.tags && eventData.tags.length > 0)
+        ? eventData.tags.map((tag: string) => `<span class="modal-tag">${artTagLabels[tag] || tag}</span>`).join('')
+        : '';
     }
 
     // External link
@@ -510,24 +703,40 @@
       }
     }
 
-    // Show modal — lock body scroll (iOS-safe)
+    // Reset scroll position
+    if (modalScroll) modalScroll.scrollTop = 0;
+
+    // Show modal
     modal?.classList.add('visible');
     backdrop?.classList.add('visible');
     lockBodyScroll();
 
-    // Focus close button for accessibility
     closeBtn?.focus();
   }
 
-  // Close modal
+  // ─── Close modal ───
   function closeEventModal() {
-    modal?.classList.remove('visible');
+    if (modal) {
+      modal.style.transform = '';
+    }
+    if (backdrop) {
+      backdrop.style.opacity = '';
+    }
+    modal?.classList.remove('visible', 'dragging');
     backdrop?.classList.remove('visible');
     unlockBodyScroll();
+    
+    // Reset map overlay for next open
+    mapOverlay?.classList.remove('hidden');
+    
+    // Clear map iframe to stop loading
+    const mapEl = document.getElementById('modal-map');
+    if (mapEl) mapEl.innerHTML = '';
+    
     currentEventData = null;
   }
 
-  // iOS-safe body scroll lock
+  // ─── iOS-safe body scroll lock ───
   let savedScrollY = 0;
 
   function lockBodyScroll() {
@@ -548,7 +757,7 @@
     window.scrollTo(0, savedScrollY);
   }
 
-  // Prevent background scrolling via touch on backdrop
+  // Prevent scroll-through on backdrop
   backdrop?.addEventListener('touchmove', (e) => {
     e.preventDefault();
   }, { passive: false });
@@ -557,34 +766,30 @@
   closeBtn?.addEventListener('click', closeEventModal);
   backdrop?.addEventListener('click', closeEventModal);
 
-  // ESC key closes modal
+  // ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal?.classList.contains('visible')) {
       closeEventModal();
     }
   });
 
-  // Download ICS — opens Apple Calendar directly on Safari, downloads .ics otherwise
+  // ─── Download ICS ───
   downloadIcsBtn?.addEventListener('click', () => {
     if (!currentEventData) return;
 
     const icsContent = generateICS(currentEventData);
     const ua = navigator.userAgent;
-    // Detect Safari on Apple devices (not Chrome/Firefox/Edge on macOS)
     const isAppleSafari = /Macintosh|iPhone|iPad|iPod/.test(ua)
                           && /Safari/.test(ua)
                           && !/Chrome|CriOS|FxiOS|Edg/.test(ua);
 
     if (isAppleSafari) {
-      // Safari handles text/calendar natively — opens "Add to Calendar" dialog
-      // Using an <a> click with data URI (no download attr) lets Safari intercept the MIME type
       const link = document.createElement('a');
       link.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } else {
-      // Other browsers: download the .ics file
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -601,7 +806,6 @@
     }
   });
 
-  // Generate ICS file content
   function generateICS(event: any): string {
     const formatDate = (dateStr: string, timeStr?: string) => {
       const date = new Date(dateStr);
@@ -635,6 +839,6 @@ END:VEVENT
 END:VCALENDAR`;
   }
 
-  // Make function globally available
+  // Global
   (window as any).openEventModal = openEventModal;
 </script>
