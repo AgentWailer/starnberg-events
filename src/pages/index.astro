@@ -96,33 +96,43 @@ function formatWeekendDay(dateStr: string) {
                 <span class="highlights-count">{weekendEvents.length} Events</span>
               </div>
               <div class="highlights-scroll">
-                {weekendEvents.map(event => (
-                  <button 
-                    class="highlight-card" 
-                    data-event-id={event.id}
-                    data-event-title={event.title}
-                    data-date={event.date}
-                    data-event-time={event.time}
-                    data-location={event.location}
-                    data-event-description={event.description}
-                    data-event-url={event.url}
-                    data-category={event.category}
-                    data-art-tags={event.artTags?.join(',')}
-                  >
-                    <span class="highlight-card__day">{formatWeekendDay(event.date)}</span>
-                    <div class="highlight-card__content">
-                      <span class="highlight-card__time">{event.time ? event.time + ' Uhr' : ''}</span>
-                      <span class="highlight-card__title">{event.title}</span>
-                      <span class="highlight-card__location">
-                        <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                          <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                        {event.location}
-                      </span>
-                    </div>
-                  </button>
-                ))}
+                {weekendEvents.map(event => {
+                  const evDate = new Date(event.date);
+                  const evDay = evDate.getDate();
+                  const evMonth = evDate.toLocaleDateString('de-DE', { month: 'short' });
+                  return (
+                    <button 
+                      class="highlight-card" 
+                      data-event-id={event.id}
+                      data-event-title={event.title}
+                      data-date={event.date}
+                      data-event-time={event.time}
+                      data-location={event.location}
+                      data-event-description={event.description}
+                      data-event-url={event.url}
+                      data-category={event.category}
+                      data-art-tags={event.artTags?.join(',')}
+                    >
+                      <div class="highlight-card__date">
+                        <span class="highlight-card__day">{evDay}</span>
+                        <span class="highlight-card__month">{evMonth}</span>
+                      </div>
+                      <div class="highlight-card__content">
+                        <div class="highlight-card__meta">
+                          {event.time && <span class="highlight-card__time">{event.time} Uhr</span>}
+                        </div>
+                        <span class="highlight-card__title">{event.title}</span>
+                        <span class="highlight-card__location">
+                          <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                          {event.location}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </section>
           )}
@@ -254,18 +264,14 @@ function formatWeekendDay(dateStr: string) {
     margin-bottom: var(--space-8);
   }
 
-  /* Weekend Highlights — compact horizontal scroll */
+  /* Weekend Highlights — matches design system */
   .section-highlights {
-    margin-bottom: var(--space-8);
-    padding: var(--space-4) var(--space-5);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-10);
   }
 
   @media (min-width: 640px) {
     .section-highlights {
-      padding: var(--space-5) var(--space-6);
+      margin-bottom: var(--space-12);
     }
   }
 
@@ -273,132 +279,133 @@ function formatWeekendDay(dateStr: string) {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border-light);
   }
 
   .highlights-title {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: white;
-    margin: 0;
-  }
-
-  @media (min-width: 640px) {
-    .highlights-title {
-      font-size: 1.25rem;
-    }
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   .highlights-count {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--color-muted);
   }
 
   .highlights-scroll {
     display: flex;
-    gap: var(--space-3);
+    gap: var(--space-4);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     padding-bottom: var(--space-2);
-    margin: 0 calc(-1 * var(--space-5));
-    padding-left: var(--space-5);
-    padding-right: var(--space-5);
-  }
-
-  @media (min-width: 640px) {
-    .highlights-scroll {
-      margin: 0 calc(-1 * var(--space-6));
-      padding-left: var(--space-6);
-      padding-right: var(--space-6);
-    }
   }
 
   .highlights-scroll::-webkit-scrollbar {
-    height: 3px;
+    height: 4px;
   }
   .highlights-scroll::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
+    background: transparent;
   }
   .highlights-scroll::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
+    background: var(--color-border);
     border-radius: 2px;
   }
 
-  /* Compact highlight card */
+  /* Highlight card — same visual language as EventCard */
   .highlight-card {
-    flex: 0 0 260px;
+    flex: 0 0 280px;
     display: flex;
-    align-items: stretch;
-    gap: 0;
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    border-radius: var(--radius-md);
+    align-items: start;
+    gap: var(--space-4);
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     text-align: left;
     cursor: pointer;
     scroll-snap-align: start;
-    transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    padding: var(--space-4);
     font-family: inherit;
     color: inherit;
-    padding: 0;
+    box-shadow: var(--shadow-sm);
+    transition: 
+      transform var(--duration-normal) ease,
+      box-shadow var(--duration-normal) ease;
   }
 
-  .highlight-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  @media (hover: hover) {
+    .highlight-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .highlight-card:hover .highlight-card__title {
+      color: var(--color-primary);
+    }
   }
 
   .highlight-card:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
   }
 
-  :global(.dark) .highlight-card {
-    background: rgba(45, 42, 38, 0.95);
+  /* Date column — matches EventCard .card-date */
+  .highlight-card__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40px;
+    padding: var(--space-2) var(--space-2);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    text-align: center;
+    flex-shrink: 0;
   }
 
   .highlight-card__day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 36px;
-    padding: 0 var(--space-2);
-    background: var(--color-primary);
-    color: white;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.25rem;
     font-weight: 700;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
+    line-height: 1;
+    color: var(--color-primary);
   }
 
-  :global(.dark) .highlight-card__day {
-    background: var(--color-primary-dark);
+  .highlight-card__month {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    margin-top: 2px;
   }
 
   .highlight-card__content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: var(--space-3);
+    gap: var(--space-1);
     min-width: 0;
     flex: 1;
   }
 
+  .highlight-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
   .highlight-card__time {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-primary);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
   }
 
   .highlight-card__title {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.35;
     color: var(--color-text);
+    transition: color var(--duration-fast) ease;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -408,31 +415,27 @@ function formatWeekendDay(dateStr: string) {
   .highlight-card__location {
     display: flex;
     align-items: center;
-    gap: 3px;
-    font-size: 0.75rem;
+    gap: var(--space-1);
+    font-size: 0.8125rem;
     color: var(--color-muted);
-    margin-top: 2px;
   }
 
   .highlight-card__icon {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
     opacity: 0.6;
   }
 
-  /* On wider desktops, allow wrapping instead of scroll */
+  /* Desktop: wrapping grid */
   @media (min-width: 1200px) {
     .highlights-scroll {
       flex-wrap: wrap;
       overflow-x: visible;
-      margin: 0;
-      padding-left: 0;
-      padding-right: 0;
     }
     .highlight-card {
-      flex: 1 1 calc(33.333% - var(--space-3));
-      min-width: 220px;
+      flex: 1 1 calc(33.333% - var(--space-4));
+      min-width: 240px;
     }
   }
 
