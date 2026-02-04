@@ -584,7 +584,17 @@ const { lastUpdated } = Astro.props;
         if (!res.ok) return;
         const data = await res.json();
         
-        const allDeps = (data.departures || []).filter(function(d) { return d.cancelled || d.delay <= 60; });
+        // Filter: only future departures (actualTime or plannedTime >= now - 1 min)
+        var now = new Date();
+        var nowMins = now.getHours() * 60 + now.getMinutes();
+        function isUpcoming(d) {
+          var t = d.actualTime || d.plannedTime;
+          if (!t || t.length < 5) return false;
+          var parts = t.split(':');
+          var depMins = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+          return depMins >= nowMins - 1;
+        }
+        var allDeps = (data.departures || []).filter(function(d) { return (d.cancelled || d.delay <= 60) && isUpcoming(d); });
         if (allDeps.length === 0) return;
         
         function isTutzingDir(d) {

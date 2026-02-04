@@ -166,8 +166,16 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
   const LIVE_API = 'https://train-tracker.steffenvonlindern-be7.workers.dev/api/live';
 
   function renderDepartures(departures: any[], container: HTMLElement): void {
-    // Show cancelled + reasonable delays (filter out extreme delay outliers)
-    const valid = departures.filter((d: any) => d.cancelled || d.delay <= 60);
+    // Filter: only future departures + reasonable delays
+    const now = new Date();
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    const isUpcoming = (d: any) => {
+      const t = d.actualTime || d.plannedTime;
+      if (!t || t.length < 5) return false;
+      const parts = t.split(':');
+      return parseInt(parts[0]) * 60 + parseInt(parts[1]) >= nowMins - 1;
+    };
+    const valid = departures.filter((d: any) => (d.cancelled || d.delay <= 60) && isUpcoming(d));
 
     if (!valid.length) {
       container.innerHTML = `

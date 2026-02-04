@@ -598,9 +598,9 @@ async function handleLive(request: Request): Promise<Response> {
       const depHH = parseInt(depTime.substring(6, 8));
       const depMM = parseInt(depTime.substring(8, 10));
       const depMinutes = depHH * 60 + depMM;
-      // Show trains from -5 min to +120 min
+      // Show trains from -1 min to +120 min (tight window to avoid stale entries)
       const diff = depMinutes - nowMinutes;
-      return diff >= -5 && diff <= 120;
+      return diff >= -1 && diff <= 120;
     })
     .map(dep => {
       if (source === 'transport.rest') {

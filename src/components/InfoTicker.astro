@@ -482,7 +482,16 @@
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      const allDeps = (data.departures || []).filter((d: any) => d.cancelled || d.delay <= 60);
+      // Filter: only future departures
+      const now = new Date();
+      const nowMins = now.getHours() * 60 + now.getMinutes();
+      const isUpcoming = (d: any) => {
+        const t = d.actualTime || d.plannedTime;
+        if (!t || t.length < 5) return false;
+        const parts = t.split(':');
+        return parseInt(parts[0]) * 60 + parseInt(parts[1]) >= nowMins - 1;
+      };
+      const allDeps = (data.departures || []).filter((d: any) => (d.cancelled || d.delay <= 60) && isUpcoming(d));
 
       const isTutzingDir = (d: any) => /Tutzing|Feldafing/i.test(d.direction);
 
