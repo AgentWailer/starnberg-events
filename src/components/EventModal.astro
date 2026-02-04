@@ -73,16 +73,24 @@
 
     <!-- Modal Footer (always visible at bottom) -->
     <div class="modal-footer">
-      <button class="modal-btn modal-btn-secondary" id="modal-download-ics">
+      <button class="modal-btn modal-btn-icon" id="modal-download-ics" aria-label="In Kalender speichern" title="In Kalender speichern">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
-        Kalender
+      </button>
+      <button class="modal-btn modal-btn-share" id="modal-share-btn" aria-label="Event teilen" title="Event teilen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+          <polyline points="16 6 12 2 8 6"></polyline>
+          <line x1="12" y1="2" x2="12" y2="15"></line>
+        </svg>
+        Teilen
       </button>
       <a class="modal-btn modal-btn-primary" id="modal-external-link" target="_blank" rel="noopener">
-        Zur Event-Seite
+        Event-Seite
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
           <polyline points="15 3 21 3 21 9"></polyline>
@@ -90,6 +98,9 @@
         </svg>
       </a>
     </div>
+
+    <!-- Share toast notification -->
+    <div class="share-toast" id="share-toast">Link kopiert!</div>
   </div>
 </div>
 
@@ -484,15 +495,55 @@
     transform: translateY(-1px);
   }
 
-  .modal-btn-secondary {
+  .modal-btn-icon {
     background: var(--color-bg-secondary);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     flex: 0 0 auto;
+    padding: 12px;
   }
 
-  .modal-btn-secondary:hover {
+  .modal-btn-icon:hover {
     background: var(--color-border);
+  }
+
+  .modal-btn-share {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    flex: 1;
+  }
+
+  .modal-btn-share:hover {
+    background: var(--color-border);
+  }
+
+  .modal-btn-share:active {
+    transform: scale(0.97);
+  }
+
+  /* === SHARE TOAST === */
+  .share-toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--color-text);
+    color: var(--color-card);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    z-index: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .share-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 </style>
 
@@ -507,6 +558,8 @@
   const dragHandle = document.getElementById('modal-drag-handle');
   const modalScroll = document.getElementById('modal-scroll');
   const mapOverlay = document.getElementById('modal-map-overlay');
+  const shareBtn = document.getElementById('modal-share-btn');
+  const shareToast = document.getElementById('share-toast');
 
   // ─── Map overlay: tap to activate iframe interaction ───
   mapOverlay?.addEventListener('click', () => {
@@ -706,6 +759,11 @@
     // Reset scroll position
     if (modalScroll) modalScroll.scrollTop = 0;
 
+    // Update URL with event ID for deep-linking
+    if (eventData.id) {
+      updateUrlForEvent(eventData.id);
+    }
+
     // Show modal
     modal?.classList.add('visible');
     backdrop?.classList.add('visible');
@@ -725,6 +783,9 @@
     modal?.classList.remove('visible', 'dragging');
     backdrop?.classList.remove('visible');
     unlockBodyScroll();
+    
+    // Remove event param from URL
+    updateUrlForEvent(null);
     
     // Reset map overlay for next open
     mapOverlay?.classList.remove('hidden');
@@ -839,6 +900,114 @@ END:VEVENT
 END:VCALENDAR`;
   }
 
+  // ─── Share Event ───
+  function getEventShareUrl(eventId: string): string {
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    url.searchParams.set('event', eventId);
+    return url.toString();
+  }
+
+  function getShareText(eventData: any): string {
+    const date = new Date(eventData.date);
+    const dateStr = date.toLocaleDateString('de-DE', { 
+      weekday: 'short', day: '2-digit', month: 'short' 
+    });
+    const timeStr = eventData.time ? ` um ${eventData.time} Uhr` : '';
+    const location = eventData.address || eventData.location;
+    return `${eventData.title}\n📅 ${dateStr}${timeStr}\n📍 ${location}`;
+  }
+
+  function showToast(message: string) {
+    if (!shareToast) return;
+    shareToast.textContent = message;
+    shareToast.classList.add('visible');
+    setTimeout(() => shareToast.classList.remove('visible'), 2000);
+  }
+
+  shareBtn?.addEventListener('click', async () => {
+    if (!currentEventData) return;
+
+    const shareUrl = getEventShareUrl(currentEventData.id);
+    const shareText = getShareText(currentEventData);
+
+    // Try Web Share API first (native share sheet on mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: currentEventData.title,
+          text: shareText,
+          url: shareUrl
+        });
+        return; // user shared or cancelled — either way, done
+      } catch (err: any) {
+        // AbortError = user cancelled, that's fine
+        if (err?.name === 'AbortError') return;
+        // Other error — fall through to clipboard
+      }
+    }
+
+    // Fallback: copy link to clipboard
+    try {
+      await navigator.clipboard.writeText(`${shareText}\n\n${shareUrl}`);
+      showToast('📋 Link kopiert!');
+    } catch {
+      // Last resort: select + copy
+      const textarea = document.createElement('textarea');
+      textarea.value = `${shareText}\n\n${shareUrl}`;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast('📋 Link kopiert!');
+    }
+  });
+
+  // ─── URL management: update URL when modal opens/closes ───
+  function updateUrlForEvent(eventId: string | null) {
+    const url = new URL(window.location.href);
+    if (eventId) {
+      url.searchParams.set('event', eventId);
+    } else {
+      url.searchParams.delete('event');
+    }
+    history.replaceState(null, '', url.toString());
+  }
+
+  // ─── Deep-linking: open modal from URL param on page load ───
+  function checkDeepLink() {
+    const params = new URLSearchParams(window.location.search);
+    const eventId = params.get('event');
+    if (!eventId) return;
+
+    // Find the event card with this ID and extract its data
+    const card = document.querySelector(`.event-card[data-event-id="${eventId}"]`) as HTMLElement;
+    if (!card) return;
+
+    const eventData = {
+      id: card.dataset.eventId,
+      title: card.dataset.eventTitle,
+      date: card.dataset.date,
+      time: card.dataset.eventTime,
+      location: card.dataset.location,
+      address: card.dataset.eventAddress,
+      description: card.dataset.eventDescription,
+      category: card.dataset.category,
+      url: card.dataset.eventUrl,
+      tags: card.dataset.artTags?.split(',').filter(Boolean) || []
+    };
+
+    // Small delay to ensure DOM is ready
+    requestAnimationFrame(() => openEventModal(eventData));
+  }
+
   // Global
   (window as any).openEventModal = openEventModal;
+  (window as any).closeEventModal = closeEventModal;
+
+  // Check for deep link on load
+  document.addEventListener('DOMContentLoaded', checkDeepLink);
 </script>
