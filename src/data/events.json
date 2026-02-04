@@ -1,6 +1,26 @@
 {
   "events": [
     {
+      "title": "Führung Ausstellung Heinz Butz - Ein stiller Avantgardist in Oberbayern",
+      "date": "2026-01-22",
+      "time": "14:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Straße 5",
+      "description": "Der Leiter des Starnberger Museums führt durch die Ausstellung über den Maler Heinz Butz. Ausstellung läuft vom 23. November 2025 bis 3. Mai 2026",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.kulturforum-starnberg.de/newpage",
+      "source": "kulturforum-starnberg",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 293
+    },
+    {
       "title": "Kloster Andechs: öffentliche Kirchenführung",
       "date": "2026-02-05",
       "time": "12:00",
@@ -134,6 +154,42 @@
       "id": 7
     },
     {
+      "title": "Klimaschutzkonzept für Gauting",
+      "date": "2026-02-05",
+      "time": "19:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Die Gemeinde Gauting lädt alle Bürgerinnen und Bürger herzlich ein, sich im Rahmen einer Bürgerversammlung zum Klimaschutzkonzept zu informieren",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/gemeinde-gauting-klimaschutzkonzept-fuer-gauting",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 286
+    },
+    {
+      "title": "Offener Handarbeits- und Basteltreff \"Pack die Wolle ein!\"",
+      "date": "2026-02-05",
+      "time": "14:00",
+      "location": "Münsing",
+      "address": "Pfarrheim Münsing",
+      "description": "Frauenbund Münsing lädt zum offenen Handarbeits- und Basteltreff ein",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/fac973c6-99aa-4678-b935-594f3395d87e",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 289
+    },
+    {
       "title": "Märchenstunde in der Bücherei Dießen",
       "date": "2026-02-06",
       "time": "14:30",
@@ -226,6 +282,83 @@
       "venue": "Stellwerk - Haus der Jugend",
       "isHighlight": false,
       "id": 12
+    },
+    {
+      "title": "Stefan Danziger: Mittel und Wege",
+      "date": "2026-02-06",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett: In seinem aktuellen Programm gibt Stefan Danziger wieder einen skurrilen Blick auf die Geschichte",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/stefan-danziger-mittel-und-wege",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 287
+    },
+    {
+      "title": "David Berlinghof: Wohlfühlprogramm",
+      "date": "2026-02-06",
+      "time": "20:00",
+      "location": "Bernried",
+      "address": "Sommerkeller Bernried",
+      "description": "David Berlinghof geht in seinem neuen Programm der Frage nach, was echtes Wohlfühlen wirklich bedeutet. Mit Humor, Musik und nachdenklichen Momenten",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.bernried.de/de/startseite",
+      "source": "bernried",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 288
+    },
+    {
+      "title": "Beckenboden-Beine-Po",
+      "date": "2026-02-06",
+      "time": "16:00",
+      "location": "Münsing",
+      "address": "Pfarrheim Münsing",
+      "description": "Fitnesskurs vom Frauenbund Münsing",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "wellness"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/6d9a1f12-aac5-4add-af2b-f3349c23dce3",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 290
+    },
+    {
+      "title": "Das Flüstern der Blumen",
+      "date": "2026-02-06",
+      "time": "18:00",
+      "location": "Münsing",
+      "address": "Foyer Bürgerhaus Münsing",
+      "description": "Kunstausstellung von Kunst am See e.V. bis 1. März 2026",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/2eb4d117-13b7-4a73-8943-39c5f233c1c7",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 291
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -586,6 +719,25 @@
       "id": 31
     },
     {
+      "title": "Fernanda von Sachsen Quartett & Edi May Trio: Preisträgerkonzert Kurt Maas Jazz Award",
+      "date": "2026-02-07",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "In einer neuen Kooperation mit der Münchner Musikhochschule präsentieren wir die Preisträger:innen des Kurt Maas Jazz Awards",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/fernanda-von-sachsen-quartett-edi-may-trio-preistraegerkonzert-kurt-maas-jazz-award",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 292
+    },
+    {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
       "date": "2026-02-08",
       "time": "08:00",
@@ -700,6 +852,26 @@
       "id": 37
     },
     {
+      "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",
+      "date": "2026-02-08",
+      "time": "15:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Öffentliche Führung durch unsere Kunstvermittlerin. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 294
+    },
+    {
       "title": "Wie viel Arbeit braucht der Mensch? – 7. Tutzinger Depressionstagung",
       "date": "2026-02-09",
       "time": null,
@@ -812,6 +984,22 @@
       "id": 43
     },
     {
+      "title": "Nachbarschaftshilfe - Spielenachmittag",
+      "date": "2026-02-10",
+      "time": "14:00",
+      "location": "Münsing",
+      "address": "Pfarrheim, Holzhausener Str. 4",
+      "description": "Spielenachmittag der Agenda 21 Soziales der Gemeinde Münsing",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.heimat-info.de/veranstaltungen/b7c23fdb-3ba4-4171-9a62-bcc4ea9ea64b",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 295
+    },
+    {
       "title": "WWK Volleys Herrsching – Bundesliga-Heimspiel",
       "date": "2026-02-11",
       "time": "20:00",
@@ -847,6 +1035,42 @@
       "venue": "Evangelische Akademie Tutzing",
       "isHighlight": false,
       "id": 45
+    },
+    {
+      "title": "Bahnhofsareal Gauting: Jetzt oder nie",
+      "date": "2026-02-11",
+      "time": "19:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Diskussion von Bündnis 90/Die Grünen OV Gauting zum Bahnhofsareal",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/buendis-90-die-gruenen-ov-gauting-bahnhofsareal-gauting-jetzt-oder-nie",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 296
+    },
+    {
+      "title": "Wer hilft in Münsing? Meet & Greet - Infotag",
+      "date": "2026-02-11",
+      "time": "15:00",
+      "location": "Münsing",
+      "address": "Pallaufsaal Münsing",
+      "description": "Informationsveranstaltung der Gemeinde Münsing",
+      "category": "familie",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/7f67fa75-e578-4b89-bf92-edc8e12bc7b1",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 297
     },
     {
       "title": "Großer Kinder-Turnfasching im TSV Starnberg",
@@ -942,6 +1166,43 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 50
+    },
+    {
+      "title": "Künstlerische Selbsterfahrung mit Ton",
+      "date": "2026-02-12",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 298
+    },
+    {
+      "title": "Familienfreundliches Gauting",
+      "date": "2026-02-12",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Diskussion von MfG - Menschen für Gauting zum Thema Starke Familie und Bildung",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/mfg-menschen-fuer-gauting-familienfreundliches-gauting",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 299
     },
     {
       "title": "Karl Valentin und die Liebe – Wilfried vom Ammersee",
@@ -1075,6 +1336,25 @@
       "venue": "Pfarrzentrum Sankt Nikolaus",
       "isHighlight": false,
       "id": 57
+    },
+    {
+      "title": "Beckenboden-Beine-Po",
+      "date": "2026-02-13",
+      "time": "16:00",
+      "location": "Münsing",
+      "address": "Pfarrheim Münsing",
+      "description": "Fitnesskurs vom Frauenbund Münsing",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "wellness"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/4d34f4ca-538a-454d-88c4-937c2864be9d",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 300
     },
     {
       "title": "Flohmarkt im Olympiapark",
@@ -1382,6 +1662,25 @@
       "id": 73
     },
     {
+      "title": "Yoga & Brunch",
+      "date": "2026-02-14",
+      "time": "10:00",
+      "location": "Pähl",
+      "address": "Biohofgut Kerschlach 1, 82396 Pähl",
+      "description": "Vinyasa Yoga Stunde mit Alexandra gefolgt von Bio-Brunch im Biohofgut Kerschlach. Entspannung, Bewegung und Genuss in einzigartiger Atmosphäre.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 275
+    },
+    {
       "title": "Kinderfasching",
       "date": "2026-02-15",
       "time": "14:00",
@@ -1477,6 +1776,42 @@
       "id": 78
     },
     {
+      "title": "Milonga La Luz",
+      "date": "2026-02-15",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Milonga im Gilchinger Tanzzentrum.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de/Kalender",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 264
+    },
+    {
+      "title": "Kinderfasching im Silberfasan",
+      "date": "2026-02-15",
+      "time": "14:30",
+      "location": "Inning am Ammersee",
+      "address": "Landsberger Straße, 82266 Inning am Ammersee (Silberfasan)",
+      "description": "Spiele und viel Spaß bei fetziger Musik für Kinder. Kostümierte Kinder erwünscht! Mütter und Väter sind willkommen. Eintritt 1,99€.",
+      "category": "kinder",
+      "artTags": [
+        "fest"
+      ],
+      "url": "https://sv-inning.de",
+      "source": "sv-inning",
+      "region": "ammersee",
+      "venue": "Silberfasan Inning",
+      "isHighlight": false,
+      "id": 267
+    },
+    {
       "title": "FILMWORKSHOP (Faschingsferien)",
       "date": "2026-02-16",
       "time": "10:00",
@@ -1552,6 +1887,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 82
+    },
+    {
+      "title": "Karneval der Tiere! Kinder-Ferienkurs",
+      "date": "2026-02-16",
+      "time": "09:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kinder-Ferienkurs vom 16.02. - 20.02.2026 mit Johanna. Mit Papiermaché, Karton, Acrylfarben basteln die Kinder frei nach ihren Vorstellungen. Für Kinder von 6 bis 12 Jahren. Teilnahme: 200,00 € für die ganze Woche, Mittagessen inklusive",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 301
     },
     {
       "title": "RuckiZucki und Kehraus 2026",
@@ -1645,6 +1999,26 @@
       "id": 87
     },
     {
+      "title": "Yoga & Klang",
+      "date": "2026-02-18",
+      "time": "16:00",
+      "location": "Tutzing",
+      "address": "AYOUGA studio, Traubinger Straße 14, Tutzing",
+      "description": "Besonderer Nachmittag mit Atmung, Farbtherapie, Bewegung, Klang und inneren Bildern. Begleitet von Sabine am Harmonium, mit Aura Soma Farbtherapie und geführter Fantasiereise.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "meditation",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 276
+    },
+    {
       "title": "BÜRGERTREFF 55+ GASTHOF ZUR POST",
       "date": "2026-02-19",
       "time": "15:00",
@@ -1659,6 +2033,25 @@
       "venue": "Gasthof DIE POST",
       "isHighlight": false,
       "id": 88
+    },
+    {
+      "title": "Gert Heidenreich Lesung (geplant)",
+      "date": "2026-02-19",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Buchhandlung Kirchheim",
+      "description": "Geplante Lesung mit Gert Heidenreich, Details folgen",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.kulturforum-starnberg.de/newpage",
+      "source": "kulturforum-starnberg",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 302
     },
     {
       "title": "Großer Lesetag 2026",
@@ -1678,6 +2071,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 89
+    },
+    {
+      "title": "Großer Lesetag 2026 im Tierpark",
+      "date": "2026-02-20",
+      "time": "10:00",
+      "location": "München",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
+      "description": "Ohren spitzen und einkuscheln – der große Lesetag im Tierpark Hellabrunn! Tierisch spannende Geschichten für Kinder und Familien. 10:00-17:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "bildung",
+        "indoor"
+      ],
+      "url": "https://www.hellabrunn.de/eventdetailseite/lesetag-20-februar-2026-1000-1700-uhr",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": "Tierpark Hellabrunn",
+      "isHighlight": false,
+      "id": 270
     },
     {
       "title": "Kreistanzen & Bewegungsanalyse – Wochenendseminar",
@@ -1812,6 +2224,25 @@
       "id": 96
     },
     {
+      "title": "Kreistanzen und Bewegungsanalyse - Wochenende",
+      "date": "2026-02-21",
+      "time": "14:00",
+      "location": "Starnberg",
+      "address": "Hauptstrasse 22, 82319 Starnberg (Lehrsaal Condrobs)",
+      "description": "Kreistanz-Wochenendseminar mit Martin Wanke: Bewegungsspektrum erweitern, Gefühl für Bewegung vertiefen. Tänze analysieren, Bewegungsimprovisationen und Tanzübungen. Sa 14:00-18:30 Uhr, So 10:30-16:30 Uhr. Kosten: 120€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz",
+        "bildung"
+      ],
+      "url": "https://www.themen-tanz.de/",
+      "source": "themen-tanz",
+      "region": "starnberger-see",
+      "venue": "Condrobs Starnberg",
+      "isHighlight": false,
+      "id": 265
+    },
+    {
       "title": "Kinderführung: Willkommen an Bord unserer Maschine",
       "date": "2026-02-22",
       "time": "10:30",
@@ -1889,6 +2320,45 @@
       "id": 100
     },
     {
+      "title": "Öffentliche Führung: Ruprecht von Kaufmann. Leben zwischen den Stühlen",
+      "date": "2026-02-22",
+      "time": "15:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Unsere Kunstvermittlerin führt durch die Ausstellung. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 303
+    },
+    {
+      "title": "Kunstsonntag",
+      "date": "2026-02-22",
+      "time": "11:00",
+      "location": "Münsing",
+      "address": "Foyer Bürgerhaus Münsing",
+      "description": "Kunstsonntag von Kunst am See e.V.",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/3bd46488-b99f-4c25-bfa8-7d2d981c5371",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 304
+    },
+    {
       "title": "Kulturmontag - Michael Kinsik (Film und Gespräch)",
       "date": "2026-02-23",
       "time": "19:00",
@@ -1961,6 +2431,43 @@
       "id": 104
     },
     {
+      "title": "Treffen des Arbeitskreises Energiewende Münsing",
+      "date": "2026-02-23",
+      "time": "19:30",
+      "location": "Münsing",
+      "address": "Nachbarschaftstisch der Sparkasse Münsing",
+      "description": "Monatliches Treffen des Arbeitskreises Energiewende Münsing",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/6a480edf-7731-4494-a8ee-1ea6864a858e",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 305
+    },
+    {
+      "title": "Vortrag zum Thema Wechseljahre - Natürliche Unterstützung für Körper & Geist",
+      "date": "2026-02-23",
+      "time": "19:30",
+      "location": "Münsing",
+      "address": "Münsing",
+      "description": "Vortrag vom Frauenbund Münsing",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung",
+        "wellness"
+      ],
+      "url": "https://www.heimat-info.de/veranstaltungen/f15d2612-8eb5-416c-b7a8-1b094b52c79a",
+      "source": "muensing-heimat",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 306
+    },
+    {
       "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
       "date": "2026-02-24",
       "time": "19:00",
@@ -1979,6 +2486,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 105
+    },
+    {
+      "title": "Eine Reise in die Freiheit – Artenschutz im Wildreservat",
+      "date": "2026-02-24",
+      "time": "19:00",
+      "location": "München",
+      "address": "Artenschutzzentrum, Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
+      "description": "Vortrag von Hans Helmreich (Autor & Journalist): Wie funktioniert Artenschutz in einem Wildreservat? 19:00-21:00 Uhr im Vortragsraum des Artenschutzzentrums.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://www.hellabrunn.de/eventdetailseite/eine-reise-in-die-freiheit-wie-funktioniert-artenschutz-in-einem-wildreservat",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": "Tierpark Hellabrunn",
+      "isHighlight": false,
+      "id": 271
     },
     {
       "title": "Eros Ramazzotti – Una Storia Importante World Tour",
@@ -2000,6 +2526,25 @@
       "id": 106
     },
     {
+      "title": "Die Welt der KI",
+      "date": "2026-02-25",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
+      "description": "Eine Veranstaltung in Kooperation mit dem BayernLAB Starnberg und der Stiftung für Pöcking – Einführung in die Welt der Künstlichen Intelligenz",
+      "category": "familie",
+      "artTags": [
+        "bildung",
+        "indoor"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender",
+      "source": "beccult",
+      "region": "starnberger-see",
+      "venue": "beccult",
+      "isHighlight": false,
+      "id": 262
+    },
+    {
       "title": "Jason Derulo – The Last Dance World Tour",
       "date": "2026-02-26",
       "time": "20:00",
@@ -2019,6 +2564,44 @@
       "id": 107
     },
     {
+      "title": "Pastellmalerei",
+      "date": "2026-02-26",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 307
+    },
+    {
+      "title": "Laszlo Fenyö, Violoncello & Julia Okruashvili, Klavier: Beethoven, Kodály, Grieg",
+      "date": "2026-02-26",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Klassikkonzert im Rahmen des Georgien-Schwerpunkts",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/laszlo-fenyoe-violoncello-julia-okruashvili-klavier-beethoven-kodaly-grieg",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 308
+    },
+    {
       "title": "Von Gaswolken und Filamenten zu Sternen und Planeten",
       "date": "2026-02-27",
       "time": "20:00",
@@ -2035,6 +2618,44 @@
       "venue": "Bayerische Volkssternwarte München",
       "isHighlight": false,
       "id": 108
+    },
+    {
+      "title": "Yoga & Bowls",
+      "date": "2026-02-27",
+      "time": "18:30",
+      "location": "Tutzing",
+      "address": "AYOUGA studio, Traubinger Straße 14 & Marie's happy food, Greinwaldstraße 2, Tutzing",
+      "description": "Monatliches Ritual am letzten Freitag: Vinyasa Yoga Stunde im Studio, danach Bowl und alkoholfreier Cocktail im Marie's Happy Food.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 277
+    },
+    {
+      "title": "Sara Brandhuber: A scheena Schmarrn",
+      "date": "2026-02-27",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett mit Sara Brandhuber (ausverkauft)",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/sara-brandhuber-scheena-schmarrn",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 309
     },
     {
       "title": "Führung auf die Zugspitze",
@@ -2113,6 +2734,43 @@
       "id": 112
     },
     {
+      "title": "Knet-Workshop mit Katharina Neubert",
+      "date": "2026-02-28",
+      "time": "12:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Offener Knet-Workshop für Kinder, Jugendliche und Erwachsene. Kostenfrei mit gültiger Eintrittskarte, ohne Anmeldung",
+      "category": "familie",
+      "artTags": [
+        "kunst"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 310
+    },
+    {
+      "title": "Junge Künstler Kammermusik-Reihe",
+      "date": "2026-02-28",
+      "time": "19:00",
+      "location": "Berg",
+      "address": "Neuer Rathaussaal Berg",
+      "description": "Neue Kammermusik-Reihe \"Junge Künstler\" startet",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://kulturverein-berg.de",
+      "source": "kulturverein-berg",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 311
+    },
+    {
       "title": "Ehrlich Brothers – Diamonds",
       "date": "2026-03-01",
       "time": "19:00",
@@ -2168,6 +2826,24 @@
       "venue": "Naturschutz und Jugendzentrum Wartaweil",
       "isHighlight": false,
       "id": 115
+    },
+    {
+      "title": "Knet-Workshop mit Katharina Neubert",
+      "date": "2026-03-01",
+      "time": "12:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Offener Knet-Workshop für Kinder, Jugendliche und Erwachsene. Kostenfrei mit gültiger Eintrittskarte, ohne Anmeldung",
+      "category": "familie",
+      "artTags": [
+        "kunst"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 312
     },
     {
       "title": "Künstliche kulinarische Intelligenz – KI, Ethik und Esskultur",
@@ -2298,6 +2974,25 @@
       "venue": "Freiwillige Feuerwehr Herrsching",
       "isHighlight": false,
       "id": 122
+    },
+    {
+      "title": "Miniaturen mit Blattgold",
+      "date": "2026-03-05",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 313
     },
     {
       "id": 123,
@@ -2469,6 +3164,45 @@
       "id": 131
     },
     {
+      "title": "Mit der Gebietsbetreuerin unterwegs: Vogelstimmenwanderung im Bernrieder Park",
+      "date": "2026-03-07",
+      "time": "09:00",
+      "location": "Bernried",
+      "address": "Bernrieder Park, 82347 Bernried am Starnberger See",
+      "description": "Vogelstimmenwanderung mit Andrea Gehrold (Gebietsbetreuerin) im Bernrieder Park.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung",
+        "wandern"
+      ],
+      "url": "https://starnberg.lbv.de/über-uns/veranstaltungskalender/2026-03-07-vogelstimmenwanderung/",
+      "source": "lbv-starnberg",
+      "region": "starnberger-see",
+      "venue": "Bernrieder Park",
+      "isHighlight": false,
+      "id": 269
+    },
+    {
+      "title": "Brustmann-Schäfer-Horn: Isara Rapidus",
+      "date": "2026-03-07",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Vielklang - Drei verschiedene musikalische Biographien vereint in brandneuer Musik",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/brustmann-schaefer-horn-isara-rapidus",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 314
+    },
+    {
       "title": "Special Olympics Bayern Tennis Cup",
       "date": "2026-03-08",
       "time": "09:00",
@@ -2562,6 +3296,26 @@
       "id": 136
     },
     {
+      "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",
+      "date": "2026-03-08",
+      "time": "15:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Öffentliche Führung durch unsere Kunstvermittlerin. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 315
+    },
+    {
       "title": "Politische Bildung in Grundschulen – Junges Forum",
       "date": "2026-03-10",
       "time": null,
@@ -2599,6 +3353,25 @@
       "id": 138
     },
     {
+      "title": "Tabea Zimmermann, Viola & Javier Perianes, Klavier: Schumann, Brahms, Britten",
+      "date": "2026-03-10",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Klassikkonzert mit Tabea Zimmermann, einst jüngste Professorin Deutschlands",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/tabea-zimmermann-viola-javier-perianes-klavier-schumann-brahms-britten",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 316
+    },
+    {
       "title": "Bushido – Alles wird gut Tour 2026",
       "date": "2026-03-11",
       "time": "20:00",
@@ -2616,6 +3389,24 @@
       "venue": null,
       "isHighlight": true,
       "id": 139
+    },
+    {
+      "title": "Seniorenbeirat Gauting: BETRUGSPRÄVENTION",
+      "date": "2026-03-11",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Vortrag des Seniorenbeirats Gauting zum Thema Betrugsprävention",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/seniorenbeirat-gauting-betrugspraevention",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 317
     },
     {
       "title": "Ben Zucker – Kämpferherz Arenatour 2026",
@@ -2653,6 +3444,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 141
+    },
+    {
+      "title": "Kopfmodellieren mit Ton",
+      "date": "2026-03-12",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 318
     },
     {
       "title": "André Rieu – Deutschlandtour 2026",
@@ -2709,6 +3519,45 @@
       "venue": "Florian-Stadl, Kloster Andechs",
       "isHighlight": false,
       "id": 144
+    },
+    {
+      "title": "bosco, bambini: Ein FamilienFest der Fantasie",
+      "date": "2026-03-13",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Familienfest-Wochenende 13.-15.03. voller Abenteuer und Fantasie für Kinder",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "kultur",
+        "indoor"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-ein-familienfest-der-fantasie",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 319
+    },
+    {
+      "title": "Julia Fischer & Lena Neudauer: Family in Concert",
+      "date": "2026-03-13",
+      "time": "19:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Zum Auftakt von bosco, bambini! geben die beiden international renommierten Musikerinnen ein Familienkonzert",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/julia-fischer-lena-neudauer-family-concert",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 320
     },
     {
       "id": 145,
@@ -2897,6 +3746,141 @@
       "id": 154
     },
     {
+      "title": "Leben zwischen den Stühlen. Künstlerführung mit Ruprecht von Kaufmann",
+      "date": "2026-03-14",
+      "time": "15:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Der Künstler Ruprecht von Kaufmann führt persönlich durch seine Ausstellung. Anschließend Buchsignierung. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 321
+    },
+    {
+      "title": "bosco, bambini: Märchenjurte am Vorplatz",
+      "date": "2026-03-14",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "bosco Gauting Vorplatz",
+      "description": "In einer gemütlichen Märchenjurte werden Märchen für große und kleine Ohren erzählt",
+      "category": "kinder",
+      "artTags": [
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-maerchenjurte-am-vorplatz",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 322
+    },
+    {
+      "title": "Schule der Fantasie: Workshop \"Was für ein Theater!\"",
+      "date": "2026-03-14",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Wir malen, zeichnen, schnippeln, kleben und lassen die Puppen tanzen! Für Kinder von 4 - 10 Jahren",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "theater",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-workshop-was-fuer-ein-theater",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 323
+    },
+    {
+      "title": "Figurentheater Hattenkofer: Als der kleine Koriander kam",
+      "date": "2026-03-14",
+      "time": "11:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Ein Stück über die Begegnung mit dem Unbekannten und dem Glück zu entdecken. Ausverkauft",
+      "category": "kinder",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/figurentheater-hattenkofer-als-der-kleine-koriander-kam",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 324
+    },
+    {
+      "title": "Schule der Fantasie: Workshop \"Fritzi, Ferkel, Ferdinand…\"",
+      "date": "2026-03-14",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Aus Fundstücken und Fetzen fertigen wir fantastische, freche und fröhliche Fingerfiguren. Für Kinder von 4-10 Jahren",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-fritzi-ferkel-ferdinand",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 325
+    },
+    {
+      "title": "die exen - Dorothee Carls: Pony im Koffer",
+      "date": "2026-03-14",
+      "time": "16:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Eine abenteuerliche Reise, auf der sich nicht nur Koffer stapeln, sondern auch Probleme",
+      "category": "kinder",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/die-exen-dorothee-carls-pony-im-koffer",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 326
+    },
+    {
+      "title": "Mackefisch: Komplizirkus (Songwriter-Kabarett)",
+      "date": "2026-03-14",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "20 Instrumente gleichzeitig, zweistimmiger Gesang zwischen hinreißend schön und atemberaubend rasant",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/mackefisch-komplizirkus-songwriter-kabarett",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 327
+    },
+    {
       "title": "Mixed Turnier Tennis – TSV Gilching",
       "date": "2026-03-15",
       "time": "13:00",
@@ -3048,6 +4032,100 @@
       "id": 162
     },
     {
+      "title": "Armenische Tänze - Workshop",
+      "date": "2026-03-15",
+      "time": "10:30",
+      "location": "München",
+      "address": "Am Laimer Anger 2, München (Interim)",
+      "description": "Armenische Basis- und Mittelstufe Tänze mit Martin Wanke. So 10:30-16:30 Uhr inkl. Mittagspause. Kosten: 50-60€. Nur für TänzerInnen mit Tanzerfahrung! Anmeldung bis 05.03. erforderlich.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz",
+        "kultur"
+      ],
+      "url": "https://www.themen-tanz.de/",
+      "source": "themen-tanz",
+      "region": "muenchen",
+      "venue": "Interim München",
+      "isHighlight": false,
+      "id": 266
+    },
+    {
+      "title": "\"Klangvolle Stille – Steinskulpturen von Kubach & Kropp\"",
+      "date": "2026-03-15",
+      "time": "15:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Das Künstlerpaar Livia Kubach und Michael Kropp führt durch die Ausstellung. 5,00 € zzgl. Eintritt",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 328
+    },
+    {
+      "title": "bosco, bambini: Märchenjurte am Vorplatz",
+      "date": "2026-03-15",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "bosco Gauting Vorplatz",
+      "description": "In einer gemütlichen Märchenjurte werden Märchen für große und kleine Ohren erzählt",
+      "category": "kinder",
+      "artTags": [
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-maerchenjurte-am-vorplatz_So",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 329
+    },
+    {
+      "title": "Johannes X. Schachtner & die Kindersinfoniker: \"Karneval der Tiere\"",
+      "date": "2026-03-15",
+      "time": "11:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Klassikkonzert für Kinder nach Camille Saint-Saëns",
+      "category": "kinder",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/johannes-x-schachtner-die-kindersinfoniker-karneval-der-tiere-nach-camille-saint",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 330
+    },
+    {
+      "title": "Schule der Fantasie: Workshop \"Bühne frei!\"",
+      "date": "2026-03-15",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Karneval der Tiere - selbstgemacht zum Mitnehmen! Für Kinder von 6 - 12 Jahren",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-b%C3%BChne-frei",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 331
+    },
+    {
       "title": "Lachyoga für alle in Herrsching",
       "date": "2026-03-16",
       "time": "16:00",
@@ -3064,6 +4142,25 @@
       "venue": "Gemeindehaus an der Evangelischen Kirche",
       "isHighlight": false,
       "id": 163
+    },
+    {
+      "title": "Fliegende Volksbühne Frankfurt: \"Goethe: Faust 1\"",
+      "date": "2026-03-18",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kommentierte Darbietung von und mit Michael Quast und Philipp Mosetter. Ausverkauft",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/fliegende-volksbuehne-frankfurt-goethe-faust-1-kommentierte-darbietung-von-und-mit",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 332
     },
     {
       "title": "Fahrsicherheitskurs für Senioren mit E-Bikes (Gilching)",
@@ -3143,6 +4240,25 @@
       "isHighlight": false
     },
     {
+      "title": "Christoph Sieber: Weitermachen!",
+      "date": "2026-03-20",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett mit Christoph Sieber. Ausverkauft",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/christoph-sieber-weitermachen",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 333
+    },
+    {
       "title": "Stadtkapelle Starnberg - Konzert",
       "date": "2026-03-21",
       "time": "20:00",
@@ -3177,6 +4293,44 @@
       "venue": "Pfarrzentrum Sankt Nikolaus",
       "isHighlight": false,
       "id": 169
+    },
+    {
+      "title": "Yoga & Brunch",
+      "date": "2026-03-21",
+      "time": "10:00",
+      "location": "Pähl",
+      "address": "Biohofgut Kerschlach 1, 82396 Pähl",
+      "description": "Vinyasa Yoga Stunde mit Alexandra gefolgt von Bio-Brunch im Biohofgut Kerschlach. Entspannung, Bewegung und Genuss in einzigartiger Atmosphäre.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 278
+    },
+    {
+      "title": "Jakob Fichert, Klavier & Matthias Gredler, Violoncello: Schumann, Beethoven, Mendelssohn",
+      "date": "2026-03-21",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Klassik-Heimspiel im bosco",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/jakob-fichert-klavier-matthias-gredler-violoncello-schumann-beethoven-mendelssohn",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 334
     },
     {
       "title": "Ostara – Yoga & Jahreskreis-Zeremonie",
@@ -3218,6 +4372,25 @@
       "isHighlight": false
     },
     {
+      "title": "Kat Menschik: Durch den wilden Kaukasus",
+      "date": "2026-03-22",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Literatur: Ein grandios illustriertes Buch über eine der unberührtesten Regionen Europas",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/kat-menschik-durch-den-wilden-kaukasus",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 335
+    },
+    {
       "title": "Kulturmontag - Comedy in Pöcking?",
       "date": "2026-03-23",
       "time": "19:00",
@@ -3237,6 +4410,25 @@
       "id": 172
     },
     {
+      "title": "The Clarinet Trio Anthology: Daniel Ottensamer, Stephan Koncz, Christoph Traxler",
+      "date": "2026-03-24",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Klassikkonzert mit dem Clarinet Trio",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/clarinet-trio-anthology-daniel-ottensamer-stephan-koncz-christoph-traxler",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 336
+    },
+    {
       "title": "Videoclub Starnberger See",
       "date": "2026-03-25",
       "time": "19:30",
@@ -3254,6 +4446,44 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 173
+    },
+    {
+      "title": "Yoga & Bowls",
+      "date": "2026-03-27",
+      "time": "18:30",
+      "location": "Tutzing",
+      "address": "AYOUGA studio, Traubinger Straße 14 & Marie's happy food, Greinwaldstraße 2, Tutzing",
+      "description": "Monatliches Ritual am letzten Freitag: Vinyasa Yoga Stunde im Studio, danach Bowl und alkoholfreier Cocktail im Marie's Happy Food.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 279
+    },
+    {
+      "title": "Deutscher Ballettwettbewerb",
+      "date": "2026-03-27",
+      "time": "00:00",
+      "location": "Fürstenfeldbruck",
+      "address": "Fürstenfeldbruck",
+      "description": "Deutscher Ballettwettbewerb mit Tänzer:innen des Tanzstudios Tutzing. Die Tutzinger Tanzschüler qualifizierten sich beim Bayerischen Ballettwettbewerb für dieses nationale Event.",
+      "category": "kinder",
+      "artTags": [
+        "tanz",
+        "show"
+      ],
+      "url": "https://www.tanzstudiotutzing.de",
+      "source": "tanzstudio-tutzing",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 280
     },
     {
       "title": "Rennrad (Gravel) Tour Andechs",
@@ -3292,6 +4522,26 @@
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 175
+    },
+    {
+      "title": "Osterchallenge 2026 - Woche 1",
+      "date": "2026-03-30",
+      "time": "08:30",
+      "location": "Starnberg",
+      "address": "TSV Starnberg, Brunnangerstraße 2, Starnberg",
+      "description": "Ferienprogramm für Kinder 6-12 Jahre mit Sport, Bewegung und Spaß. 4 Tage mit Turnhalle, Schwimmbad, Outdoor-Tag. Halbtags (8:30-13:00) oder Ganztags (8:30-17:00) buchbar.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "ferienprogramm",
+        "indoor"
+      ],
+      "url": "https://summerchallenge.info/",
+      "source": "tsv-starnberg-osterchallenge",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 281
     },
     {
       "title": "TSV Starnberg Osterchallenge – Woche 1",
@@ -3349,6 +4599,26 @@
       "venue": "TSV Starnberg von 1880 e.V.",
       "isHighlight": false,
       "id": 178
+    },
+    {
+      "title": "Osterchallenge 2026 - Woche 2",
+      "date": "2026-04-07",
+      "time": "08:30",
+      "location": "Starnberg",
+      "address": "TSV Starnberg, Brunnangerstraße 2, Starnberg",
+      "description": "Ferienprogramm für Kinder 6-12 Jahre mit Sport, Bewegung und Spaß. 4 Tage mit Turnhalle, Schwimmbad, Outdoor-Tag. Halbtags (8:30-13:00) oder Ganztags (8:30-17:00) buchbar.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "ferienprogramm",
+        "indoor"
+      ],
+      "url": "https://summerchallenge.info/",
+      "source": "tsv-starnberg-osterchallenge",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 282
     },
     {
       "title": "Gilchinger Feierabendtour",
@@ -3544,6 +4814,25 @@
       "id": 188
     },
     {
+      "title": "Theater der Ruhr: \"S wie Schädel\"",
+      "date": "2026-04-16",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Szenische Reflexion einer ungreifbaren Welt auf Texte von Navid Kermani. Ausverkauft",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/theater-der-ruhr-s-wie-schaedel-szenische-reflexion-einer-ungreifbaren-welt-auf",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 337
+    },
+    {
       "title": "Münchner Frühlingsfest",
       "date": "2026-04-17",
       "time": "16:00",
@@ -3561,6 +4850,63 @@
       "venue": "Theresienwiese",
       "isHighlight": true,
       "id": 189
+    },
+    {
+      "title": "Isaria Kollektiv: Giuseppe Verdi – LA TRAVIATA (Kammerfassung)",
+      "date": "2026-04-17",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Ein besonderes Opernerlebnis im Würmtal",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/isaria-kollektiv-giuseppe-verdi-la-traviata-kammerfassung",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 338
+    },
+    {
+      "title": "Yoga & Brunch",
+      "date": "2026-04-18",
+      "time": "10:00",
+      "location": "Pähl",
+      "address": "Biohofgut Kerschlach 1, 82396 Pähl",
+      "description": "Vinyasa Yoga Stunde mit Alexandra gefolgt von Bio-Brunch im Biohofgut Kerschlach. Entspannung, Bewegung und Genuss in einzigartiger Atmosphäre.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 283
+    },
+    {
+      "title": "Simon & Jan: Das Beste",
+      "date": "2026-04-18",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett: Simon & Jan präsentieren das Beste aus 16 wilden Jahren",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/simon-jan-das-beste",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 339
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -3581,6 +4927,63 @@
       "id": 190
     },
     {
+      "title": "Talking Heads - Der Talk im bosco: mit Stefan Berchtold",
+      "date": "2026-04-19",
+      "time": "16:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Die Gesprächsreihe über die Identität der Menschen in unserer Region",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/talking-heads-6",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 340
+    },
+    {
+      "title": "Gerold Huber Klavierrezital",
+      "date": "2026-04-19",
+      "time": "19:00",
+      "location": "Berg",
+      "address": "Berg am Starnberger See",
+      "description": "Klavierrezital von Echo-Klassik Preisträger Gerold Huber",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://kulturverein-berg.de",
+      "source": "kulturverein-berg",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 341
+    },
+    {
+      "title": "Swingin' Ladies plus 2: Swing, Blues and Boogie Woogie",
+      "date": "2026-04-22",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Jazz: Internationale Band mit zwei Weltklasse-Pianist*innen vierhändig an einem Flügel",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/swingin-ladies-plus-2-swing-blues-and-boogie-woogie",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 342
+    },
+    {
       "title": "Unterwegs im Südwesten – Tagestour ab Gauting",
       "date": "2026-04-23",
       "time": "10:00",
@@ -3599,6 +5002,25 @@
       "venue": "ADFC Ortsgruppe Gauting",
       "isHighlight": false,
       "id": 191
+    },
+    {
+      "title": "Schneeberger & Bakanic Quartett: Avanti Avanti - Tournee 2026",
+      "date": "2026-04-24",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Gipsyjazz-Gitarrist Diknu Schneeberger und Harmonika-Virtuose Marko Bakanic fusionieren ihre kreativen Kräfte",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/schneeberger-bakanic-quartett-avanti-avanti-tournee-2026",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 343
     },
     {
       "title": "Schleiferlturnier Tennis – TSV Gilching",
@@ -3636,6 +5058,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 193
+    },
+    {
+      "title": "Luise Kinseher: MARY FROM BAVARY - Endlich SOLO!",
+      "date": "2026-04-25",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett mit Luise Kinseher. Ausverkauft",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/luise-kinseher-mary-bavary-endlich-solo",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 344
     },
     {
       "title": "Amelie Fried - Lesung",
@@ -3690,6 +5131,26 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 196
+    },
+    {
+      "title": "Film im Kino Breitwand: \"Unser Boden, unser Erbe\"",
+      "date": "2026-04-28",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Kino Breitwand Gauting",
+      "description": "Dokumentarfilm von Marc Uhlig über die Bedeutung und Bedrohung unserer Böden",
+      "category": "familie",
+      "artTags": [
+        "kultur",
+        "bildung",
+        "natur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-unser-bodem-unser-erbe",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 345
     },
     {
       "title": "Ramsee – Radtour durch den westlichen Landkreis",
@@ -3899,6 +5360,63 @@
       "id": 207
     },
     {
+      "title": "Theater Zitadelle / Theater Anna Rampe: \"Einmal Schneewittchen, bitte\"",
+      "date": "2026-05-10",
+      "time": "16:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kindertheater nach den Brüdern Grimm",
+      "category": "kinder",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/theater-zitadelle-theater-anna-rampe-einmal-schneewittchen-bitte-nach-den-bruedern",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 346
+    },
+    {
+      "title": "boox: Sommerlese",
+      "date": "2026-05-12",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Zwei Schriftstellerinnen führen durch den Bücherdschungel",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/boox-sommerlese26",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 347
+    },
+    {
+      "title": "Festival der ARD Preisträger*innen",
+      "date": "2026-05-13",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Gesang, Klavier, Klarinette, Viola & Violoncello - Preisträger*innen des Internationalen Musikwettbewerbs der ARD",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/festival-der-ard-preistraegerinnen-gesang-klavier-klarinette-viola-violoncello",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 348
+    },
+    {
       "title": "Claus von Wagner - Comedy/Kabarett",
       "date": "2026-05-14",
       "time": "19:30",
@@ -3916,6 +5434,63 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": true,
       "id": 208
+    },
+    {
+      "title": "Metropoltheater München: \"Das achte Leben (Für Brilka)\" von Nino Haratischwili",
+      "date": "2026-05-14",
+      "time": "19:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Nachholtermin für 13.02.26 - Schauspiel",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/metropoltheater-muenchen-das-achte-leben-fuer-brilka-von-nino-haratischwili-Nachholtermin",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 349
+    },
+    {
+      "title": "Metropoltheater München: \"Das achte Leben (Für Brilka)\" von Nino Haratischwili",
+      "date": "2026-05-15",
+      "time": "19:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Nachholtermin für 14.02.26 - Schauspiel",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/metropoltheater-muenchen-das-achte-leben-fuer-brilka-von-nino-haratischwili-2-nachholtermin",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 350
+    },
+    {
+      "title": "Yoga & Brunch",
+      "date": "2026-05-16",
+      "time": "10:00",
+      "location": "Pähl",
+      "address": "Biohofgut Kerschlach 1, 82396 Pähl",
+      "description": "Vinyasa Yoga Stunde mit Alexandra gefolgt von Bio-Brunch im Biohofgut Kerschlach. Entspannung, Bewegung und Genuss in einzigartiger Atmosphäre.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 284
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -3975,6 +5550,25 @@
       "id": 211
     },
     {
+      "title": "HG. Butzko: Der will nicht nur spielen",
+      "date": "2026-05-20",
+      "time": "20:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Kabarett mit HG. Butzko",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/hg-butzko-der-will-nicht-nur-spielen",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 351
+    },
+    {
       "title": "Real Madrid Fußballcamp beim TSV Oberalting-Seefeld",
       "date": "2026-05-26",
       "time": null,
@@ -3993,6 +5587,45 @@
       "venue": "TSV Oberalting-Seefeld e.V.",
       "isHighlight": true,
       "id": 212
+    },
+    {
+      "title": "Fundación Real Madrid Fußballcamp",
+      "date": "2026-05-26",
+      "time": "09:00",
+      "location": "Seefeld",
+      "address": "Aubachstadion, 82229 Seefeld",
+      "description": "Fußballcamp für Kids von 7-16 Jahren in Zusammenarbeit mit der Fundación Real Madrid und TSV Oberalting-Seefeld. 26.-29. Mai 2026 (Pfingstferien). Hochwertiges Training mit Werten: Teamgeist, Respekt und Fairness. Engagierte Teilnehmer können sich für ein Madrid-Wochenende qualifizieren.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "bildung"
+      ],
+      "url": "https://frmclinics.com/TSV-Oberalting-Seefeld-2026",
+      "source": "tsv-oberalting-seefeld",
+      "region": "starnberger-see",
+      "venue": "Aubachstadion Seefeld",
+      "isHighlight": false,
+      "id": 268
+    },
+    {
+      "title": "Film im Kino Breitwand: \"Die Wiese – Ein Paradies nebenan\"",
+      "date": "2026-05-26",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Kino Breitwand Gauting",
+      "description": "Dokumentarfilm von Jan Haft über die Vielfalt und Faszination der Blumenwiese",
+      "category": "familie",
+      "artTags": [
+        "kultur",
+        "natur",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-die-wiese",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 352
     },
     {
       "id": 213,
@@ -4014,6 +5647,26 @@
       "isHighlight": false
     },
     {
+      "title": "Mein Buch der Phantasie - Kinder-Ferienkurs",
+      "date": "2026-06-01",
+      "time": "09:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kinder-Ferienkurs vom 01.06. - 05.06.2026. Kunst des Buchbindens mit Inspiration von der Natur. Für Kinder von 6 bis 12 Jahren. Teilnahme: 200,00 € für die ganze Woche",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "bildung",
+        "natur"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 353
+    },
+    {
       "title": "Videoclub Starnberger See",
       "date": "2026-06-02",
       "time": "19:30",
@@ -4031,6 +5684,26 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 214
+    },
+    {
+      "title": "Film im Kino Breitwand: \"Rivers and Tides\"",
+      "date": "2026-06-02",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Kino Breitwand Gauting",
+      "description": "Film von Thomas Riedelsheimer über Andy Goldsworthy bei seiner Arbeit mit Materialien der Natur",
+      "category": "familie",
+      "artTags": [
+        "kultur",
+        "kunst",
+        "natur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-Rivers-and-Tides",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 354
     },
     {
       "title": "Federspiel: Wir & Jetzt - Konzert",
@@ -4070,6 +5743,44 @@
       "id": 216
     },
     {
+      "title": "Yoga & Cake",
+      "date": "2026-06-14",
+      "time": "15:00",
+      "location": "Wessobrunn",
+      "address": "Festenhof, Altkreut 2, 82405 Forst, Wessobrunn",
+      "description": "Vinyasa Yoga mit Alexandra auf dem historischen Festenhof, danach hausgemachter Kuchen und Kaffee in der Tagesbar. Klassisch, vegan oder glutenfrei.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness"
+      ],
+      "url": "https://ayouga.de",
+      "source": "ayouga",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 285
+    },
+    {
+      "title": "Isaria Kollektiv: Giuseppe Verdi – LA TRAVIATA (Kammerfassung)",
+      "date": "2026-06-14",
+      "time": "16:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Matinee-Vorstellung der Oper",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/node/5660",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 355
+    },
+    {
       "title": "Pflege im Alter - Vortrag",
       "date": "2026-06-16",
       "time": "17:00",
@@ -4086,6 +5797,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 217
+    },
+    {
+      "title": "Hinterglasmalerei",
+      "date": "2026-06-18",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 356
     },
     {
       "title": "Johannisfeier Tennis – DJK-SV Berg",
@@ -4105,6 +5835,25 @@
       "venue": "DJK-SV Berg",
       "isHighlight": false,
       "id": 218
+    },
+    {
+      "title": "Johannisfeier der Tennisabteilung",
+      "date": "2026-06-19",
+      "time": "19:00",
+      "location": "Berg",
+      "address": "DJK-SV Berg, Berg am Starnberger See",
+      "description": "Johannisfeier der Tennisabteilung des DJK-SV Berg.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "fest"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "DJK-SV Berg",
+      "isHighlight": false,
+      "id": 272
     },
     {
       "title": "Richard Strauss Festival 2026",
@@ -4184,6 +5933,64 @@
       "id": 222
     },
     {
+      "title": "Sonntagsmatinée: Julia Fischer präsentiert Anton Carus, Violine",
+      "date": "2026-06-21",
+      "time": "11:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Julia Fischer kuratiert Sonntagsmatinée und stellt junge Talente vor",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/sonntagsmatinee-julia-fischer-praesentiert-anton-carus-violine",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 357
+    },
+    {
+      "title": "Film im Kino Breitwand: \"Erde\"",
+      "date": "2026-06-23",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Kino Breitwand Gauting",
+      "description": "Film von Nikolaus Geyrhalter über die Bewegung von Erde durch Menschen",
+      "category": "familie",
+      "artTags": [
+        "kultur",
+        "natur",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-Erde",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 358
+    },
+    {
+      "title": "Hinterglasmalerei",
+      "date": "2026-06-25",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 359
+    },
+    {
       "title": "SUP Yoga Teacher Training (3-tägig)",
       "date": "2026-06-26",
       "time": null,
@@ -4202,6 +6009,27 @@
       "venue": "Namasté Yoga Studio Herrsching",
       "isHighlight": false,
       "id": 223
+    },
+    {
+      "title": "SUP Yoga Teacher Training (20h)",
+      "date": "2026-06-26",
+      "time": "10:00",
+      "location": "Herrsching",
+      "address": "Mühlfelderstr. 56/Souterrain, 82211 Herrsching",
+      "description": "3-tägige Ausbildung zum Namasté SUP Yoga Teacher mit Percy Shakti Johannsen. Grundlagen des Unterrichtens auf dem Wasser, Wassersicherheit, Materialkenntnisse. 20 Stunden Ausbildung über 3 Tage (26.-28. Juni). Preis: 300€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "sport",
+        "wellness",
+        "bildung"
+      ],
+      "url": "https://www.namaste-yoga.de/",
+      "source": "namaste-yoga-herrsching",
+      "region": "starnberger-see",
+      "venue": "Namasté Yoga Studio Herrsching",
+      "isHighlight": false,
+      "id": 263
     },
     {
       "title": "Blutspende",
@@ -4237,6 +6065,44 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 225
+    },
+    {
+      "title": "Film im Kino Breitwand: \"Das Salz der Erde\"",
+      "date": "2026-06-30",
+      "time": "19:30",
+      "location": "Gauting",
+      "address": "Kino Breitwand Gauting",
+      "description": "Film von Wim Wenders und Juliano Ribeiro Salgado",
+      "category": "familie",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-das-salz-der-erde",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 360
+    },
+    {
+      "title": "Antigone, Elektra oder Sphinx",
+      "date": "2026-07-09",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 361
     },
     {
       "title": "DJK-SV Berg beim Berger Bürgerfest",
@@ -4294,6 +6160,24 @@
       "venue": "Starnberger Innenstadt",
       "isHighlight": false,
       "id": 228
+    },
+    {
+      "title": "Berger Bürgerfest",
+      "date": "2026-07-10",
+      "time": "12:00",
+      "location": "Berg",
+      "address": "Berg am Starnberger See",
+      "description": "Teilnahme des DJK-SV Berg am Berger Bürgerfest. 10.-12. Juli 2026.",
+      "category": "familie",
+      "artTags": [
+        "fest"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "Berg am Starnberger See",
+      "isHighlight": false,
+      "id": 273
     },
     {
       "id": 229,
@@ -4407,6 +6291,25 @@
       "isHighlight": false
     },
     {
+      "title": "Malen auf kleinen Leinwänden",
+      "date": "2026-07-23",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 362
+    },
+    {
       "title": "Lautersee & Schloss Elmau – Ganztages-Radtour",
       "date": "2026-07-25",
       "time": "07:00",
@@ -4483,6 +6386,25 @@
       "id": 238
     },
     {
+      "title": "Objekte zeichnen und malen",
+      "date": "2026-08-06",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 363
+    },
+    {
       "title": "Sommer Dance Camp – Kinder 6-12",
       "date": "2026-08-10",
       "time": null,
@@ -4539,6 +6461,25 @@
       "id": 241
     },
     {
+      "title": "Farbintensive expressionistische Gesichter",
+      "date": "2026-08-27",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 364
+    },
+    {
       "title": "Blutspende",
       "date": "2026-08-31",
       "time": "16:00",
@@ -4553,6 +6494,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 242
+    },
+    {
+      "title": "Selbsterfahrung mit Ton",
+      "date": "2026-09-17",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 365
     },
     {
       "title": "Internationales Musikfest am Tegernsee",
@@ -4633,6 +6593,25 @@
       "id": 246
     },
     {
+      "title": "50 Jahre Handballabteilung DJK-SV Berg",
+      "date": "2026-09-26",
+      "time": "14:00",
+      "location": "Berg",
+      "address": "DJK-SV Berg, Berg am Starnberger See",
+      "description": "Jubiläumsfeier: 50 Jahre Handballabteilung des DJK-SV Berg. 26.-27. September 2026.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "fest"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "DJK-SV Berg",
+      "isHighlight": true,
+      "id": 274
+    },
+    {
       "title": "Hannes Ringlstetter SOLO - Konzert",
       "date": "2026-09-29",
       "time": "19:30",
@@ -4688,6 +6667,25 @@
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 249
+    },
+    {
+      "title": "Porträtmalen",
+      "date": "2026-10-08",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene mit Helma Klessinger, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 366
     },
     {
       "title": "42. Starnberger Landkreislauf",
@@ -4819,6 +6817,44 @@
       "id": 256
     },
     {
+      "title": "Malen auf kleinen Leinwänden",
+      "date": "2026-10-29",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 367
+    },
+    {
+      "title": "Phantastische Blätterwesen",
+      "date": "2026-11-12",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 368
+    },
+    {
       "title": "Schlagergang – Aber bitte mit Schlager!",
       "date": "2026-11-14",
       "time": "19:00",
@@ -4875,6 +6911,63 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": true,
       "id": 259
+    },
+    {
+      "title": "Hinterglasmalerei",
+      "date": "2026-11-26",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 369
+    },
+    {
+      "title": "Linodruck und Postkartengestaltung",
+      "date": "2026-12-10",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 370
+    },
+    {
+      "title": "Selbst im Bild",
+      "date": "2026-12-17",
+      "time": "11:00",
+      "location": "Bernried",
+      "address": "Buchheim Museum der Phantasie",
+      "description": "Kreativkurs für Erwachsene, zwei Kurse um 11.00 Uhr und 14.00 Uhr. Die Teilnahme kostet 15,00 € zzgl. zum Eintritt",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://buchheimmuseum.de/kalender/",
+      "source": "buchheim-museum",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 371
     },
     {
       "title": "Blutspende",
