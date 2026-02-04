@@ -10,7 +10,7 @@ const { lastUpdated } = Astro.props;
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="/" class="navbar-brand">
-      <span class="navbar-title">Starnberg Events</span>
+      <span class="navbar-title">Pöcking Events</span>
     </a>
 
     <!-- Right side: Weather + Theme Toggle -->
@@ -139,12 +139,14 @@ const { lastUpdated } = Astro.props;
     display: flex;
     align-items: center;
     gap: var(--space-4);
+    will-change: transform, opacity;
   }
 
   .navbar-brand {
     text-decoration: none;
     color: var(--color-text);
     flex-shrink: 0;
+    will-change: transform, opacity;
   }
 
   .navbar-title {
@@ -400,6 +402,35 @@ const { lastUpdated } = Astro.props;
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
+    const navbarBrand = document.querySelector('.navbar-brand');
+    const navbarRight = document.querySelector('.navbar-right');
+
+    // Scroll parallax effect for navbar
+    if (navbarBrand && navbarRight) {
+      var lastScroll = 0;
+      var ticking = false;
+      
+      function updateNavbarParallax() {
+        var scrollY = window.scrollY;
+        var maxScroll = 300; // Max scroll distance for full effect
+        var progress = Math.min(scrollY / maxScroll, 1);
+        
+        // Move brand left, right section right
+        navbarBrand.style.transform = 'translateX(' + (-progress * 150) + 'px)';
+        navbarBrand.style.opacity = 1 - progress;
+        navbarRight.style.transform = 'translateX(' + (progress * 150) + 'px)';
+        navbarRight.style.opacity = 1 - progress;
+        
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(updateNavbarParallax);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
 
     // Theme toggle
     if (toggle) {
