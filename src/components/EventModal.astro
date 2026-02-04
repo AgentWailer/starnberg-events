@@ -115,7 +115,8 @@
   }
 
   .event-modal.visible {
-    display: block;
+    display: flex;
+    flex-direction: column;
     transform: translateY(0);
   }
 
@@ -141,8 +142,9 @@
   .modal-content {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 0; /* Allow flex shrinking */
     max-height: 90vh;
+    flex: 1;
   }
 
   @media (min-width: 768px) {
@@ -237,6 +239,7 @@
   /* === BODY === */
   .modal-body {
     flex: 1;
+    min-height: 0; /* Critical: allow flex item to shrink below content height */
     overflow-y: auto;
     padding: var(--space-5);
     display: flex;
@@ -382,6 +385,7 @@
   .modal-body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
+    touch-action: pan-y; /* Explicitly allow vertical scroll via touch */
     scrollbar-width: thin;
     scrollbar-color: var(--color-border) transparent;
   }
@@ -543,6 +547,11 @@
     document.body.style.overflow = '';
     window.scrollTo(0, savedScrollY);
   }
+
+  // Prevent background scrolling via touch on backdrop
+  backdrop?.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+  }, { passive: false });
 
   // Event listeners
   closeBtn?.addEventListener('click', closeEventModal);
