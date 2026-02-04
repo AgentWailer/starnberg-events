@@ -23,6 +23,7 @@ Object.keys(regions).forEach(r => {
 const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
+<!-- Desktop Sidebar -->
 <aside class="filter-sidebar" id="filter-sidebar">
   <div class="filter-section">
     <h3 class="filter-section-title">Kategorie</h3>
@@ -74,19 +75,76 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   <div id="filter-status" aria-live="polite" class="sr-only"></div>
 </aside>
 
-<!-- Mobile: Compact filter bar -->
-<div class="filter-bar-mobile" id="filter-bar-mobile">
-  <div class="filter-row" role="group" aria-label="Filter nach Kategorie">
-    <button class="pill active" data-filter="all" data-type="category">Alle</button>
-    <button class="pill" data-filter="kinder" data-type="category">Kinder</button>
-    <button class="pill" data-filter="familie" data-type="category">Familie</button>
-    <button class="pill" data-filter="erwachsene" data-type="category">Erwachsene</button>
+<!-- Mobile: Fixed bottom filter bar -->
+<div class="mobile-filter-bar" id="mobile-filter-bar">
+  <div class="mobile-filter-row">
+    <button class="mobile-pill active" data-filter="all" data-type="category">Alle</button>
+    <button class="mobile-pill" data-filter="kinder" data-type="category">Kinder</button>
+    <button class="mobile-pill" data-filter="familie" data-type="category">Familie</button>
+    <button class="mobile-pill" data-filter="erwachsene" data-type="category">Erwachsene</button>
+    <button class="mobile-pill mobile-more" id="mobile-more-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="4" y1="21" x2="4" y2="14"></line>
+        <line x1="4" y1="10" x2="4" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="3"></line>
+        <line x1="20" y1="21" x2="20" y2="16"></line>
+        <line x1="20" y1="12" x2="20" y2="3"></line>
+        <line x1="1" y1="14" x2="7" y2="14"></line>
+        <line x1="9" y1="8" x2="15" y2="8"></line>
+        <line x1="17" y1="16" x2="23" y2="16"></line>
+      </svg>
+    </button>
   </div>
-  <button class="clear-filters-mobile" id="clear-filters-mobile">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-    </svg>
-  </button>
+</div>
+
+<!-- Mobile: Filter Bottom Sheet -->
+<div class="filter-sheet-backdrop" id="filter-sheet-backdrop"></div>
+<div class="filter-sheet" id="filter-sheet">
+  <div class="filter-sheet-handle"></div>
+  <div class="filter-sheet-header">
+    <h3>Weitere Filter</h3>
+    <button class="filter-sheet-close" id="filter-sheet-close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="filter-sheet-content">
+    <div class="filter-section">
+      <h4 class="filter-section-title">Region</h4>
+      <div class="filter-chips" id="mobile-region-chips">
+        <button class="chip active" data-filter="all" data-type="region">Alle</button>
+        {Object.entries(regions).map(([id, region]) => (
+          regionCounts[id] > 0 && (
+            <button class="chip" data-filter={id} data-type="region">
+              {region.emoji} {region.name}
+            </button>
+          )
+        ))}
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h4 class="filter-section-title">Ort</h4>
+      <select class="filter-select" id="mobile-location-filter">
+        <option value="all">Alle Orte</option>
+        {locations.map(loc => (
+          <option value={loc}>{loc}</option>
+        ))}
+      </select>
+    </div>
+
+    <button class="filter-sheet-apply" id="filter-sheet-apply">
+      Filter anwenden
+    </button>
+
+    <button class="filter-sheet-reset" id="filter-sheet-reset">
+      Alle Filter zurücksetzen
+    </button>
+  </div>
 </div>
 
 <style>
@@ -100,7 +158,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border-light);
     position: fixed;
-    /* Position at left edge of content container (max-width: 900px centered) */
     left: calc(50% - 450px - 260px - var(--space-6));
     top: 50%;
     transform: translateY(-50%);
@@ -111,7 +168,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     box-shadow: var(--shadow-md);
   }
 
-  /* Only show when there's enough space for sidebar + container */
   @media (min-width: 1200px) {
     .filter-sidebar {
       display: flex;
@@ -166,7 +222,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: white;
   }
 
-  /* Multi-select: show checkmark for active non-"all" chips */
   .chip.active:not([data-filter="all"])::before {
     content: '✓ ';
     font-size: 0.75rem;
@@ -188,7 +243,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     background: var(--color-bg);
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     color: var(--color-text);
     cursor: pointer;
     appearance: none;
@@ -234,43 +289,48 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     height: 14px;
   }
 
-  /* === MOBILE FILTER BAR === */
-  .filter-bar-mobile {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-6);
+  /* === MOBILE FIXED BOTTOM BAR === */
+  .mobile-filter-bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-card);
+    border-top: 1px solid var(--color-border-light);
+    padding: var(--space-3) var(--space-4);
+    padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0));
+    z-index: 200;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
   }
 
   @media (min-width: 1200px) {
-    .filter-bar-mobile {
+    .mobile-filter-bar {
       display: none;
     }
   }
 
-  .filter-row {
-    flex: 1;
+  .mobile-filter-row {
     display: flex;
     gap: var(--space-2);
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .filter-row::-webkit-scrollbar {
+  .mobile-filter-row::-webkit-scrollbar {
     display: none;
   }
 
-  .pill {
+  .mobile-pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 40px;
+    min-height: 44px;
     padding: var(--space-2) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
-    background: var(--color-card);
+    background: var(--color-bg);
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-secondary);
@@ -278,49 +338,181 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     white-space: nowrap;
     transition: all var(--duration-fast) ease;
     user-select: none;
+    flex-shrink: 0;
   }
 
-  .pill:active {
+  .mobile-pill:active {
     transform: scale(0.97);
   }
 
-  .pill.active {
+  .mobile-pill.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: white;
   }
 
-  .clear-filters-mobile {
+  .mobile-more {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .mobile-more svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-more.has-filters {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: white;
+  }
+
+  /* === MOBILE BOTTOM SHEET === */
+  .filter-sheet-backdrop {
     display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 299;
+    opacity: 0;
+    transition: opacity var(--duration-normal) ease;
+  }
+
+  .filter-sheet-backdrop.visible {
+    display: block;
+    opacity: 1;
+  }
+
+  .filter-sheet {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-card);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    z-index: 300;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform var(--duration-normal) ease;
+  }
+
+  .filter-sheet.visible {
+    display: block;
+    transform: translateY(0);
+  }
+
+  .filter-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+    margin: var(--space-3) auto;
+  }
+
+  .filter-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--space-5) var(--space-4);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .filter-sheet-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .filter-sheet-close {
+    width: 44px;
+    height: 44px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 36px;
-    min-height: 36px;
-    padding: var(--space-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    background: var(--color-card);
+    border: none;
+    background: none;
     color: var(--color-muted);
     cursor: pointer;
-    flex-shrink: 0;
+    border-radius: var(--radius-full);
   }
 
-  .clear-filters-mobile.visible {
+  .filter-sheet-close:hover {
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+  }
+
+  .filter-sheet-close svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .filter-sheet-content {
+    padding: var(--space-5);
+    padding-bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0));
     display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
   }
 
-  .clear-filters-mobile svg {
-    width: 16px;
-    height: 16px;
+  .filter-sheet-content .filter-section-title {
+    font-size: 0.75rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .filter-sheet-content .filter-chips {
+    gap: var(--space-2);
+  }
+
+  .filter-sheet-content .chip {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.875rem;
+  }
+
+  .filter-sheet-apply {
+    width: 100%;
+    padding: var(--space-4);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity var(--duration-fast) ease;
+  }
+
+  .filter-sheet-apply:active {
+    opacity: 0.9;
+  }
+
+  .filter-sheet-reset {
+    width: 100%;
+    padding: var(--space-3);
+    background: none;
+    color: var(--color-muted);
+    border: none;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  @media (min-width: 1200px) {
+    .filter-sheet,
+    .filter-sheet-backdrop {
+      display: none !important;
+    }
+  }
+
+  /* Space for fixed bottom bar on mobile */
+  @media (max-width: 1199px) {
+    :global(body) {
+      padding-bottom: 80px;
+    }
   }
 </style>
 
 <script>
-  // Desktop: multi-select for categories and regions
-  // Mobile: single-select for categories only
-
-  const isDesktop = () => window.innerWidth >= 900;
-
   // State
   let activeCategories: Set<string> = new Set(['all']);
   let activeRegions: Set<string> = new Set(['all']);
@@ -329,21 +521,27 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   // Elements
   const eventCards = document.querySelectorAll('.event-card');
   const countEl = document.getElementById('visible-count');
+  
+  // Desktop
   const clearBtnDesktop = document.getElementById('clear-filters');
-  const clearBtnMobile = document.getElementById('clear-filters-mobile');
   const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
-
-  // Desktop chips
   const categoryChips = document.querySelectorAll('.filter-sidebar .chip[data-type="category"]');
   const regionChips = document.querySelectorAll('.filter-sidebar .chip[data-type="region"]');
 
-  // Mobile pills
-  const mobilePills = document.querySelectorAll('.filter-bar-mobile .pill[data-type="category"]');
+  // Mobile
+  const mobilePills = document.querySelectorAll('.mobile-filter-bar .mobile-pill[data-type="category"]');
+  const moreBtn = document.getElementById('mobile-more-btn');
+  const sheet = document.getElementById('filter-sheet');
+  const backdrop = document.getElementById('filter-sheet-backdrop');
+  const closeBtn = document.getElementById('filter-sheet-close');
+  const applyBtn = document.getElementById('filter-sheet-apply');
+  const resetBtn = document.getElementById('filter-sheet-reset');
+  const mobileRegionChips = document.querySelectorAll('#mobile-region-chips .chip');
+  const mobileLocationSelect = document.getElementById('mobile-location-filter') as HTMLSelectElement;
 
-  function updateClearButtons() {
-    const hasFilters = !activeCategories.has('all') || !activeRegions.has('all') || activeLocation !== 'all';
-    clearBtnDesktop?.classList.toggle('visible', hasFilters);
-    clearBtnMobile?.classList.toggle('visible', !activeCategories.has('all'));
+  function updateMoreBtnState() {
+    const hasExtraFilters = !activeRegions.has('all') || activeLocation !== 'all';
+    moreBtn?.classList.toggle('has-filters', hasExtraFilters);
   }
 
   function filterEvents() {
@@ -367,13 +565,10 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
 
     if (countEl) countEl.textContent = String(count);
-
-    const statusEl = document.getElementById('filter-status');
-    if (statusEl) {
-      statusEl.textContent = `${count} Veranstaltungen gefunden`;
-    }
-
-    updateClearButtons();
+    
+    const hasFilters = !activeCategories.has('all') || !activeRegions.has('all') || activeLocation !== 'all';
+    clearBtnDesktop?.classList.toggle('visible', hasFilters);
+    updateMoreBtnState();
   }
 
   function clearAllFilters() {
@@ -381,13 +576,27 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     activeRegions = new Set(['all']);
     activeLocation = 'all';
 
-    // Update UI
+    // Update all UI
     categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
     regionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
     mobilePills.forEach(p => p.classList.toggle('active', (p as HTMLElement).dataset.filter === 'all'));
+    mobileRegionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
     if (locationSelect) locationSelect.value = 'all';
+    if (mobileLocationSelect) mobileLocationSelect.value = 'all';
 
     filterEvents();
+  }
+
+  function openSheet() {
+    sheet?.classList.add('visible');
+    backdrop?.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    sheet?.classList.remove('visible');
+    backdrop?.classList.remove('visible');
+    document.body.style.overflow = '';
   }
 
   // Desktop: Multi-select for categories
@@ -396,14 +605,11 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       const filter = (chip as HTMLElement).dataset.filter || 'all';
 
       if (filter === 'all') {
-        // Reset to all
         activeCategories = new Set(['all']);
         categoryChips.forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
       } else {
-        // Toggle this category
         activeCategories.delete('all');
-        
         if (activeCategories.has(filter)) {
           activeCategories.delete(filter);
           chip.classList.remove('active');
@@ -411,13 +617,10 @@ const locations = [...new Set(events.map(e => e.location))].sort();
           activeCategories.add(filter);
           chip.classList.add('active');
         }
-
-        // If none selected, go back to all
         if (activeCategories.size === 0) {
           activeCategories.add('all');
           categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
         } else {
-          // Remove "all" active state
           categoryChips.forEach(c => {
             if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
           });
@@ -445,7 +648,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
         chip.classList.add('active');
       } else {
         activeRegions.delete('all');
-
         if (activeRegions.has(filter)) {
           activeRegions.delete(filter);
           chip.classList.remove('active');
@@ -453,7 +655,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
           activeRegions.add(filter);
           chip.classList.add('active');
         }
-
         if (activeRegions.size === 0) {
           activeRegions.add('all');
           regionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
@@ -464,16 +665,30 @@ const locations = [...new Set(events.map(e => e.location))].sort();
         }
       }
 
+      // Sync mobile sheet
+      mobileRegionChips.forEach(c => {
+        const f = (c as HTMLElement).dataset.filter || 'all';
+        c.classList.toggle('active', activeRegions.has(f));
+      });
+
       filterEvents();
     });
   });
 
-  // Mobile: Single-select for categories
+  // Desktop location select
+  locationSelect?.addEventListener('change', () => {
+    activeLocation = locationSelect.value;
+    if (mobileLocationSelect) mobileLocationSelect.value = activeLocation;
+    filterEvents();
+  });
+
+  // Desktop clear
+  clearBtnDesktop?.addEventListener('click', clearAllFilters);
+
+  // Mobile: Category pills
   mobilePills.forEach(pill => {
     pill.addEventListener('click', () => {
       const filter = (pill as HTMLElement).dataset.filter || 'all';
-
-      // Single select on mobile
       activeCategories = new Set([filter]);
       mobilePills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
@@ -488,13 +703,62 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
   });
 
-  // Location select
-  locationSelect?.addEventListener('change', () => {
-    activeLocation = locationSelect.value;
-    filterEvents();
+  // Mobile: More button opens sheet
+  moreBtn?.addEventListener('click', openSheet);
+  backdrop?.addEventListener('click', closeSheet);
+  closeBtn?.addEventListener('click', closeSheet);
+
+  // Mobile sheet: Region chips
+  mobileRegionChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+
+      if (filter === 'all') {
+        activeRegions = new Set(['all']);
+        mobileRegionChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        activeRegions.delete('all');
+        if (activeRegions.has(filter)) {
+          activeRegions.delete(filter);
+          chip.classList.remove('active');
+        } else {
+          activeRegions.add(filter);
+          chip.classList.add('active');
+        }
+        if (activeRegions.size === 0) {
+          activeRegions.add('all');
+          mobileRegionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+        } else {
+          mobileRegionChips.forEach(c => {
+            if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
+          });
+        }
+      }
+
+      // Sync desktop
+      regionChips.forEach(c => {
+        const f = (c as HTMLElement).dataset.filter || 'all';
+        c.classList.toggle('active', activeRegions.has(f));
+      });
+    });
   });
 
-  // Clear buttons
-  clearBtnDesktop?.addEventListener('click', clearAllFilters);
-  clearBtnMobile?.addEventListener('click', clearAllFilters);
+  // Mobile sheet: Location select
+  mobileLocationSelect?.addEventListener('change', () => {
+    activeLocation = mobileLocationSelect.value;
+    if (locationSelect) locationSelect.value = activeLocation;
+  });
+
+  // Mobile sheet: Apply
+  applyBtn?.addEventListener('click', () => {
+    filterEvents();
+    closeSheet();
+  });
+
+  // Mobile sheet: Reset
+  resetBtn?.addEventListener('click', () => {
+    clearAllFilters();
+    closeSheet();
+  });
 </script>
