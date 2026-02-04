@@ -99,7 +99,8 @@ function formatWeekendDay(dateStr: string) {
                 {weekendEvents.map(event => {
                   const evDate = new Date(event.date);
                   const evDay = evDate.getDate();
-                  const evMonth = evDate.toLocaleDateString('de-DE', { month: 'short' });
+                  const evMonth = evDate.getMonth() + 1;
+                  const evWeekday = evDate.toLocaleDateString('de-DE', { weekday: 'short' });
                   return (
                     <button 
                       class="highlight-card" 
@@ -115,8 +116,8 @@ function formatWeekendDay(dateStr: string) {
                       data-art-tags={event.artTags?.join(',')}
                     >
                       <div class="highlight-card__date">
-                        <span class="highlight-card__day">{evDay}</span>
-                        <span class="highlight-card__month">{evMonth}</span>
+                        <span class="highlight-card__day">{evDay}.{evMonth}.</span>
+                        <span class="highlight-card__weekday">{evWeekday}</span>
                       </div>
                       <div class="highlight-card__content">
                         <div class="highlight-card__meta">
@@ -366,19 +367,19 @@ function formatWeekendDay(dateStr: string) {
 
   .highlight-card__day {
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1;
     color: var(--color-primary);
   }
 
-  .highlight-card__month {
-    font-size: 0.6875rem;
-    font-weight: 500;
+  .highlight-card__weekday {
+    font-size: 0.65rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-muted);
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
   .highlight-card__content {
