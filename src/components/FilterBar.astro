@@ -35,7 +35,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 const artTagGroups = [
   {
     label: '🎭 Kultur & Bühne',
-    tags: ['musik', 'theater', 'kunst', 'kultur', 'show', 'tanz', 'fasching'],
+    tags: ['musik', 'theater', 'kunst', 'kultur', 'show', 'tanz'],
   },
   {
     label: '🏃 Sport & Outdoor',
@@ -46,8 +46,12 @@ const artTagGroups = [
     tags: ['yoga', 'wellness', 'meditation', 'zeremonie', 'gesundheit', 'aromatherapie', 'tcm', 'ayurveda'],
   },
   {
-    label: '📚 Bildung & Feste',
-    tags: ['bildung', 'fest', 'markt', 'ferienprogramm', 'kurs', 'indoor'],
+    label: '📚 Bildung',
+    tags: ['bildung', 'kurs', 'indoor'],
+  },
+  {
+    label: '🎉 Feste & Märkte',
+    tags: ['fest', 'markt', 'ferienprogramm', 'fasching'],
   },
 ];
 ---
