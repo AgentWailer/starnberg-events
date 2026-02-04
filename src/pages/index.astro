@@ -100,12 +100,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: var(--space-16);
   }
 
-  /* Space for fixed header on desktop */
-  @media (min-width: 768px) {
-    .main {
-      padding-top: 200px; /* Height of fixed header */
-    }
-  }
+  /* No extra padding needed - navbar is in Header component */
 
   .section {
     margin-bottom: var(--space-10);

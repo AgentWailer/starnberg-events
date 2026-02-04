@@ -160,11 +160,11 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     position: fixed;
     /* Position at left edge of content container (max-width: 900px) */
     left: calc(50% - 450px - 220px - var(--space-5));
-    top: 200px; /* Below header */
+    top: 70px; /* Below compact navbar */
     width: 200px;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 90px);
     overflow-y: auto;
-    z-index: 49;
+    z-index: 90;
     box-shadow: var(--shadow-md);
   }
 
