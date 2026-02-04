@@ -108,6 +108,7 @@ function formatWeekendDay(dateStr: string) {
                       data-date={event.date}
                       data-event-time={event.time}
                       data-location={event.location}
+                      data-event-address={event.address}
                       data-event-description={event.description}
                       data-event-url={event.url}
                       data-category={event.category}
@@ -538,6 +539,7 @@ function formatWeekendDay(dateStr: string) {
         date: el.dataset.date,
         time: el.dataset.eventTime,
         location: el.dataset.location,
+        address: el.dataset.eventAddress,
         description: el.dataset.eventDescription,
         category: el.dataset.category,
         url: el.dataset.eventUrl,

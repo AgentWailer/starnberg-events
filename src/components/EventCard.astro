@@ -46,6 +46,7 @@ const catLabel = categoryLabels[event.category] || 'Familie';
   data-event-title={event.title}
   data-event-time={event.time}
   data-event-description={event.description}
+  data-event-address={event.address}
   data-event-url={event.url}
 >
   <!-- Favorite Heart Icon -->
@@ -432,6 +433,7 @@ const catLabel = categoryLabels[event.category] || 'Familie';
           date: card.dataset.date,
           time: card.dataset.eventTime,
           location: card.dataset.location,
+          address: card.dataset.eventAddress,
           description: card.dataset.eventDescription,
           category: card.dataset.category,
           url: card.dataset.eventUrl,

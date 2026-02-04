@@ -444,22 +444,22 @@
       datetimeEl.textContent = dateStr + timeStr;
     }
 
-    // Location
+    // Location — show full address if available, otherwise city name
     if (locationEl) {
-      locationEl.textContent = eventData.location;
+      locationEl.textContent = eventData.address || eventData.location;
     }
 
-    // Map — Google Maps Embed (proper embed format)
+    // Map — Google Maps Embed using address for precise pin
     if (mapEl) {
-      const location = encodeURIComponent(eventData.location + ', Bayern, Deutschland');
-      const mapUrl = `https://maps.google.com/maps?q=${location}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+      const mapQuery = eventData.address || (eventData.location + ', Bayern, Deutschland');
+      const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
       mapEl.innerHTML = `
         <iframe
           loading="lazy"
           allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
           src="${mapUrl}"
-          title="Karte von ${eventData.location}"
+          title="Karte: ${eventData.address || eventData.location}"
           style="width:100%;height:100%;border:0;"
         ></iframe>
       `;
@@ -593,7 +593,7 @@ DTSTART:${dtstart}
 DTEND:${dtend}
 SUMMARY:${escapeText(event.title)}
 DESCRIPTION:${escapeText(event.description || '')}
-LOCATION:${escapeText(event.location)}
+LOCATION:${escapeText(event.address || event.location)}
 URL:${event.url || ''}
 END:VEVENT
 END:VCALENDAR`;
