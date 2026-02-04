@@ -209,26 +209,6 @@
       "id": 8
     },
     {
-      "title": "David Berlinghof mit Felix Renner Wohlfühlprogramm (Musikkabarett)",
-      "date": "2026-02-06",
-      "time": "20:00",
-      "location": "Bernried am Starnberger See",
-      "address": "Dorfstraße 26, 82347 Bernried am Starnberger See",
-      "description": "Musikkabarett",
-      "category": "erwachsene",
-      "artTags": [
-        "musik",
-        "theater",
-        "indoor"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=6911b46f35610140e567d18b",
-      "source": "starnbergammersee",
-      "region": "starnberger-see",
-      "venue": null,
-      "isHighlight": false,
-      "id": 9
-    },
-    {
       "title": "Building Universes: Modeling the Cosmos with Supercomputers",
       "date": "2026-02-06",
       "time": "20:00",
@@ -549,26 +529,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 21
-    },
-    {
-      "title": "1. Starnberger Ballnacht – Die Redoute im neuen Gwand",
-      "date": "2026-02-07",
-      "time": "19:30",
-      "location": "Starnberg",
-      "address": "Schlossberghalle, Vogelanger 2, 82319 Starnberg",
-      "description": "Stilvolle Balltradition",
-      "category": "erwachsene",
-      "artTags": [
-        "fest",
-        "musik",
-        "indoor"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=6941226aec880c50d436419a",
-      "source": "starnbergammersee",
-      "region": "starnberger-see",
-      "venue": null,
-      "isHighlight": true,
-      "id": 22
     },
     {
       "title": "2. Tutzinger Kurzfilmnacht",
@@ -1047,25 +1007,6 @@
       "id": 42
     },
     {
-      "title": "Videoclub Starnberger See",
-      "date": "2026-02-10",
-      "time": "19:30",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
-      "category": "erwachsene",
-      "artTags": [
-        "kultur",
-        "kunst"
-      ],
-      "url": "https://www.starnberg.de/videoclub-starnberger-see-1",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 43
-    },
-    {
       "title": "Nachbarschaftshilfe - Spielenachmittag",
       "date": "2026-02-10",
       "time": "14:00",
@@ -1230,24 +1171,6 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 49
-    },
-    {
-      "title": "Anna Buchegger - Konzert",
-      "date": "2026-02-12",
-      "time": "19:30",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Konzert von Anna Buchegger in der Schlossberghalle Starnberg. 19:30-22:00 Uhr.",
-      "category": "erwachsene",
-      "artTags": [
-        "musik"
-      ],
-      "url": "https://www.starnberg.de/anna-buchegger",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 50
     },
     {
       "title": "Künstlerische Selbsterfahrung mit Ton",
@@ -1628,26 +1551,6 @@
       "id": 67
     },
     {
-      "title": "Viermal Schwarzer Kater – Musical-Abenteuer (Abend)",
-      "date": "2026-02-14",
-      "time": "18:00",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Magisches Musical für die ganze Familie: Die Schwestern Lumea und Kalea erleben ein Abenteuer mit den Nachtwaldbewohnern und der Sonnenfürstin Discordia. Mit zauberhaften Melodien, Humor und spektakulärer Akrobatik und Luftartistik.",
-      "category": "erwachsene",
-      "artTags": [
-        "theater",
-        "musik",
-        "show"
-      ],
-      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien-1",
-      "source": "schlossberghalle",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 68
-    },
-    {
       "title": "Aktionstag \"Natürlich auf Tour\" am Hörnle",
       "date": "2026-02-14",
       "time": null,
@@ -1685,44 +1588,6 @@
       "venue": "Bayerische Volkssternwarte München",
       "isHighlight": false,
       "id": 70
-    },
-    {
-      "title": "Viermal Schwarzer Kater - ein Musical-Abenteuer für Familien",
-      "date": "2026-02-14",
-      "time": "15:00",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Musical-Abenteuer für die ganze Familie. Vorstellung um 15:00 Uhr (15:00-16:00).",
-      "category": "familie",
-      "artTags": [
-        "theater",
-        "musik"
-      ],
-      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 71
-    },
-    {
-      "title": "Viermal Schwarzer Kater - ein Musical-Abenteuer für Familien (Abendvorstellung)",
-      "date": "2026-02-14",
-      "time": "18:00",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Musical-Abenteuer für die ganze Familie. Abendvorstellung 18:00-20:00 Uhr.",
-      "category": "erwachsene",
-      "artTags": [
-        "theater",
-        "musik"
-      ],
-      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien-1",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 72
     },
     {
       "title": "Altpapiersammlung der Fußballabteilung",
@@ -1800,6 +1665,26 @@
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 389
+    },
+    {
+      "title": "Viermal Schwarzer Kater – Musical-Abenteuer (Abend)",
+      "date": "2026-02-14",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Magisches Musical für die ganze Familie: Die Schwestern Lumea und Kalea erleben ein Abenteuer mit den Nachtwaldbewohnern und der Sonnenfürstin Discordia. Mit zauberhaften Melodien, Humor und spektakulärer Akrobatik und Luftartistik.",
+      "category": "familie",
+      "artTags": [
+        "theater",
+        "musik",
+        "show"
+      ],
+      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien-1",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 68
     },
     {
       "title": "Kinderfasching",
@@ -1971,25 +1856,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 79
-    },
-    {
-      "title": "16. Starnberger Garderevue – Perchalla",
-      "date": "2026-02-16",
-      "time": "18:00",
-      "location": "Starnberg",
-      "address": "Schlossberghalle, Vogelanger 2, 82319 Starnberg",
-      "description": "Auftritte der Perchalla-Garden und Showeinlagen",
-      "category": "erwachsene",
-      "artTags": [
-        "show",
-        "indoor"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=6978d3ae9fc49d222d53bb24",
-      "source": "starnbergammersee",
-      "region": "starnberger-see",
-      "venue": null,
-      "isHighlight": false,
-      "id": 80
     },
     {
       "id": 81,
@@ -2233,25 +2099,6 @@
       "id": 382
     },
     {
-      "title": "Großer Lesetag 2026",
-      "date": "2026-02-20",
-      "time": "10:00",
-      "location": "Tierpark Hellabrunn",
-      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
-      "description": "Lesungen und Aktionen für Kinder und Familien im Tierpark",
-      "category": "kinder",
-      "artTags": [
-        "bildung",
-        "natur"
-      ],
-      "url": "https://www.hellabrunn.de/veranstaltungen",
-      "source": "hellabrunn",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 89
-    },
-    {
       "title": "Großer Lesetag 2026 im Tierpark",
       "date": "2026-02-20",
       "time": "10:00",
@@ -2269,24 +2116,6 @@
       "venue": "Tierpark Hellabrunn",
       "isHighlight": false,
       "id": 270
-    },
-    {
-      "title": "Kreistanzen & Bewegungsanalyse – Wochenendseminar",
-      "date": "2026-02-21",
-      "time": "14:00",
-      "location": "Starnberg",
-      "address": "Hauptstraße 22, 82319 Starnberg",
-      "description": "Wochenendseminar mit Martin Wanke. Sa 14:00-18:30 + So 10:30-16:30. 120€.",
-      "category": "erwachsene",
-      "artTags": [
-        "tanz"
-      ],
-      "url": "https://www.themen-tanz.de/",
-      "source": "themen-tanz",
-      "region": "starnberger-see",
-      "venue": "Themen-Tanz – Schule für Kreistanz",
-      "isHighlight": false,
-      "id": 90
     },
     {
       "title": "Cavalluna – Tor zur Anderswelt",
@@ -2383,24 +2212,6 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 95
-    },
-    {
-      "title": "Ska-Jah Konzert - MuMM! Mut- und Mitmachtage",
-      "date": "2026-02-21",
-      "time": "20:00",
-      "location": "Starnberg",
-      "address": "Vogelanger 2, 82319 Starnberg",
-      "description": "Konzert im Rahmen der MuMM! Mut- und Mitmachtage. 20:00-22:00 Uhr.",
-      "category": "erwachsene",
-      "artTags": [
-        "musik"
-      ],
-      "url": "https://www.starnberg.de/ska-jah-konzert-mumm-mut-und-mitmachtage",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Schlossberghalle Starnberg",
-      "isHighlight": false,
-      "id": 96
     },
     {
       "title": "Kreistanzen und Bewegungsanalyse - Wochenende",
@@ -2663,26 +2474,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 306
-    },
-    {
-      "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
-      "date": "2026-02-24",
-      "time": "19:00",
-      "location": "Tierpark Hellabrunn",
-      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
-      "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
-      "category": "erwachsene",
-      "artTags": [
-        "bildung",
-        "natur",
-        "indoor"
-      ],
-      "url": "https://www.hellabrunn.de/veranstaltungen",
-      "source": "hellabrunn",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 105
     },
     {
       "title": "Eine Reise in die Freiheit – Artenschutz im Wildreservat",
@@ -3457,26 +3248,6 @@
       "id": 131
     },
     {
-      "title": "Mit der Gebietsbetreuerin unterwegs: Vogelstimmenwanderung im Bernrieder Park",
-      "date": "2026-03-07",
-      "time": "09:00",
-      "location": "Bernried",
-      "address": "Bernrieder Park, 82347 Bernried am Starnberger See",
-      "description": "Vogelstimmenwanderung mit Andrea Gehrold (Gebietsbetreuerin) im Bernrieder Park.",
-      "category": "erwachsene",
-      "artTags": [
-        "natur",
-        "bildung",
-        "wandern"
-      ],
-      "url": "https://starnberg.lbv.de/über-uns/veranstaltungskalender/2026-03-07-vogelstimmenwanderung/",
-      "source": "lbv-starnberg",
-      "region": "starnberger-see",
-      "venue": "Bernrieder Park",
-      "isHighlight": false,
-      "id": 269
-    },
-    {
       "title": "Brustmann-Schäfer-Horn: Isara Rapidus",
       "date": "2026-03-07",
       "time": "20:00",
@@ -3590,24 +3361,6 @@
       "id": 135
     },
     {
-      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
-      "date": "2026-03-08",
-      "time": "17:00",
-      "location": "Starnberg",
-      "address": "Mühlbergstraße 6, 82319 Starnberg",
-      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
-      "category": "familie",
-      "artTags": [
-        "theater"
-      ],
-      "url": "https://www.starnberg.de/das-dschungelbuch-1-1",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Kath. Pfarrzentrum St. Maria",
-      "isHighlight": false,
-      "id": 136
-    },
-    {
       "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",
       "date": "2026-03-08",
       "time": "15:00",
@@ -3646,6 +3399,24 @@
       "venue": "Museum Starnberger See",
       "isHighlight": false,
       "id": 384
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
+      "date": "2026-03-08",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "Mühlbergstraße 6, 82319 Starnberg",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 136
     },
     {
       "title": "Politische Bildung in Grundschulen – Junges Forum",
@@ -4004,24 +3775,6 @@
       "id": 149
     },
     {
-      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
-      "date": "2026-03-14",
-      "time": "17:00",
-      "location": "Starnberg",
-      "address": "Mühlbergstraße 6, 82319 Starnberg",
-      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
-      "category": "familie",
-      "artTags": [
-        "theater"
-      ],
-      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1-1-1",
-      "source": "starnberg-stadt",
-      "region": "starnberger-see",
-      "venue": "Kath. Pfarrzentrum St. Maria",
-      "isHighlight": false,
-      "id": 150
-    },
-    {
       "title": "Waldschreiben zum Thema Wald im Wandel",
       "date": "2026-03-14",
       "time": "10:00",
@@ -4175,25 +3928,6 @@
       "id": 324
     },
     {
-      "title": "Schule der Fantasie: Workshop \"Fritzi, Ferkel, Ferdinand…\"",
-      "date": "2026-03-14",
-      "time": "14:00",
-      "location": "Gauting",
-      "address": "bosco Gauting",
-      "description": "Aus Fundstücken und Fetzen fertigen wir fantastische, freche und fröhliche Fingerfiguren. Für Kinder von 4-10 Jahren",
-      "category": "kinder",
-      "artTags": [
-        "kunst",
-        "bildung"
-      ],
-      "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-fritzi-ferkel-ferdinand",
-      "source": "bosco-gauting",
-      "region": "starnberger-see",
-      "venue": null,
-      "isHighlight": false,
-      "id": 325
-    },
-    {
       "title": "die exen - Dorothee Carls: Pony im Koffer",
       "date": "2026-03-14",
       "time": "16:00",
@@ -4231,6 +3965,43 @@
       "venue": null,
       "isHighlight": false,
       "id": 327
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
+      "date": "2026-03-14",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "Mühlbergstraße 6, 82319 Starnberg",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 150
+    },
+    {
+      "title": "Schule der Fantasie: Workshop \"Fritzi, Ferkel, Ferdinand…\"",
+      "date": "2026-03-14",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "bosco Gauting",
+      "description": "Aus Fundstücken und Fetzen fertigen wir fantastische, freche und fröhliche Fingerfiguren. Für Kinder von 4-10 Jahren",
+      "category": "kinder",
+      "artTags": [
+        "kunst",
+        "bildung"
+      ],
+      "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-fritzi-ferkel-ferdinand",
+      "source": "bosco-gauting",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 325
     },
     {
       "title": "Mixed Turnier Tennis – TSV Gilching",
@@ -4934,26 +4705,6 @@
       "id": 398
     },
     {
-      "title": "Rennrad (Gravel) Tour Andechs",
-      "date": "2026-03-28",
-      "time": "10:00",
-      "location": "Steinebach am Wörthsee",
-      "address": "Bahnhofstraße, 82237 Steinebach (Wörthsee)",
-      "description": "Saisonstart-Tour! Rennrad/Gravel-Tour über Andechs. 38 km, ca. 380 Hm. Entlang Wörthsee nach Breitbrunn, Herrsching, Serpentinen hoch nach Andechs.",
-      "category": "erwachsene",
-      "artTags": [
-        "sport",
-        "radsport",
-        "gravel"
-      ],
-      "url": "https://touren-termine.adfc.de/radveranstaltung/187831-rennrad-gravel-tour-andechs",
-      "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
-      "venue": "ADFC Kreisverband Starnberg",
-      "isHighlight": false,
-      "id": 174
-    },
-    {
       "title": "Heimspieltag Handball",
       "date": "2026-03-28",
       "time": "14:30",
@@ -5069,25 +4820,6 @@
       "id": 386
     },
     {
-      "title": "TSV Starnberg Osterchallenge – Woche 2",
-      "date": "2026-04-07",
-      "time": "08:30",
-      "location": "Starnberg",
-      "address": "Brunnangerstraße 2, 82319 Starnberg",
-      "description": "Ferienprogramm für Kinder 6-12 Jahre. 07.04.–10.04.",
-      "category": "kinder",
-      "artTags": [
-        "sport",
-        "ferienprogramm"
-      ],
-      "url": "https://summerchallenge.info/osterchallenge/",
-      "source": "turnverein-tsv-starnberg",
-      "region": "starnberger-see",
-      "venue": "TSV Starnberg von 1880 e.V.",
-      "isHighlight": false,
-      "id": 178
-    },
-    {
       "title": "Osterchallenge 2026 - Woche 2",
       "date": "2026-04-07",
       "time": "08:30",
@@ -5128,25 +4860,6 @@
       "id": 179
     },
     {
-      "title": "ADFC Gilchinger Feierabendtour",
-      "date": "2026-04-10",
-      "time": "17:00",
-      "location": "Gilching",
-      "address": "Marktplatz, 82205 Gilching",
-      "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr. Wiederkehrend freitags ab April.",
-      "category": "erwachsene",
-      "artTags": [
-        "radsport",
-        "natur"
-      ],
-      "url": "https://touren-termine.adfc.de/radveranstaltung/187657-gilchinger-feierabendtour",
-      "source": "adfc-touren",
-      "region": "starnberger-see",
-      "venue": null,
-      "isHighlight": false,
-      "id": 420
-    },
-    {
       "title": "Wechseljahre – Workshop",
       "date": "2026-04-11",
       "time": null,
@@ -5184,26 +4897,6 @@
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": true,
       "id": 399
-    },
-    {
-      "title": "Wöchentliche Nachmittagstour ab Gauting",
-      "date": "2026-04-14",
-      "time": "14:00",
-      "location": "Gauting",
-      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
-      "description": "Dienstags-Radtour ab Rathaus Gauting. Naturkundliche Touren und Cappuccino-Touren. Ca. 25 km. Kostenlos.",
-      "category": "erwachsene",
-      "artTags": [
-        "sport",
-        "radsport",
-        "radtour"
-      ],
-      "url": "https://touren-termine.adfc.de/radveranstaltung/188021",
-      "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
-      "venue": "ADFC Ortsgruppe Gauting",
-      "isHighlight": false,
-      "id": 181
     },
     {
       "title": "Das farbige Universum – Wenn Licht Geschichten erzählt",
@@ -5566,26 +5259,6 @@
       "id": 342
     },
     {
-      "title": "Unterwegs im Südwesten – Tagestour ab Gauting",
-      "date": "2026-04-23",
-      "time": "10:00",
-      "location": "Gauting",
-      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
-      "description": "Zweiwöchentliche Tagestour zu naturkundlichen/historischen Zielen. 50-60 km mit Steigungen. Mittagseinkehr. Für Fortgeschrittene.",
-      "category": "erwachsene",
-      "artTags": [
-        "sport",
-        "radsport",
-        "radtour"
-      ],
-      "url": "https://touren-termine.adfc.de/radveranstaltung/188023",
-      "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
-      "venue": "ADFC Ortsgruppe Gauting",
-      "isHighlight": false,
-      "id": 191
-    },
-    {
       "title": "ADFC Tagestour 'Unterwegs im Südwesten'",
       "date": "2026-04-23",
       "time": "10:00",
@@ -5929,26 +5602,6 @@
         "natur"
       ],
       "isHighlight": false
-    },
-    {
-      "title": "Rote Route der Via Zeitreise – Familienradtour",
-      "date": "2026-05-03",
-      "time": "14:00",
-      "location": "Gilching",
-      "address": "Am Markt 4, 82205 Gilching",
-      "description": "Familienfreundliche Tour (16 km, 150 Hm) mit Erläuterungen zu Geologie, Archäologie und Ortsgeschichte. Auch mit Anhänger/Tandem.",
-      "category": "familie",
-      "artTags": [
-        "sport",
-        "radsport",
-        "kultur"
-      ],
-      "url": "https://touren-termine.adfc.de/radveranstaltung/186565",
-      "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
-      "venue": "ADFC Ortsgruppe Gilching",
-      "isHighlight": false,
-      "id": 201
     },
     {
       "title": "BN-Ausstellung »Amphibien – Taucher, Schwimmer, Wandersleut'«",
@@ -6347,26 +6000,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 351
-    },
-    {
-      "title": "Real Madrid Fußballcamp beim TSV Oberalting-Seefeld",
-      "date": "2026-05-26",
-      "time": null,
-      "location": "Seefeld",
-      "address": "Aubachstadion, Jahnweg 3, 82229 Seefeld",
-      "description": "Fußballcamp der Fundación Real Madrid für Kids 7-16 Jahre. 26.–29. Mai. Top-Teilnehmer können sich für Madrid-Wochenende qualifizieren.",
-      "category": "kinder",
-      "artTags": [
-        "sport",
-        "fussball",
-        "ferienprogramm"
-      ],
-      "url": "https://frmclinics.com/TSV-Oberalting-Seefeld-2026",
-      "source": "turnverein-tsv-oberalting-seefeld",
-      "region": "starnberger-see",
-      "venue": "TSV Oberalting-Seefeld e.V.",
-      "isHighlight": true,
-      "id": 212
     },
     {
       "title": "Fundación Real Madrid Fußballcamp",
@@ -6809,26 +6442,6 @@
       "id": 359
     },
     {
-      "title": "SUP Yoga Teacher Training (3-tägig)",
-      "date": "2026-06-26",
-      "time": null,
-      "location": "Herrsching",
-      "address": "Mühlfelderstr. 56, 82211 Herrsching",
-      "description": "3-tägige SUP Yoga Lehrer-Ausbildung (20h) auf dem Ammersee. 300€.",
-      "category": "erwachsene",
-      "artTags": [
-        "yoga",
-        "sup",
-        "sport"
-      ],
-      "url": "https://www.namaste-yoga.de/",
-      "source": "yoga-namaste",
-      "region": "starnberger-see",
-      "venue": "Namasté Yoga Studio Herrsching",
-      "isHighlight": false,
-      "id": 223
-    },
-    {
       "title": "SUP Yoga Teacher Training (20h)",
       "date": "2026-06-26",
       "time": "10:00",
@@ -6921,25 +6534,6 @@
       "venue": null,
       "isHighlight": false,
       "id": 361
-    },
-    {
-      "title": "DJK-SV Berg beim Berger Bürgerfest",
-      "date": "2026-07-10",
-      "time": null,
-      "location": "Berg",
-      "address": "Lohacker 2, 82335 Berg",
-      "description": "Sportvereins-Beteiligung am Berger Bürgerfest. 10.–12. Juli.",
-      "category": "familie",
-      "artTags": [
-        "sport",
-        "fest"
-      ],
-      "url": "https://www.djk-sv-berg.com/termine/",
-      "source": "sportverein-djk-sv-berg",
-      "region": "starnberger-see",
-      "venue": "DJK-SV Berg",
-      "isHighlight": false,
-      "id": 226
     },
     {
       "title": "Perchtinger Festwochenende 2026",
@@ -7489,25 +7083,6 @@
       "id": 246
     },
     {
-      "title": "50 Jahre Handballabteilung DJK-SV Berg",
-      "date": "2026-09-26",
-      "time": "14:00",
-      "location": "Berg",
-      "address": "DJK-SV Berg, Berg am Starnberger See",
-      "description": "Jubiläumsfeier: 50 Jahre Handballabteilung des DJK-SV Berg. 26.-27. September 2026.",
-      "category": "erwachsene",
-      "artTags": [
-        "sport",
-        "fest"
-      ],
-      "url": "https://www.djk-sv-berg.com/termine/",
-      "source": "djk-sv-berg",
-      "region": "starnberger-see",
-      "venue": "DJK-SV Berg",
-      "isHighlight": true,
-      "id": 274
-    },
-    {
       "title": "KörperBewusstSein III – Innere Netzwerke & Balance (2-Tages-Seminar)",
       "date": "2026-09-26",
       "time": "10:00",
@@ -7566,25 +7141,6 @@
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 408
-    },
-    {
-      "title": "Gilching Läuft 2026 – Volkslauf",
-      "date": "2026-10-03",
-      "time": "10:30",
-      "location": "Gilching",
-      "address": "Talhofstraße 13, 82205 Gilching",
-      "description": "Jährlicher Volkslauf am Tag der Deutschen Einheit. 700m bis 10km. Tombola, Verpflegung, Siegerehrung.",
-      "category": "familie",
-      "artTags": [
-        "sport",
-        "laufen"
-      ],
-      "url": "https://gilching-laeuft.de",
-      "source": "turnverein-tsv-gilching",
-      "region": "starnberger-see",
-      "venue": "TSV Gilching-Argelsried e.V.",
-      "isHighlight": false,
-      "id": 248
     },
     {
       "title": "Gilching Läuft - Volkslauf",
