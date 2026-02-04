@@ -38,7 +38,8 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 // Weekend Highlights - get events for next weekend (Sa+So)
 const today = new Date();
 const dayOfWeek = today.getDay();
-const daysUntilSaturday = dayOfWeek === 6 ? 7 : (6 - dayOfWeek + 7) % 7;
+// If today is Saturday, show this weekend; if Sunday, also show today
+const daysUntilSaturday = dayOfWeek === 0 ? -1 : dayOfWeek === 6 ? 0 : (6 - dayOfWeek);
 
 const nextSaturday = new Date(today);
 nextSaturday.setDate(today.getDate() + daysUntilSaturday);
@@ -51,12 +52,18 @@ const weekendEvents = events.filter(event => {
   const eventDate = new Date(event.date);
   eventDate.setHours(0, 0, 0, 0);
   return (eventDate.getTime() === nextSaturday.getTime() || 
-          eventDate.getTime() === nextSunday.getTime()) &&
-         (event.isHighlight || true); // Can filter by isHighlight later
-}).slice(0, 4);
+          eventDate.getTime() === nextSunday.getTime());
+}).slice(0, 6); // Show up to 6 events
 
 const hasWeekendEvents = weekendEvents.length > 0;
-const weekendTitle = daysUntilSaturday === 0 ? "Heute & Morgen" : "Dieses Wochenende";
+const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "Heute" : "Dieses Wochenende";
+
+// Helper: format weekend day label
+function formatWeekendDay(dateStr: string) {
+  const d = new Date(dateStr);
+  const weekdays = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+  return weekdays[d.getDay()];
+}
 ---
 
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
@@ -81,13 +88,40 @@ const weekendTitle = daysUntilSaturday === 0 ? "Heute & Morgen" : "Dieses Wochen
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </section>
 
-          <!-- Weekend Highlights -->
+          <!-- Weekend Highlights (compact) -->
           {hasWeekendEvents && (
             <section class="section-highlights">
-              <h2 class="highlights-title">{weekendTitle}</h2>
-              <div class="highlights-grid">
+              <div class="highlights-header">
+                <h2 class="highlights-title">{weekendTitle}</h2>
+                <span class="highlights-count">{weekendEvents.length} Events</span>
+              </div>
+              <div class="highlights-scroll">
                 {weekendEvents.map(event => (
-                  <EventCard event={event} regions={regions} artTagsData={artTags} />
+                  <button 
+                    class="highlight-card" 
+                    data-event-id={event.id}
+                    data-event-title={event.title}
+                    data-date={event.date}
+                    data-event-time={event.time}
+                    data-location={event.location}
+                    data-event-description={event.description}
+                    data-event-url={event.url}
+                    data-category={event.category}
+                    data-art-tags={event.artTags?.join(',')}
+                  >
+                    <span class="highlight-card__day">{formatWeekendDay(event.date)}</span>
+                    <div class="highlight-card__content">
+                      <span class="highlight-card__time">{event.time ? event.time + ' Uhr' : ''}</span>
+                      <span class="highlight-card__title">{event.title}</span>
+                      <span class="highlight-card__location">
+                        <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        {event.location}
+                      </span>
+                    </div>
+                  </button>
                 ))}
               </div>
             </section>
@@ -220,50 +254,185 @@ const weekendTitle = daysUntilSaturday === 0 ? "Heute & Morgen" : "Dieses Wochen
     margin-bottom: var(--space-8);
   }
 
-  /* Weekend Highlights */
+  /* Weekend Highlights — compact horizontal scroll */
   .section-highlights {
-    margin-bottom: var(--space-10);
-    padding: var(--space-6);
+    margin-bottom: var(--space-8);
+    padding: var(--space-4) var(--space-5);
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
   }
 
   @media (min-width: 640px) {
     .section-highlights {
-      padding: var(--space-8);
+      padding: var(--space-5) var(--space-6);
     }
   }
 
+  .highlights-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+
   .highlights-title {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: white;
-    margin-bottom: var(--space-6);
-    text-align: center;
+    margin: 0;
   }
 
   @media (min-width: 640px) {
     .highlights-title {
-      font-size: 1.75rem;
+      font-size: 1.25rem;
     }
   }
 
-  .highlights-grid {
-    display: grid;
-    gap: var(--space-4);
+  .highlights-count {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+  }
+
+  .highlights-scroll {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-2);
+    margin: 0 calc(-1 * var(--space-5));
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
   }
 
   @media (min-width: 640px) {
-    .highlights-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-5);
+    .highlights-scroll {
+      margin: 0 calc(-1 * var(--space-6));
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
     }
   }
 
-  @media (min-width: 1024px) {
-    .highlights-grid {
-      grid-template-columns: repeat(4, 1fr);
+  .highlights-scroll::-webkit-scrollbar {
+    height: 3px;
+  }
+  .highlights-scroll::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+  }
+  .highlights-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+  }
+
+  /* Compact highlight card */
+  .highlight-card {
+    flex: 0 0 260px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+    font-family: inherit;
+    color: inherit;
+    padding: 0;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+
+  .highlight-card:active {
+    transform: scale(0.98);
+  }
+
+  :global(.dark) .highlight-card {
+    background: rgba(45, 42, 38, 0.95);
+  }
+
+  .highlight-card__day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    padding: 0 var(--space-2);
+    background: var(--color-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+  }
+
+  :global(.dark) .highlight-card__day {
+    background: var(--color-primary-dark);
+  }
+
+  .highlight-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3);
+    min-width: 0;
+    flex: 1;
+  }
+
+  .highlight-card__time {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .highlight-card__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .highlight-card__location {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 2px;
+  }
+
+  .highlight-card__icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  /* On wider desktops, allow wrapping instead of scroll */
+  @media (min-width: 1200px) {
+    .highlights-scroll {
+      flex-wrap: wrap;
+      overflow-x: visible;
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .highlight-card {
+      flex: 1 1 calc(33.333% - var(--space-3));
+      min-width: 220px;
     }
   }
 
@@ -354,3 +523,26 @@ const weekendTitle = daysUntilSaturday === 0 ? "Heute & Morgen" : "Dieses Wochen
     text-decoration-color: var(--color-muted);
   }
 </style>
+
+<script>
+  // Highlight card click → open modal
+  document.querySelectorAll('.highlight-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const el = card as HTMLElement;
+      const eventData = {
+        id: el.dataset.eventId,
+        title: el.dataset.eventTitle,
+        date: el.dataset.date,
+        time: el.dataset.eventTime,
+        location: el.dataset.location,
+        description: el.dataset.eventDescription,
+        category: el.dataset.category,
+        url: el.dataset.eventUrl,
+        tags: el.dataset.artTags?.split(',').filter(Boolean) || []
+      };
+      if (typeof (window as any).openEventModal === 'function') {
+        (window as any).openEventModal(eventData);
+      }
+    });
+  });
+</script>
