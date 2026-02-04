@@ -432,20 +432,23 @@ const { lastUpdated } = Astro.props;
     async function loadTrain() {
       try {
         const res = await fetch(
-          'https://v6.db.transport.rest/stops/8004874/departures?duration=120&suburban=true'
+          'https://v6.db.transport.rest/stops/8004874/departures?duration=180&suburban=true'
         );
         if (!res.ok) return;
         const data = await res.json();
         
-        // Find next train to Munich
         const departures = data.departures || [];
+        if (departures.length === 0) return;
+        
+        // Prefer Munich direction, fallback to first departure
         const toMunich = departures.find(function(d) {
           const dir = (d.direction || '').toLowerCase();
-          return dir.includes('münchen') || dir.includes('munich');
+          return dir.includes('münchen') || dir.includes('munich') || dir.includes('pasing');
         });
         
-        if (toMunich) {
-          const time = new Date(toMunich.when || toMunich.plannedWhen);
+        const next = toMunich || departures[0];
+        if (next) {
+          const time = new Date(next.when || next.plannedWhen);
           const navTrain = document.getElementById('navbar-train');
           if (navTrain) {
             navTrain.textContent = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
