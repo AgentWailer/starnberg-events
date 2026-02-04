@@ -398,14 +398,19 @@ async function fetchIrisDepartures(
   }
 }
 
-// ── Weather ────────────────────────────────────────────────────────
+// ── Weather (with D1 cache to avoid rate limits) ──────────────────
 
-async function fetchWeather(): Promise<WeatherData> {
+const WEATHER_CACHE_TTL_MS = 60 * 60 * 1000; // 60 minutes – Open-Meteo free tier has shared IP limits on CF Workers
+
+async function fetchWeatherRaw(): Promise<WeatherData> {
   try {
     const resp = await fetch(WEATHER_API, {
       headers: { 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
     });
-    if (!resp.ok) return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+    if (!resp.ok) {
+      console.error(`Weather API error: ${resp.status} ${resp.statusText}`);
+      return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+    }
     const data: any = await resp.json();
     const c = data.current;
     return {
@@ -417,6 +422,70 @@ async function fetchWeather(): Promise<WeatherData> {
   } catch (e) {
     console.error('Weather fetch failed:', e);
     return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+  }
+}
+
+/**
+ * Get weather with D1 cache. Only calls the API if cache is older than 30 min.
+ * This avoids hitting Open-Meteo's daily rate limit (shared Cloudflare IPs).
+ */
+async function fetchWeather(db?: D1Database): Promise<WeatherData> {
+  const nullWeather: WeatherData = { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+
+  if (!db) return fetchWeatherRaw();
+
+  try {
+    // Check cache
+    const cached = await db.prepare(
+      `SELECT weather_code, temperature, precipitation, wind_speed, fetched_at FROM weather_cache WHERE id = 1`
+    ).first<{ weather_code: number | null; temperature: number | null; precipitation: number | null; wind_speed: number | null; fetched_at: string }>();
+
+    if (cached && cached.fetched_at) {
+      const age = Date.now() - new Date(cached.fetched_at).getTime();
+      if (age < WEATHER_CACHE_TTL_MS) {
+        console.log(`[weather] Using cached data (${Math.round(age / 60000)} min old)`);
+        return {
+          weather_code: cached.weather_code,
+          temperature: cached.temperature,
+          precipitation: cached.precipitation,
+          wind_speed: cached.wind_speed,
+        };
+      }
+    }
+
+    // Fetch fresh
+    const fresh = await fetchWeatherRaw();
+
+    // Only update cache if we got valid data
+    if (fresh.weather_code !== null) {
+      await db.prepare(
+        `INSERT INTO weather_cache (id, weather_code, temperature, precipitation, wind_speed, fetched_at)
+         VALUES (1, ?, ?, ?, ?, ?)
+         ON CONFLICT (id) DO UPDATE SET
+           weather_code = excluded.weather_code,
+           temperature = excluded.temperature,
+           precipitation = excluded.precipitation,
+           wind_speed = excluded.wind_speed,
+           fetched_at = excluded.fetched_at`
+      ).bind(fresh.weather_code, fresh.temperature, fresh.precipitation, fresh.wind_speed, new Date().toISOString()).run();
+      console.log(`[weather] Fresh data cached: code=${fresh.weather_code} temp=${fresh.temperature}°`);
+    } else {
+      console.warn('[weather] API returned null, using stale cache if available');
+      // Return stale cache if available
+      if (cached && cached.weather_code !== null) {
+        return {
+          weather_code: cached.weather_code,
+          temperature: cached.temperature,
+          precipitation: cached.precipitation,
+          wind_speed: cached.wind_speed,
+        };
+      }
+    }
+
+    return fresh;
+  } catch (e) {
+    console.error('Weather cache error:', e);
+    return fetchWeatherRaw();
   }
 }
 
@@ -447,14 +516,30 @@ async function fetchTransportRestDepartures(): Promise<ApiDeparture[]> {
 async function collectDepartures(env: Env): Promise<{ inserted: number; updated: number; source: string }> {
   const now = new Date().toISOString();
 
-  // Parallel: IRIS + Weather
+  // Parallel: IRIS + Weather (with D1 cache)
   const hours = getIrisPlanHours(false); // current + next hour
   const [irisDeps, weather] = await Promise.all([
     fetchIrisDepartures(hours),
-    fetchWeather(),
+    fetchWeather(env.DB),
   ]);
 
   console.log(`[weather] code=${weather.weather_code} temp=${weather.temperature}° precip=${weather.precipitation}mm wind=${weather.wind_speed}km/h`);
+
+  // ── Backfill: update today's departures that have no weather data ──
+  if (weather.weather_code !== null) {
+    const today = todayStr();
+    const backfill = await env.DB.prepare(`
+      UPDATE departures SET
+        weather_code = ?,
+        temperature = ?,
+        precipitation = ?,
+        wind_speed = ?
+      WHERE date = ? AND weather_code IS NULL
+    `).bind(weather.weather_code, weather.temperature, weather.precipitation, weather.wind_speed, today).run();
+    if (backfill.meta.changes > 0) {
+      console.log(`[weather] Backfilled ${backfill.meta.changes} departures with weather data`);
+    }
+  }
 
   // ── Try IRIS first ──
   if (irisDeps && irisDeps.length > 0) {
