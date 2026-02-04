@@ -272,8 +272,7 @@
 
 <script>
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
-  // Use transport.rest API - shows more departures including next day
-  const TRAIN_API = 'https://v6.db.transport.rest/stops/8004874/departures?duration=1440&suburban=true';
+  const LIVE_API = 'https://train-tracker.steffenvonlindern-be7.workers.dev/api/live';
 
   // Ticker state
   let track: HTMLElement | null = null;
@@ -473,109 +472,37 @@
     });
   }
 
-  // Format train time - show "morgen" if next day (using local time!)
-  function formatTrainTime(dep: any): string {
-    const when = new Date(dep.when || dep.plannedWhen);
-    const time = when.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-    
-    // Calculate delay in minutes
-    const delayMin = dep.delay ? Math.round(dep.delay / 60) : 0;
-    const delayHtml = delayMin > 0 ? `<span class="delay">+${delayMin}</span>` : '';
-    
-    // Check if departure is tomorrow or later (LOCAL time comparison!)
-    const today = new Date();
-    const todayDate = today.toLocaleDateString('de-DE');
-    const depDate = when.toLocaleDateString('de-DE');
-    
-    if (depDate !== todayDate) {
-      // Tomorrow or later - show day
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowDate = tomorrow.toLocaleDateString('de-DE');
-      
-      if (depDate === tomorrowDate) {
-        return `<span class="tomorrow">morgen</span> ${time}${delayHtml}`;
-      } else {
-        // Show weekday
-        const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-        const dayName = days[when.getDay()];
-        return `<span class="tomorrow">${dayName}</span> ${time}${delayHtml}`;
-      }
-    }
-    
-    return time + delayHtml;
-  }
-
-  // Load train departures
+  // Load train departures from our own /api/live
   async function loadTrains(): Promise<void> {
     try {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 8000);
-
-      const res = await fetch(TRAIN_API, { signal: ctrl.signal });
+      const res = await fetch(LIVE_API, { signal: ctrl.signal });
       clearTimeout(timer);
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
+      const departures = (data.departures || []).filter((d: any) => !d.cancelled && d.delay <= 60);
 
-      // API returns { departures: [...] }
-      const departures = data.departures || [];
+      const isTutzingDir = (d: any) => /Tutzing|Feldafing/i.test(d.direction);
 
-      // Filter for S-Bahn or SEV Bus (line.name contains 'S6' or similar)
-      // Also filter out "ghost trains" - trains with huge delays (>60 min) are likely cancelled
-      const validDepartures = departures.filter((d: any) => {
-        const line = d.line;
-        if (!line) return false;
-        
-        // Must be S-Bahn or SEV Bus
-        const isS6 = line.name && (line.name.includes('S6') || line.name === 'S6');
-        if (!isS6) return false;
-        
-        // Filter out cancelled
-        if (d.cancelled) return false;
-        
-        // Filter out ghost trains (delay > 60 minutes likely means cancelled)
-        const delayMin = d.delay ? d.delay / 60 : 0;
-        if (delayMin > 60) return false;
-        
-        return true;
-      });
+      const toMunich = departures.find((d: any) => !isTutzingDir(d));
+      const toTutzing = departures.find((d: any) => isTutzingDir(d));
 
-      // Classify by direction: from Possenhofen, only Tutzing and Feldafing are south.
-      // Everything else (Haar, Ebersberg, Erding, Grafing, München, etc.) is direction München.
-      const isTutzingDir = (d: any) => {
-        const dir = d.direction || '';
-        return dir.includes('Tutzing') || dir.includes('Feldafing');
+      // Format: time + delay
+      const fmt = (d: any) => {
+        const time = d.actualTime || d.plannedTime;
+        const delayHtml = d.delay > 0 ? `<span class="delay">+${d.delay}</span>` : '';
+        return time + delayHtml;
       };
 
-      const toMunich = validDepartures.find((d: any) => !isTutzingDir(d));
-      const toTutzing = validDepartures.find((d: any) => isTutzingDir(d));
+      document.querySelectorAll('#train-munich').forEach(el => {
+        el.innerHTML = toMunich ? fmt(toMunich) : '<span class="no-train">–</span>';
+      });
 
-      // Update München
-      if (toMunich) {
-        const timeHtml = formatTrainTime(toMunich);
-        const isBus = toMunich.line?.name?.includes('Bus');
-        document.querySelectorAll('#train-munich').forEach(el => {
-          el.innerHTML = (isBus ? '🚌 ' : '') + timeHtml;
-        });
-      } else {
-        document.querySelectorAll('#train-munich').forEach(el => {
-          el.innerHTML = '<span class="no-train">–</span>';
-        });
-      }
-
-      // Update Tutzing
-      if (toTutzing) {
-        const timeHtml = formatTrainTime(toTutzing);
-        const isBus = toTutzing.line?.name?.includes('Bus');
-        document.querySelectorAll('#train-tutzing').forEach(el => {
-          el.innerHTML = (isBus ? '🚌 ' : '') + timeHtml;
-        });
-      } else {
-        document.querySelectorAll('#train-tutzing').forEach(el => {
-          el.innerHTML = '<span class="no-train">–</span>';
-        });
-      }
+      document.querySelectorAll('#train-tutzing').forEach(el => {
+        el.innerHTML = toTutzing ? fmt(toTutzing) : '<span class="no-train">–</span>';
+      });
     } catch (e) {
       console.error('Train error:', e);
     }

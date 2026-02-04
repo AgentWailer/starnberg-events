@@ -163,73 +163,12 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
 </style>
 
 <script>
-  // Same API as InfoTicker - transport.rest works better than dbf.finalrewind.org
-  const TRAIN_API = 'https://v6.db.transport.rest/stops/8004874/departures?duration=1440&suburban=true';
-
-  function formatTime(iso: string): string {
-    return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-  }
-
-  function formatTrainTime(dep: any): string {
-    const when = new Date(dep.when || dep.plannedWhen);
-    const time = when.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-    
-    const delayMin = dep.delay ? Math.round(dep.delay / 60) : 0;
-    const delayHtml = delayMin > 0 ? `<span class="train-delay">+${delayMin}</span>` : '';
-    
-    // Check if departure is tomorrow (local time)
-    const today = new Date();
-    const todayDate = today.toLocaleDateString('de-DE');
-    const depDate = when.toLocaleDateString('de-DE');
-    
-    if (depDate !== todayDate) {
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowDate = tomorrow.toLocaleDateString('de-DE');
-      
-      if (depDate === tomorrowDate) {
-        return `<span class="train-tomorrow">morgen</span> ${time}${delayHtml}`;
-      } else {
-        const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-        const dayName = days[when.getDay()];
-        return `<span class="train-tomorrow">${dayName}</span> ${time}${delayHtml}`;
-      }
-    }
-    
-    return time + delayHtml;
-  }
-
-  function shortDest(dest: string): string {
-    if (!dest) return '–';
-    return dest
-      .replace(/\s*\([^)]*\)/g, '')
-      .replace(/ Hbf$/, '')
-      .replace(/ Bahnhof$/, '')
-      .replace(/^München /, 'M-')
-      .replace(/Ebersberg$/, 'Ebersberg')
-      .replace(/Tutzing$/, 'Tutzing');
-  }
+  const LIVE_API = 'https://train-tracker.steffenvonlindern-be7.workers.dev/api/live';
 
   function renderDepartures(departures: any[], container: HTMLElement): void {
-    // Simple filter: just check for S6 in line name (same as InfoTicker)
-    const validDepartures = departures.filter((d: any) => {
-      const line = d.line;
-      if (!line) return false;
-      
-      // Must be S6 (S-Bahn or SEV Bus)
-      const isS6 = line.name && (line.name.includes('S6') || line.name === 'S6');
-      if (!isS6) return false;
-      
-      if (d.cancelled) return false;
-      
-      // Filter out ghost trains (>60 min delay)
-      const delayMin = d.delay ? Math.round(d.delay / 60) : 0;
-      if (delayMin > 60) return false;
-      
-      return true;
-    });
+    const valid = departures.filter((d: any) => !d.cancelled && d.delay <= 60);
 
-    if (!validDepartures.length) {
+    if (!valid.length) {
       container.innerHTML = `
         <div class="train-empty">
           <p><strong>S6</strong> Tutzing ↔ München Hbf</p>
@@ -240,28 +179,18 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
       return;
     }
 
-    // Take first 4 departures
-    const toShow = validDepartures.slice(0, 4);
-
-    container.innerHTML = toShow.map(d => {
-      const direction = d.direction || d.destination?.name || '–';
-      const platform = d.platform || '–';
-      const lineName = d.line?.name || 'S6';
-      const isSEV = lineName.toLowerCase().includes('bus');
-      
-      // Determine direction: from Possenhofen, Tutzing and Feldafing are the last stops south.
-      // Everything else (Haar, Ebersberg, Erding, Grafing, etc.) is direction München.
-      const isTutzing = direction.includes('Tutzing') || direction.includes('Feldafing');
+    container.innerHTML = valid.slice(0, 4).map(d => {
+      const delayHtml = d.delay > 0 ? `<span class="train-delay">+${d.delay}</span>` : '';
+      const time = d.actualTime || d.plannedTime;
+      const isTutzing = /Tutzing|Feldafing/i.test(d.direction);
       const dirLabel = isTutzing ? '→ Tutzing' : '→ München';
-      
+      const platform = d.platform ? `Gl. ${d.platform}` : '';
+
       return `
         <div class="train-row">
-          <span class="train-time">${formatTrainTime(d)}</span>
-          <span class="train-dest">
-            ${isSEV ? '<span class="train-sev">SEV</span>' : ''}
-            ${dirLabel}
-          </span>
-          <span class="train-platform">${platform !== '–' ? 'Gl. ' + platform : ''}</span>
+          <span class="train-time">${time}${delayHtml}</span>
+          <span class="train-dest">${dirLabel}</span>
+          <span class="train-platform">${platform}</span>
         </div>
       `;
     }).join('');
@@ -274,15 +203,12 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
     try {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), 8000);
-
-      const res = await fetch(TRAIN_API, { signal: ctrl.signal });
+      const res = await fetch(LIVE_API, { signal: ctrl.signal });
       clearTimeout(timer);
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      const departures = data.departures || [];
-
-      renderDepartures(departures, container as HTMLElement);
+      renderDepartures(data.departures || [], container as HTMLElement);
     } catch (e) {
       console.error('Train API error:', e);
       (container as HTMLElement).innerHTML = `

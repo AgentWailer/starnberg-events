@@ -577,48 +577,40 @@ const { lastUpdated } = Astro.props;
       }
     }
 
-    // Load train data for both directions
+    // Load train data from our own /api/live (IRIS-backed)
     async function loadTrain() {
       try {
-        const res = await fetch(
-          'https://v6.db.transport.rest/stops/8004874/departures?duration=180&suburban=true'
-        );
+        const res = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/live');
         if (!res.ok) return;
         const data = await res.json();
         
-        const departures = data.departures || [];
+        const departures = (data.departures || []).filter(function(d) { return !d.cancelled && d.delay <= 60; });
         if (departures.length === 0) return;
         
-        // Classify direction: Tutzing/Feldafing = south, everything else = München
         function isTutzingDir(d) {
-          const dir = (d.direction || '').toLowerCase();
-          return dir.includes('tutzing') || dir.includes('feldafing');
+          return /Tutzing|Feldafing/i.test(d.direction || '');
         }
         
         const toMunich = departures.find(function(d) { return !isTutzingDir(d); });
         const toTutzing = departures.find(function(d) { return isTutzingDir(d); });
         
-        // Update Munich
         if (toMunich) {
-          const time = new Date(toMunich.when || toMunich.plannedWhen);
           const navMunich = document.getElementById('navbar-train-munich');
           if (navMunich) {
-            var timeStr = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-            if (toMunich.delay && toMunich.delay > 0) {
-              timeStr += ' <span class="navbar-train-delay">+' + Math.round(toMunich.delay / 60) + '</span>';
+            var timeStr = toMunich.actualTime || toMunich.plannedTime;
+            if (toMunich.delay > 0) {
+              timeStr += ' <span class="navbar-train-delay">+' + toMunich.delay + '</span>';
             }
             navMunich.innerHTML = timeStr;
           }
         }
         
-        // Update Tutzing
         if (toTutzing) {
-          const time = new Date(toTutzing.when || toTutzing.plannedWhen);
           const navTutzing = document.getElementById('navbar-train-tutzing');
           if (navTutzing) {
-            var timeStr = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-            if (toTutzing.delay && toTutzing.delay > 0) {
-              timeStr += ' <span class="navbar-train-delay">+' + Math.round(toTutzing.delay / 60) + '</span>';
+            var timeStr = toTutzing.actualTime || toTutzing.plannedTime;
+            if (toTutzing.delay > 0) {
+              timeStr += ' <span class="navbar-train-delay">+' + toTutzing.delay + '</span>';
             }
             navTutzing.innerHTML = timeStr;
           }
