@@ -135,9 +135,12 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     }
   }
 
-  /* Mobile Info Bar */
+  /* Mobile Info Bar - sticky at top */
   .mobile-info-bar {
-    margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) var(--space-6);
+    margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   @media (min-width: 768px) {
