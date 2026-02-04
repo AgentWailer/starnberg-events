@@ -151,14 +151,22 @@ const { lastUpdated } = Astro.props;
     display: flex;
     align-items: center;
     gap: var(--space-4);
-    will-change: transform, opacity;
   }
 
   .navbar-brand {
     text-decoration: none;
     color: var(--color-text);
     flex-shrink: 0;
-    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--duration-normal) ease, transform var(--duration-normal) ease;
+    pointer-events: none;
+  }
+
+  .navbar-brand.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .navbar-title {
@@ -495,32 +503,33 @@ const { lastUpdated } = Astro.props;
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
-    const navbarBrand = document.querySelector('.navbar-brand');
-    const navbarRight = document.querySelector('.navbar-right');
+    const navbarBrand = document.querySelector('.navbar-brand') as HTMLElement;
+    const header = document.querySelector('.header') as HTMLElement;
 
-    // Scroll parallax effect for navbar
-    if (navbarBrand && navbarRight) {
-      var lastScroll = 0;
+    // Show navbar brand only when hero header scrolls out of view
+    if (navbarBrand && header) {
       var ticking = false;
       
-      function updateNavbarParallax() {
-        var scrollY = window.scrollY;
-        var maxScroll = 300; // Max scroll distance for full effect
-        var progress = Math.min(scrollY / maxScroll, 1);
-        
-        // Move brand left, right section right (no fade)
-        navbarBrand.style.transform = 'translateX(' + (-progress * 200) + 'px)';
-        navbarRight.style.transform = 'translateX(' + (progress * 300) + 'px)';
-        
+      function updateBrandVisibility() {
+        var headerBottom = header.getBoundingClientRect().bottom;
+        // Show brand when header bottom is above navbar (65px height)
+        if (headerBottom < 65) {
+          navbarBrand.classList.add('visible');
+        } else {
+          navbarBrand.classList.remove('visible');
+        }
         ticking = false;
       }
       
       window.addEventListener('scroll', function() {
         if (!ticking) {
-          requestAnimationFrame(updateNavbarParallax);
+          requestAnimationFrame(updateBrandVisibility);
           ticking = true;
         }
       }, { passive: true });
+
+      // Initial check
+      updateBrandVisibility();
     }
 
     // Theme toggle
