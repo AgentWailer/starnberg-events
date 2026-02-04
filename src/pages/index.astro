@@ -34,6 +34,9 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
   <Header lastUpdated={eventsData.lastUpdated} />
+
+  <!-- Desktop: Fixed Filter Sidebar (outside container) -->
+  <FilterBar events={events} regions={regions} />
   
   <main class="main" id="main-content">
     <div class="container">
@@ -52,25 +55,19 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
 
-      <!-- Events + Filter Layout -->
-      <div class="content-layout">
-        <!-- Filter Sidebar (left on desktop) -->
-        <FilterBar events={events} regions={regions} />
-
-        <!-- Events List (right on desktop) -->
-        <section class="section-events">
-          <div class="events-header">
-            <h2 class="events-title">Kommende Events</h2>
-            <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
-          </div>
-          
-          <div class="events-list">
-            {events.map(event => (
-              <EventCard event={event} regions={regions} />
-            ))}
-          </div>
-        </section>
-      </div>
+      <!-- Events List -->
+      <section class="section-events">
+        <div class="events-header">
+          <h2 class="events-title">Kommende Events</h2>
+          <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+        </div>
+        
+        <div class="events-list">
+          {events.map(event => (
+            <EventCard event={event} regions={regions} />
+          ))}
+        </div>
+      </section>
 
       <!-- Local Info (Collapsed) -->
       <section class="section section-info">
@@ -153,22 +150,8 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     margin-bottom: var(--space-8);
   }
 
-  /* Content Layout - Events + Sidebar */
-  .content-layout {
-    display: block;
-  }
-
-  @media (min-width: 900px) {
-    .content-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: var(--space-6);
-      align-items: start;
-    }
-  }
-
   .section-events {
-    min-width: 0; /* Prevent grid blowout */
+    min-width: 0;
   }
 
   /* Events */
