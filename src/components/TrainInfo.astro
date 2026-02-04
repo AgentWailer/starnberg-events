@@ -249,9 +249,9 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
       const lineName = d.line?.name || 'S6';
       const isSEV = lineName.toLowerCase().includes('bus');
       
-      // Determine direction: from Possenhofen, only "Tutzing" is the other terminus.
+      // Determine direction: from Possenhofen, Tutzing and Feldafing are the last stops south.
       // Everything else (Haar, Ebersberg, Erding, Grafing, etc.) is direction München.
-      const isTutzing = direction === 'Tutzing' || direction.includes('Tutzing');
+      const isTutzing = direction.includes('Tutzing') || direction.includes('Feldafing');
       const dirLabel = isTutzing ? '→ Tutzing' : '→ München';
       
       return `

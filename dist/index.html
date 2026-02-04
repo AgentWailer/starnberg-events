@@ -21,7 +21,7 @@ DB Live →
           <p>ca. alle 20 Min · ~35 Min</p>
           <a href="https://iris.noncd.db.de/wbt/js/index.html?bhf=MPH" target="_blank" rel="noopener">→ Live bei DB</a>
         </div>
-      `;return}const i=t.slice(0,4);r.innerHTML=i.map(e=>{const a=e.direction||e.destination?.name||"–",s=e.platform||"–",o=(e.line?.name||"S6").toLowerCase().includes("bus"),u=a==="Tutzing"||a.includes("Tutzing")?"→ Tutzing":"→ München";return`
+      `;return}const i=t.slice(0,4);r.innerHTML=i.map(e=>{const a=e.direction||e.destination?.name||"–",s=e.platform||"–",o=(e.line?.name||"S6").toLowerCase().includes("bus"),u=a.includes("Tutzing")||a.includes("Feldafing")?"→ Tutzing":"→ München";return`
         <div class="train-row">
           <span class="train-time">${f(e)}</span>
           <span class="train-dest">
