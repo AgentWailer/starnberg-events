@@ -43,7 +43,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="sc sc--green">
           <span class="sc__val" id="sc-ontime">–</span>
           <span class="sc__lbl">Pünktlich</span>
-          <span class="sc__sub">≤ 5 Min</span>
+          <span class="sc__sub" id="sc-ontime-detail">≤ 5 Min</span>
         </div>
         <div class="sc sc--yellow">
           <span class="sc__val" id="sc-delayed">–</span>
@@ -77,7 +77,9 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="rate-kpis">
           <h3 class="rate-kpis__title">Pünktlichkeitsrate</h3>
-          <div class="kpi-row"><span class="kpi-label">Ø Verspätung</span><strong id="kpi-avg">–</strong></div>
+          <div class="kpi-row"><span class="kpi-label">Exakt pünktlich</span><strong id="kpi-exact">–</strong></div>
+          <div class="kpi-row"><span class="kpi-label">Ø Verspätung (alle)</span><strong id="kpi-avg">–</strong></div>
+          <div class="kpi-row"><span class="kpi-label">Ø nur Verspätete</span><strong id="kpi-avg-late">–</strong></div>
           <div class="kpi-row"><span class="kpi-label">Max. Verspätung</span><strong id="kpi-max">–</strong></div>
           <div class="kpi-row"><span class="kpi-label">Erfasst seit</span><strong id="kpi-since">–</strong></div>
         </div>
@@ -253,12 +255,16 @@ import Layout from '../layouts/Layout.astro';
   .departures-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
   .dep-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: var(--radius-sm); font-size: 0.75rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500; background: var(--color-bg-secondary); }
   .dep-chip--ok { border-left: 3px solid #16a34a; }
+  .dep-chip--minor { border-left: 3px solid #84cc16; }
   .dep-chip--late { border-left: 3px solid #d97706; }
   .dep-chip--cancel { border-left: 3px solid #dc2626; text-decoration: line-through; opacity: 0.6; }
   .dep-chip__dir { font-size: 0.625rem; color: var(--color-text-tertiary, #aaa); }
   .dep-chip__delay { color: #d97706; font-weight: 700; }
+  .dep-chip__delay--minor { color: #65a30d; font-weight: 600; font-size: 0.6875rem; }
   :root.dark .dep-chip--ok { border-left-color: #4ade80; }
+  :root.dark .dep-chip--minor { border-left-color: #a3e635; }
   :root.dark .dep-chip--late { border-left-color: #fbbf24; }
+  :root.dark .dep-chip__delay--minor { color: #a3e635; }
 
   /* Footer */
   .s6-meta { font-size: 0.75rem; color: var(--color-text-tertiary, #999); text-align: center; line-height: 1.6; margin-top: var(--space-4); }
@@ -332,11 +338,20 @@ import Layout from '../layouts/Layout.astro';
     const rate = pct(onTime, total);
 
     // Scorecard
+    const onTimeExact = o.on_time_exact || 0;
+    const minorDelay = o.minor_delay || 0;
     $('sc-ontime').textContent = String(onTime);
     $('sc-delayed').textContent = String(delayed);
     $('sc-cancelled').textContent = String(cancelled);
     $('sc-total').textContent = String(total);
     $('sc-period-label').textContent = `${currentDays} Tage`;
+    // Sub-detail: wie viele exakt vs. leicht verspätet
+    const detailEl = $('sc-ontime-detail');
+    if (minorDelay > 0) {
+      detailEl.textContent = `${onTimeExact}× exakt · ${minorDelay}× 1-5 Min`;
+    } else {
+      detailEl.textContent = `${onTimeExact}× exakt pünktlich`;
+    }
 
     // Rate ring
     const circ = 2 * Math.PI * 52;
@@ -346,7 +361,11 @@ import Layout from '../layouts/Layout.astro';
     arc.style.transition = 'stroke-dashoffset 0.8s ease, stroke 0.4s ease';
     $('rate-pct').textContent = `${rate}%`;
 
+    // KPIs
+    const exactPct = pct(onTimeExact, total);
+    $('kpi-exact').textContent = `${onTimeExact} (${exactPct}%)`;
     $('kpi-avg').textContent = fmtDelay(o.avg_delay);
+    $('kpi-avg-late').textContent = o.avg_delay_late ? fmtDelay(o.avg_delay_late) : '–';
     $('kpi-max').textContent = fmtDelay(o.max_delay);
     $('kpi-since').textContent = o.first_date ? fmtDate(o.first_date) : '–';
 
@@ -405,9 +424,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function renderDistribution(dist: any[], total: number) {
-    const bucketOrder = ['early', '0-2min', '2-5min', '5-10min', '10-20min', '20min+', 'cancelled'];
-    const bucketLabels: Record<string, string> = { early: 'Früher', '0-2min': '0–2 Min', '2-5min': '2–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min', cancelled: 'Ausfall' };
-    const bucketColors: Record<string, string> = { early: '#16a34a', '0-2min': '#16a34a', '2-5min': '#65a30d', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626', cancelled: '#dc2626' };
+    const bucketOrder = ['exact', '0-1min', '1-2min', '2-3min', '3-4min', '4-5min', '5-10min', '10-20min', '20min+', 'cancelled'];
+    const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1 Min', '1-2min': '1–2 Min', '2-3min': '2–3 Min', '3-4min': '3–4 Min', '4-5min': '4–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min', cancelled: 'Ausfall' };
+    const bucketColors: Record<string, string> = { exact: '#16a34a', '0-1min': '#22c55e', '1-2min': '#4ade80', '2-3min': '#86efac', '3-4min': '#a3e635', '4-5min': '#84cc16', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626', cancelled: '#dc2626' };
     const maxCount = Math.max(...dist.map((d: any) => d.count || 0), 1);
 
     $('dist-chart').innerHTML = bucketOrder.map(key => {
@@ -467,10 +486,20 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
     $('today-deps').innerHTML = deps.map((d: any) => {
-      const cls = d.cancelled ? 'dep-chip--cancel' : (d.delay && d.delay > 300 ? 'dep-chip--late' : 'dep-chip--ok');
+      const delaySec = d.delay || 0;
+      const delayMin = Math.round(delaySec / 60);
+      let cls = 'dep-chip--ok';
+      if (d.cancelled) cls = 'dep-chip--cancel';
+      else if (delaySec > 300) cls = 'dep-chip--late';
+      else if (delaySec > 0) cls = 'dep-chip--minor';
+
       const time = fmtTime(d.planned_when);
       const dir = d.direction === 'muenchen' ? '→Muc' : '→Tut';
-      const delayStr = d.delay && d.delay > 0 ? `<span class="dep-chip__delay">+${Math.round(d.delay / 60)}</span>` : '';
+      let delayStr = '';
+      if (d.delay && d.delay > 0) {
+        const delayClass = delaySec > 300 ? 'dep-chip__delay' : 'dep-chip__delay--minor';
+        delayStr = `<span class="${delayClass}">+${delayMin}</span>`;
+      }
       return `<span class="dep-chip ${cls}">${time} <span class="dep-chip__dir">${dir}</span> ${delayStr}</span>`;
     }).join('');
   }

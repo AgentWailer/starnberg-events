@@ -163,10 +163,14 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
       COUNT(*) as total,
       SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 0 THEN 1 ELSE 0 END) as on_time_exact,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 AND delay <= 300 THEN 1 ELSE 0 END) as minor_delay,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
       SUM(CASE WHEN cancelled = 0 AND delay IS NULL THEN 1 ELSE 0 END) as no_data,
       ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay,
-      MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN delay END), 0) as avg_delay_late,
+      MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 THEN delay END), 0) as avg_positive_delay
     FROM departures WHERE ${where}
   `).bind(dateFrom).first();
 
@@ -177,6 +181,8 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
       COUNT(*) as total,
       SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 0 THEN 1 ELSE 0 END) as on_time_exact,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 AND delay <= 300 THEN 1 ELSE 0 END) as minor_delay,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
       ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
     FROM departures WHERE ${where}
@@ -212,9 +218,13 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
       COUNT(*) as total,
       SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 0 THEN 1 ELSE 0 END) as on_time_exact,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 AND delay <= 300 THEN 1 ELSE 0 END) as minor_delay,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
       SUM(CASE WHEN cancelled = 0 AND delay IS NULL THEN 1 ELSE 0 END) as no_data,
       ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN delay END), 0) as avg_delay_late,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 THEN delay END), 0) as avg_positive_delay,
       MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay,
       MIN(date) as first_date,
       MAX(date) as last_date
@@ -238,6 +248,8 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
       COUNT(*) as total,
       SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 0 THEN 1 ELSE 0 END) as on_time_exact,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 0 AND delay <= 300 THEN 1 ELSE 0 END) as minor_delay,
       SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
       ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
     FROM departures WHERE date >= ?1 GROUP BY direction
@@ -268,15 +280,18 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY weekday ORDER BY weekday
   `).bind(since).all()).results;
 
-  // 6) Verspätungsverteilung
+  // 6) Verspätungsverteilung (feingranular für kleine Verspätungen)
   const delayDistribution = (await db.prepare(`
     SELECT
       CASE
         WHEN cancelled = 1 THEN 'cancelled'
         WHEN delay IS NULL THEN 'no_data'
-        WHEN delay <= 0 THEN 'early'
-        WHEN delay <= 120 THEN '0-2min'
-        WHEN delay <= 300 THEN '2-5min'
+        WHEN delay <= 0 THEN 'exact'
+        WHEN delay <= 60 THEN '0-1min'
+        WHEN delay <= 120 THEN '1-2min'
+        WHEN delay <= 180 THEN '2-3min'
+        WHEN delay <= 240 THEN '3-4min'
+        WHEN delay <= 300 THEN '4-5min'
         WHEN delay <= 600 THEN '5-10min'
         WHEN delay <= 1200 THEN '10-20min'
         ELSE '20min+'
