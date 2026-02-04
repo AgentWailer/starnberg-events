@@ -58,8 +58,8 @@ const catLabel = categoryLabels[event.category] || 'Familie';
 
   <button class="card-link" data-event-card-btn>
     <div class="card-date">
-      <span class="date-day">{day}</span>
-      <span class="date-month">{monthShort}</span>
+      <span class="date-day">{day}.{date.getMonth() + 1}.</span>
+      <span class="date-weekday">{weekday}</span>
     </div>
     
     <div class="card-body">
@@ -211,19 +211,19 @@ const catLabel = categoryLabels[event.category] || 'Familie';
 
   .date-day {
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     line-height: 1;
     color: var(--color-primary);
   }
 
-  .date-month {
-    font-size: 0.75rem;
-    font-weight: 500;
+  .date-weekday {
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--color-muted);
-    margin-top: 2px;
+    margin-top: 3px;
   }
 
   /* Body Column */
