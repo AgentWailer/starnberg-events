@@ -324,7 +324,7 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
   /* Skip Link */
   .skip-link {
     position: absolute;
-    top: calc(-1 * var(--touch-target-min));
+    top: -100px;
     left: var(--space-4);
     background: var(--color-primary);
     color: white;
@@ -336,6 +336,8 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     text-decoration: none;
     box-shadow: var(--shadow-lg);
     transition: top var(--duration-fast) ease;
+    clip: rect(0,0,0,0);
+    overflow: hidden;
   }
 
   .skip-link:focus {
