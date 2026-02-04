@@ -734,12 +734,27 @@
       descriptionEl.textContent = eventData.description || '';
     }
 
-    // Tags
-    const artTagLabels: Record<string, string> = {
-      musik: '🎵 Musik', theater: '🎭 Theater', kunst: '🎨 Kunst',
-      sport: '🏃 Sport', natur: '🌲 Natur', markt: '🛒 Markt',
-      bildung: '📚 Bildung', fest: '🎉 Fest', show: '🎪 Show', indoor: '☂️ Indoor'
-    };
+    // Tags — use global artTags config if available, fallback to hardcoded
+    const globalArtTags = (window as any).__artTagsData || {};
+    const artTagLabels: Record<string, string> = {};
+    // Build label map from global config
+    for (const [key, val] of Object.entries(globalArtTags)) {
+      const t = val as any;
+      if (t?.emoji && t?.name) artTagLabels[key] = `${t.emoji} ${t.name}`;
+    }
+    // Fallback if no global config
+    if (Object.keys(artTagLabels).length === 0) {
+      Object.assign(artTagLabels, {
+        musik: '🎵 Musik', theater: '🎭 Theater', kunst: '🎨 Kunst',
+        kultur: '🏛️ Kultur', sport: '🏃 Sport', natur: '🌲 Natur',
+        markt: '🛒 Markt', bildung: '📚 Bildung', fest: '🎉 Fest',
+        show: '🎪 Show', indoor: '🏠 Indoor', tanz: '💃 Tanz',
+        yoga: '🧘 Yoga', wellness: '🧖 Wellness', radsport: '🚴 Radsport',
+        radtour: '🚲 Radtour', wandern: '🥾 Wandern', laufen: '🏃‍♂️ Laufen',
+        schwimmen: '🏊 Schwimmen', fasching: '🎭 Fasching',
+        ferienprogramm: '☀️ Ferienprogramm', meditation: '🧘‍♂️ Meditation'
+      });
+    }
     if (tagsEl) {
       tagsEl.innerHTML = (eventData.tags && eventData.tags.length > 0)
         ? eventData.tags.map((tag: string) => `<span class="modal-tag">${artTagLabels[tag] || tag}</span>`).join('')

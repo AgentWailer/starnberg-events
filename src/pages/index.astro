@@ -628,6 +628,11 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   }
 </style>
 
+<script define:vars={{ artTags }}>
+  // Make artTags available globally for modal
+  (window as any).__artTagsData = artTags;
+</script>
+
 <script>
   // Highlight card click → open modal
   document.querySelectorAll('.highlight-card').forEach(card => {

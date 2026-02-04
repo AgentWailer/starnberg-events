@@ -4910,5 +4910,159 @@
       "isHighlight": false,
       "id": 261
     }
-  ]
+  ],
+  "artTags": {
+    "musik": {
+      "name": "Musik",
+      "emoji": "🎵"
+    },
+    "theater": {
+      "name": "Theater",
+      "emoji": "🎭"
+    },
+    "kunst": {
+      "name": "Kunst",
+      "emoji": "🎨"
+    },
+    "kultur": {
+      "name": "Kultur",
+      "emoji": "🏛️"
+    },
+    "sport": {
+      "name": "Sport",
+      "emoji": "🏃"
+    },
+    "natur": {
+      "name": "Natur",
+      "emoji": "🌲"
+    },
+    "markt": {
+      "name": "Markt",
+      "emoji": "🛒"
+    },
+    "bildung": {
+      "name": "Bildung",
+      "emoji": "📚"
+    },
+    "fest": {
+      "name": "Fest",
+      "emoji": "🎉"
+    },
+    "show": {
+      "name": "Show",
+      "emoji": "🎪"
+    },
+    "indoor": {
+      "name": "Indoor",
+      "emoji": "🏠"
+    },
+    "tanz": {
+      "name": "Tanz",
+      "emoji": "💃"
+    },
+    "yoga": {
+      "name": "Yoga",
+      "emoji": "🧘"
+    },
+    "wellness": {
+      "name": "Wellness",
+      "emoji": "🧖"
+    },
+    "radsport": {
+      "name": "Radsport",
+      "emoji": "🚴"
+    },
+    "radtour": {
+      "name": "Radtour",
+      "emoji": "🚲"
+    },
+    "wandern": {
+      "name": "Wandern",
+      "emoji": "🥾"
+    },
+    "laufen": {
+      "name": "Laufen",
+      "emoji": "🏃‍♂️"
+    },
+    "schwimmen": {
+      "name": "Schwimmen",
+      "emoji": "🏊"
+    },
+    "tennis": {
+      "name": "Tennis",
+      "emoji": "🎾"
+    },
+    "fussball": {
+      "name": "Fußball",
+      "emoji": "⚽"
+    },
+    "volleyball": {
+      "name": "Volleyball",
+      "emoji": "🏐"
+    },
+    "handball": {
+      "name": "Handball",
+      "emoji": "🤾"
+    },
+    "turnen": {
+      "name": "Turnen",
+      "emoji": "🤸"
+    },
+    "einrad": {
+      "name": "Einrad",
+      "emoji": "🎪"
+    },
+    "meditation": {
+      "name": "Meditation",
+      "emoji": "🧘‍♂️"
+    },
+    "zeremonie": {
+      "name": "Zeremonie",
+      "emoji": "🕯️"
+    },
+    "fasching": {
+      "name": "Fasching",
+      "emoji": "🎭"
+    },
+    "ferienprogramm": {
+      "name": "Ferienprogramm",
+      "emoji": "☀️"
+    },
+    "gesundheit": {
+      "name": "Gesundheit",
+      "emoji": "💚"
+    },
+    "aromatherapie": {
+      "name": "Aromatherapie",
+      "emoji": "🌿"
+    },
+    "kurs": {
+      "name": "Kurs",
+      "emoji": "📝"
+    },
+    "wintersport": {
+      "name": "Wintersport",
+      "emoji": "⛷️"
+    },
+    "sup": {
+      "name": "SUP",
+      "emoji": "🏄"
+    },
+    "stockschießen": {
+      "name": "Stockschießen",
+      "emoji": "🎯"
+    },
+    "tcm": {
+      "name": "TCM",
+      "emoji": "🌀"
+    },
+    "ayurveda": {
+      "name": "Ayurveda",
+      "emoji": "🪷"
+    },
+    "gravel": {
+      "name": "Gravel",
+      "emoji": "🚵"
+    }
+  }
 }
