@@ -519,25 +519,15 @@
         return true;
       });
 
-      // Find München/Gauting direction
-      const toMunich = validDepartures.find((d: any) => {
+      // Classify by direction: from Possenhofen, only Tutzing and Feldafing are south.
+      // Everything else (Haar, Ebersberg, Erding, Grafing, München, etc.) is direction München.
+      const isTutzingDir = (d: any) => {
         const dir = d.direction || '';
-        return dir.includes('München') || 
-               dir.includes('Pasing') || 
-               dir.includes('Ostbahnhof') ||
-               dir.includes('Marienplatz') ||
-               dir.includes('Ebersberg') ||
-               dir.includes('Grafing') ||
-               dir.includes('Gauting'); // SEV Bus goes to Gauting
-      });
+        return dir.includes('Tutzing') || dir.includes('Feldafing');
+      };
 
-      // Find Tutzing direction
-      const toTutzing = validDepartures.find((d: any) => {
-        const dir = d.direction || '';
-        return dir.includes('Tutzing') || 
-               dir.includes('Starnberg') ||
-               dir.includes('Feldafing');
-      });
+      const toMunich = validDepartures.find((d: any) => !isTutzingDir(d));
+      const toTutzing = validDepartures.find((d: any) => isTutzingDir(d));
 
       // Update München
       if (toMunich) {
