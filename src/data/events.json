@@ -64,7 +64,7 @@
       "location": "Pöcking",
       "address": "Atelier Sandra Homberg, St.-Sebastian-Straße 11, 82343 Pöcking",
       "description": "Kreativkurs im professionellen Atelier",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kunst",
         "indoor"
@@ -348,7 +348,7 @@
       "location": "Münsing",
       "address": "Foyer Bürgerhaus Münsing",
       "description": "Kunstausstellung von Kunst am See e.V. bis 1. März 2026",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kunst",
         "kultur"
@@ -519,7 +519,7 @@
       "location": "Herrsching",
       "address": "Seehof Herrsching, Seestraße 58, 82211 Herrsching am Ammersee",
       "description": "Ein Stück gelebte Tradition am Ammersee",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "show",
         "natur"
@@ -577,7 +577,7 @@
       "location": "Tutzing",
       "address": "Kulturtheater Tutzing, Kirchenstraße 3, 82327 Tutzing",
       "description": "Kurzfilme von Nachwuchs-Filmemachern mit Filmgespräch",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kunst",
         "indoor"
@@ -616,7 +616,7 @@
       "location": "Inning am Ammersee",
       "address": "Landsberger Straße 57, 82266 Inning am Ammersee",
       "description": "Gitarristin Yasi Hofer und ihr Trio",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -745,7 +745,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "In einer neuen Kooperation mit der Münchner Musikhochschule präsentieren wir die Preisträger:innen des Kurt Maas Jazz Awards",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -1293,7 +1293,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Straße 5, 82319 Starnberg",
       "description": "Wilfried vom Ammersee präsentiert Karl Valentin und die Liebe",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "theater",
         "indoor"
@@ -1481,7 +1481,7 @@
       "location": "Tutzing",
       "address": "Restaurant Theodor, Bräuhausstraße 1, 82327 Tutzing",
       "description": "Romantisches Dinner im Restaurant Theodor",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "indoor"
       ],
@@ -1499,7 +1499,7 @@
       "location": "Tierpark Hellabrunn",
       "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Wenn die Liebe durch den Zoo spaziert – romantischer Abend im Tierpark",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "natur"
       ],
@@ -1537,7 +1537,7 @@
       "location": "Berg",
       "address": "Marstall Berg, Mühlgasse 7, 82335 Berg",
       "description": "Julian Schad & Quartett mit Sopranistin Clara Orif aus Paris",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -1575,7 +1575,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Herbert Grönemeyer live in der Olympiahalle – akustisch und hautnah",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -1634,7 +1634,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Magisches Musical für die ganze Familie: Die Schwestern Lumea und Kalea erleben ein Abenteuer mit den Nachtwaldbewohnern und der Sonnenfürstin Discordia. Mit zauberhaften Melodien, Humor und spektakulärer Akrobatik und Luftartistik.",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "theater",
         "musik",
@@ -1712,7 +1712,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Musical-Abenteuer für die ganze Familie. Abendvorstellung 18:00-20:00 Uhr.",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "theater",
         "musik"
@@ -1979,7 +1979,7 @@
       "location": "Starnberg",
       "address": "Schlossberghalle, Vogelanger 2, 82319 Starnberg",
       "description": "Auftritte der Perchalla-Garden und Showeinlagen",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "show",
         "indoor"
@@ -2017,7 +2017,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Fünf Stunden Faschingsunterhaltung! Geladene und befreundete Faschingsvereine der Umgebung rocken mit atemberaubenden Show-Einlagen die Bühne. Veranstalter: Starnberger Faschingsgesellschaft Perchalla. Einlass 17:30, Eintritt 11€.",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "show",
         "kultur"
@@ -2074,7 +2074,7 @@
       "location": "Dießen",
       "address": "Craftbräu, Mühlstraße 12, 86911 Dießen am Ammersee",
       "description": "Kneipen-Chor im Craftbräu",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -2093,7 +2093,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Machine Gun Kelly live",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -2131,7 +2131,7 @@
       "location": "Tutzing",
       "address": "Restaurant Theodor, Bräuhausstraße 1, 82327 Tutzing",
       "description": "Traditionelles Fischessen",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "indoor"
       ],
@@ -2353,7 +2353,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Das Disney-Meisterwerk als Live-in-Concert-Erlebnis",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -2485,7 +2485,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Der Musical-Erfolg des Autorenteams Sasson/Sautter",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "theater",
         "musik",
@@ -2562,7 +2562,7 @@
       "location": "Pöcking",
       "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Why Do Germans Love the Blues – Road Movie mit Filmgespräch",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kunst",
         "indoor"
@@ -2671,7 +2671,7 @@
       "location": "Tierpark Hellabrunn",
       "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "bildung",
         "natur",
@@ -2710,7 +2710,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Eros Ramazzotti live auf Welttournee",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -2729,7 +2729,7 @@
       "location": "Pöcking",
       "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Eine Veranstaltung in Kooperation mit dem BayernLAB Starnberg und der Stiftung für Pöcking – Einführung in die Welt der Künstlichen Intelligenz",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "bildung",
         "indoor"
@@ -2748,7 +2748,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Jason Derulo live in München",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -2786,7 +2786,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Klassikkonzert im Rahmen des Georgien-Schwerpunkts",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -2993,7 +2993,7 @@
       "location": "Berg",
       "address": "Neuer Rathaussaal Berg",
       "description": "Neue Kammermusik-Reihe \"Junge Künstler\" startet",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -3012,7 +3012,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Die große Magie-Show der Ehrlich Brothers – Diamonds",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "show",
         "indoor"
@@ -3218,7 +3218,7 @@
       "location": "Herrsching",
       "address": "Bahnhofstraße 14, 82211 Herrsching",
       "description": "Infoabend der Jugendfeuerwehr im Feuerwehrhaus Herrsching. Wir freuen uns auf Dich!",
-      "category": "kinder",
+      "category": "erwachsene",
       "artTags": [
         "bildung"
       ],
@@ -3294,7 +3294,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Kraftklub live auf Tour",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -3386,7 +3386,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Sean Paul live in München",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -3483,7 +3483,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Vielklang - Drei verschiedene musikalische Biographien vereint in brandneuer Musik",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -3691,7 +3691,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Klassikkonzert mit Tabea Zimmermann, einst jüngste Professorin Deutschlands",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -3710,7 +3710,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Bushido live in München",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -3803,7 +3803,7 @@
       "location": "Olympiahalle München",
       "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Der König des Walzers live mit seinem Johann Strauss Orchester",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "indoor"
@@ -3879,7 +3879,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Zum Auftakt von bosco, bambini! geben die beiden international renommierten Musikerinnen ein Familienkonzert",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -4295,7 +4295,7 @@
       "location": "Tegernsee",
       "address": "Barocksaal, Rosenstraße 1, 83684 Tegernsee",
       "description": "Internationales Bergfilm-Festival mit Filmvorführungen und Gesprächen",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kunst",
         "natur",
@@ -4710,7 +4710,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Klassik-Heimspiel im bosco",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -4825,7 +4825,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Klassikkonzert mit dem Clarinet Trio",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -5306,7 +5306,7 @@
       "location": "Tierpark Hellabrunn",
       "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Vortrag über bedrohte Amphibien in München",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "bildung",
         "natur",
@@ -5553,7 +5553,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Jazz: Internationale Band mit zwei Weltklasse-Pianist*innen vierhändig an einem Flügel",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -5612,7 +5612,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Gipsyjazz-Gitarrist Diknu Schneeberger und Harmonika-Virtuose Marko Bakanic fusionieren ihre kreativen Kräfte",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -5802,7 +5802,7 @@
       "location": "Gauting",
       "address": "Kino Breitwand Gauting",
       "description": "Dokumentarfilm von Marc Uhlig über die Bedeutung und Bedrohung unserer Böden",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kultur",
         "bildung",
@@ -6165,7 +6165,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Gesang, Klavier, Klarinette, Viola & Violoncello - Preisträger*innen des Internationalen Musikwettbewerbs der ARD",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "kultur"
@@ -6316,7 +6316,7 @@
       "location": "Tierpark Hellabrunn",
       "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "bildung",
         "natur",
@@ -6394,7 +6394,7 @@
       "location": "Gauting",
       "address": "Kino Breitwand Gauting",
       "description": "Dokumentarfilm von Jan Haft über die Vielfalt und Faszination der Blumenwiese",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kultur",
         "natur",
@@ -6472,7 +6472,7 @@
       "location": "Gauting",
       "address": "Kino Breitwand Gauting",
       "description": "Film von Thomas Riedelsheimer über Andy Goldsworthy bei seiner Arbeit mit Materialien der Natur",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kultur",
         "kunst",
@@ -6680,7 +6680,7 @@
       "location": "Garmisch-Partenkirchen",
       "address": "Kongresshaus, Richard-Strauss-Platz 1a, 82467 Garmisch-Partenkirchen",
       "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "musik",
         "fest",
@@ -6776,7 +6776,7 @@
       "location": "Gauting",
       "address": "Kino Breitwand Gauting",
       "description": "Film von Nikolaus Geyrhalter über die Bewegung von Erde durch Menschen",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kultur",
         "natur",
@@ -6891,7 +6891,7 @@
       "location": "Gauting",
       "address": "Kino Breitwand Gauting",
       "description": "Film von Wim Wenders und Juliano Ribeiro Salgado",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "kultur",
         "kunst"
@@ -7306,7 +7306,7 @@
       "location": "Tegernsee",
       "address": "Seepromenade, 83684 Tegernsee",
       "description": "Das traditionelle Seefest mit spektakulärem Feuerwerk über dem See",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "fest",
         "natur"
@@ -7438,7 +7438,7 @@
       "location": "Pöcking",
       "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Ein humoristischer Streifzug zum Schmunzeln und Schunkeln, zum Lachen und Genießen",
-      "category": "familie",
+      "category": "erwachsene",
       "artTags": [
         "theater",
         "indoor"
