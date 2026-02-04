@@ -268,16 +268,20 @@
 
   .modal-map {
     width: 100%;
-    height: 200px;
-    border-radius: var(--radius-md);
+    aspect-ratio: 16 / 9;
+    max-height: 240px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-sm);
   }
 
   .modal-map iframe {
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
   }
 
   .modal-description {
@@ -445,23 +449,10 @@
       locationEl.textContent = eventData.location;
     }
 
-    // Map (OpenStreetMap static embed)
+    // Map — Google Maps Embed (proper embed format)
     if (mapEl) {
-      const location = encodeURIComponent(eventData.location);
-      // Using OpenStreetMap via Leaflet with static marker
-      // Alternative: Use a static map service or Google Maps embed
-      mapEl.innerHTML = `
-        <iframe
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=11.3,47.8,11.5,48.0&layer=mapnik&marker=${eventData.location ? '48,' + '11.4' : ''}"
-          title="Karte von ${eventData.location}"
-        ></iframe>
-      `;
-      
-      // Better: use location name in Google Maps embed
-      const mapUrl = `https://www.google.com/maps?q=${location}&output=embed`;
+      const location = encodeURIComponent(eventData.location + ', Bayern, Deutschland');
+      const mapUrl = `https://maps.google.com/maps?q=${location}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
       mapEl.innerHTML = `
         <iframe
           loading="lazy"
@@ -469,6 +460,7 @@
           referrerpolicy="no-referrer-when-downgrade"
           src="${mapUrl}"
           title="Karte von ${eventData.location}"
+          style="width:100%;height:100%;border:0;"
         ></iframe>
       `;
     }
@@ -482,11 +474,16 @@
       }
     }
 
-    // Tags
+    // Tags — show emoji + label instead of raw IDs
+    const artTagLabels: Record<string, string> = {
+      musik: '🎵 Musik', theater: '🎭 Theater', kunst: '🎨 Kunst',
+      sport: '🏃 Sport', natur: '🌲 Natur', markt: '🛒 Markt',
+      bildung: '📚 Bildung', fest: '🎉 Fest', show: '🎪 Show', indoor: '☂️ Indoor'
+    };
     if (tagsEl) {
       if (eventData.tags && eventData.tags.length > 0) {
         tagsEl.innerHTML = eventData.tags
-          .map((tag: string) => `<span class="modal-tag">#${tag}</span>`)
+          .map((tag: string) => `<span class="modal-tag">${artTagLabels[tag] || tag}</span>`)
           .join('');
       } else {
         tagsEl.innerHTML = '';
@@ -494,10 +491,13 @@
     }
 
     // External link
-    if (externalLinkEl && eventData.url) {
-      externalLinkEl.href = eventData.url;
-    } else if (externalLinkEl) {
-      externalLinkEl.style.display = 'none';
+    if (externalLinkEl) {
+      if (eventData.url) {
+        externalLinkEl.href = eventData.url;
+        externalLinkEl.style.display = '';
+      } else {
+        externalLinkEl.style.display = 'none';
+      }
     }
 
     // Show modal
