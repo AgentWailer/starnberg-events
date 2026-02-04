@@ -153,20 +153,19 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: none;
     flex-direction: column;
     gap: var(--space-5);
-    padding: var(--space-5);
+    padding: var(--space-4) var(--space-4);
     background: var(--color-card);
     border-radius: 0 0 var(--radius-lg) 0;
-    border: 1px solid var(--color-border-light);
-    border-top: none;
-    border-left: none;
+    border-right: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
     position: fixed;
     left: 0;
-    top: 160px; /* Below header */
-    width: 220px;
-    max-height: calc(100vh - 180px);
+    top: 140px; /* Directly below header */
+    width: 200px;
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
     z-index: 49; /* Below header */
-    box-shadow: 4px 4px 20px rgba(0,0,0,0.06);
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.05);
   }
 
   @media (min-width: 1100px) {
@@ -200,11 +199,11 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    padding: var(--space-2) var(--space-3);
+    padding: 6px 10px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-bg);
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-text-secondary);
     cursor: pointer;
