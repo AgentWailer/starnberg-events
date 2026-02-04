@@ -166,7 +166,8 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
   const LIVE_API = 'https://train-tracker.steffenvonlindern-be7.workers.dev/api/live';
 
   function renderDepartures(departures: any[], container: HTMLElement): void {
-    const valid = departures.filter((d: any) => !d.cancelled && d.delay <= 60);
+    // Show cancelled + reasonable delays (filter out extreme delay outliers)
+    const valid = departures.filter((d: any) => d.cancelled || d.delay <= 60);
 
     if (!valid.length) {
       container.innerHTML = `
@@ -180,6 +181,17 @@ const { station = "Possenhofen", stationCode = "MPH" } = Astro.props;
     }
 
     container.innerHTML = valid.slice(0, 4).map(d => {
+      if (d.cancelled) {
+        const isTutzing = /Tutzing|Feldafing/i.test(d.direction);
+        const dirLabel = isTutzing ? '→ Tutzing' : '→ München';
+        return `
+          <div class="train-row" style="opacity:0.5;text-decoration:line-through;">
+            <span class="train-time" style="color:#dc2626;">${d.plannedTime} <span style="font-size:0.75em;font-weight:600;color:#dc2626;text-decoration:none;display:inline-block;">Ausfall</span></span>
+            <span class="train-dest">${dirLabel}</span>
+            <span class="train-platform"></span>
+          </div>
+        `;
+      }
       const delayHtml = d.delay > 0 ? `<span class="train-delay">+${d.delay}</span>` : '';
       const time = d.actualTime || d.plannedTime;
       const isTutzing = /Tutzing|Feldafing/i.test(d.direction);

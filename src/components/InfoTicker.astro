@@ -482,26 +482,32 @@
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      const departures = (data.departures || []).filter((d: any) => !d.cancelled && d.delay <= 60);
+      const allDeps = (data.departures || []).filter((d: any) => d.cancelled || d.delay <= 60);
 
       const isTutzingDir = (d: any) => /Tutzing|Feldafing/i.test(d.direction);
 
-      const toMunich = departures.find((d: any) => !isTutzingDir(d));
-      const toTutzing = departures.find((d: any) => isTutzingDir(d));
+      // Next running train per direction
+      const toMunich = allDeps.find((d: any) => !isTutzingDir(d) && !d.cancelled);
+      const toTutzing = allDeps.find((d: any) => isTutzingDir(d) && !d.cancelled);
+      const cancelledMunich = allDeps.find((d: any) => !isTutzingDir(d) && d.cancelled);
+      const cancelledTutzing = allDeps.find((d: any) => isTutzingDir(d) && d.cancelled);
 
-      // Format: time + delay
-      const fmt = (d: any) => {
+      // Format: time + delay + optional cancel warning
+      const fmt = (d: any, hasCancellation: boolean) => {
         const time = d.actualTime || d.plannedTime;
         const delayHtml = d.delay > 0 ? `<span class="delay">+${d.delay}</span>` : '';
-        return time + delayHtml;
+        const warnHtml = hasCancellation ? ' <span style="color:#dc2626;font-size:0.75em;">⚠</span>' : '';
+        return time + delayHtml + warnHtml;
       };
 
+      const fmtCancelled = () => '<span style="color:#dc2626;font-size:0.85em;">Ausfall</span>';
+
       document.querySelectorAll('#train-munich').forEach(el => {
-        el.innerHTML = toMunich ? fmt(toMunich) : '<span class="no-train">–</span>';
+        el.innerHTML = toMunich ? fmt(toMunich, !!cancelledMunich) : (cancelledMunich ? fmtCancelled() : '<span class="no-train">–</span>');
       });
 
       document.querySelectorAll('#train-tutzing').forEach(el => {
-        el.innerHTML = toTutzing ? fmt(toTutzing) : '<span class="no-train">–</span>';
+        el.innerHTML = toTutzing ? fmt(toTutzing, !!cancelledTutzing) : (cancelledTutzing ? fmtCancelled() : '<span class="no-train">–</span>');
       });
     } catch (e) {
       console.error('Train error:', e);

@@ -584,15 +584,19 @@ const { lastUpdated } = Astro.props;
         if (!res.ok) return;
         const data = await res.json();
         
-        const departures = (data.departures || []).filter(function(d) { return !d.cancelled && d.delay <= 60; });
-        if (departures.length === 0) return;
+        const allDeps = (data.departures || []).filter(function(d) { return d.cancelled || d.delay <= 60; });
+        if (allDeps.length === 0) return;
         
         function isTutzingDir(d) {
           return /Tutzing|Feldafing/i.test(d.direction || '');
         }
-        
-        const toMunich = departures.find(function(d) { return !isTutzingDir(d); });
-        const toTutzing = departures.find(function(d) { return isTutzingDir(d); });
+
+        // Find next running train per direction (skip cancelled)
+        var toMunich = allDeps.find(function(d) { return !isTutzingDir(d) && !d.cancelled; });
+        var toTutzing = allDeps.find(function(d) { return isTutzingDir(d) && !d.cancelled; });
+        // Check if there are cancellations
+        var cancelledMunich = allDeps.find(function(d) { return !isTutzingDir(d) && d.cancelled; });
+        var cancelledTutzing = allDeps.find(function(d) { return isTutzingDir(d) && d.cancelled; });
         
         if (toMunich) {
           const navMunich = document.getElementById('navbar-train-munich');
@@ -601,7 +605,15 @@ const { lastUpdated } = Astro.props;
             if (toMunich.delay > 0) {
               timeStr += ' <span class="navbar-train-delay">+' + toMunich.delay + '</span>';
             }
+            if (cancelledMunich) {
+              timeStr += ' <span style="font-size:0.7em;color:#dc2626;font-weight:600;opacity:0.8;">⚠</span>';
+            }
             navMunich.innerHTML = timeStr;
+          }
+        } else if (cancelledMunich) {
+          const navMunich = document.getElementById('navbar-train-munich');
+          if (navMunich) {
+            navMunich.innerHTML = '<span style="color:#dc2626;font-size:0.85em;">Ausfall</span>';
           }
         }
         
@@ -612,7 +624,15 @@ const { lastUpdated } = Astro.props;
             if (toTutzing.delay > 0) {
               timeStr += ' <span class="navbar-train-delay">+' + toTutzing.delay + '</span>';
             }
+            if (cancelledTutzing) {
+              timeStr += ' <span style="font-size:0.7em;color:#dc2626;font-weight:600;opacity:0.8;">⚠</span>';
+            }
             navTutzing.innerHTML = timeStr;
+          }
+        } else if (cancelledTutzing) {
+          const navTutzing = document.getElementById('navbar-train-tutzing');
+          if (navTutzing) {
+            navTutzing.innerHTML = '<span style="color:#dc2626;font-size:0.85em;">Ausfall</span>';
           }
         }
       } catch (e) {
