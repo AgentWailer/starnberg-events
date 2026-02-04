@@ -52,22 +52,25 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
 
-      <!-- Filter Component -->
-      <FilterBar events={events} regions={regions} />
+      <!-- Events + Filter Layout -->
+      <div class="content-layout">
+        <!-- Events List (left on desktop) -->
+        <section class="section-events">
+          <div class="events-header">
+            <h2 class="events-title">Kommende Events</h2>
+            <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+          </div>
+          
+          <div class="events-list">
+            {events.map(event => (
+              <EventCard event={event} regions={regions} />
+            ))}
+          </div>
+        </section>
 
-      <!-- Events List -->
-      <section class="section section-events">
-        <div class="events-header">
-          <h2 class="events-title">Kommende Events</h2>
-          <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
-        </div>
-        
-        <div class="events-list">
-          {events.map(event => (
-            <EventCard event={event} regions={regions} />
-          ))}
-        </div>
-      </section>
+        <!-- Filter Sidebar (right on desktop) -->
+        <FilterBar events={events} regions={regions} />
+      </div>
 
       <!-- Local Info (Collapsed) -->
       <section class="section section-info">
@@ -148,6 +151,24 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   /* Transport */
   .section-transport {
     margin-bottom: var(--space-8);
+  }
+
+  /* Content Layout - Events + Sidebar */
+  .content-layout {
+    display: block;
+  }
+
+  @media (min-width: 900px) {
+    .content-layout {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+  }
+
+  .section-events {
+    min-width: 0; /* Prevent grid blowout */
   }
 
   /* Events */

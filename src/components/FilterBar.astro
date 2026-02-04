@@ -23,75 +23,223 @@ Object.keys(regions).forEach(r => {
 const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
-<div class="filter-bar">
-  <!-- Category Pills & Clear Button -->
-  <div class="filter-row-wrapper">
-    <div class="filter-row" role="group" aria-label="Filter nach Kategorie">
-      <button class="pill active" data-filter="all">Alle</button>
-      <button class="pill" data-filter="kinder">Kinder</button>
-      <button class="pill" data-filter="familie">Familie</button>
-      <button class="pill" data-filter="erwachsene">Erwachsene</button>
+<aside class="filter-sidebar" id="filter-sidebar">
+  <div class="filter-section">
+    <h3 class="filter-section-title">Kategorie</h3>
+    <div class="filter-chips" role="group" aria-label="Filter nach Kategorie">
+      <button class="chip active" data-filter="all" data-type="category">Alle</button>
+      <button class="chip" data-filter="kinder" data-type="category">
+        Kinder <span class="chip-count">{counts.kinder}</span>
+      </button>
+      <button class="chip" data-filter="familie" data-type="category">
+        Familie <span class="chip-count">{counts.familie}</span>
+      </button>
+      <button class="chip" data-filter="erwachsene" data-type="category">
+        Erwachsene <span class="chip-count">{counts.erwachsene}</span>
+      </button>
     </div>
-    <button class="clear-filters" id="clear-filters">
-      <svg aria-hidden="true" class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
-      </svg>
-      <span>Zurücksetzen</span>
-    </button>
   </div>
 
-  <!-- Location Select (hidden until expanded) -->
-  <details class="filter-details">
-    <summary class="filter-more">
-      <span class="filter-more-text">Mehr Filter</span>
-      <svg aria-hidden="true" class="filter-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </summary>
-    <div class="filter-expanded">
-      <label class="filter-field">
-        <span class="filter-field-label">Region</span>
-        <select class="filter-select" id="region-filter">
-          <option value="all">Alle Regionen</option>
-          {Object.entries(regions).map(([id, region]) => (
-            regionCounts[id] > 0 && (
-              <option value={id}>{region.emoji} {region.name} ({regionCounts[id]})</option>
-            )
-          ))}
-        </select>
-      </label>
-      <label class="filter-field">
-        <span class="filter-field-label">Ort</span>
-        <select class="filter-select" id="location-filter">
-          <option value="all">Alle Orte</option>
-          {locations.map(loc => (
-            <option value={loc}>{loc}</option>
-          ))}
-        </select>
-      </label>
+  <div class="filter-section">
+    <h3 class="filter-section-title">Region</h3>
+    <div class="filter-chips" role="group" aria-label="Filter nach Region">
+      <button class="chip active" data-filter="all" data-type="region">Alle</button>
+      {Object.entries(regions).map(([id, region]) => (
+        regionCounts[id] > 0 && (
+          <button class="chip" data-filter={id} data-type="region">
+            {region.emoji} {region.name} <span class="chip-count">{regionCounts[id]}</span>
+          </button>
+        )
+      ))}
     </div>
-  </details>
+  </div>
+
+  <div class="filter-section">
+    <h3 class="filter-section-title">Ort</h3>
+    <select class="filter-select" id="location-filter">
+      <option value="all">Alle Orte</option>
+      {locations.map(loc => (
+        <option value={loc}>{loc}</option>
+      ))}
+    </select>
+  </div>
+
+  <button class="clear-filters" id="clear-filters">
+    <svg aria-hidden="true" class="clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+    </svg>
+    <span>Filter zurücksetzen</span>
+  </button>
   
-  <!-- ARIA Live Region for screen readers -->
   <div id="filter-status" aria-live="polite" class="sr-only"></div>
+</aside>
+
+<!-- Mobile: Compact filter bar -->
+<div class="filter-bar-mobile" id="filter-bar-mobile">
+  <div class="filter-row" role="group" aria-label="Filter nach Kategorie">
+    <button class="pill active" data-filter="all" data-type="category">Alle</button>
+    <button class="pill" data-filter="kinder" data-type="category">Kinder</button>
+    <button class="pill" data-filter="familie" data-type="category">Familie</button>
+    <button class="pill" data-filter="erwachsene" data-type="category">Erwachsene</button>
+  </div>
+  <button class="clear-filters-mobile" id="clear-filters-mobile">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+    </svg>
+  </button>
 </div>
 
 <style>
-  .filter-bar {
+  /* === DESKTOP SIDEBAR === */
+  .filter-sidebar {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-5);
+    background: var(--color-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
+    position: sticky;
+    top: var(--space-4);
+    height: fit-content;
+  }
+
+  @media (min-width: 900px) {
+    .filter-sidebar {
+      display: flex;
+    }
+  }
+
+  .filter-section {
     display: flex;
     flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .filter-section-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-bg);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    user-select: none;
+  }
+
+  .chip:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .chip.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+  }
+
+  /* Multi-select: show checkmark for active non-"all" chips */
+  .chip.active:not([data-filter="all"])::before {
+    content: '✓ ';
+    font-size: 0.75rem;
+  }
+
+  .chip-count {
+    font-size: 0.6875rem;
+    color: var(--color-muted);
+    margin-left: 2px;
+  }
+
+  .chip.active .chip-count {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .filter-select {
+    padding: var(--space-3) var(--space-4);
+    padding-right: var(--space-10);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .clear-filters {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    margin-top: var(--space-2);
+  }
+
+  .clear-filters.visible {
+    display: flex;
+  }
+
+  .clear-filters:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+    background: var(--color-bg-secondary);
+  }
+
+  .clear-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* === MOBILE FILTER BAR === */
+  .filter-bar-mobile {
+    display: flex;
+    align-items: center;
     gap: var(--space-3);
     margin-bottom: var(--space-6);
   }
 
-  /* Filter Row Wrapper */
-  .filter-row-wrapper {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
+  @media (min-width: 900px) {
+    .filter-bar-mobile {
+      display: none;
+    }
   }
 
-  /* Category Pills */
   .filter-row {
     flex: 1;
     display: flex;
@@ -124,13 +272,6 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     user-select: none;
   }
 
-  @media (hover: hover) {
-    .pill:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-    }
-  }
-
   .pill:active {
     transform: scale(0.97);
   }
@@ -141,187 +282,73 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: white;
   }
 
-  :root.dark .pill.active {
-    background: var(--color-primary);
-    color: var(--color-bg);
-  }
-
-  /* Clear Filters Button */
-  .clear-filters {
+  .clear-filters-mobile {
     display: none;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
     min-width: 36px;
     min-height: 36px;
     padding: var(--space-2);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-card);
-    font-size: 0.875rem;
-    font-weight: 500;
     color: var(--color-muted);
     cursor: pointer;
-    white-space: nowrap;
-    transition: all var(--duration-fast) ease;
-    user-select: none;
     flex-shrink: 0;
   }
 
-  .clear-filters span {
-    display: none;
-  }
-
-  @media (min-width: 480px) {
-    .clear-filters {
-      padding: var(--space-2) var(--space-4);
-    }
-    
-    .clear-filters span {
-      display: inline;
-    }
-  }
-
-  .clear-filters.visible {
+  .clear-filters-mobile.visible {
     display: flex;
   }
 
-  @media (hover: hover) {
-    .clear-filters:hover {
-      border-color: var(--color-accent);
-      color: var(--color-text);
-      background: var(--color-bg-secondary);
-    }
-  }
-
-  .clear-filters:active {
-    transform: scale(0.97);
-  }
-
-  .clear-filters:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
-  .clear-filters:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  .clear-icon {
-    width: 14px;
-    height: 14px;
-    stroke-width: 2;
-  }
-
-  /* More Filters */
-  .filter-details {
-    border-top: 1px solid var(--color-border-light);
-    padding-top: var(--space-3);
-  }
-
-  .filter-more {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    cursor: pointer;
-    user-select: none;
-    font-size: 0.8125rem;
-    color: var(--color-muted);
-    transition: color var(--duration-fast) ease;
-    list-style: none;
-  }
-
-  .filter-more::-webkit-details-marker {
-    display: none;
-  }
-
-  .filter-more:hover {
-    color: var(--color-text-secondary);
-  }
-
-  .filter-more-icon {
+  .clear-filters-mobile svg {
     width: 16px;
     height: 16px;
-    transition: transform var(--duration-normal) ease;
-  }
-
-  .filter-details[open] .filter-more-icon {
-    transform: rotate(180deg);
-  }
-
-  .filter-expanded {
-    display: grid;
-    gap: var(--space-3);
-    padding-top: var(--space-4);
-  }
-
-  @media (min-width: 480px) {
-    .filter-expanded {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .filter-field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-
-  .filter-field-label {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-muted);
-  }
-
-  .filter-select {
-    min-height: 44px;
-    padding: var(--space-3) var(--space-4);
-    padding-right: var(--space-10);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-card);
-    font-size: 0.875rem;
-    color: var(--color-text);
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right var(--space-3) center;
-    transition: border-color var(--duration-fast) ease;
-  }
-
-  .filter-select:focus {
-    outline: none;
-    border-color: var(--color-primary);
   }
 </style>
 
 <script>
-  const pills = document.querySelectorAll('.pill[data-filter]');
-  const regionSelect = document.getElementById('region-filter') as HTMLSelectElement;
-  const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
-  const eventCards = document.querySelectorAll('.event-card');
-  const countEl = document.getElementById('visible-count');
-  const clearBtn = document.getElementById('clear-filters');
+  // Desktop: multi-select for categories and regions
+  // Mobile: single-select for categories only
 
-  let activeCategory = 'all';
-  let activeRegion = 'all';
+  const isDesktop = () => window.innerWidth >= 900;
+
+  // State
+  let activeCategories: Set<string> = new Set(['all']);
+  let activeRegions: Set<string> = new Set(['all']);
   let activeLocation = 'all';
 
-  function updateClearButton() {
-    const hasActiveFilters = activeCategory !== 'all' || activeRegion !== 'all' || activeLocation !== 'all';
-    clearBtn?.classList.toggle('visible', hasActiveFilters);
+  // Elements
+  const eventCards = document.querySelectorAll('.event-card');
+  const countEl = document.getElementById('visible-count');
+  const clearBtnDesktop = document.getElementById('clear-filters');
+  const clearBtnMobile = document.getElementById('clear-filters-mobile');
+  const locationSelect = document.getElementById('location-filter') as HTMLSelectElement;
+
+  // Desktop chips
+  const categoryChips = document.querySelectorAll('.filter-sidebar .chip[data-type="category"]');
+  const regionChips = document.querySelectorAll('.filter-sidebar .chip[data-type="region"]');
+
+  // Mobile pills
+  const mobilePills = document.querySelectorAll('.filter-bar-mobile .pill[data-type="category"]');
+
+  function updateClearButtons() {
+    const hasFilters = !activeCategories.has('all') || !activeRegions.has('all') || activeLocation !== 'all';
+    clearBtnDesktop?.classList.toggle('visible', hasFilters);
+    clearBtnMobile?.classList.toggle('visible', !activeCategories.has('all'));
   }
 
   function filterEvents() {
     let count = 0;
     eventCards.forEach(card => {
       const el = card as HTMLElement;
-      const matchCat = activeCategory === 'all' || el.dataset.category === activeCategory;
-      const matchReg = activeRegion === 'all' || el.dataset.region === activeRegion;
-      const matchLoc = activeLocation === 'all' || el.dataset.location === activeLocation;
+      const cat = el.dataset.category || '';
+      const reg = el.dataset.region || '';
+      const loc = el.dataset.location || '';
+
+      const matchCat = activeCategories.has('all') || activeCategories.has(cat);
+      const matchReg = activeRegions.has('all') || activeRegions.has(reg);
+      const matchLoc = activeLocation === 'all' || loc === activeLocation;
 
       if (matchCat && matchReg && matchLoc) {
         el.style.display = '';
@@ -332,55 +359,134 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     });
 
     if (countEl) countEl.textContent = String(count);
-    
-    // Update ARIA live region for screen readers
+
     const statusEl = document.getElementById('filter-status');
     if (statusEl) {
       statusEl.textContent = `${count} Veranstaltungen gefunden`;
     }
-    
-    updateClearButton();
+
+    updateClearButtons();
   }
 
   function clearAllFilters() {
-    // Reset to defaults
-    activeCategory = 'all';
-    activeRegion = 'all';
+    activeCategories = new Set(['all']);
+    activeRegions = new Set(['all']);
     activeLocation = 'all';
 
-    // Reset UI
-    pills.forEach(p => p.classList.remove('active'));
-    const allPill = document.querySelector('.pill[data-filter="all"]');
-    if (allPill) allPill.classList.add('active');
-
-    if (regionSelect) regionSelect.value = 'all';
+    // Update UI
+    categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    regionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+    mobilePills.forEach(p => p.classList.toggle('active', (p as HTMLElement).dataset.filter === 'all'));
     if (locationSelect) locationSelect.value = 'all';
 
-    // Re-filter
     filterEvents();
   }
 
-  // Pills
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      activeCategory = (pill as HTMLElement).dataset.filter || 'all';
+  // Desktop: Multi-select for categories
+  categoryChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+
+      if (filter === 'all') {
+        // Reset to all
+        activeCategories = new Set(['all']);
+        categoryChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        // Toggle this category
+        activeCategories.delete('all');
+        
+        if (activeCategories.has(filter)) {
+          activeCategories.delete(filter);
+          chip.classList.remove('active');
+        } else {
+          activeCategories.add(filter);
+          chip.classList.add('active');
+        }
+
+        // If none selected, go back to all
+        if (activeCategories.size === 0) {
+          activeCategories.add('all');
+          categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+        } else {
+          // Remove "all" active state
+          categoryChips.forEach(c => {
+            if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
+          });
+        }
+      }
+
+      // Sync mobile
+      mobilePills.forEach(p => {
+        const f = (p as HTMLElement).dataset.filter || 'all';
+        p.classList.toggle('active', activeCategories.has(f));
+      });
+
       filterEvents();
     });
   });
 
-  // Selects
-  regionSelect?.addEventListener('change', () => {
-    activeRegion = regionSelect.value;
-    filterEvents();
+  // Desktop: Multi-select for regions
+  regionChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filter = (chip as HTMLElement).dataset.filter || 'all';
+
+      if (filter === 'all') {
+        activeRegions = new Set(['all']);
+        regionChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      } else {
+        activeRegions.delete('all');
+
+        if (activeRegions.has(filter)) {
+          activeRegions.delete(filter);
+          chip.classList.remove('active');
+        } else {
+          activeRegions.add(filter);
+          chip.classList.add('active');
+        }
+
+        if (activeRegions.size === 0) {
+          activeRegions.add('all');
+          regionChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
+        } else {
+          regionChips.forEach(c => {
+            if ((c as HTMLElement).dataset.filter === 'all') c.classList.remove('active');
+          });
+        }
+      }
+
+      filterEvents();
+    });
   });
 
+  // Mobile: Single-select for categories
+  mobilePills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = (pill as HTMLElement).dataset.filter || 'all';
+
+      // Single select on mobile
+      activeCategories = new Set([filter]);
+      mobilePills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      // Sync desktop
+      categoryChips.forEach(c => {
+        const f = (c as HTMLElement).dataset.filter || 'all';
+        c.classList.toggle('active', activeCategories.has(f));
+      });
+
+      filterEvents();
+    });
+  });
+
+  // Location select
   locationSelect?.addEventListener('change', () => {
     activeLocation = locationSelect.value;
     filterEvents();
   });
 
-  // Clear button
-  clearBtn?.addEventListener('click', clearAllFilters);
+  // Clear buttons
+  clearBtnDesktop?.addEventListener('click', clearAllFilters);
+  clearBtnMobile?.addEventListener('click', clearAllFilters);
 </script>
