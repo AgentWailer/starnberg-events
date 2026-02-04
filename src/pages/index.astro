@@ -42,6 +42,11 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <InfoTicker />
       </div>
 
+      <!-- Desktop: Full weather strip (full width) -->
+      <section class="section section-weather desktop-only">
+        <WeatherWidget />
+      </section>
+
       <!-- Content Grid: Sidebar + Main Content -->
       <div class="content-grid">
         <!-- Desktop Sidebar -->
@@ -49,11 +54,6 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
         <!-- Main Content Column -->
         <div class="main-content">
-          <!-- Desktop: Full weather strip -->
-          <section class="section section-weather desktop-only">
-            <WeatherWidget />
-          </section>
-
           <!-- Desktop: Quick Transport Info -->
           <section class="section section-transport desktop-only">
             <TrainInfo station="Possenhofen" stationCode="MPH" />

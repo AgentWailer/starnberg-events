@@ -12,6 +12,29 @@ const { lastUpdated } = Astro.props;
     <a href="/" class="navbar-brand">
       <span class="navbar-title">Starnberg Events</span>
     </a>
+
+    <!-- Weather info (shows when scrolled) -->
+    <div class="navbar-weather" id="navbar-weather">
+      <span class="navbar-weather-item">
+        <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+        </svg>
+        <span id="navbar-temp">--°</span>
+      </span>
+      <span class="navbar-weather-item">
+        <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+        <span id="navbar-water">--°</span>
+      </span>
+      <span class="navbar-weather-item navbar-train">
+        <span class="navbar-train-badge">S6</span>
+        <span id="navbar-train">--:--</span>
+      </span>
+    </div>
+
     <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
       <svg aria-hidden="true" class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"></circle>
@@ -69,17 +92,19 @@ const { lastUpdated } = Astro.props;
   }
 
   .navbar-inner {
-    max-width: 900px;
+    max-width: 1140px;
     margin: 0 auto;
     padding: var(--space-3) var(--space-5);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-4);
   }
 
   .navbar-brand {
     text-decoration: none;
     color: var(--color-text);
+    flex-shrink: 0;
   }
 
   .navbar-title {
@@ -88,6 +113,53 @@ const { lastUpdated } = Astro.props;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--color-primary);
+  }
+
+  /* Navbar weather info */
+  .navbar-weather {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  .navbar-weather.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .navbar-weather-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .navbar-weather-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  .navbar-weather-item span:last-child {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .navbar-train-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 5px;
+    background: #16a34a;
+    color: white;
+    border-radius: 3px;
+    font-size: 0.625rem;
+    font-weight: 700;
   }
 
   .navbar .theme-toggle {
@@ -105,6 +177,7 @@ const { lastUpdated } = Astro.props;
     cursor: pointer;
     border-radius: var(--radius-full);
     transition: all var(--duration-fast) ease;
+    flex-shrink: 0;
   }
 
   .navbar .theme-toggle:hover {
@@ -125,20 +198,10 @@ const { lastUpdated } = Astro.props;
     overflow: hidden;
   }
 
-  /* Mobile: theme toggle in hero */
-  .header .theme-toggle-mobile {
-    display: block;
-  }
-
   @media (min-width: 768px) {
     .header {
       padding: var(--space-12) var(--space-8) var(--space-10);
-      margin-top: 56px; /* Space for fixed navbar */
-    }
-
-    /* Hide mobile toggle on desktop */
-    .header .theme-toggle-mobile {
-      display: none;
+      margin-top: 56px;
     }
   }
 
@@ -197,7 +260,6 @@ const { lastUpdated } = Astro.props;
     line-height: 1.5;
   }
 
-  /* Decorative visual element */
   .header-visual {
     position: absolute;
     top: 0;
@@ -268,7 +330,8 @@ const { lastUpdated } = Astro.props;
   @media (prefers-reduced-motion: reduce) {
     .theme-toggle,
     .icon-sun,
-    .icon-moon {
+    .icon-moon,
+    .navbar-weather {
       transition: none;
     }
   }
@@ -278,20 +341,74 @@ const { lastUpdated } = Astro.props;
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
+    const navbarWeather = document.getElementById('navbar-weather');
 
-    if (!toggle) return;
+    // Theme toggle
+    if (toggle) {
+      function updateToggleState() {
+        const isDark = root.classList.contains('dark');
+        toggle.setAttribute('aria-label', isDark ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln');
+      }
 
-    function updateToggleState() {
-      const isDark = root.classList.contains('dark');
-      toggle.setAttribute('aria-label', isDark ? 'Zum hellen Modus wechseln' : 'Zum dunklen Modus wechseln');
+      toggle.addEventListener('click', function() {
+        const isDark = root.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateToggleState();
+      });
+
+      updateToggleState();
     }
 
-    toggle.addEventListener('click', function() {
-      const isDark = root.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateToggleState();
-    });
+    // Show/hide navbar weather on scroll
+    if (navbarWeather) {
+      const weatherWidget = document.querySelector('.section-weather');
+      
+      function checkScroll() {
+        if (!weatherWidget) {
+          navbarWeather.classList.add('visible');
+          return;
+        }
+        
+        const rect = weatherWidget.getBoundingClientRect();
+        const isHidden = rect.bottom < 60; // Weather widget scrolled out of view
+        navbarWeather.classList.toggle('visible', isHidden);
+      }
 
-    updateToggleState();
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      checkScroll();
+
+      // Sync weather data from WeatherWidget to navbar
+      const syncInterval = setInterval(() => {
+        const weatherTemp = document.getElementById('weather-temp');
+        const waterTemp = document.getElementById('water-temp');
+        const trainTime = document.getElementById('train-munich');
+
+        if (weatherTemp) {
+          const navTemp = document.getElementById('navbar-temp');
+          if (navTemp && weatherTemp.textContent !== '--°') {
+            navTemp.textContent = weatherTemp.textContent;
+          }
+        }
+
+        if (waterTemp) {
+          const navWater = document.getElementById('navbar-water');
+          if (navWater && waterTemp.textContent !== '--°') {
+            navWater.textContent = waterTemp.textContent;
+          }
+        }
+
+        if (trainTime) {
+          const navTrain = document.getElementById('navbar-train');
+          if (navTrain) {
+            // Extract just the time from the train element
+            const text = trainTime.textContent || trainTime.innerText || '--:--';
+            const timeMatch = text.match(/\d{1,2}:\d{2}/);
+            if (timeMatch) {
+              navTrain.textContent = timeMatch[0];
+            }
+          }
+        }
+      }, 1000);
+    }
   });
 </script>
