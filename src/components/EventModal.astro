@@ -528,18 +528,41 @@
     }
   });
 
-  // Download ICS
+  // Download ICS — opens Apple Calendar directly on Safari, downloads .ics otherwise
   downloadIcsBtn?.addEventListener('click', () => {
     if (!currentEventData) return;
 
     const icsContent = generateICS(currentEventData);
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `event-${currentEventData.id}.ics`;
-    link.click();
-    URL.revokeObjectURL(url);
+    const ua = navigator.userAgent;
+    // Detect Safari on Apple devices (not Chrome/Firefox/Edge on macOS)
+    const isAppleSafari = /Macintosh|iPhone|iPad|iPod/.test(ua)
+                          && /Safari/.test(ua)
+                          && !/Chrome|CriOS|FxiOS|Edg/.test(ua);
+
+    if (isAppleSafari) {
+      // Safari handles text/calendar natively — opens "Add to Calendar" dialog
+      // Using an <a> click with data URI (no download attr) lets Safari intercept the MIME type
+      const link = document.createElement('a');
+      link.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // Other browsers: download the .ics file
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      const safeTitle = currentEventData.title
+        .replace(/[^a-zA-Z0-9äöüÄÖÜß\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+      link.download = `${safeTitle}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    }
   });
 
   // Generate ICS file content
