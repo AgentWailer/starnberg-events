@@ -1,65 +1,4 @@
 {
-  "lastUpdated": "2026-02-04",
-  "sources": [
-    "beccult",
-    "deutsches-museum",
-    "east-coast-tanzstudio",
-    "gapa",
-    "gilchinger-tanzzentrum",
-    "hellabrunn",
-    "olympiapark",
-    "pfc",
-    "poecking.de",
-    "radsport-adfc-starnberg",
-    "radsport-rsc-wolfratshausen",
-    "seenschifffahrt.de",
-    "sportverein-djk-sv-berg",
-    "sportverein-koenigsmarsch",
-    "sportverein-lc-buchendorf",
-    "sportverein-sc-woerthsee",
-    "sportverein-seeschwimmen",
-    "sportverein-tsv-gilching",
-    "sportverein-wwk-volleys",
-    "starnbergammersee",
-    "tanzschule-peter-schuh",
-    "tegernsee",
-    "themen-tanz",
-    "turnverein-sv-inning",
-    "turnverein-tsv-gilching",
-    "turnverein-tsv-oberalting-seefeld",
-    "turnverein-tsv-starnberg",
-    "vhs-starnbergammersee",
-    "yoga-namaste",
-    "yoga-studio8",
-    "yoga-svastha-ammersee"
-  ],
-  "regions": {
-    "poecking": {
-      "name": "Pöcking",
-      "emoji": "🏠"
-    },
-    "starnberger-see": {
-      "name": "Starnberger See",
-      "emoji": "🏔️"
-    },
-    "ammersee": {
-      "name": "Ammersee",
-      "emoji": "⛵"
-    },
-    "muenchen": {
-      "name": "München",
-      "emoji": "🏙️"
-    },
-    "tegernsee": {
-      "name": "Tegernsee",
-      "emoji": "⛰️"
-    },
-    "werdenfels": {
-      "name": "Werdenfelser Land",
-      "emoji": "🎿"
-    }
-  },
-  "eventCount": 148,
   "events": [
     {
       "title": "Kloster Andechs: öffentliche Kirchenführung",
@@ -96,7 +35,7 @@
       "region": "starnberger-see",
       "venue": "East Coast Tanzstudio Herrsching",
       "isHighlight": false,
-      "id": 122
+      "id": 2
     },
     {
       "title": "Mal- und Spachtelkurs für Erwachsene",
@@ -115,10 +54,10 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 2
+      "id": 3
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "Ré Soupault – Künstlerin der Avantgarde",
       "date": "2026-02-05",
       "time": "19:30",
@@ -137,6 +76,63 @@
       ]
     },
     {
+      "title": "Das Lochmannhaus",
+      "date": "2026-02-05",
+      "time": "11:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Dauerausstellung im Museum Starnberger See über das historische Lochmannhaus. Geöffnet 11:00-18:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/das-lochmannhaus",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 5
+    },
+    {
+      "title": "Höfische Schifffahrt und Seegeschichte",
+      "date": "2026-02-05",
+      "time": "11:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Dauerausstellung im Museum Starnberger See zur höfischen Schifffahrt und Seegeschichte. Geöffnet 11:00-18:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/hoefische-schifffahrt-und-seegeschichte",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 6
+    },
+    {
+      "title": "Langlauf-Tage im Tannheimer Tal",
+      "date": "2026-02-05",
+      "time": "",
+      "location": "Tannheimer Tal",
+      "address": "Tannheimer Tal, Tirol",
+      "description": "Wintersport-Tage des Gautinger SC: Langlauf, Skifahren, Rodeln, Schlittschuhlaufen, Winterwandern, Schneeschuhwandern, Pferdeschlitten fahren, Eisstockschießen. Organisiert von der Bergsport-Abteilung. Anmeldung/Info: Walter Eisenreich, 0162-77 456 88 oder eisisport@web.de. Vom 04./05. bis 08. Februar 2026.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "wintersport"
+      ],
+      "url": "https://www.gautinger-sportclub.de",
+      "source": "gautinger-sc",
+      "region": "starnberger-see",
+      "venue": "Tannheimer Tal",
+      "isHighlight": false,
+      "id": 7
+    },
+    {
       "title": "Märchenstunde in der Bücherei Dießen",
       "date": "2026-02-06",
       "time": "14:30",
@@ -153,7 +149,7 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 4
+      "id": 8
     },
     {
       "title": "David Berlinghof mit Felix Renner Wohlfühlprogramm (Musikkabarett)",
@@ -173,7 +169,62 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 5
+      "id": 9
+    },
+    {
+      "title": "Building Universes: Modeling the Cosmos with Supercomputers",
+      "date": "2026-02-06",
+      "time": "20:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "English lecture by Dr. Aniket Bhagwat (MPA Garching). How do we create a Universe? Starting from a nearly uniform cosmos just after the Big Bang, numerical simulations follow the growth of structure as gravity draws matter together. Across 13.8 billion years of cosmic time, these simulated Universes evolve from simplicity into complexity. Eintritt: 10€ / 7€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/supercomputers/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 10
+    },
+    {
+      "title": "Die Demokratie des Waldes",
+      "date": "2026-02-06",
+      "time": "10:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Seminar zum Thema 'Die Demokratie des Waldes'. 06.-07.02.2026 im Naturschutz und Jugendzentrum Wartaweil.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2357",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Naturschutz und Jugendzentrum Wartaweil",
+      "isHighlight": false,
+      "id": 11
+    },
+    {
+      "title": "Faschingsparty für Teens im Stellwerk - Haus der Jugend",
+      "date": "2026-02-06",
+      "time": "17:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Helau und Alaaf! Faschingsparty für Teenager. 17:00-21:00 Uhr.",
+      "category": "kinder",
+      "artTags": [
+        "fest"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2383",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Stellwerk - Haus der Jugend",
+      "isHighlight": false,
+      "id": 12
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -193,7 +244,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 6
+      "id": 13
     },
     {
       "title": "VHS Gilching - Bairisch für Zuagroaste mit Weißwurstfrühstück",
@@ -212,7 +263,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 7
+      "id": 14
     },
     {
       "title": "Vorführung: Amateurfunk",
@@ -231,10 +282,10 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 8
+      "id": 15
     },
     {
-      "id": 9,
+      "id": 16,
       "title": "Senioren-Fasching in der Sozialstation",
       "date": "2026-02-07",
       "time": "14:00",
@@ -267,7 +318,7 @@
       "region": "starnberger-see",
       "venue": "Tanzschule Peter Schuh",
       "isHighlight": false,
-      "id": 109
+      "id": 17
     },
     {
       "title": "Willi live – Und wovon träumst du?",
@@ -286,7 +337,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 10
+      "id": 18
     },
     {
       "title": "WCS Workshopnachmittag (West Coast Swing)",
@@ -304,7 +355,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 110
+      "id": 19
     },
     {
       "title": "Münchner Schäfflertanz am Seehof Herrsching",
@@ -323,7 +374,7 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 11
+      "id": 20
     },
     {
       "title": "Henschel-Quartett & Hendrik Blumenroth",
@@ -342,7 +393,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 12
+      "id": 21
     },
     {
       "title": "1. Starnberger Ballnacht – Die Redoute im neuen Gwand",
@@ -362,7 +413,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 13
+      "id": 22
     },
     {
       "title": "2. Tutzinger Kurzfilmnacht",
@@ -381,7 +432,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 14
+      "id": 23
     },
     {
       "title": "Banff Mountain Film Festival World Tour",
@@ -401,7 +452,7 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 15
+      "id": 24
     },
     {
       "title": "Yasi Hofer Trio – Best Of Tour",
@@ -420,7 +471,7 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 16
+      "id": 25
     },
     {
       "title": "Tanzparty bei Peter Schuh",
@@ -438,7 +489,99 @@
       "region": "starnberger-see",
       "venue": "Tanzschule Peter Schuh",
       "isHighlight": false,
-      "id": 108
+      "id": 26
+    },
+    {
+      "title": "1. Starnberger Ballnacht",
+      "date": "2026-02-07",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Die Redoute im neuen Gwand – festlicher Ball mit Salonorchester Monaco, Tanzeinlagen der Perchalla-Garde, Verleihung des Seerosenordens und Tombola. Dresscode: festliche Abendmode. Eintritt 28€ inkl. Sektempfang.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "show"
+      ],
+      "url": "https://www.starnberg.de/1-starnberger-ballnacht",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 27
+    },
+    {
+      "title": "Seetaucherexkursion im Ramsar-Gebiet Starnberger See",
+      "date": "2026-02-07",
+      "time": "10:00",
+      "location": "Münsing",
+      "address": "82541 Münsing (genauer Ort wird bei Anmeldung bekanntgegeben)",
+      "description": "Am Starnberger See überwintern regelmäßig Prachttaucher, Sterntaucher und andere Wasservogelarten aus dem hohen Norden. In der Seeshaupter Bucht machen wir uns auf die Suche nach diesen seltenen Gästen und informieren über die internationale Bedeutung des Sees als Ramsar-Gebiet. Anmeldung erforderlich bis 05.02.2026 unter starnberger-see@lbv.de. Bitte sehr warme Kleidung, Handschuhe und Fernglas mitbringen.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.lbv.de/über-uns/veranstaltungskalender/2026-02-07-seetaucher-exkursion/",
+      "source": "lbv-starnberg",
+      "region": "starnberger-see",
+      "venue": "Seeshaupter Bucht, Starnberger See",
+      "isHighlight": true,
+      "id": 28
+    },
+    {
+      "title": "Entbuschen am Normanberg Söcking – Helfer und Helferinnen gesucht",
+      "date": "2026-02-07",
+      "time": "09:00",
+      "location": "Söcking",
+      "address": "Normanstr. 2, Söcking (Parkplatz Kinderhaus Barbara Eberhard)",
+      "description": "Arbeitseinsatz der Ortsgruppe Starnberg: Jungbäume sowie Baum- und Buschschösslinge werden weggeschnitten, damit die Sommerflora und Schmetterlingsfauna wieder ausreichend Licht und Wärme bekommt. Gerne Astscheren oder -sägen mitbringen. Gutes Schuhwerk und Arbeitshandschuhe nötig. Anmeldung per Mail an in-franken@t-online.de.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/entbuschen-am-normanberg-soecking-helfer-und-helferinnen-gesucht",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Normanberg Söcking",
+      "isHighlight": false,
+      "id": 29
+    },
+    {
+      "title": "Aufführung der Theaterzwerge - Die Träne der Elfe",
+      "date": "2026-02-07",
+      "time": "16:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Aufführung der Theaterzwerge des Ammerseer Bauerntheaters Herrsching: 'Die Träne der Elfe'. Auch am 08.02.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2342",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Arthotel Andechser Hof",
+      "isHighlight": false,
+      "id": 30
+    },
+    {
+      "title": "Volleyball Heimspiele in der Nikolaushalle",
+      "date": "2026-02-07",
+      "time": "19:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "TSV Herrsching II - FTM Schwabing. Volleyball Heimspiele Herren II, Regionalliga.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2241",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Nikolaushalle",
+      "isHighlight": false,
+      "id": 31
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
@@ -457,7 +600,7 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 17
+      "id": 32
     },
     {
       "title": "Science Show: Flüssiger Stickstoff",
@@ -477,7 +620,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 18
+      "id": 33
     },
     {
       "title": "Familienführung: Was die Welt antreibt",
@@ -496,7 +639,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 19
+      "id": 34
     },
     {
       "title": "Umgedreht Unterwegs - ein Kinderkonzert rund um die Welt",
@@ -515,10 +658,84 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 20
+      "id": 35
     },
     {
-      "id": 21,
+      "title": "Glück – Junges Forum",
+      "date": "2026-02-08",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Nur ein einziges Land auf der Welt hat ein Bruttonationalglück definiert: Bhutan. Die Uno nennt 2.500 Kalorien pro Tag oder sechs Jahre Schule als Bedingungen für Glück. Ein Tag für Jugendliche, der vielleicht sogar glücklich macht.",
+      "category": "kinder",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/glueck/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 36
+    },
+    {
+      "title": "Aufführung der Theaterzwerge - Die Träne der Elfe (Sonntag)",
+      "date": "2026-02-08",
+      "time": "16:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Aufführung der Theaterzwerge des Ammerseer Bauerntheaters Herrsching: 'Die Träne der Elfe'.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2343",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Arthotel Andechser Hof",
+      "isHighlight": false,
+      "id": 37
+    },
+    {
+      "title": "Wie viel Arbeit braucht der Mensch? – 7. Tutzinger Depressionstagung",
+      "date": "2026-02-09",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Psychische Gesundheit und Arbeit: Arbeit kann krank machen, jedoch auch erfüllen. Lohnarbeit, Ehrenamt und Care-Arbeit können belasten, aber auch Teilhabe ermöglichen. Wie kann Arbeit gesund sein?",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/psychische-gesundheit-und-arbeit/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 38
+    },
+    {
+      "title": "Tanzkunst60+ in Herrsching",
+      "date": "2026-02-09",
+      "time": "15:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Tanzprojekt für Seniorinnen und Senioren. Gute-Dinge-Stiftung - Kulturator. 15:00-17:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2148",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Gemeindehaus an der Evangelischen Kirche",
+      "isHighlight": false,
+      "id": 39
+    },
+    {
+      "id": 40,
       "title": "Frauen-Treff im Stiftungshaus",
       "date": "2026-02-10",
       "time": "16:00",
@@ -533,6 +750,63 @@
       "artTags": [
         "indoor"
       ]
+    },
+    {
+      "title": "Videoclub Starnberger See – Viktor Brunschlik",
+      "date": "2026-02-10",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Filmvorführung: \"Unterwegs in der Slowakei\", \"Die Toskana Istriens\" und \"Streifzug durch Slowenien von Maribor zur Adria\" von Viktor Brunschlik. Eintritt frei, Gäste willkommen!",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-1",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 41
+    },
+    {
+      "title": "Orni-Stammtisch mit ornithologischem Jahresrückblick 2025",
+      "date": "2026-02-10",
+      "time": "19:15",
+      "location": "Drößling",
+      "address": "Höhenberg 10, 82229 Drößling",
+      "description": "Pit Brützel, Leiter der Arbeitsgemeinschaft Starnberger Ornithologen (ASO), stellt den ornithologischen Jahresrückblick auf das Jahr 2025 im Landkreis Starnberg vor. Dabei wird auf die vielfältigen Beobachtungen, die Aktivitäten der ASO sowie die diversen Kartierungsprogramme und Vogelschutzaktivitäten eingegangen.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.lbv.de/über-uns/veranstaltungen-steinbruch/2026-02-10-ornist-jahresrückblick/",
+      "source": "lbv-starnberg",
+      "region": "starnberger-see",
+      "venue": "Restaurant La Fattoria",
+      "isHighlight": false,
+      "id": 42
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-02-10",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 43
     },
     {
       "title": "WWK Volleys Herrsching – Bundesliga-Heimspiel",
@@ -551,7 +825,25 @@
       "region": "muenchen",
       "venue": "WWK Volleys Herrsching",
       "isHighlight": true,
-      "id": 123
+      "id": 44
+    },
+    {
+      "title": "Verantwortung leben – Diakonie und Schutz",
+      "date": "2026-02-11",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Die Diakonie will Menschen in allen Lebenslagen unterstützen. Doch in jeder Begegnung liegt das Risiko eines Machtgefälles – und damit des Missbrauchs. Wie kann die Diakonie ihrer Verantwortung gerecht werden?",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/verantwortung-leben/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 45
     },
     {
       "title": "Großer Kinder-Turnfasching im TSV Starnberg",
@@ -571,7 +863,7 @@
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
       "isHighlight": true,
-      "id": 102
+      "id": 46
     },
     {
       "title": "Weiberfasching Starnberg",
@@ -590,7 +882,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 22
+      "id": 47
     },
     {
       "title": "Weiberfasching",
@@ -609,7 +901,44 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 23
+      "id": 48
+    },
+    {
+      "title": "Anna Buchegger – Konzert",
+      "date": "2026-02-12",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Konzert der vielseitigen österreichischen Sängerin Anna Buchegger. Dialekt als künstlerisches Statement – sie verbindet alpenländische Tradition mit avantgardistischem Pop. Zweites Album \"Soiz\". Amadeus Award-nominiert. VVK 28€ / 18€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.starnberg.de/anna-buchegger",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 49
+    },
+    {
+      "title": "Anna Buchegger - Konzert",
+      "date": "2026-02-12",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert von Anna Buchegger in der Schlossberghalle Starnberg. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/anna-buchegger",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 50
     },
     {
       "title": "Karl Valentin und die Liebe – Wilfried vom Ammersee",
@@ -628,7 +957,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 24
+      "id": 51
     },
     {
       "title": "Fasching im SC Wörthsee",
@@ -647,7 +976,7 @@
       "region": "starnberger-see",
       "venue": "SC Wörthsee e.V.",
       "isHighlight": false,
-      "id": 124
+      "id": 52
     },
     {
       "title": "Pöckinger Malle-Party 2026",
@@ -667,7 +996,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 25
+      "id": 53
     },
     {
       "title": "Fasching mit der GROUNDLIFT Band",
@@ -687,7 +1016,62 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 26
+      "id": 54
+    },
+    {
+      "title": "Vertrau. Über die Unmöglichkeit ohne Vertrauen zu handeln",
+      "date": "2026-02-13",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Anderen zu vertrauen, ermöglicht Kooperation und Zusammenhalt. Stimmt die Diagnose, dass unsere Gesellschaft und Demokratie derzeit unter Vertrauensverlust leiden? Und inwiefern sind Stadtplanung und Architektur von diesen Fragen betroffen? 13.–15. Februar.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/vertrau-ueber-die-unmoeglichkeit-ohne-vertrauen-zu-handeln/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 55
+    },
+    {
+      "title": "Ad Astra – Vom Pale Blue Dot zu den Sternen",
+      "date": "2026-02-13",
+      "time": "20:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Vortrag von Jana Steuer M.Sc. (Volkssternwarte München). Am 14. Februar 1990 nahm Voyager 1 das berühmte Bild der Erde als \"Pale Blue Dot\" auf. Werden wir jemals eine interstellare Spezies? Bei klarem Himmel danach Beobachtung mit den Teleskopen. Eintritt: 10€ / 7€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/palebluedot-2026/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 56
+    },
+    {
+      "title": "Kegeln im Pfarrzentrum Sankt Nikolaus",
+      "date": "2026-02-13",
+      "time": "14:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Gemeinsames Kegeln, organisiert vom Seniorenbeirat. 14:00-16:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2282",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Pfarrzentrum Sankt Nikolaus",
+      "isHighlight": false,
+      "id": 57
     },
     {
       "title": "Flohmarkt im Olympiapark",
@@ -705,7 +1089,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 27
+      "id": 58
     },
     {
       "title": "Starnberger Brauhaus: öffentliche Brauereiführung",
@@ -723,7 +1107,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 28
+      "id": 59
     },
     {
       "title": "Thats amore! - Valentins-Candlelight-Dinner",
@@ -741,7 +1125,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 29
+      "id": 60
     },
     {
       "title": "Valentinstag im Tierpark Hellabrunn",
@@ -759,7 +1143,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 30
+      "id": 61
     },
     {
       "title": "Glamour Schlager und Discofox Night 2026",
@@ -779,7 +1163,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 31
+      "id": 62
     },
     {
       "title": "Klassik 2.0 / Club - Paris trifft See",
@@ -798,7 +1182,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 32
+      "id": 63
     },
     {
       "title": "Starnberger Faschingssause 2026",
@@ -817,7 +1201,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 33
+      "id": 64
     },
     {
       "title": "Herbert Grönemeyer – mittendrin akustisch",
@@ -836,7 +1220,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 34
+      "id": 65
     },
     {
       "title": "Frauengesundheit – Nährstoffe & Bewegung",
@@ -856,7 +1240,143 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 137
+      "id": 66
+    },
+    {
+      "title": "Viermal Schwarzer Kater – Musical-Abenteuer (Nachmittag)",
+      "date": "2026-02-14",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Magisches Musical für die ganze Familie: Die Schwestern Lumea und Kalea erleben ein Abenteuer mit den Nachtwaldbewohnern und der Sonnenfürstin Discordia. Mit zauberhaften Melodien, Humor und spektakulärer Akrobatik und Luftartistik.",
+      "category": "familie",
+      "artTags": [
+        "theater",
+        "musik",
+        "show"
+      ],
+      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 67
+    },
+    {
+      "title": "Viermal Schwarzer Kater – Musical-Abenteuer (Abend)",
+      "date": "2026-02-14",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Magisches Musical für die ganze Familie: Die Schwestern Lumea und Kalea erleben ein Abenteuer mit den Nachtwaldbewohnern und der Sonnenfürstin Discordia. Mit zauberhaften Melodien, Humor und spektakulärer Akrobatik und Luftartistik.",
+      "category": "familie",
+      "artTags": [
+        "theater",
+        "musik",
+        "show"
+      ],
+      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien-1",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 68
+    },
+    {
+      "title": "Aktionstag \"Natürlich auf Tour\" am Hörnle",
+      "date": "2026-02-14",
+      "time": null,
+      "location": "Bad Kohlgrub",
+      "address": "Hörnle, Bad Kohlgrub",
+      "description": "Bayernweiter Aktionstag \"Natürlich auf Tour\": Helferinnen und Helfer sind in Tourengebieten der Bayerischen Alpen unterwegs, um Tourengeher und Wanderer über wichtige Naturschutz-Zusammenhänge zu informieren und zu sensibilisieren. Die DAV Sektion Starnberg sucht Helfer für das Hörnle-Gebiet.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "sport",
+        "wandern",
+        "bildung"
+      ],
+      "url": "https://www.dav-starnberg.de/artikel/Aktionstag-Naturlich-auf-Tour-am-Hornle---Helfer-gesucht-/132448",
+      "source": "dav-starnberg",
+      "region": "starnberger-see",
+      "venue": "Hörnle",
+      "isHighlight": true,
+      "id": 69
+    },
+    {
+      "title": "Valentinstag-Special an der Volkssternwarte München",
+      "date": "2026-02-14",
+      "time": "19:30",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Ein romantischer Abend unter den Sternen. Die Volkssternwarte München lädt Paare zu einem exklusiven Abend ein, der Romantik und Astronomie auf einzigartige Weise verbindet. Genießt eine liebevoll gestaltete Mischung aus Sternenhimmel, Atmosphäre und spannenden Einblicken in das Universum. Eintritt: 10€ / 7€ ermäßigt. Einlass ab 18:45 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/valentin_2026/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": true,
+      "id": 70
+    },
+    {
+      "title": "Viermal Schwarzer Kater - ein Musical-Abenteuer für Familien",
+      "date": "2026-02-14",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Musical-Abenteuer für die ganze Familie. Vorstellung um 15:00 Uhr (15:00-16:00).",
+      "category": "familie",
+      "artTags": [
+        "theater",
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 71
+    },
+    {
+      "title": "Viermal Schwarzer Kater - ein Musical-Abenteuer für Familien (Abendvorstellung)",
+      "date": "2026-02-14",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Musical-Abenteuer für die ganze Familie. Abendvorstellung 18:00-20:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater",
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/viermal-schwarzer-kater-ein-musical-abenteuer-fuer-familien-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 72
+    },
+    {
+      "title": "Altpapiersammlung der Fußballabteilung",
+      "date": "2026-02-14",
+      "time": "",
+      "location": "Pöcking",
+      "address": "Pöcking",
+      "description": "Die nächste Altpapiersammlung der Fußballabteilung des SC Pöcking-Possenhofen.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "fussball"
+      ],
+      "url": "https://www.scpp.de",
+      "source": "scpp",
+      "region": "poecking",
+      "venue": "SC Pöcking-Possenhofen",
+      "isHighlight": false,
+      "id": 73
     },
     {
       "title": "Kinderfasching",
@@ -875,7 +1395,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 35
+      "id": 74
     },
     {
       "title": "Familienführung: Reise ins All",
@@ -894,7 +1414,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 36
+      "id": 75
     },
     {
       "title": "Valentinstag – Herzöffnung & Selbstliebe (Yoga Special)",
@@ -914,7 +1434,7 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": true,
-      "id": 138
+      "id": 76
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -932,7 +1452,26 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": true,
-      "id": 111
+      "id": 77
+    },
+    {
+      "title": "Geschichten vom Klimawandel – »Kampberg – mehr als eine Moorsiedlung«",
+      "date": "2026-02-15",
+      "time": "14:00",
+      "location": "Tutzing",
+      "address": "Graf-Vieregg-Straße 14, Tutzing",
+      "description": "Ausstellung im Tutzinger Ortsmuseum (läuft bis 15.02.2026, 17:00 Uhr). Die Geschichte Kampbergs beginnt mit der Eiszeit – Landschaft geprägt von Mooren und Moränen. Was bedeutet dies für den Klimawandel und wie wurde die Ortsgeschichte durch die Torfstecherei geprägt? Eintritt: 2€.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/geschichten-vom-klimawandel-kampberg-mehr-als-eine-moorsiedlung",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Tutzinger Ortsmuseum",
+      "isHighlight": false,
+      "id": 78
     },
     {
       "title": "FILMWORKSHOP (Faschingsferien)",
@@ -952,7 +1491,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 37
+      "id": 79
     },
     {
       "title": "16. Starnberger Garderevue – Perchalla",
@@ -971,10 +1510,10 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 38
+      "id": 80
     },
     {
-      "id": 39,
+      "id": 81,
       "title": "Rosenmontagsball",
       "date": "2026-02-16",
       "time": "19:00",
@@ -990,6 +1529,25 @@
       "url": "https://www.pfc.de/veranstaltungen/",
       "region": "poecking",
       "source": "pfc"
+    },
+    {
+      "title": "Starnberger Garderevue",
+      "date": "2026-02-16",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "Vogelanger 2, 82319 Starnberg",
+      "description": "Fünf Stunden Faschingsunterhaltung! Geladene und befreundete Faschingsvereine der Umgebung rocken mit atemberaubenden Show-Einlagen die Bühne. Veranstalter: Starnberger Faschingsgesellschaft Perchalla. Einlass 17:30, Eintritt 11€.",
+      "category": "familie",
+      "artTags": [
+        "show",
+        "kultur"
+      ],
+      "url": "https://www.starnberg.de/starnberger-garderevue",
+      "source": "schlossberghalle",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 82
     },
     {
       "title": "RuckiZucki und Kehraus 2026",
@@ -1008,7 +1566,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 40
+      "id": 83
     },
     {
       "title": "Diessener Kneipen-Chor",
@@ -1027,7 +1585,7 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 41
+      "id": 84
     },
     {
       "title": "mgk – Lost Americana Tour",
@@ -1046,7 +1604,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 42
+      "id": 85
     },
     {
       "title": "Aschermittwoch im Theodor",
@@ -1064,7 +1622,39 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 43
+      "id": 86
+    },
+    {
+      "title": "Mittwochclub der Senioren",
+      "date": "2026-02-18",
+      "time": "12:30",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Geselliges Mittagessen beim Mittwochclub der Senioren des Hilfsdienst Herrsching e.V. 12:30-14:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2356",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Arthotel Andechser Hof",
+      "isHighlight": false,
+      "id": 87
+    },
+    {
+      "title": "BÜRGERTREFF 55+ GASTHOF ZUR POST",
+      "date": "2026-02-19",
+      "time": "15:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Bürgertreff für Senioren ab 55 Jahren. Seniorenbeirat Herrsching.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2228",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Gasthof DIE POST",
+      "isHighlight": false,
+      "id": 88
     },
     {
       "title": "Großer Lesetag 2026",
@@ -1083,7 +1673,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 44
+      "id": 89
     },
     {
       "title": "Kreistanzen & Bewegungsanalyse – Wochenendseminar",
@@ -1101,7 +1691,7 @@
       "region": "starnberger-see",
       "venue": "Themen-Tanz – Schule für Kreistanz",
       "isHighlight": false,
-      "id": 112
+      "id": 90
     },
     {
       "title": "Cavalluna – Tor zur Anderswelt",
@@ -1120,7 +1710,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 45
+      "id": 91
     },
     {
       "title": "Meridiane & Wohlfühlpunkte – Hände & Arme",
@@ -1140,7 +1730,7 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 139
+      "id": 92
     },
     {
       "title": "Vincent Meissner Trio",
@@ -1159,7 +1749,7 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 46
+      "id": 93
     },
     {
       "title": "Der König der Löwen – The Music Live in Concert",
@@ -1178,7 +1768,44 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 47
+      "id": 94
+    },
+    {
+      "title": "MuMM! Mut- und Mitmachtage in Starnberg",
+      "date": "2026-02-21",
+      "time": "00:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Mut- und Mitmachtage in Starnberg. Workshop-Programm vom 21.-22. Februar 2026.",
+      "category": "familie",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.starnberg.de/mumm-mut-und-mitmachtage-in-starnberg",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 95
+    },
+    {
+      "title": "Ska-Jah Konzert - MuMM! Mut- und Mitmachtage",
+      "date": "2026-02-21",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert im Rahmen der MuMM! Mut- und Mitmachtage. 20:00-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/ska-jah-konzert-mumm-mut-und-mitmachtage",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 96
     },
     {
       "title": "Kinderführung: Willkommen an Bord unserer Maschine",
@@ -1197,7 +1824,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 48
+      "id": 97
     },
     {
       "title": "Fremd ist der Fremde nur in der Fremde",
@@ -1217,7 +1844,7 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 49
+      "id": 98
     },
     {
       "title": "Das Phantom der Oper – Musical",
@@ -1237,7 +1864,25 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 50
+      "id": 99
+    },
+    {
+      "title": "Heimspieltag Handball",
+      "date": "2026-02-22",
+      "time": "12:30",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Handballspieltag: 12:30 Damen II, 14:30 Damen I, 16:30 Herren I, 18:30 Herren II. Nikolaushalle.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2265",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Nikolaushalle",
+      "isHighlight": false,
+      "id": 100
     },
     {
       "title": "Kulturmontag - Michael Kinsik (Film und Gespräch)",
@@ -1256,7 +1901,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 51
+      "id": 101
     },
     {
       "title": "Tribal Style Belly Dance – VHS Kursstart",
@@ -1274,7 +1919,42 @@
       "region": "starnberger-see",
       "venue": "vhs StarnbergAmmersee",
       "isHighlight": false,
-      "id": 113
+      "id": 102
+    },
+    {
+      "title": "\"Die Anstalt\" – Politische Satire im Schloss",
+      "date": "2026-02-23",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Kabarettisten sind die Hofnarren der Demokratie. Wir zeigen die aktuelle ZDF-Sendung 'Die Anstalt' und sprechen mit ihren Machern. Entdecken, aufspüren, zuspitzen – Satire als Bildungsauftrag.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "show"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/die-anstalt-politische-satire-im-schloss-38/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": true,
+      "id": 103
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-02-23",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 104
     },
     {
       "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
@@ -1294,7 +1974,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 52
+      "id": 105
     },
     {
       "title": "Eros Ramazzotti – Una Storia Importante World Tour",
@@ -1313,7 +1993,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 53
+      "id": 106
     },
     {
       "title": "Jason Derulo – The Last Dance World Tour",
@@ -1332,7 +2012,25 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 54
+      "id": 107
+    },
+    {
+      "title": "Von Gaswolken und Filamenten zu Sternen und Planeten",
+      "date": "2026-02-27",
+      "time": "20:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Vortrag von Dr. Stefan Heigl (LMU). Sternentstehung ist kein isolierter Prozess – sie wird maßgeblich durch ihre Umgebung beeinflusst. Sterne entstehen bevorzugt in Filamenten aus dichtem Gas. Könnte die großräumige Umgebung sogar eine entscheidende Rolle bei der Entstehung von Planetensystemen spielen? Bei gutem Wetter anschließend Teleskopbeobachtung. Eintritt: 10€ / 7€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/heigl/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 108
     },
     {
       "title": "Führung auf die Zugspitze",
@@ -1351,7 +2049,7 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 55
+      "id": 109
     },
     {
       "title": "Aromatherapie für Schwangerschaft, Baby & Geburt",
@@ -1371,7 +2069,44 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 140
+      "id": 110
+    },
+    {
+      "title": "Der fachgerechte Obstbaumschnitt – Theorie + Praxis",
+      "date": "2026-02-28",
+      "time": "09:00",
+      "location": "Starnberg-Söcking",
+      "address": "Alersbergstr. 1, Starnberg-Söcking",
+      "description": "Workshop der Ortsgruppe Starnberg zum fachgerechten Obstbaumschnitt mit theoretischem und praktischem Teil. Dauer: 09:00 bis 12:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/der-fachgerechte-obstbaumschnitt-theorie-praxis",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Treffpunkt Alersbergstr. 1",
+      "isHighlight": false,
+      "id": 111
+    },
+    {
+      "title": "Int. Deutsche Meisterschaft im 30. Min Ergorudern",
+      "date": "2026-02-28",
+      "time": "09:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Internationale Deutsche Meisterschaft im 30 Minuten Ergorudern. 09:00-17:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.starnberg.de/int-deutsche-meisterschaft-im-30-min-ergorudern",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 112
     },
     {
       "title": "Ehrlich Brothers – Diamonds",
@@ -1390,7 +2125,101 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 56
+      "id": 113
+    },
+    {
+      "title": "3. Kammerkonzert des Symphonieorchesters des BR",
+      "date": "2026-03-01",
+      "time": "18:00",
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "\"Das goldene Zeitalter der englischen Musik\" – Kammerkonzert mit Werken von Bowen, Britten und Coleridge-Taylor. Mitwirkende: Karin Löffler (Violine), Andrea Eun-Jeong Kim (Violine), Christiane Hörr (Viola), Hanno Simons (Violoncello), Christopher Corbett (Klarinette), Ursula Kepser (Horn). Karten 25–35€.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/3-kammerkonzert-des-symphonieorchesters-des-br-10/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": true,
+      "id": 114
+    },
+    {
+      "title": "Waldgeheimnis Tierspuren",
+      "date": "2026-03-01",
+      "time": "14:30",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Naturerlebnis: Waldgeheimnis Tierspuren. 14:30-17:00 Uhr im Naturschutzzentrum Wartaweil.",
+      "category": "familie",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2385",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Naturschutz und Jugendzentrum Wartaweil",
+      "isHighlight": false,
+      "id": 115
+    },
+    {
+      "title": "Künstliche kulinarische Intelligenz – KI, Ethik und Esskultur",
+      "date": "2026-03-02",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Algorithmen schreiben Rezepte, Erntemaschinen erkennen Reifegrade, Start-ups übersetzen Geschmack in Daten. Zwischen KI, Robotik und Big Data entsteht eine neue Welt des Essens. 2.–3. März.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/kuenstliche-kulinarische-intelligenz/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 116
+    },
+    {
+      "title": "Die Zukunft des Westens – 15. Tutzinger Rede",
+      "date": "2026-03-03",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Freiheit, Fortschritt und Demokratie – das versprach einst die Idee des Westens. Was kommt danach? 15. Tutzinger Rede mit Luxemburgs Außenminister a.D. Jean Asselborn.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/die-zukunft-des-westens/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": true,
+      "id": 117
+    },
+    {
+      "title": "Das Job - Event",
+      "date": "2026-03-03",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Job-Messe in der Schlossberghalle Starnberg. 17:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.starnberg.de/das-job-event-3",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 118
     },
     {
       "title": "Florence + the Machine – The Everybody Scream Tour",
@@ -1409,10 +2238,65 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 57
+      "id": 119
     },
     {
-      "id": 58,
+      "title": "Film des Monats – Der Held vom Bahnhof Friedrichstraße",
+      "date": "2026-03-04",
+      "time": null,
+      "location": "Starnberg",
+      "address": "Wittelsbacherstraße 10, 82319 Starnberg",
+      "description": "Film des Monats der Evangelischen Filmarbeit – mit Einführung und Nachgespräch. In Kooperation mit dem Kino Breitwand in Starnberg.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/film-des-monats-der-held-vom-bahnhof-friedrichstrasse/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Kino Breitwand Starnberg",
+      "isHighlight": false,
+      "id": 120
+    },
+    {
+      "title": "Was kann der Markt? Was kann der Plan?",
+      "date": "2026-03-04",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Demokratische Planung zur Transformation: Die sozial-ökologische Transformation stockt. Was sind effektive Transformationsmechanismen? Aus der Reihe: Normative und institutionelle Grundfragen der Ökonomik. 4.–6. März.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/was-kann-der-markt-was-kann-die-planung/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 121
+    },
+    {
+      "title": "Jugendfeuerwehr Herrsching - Helden gesucht!",
+      "date": "2026-03-04",
+      "time": "19:00",
+      "location": "Herrsching",
+      "address": "Bahnhofstraße 14, 82211 Herrsching",
+      "description": "Infoabend der Jugendfeuerwehr im Feuerwehrhaus Herrsching. Wir freuen uns auf Dich!",
+      "category": "kinder",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2386",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Freiwillige Feuerwehr Herrsching",
+      "isHighlight": false,
+      "id": 122
+    },
+    {
+      "id": 123,
       "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach",
       "date": "2026-03-06",
       "time": "20:00",
@@ -1446,7 +2330,43 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 59
+      "id": 124
+    },
+    {
+      "title": "Zukunftsbilder Globaler Gesundheit",
+      "date": "2026-03-06",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Im Umbruch der Welt verändert sich auch das Verständnis von Global Health: Neue Paradigmen weiten den Blick, zugleich wird das koloniale Erbe reflektiert. Mentale Gesundheit und Frauengesundheit rücken in den Fokus. 6.–8. März.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/zukunftsbilder-globaler-gesundheit/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 125
+    },
+    {
+      "title": "Auf dem Weg zum Mond",
+      "date": "2026-03-06",
+      "time": "20:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Vortrag von Dr. Thomas Uhlig (DLR). Erstmals im neuen Jahrtausend werden wieder Menschen das Schwerefeld der Erde verlassen. Das Artemis-Programm sieht eine Mondlandung und eine permanente Raumstation vor. Deutschland liefert essentielle Beiträge – von Bremen über Köln bis Oberpfaffenhofen. Bei gutem Wetter Teleskopbeobachtung. Eintritt: 10€ / 7€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/luna/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 126
     },
     {
       "title": "Ballett für Erwachsene – VHS/East Coast",
@@ -1464,7 +2384,7 @@
       "region": "starnberger-see",
       "venue": "East Coast Tanzstudio / vhs",
       "isHighlight": false,
-      "id": 114
+      "id": 127
     },
     {
       "title": "Sean Paul – Timeless Tour",
@@ -1483,7 +2403,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 60
+      "id": 128
     },
     {
       "title": "Duftende Schätze – Aromatherapie Workshop",
@@ -1503,7 +2423,45 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 141
+      "id": 129
+    },
+    {
+      "title": "Vogelstimmenwanderung im Bernrieder Park",
+      "date": "2026-03-07",
+      "time": "08:00",
+      "location": "Bernried",
+      "address": "82347 Bernried (genauer Ort wird bei Anmeldung bekanntgegeben)",
+      "description": "Mit der Gebietsbetreuerin Andrea Gehrold unterwegs: Lernen Sie die Gesänge unserer typischen Wald- und Gartenvögel kennen. Bei einem Spaziergang durch den Bernrieder Park lauschen wir dem Vogelkonzert und bestaunen die uralten Baumriesen. Anmeldung erforderlich bis 05.03.2026 unter starnberger-see@lbv.de. Spende für die Parkpflege erwünscht.",
+      "category": "familie",
+      "artTags": [
+        "natur",
+        "wandern",
+        "bildung"
+      ],
+      "url": "https://starnberg.lbv.de/über-uns/veranstaltungskalender/2026-03-07-vogelstimmenwanderung/",
+      "source": "lbv-starnberg",
+      "region": "starnberger-see",
+      "venue": "Bernrieder Park",
+      "isHighlight": true,
+      "id": 130
+    },
+    {
+      "title": "Das Dschungelbuch",
+      "date": "2026-03-07",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. Mehrere Vorstellungen vom 07.-15.03. im Kath. Pfarrzentrum St. Maria.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 131
     },
     {
       "title": "Special Olympics Bayern Tennis Cup",
@@ -1522,7 +2480,7 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": true,
-      "id": 125
+      "id": 132
     },
     {
       "title": "Mario Barth – Männer sind nichts ohne die Frauen",
@@ -1541,7 +2499,99 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 61
+      "id": 133
+    },
+    {
+      "title": "Zusatzkonzert des Symphonieorchesters des BR – Anton Barakhovsky & BRSO Akademie",
+      "date": "2026-03-08",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Kammerkonzert mit Werken von Louise Farrenc (Nonett op. 38) und Max Bruch (Oktett). Anton Barakhovsky & BRSO Akademie.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/zusatzkonzert-des-symphonieorchesters-des-br/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": true,
+      "id": 134
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 15 Uhr)",
+      "date": "2026-03-08",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 15:00-16:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 135
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
+      "date": "2026-03-08",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 136
+    },
+    {
+      "title": "Politische Bildung in Grundschulen – Junges Forum",
+      "date": "2026-03-10",
+      "time": null,
+      "location": "Tutzing",
+      "address": "Schlossstraße 2+4, 82327 Tutzing",
+      "description": "Seit 2024 gibt es die Verfassungsviertelstunde in bayerischen Grundschulen. Wie können Lehramtsanwärter:innen auf politische Bildung vorbereitet werden? Wie können Kinder daran mitwirken?",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.ev-akademie-tutzing.de/veranstaltung/politische-bildung-in-grundschulen/",
+      "source": "ev-akademie-tutzing",
+      "region": "starnberger-see",
+      "venue": "Evangelische Akademie Tutzing",
+      "isHighlight": false,
+      "id": 137
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-03-10",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-2",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 138
     },
     {
       "title": "Bushido – Alles wird gut Tour 2026",
@@ -1560,7 +2610,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 62
+      "id": 139
     },
     {
       "title": "Ben Zucker – Kämpferherz Arenatour 2026",
@@ -1579,7 +2629,25 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 63
+      "id": 140
+    },
+    {
+      "title": "Swing Manouche: Elias Prinz Sextett",
+      "date": "2026-03-12",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert Swing Manouche mit dem Elias Prinz Sextett. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/swing-manouche-elias-prinz-sextett",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 141
     },
     {
       "title": "André Rieu – Deutschlandtour 2026",
@@ -1598,10 +2666,47 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 64
+      "id": 142
     },
     {
-      "id": 65,
+      "title": "Das Dschungelbuch (Freitag 17 Uhr)",
+      "date": "2026-03-13",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 143
+    },
+    {
+      "title": "Andechser Ostereier-Markt 2026",
+      "date": "2026-03-13",
+      "time": "",
+      "location": "Andechs",
+      "address": "Bergstraße 2, 82346 Andechs",
+      "description": "Traditioneller Ostereier-Markt im Florian-Stadl des Kloster Andechs. Kunsthandwerk, verzierte Ostereier und österliche Spezialitäten. Vom 13. bis 15. März 2026.",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "kultur"
+      ],
+      "url": "https://www.andechs.de/veranstaltungen/veranstaltungsuebersicht/details-zur-veranstaltung/2026-03-13/0000/andechser-ostereier-markt-2026.html",
+      "source": "andechs",
+      "region": "ammersee",
+      "venue": "Florian-Stadl, Kloster Andechs",
+      "isHighlight": true,
+      "id": 144
+    },
+    {
+      "id": 145,
       "title": "Pöckinger Ostermarkt",
       "date": "2026-03-14",
       "time": "10:00",
@@ -1633,7 +2738,7 @@
       "region": "starnberger-see",
       "venue": "Tanzschule Peter Schuh",
       "isHighlight": false,
-      "id": 115
+      "id": 146
     },
     {
       "title": "Der Herr der Ringe: Die Rückkehr des Königs – In Concert",
@@ -1653,7 +2758,137 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 66
+      "id": 147
+    },
+    {
+      "title": "Das Artemis-Programm: Zum Mond und darüber hinaus",
+      "date": "2026-03-14",
+      "time": "19:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Aus der Serie \"Neugier trifft Universum\" – Samstagabend an der Volkssternwarte. Vortrag von Paul Salazar (VSW). Das Artemis-Programm ist ein umfassendes Raumfahrtvorhaben mit dem Ziel, Menschen dauerhaft zum Mond zurückzubringen und eine langfristig bewohnbare Mondbasis aufzubauen. Eintritt: 10€ / 7€ ermäßigt. Einlass ab 18:45 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/event-vsw/samstag_vortrag-14-03-26/",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 148
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 15 Uhr)",
+      "date": "2026-03-14",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 15:00-16:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 149
+    },
+    {
+      "title": "Das Dschungelbuch (Samstag 17 Uhr)",
+      "date": "2026-03-14",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 17:00-18:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 150
+    },
+    {
+      "title": "Waldschreiben zum Thema Wald im Wandel",
+      "date": "2026-03-14",
+      "time": "10:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Workshop Waldschreiben zum Thema 'Wald im Wandel'. 10:00-17:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur",
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2384",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Naturschutz und Jugendzentrum Wartaweil",
+      "isHighlight": false,
+      "id": 151
+    },
+    {
+      "title": "Shoppen und dabei Gutes tun! - Benefiz Flohmarkt",
+      "date": "2026-03-14",
+      "time": "12:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "26. Benefiz Flohmarkt des LIONS-Hilfswerk München-Würmtal e.V. Sa 12:00-16:00, So 11:00-15:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "markt"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2380",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Sporthalle Realschule Herrsching",
+      "isHighlight": false,
+      "id": 152
+    },
+    {
+      "title": "Volleyball Heimspiele in der Nikolaushalle",
+      "date": "2026-03-14",
+      "time": "19:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "TSV Herrsching II - SVS Türkheim. Volleyball Regionalliga.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2242",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Nikolaushalle",
+      "isHighlight": false,
+      "id": 153
+    },
+    {
+      "title": "St. Patrick's Day München",
+      "date": "2026-03-14",
+      "time": "11:00",
+      "location": "München",
+      "address": "Odeonsplatz, 80539 München",
+      "description": "Das große St. Patrick's Day Festival in München mit Parade, Live-Musik und irischer Kultur. Am 14. März am Odeonsplatz, am 15. März an der Münchner Freiheit.",
+      "category": "erwachsene",
+      "artTags": [
+        "fest",
+        "kultur",
+        "musik"
+      ],
+      "url": "https://www.muenchen.de/veranstaltungen/freizeit/feste-festivals/st-patricks-day-muenchen-2026",
+      "source": "muenchen-de",
+      "region": "muenchen",
+      "venue": "Odeonsplatz",
+      "isHighlight": true,
+      "id": 154
     },
     {
       "title": "Mixed Turnier Tennis – TSV Gilching",
@@ -1672,10 +2907,10 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
-      "id": 126
+      "id": 155
     },
     {
-      "id": 67,
+      "id": 156,
       "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach (Sonntag)",
       "date": "2026-03-15",
       "time": "18:00",
@@ -1708,7 +2943,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 116
+      "id": 157
     },
     {
       "title": "Tegernseer Bergfilm-Festival 2026",
@@ -1728,7 +2963,100 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 68
+      "id": 158
+    },
+    {
+      "title": "Das Dschungelbuch (Sonntag 15 Uhr)",
+      "date": "2026-03-15",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Theateraufführung 'Das Dschungelbuch'. 15:00-16:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/das-dschungelbuch-1-1-1-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Kath. Pfarrzentrum St. Maria",
+      "isHighlight": false,
+      "id": 159
+    },
+    {
+      "title": "TA[I]ME_LESS - Tanzperformance",
+      "date": "2026-03-15",
+      "time": "19:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Tanzperformance TA[I]ME_LESS in der Schlossberghalle. 19:00-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/taime-less",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 160
+    },
+    {
+      "title": "Heimspieltag Handball",
+      "date": "2026-03-15",
+      "time": "12:30",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Handballspieltag: 12:30 Damen II, 14:30 Damen I, 16:30 Herren I. Nikolaushalle.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2266",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Nikolaushalle",
+      "isHighlight": false,
+      "id": 161
+    },
+    {
+      "title": "St. Patrick's Day München - Parade",
+      "date": "2026-03-15",
+      "time": "12:00",
+      "location": "München",
+      "address": "Münchner Freiheit, 80802 München",
+      "description": "Zweiter Tag des St. Patrick's Day Festivals mit Parade und Programm an der Münchner Freiheit.",
+      "category": "erwachsene",
+      "artTags": [
+        "fest",
+        "kultur",
+        "musik"
+      ],
+      "url": "https://www.muenchen.de/veranstaltungen/freizeit/feste-festivals/st-patricks-day-muenchen-2026",
+      "source": "muenchen-de",
+      "region": "muenchen",
+      "venue": "Münchner Freiheit",
+      "isHighlight": true,
+      "id": 162
+    },
+    {
+      "title": "Lachyoga für alle in Herrsching",
+      "date": "2026-03-16",
+      "time": "16:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Lachyoga-Session für alle. Gute-Dinge-Stiftung - Kulturator. 16:00-17:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2322",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Gemeindehaus an der Evangelischen Kirche",
+      "isHighlight": false,
+      "id": 163
     },
     {
       "title": "Fahrsicherheitskurs für Senioren mit E-Bikes (Gilching)",
@@ -1748,7 +3076,25 @@
       "region": "starnberger-see",
       "venue": "ADFC Kreisverband Starnberg - Ortsgruppe Gilching",
       "isHighlight": false,
-      "id": 92
+      "id": 164
+    },
+    {
+      "title": "Jahresmitgliederversammlung der Kreisgruppe Starnberg",
+      "date": "2026-03-19",
+      "time": "19:30",
+      "location": "Herrsching",
+      "address": "Wartaweil 77, 82211 Herrsching",
+      "description": "Jahresmitgliederversammlung der BUND Naturschutz Kreisgruppe Starnberg. Dauer: 19:30 bis 22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/jahresmitgliederversammlung-der-kreisgruppe-starnberg-2-1",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "BUND Naturschutzzentrum Wartaweil",
+      "isHighlight": false,
+      "id": 165
     },
     {
       "title": "Intensivwochenende: Yogapraxis mit Ayurveda vertiefen",
@@ -1768,10 +3114,10 @@
       "region": "starnberger-see",
       "venue": "Svastha Yoga Ammersee",
       "isHighlight": true,
-      "id": 142
+      "id": 166
     },
     {
-      "id": 69,
+      "id": 167,
       "title": "(W)orte und Erinnerungen – Lesung mit Marion Oelmann",
       "date": "2026-03-20",
       "time": "19:00",
@@ -1787,6 +3133,42 @@
         "bildung",
         "indoor"
       ]
+    },
+    {
+      "title": "Stadtkapelle Starnberg - Konzert",
+      "date": "2026-03-21",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert der Stadtkapelle Starnberg. 20:00-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/stadtkapelle-starnberg-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 168
+    },
+    {
+      "title": "Qigong Workshop",
+      "date": "2026-03-21",
+      "time": "10:00",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Qigong Workshop des TSV Herrsching - Abteilung Gymnastik und Turnen. 10:00-11:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2388",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Pfarrzentrum Sankt Nikolaus",
+      "isHighlight": false,
+      "id": 169
     },
     {
       "title": "Ostara – Yoga & Jahreskreis-Zeremonie",
@@ -1806,10 +3188,10 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": true,
-      "id": 143
+      "id": 170
     },
     {
-      "id": 70,
+      "id": 171,
       "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach (Finale)",
       "date": "2026-03-22",
       "time": "18:00",
@@ -1843,7 +3225,26 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 71
+      "id": 172
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-03-25",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-3",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 173
     },
     {
       "title": "Rennrad (Gravel) Tour Andechs",
@@ -1863,7 +3264,25 @@
       "region": "starnberger-see",
       "venue": "ADFC Kreisverband Starnberg",
       "isHighlight": true,
-      "id": 93
+      "id": 174
+    },
+    {
+      "title": "Heimspieltag Handball",
+      "date": "2026-03-28",
+      "time": "14:30",
+      "location": "Herrsching",
+      "address": "",
+      "description": "Handballspieltag: 14:30 Damen II, 16:30 Herren I, 18:30 Damen I. Nikolaushalle.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport"
+      ],
+      "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2267",
+      "source": "herrsching-gemeinde",
+      "region": "starnberger-see",
+      "venue": "Nikolaushalle",
+      "isHighlight": false,
+      "id": 175
     },
     {
       "title": "TSV Starnberg Osterchallenge – Woche 1",
@@ -1882,7 +3301,26 @@
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
       "isHighlight": true,
-      "id": 103
+      "id": 176
+    },
+    {
+      "title": "BN-Ausstellung »Amphibien – Taucher, Schwimmer, Wandersleut'«",
+      "date": "2026-04-01",
+      "time": "10:00",
+      "location": "Krailling",
+      "address": "Caritas Altenheim Maria Eich, Krailling",
+      "description": "Wanderausstellung des BUND Naturschutz über Amphibien – Taucher, Schwimmer, Wandersleut'. Die Ausstellung läuft vom 01.04. bis 30.04.2026. Eintritt frei.",
+      "category": "familie",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/bn-ausstellung-amphibien-taucher-schwimmer-wandersleut",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Caritas Altenheim Maria Eich",
+      "isHighlight": false,
+      "id": 177
     },
     {
       "title": "TSV Starnberg Osterchallenge – Woche 2",
@@ -1901,7 +3339,7 @@
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
       "isHighlight": false,
-      "id": 104
+      "id": 178
     },
     {
       "title": "Gilchinger Feierabendtour",
@@ -1921,7 +3359,7 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": false,
-      "id": 94
+      "id": 179
     },
     {
       "title": "Wechseljahre – Workshop",
@@ -1941,7 +3379,7 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 144
+      "id": 180
     },
     {
       "title": "Wöchentliche Nachmittagstour ab Gauting",
@@ -1961,7 +3399,62 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gauting",
       "isHighlight": false,
-      "id": 95
+      "id": 181
+    },
+    {
+      "title": "Das farbige Universum – Wenn Licht Geschichten erzählt",
+      "date": "2026-04-14",
+      "time": "19:00",
+      "location": "München",
+      "address": "Gisela-Stein-Str. Ecke Ludwig-Jung-Bogen, 81671 München",
+      "description": "Aus der Serie \"Neugier trifft Universum\" – Samstagabend an der Volkssternwarte. Vortrag von Volkmar Voigtländer. Eintritt: 10€ / 7€ ermäßigt.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://sternwarte-muenchen.de/aus-unserem-programm",
+      "source": "volkssternwarte",
+      "region": "muenchen",
+      "venue": "Bayerische Volkssternwarte München",
+      "isHighlight": false,
+      "id": 182
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-04-14",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-4",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 183
+    },
+    {
+      "title": "nou Well cousines - Konzert",
+      "date": "2026-04-15",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert von nou Well cousines. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/nou-well-cousines",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 184
     },
     {
       "title": "Fahrsicherheitskurs für Senioren mit E-Bikes (Starnberg)",
@@ -1981,7 +3474,7 @@
       "region": "starnberger-see",
       "venue": "ADFC Kreisverband Starnberg",
       "isHighlight": false,
-      "id": 96
+      "id": 185
     },
     {
       "title": "Bedrohte Pioniere: Wechselkröte und Laubfrosch",
@@ -2001,10 +3494,10 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 72
+      "id": 186
     },
     {
-      "id": 73,
+      "id": 187,
       "title": "Wenn nicht wer Du! – Lesung",
       "date": "2026-04-16",
       "time": "19:30",
@@ -2022,6 +3515,44 @@
       ]
     },
     {
+      "title": "Toni und Max Uthoff - Comedy/Kabarett",
+      "date": "2026-04-16",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Comedy- und Kabarettabend mit Toni und Max Uthoff. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/toni-und-max-uthoff",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 188
+    },
+    {
+      "title": "Münchner Frühlingsfest",
+      "date": "2026-04-17",
+      "time": "16:00",
+      "location": "München",
+      "address": "Theresienwiese, 80339 München",
+      "description": "Das Münchner Frühlingsfest auf der Theresienwiese – die kleine Schwester des Oktoberfests. Fahrgeschäfte, Bierzelte und bayerische Gemütlichkeit. Vom 17. April bis 10. Mai 2026.",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "musik"
+      ],
+      "url": "https://www.muenchen.de/veranstaltungen/feste-festivals/fruehlingsfest-2026-theresienwiese",
+      "source": "muenchen-de",
+      "region": "muenchen",
+      "venue": "Theresienwiese",
+      "isHighlight": true,
+      "id": 189
+    },
+    {
       "title": "Milonga La Luz – Tango Argentino",
       "date": "2026-04-19",
       "time": "18:00",
@@ -2037,7 +3568,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 117
+      "id": 190
     },
     {
       "title": "Unterwegs im Südwesten – Tagestour ab Gauting",
@@ -2057,7 +3588,7 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gauting",
       "isHighlight": false,
-      "id": 97
+      "id": 191
     },
     {
       "title": "Schleiferlturnier Tennis – TSV Gilching",
@@ -2076,7 +3607,25 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
-      "id": 127
+      "id": 192
+    },
+    {
+      "title": "Uli Singers - Konzert",
+      "date": "2026-04-25",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert der Uli Singers. 20:00-22:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/uli-singers",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 193
     },
     {
       "title": "Amelie Fried - Lesung",
@@ -2095,7 +3644,42 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 74
+      "id": 194
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-04-27",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 195
+    },
+    {
+      "title": "Ein Staat, drei Regionen, drei Sprachen, vier Sprachregionen",
+      "date": "2026-04-28",
+      "time": "19:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Vortrag über Vielsprachigkeit und Regionen. 19:00-20:45 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung",
+        "kultur"
+      ],
+      "url": "https://www.starnberg.de/ein-staat-drei-regionen-drei-sprachen-vier-sprachregionen",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 196
     },
     {
       "title": "Ramsee – Radtour durch den westlichen Landkreis",
@@ -2115,7 +3699,7 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": true,
-      "id": 98
+      "id": 197
     },
     {
       "title": "RSC Wolfratshausen – Anradeln (Saisonstart)",
@@ -2134,7 +3718,7 @@
       "region": "starnberger-see",
       "venue": "RSC Wolfratshausen",
       "isHighlight": false,
-      "id": 99
+      "id": 198
     },
     {
       "title": "Stressmanagement Workshop",
@@ -2154,10 +3738,10 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
-      "id": 145
+      "id": 199
     },
     {
-      "id": 75,
+      "id": 200,
       "title": "Sonntagsbrunch auf dem Starnberger See",
       "date": "2026-05-03",
       "time": "10:00",
@@ -2190,7 +3774,81 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": false,
-      "id": 100
+      "id": 201
+    },
+    {
+      "title": "BN-Ausstellung »Amphibien – Taucher, Schwimmer, Wandersleut'«",
+      "date": "2026-05-03",
+      "time": "10:00",
+      "location": "Berg",
+      "address": "Gemeindebibliothek Berg",
+      "description": "Wanderausstellung des BUND Naturschutz über Amphibien – Taucher, Schwimmer, Wandersleut'. Die Ausstellung läuft vom 03.05. bis 31.05.2026 in der Gemeindebibliothek Berg. Eintritt frei.",
+      "category": "familie",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/bn-ausstellung-amphibien-taucher-schwimmer-wandersleut-1-1",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Gemeindebibliothek Berg",
+      "isHighlight": false,
+      "id": 202
+    },
+    {
+      "title": "Treffen der Ortsgruppe Krailling",
+      "date": "2026-05-04",
+      "time": "19:30",
+      "location": "Planegg",
+      "address": "Ruffiniallee 1, 82152 Planegg",
+      "description": "Vernetzungstreffen der BUND Naturschutz Ortsgruppe Krailling. Dauer: 19:30 bis 21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "natur"
+      ],
+      "url": "https://starnberg.bund-naturschutz.de/termine/termin/treffen-der-ortsgruppe-krailling-8",
+      "source": "bund-naturschutz-starnberg",
+      "region": "starnberger-see",
+      "venue": "Gemeindehaus der Waldkirche Planegg",
+      "isHighlight": false,
+      "id": 203
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-05-05",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-5",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 204
+    },
+    {
+      "title": "Florian Christl - Resonanz Tour 2026",
+      "date": "2026-05-07",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert von Florian Christl auf seiner Resonanz Tour 2026. 20:00-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/florian-christl-resonanz-tour-2026",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 205
     },
     {
       "title": "Konzert der Philharmonie Starnberger See",
@@ -2209,7 +3867,44 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 76
+      "id": 206
+    },
+    {
+      "title": "Konzert der Philharmonie Starnberger See e.V.",
+      "date": "2026-05-09",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert der Philharmonie Starnberger See e.V. 20:00-22:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/konzert-der-philharmonie-starnberger-see-ev",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 207
+    },
+    {
+      "title": "Claus von Wagner - Comedy/Kabarett",
+      "date": "2026-05-14",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Comedy- und Kabarettabend mit Claus von Wagner. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/claus-von-wagner",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 208
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -2227,7 +3922,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 118
+      "id": 209
     },
     {
       "title": "Tango, Tango – Konzert",
@@ -2246,7 +3941,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 77
+      "id": 210
     },
     {
       "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
@@ -2266,7 +3961,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 78
+      "id": 211
     },
     {
       "title": "Real Madrid Fußballcamp beim TSV Oberalting-Seefeld",
@@ -2286,10 +3981,10 @@
       "region": "starnberger-see",
       "venue": "TSV Oberalting-Seefeld e.V.",
       "isHighlight": true,
-      "id": 105
+      "id": 212
     },
     {
-      "id": 79,
+      "id": 213,
       "title": "Country-Fest für ALLE",
       "date": "2026-05-30",
       "time": "17:00",
@@ -2305,6 +4000,43 @@
         "musik",
         "fest"
       ]
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-06-02",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-6",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 214
+    },
+    {
+      "title": "Federspiel: Wir & Jetzt - Konzert",
+      "date": "2026-06-10",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Konzert von Federspiel mit dem Programm Wir und Jetzt. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/federspiel-wir-jetzt",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 215
     },
     {
       "title": "Bavaria Königsmarsch – 50 km Nachtwanderung",
@@ -2323,7 +4055,25 @@
       "region": "starnberger-see",
       "venue": "Bavaria Königsmarsch",
       "isHighlight": true,
-      "id": 128
+      "id": 216
+    },
+    {
+      "title": "Pflege im Alter - Vortrag",
+      "date": "2026-06-16",
+      "time": "17:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Informationsveranstaltung zum Thema Pflege im Alter. 17:00-19:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "bildung"
+      ],
+      "url": "https://www.starnberg.de/pflege-im-alter",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 217
     },
     {
       "title": "Johannisfeier Tennis – DJK-SV Berg",
@@ -2342,7 +4092,7 @@
       "region": "starnberger-see",
       "venue": "DJK-SV Berg",
       "isHighlight": false,
-      "id": 129
+      "id": 218
     },
     {
       "title": "Richard Strauss Festival 2026",
@@ -2362,7 +4112,7 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 80
+      "id": 219
     },
     {
       "title": "Bayerische Meisterschaft Einrad-Rennen & Nachwuchs-Cup",
@@ -2381,7 +4131,7 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": true,
-      "id": 130
+      "id": 220
     },
     {
       "title": "Sommersonnenwende – Yoga & Zeremonie",
@@ -2401,7 +4151,7 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": true,
-      "id": 146
+      "id": 221
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -2419,7 +4169,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 119
+      "id": 222
     },
     {
       "title": "SUP Yoga Teacher Training (3-tägig)",
@@ -2439,7 +4189,42 @@
       "region": "starnberger-see",
       "venue": "Namasté Yoga Studio Herrsching",
       "isHighlight": true,
-      "id": 147
+      "id": 223
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-06-29",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 224
+    },
+    {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-06-30",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-7",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 225
     },
     {
       "title": "DJK-SV Berg beim Berger Bürgerfest",
@@ -2458,10 +4243,48 @@
       "region": "starnberger-see",
       "venue": "DJK-SV Berg",
       "isHighlight": false,
-      "id": 133
+      "id": 226
     },
     {
-      "id": 81,
+      "title": "Perchtinger Festwochenende 2026",
+      "date": "2026-07-10",
+      "time": "00:00",
+      "location": "Starnberg",
+      "address": "Perchting",
+      "description": "Festwochenende in Perchting. 10.-11. Juli 2026.",
+      "category": "familie",
+      "artTags": [
+        "fest"
+      ],
+      "url": "https://www.starnberg.de/perchtinger-festwochenende-2026",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Perchting",
+      "isHighlight": true,
+      "id": 227
+    },
+    {
+      "title": "2. Internationales Drehorgeltreffen in Starnberg",
+      "date": "2026-07-10",
+      "time": "10:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "2. Internationales Drehorgeltreffen in der Starnberger Innenstadt. 10.-12. Juli, 10:00-17:00 Uhr.",
+      "category": "familie",
+      "artTags": [
+        "musik",
+        "kultur",
+        "fest"
+      ],
+      "url": "https://www.starnberg.de/2-internationales-drehorgeltreffen-in-starnberg",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Starnberger Innenstadt",
+      "isHighlight": true,
+      "id": 228
+    },
+    {
+      "id": 229,
       "title": "Vintage-Flohmarkt in der Sozialstation",
       "date": "2026-07-11",
       "time": "14:00",
@@ -2478,7 +4301,7 @@
       ]
     },
     {
-      "id": 82,
+      "id": 230,
       "title": "Ü30-Party auf dem Starnberger See",
       "date": "2026-07-11",
       "time": "20:00",
@@ -2497,6 +4320,25 @@
       ]
     },
     {
+      "title": "Videoclub Starnberger See",
+      "date": "2026-07-14",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Filmvorführung des Videoclub Starnberger See. 19:30-21:30 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "kunst"
+      ],
+      "url": "https://www.starnberg.de/videoclub-starnberger-see-8",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 231
+    },
+    {
       "title": "Stockschützen Turnier der Vereine Gilching",
       "date": "2026-07-18",
       "time": null,
@@ -2513,7 +4355,7 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
-      "id": 131
+      "id": 232
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -2531,10 +4373,10 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 120
+      "id": 233
     },
     {
-      "id": 83,
+      "id": 234,
       "title": "Pasta & Prosecco Schifffahrt",
       "date": "2026-07-19",
       "time": "19:00",
@@ -2567,10 +4409,10 @@
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": true,
-      "id": 101
+      "id": 235
     },
     {
-      "id": 84,
+      "id": 236,
       "title": "Historische Fahrt: Auf königlichen Spuren",
       "date": "2026-07-29",
       "time": "19:00",
@@ -2603,7 +4445,7 @@
       "region": "starnberger-see",
       "venue": "Starnberger See Schwimmen",
       "isHighlight": true,
-      "id": 132
+      "id": 237
     },
     {
       "title": "TSV Starnberg Summerchallenge 2026",
@@ -2622,7 +4464,7 @@
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
       "isHighlight": true,
-      "id": 106
+      "id": 238
     },
     {
       "title": "Sommer Dance Camp – Kinder 6-12",
@@ -2640,7 +4482,7 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": true,
-      "id": 121
+      "id": 239
     },
     {
       "title": "Tegernseer Seefest mit Brillantfeuerwerk",
@@ -2659,7 +4501,7 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 85
+      "id": 240
     },
     {
       "title": "Rosstag Rottach-Egern",
@@ -2678,7 +4520,23 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 86
+      "id": 241
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-08-31",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende-1-1-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 242
     },
     {
       "title": "Internationales Musikfest am Tegernsee",
@@ -2698,7 +4556,7 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 87
+      "id": 243
     },
     {
       "title": "Mabon – Yoga & Herbst-Tagundnachtgleiche",
@@ -2718,7 +4576,7 @@
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
       "isHighlight": true,
-      "id": 148
+      "id": 244
     },
     {
       "title": "Kulturmontag - Alexander Netschajew",
@@ -2737,7 +4595,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 88
+      "id": 245
     },
     {
       "title": "50 Jahre Handballabteilung – DJK-SV Berg",
@@ -2756,7 +4614,26 @@
       "region": "starnberger-see",
       "venue": "DJK-SV Berg",
       "isHighlight": true,
-      "id": 134
+      "id": 246
+    },
+    {
+      "title": "Hannes Ringlstetter SOLO - Konzert",
+      "date": "2026-09-29",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Solo-Konzert von Hannes Ringlstetter. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.starnberg.de/hannes-ringlstetter-solo",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 247
     },
     {
       "title": "Gilching Läuft 2026 – Volkslauf",
@@ -2775,7 +4652,26 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried e.V.",
       "isHighlight": true,
-      "id": 107
+      "id": 248
+    },
+    {
+      "title": "Gilching Läuft - Volkslauf",
+      "date": "2026-10-03",
+      "time": "",
+      "location": "Gilching",
+      "address": "TSV Gilching-Argelsried, Talhofstraße, 82205 Gilching",
+      "description": "Jährlicher Volkslauf in Gilching am Tag der Deutschen Einheit. Verschiedene Laufdistanzen für alle Altersgruppen inkl. Zwergerl- und Schülerlauf. Termin 2026 noch nicht offiziell bestätigt.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "laufen"
+      ],
+      "url": "https://gilching-laeuft.de",
+      "source": "gilching-laeuft",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": true,
+      "id": 249
     },
     {
       "title": "42. Starnberger Landkreislauf",
@@ -2794,7 +4690,44 @@
       "region": "starnberger-see",
       "venue": "LC Buchendorf & Gautinger SC",
       "isHighlight": true,
-      "id": 135
+      "id": 250
+    },
+    {
+      "title": "Simon & Garfunkel Tribute meets Classic",
+      "date": "2026-10-10",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Tribute-Konzert 'Simon & Garfunkel meets Classic'. 20:00-22:20 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik"
+      ],
+      "url": "https://www.starnberg.de/simon-garfunkel-tribute-meets-classic",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 251
+    },
+    {
+      "title": "Eva Karl Faltermeier - Comedy/Kabarett",
+      "date": "2026-10-15",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Comedy- und Kabarettabend mit Eva Karl Faltermeier. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/eva-karl-faltermeier-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 252
     },
     {
       "title": "Süddeutsche Meisterschaft Einrad Freestyle",
@@ -2813,7 +4746,26 @@
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": true,
-      "id": 136
+      "id": 253
+    },
+    {
+      "title": "BRUSTMANN, SCHÄFER, HORN - Literatur/Lesung",
+      "date": "2026-10-22",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Literatur- und Lesungsabend mit Brustmann, Schäfer und Horn. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.starnberg.de/brustmann-schaefer-horn-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 254
     },
     {
       "title": "Kulturmontag - Kabarett Erich Kasberger",
@@ -2832,7 +4784,23 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 89
+      "id": 255
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-10-26",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende-2",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 256
     },
     {
       "title": "Schlagergang – Aber bitte mit Schlager!",
@@ -2852,7 +4820,61 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 90
+      "id": 257
+    },
+    {
+      "title": "Andechser Advents- und Spanschachtel-Markt 2026",
+      "date": "2026-11-20",
+      "time": "",
+      "location": "Andechs",
+      "address": "Bergstraße 2, 82346 Andechs",
+      "description": "Stimmungsvoller Adventsmarkt mit traditionellen Spanschachteln und Kunsthandwerk im Florian-Stadl des Kloster Andechs. Vom 20. bis 22. November 2026.",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "kultur"
+      ],
+      "url": "https://www.andechs.de/veranstaltungen/veranstaltungsuebersicht/details-zur-veranstaltung/2026-11-20/0000/andechser-advents-und-spanschachtel-markt-2026.html",
+      "source": "andechs",
+      "region": "ammersee",
+      "venue": "Florian-Stadl, Kloster Andechs",
+      "isHighlight": true,
+      "id": 258
+    },
+    {
+      "title": "Alfred Dorfer - Comedy/Kabarett",
+      "date": "2026-11-26",
+      "time": "19:30",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Comedy- und Kabarettabend mit Alfred Dorfer. 19:30-22:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "theater"
+      ],
+      "url": "https://www.starnberg.de/alfred-dorfer",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": true,
+      "id": 259
+    },
+    {
+      "title": "Blutspende",
+      "date": "2026-12-21",
+      "time": "16:00",
+      "location": "Starnberg",
+      "address": "",
+      "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [],
+      "url": "https://www.starnberg.de/blutspende-2-1",
+      "source": "starnberg-stadt",
+      "region": "starnberger-see",
+      "venue": "Schlossberghalle Starnberg",
+      "isHighlight": false,
+      "id": 260
     },
     {
       "title": "Neujahrsskispringen 2027",
@@ -2870,49 +4892,7 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 91
+      "id": 261
     }
-  ],
-  "artTags": {
-    "musik": {
-      "name": "Musik",
-      "emoji": "🎵"
-    },
-    "theater": {
-      "name": "Theater",
-      "emoji": "🎭"
-    },
-    "kunst": {
-      "name": "Kunst",
-      "emoji": "🎨"
-    },
-    "sport": {
-      "name": "Sport",
-      "emoji": "🏃"
-    },
-    "natur": {
-      "name": "Natur",
-      "emoji": "🌲"
-    },
-    "markt": {
-      "name": "Markt",
-      "emoji": "🛒"
-    },
-    "bildung": {
-      "name": "Bildung",
-      "emoji": "📚"
-    },
-    "fest": {
-      "name": "Fest",
-      "emoji": "🎉"
-    },
-    "show": {
-      "name": "Show",
-      "emoji": "🎪"
-    },
-    "indoor": {
-      "name": "Indoor",
-      "emoji": "☂️"
-    }
-  }
+  ]
 }
