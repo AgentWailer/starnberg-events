@@ -126,13 +126,21 @@ const { lastUpdated } = Astro.props;
   }
 
   .navbar-inner {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: var(--space-3) var(--space-5);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 1200px) {
+    .navbar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: var(--space-3) var(--space-5);
+      gap: var(--space-4);
+    }
   }
 
   .navbar-right {
@@ -161,22 +169,56 @@ const { lastUpdated } = Astro.props;
   .navbar-weather {
     display: flex;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-2);
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: 1000px) {
+    .navbar-weather {
+      gap: var(--space-3);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .navbar-weather {
+      gap: var(--space-4);
+    }
   }
 
   .navbar-divider {
+    display: none;
     width: 1px;
     height: 16px;
     background: var(--color-border);
     margin: 0 var(--space-1);
   }
 
+  @media (min-width: 1000px) {
+    .navbar-divider {
+      display: block;
+    }
+  }
+
   .navbar-weather-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.875rem;
+    gap: 4px;
+    font-size: 0.75rem;
     color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 1000px) {
+    .navbar-weather-item {
+      gap: 5px;
+      font-size: 0.8125rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .navbar-weather-item {
+      gap: 6px;
+      font-size: 0.875rem;
+    }
   }
 
   .navbar-weather-icon {
@@ -202,9 +244,16 @@ const { lastUpdated } = Astro.props;
   }
 
   .navbar-train-dir {
+    display: none;
     font-size: 0.6875rem;
     color: var(--color-muted);
     font-weight: 500;
+  }
+
+  @media (min-width: 900px) {
+    .navbar-train-dir {
+      display: inline;
+    }
   }
 
   .navbar-train-delay {
