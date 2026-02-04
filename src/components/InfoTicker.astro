@@ -584,7 +584,7 @@
   // S6 Punctuality from Worker
   async function loadPunctuality(): Promise<void> {
     try {
-      const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=today');
+      const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=week');
       if (!resp.ok) return;
       const data = await resp.json();
       const o = data.overall;

@@ -183,22 +183,160 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
     GROUP BY direction
   `).bind(dateFrom).all();
 
-  // Nach Stunde (nur für Heute)
-  let byHour = null;
-  if (isToday) {
-    byHour = (await db.prepare(`
-      SELECT
-        planned_hour as hour,
-        COUNT(*) as total,
-        SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
-        SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
-        SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed
-      FROM departures WHERE date = ?1
-      GROUP BY planned_hour ORDER BY planned_hour
-    `).bind(dateFrom).all()).results;
-  }
+  // Nach Stunde (für alle Perioden)
+  const byHour = (await db.prepare(`
+    SELECT
+      planned_hour as hour,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE ${where}
+    GROUP BY planned_hour ORDER BY planned_hour
+  `).bind(dateFrom).all()).results;
 
   return json({ period, since: dateFrom, overall, byDirection: byDirection.results, byHour });
+}
+
+// ── Umfassende Analyse ─────────────────────────────────────────────
+
+async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
+  const days = Math.min(parseInt(url.searchParams.get('days') || '30', 10), 90);
+  const since = daysAgo(days);
+  const today = todayStr();
+
+  // 1) Gesamt (gesamter Zeitraum)
+  const overall = await db.prepare(`
+    SELECT
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NULL THEN 1 ELSE 0 END) as no_data,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay,
+      MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay,
+      MIN(date) as first_date,
+      MAX(date) as last_date
+    FROM departures WHERE date >= ?1
+  `).bind(since).first();
+
+  // 2) Heute separat
+  const todayStats = await db.prepare(`
+    SELECT
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date = ?1
+  `).bind(today).first();
+
+  // 3) Nach Richtung
+  const byDirection = (await db.prepare(`
+    SELECT direction,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1 GROUP BY direction
+  `).bind(since).all()).results;
+
+  // 4) Nach Stunde (Tagesprofil)
+  const byHour = (await db.prepare(`
+    SELECT planned_hour as hour,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY planned_hour ORDER BY planned_hour
+  `).bind(since).all()).results;
+
+  // 5) Nach Wochentag
+  const byWeekday = (await db.prepare(`
+    SELECT
+      CAST(strftime('%w', date) AS INTEGER) as weekday,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY weekday ORDER BY weekday
+  `).bind(since).all()).results;
+
+  // 6) Verspätungsverteilung
+  const delayDistribution = (await db.prepare(`
+    SELECT
+      CASE
+        WHEN cancelled = 1 THEN 'cancelled'
+        WHEN delay IS NULL THEN 'no_data'
+        WHEN delay <= 0 THEN 'early'
+        WHEN delay <= 120 THEN '0-2min'
+        WHEN delay <= 300 THEN '2-5min'
+        WHEN delay <= 600 THEN '5-10min'
+        WHEN delay <= 1200 THEN '10-20min'
+        ELSE '20min+'
+      END as bucket,
+      COUNT(*) as count
+    FROM departures WHERE date >= ?1
+    GROUP BY bucket
+  `).bind(since).all()).results;
+
+  // 7) Tagesverlauf
+  const daily = (await db.prepare(`
+    SELECT date,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY date ORDER BY date
+  `).bind(since).all()).results;
+
+  // 8) Rush-Hour-Analyse (HVZ: 6-9 + 16-19 vs Rest)
+  const rushHour = (await db.prepare(`
+    SELECT
+      CASE
+        WHEN planned_hour BETWEEN 6 AND 8 THEN 'morning_rush'
+        WHEN planned_hour BETWEEN 16 AND 18 THEN 'evening_rush'
+        ELSE 'off_peak'
+      END as period,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY period
+  `).bind(since).all()).results;
+
+  // 9) Top 10 schlimmste Verspätungen
+  const worstDelays = (await db.prepare(`
+    SELECT planned_when, delay, direction, date
+    FROM departures
+    WHERE date >= ?1 AND cancelled = 0 AND delay IS NOT NULL AND delay > 300
+    ORDER BY delay DESC LIMIT 10
+  `).bind(since).all()).results;
+
+  // 10) Heutige Abfahrten
+  const todayDepartures = (await db.prepare(`
+    SELECT planned_when, planned_hour, delay, cancelled, direction
+    FROM departures WHERE date = ?1
+    ORDER BY planned_when
+  `).bind(today).all()).results;
+
+  return json({
+    days, since, generatedAt: new Date().toISOString(),
+    overall, today: todayStats,
+    byDirection, byHour, byWeekday,
+    delayDistribution, daily, rushHour,
+    worstDelays, todayDepartures
+  });
 }
 
 async function handleHistory(db: D1Database, url: URL): Promise<Response> {
@@ -260,6 +398,7 @@ export default {
         case '/api/stats':      return handleStats(env.DB, url);
         case '/api/history':    return handleHistory(env.DB, url);
         case '/api/departures': return handleDepartures(env.DB, url);
+        case '/api/analysis':   return handleAnalysis(env.DB, url);
         default:
           return new Response(
             JSON.stringify({

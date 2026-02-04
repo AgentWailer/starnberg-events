@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="S6 Pünktlichkeit · Possenhofen" description="Echtzeit-Analyse der S6 Pünktlichkeit am Bahnhof Possenhofen">
+<Layout title="S6 Pünktlichkeit · Possenhofen" description="Ausführliche Analyse der S6-Pünktlichkeit am Bahnhof Possenhofen am Starnberger See">
 
 <main class="s6-page">
   <a href="/" class="s6-back">← Zurück zu Events</a>
@@ -17,574 +17,463 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Period Toggle -->
   <div class="s6-period-toggle">
-    <button class="period-btn active" data-period="today">Heute</button>
-    <button class="period-btn" data-period="week">7 Tage</button>
-    <button class="period-btn" data-period="month">30 Tage</button>
+    <button class="period-btn" data-period="7">7 Tage</button>
+    <button class="period-btn active" data-period="30">30 Tage</button>
+    <button class="period-btn" data-period="90">90 Tage</button>
   </div>
 
-  <!-- Loading State -->
+  <!-- Loading -->
   <div class="s6-loading" id="s6-loading">
-    <div class="s6-loading__spinner"></div>
-    <p>Lade Daten…</p>
+    <div class="s6-spinner"></div>
+    <p>Lade Analyse…</p>
   </div>
 
-  <!-- Empty State (before first data collection) -->
+  <!-- Empty State -->
   <div class="s6-empty" id="s6-empty" style="display:none;">
     <p>📊 Noch keine Daten vorhanden.</p>
-    <p class="s6-empty__sub">Der Tracker sammelt ab Deployment alle 10 Minuten Daten. Die ersten Statistiken erscheinen nach wenigen Stunden.</p>
+    <p class="text-muted">Der Tracker sammelt alle 10 Minuten Daten. Erste Statistiken erscheinen nach wenigen Stunden.</p>
   </div>
 
-  <!-- Stats Content -->
+  <!-- Content -->
   <div class="s6-content" id="s6-content" style="display:none;">
 
-    <!-- Scorecard -->
-    <div class="s6-scorecard">
-      <div class="score-card score-card--green">
-        <span class="score-card__value" id="sc-ontime">–</span>
-        <span class="score-card__label">Pünktlich</span>
-        <span class="score-card__sub">≤ 5 Min</span>
+    <!-- ══ 1. Scorecard ══ -->
+    <section class="s6-card">
+      <div class="s6-scorecard">
+        <div class="sc sc--green">
+          <span class="sc__val" id="sc-ontime">–</span>
+          <span class="sc__lbl">Pünktlich</span>
+          <span class="sc__sub">≤ 5 Min</span>
+        </div>
+        <div class="sc sc--yellow">
+          <span class="sc__val" id="sc-delayed">–</span>
+          <span class="sc__lbl">Verspätet</span>
+          <span class="sc__sub">&gt; 5 Min</span>
+        </div>
+        <div class="sc sc--red">
+          <span class="sc__val" id="sc-cancelled">–</span>
+          <span class="sc__lbl">Ausgefallen</span>
+          <span class="sc__sub">&nbsp;</span>
+        </div>
+        <div class="sc sc--blue">
+          <span class="sc__val" id="sc-total">–</span>
+          <span class="sc__lbl">Gesamt</span>
+          <span class="sc__sub" id="sc-period-label">–</span>
+        </div>
       </div>
-      <div class="score-card score-card--yellow">
-        <span class="score-card__value" id="sc-delayed">–</span>
-        <span class="score-card__label">Verspätet</span>
-        <span class="score-card__sub">&gt; 5 Min</span>
-      </div>
-      <div class="score-card score-card--red">
-        <span class="score-card__value" id="sc-cancelled">–</span>
-        <span class="score-card__label">Ausgefallen</span>
-        <span class="score-card__sub">&nbsp;</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Pünktlichkeitsrate -->
-    <div class="s6-rate-section">
+    <!-- ══ 2. Pünktlichkeitsrate + KPIs ══ -->
+    <section class="s6-card s6-rate-card">
       <div class="s6-rate">
-        <div class="s6-rate__ring">
-          <svg viewBox="0 0 120 120" class="rate-ring-svg">
+        <div class="rate-ring">
+          <svg viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-border-light)" stroke-width="8" />
-            <circle id="rate-ring" cx="60" cy="60" r="52" fill="none" stroke="var(--color-primary)" stroke-width="8"
+            <circle id="rate-arc" cx="60" cy="60" r="52" fill="none" stroke-width="8"
               stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
               transform="rotate(-90 60 60)" />
           </svg>
-          <span class="s6-rate__percent" id="rate-percent">–%</span>
+          <span class="rate-ring__pct" id="rate-pct">–%</span>
         </div>
-        <div class="s6-rate__details">
-          <p class="s6-rate__label">Pünktlichkeitsrate</p>
-          <p class="s6-rate__avg">Ø Verspätung: <strong id="avg-delay">–</strong></p>
-          <p class="s6-rate__max">Max: <strong id="max-delay">–</strong></p>
+        <div class="rate-kpis">
+          <h3 class="rate-kpis__title">Pünktlichkeitsrate</h3>
+          <div class="kpi-row"><span class="kpi-label">Ø Verspätung</span><strong id="kpi-avg">–</strong></div>
+          <div class="kpi-row"><span class="kpi-label">Max. Verspätung</span><strong id="kpi-max">–</strong></div>
+          <div class="kpi-row"><span class="kpi-label">Erfasst seit</span><strong id="kpi-since">–</strong></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Richtungsvergleich -->
-    <div class="s6-directions">
+    <!-- ══ 3. Richtungsvergleich ══ -->
+    <section class="s6-card">
       <h2 class="s6-section-title">Nach Richtung</h2>
-      <div class="dir-bars">
-        <div class="dir-bar">
-          <span class="dir-bar__label">→ München</span>
-          <div class="dir-bar__track">
-            <div class="dir-bar__fill dir-bar__fill--green" id="dir-muc-bar" style="width:0%"></div>
-          </div>
-          <span class="dir-bar__value" id="dir-muc-val">–%</span>
+      <div class="dir-compare">
+        <div class="dir-item">
+          <span class="dir-item__label">→ München</span>
+          <div class="dir-item__bar-track"><div class="dir-item__bar" id="dir-muc-bar"></div></div>
+          <span class="dir-item__stats"><strong id="dir-muc-pct">–%</strong> · Ø <span id="dir-muc-avg">–</span></span>
         </div>
-        <div class="dir-bar">
-          <span class="dir-bar__label">← Tutzing</span>
-          <div class="dir-bar__track">
-            <div class="dir-bar__fill dir-bar__fill--green" id="dir-tut-bar" style="width:0%"></div>
-          </div>
-          <span class="dir-bar__value" id="dir-tut-val">–%</span>
+        <div class="dir-item">
+          <span class="dir-item__label">← Tutzing</span>
+          <div class="dir-item__bar-track"><div class="dir-item__bar" id="dir-tut-bar"></div></div>
+          <span class="dir-item__stats"><strong id="dir-tut-pct">–%</strong> · Ø <span id="dir-tut-avg">–</span></span>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Stundenverlauf (nur bei "Heute") -->
-    <div class="s6-hourly" id="s6-hourly">
-      <h2 class="s6-section-title">Heute nach Stunde</h2>
-      <div class="hourly-chart" id="hourly-chart"></div>
-    </div>
+    <!-- ══ 4. Rush Hour Analyse ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Rush Hour vs. Nebenzeit</h2>
+      <div class="rush-grid" id="rush-grid"></div>
+    </section>
 
-    <!-- Tagesverlauf (nur bei Woche/Monat) -->
-    <div class="s6-daily" id="s6-daily" style="display:none;">
+    <!-- ══ 5. Verspätungsverteilung ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Verspätungsverteilung</h2>
+      <div class="dist-chart" id="dist-chart"></div>
+    </section>
+
+    <!-- ══ 6. Tagesprofil (nach Stunde) ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Tagesprofil</h2>
+      <p class="text-muted" style="margin-bottom:var(--space-3);font-size:0.8125rem;">Pünktlichkeit nach Tageszeit</p>
+      <div class="bar-chart" id="hourly-chart"></div>
+    </section>
+
+    <!-- ══ 7. Wochentag-Analyse ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Nach Wochentag</h2>
+      <div class="bar-chart" id="weekday-chart"></div>
+    </section>
+
+    <!-- ══ 8. Tagesverlauf ══ -->
+    <section class="s6-card">
       <h2 class="s6-section-title">Tagesverlauf</h2>
-      <div class="daily-chart" id="daily-chart"></div>
-    </div>
+      <div class="bar-chart" id="daily-chart"></div>
+    </section>
+
+    <!-- ══ 9. Schlimmste Verspätungen ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Größte Verspätungen</h2>
+      <div class="worst-table" id="worst-table"></div>
+    </section>
+
+    <!-- ══ 10. Heutige Abfahrten ══ -->
+    <section class="s6-card">
+      <h2 class="s6-section-title">Heutige Abfahrten</h2>
+      <div class="departures-list" id="today-deps"></div>
+    </section>
 
     <!-- Footer -->
-    <p class="s6-footer">
-      Daten werden alle 10 Minuten erhoben · Pünktlich = ≤ 5 Min Verspätung ·
-      Quelle: <a href="https://v6.db.transport.rest" target="_blank" rel="noopener">transport.rest</a>
+    <p class="s6-meta">
+      Datenerhebung alle 10 Minuten · Pünktlich = ≤ 5 Min Verspätung ·
+      Quelle: <a href="https://v6.db.transport.rest" target="_blank" rel="noopener">transport.rest API</a>
     </p>
   </div>
 </main>
 </Layout>
 
 <style>
-  /* ── Page Layout ─────────────────────────────────────── */
-  .s6-page {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: var(--space-5) var(--space-4);
-  }
+  .s6-page { max-width: 760px; margin: 0 auto; padding: var(--space-5) var(--space-4); }
 
-  .s6-back {
-    display: inline-block;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    margin-bottom: var(--space-4);
-    transition: color var(--duration-fast) ease;
-  }
+  .s6-back { display: inline-block; font-size: 0.875rem; color: var(--color-text-secondary); text-decoration: none; margin-bottom: var(--space-4); }
   .s6-back:hover { color: var(--color-primary); }
 
-  /* ── Header ──────────────────────────────────────────── */
-  .s6-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-  .s6-header__icon {
-    font-size: 2.5rem;
-    line-height: 1;
-  }
-  .s6-header__title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin: 0;
-  }
-  .s6-header__sub {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    margin: var(--space-1) 0 0;
-  }
+  .s6-header { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .s6-header__icon { font-size: 2.5rem; line-height: 1; }
+  .s6-header__title { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: var(--color-text); margin: 0; }
+  .s6-header__sub { font-size: 0.9375rem; color: var(--color-text-secondary); margin: var(--space-1) 0 0; }
 
-  /* ── Period Toggle ───────────────────────────────────── */
-  .s6-period-toggle {
-    display: flex;
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
-    background: var(--color-bg-secondary);
-    padding: var(--space-1);
-    border-radius: var(--radius-lg);
-  }
-  .period-btn {
-    flex: 1;
-    padding: var(--space-2) var(--space-3);
-    border: none;
-    border-radius: var(--radius-md);
-    background: transparent;
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--duration-fast) ease;
-  }
+  /* Period toggle */
+  .s6-period-toggle { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); background: var(--color-bg-secondary); padding: var(--space-1); border-radius: var(--radius-lg); }
+  .period-btn { flex: 1; padding: var(--space-2) var(--space-3); border: none; border-radius: var(--radius-md); background: transparent; color: var(--color-text-secondary); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all var(--duration-fast) ease; }
   .period-btn:hover { color: var(--color-text); }
-  .period-btn.active {
-    background: var(--color-card);
-    color: var(--color-text);
-    box-shadow: var(--shadow-sm);
-  }
+  .period-btn.active { background: var(--color-card); color: var(--color-text); box-shadow: var(--shadow-sm); }
 
-  /* ── Loading ─────────────────────────────────────────── */
-  .s6-loading {
-    text-align: center;
-    padding: var(--space-10) 0;
-    color: var(--color-text-secondary);
-  }
-  .s6-loading__spinner {
-    width: 32px; height: 32px;
-    border: 3px solid var(--color-border-light);
-    border-top-color: var(--color-primary);
-    border-radius: 50%;
-    margin: 0 auto var(--space-4);
-    animation: spin 0.8s linear infinite;
-  }
+  /* Loading */
+  .s6-loading { text-align: center; padding: var(--space-10) 0; color: var(--color-text-secondary); }
+  .s6-spinner { width: 32px; height: 32px; border: 3px solid var(--color-border-light); border-top-color: var(--color-primary); border-radius: 50%; margin: 0 auto var(--space-4); animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .s6-empty { text-align: center; padding: var(--space-10) 0; color: var(--color-text-secondary); }
-  .s6-empty__sub { font-size: 0.875rem; margin-top: var(--space-2); }
+  .text-muted { font-size: 0.875rem; color: var(--color-text-secondary); }
 
-  /* ── Scorecard ───────────────────────────────────────── */
-  .s6-scorecard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3);
-    margin-bottom: var(--space-6);
-  }
-  .score-card {
-    background: var(--color-card);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4) var(--space-3);
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-  }
-  .score-card__value {
-    display: block;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  .score-card__label {
-    display: block;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    margin-top: var(--space-1);
-    color: var(--color-text-secondary);
-  }
-  .score-card__sub {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--color-text-tertiary, #999);
-    margin-top: 2px;
-  }
-  .score-card--green .score-card__value { color: #16a34a; }
-  .score-card--yellow .score-card__value { color: #d97706; }
-  .score-card--red .score-card__value { color: #dc2626; }
+  /* Cards */
+  .s6-card { background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); box-shadow: var(--shadow-sm); }
+  .s6-section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-4); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-light); }
 
-  :root.dark .score-card--green .score-card__value { color: #4ade80; }
-  :root.dark .score-card--yellow .score-card__value { color: #fbbf24; }
-  :root.dark .score-card--red .score-card__value { color: #f87171; }
+  /* Scorecard */
+  .s6-scorecard { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+  .sc { text-align: center; padding: var(--space-3) var(--space-2); border-radius: var(--radius-md); background: var(--color-bg-secondary); }
+  .sc__val { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; line-height: 1.1; }
+  .sc__lbl { display: block; font-size: 0.75rem; font-weight: 600; margin-top: 2px; color: var(--color-text-secondary); }
+  .sc__sub { display: block; font-size: 0.6875rem; color: var(--color-text-tertiary, #aaa); }
+  .sc--green .sc__val { color: #16a34a; }
+  .sc--yellow .sc__val { color: #d97706; }
+  .sc--red .sc__val { color: #dc2626; }
+  .sc--blue .sc__val { color: var(--color-primary); }
+  :root.dark .sc--green .sc__val { color: #4ade80; }
+  :root.dark .sc--yellow .sc__val { color: #fbbf24; }
+  :root.dark .sc--red .sc__val { color: #f87171; }
+  @media (max-width: 480px) { .s6-scorecard { grid-template-columns: repeat(2, 1fr); } .sc__val { font-size: 1.5rem; } }
 
-  /* ── Rate Ring ───────────────────────────────────────── */
-  .s6-rate-section {
-    margin-bottom: var(--space-6);
-  }
-  .s6-rate {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-    background: var(--color-card);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-5);
-    box-shadow: var(--shadow-sm);
-  }
-  .s6-rate__ring {
-    position: relative;
-    width: 120px; height: 120px;
-    flex-shrink: 0;
-  }
-  .rate-ring-svg { width: 100%; height: 100%; }
-  .s6-rate__percent {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text);
-  }
-  .s6-rate__label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0 0 var(--space-2);
-  }
-  .s6-rate__avg, .s6-rate__max {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    margin: var(--space-1) 0 0;
-  }
+  /* Rate ring + KPIs */
+  .s6-rate { display: flex; align-items: center; gap: var(--space-6); }
+  .rate-ring { position: relative; width: 130px; height: 130px; flex-shrink: 0; }
+  .rate-ring svg { width: 100%; height: 100%; }
+  .rate-ring__pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 1.625rem; font-weight: 700; color: var(--color-text); }
+  .rate-kpis { flex: 1; }
+  .rate-kpis__title { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; margin: 0 0 var(--space-3); }
+  .kpi-row { display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border-light); font-size: 0.875rem; }
+  .kpi-row:last-child { border: none; }
+  .kpi-label { color: var(--color-text-secondary); }
+  @media (max-width: 500px) { .s6-rate { flex-direction: column; text-align: center; } .rate-ring { width: 110px; height: 110px; } .kpi-row { font-size: 0.8125rem; } }
 
-  /* ── Section Titles ──────────────────────────────────── */
-  .s6-section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0 0 var(--space-4);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-border-light);
-  }
+  /* Direction compare */
+  .dir-compare { display: flex; flex-direction: column; gap: var(--space-4); }
+  .dir-item { display: flex; flex-direction: column; gap: var(--space-2); }
+  .dir-item__label { font-size: 0.875rem; font-weight: 600; color: var(--color-text); }
+  .dir-item__bar-track { height: 28px; background: var(--color-bg-secondary); border-radius: var(--radius-sm); overflow: hidden; }
+  .dir-item__bar { height: 100%; border-radius: var(--radius-sm); background: #16a34a; transition: width 0.6s ease; }
+  :root.dark .dir-item__bar { background: #4ade80; }
+  .dir-item__stats { font-size: 0.8125rem; color: var(--color-text-secondary); }
 
-  /* ── Direction Bars ──────────────────────────────────── */
-  .s6-directions {
-    background: var(--color-card);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-5);
-    margin-bottom: var(--space-6);
-    box-shadow: var(--shadow-sm);
-  }
-  .dir-bars { display: flex; flex-direction: column; gap: var(--space-3); }
-  .dir-bar {
-    display: grid;
-    grid-template-columns: 100px 1fr 50px;
-    align-items: center;
-    gap: var(--space-3);
-  }
-  .dir-bar__label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text);
-  }
-  .dir-bar__track {
-    height: 24px;
-    background: var(--color-bg-secondary);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-  }
-  .dir-bar__fill {
-    height: 100%;
-    border-radius: var(--radius-sm);
-    transition: width 0.6s ease;
-  }
-  .dir-bar__fill--green { background: #16a34a; }
-  :root.dark .dir-bar__fill--green { background: #4ade80; }
-  .dir-bar__value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    color: var(--color-text);
-    text-align: right;
-  }
+  /* Rush hour grid */
+  .rush-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+  .rush-item { text-align: center; padding: var(--space-4) var(--space-2); border-radius: var(--radius-md); background: var(--color-bg-secondary); }
+  .rush-item__label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+  .rush-item__pct { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
+  .rush-item__avg { display: block; font-size: 0.75rem; color: var(--color-text-tertiary, #aaa); margin-top: 2px; }
+  @media (max-width: 400px) { .rush-grid { grid-template-columns: 1fr; } }
 
-  /* ── Hourly / Daily Charts ───────────────────────────── */
-  .s6-hourly, .s6-daily {
-    background: var(--color-card);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-5);
-    margin-bottom: var(--space-6);
-    box-shadow: var(--shadow-sm);
-  }
-  .hourly-chart, .daily-chart {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  .chart-row {
-    display: grid;
-    grid-template-columns: 44px 1fr 40px;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: 0.8125rem;
-  }
-  .chart-row__label {
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    font-variant-numeric: tabular-nums;
-  }
-  .chart-row__bar {
-    height: 20px;
-    display: flex;
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    background: var(--color-bg-secondary);
-  }
-  .bar-seg--green { background: #16a34a; }
-  .bar-seg--yellow { background: #d97706; }
-  .bar-seg--red { background: #dc2626; }
-  :root.dark .bar-seg--green { background: #4ade80; }
-  :root.dark .bar-seg--yellow { background: #fbbf24; }
-  :root.dark .bar-seg--red { background: #f87171; }
-  .chart-row__value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    text-align: right;
-    color: var(--color-text);
-  }
+  /* Distribution chart */
+  .dist-chart { display: flex; flex-direction: column; gap: var(--space-2); }
+  .dist-row { display: grid; grid-template-columns: 70px 1fr 40px; align-items: center; gap: var(--space-2); font-size: 0.8125rem; }
+  .dist-row__label { color: var(--color-text-secondary); font-weight: 500; }
+  .dist-row__bar { height: 20px; border-radius: var(--radius-sm); transition: width 0.4s ease; }
+  .dist-row__val { text-align: right; font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--color-text); }
 
-  /* ── Footer ──────────────────────────────────────────── */
-  .s6-footer {
-    font-size: 0.75rem;
-    color: var(--color-text-tertiary, #999);
-    text-align: center;
-    line-height: 1.6;
-  }
-  .s6-footer a { color: var(--color-primary); }
+  /* Generic bar chart rows */
+  .bar-chart { display: flex; flex-direction: column; gap: var(--space-2); }
+  .bar-row { display: grid; grid-template-columns: 50px 1fr 40px; align-items: center; gap: var(--space-2); font-size: 0.8125rem; }
+  .bar-row__label { color: var(--color-text-secondary); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .bar-row__track { height: 22px; display: flex; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-bg-secondary); }
+  .seg--green { background: #16a34a; } .seg--yellow { background: #d97706; } .seg--red { background: #dc2626; }
+  :root.dark .seg--green { background: #4ade80; } :root.dark .seg--yellow { background: #fbbf24; } :root.dark .seg--red { background: #f87171; }
+  .bar-row__val { text-align: right; font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--color-text); }
 
-  /* ── Responsive ──────────────────────────────────────── */
-  @media (max-width: 480px) {
-    .s6-rate { flex-direction: column; text-align: center; }
-    .s6-rate__ring { width: 100px; height: 100px; }
-    .score-card__value { font-size: 1.5rem; }
-    .dir-bar { grid-template-columns: 80px 1fr 44px; }
-  }
+  /* Worst table */
+  .worst-table { overflow-x: auto; }
+  .worst-tbl { width: 100%; border-collapse: collapse; font-size: 0.8125rem; }
+  .worst-tbl th { text-align: left; font-weight: 600; color: var(--color-text-secondary); padding: var(--space-2); border-bottom: 2px solid var(--color-border-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .worst-tbl td { padding: var(--space-2); border-bottom: 1px solid var(--color-border-light); color: var(--color-text); }
+  .worst-tbl .delay-val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #dc2626; }
+  :root.dark .worst-tbl .delay-val { color: #f87171; }
+
+  /* Departures list */
+  .departures-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .dep-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: var(--radius-sm); font-size: 0.75rem; font-family: 'Space Grotesk', sans-serif; font-weight: 500; background: var(--color-bg-secondary); }
+  .dep-chip--ok { border-left: 3px solid #16a34a; }
+  .dep-chip--late { border-left: 3px solid #d97706; }
+  .dep-chip--cancel { border-left: 3px solid #dc2626; text-decoration: line-through; opacity: 0.6; }
+  .dep-chip__dir { font-size: 0.625rem; color: var(--color-text-tertiary, #aaa); }
+  .dep-chip__delay { color: #d97706; font-weight: 700; }
+  :root.dark .dep-chip--ok { border-left-color: #4ade80; }
+  :root.dark .dep-chip--late { border-left-color: #fbbf24; }
+
+  /* Footer */
+  .s6-meta { font-size: 0.75rem; color: var(--color-text-tertiary, #999); text-align: center; line-height: 1.6; margin-top: var(--space-4); }
+  .s6-meta a { color: var(--color-primary); }
 </style>
 
 <script>
-  // ── Config ──────────────────────────────────────────────
-  // Nach Worker-Deployment die URL hier eintragen:
-  const WORKER_URL = 'https://train-tracker.steffenvonlindern-be7.workers.dev';
+  const W = 'https://train-tracker.steffenvonlindern-be7.workers.dev';
+  let currentDays = 30;
 
-  // ── State ───────────────────────────────────────────────
-  let currentPeriod = 'today';
+  const $ = (id: string) => document.getElementById(id)!;
 
-  // ── Elements ────────────────────────────────────────────
-  const loadingEl = document.getElementById('s6-loading')!;
-  const emptyEl = document.getElementById('s6-empty')!;
-  const contentEl = document.getElementById('s6-content')!;
-  const hourlySection = document.getElementById('s6-hourly')!;
-  const dailySection = document.getElementById('s6-daily')!;
-
-  // ── Period Toggle ───────────────────────────────────────
+  // ── Period toggle ──
   document.querySelectorAll('.period-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelector('.period-btn.active')?.classList.remove('active');
       btn.classList.add('active');
-      currentPeriod = (btn as HTMLElement).dataset.period || 'today';
-      loadData();
+      currentDays = parseInt((btn as HTMLElement).dataset.period || '30', 10);
+      load();
     });
   });
 
-  // ── Data Loading ────────────────────────────────────────
-  async function loadData() {
-    loadingEl.style.display = '';
-    contentEl.style.display = 'none';
-    emptyEl.style.display = 'none';
+  // ── Helpers ──
+  function fmtDelay(s: number | null): string {
+    if (!s || s <= 0) return '0 Min';
+    const m = Math.round(s / 60);
+    return m < 1 ? '<1 Min' : `${m} Min`;
+  }
+  function pct(n: number, total: number): number { return total > 0 ? Math.round((n / total) * 100) : 0; }
+  function rateColor(r: number): string { return r >= 80 ? '#16a34a' : r >= 60 ? '#d97706' : '#dc2626'; }
+  function fmtDate(d: string): string {
+    const dt = new Date(d + 'T12:00:00');
+    return dt.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit' });
+  }
+  function fmtTime(iso: string): string {
+    const d = new Date(iso);
+    return d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  }
+  const WEEKDAYS = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
 
+  // ── Load ──
+  async function load() {
+    $('s6-loading').style.display = '';
+    $('s6-content').style.display = 'none';
+    $('s6-empty').style.display = 'none';
     try {
-      const [statsResp, historyResp] = await Promise.all([
-        fetch(`${WORKER_URL}/api/stats?period=${currentPeriod}`),
-        currentPeriod !== 'today'
-          ? fetch(`${WORKER_URL}/api/history?days=${currentPeriod === 'week' ? 7 : 30}`)
-          : Promise.resolve(null),
-      ]);
-
-      if (!statsResp.ok) throw new Error(`Stats: ${statsResp.status}`);
-      const stats = await statsResp.json();
-
-      if (!stats.overall || stats.overall.total === 0) {
-        loadingEl.style.display = 'none';
-        emptyEl.style.display = '';
+      const resp = await fetch(`${W}/api/analysis?days=${currentDays}`);
+      if (!resp.ok) throw new Error(`${resp.status}`);
+      const d = await resp.json();
+      if (!d.overall || d.overall.total === 0) {
+        $('s6-loading').style.display = 'none';
+        $('s6-empty').style.display = '';
         return;
       }
-
-      const history = historyResp ? await historyResp.json() : null;
-
-      renderStats(stats, history);
-      loadingEl.style.display = 'none';
-      contentEl.style.display = '';
-    } catch (err) {
-      console.error('Train stats error:', err);
-      loadingEl.style.display = 'none';
-      emptyEl.style.display = '';
-      emptyEl.querySelector('p')!.textContent = '⚠️ Daten konnten nicht geladen werden.';
+      render(d);
+      $('s6-loading').style.display = 'none';
+      $('s6-content').style.display = '';
+    } catch (e) {
+      console.error(e);
+      $('s6-loading').style.display = 'none';
+      $('s6-empty').style.display = '';
+      $('s6-empty').querySelector('p')!.textContent = '⚠️ Daten konnten nicht geladen werden.';
     }
   }
 
-  // ── Rendering ───────────────────────────────────────────
-  function renderStats(stats: any, history: any) {
-    const o = stats.overall;
-    const onTime = o.on_time || 0;
-    const delayed = o.delayed || 0;
-    const cancelled = o.cancelled || 0;
+  // ── Render ──
+  function render(d: any) {
+    const o = d.overall;
+    const onTime = o.on_time || 0, delayed = o.delayed || 0, cancelled = o.cancelled || 0;
     const total = onTime + delayed + cancelled;
-    const rate = total > 0 ? Math.round((onTime / total) * 100) : 0;
+    const rate = pct(onTime, total);
 
     // Scorecard
-    document.getElementById('sc-ontime')!.textContent = String(onTime);
-    document.getElementById('sc-delayed')!.textContent = String(delayed);
-    document.getElementById('sc-cancelled')!.textContent = String(cancelled);
+    $('sc-ontime').textContent = String(onTime);
+    $('sc-delayed').textContent = String(delayed);
+    $('sc-cancelled').textContent = String(cancelled);
+    $('sc-total').textContent = String(total);
+    $('sc-period-label').textContent = `${currentDays} Tage`;
 
     // Rate ring
-    const ring = document.getElementById('rate-ring')!;
-    const circumference = 2 * Math.PI * 52; // r=52
-    ring.style.strokeDashoffset = String(circumference - (rate / 100) * circumference);
-    ring.style.stroke = rate >= 80 ? '#16a34a' : rate >= 60 ? '#d97706' : '#dc2626';
-    document.getElementById('rate-percent')!.textContent = `${rate}%`;
+    const circ = 2 * Math.PI * 52;
+    const arc = $('rate-arc') as unknown as SVGCircleElement;
+    arc.style.strokeDashoffset = String(circ - (rate / 100) * circ);
+    arc.style.stroke = rateColor(rate);
+    arc.style.transition = 'stroke-dashoffset 0.8s ease, stroke 0.4s ease';
+    $('rate-pct').textContent = `${rate}%`;
 
-    // Avg / Max delay
-    const avgSec = o.avg_delay || 0;
-    const maxSec = o.max_delay || 0;
-    document.getElementById('avg-delay')!.textContent = formatDelay(avgSec);
-    document.getElementById('max-delay')!.textContent = formatDelay(maxSec);
+    $('kpi-avg').textContent = fmtDelay(o.avg_delay);
+    $('kpi-max').textContent = fmtDelay(o.max_delay);
+    $('kpi-since').textContent = o.first_date ? fmtDate(o.first_date) : '–';
 
     // Directions
-    renderDirection(stats.byDirection, 'muenchen', 'dir-muc-bar', 'dir-muc-val');
-    renderDirection(stats.byDirection, 'tutzing', 'dir-tut-bar', 'dir-tut-val');
+    renderDir(d.byDirection, 'muenchen', 'dir-muc');
+    renderDir(d.byDirection, 'tutzing', 'dir-tut');
 
-    // Hourly chart (today only)
-    if (stats.byHour && currentPeriod === 'today') {
-      hourlySection.style.display = '';
-      dailySection.style.display = 'none';
-      renderHourlyChart(stats.byHour);
-    } else {
-      hourlySection.style.display = 'none';
-    }
+    // Rush hour
+    renderRush(d.rushHour);
 
-    // Daily chart (week/month)
-    if (history?.daily && currentPeriod !== 'today') {
-      dailySection.style.display = '';
-      renderDailyChart(history.daily);
-    } else {
-      dailySection.style.display = 'none';
-    }
+    // Distribution
+    renderDistribution(d.delayDistribution, total);
+
+    // Hourly
+    renderBarChart('hourly-chart', d.byHour, (h: any) => `${String(h.hour).padStart(2, '0')}:00`);
+
+    // Weekday
+    renderBarChart('weekday-chart', d.byWeekday, (w: any) => WEEKDAYS[w.weekday] || '?');
+
+    // Daily
+    renderBarChart('daily-chart', d.daily, (dd: any) => fmtDate(dd.date));
+
+    // Worst delays
+    renderWorst(d.worstDelays);
+
+    // Today departures
+    renderTodayDeps(d.todayDepartures);
   }
 
-  function renderDirection(dirs: any[], dirKey: string, barId: string, valId: string) {
-    const d = dirs.find((x: any) => x.direction === dirKey);
-    if (!d) { 
-      document.getElementById(valId)!.textContent = '–'; 
-      return; 
-    }
+  function renderDir(dirs: any[], key: string, prefix: string) {
+    const d = dirs.find((x: any) => x.direction === key);
+    if (!d) return;
     const total = (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0);
-    const rate = total > 0 ? Math.round(((d.on_time || 0) / total) * 100) : 0;
-    document.getElementById(barId)!.style.width = `${rate}%`;
-    document.getElementById(valId)!.textContent = `${rate}%`;
+    const r = pct(d.on_time || 0, total);
+    $(`${prefix}-bar`).style.width = `${r}%`;
+    $(`${prefix}-bar`).style.background = rateColor(r);
+    $(`${prefix}-pct`).textContent = `${r}%`;
+    $(`${prefix}-avg`).textContent = fmtDelay(d.avg_delay);
   }
 
-  function renderHourlyChart(hours: any[]) {
-    const chart = document.getElementById('hourly-chart')!;
-    chart.innerHTML = hours.map((h: any) => {
-      const total = (h.on_time || 0) + (h.delayed || 0) + (h.cancelled || 0);
-      if (total === 0) return '';
-      const greenPct = ((h.on_time || 0) / total) * 100;
-      const yellowPct = ((h.delayed || 0) / total) * 100;
-      const redPct = ((h.cancelled || 0) / total) * 100;
-      const rate = Math.round(greenPct);
-      return `
-        <div class="chart-row">
-          <span class="chart-row__label">${String(h.hour).padStart(2, '0')}:00</span>
-          <div class="chart-row__bar">
-            <div class="bar-seg--green" style="width:${greenPct}%"></div>
-            <div class="bar-seg--yellow" style="width:${yellowPct}%"></div>
-            <div class="bar-seg--red" style="width:${redPct}%"></div>
-          </div>
-          <span class="chart-row__value">${rate}%</span>
-        </div>`;
+  function renderRush(rush: any[]) {
+    const labels: Record<string, string> = { morning_rush: '🌅 Morgen HVZ\n6:00–9:00', evening_rush: '🌆 Abend HVZ\n16:00–19:00', off_peak: '☀️ Nebenzeit\nRest' };
+    const grid = $('rush-grid');
+    const order = ['morning_rush', 'evening_rush', 'off_peak'];
+    grid.innerHTML = order.map(key => {
+      const r = rush.find((x: any) => x.period === key);
+      if (!r) return `<div class="rush-item"><span class="rush-item__label">${labels[key]?.replace('\n','<br>') || key}</span><span class="rush-item__pct">–</span></div>`;
+      const total = (r.on_time || 0) + (r.delayed || 0) + (r.cancelled || 0);
+      const rate = pct(r.on_time || 0, total);
+      return `<div class="rush-item">
+        <span class="rush-item__label">${labels[key]?.replace('\n','<br>') || key}</span>
+        <span class="rush-item__pct" style="color:${rateColor(rate)}">${rate}%</span>
+        <span class="rush-item__avg">Ø ${fmtDelay(r.avg_delay)} · ${total} Züge</span>
+      </div>`;
     }).join('');
   }
 
-  function renderDailyChart(days: any[]) {
-    const chart = document.getElementById('daily-chart')!;
-    const weekdays = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-    chart.innerHTML = days.map((d: any) => {
-      const total = (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0);
-      if (total === 0) return '';
-      const greenPct = ((d.on_time || 0) / total) * 100;
-      const yellowPct = ((d.delayed || 0) / total) * 100;
-      const redPct = ((d.cancelled || 0) / total) * 100;
-      const rate = Math.round(greenPct);
-      const dt = new Date(d.date + 'T12:00:00');
-      const label = `${weekdays[dt.getDay()]} ${dt.getDate()}.${dt.getMonth() + 1}`;
-      return `
-        <div class="chart-row">
-          <span class="chart-row__label">${label}</span>
-          <div class="chart-row__bar">
-            <div class="bar-seg--green" style="width:${greenPct}%"></div>
-            <div class="bar-seg--yellow" style="width:${yellowPct}%"></div>
-            <div class="bar-seg--red" style="width:${redPct}%"></div>
-          </div>
-          <span class="chart-row__value">${rate}%</span>
-        </div>`;
+  function renderDistribution(dist: any[], total: number) {
+    const bucketOrder = ['early', '0-2min', '2-5min', '5-10min', '10-20min', '20min+', 'cancelled'];
+    const bucketLabels: Record<string, string> = { early: 'Früher', '0-2min': '0–2 Min', '2-5min': '2–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min', cancelled: 'Ausfall' };
+    const bucketColors: Record<string, string> = { early: '#16a34a', '0-2min': '#16a34a', '2-5min': '#65a30d', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626', cancelled: '#dc2626' };
+    const maxCount = Math.max(...dist.map((d: any) => d.count || 0), 1);
+
+    $('dist-chart').innerHTML = bucketOrder.map(key => {
+      const item = dist.find((d: any) => d.bucket === key);
+      const count = item?.count || 0;
+      const w = (count / maxCount) * 100;
+      return `<div class="dist-row">
+        <span class="dist-row__label">${bucketLabels[key] || key}</span>
+        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
+          <div class="dist-row__bar" style="width:${w}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
+        </div>
+        <span class="dist-row__val">${count}</span>
+      </div>`;
     }).join('');
   }
 
-  function formatDelay(seconds: number): string {
-    if (!seconds || seconds <= 0) return '0 Min';
-    const min = Math.round(seconds / 60);
-    return min < 1 ? '<1 Min' : `${min} Min`;
+  function renderBarChart(elId: string, rows: any[], labelFn: (r: any) => string) {
+    const el = $(elId);
+    if (!rows || rows.length === 0) { el.innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Daten</p>'; return; }
+    el.innerHTML = rows.map((r: any) => {
+      const total = (r.on_time || 0) + (r.delayed || 0) + (r.cancelled || 0);
+      if (total === 0) return '';
+      const gPct = ((r.on_time || 0) / total) * 100;
+      const yPct = ((r.delayed || 0) / total) * 100;
+      const rPct = ((r.cancelled || 0) / total) * 100;
+      return `<div class="bar-row">
+        <span class="bar-row__label">${labelFn(r)}</span>
+        <div class="bar-row__track">
+          <div class="seg--green" style="width:${gPct}%"></div>
+          <div class="seg--yellow" style="width:${yPct}%"></div>
+          <div class="seg--red" style="width:${rPct}%"></div>
+        </div>
+        <span class="bar-row__val">${pct(r.on_time || 0, total)}%</span>
+      </div>`;
+    }).join('');
   }
 
-  // ── Init ────────────────────────────────────────────────
-  loadData();
+  function renderWorst(delays: any[]) {
+    if (!delays || delays.length === 0) {
+      $('worst-table').innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Verspätungen > 5 Min 🎉</p>';
+      return;
+    }
+    $('worst-table').innerHTML = `<table class="worst-tbl">
+      <thead><tr><th>Datum</th><th>Uhrzeit</th><th>Richtung</th><th>Verspätung</th></tr></thead>
+      <tbody>${delays.map((d: any) => `<tr>
+        <td>${fmtDate(d.date)}</td>
+        <td>${fmtTime(d.planned_when)}</td>
+        <td>${d.direction === 'muenchen' ? '→ München' : '← Tutzing'}</td>
+        <td class="delay-val">+${Math.round(d.delay / 60)} Min</td>
+      </tr>`).join('')}</tbody>
+    </table>`;
+  }
+
+  function renderTodayDeps(deps: any[]) {
+    if (!deps || deps.length === 0) {
+      $('today-deps').innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Noch keine Abfahrten erfasst</p>';
+      return;
+    }
+    $('today-deps').innerHTML = deps.map((d: any) => {
+      const cls = d.cancelled ? 'dep-chip--cancel' : (d.delay && d.delay > 300 ? 'dep-chip--late' : 'dep-chip--ok');
+      const time = fmtTime(d.planned_when);
+      const dir = d.direction === 'muenchen' ? '→Muc' : '→Tut';
+      const delayStr = d.delay && d.delay > 0 ? `<span class="dep-chip__delay">+${Math.round(d.delay / 60)}</span>` : '';
+      return `<span class="dep-chip ${cls}">${time} <span class="dep-chip__dir">${dir}</span> ${delayStr}</span>`;
+    }).join('');
+  }
+
+  load();
 </script>

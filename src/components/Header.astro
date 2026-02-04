@@ -66,7 +66,7 @@ const { lastUpdated } = Astro.props;
           <span class="navbar-train-dir">→ Tut</span>
           <span id="navbar-train-tutzing">--:--</span>
         </a>
-        <a href="/s6" class="navbar-weather-item navbar-punctuality" id="navbar-punctuality" title="S6 Pünktlichkeit heute" style="display:none;">
+        <a href="/s6" class="navbar-weather-item navbar-punctuality" id="navbar-punctuality" title="S6 Pünktlichkeit (7 Tage)" style="display:none;">
           <span class="punctuality-dot" id="punctuality-dot"></span>
           <span class="punctuality-value" id="punctuality-value">–%</span>
         </a>
@@ -615,7 +615,7 @@ const { lastUpdated } = Astro.props;
     // S6 Punctuality from Worker
     async function loadPunctuality() {
       try {
-        const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=today');
+        const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=week');
         if (!resp.ok) return;
         const data = await resp.json();
         const o = data.overall;
