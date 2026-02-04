@@ -8,7 +8,7 @@ import Layout from '../layouts/Layout.astro';
   <a href="/" class="s6-back">← Zurück zu Events</a>
 
   <header class="s6-header">
-    <div class="s6-header__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/></svg></div>
+    <div class="s6-header__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="M8 19l-2 3"/><path d="M16 19l2 3"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/></svg></div>
     <div>
       <h1 class="s6-header__title">S6 Pünktlichkeit</h1>
       <p class="s6-header__sub">Bahnhof Possenhofen · Echtzeit-Analyse</p>
@@ -195,9 +195,9 @@ import Layout from '../layouts/Layout.astro';
   /* Cards */
   .s6-card { background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: var(--space-5); margin-bottom: var(--space-4); box-shadow: var(--shadow-sm); }
   .s6-section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-4); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-light); display: flex; align-items: center; gap: var(--space-2); }
-  .s6-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--color-primary); }
-  .rush-icon { width: 16px; height: 16px; display: inline-block; vertical-align: -2px; color: var(--color-primary); }
-  .weather-svg { width: 24px; height: 24px; color: var(--color-primary); }
+  .s6-icon { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-muted); opacity: 0.7; }
+  .rush-icon { width: 14px; height: 14px; display: inline-block; vertical-align: -2px; color: var(--color-muted); opacity: 0.6; }
+  .weather-svg { width: 18px; height: 18px; color: var(--color-muted); opacity: 0.7; }
 
   /* Scorecard */
   .s6-scorecard { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
