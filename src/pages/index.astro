@@ -106,6 +106,12 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: var(--space-16);
   }
 
+  @media (min-width: 768px) {
+    .main {
+      padding-top: 200px; /* Space for fixed navbar (56px) + header (~140px) */
+    }
+  }
+
   /* Content Grid: Sidebar + Main Content */
   .content-grid {
     display: block;

@@ -216,10 +216,10 @@ const { lastUpdated } = Astro.props;
     color: var(--color-text);
   }
 
-  /* === HERO HEADER (scrolls with content) === */
+  /* === HERO HEADER (fixed below navbar) === */
   .header {
     position: relative;
-    padding: var(--space-16) var(--space-5) var(--space-12);
+    padding: var(--space-8) var(--space-5) var(--space-6);
     background: linear-gradient(
       165deg,
       var(--color-bg) 0%,
@@ -231,14 +231,19 @@ const { lastUpdated } = Astro.props;
 
   @media (min-width: 768px) {
     .header {
-      padding: var(--space-12) var(--space-8) var(--space-10);
-      margin-top: 56px;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      z-index: 95;
+      padding: var(--space-6) var(--space-8) var(--space-5);
+      border-bottom: 1px solid var(--color-border-light);
     }
   }
 
   @media (min-width: 640px) and (max-width: 767px) {
     .header {
-      padding: var(--space-20) var(--space-8) var(--space-16);
+      padding: var(--space-12) var(--space-8) var(--space-8);
     }
   }
 
