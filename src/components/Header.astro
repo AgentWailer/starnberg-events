@@ -256,7 +256,7 @@ const { lastUpdated } = Astro.props;
     }
   }
 
-  .navbar-train-delay {
+  :global(.navbar-train-delay) {
     font-size: 0.6875rem;
     color: #dc2626;
     font-weight: 600;
@@ -536,17 +536,14 @@ const { lastUpdated } = Astro.props;
         const departures = data.departures || [];
         if (departures.length === 0) return;
         
-        // Find next train to Munich
-        const toMunich = departures.find(function(d) {
+        // Classify direction: Tutzing/Feldafing = south, everything else = München
+        function isTutzingDir(d) {
           const dir = (d.direction || '').toLowerCase();
-          return dir.includes('münchen') || dir.includes('munich') || dir.includes('pasing');
-        });
+          return dir.includes('tutzing') || dir.includes('feldafing');
+        }
         
-        // Find next train to Tutzing
-        const toTutzing = departures.find(function(d) {
-          const dir = (d.direction || '').toLowerCase();
-          return dir.includes('tutzing');
-        });
+        const toMunich = departures.find(function(d) { return !isTutzingDir(d); });
+        const toTutzing = departures.find(function(d) { return isTutzingDir(d); });
         
         // Update Munich
         if (toMunich) {
