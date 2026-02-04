@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-03",
+  "lastUpdated": "2026-02-04",
   "sources": [
     "beccult",
     "starnbergammersee",
@@ -9,8 +9,7 @@
     "deutsches-museum",
     "tegernsee",
     "gapa",
-    "poecking.de",
-    "seenschifffahrt.de"
+    "pfc"
   ],
   "regions": {
     "poecking": {
@@ -34,27 +33,9 @@
       "emoji": "🎿"
     }
   },
-  "eventCount": 71,
+  "eventCount": 91,
   "events": [
     {
-      "id": 1,
-      "title": "Mal- und Spachtelkurs für Erwachsene",
-      "date": "2026-02-03",
-      "time": "18:30",
-      "location": "Pöcking",
-      "address": "82343 Pöcking",
-      "description": "Kreativkurs im professionellen Atelier",
-      "category": "erwachsene",
-      "tags": [
-        "kunst",
-        "workshop"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=6968e09c9f949426f44bdd4f",
-      "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
-    },
-    {
-      "id": 2,
       "title": "Kloster Andechs: öffentliche Kirchenführung",
       "date": "2026-02-05",
       "time": "12:00",
@@ -63,33 +44,71 @@
       "description": "Jeden Donnerstag öffentliche Führung",
       "category": "familie",
       "tags": [
-        "führung",
-        "kultur"
+        "führung"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=692466e7205b8f3bc56641c7",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 1
+    },
+    {
+      "title": "Mal- und Spachtelkurs für Erwachsene",
+      "date": "2026-02-05",
+      "time": "18:30",
+      "location": "Pöcking",
+      "address": "82343 Pöcking",
+      "description": "Kreativkurs im professionellen Atelier",
+      "category": "familie",
+      "tags": [
+        "workshop"
+      ],
+      "url": "https://www.starnbergammersee.de/detail/id=6968e09c9f949426f44bdd4f",
+      "source": "starnbergammersee",
+      "region": "starnberg-ammersee",
+      "venue": null,
+      "isHighlight": false,
+      "id": 2
     },
     {
       "id": 3,
+      "title": "Ré Soupault – Künstlerin der Avantgarde",
+      "date": "2026-02-05",
+      "time": "19:30",
+      "endTime": "21:00",
+      "location": "Pöcking",
+      "address": "Gemeindebücherei Pöcking, Hauptstr. 8, 82343 Pöcking",
+      "region": "poecking",
+      "category": "erwachsene",
+      "description": "Vortrag über die Künstlerin der Avantgarde im Alten Pfarrhaus",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "literatur",
+        "kunst"
+      ]
+    },
+    {
       "title": "Märchenstunde in der Bücherei Dießen",
       "date": "2026-02-06",
       "time": "14:30",
       "location": "Dießen am Ammersee",
       "address": "86911 Dießen am Ammersee",
-      "description": "Für Groß und Klein: Warmherzige Kuschelei'n!",
+      "description": "Für Groß und Klein: Warmherzige Kuschelein!",
       "category": "kinder",
       "tags": [
-        "kinder",
-        "literatur"
+        "kinder"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=68e39acbdd2dd53cd0779a90",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 4
     },
     {
-      "id": 4,
-      "title": "David Berlinghof mit Felix Renner \"Wohlfühlprogramm\" (Musikkabarett)",
+      "title": "David Berlinghof mit Felix Renner Wohlfühlprogramm (Musikkabarett)",
       "date": "2026-02-06",
       "time": "20:00",
       "location": "Bernried am Starnberger See",
@@ -101,25 +120,45 @@
         "theater"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6911b46f35610140e567d18b",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 5
     },
     {
-      "id": 5,
-      "title": "VHS Gilching - \"Bairisch für Zuagroaste\" mit Weißwurstfrühstück",
+      "title": "Nächtliche Welten - Fotoausstellung",
+      "date": "2026-02-07",
+      "time": "09:00",
+      "location": "Deutsches Museum",
+      "address": "",
+      "description": "Sonderausstellung in der Bibliothek – faszinierende Astrofotos von Freizeit-Astronomen: Nachtlandschaften, Sonnensystem und Deep Sky",
+      "category": "familie",
+      "tags": [
+        "kunst"
+      ],
+      "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
+      "source": "deutsches-museum",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 6
+    },
+    {
+      "title": "VHS Gilching - Bairisch für Zuagroaste mit Weißwurstfrühstück",
       "date": "2026-02-07",
       "time": "10:00",
       "location": "Gilching",
       "address": "80225 Gilching",
       "description": "Humorvoller Einblick in Sprache und Kultur der Bayern",
-      "category": "erwachsene",
-      "tags": [
-        "workshop",
-        "kulinarisch"
-      ],
+      "category": "familie",
+      "tags": [],
       "url": "https://www.starnbergammersee.de/detail/id=69412e13ec880c50d43641be",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 7
     },
     {
       "title": "Vorführung: Amateurfunk",
@@ -137,7 +176,25 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 6
+      "id": 8
+    },
+    {
+      "id": 9,
+      "title": "Senioren-Fasching in der Sozialstation",
+      "date": "2026-02-07",
+      "time": "14:00",
+      "endTime": "17:00",
+      "location": "Pöcking",
+      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
+      "region": "poecking",
+      "category": "familie",
+      "description": "Faschingsfeier für Senioren im Sozialdienst",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "fest",
+        "senioren"
+      ]
     },
     {
       "title": "Willi live – Und wovon träumst du?",
@@ -155,10 +212,29 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 8
+      "id": 10
     },
     {
-      "id": 9,
+      "title": "Münchner Schäfflertanz am Seehof Herrsching",
+      "date": "2026-02-07",
+      "time": "18:30",
+      "location": "Herrsching",
+      "address": "82211 Herrsching",
+      "description": "Ein Stück gelebte Tradition am Ammersee",
+      "category": "familie",
+      "tags": [
+        "tanz",
+        "natur",
+        "brauchtum"
+      ],
+      "url": "https://www.starnbergammersee.de/detail/id=6981f3ab65ab70fff9df049e",
+      "source": "starnbergammersee",
+      "region": "starnberg-ammersee",
+      "venue": null,
+      "isHighlight": false,
+      "id": 11
+    },
+    {
       "title": "Henschel-Quartett & Hendrik Blumenroth",
       "date": "2026-02-07",
       "time": "19:00",
@@ -170,11 +246,13 @@
         "musik"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3df1ec880c50d436388e",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 12
     },
     {
-      "id": 10,
       "title": "1. Starnberger Ballnacht – Die Redoute im neuen Gwand",
       "date": "2026-02-07",
       "time": "19:30",
@@ -183,44 +261,72 @@
       "description": "Stilvolle Balltradition",
       "category": "erwachsene",
       "tags": [
-        "tanz",
-        "fest"
+        "fest",
+        "natur",
+        "brauchtum"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6941226aec880c50d436419a",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 13
     },
     {
-      "id": 11,
       "title": "2. Tutzinger Kurzfilmnacht",
       "date": "2026-02-07",
       "time": "19:30",
       "location": "Tutzing",
       "address": "82327 Tutzing",
       "description": "Kurzfilme von Nachwuchs-Filmemachern mit Filmgespräch",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
         "kino"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69677121c8652f72520d808d",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 14
     },
     {
-      "id": 12,
+      "title": "Banff Mountain Film Festival World Tour",
+      "date": "2026-02-07",
+      "time": "19:30",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Die besten Bergfilme des Jahres – Abenteuer, Outdoor und Extremsport. Kongresshaus, Konzertsaal Richard Strauß",
+      "category": "erwachsene",
+      "tags": [
+        "musik",
+        "kino",
+        "führung"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 15
+    },
+    {
       "title": "Yasi Hofer Trio – Best Of Tour",
       "date": "2026-02-07",
       "time": "20:00",
       "location": "Inning am Ammersee",
       "address": "82266 Inning am Ammersee",
       "description": "Gitarristin Yasi Hofer und ihr Trio",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
-        "musik"
+        "führung"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69305e44d5d91861c35733e5",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 16
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
@@ -239,7 +345,7 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 13
+      "id": 17
     },
     {
       "title": "Science Show: Flüssiger Stickstoff",
@@ -255,7 +361,7 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 14
+      "id": 18
     },
     {
       "title": "Familienführung: Was die Welt antreibt",
@@ -274,10 +380,9 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 15
+      "id": 19
     },
     {
-      "id": 16,
       "title": "Umgedreht Unterwegs - ein Kinderkonzert rund um die Welt",
       "date": "2026-02-08",
       "time": "16:00",
@@ -286,12 +391,51 @@
       "description": "Kinderkonzert",
       "category": "kinder",
       "tags": [
-        "kinder",
-        "musik"
+        "musik",
+        "kinder"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3eebec880c50d4363894",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 20
+    },
+    {
+      "id": 21,
+      "title": "Frauen-Treff im Stiftungshaus",
+      "date": "2026-02-10",
+      "time": "16:00",
+      "endTime": "18:00",
+      "location": "Pöcking",
+      "address": "Stiftung für Pöcking, Feldafinger Straße 21, 82343 Pöcking",
+      "region": "poecking",
+      "category": "familie",
+      "description": "Regelmäßiger Treff für Frauen zum Austausch",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "treffen"
+      ]
+    },
+    {
+      "title": "Weiberfasching Starnberg",
+      "date": "2026-02-12",
+      "time": "19:00",
+      "location": "Starnberg",
+      "address": "82319 Starnberg",
+      "description": "ATTENTION LADIES! Kreative Kostüme, tolle Stimmung und viel Girls-Power!",
+      "category": "erwachsene",
+      "tags": [
+        "fest",
+        "natur"
+      ],
+      "url": "https://www.starnbergammersee.de/detail/id=6978d02b9fc49d222d537304",
+      "source": "starnbergammersee",
+      "region": "starnberg-ammersee",
+      "venue": null,
+      "isHighlight": false,
+      "id": 22
     },
     {
       "title": "Weiberfasching",
@@ -309,24 +453,25 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 18
+      "id": 23
     },
     {
-      "id": 19,
-      "title": "Fasching mit der GROUNDLIFT Band",
+      "title": "Karl Valentin und die Liebe – Wilfried vom Ammersee",
       "date": "2026-02-13",
-      "time": "20:00",
-      "location": "Inning am Ammersee",
-      "address": "82266 Inning am Ammersee",
-      "description": "Faschingsparty mit Live-Band",
-      "category": "erwachsene",
+      "time": "19:00",
+      "location": "Starnberg",
+      "address": "82319 Starnberg",
+      "description": "Wilfried vom Ammersee präsentiert Karl Valentin und die Liebe",
+      "category": "familie",
       "tags": [
-        "fest",
-        "musik"
+        "natur"
       ],
-      "url": "https://www.starnbergammersee.de/detail/id=69305fb3d5d91861c3573446",
+      "url": "https://www.starnbergammersee.de/detail/id=6981f7a365ab70fff9dfd998",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 24
     },
     {
       "title": "Pöckinger Malle-Party 2026",
@@ -344,7 +489,25 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 20
+      "id": 25
+    },
+    {
+      "title": "Fasching mit der GROUNDLIFT Band",
+      "date": "2026-02-13",
+      "time": "20:00",
+      "location": "Inning am Ammersee",
+      "address": "82266 Inning am Ammersee",
+      "description": "Faschingsparty mit Live-Band",
+      "category": "erwachsene",
+      "tags": [
+        "fest"
+      ],
+      "url": "https://www.starnbergammersee.de/detail/id=69305fb3d5d91861c3573446",
+      "source": "starnbergammersee",
+      "region": "starnberg-ammersee",
+      "venue": null,
+      "isHighlight": false,
+      "id": 26
     },
     {
       "title": "Flohmarkt im Olympiapark",
@@ -352,18 +515,17 @@
       "time": "07:00",
       "location": "Olympiapark München",
       "address": "",
-      "description": "Bayerns größter Flohmarkt auf dem Olympiagelände",
+      "description": "Bayerns größter Flohmarkt auf dem Olympiagelände – jeden 2. Samstag",
       "category": "familie",
       "tags": [],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
+      "url": "https://www.olympiapark.de/de/veranstaltungen/flohmarkt-im-olympiapark-n3370",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 21
+      "id": 27
     },
     {
-      "id": 22,
       "title": "Starnberger Brauhaus: öffentliche Brauereiführung",
       "date": "2026-02-14",
       "time": "11:00",
@@ -373,27 +535,31 @@
       "category": "familie",
       "tags": [
         "führung",
+        "natur",
         "kulinarisch"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69245abd205b8f3bc566419e",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 28
     },
     {
-      "id": 23,
-      "title": "That's amore! - Valentins-Candlelight-Dinner",
+      "title": "Thats amore! - Valentins-Candlelight-Dinner",
       "date": "2026-02-14",
       "time": "18:00",
       "location": "Tutzing",
       "address": "82327 Tutzing",
       "description": "Romantisches Dinner im Restaurant Theodor",
-      "category": "erwachsene",
-      "tags": [
-        "kulinarisch"
-      ],
+      "category": "familie",
+      "tags": [],
       "url": "https://www.starnbergammersee.de/detail/id=6971d9e59f949426f44be8e8",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 29
     },
     {
       "title": "Valentinstag im Tierpark Hellabrunn",
@@ -402,14 +568,14 @@
       "location": "Tierpark Hellabrunn",
       "address": "",
       "description": "Wenn die Liebe durch den Zoo spaziert – romantischer Abend im Tierpark",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 24
+      "id": 30
     },
     {
       "title": "Glamour Schlager und Discofox Night 2026",
@@ -428,26 +594,27 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 25
+      "id": 31
     },
     {
-      "id": 26,
       "title": "Klassik 2.0 / Club - Paris trifft See",
       "date": "2026-02-14",
       "time": "19:30",
       "location": "Berg",
       "address": "82335 Berg",
       "description": "Julian Schad & Quartett mit Sopranistin Clara Orif aus Paris",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
-        "musik"
+        "natur"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69666943f3edc40bae3ad4a1",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 32
     },
     {
-      "id": 27,
       "title": "Starnberger Faschingssause 2026",
       "date": "2026-02-14",
       "time": "20:00",
@@ -456,29 +623,31 @@
       "description": "Präsentiert von Perchalla e.V. & DJ Hap",
       "category": "erwachsene",
       "tags": [
-        "fest"
+        "fest",
+        "natur"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=67877e6d74da950e18c95ec0",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 33
     },
     {
-      "title": "Florence + the Machine",
+      "title": "Herbert Grönemeyer – mittendrin akustisch",
       "date": "2026-02-14",
       "time": "20:00",
       "location": "Olympiahalle München",
       "address": "",
-      "description": "Konzert der britischen Indie-Rock-Band",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
+      "description": "Herbert Grönemeyer live in der Olympiahalle – akustisch und hautnah",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/herbert-gronemeyer-n5395",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 28
+      "id": 34
     },
     {
       "title": "Kinderfasching",
@@ -498,7 +667,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 29
+      "id": 35
     },
     {
       "title": "Familienführung: Reise ins All",
@@ -518,42 +687,64 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 30
+      "id": 36
     },
     {
-      "id": 31,
       "title": "FILMWORKSHOP (Faschingsferien)",
       "date": "2026-02-16",
       "time": "10:00",
       "location": "Starnberg",
       "address": "82319 Starnberg",
       "description": "Gemeinsam einen Kurzfilm drehen – für Anfänger und Fortgeschrittene",
-      "category": "kinder",
+      "category": "erwachsene",
       "tags": [
-        "kinder",
+        "kino",
         "workshop",
-        "kino"
+        "fest"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=697b27af9fcdb03730df2bd2",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 37
     },
     {
-      "id": 32,
       "title": "16. Starnberger Garderevue – Perchalla",
       "date": "2026-02-16",
       "time": "18:00",
       "location": "Starnberg",
       "address": "82319 Starnberg",
       "description": "Auftritte der Perchalla-Garden und Showeinlagen",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
-        "tanz",
-        "fest"
+        "natur",
+        "kulinarisch"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d3ae9fc49d222d53bb24",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 38
+    },
+    {
+      "id": 39,
+      "title": "Rosenmontagsball",
+      "date": "2026-02-16",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
+      "description": "Rosenmontagsball des Pöckinger Faschings Clubs. Einlass & Beginn 19:00 Uhr, ab 16 Jahren.",
+      "category": "erwachsene",
+      "tags": [
+        "fasching",
+        "ball",
+        "party"
+      ],
+      "url": "https://www.pfc.de/veranstaltungen/",
+      "region": "poecking",
+      "source": "pfc"
     },
     {
       "title": "RuckiZucki und Kehraus 2026",
@@ -571,39 +762,63 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 33
+      "id": 40
     },
     {
-      "id": 34,
       "title": "Diessener Kneipen-Chor",
       "date": "2026-02-17",
       "time": "18:30",
       "location": "Dießen",
       "address": "86911 Dießen",
       "description": "Kneipen-Chor im Craftbräu",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
-        "musik"
+        "musik",
+        "kulinarisch"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6647643502d3e043d16976bc",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 41
     },
     {
-      "id": 35,
+      "title": "mgk – Lost Americana Tour",
+      "date": "2026-02-17",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Machine Gun Kelly live",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/mgk-n5306",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 42
+    },
+    {
       "title": "Aschermittwoch im Theodor",
       "date": "2026-02-18",
       "time": "18:00",
       "location": "Tutzing",
       "address": "82327 Tutzing",
       "description": "Traditionelles Fischessen",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
-        "kulinarisch"
+        "kulinarisch",
+        "brauchtum"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=6971e7229f949426f44be901",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 43
     },
     {
       "title": "Großer Lesetag 2026",
@@ -622,10 +837,27 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 36
+      "id": 44
     },
     {
-      "id": 37,
+      "title": "Cavalluna – Tor zur Anderswelt",
+      "date": "2026-02-21",
+      "time": "15:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Die Pferdeshow für die ganze Familie",
+      "category": "familie",
+      "tags": [
+        "kinder"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/cavalluna-n4800",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 45
+    },
+    {
       "title": "Vincent Meissner Trio",
       "date": "2026-02-21",
       "time": "19:00",
@@ -637,8 +869,27 @@
         "musik"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3fdeec880c50d436389a",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 46
+    },
+    {
+      "title": "Der König der Löwen – The Music Live in Concert",
+      "date": "2026-02-21",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Das Disney-Meisterwerk als Live-in-Concert-Erlebnis",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/der-konig-der-lowen-n5156",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 47
     },
     {
       "title": "Kinderführung: Willkommen an Bord unserer Maschine",
@@ -657,10 +908,9 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 38
+      "id": 48
     },
     {
-      "id": 39,
       "title": "Fremd ist der Fremde nur in der Fremde",
       "date": "2026-02-22",
       "time": "19:30",
@@ -669,12 +919,32 @@
       "description": "Literarisches Jazzkonzert",
       "category": "erwachsene",
       "tags": [
-        "musik",
-        "literatur"
+        "musik"
       ],
       "url": "https://www.starnbergammersee.de/detail/id=69707b3940fda3056402d3a0",
+      "source": "starnbergammersee",
       "region": "starnberg-ammersee",
-      "source": "starnbergammersee"
+      "venue": null,
+      "isHighlight": false,
+      "id": 49
+    },
+    {
+      "title": "Das Phantom der Oper – Musical",
+      "date": "2026-02-22",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Der Musical-Erfolg des Autorenteams Sasson/Sautter",
+      "category": "familie",
+      "tags": [
+        "literatur"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/das-phantom-der-oper-n5115",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 50
     },
     {
       "title": "Kulturmontag - Michael Kinsik (Film und Gespräch)",
@@ -683,7 +953,7 @@
       "location": "Pöcking",
       "address": "",
       "description": "Why Do Germans Love the Blues – Road Movie mit Filmgespräch",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [
         "kino"
       ],
@@ -692,7 +962,7 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 40
+      "id": 51
     },
     {
       "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
@@ -701,14 +971,50 @@
       "location": "Tierpark Hellabrunn",
       "address": "",
       "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
-      "category": "erwachsene",
+      "category": "familie",
       "tags": [],
       "url": "https://www.hellabrunn.de/veranstaltungen",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 41
+      "id": 52
+    },
+    {
+      "title": "Eros Ramazzotti – Una Storia Importante World Tour",
+      "date": "2026-02-25",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Eros Ramazzotti live auf Welttournee",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/eros-ramazzotti-n4981",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 53
+    },
+    {
+      "title": "Jason Derulo – The Last Dance World Tour",
+      "date": "2026-02-26",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Jason Derulo live in München",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/jason-derulo-n5021",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 54
     },
     {
       "title": "Führung auf die Zugspitze",
@@ -727,315 +1033,45 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 42
+      "id": 55
     },
     {
-      "title": "Ehrlich Brothers - Dream & Fly",
+      "title": "Ehrlich Brothers – Diamonds",
       "date": "2026-03-01",
       "time": "19:00",
       "location": "Olympiahalle München",
       "address": "",
-      "description": "Die große Magie-Show der Ehrlich Brothers",
-      "category": "erwachsene",
-      "tags": [],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
-      "source": "olympiapark",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 43
-    },
-    {
-      "title": "Cavalluna - Legende der Wüste",
-      "date": "2026-03-07",
-      "time": "15:00",
-      "location": "Olympiahalle München",
-      "address": "",
-      "description": "Die Pferdeshow für die ganze Familie",
+      "description": "Die große Magie-Show der Ehrlich Brothers – Diamonds",
       "category": "familie",
-      "tags": [
-        "kinder"
-      ],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
+      "tags": [],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/ehrlich-brothers-n4940",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 44
-    },
-    {
-      "title": "Banff Mountain Film Festival World Tour",
-      "date": "2026-03-08",
-      "time": "19:00",
-      "location": "Garmisch-Partenkirchen",
-      "address": "",
-      "description": "Die besten Bergfilme des Jahres – Abenteuer, Outdoor und Extremsport",
-      "category": "erwachsene",
-      "tags": [
-        "kino",
-        "führung",
-        "fest"
-      ],
-      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
-      "source": "gapa",
-      "region": "werdenfels",
-      "venue": null,
-      "isHighlight": true,
-      "id": 45
-    },
-    {
-      "title": "Tegernseer Bergfilm-Festival 2026",
-      "date": "2026-03-15",
-      "time": "19:00",
-      "location": "Tegernsee",
-      "address": "",
-      "description": "Internationales Bergfilm-Festival mit Filmvorführungen und Gesprächen",
-      "category": "erwachsene",
-      "tags": [
-        "kino",
-        "führung",
-        "fest"
-      ],
-      "url": "https://www.tegernsee.com/hoehepunkte",
-      "source": "tegernsee",
-      "region": "tegernsee",
-      "venue": null,
-      "isHighlight": true,
-      "id": 46
-    },
-    {
-      "title": "Kulturmontag - Comedy in Pöcking?",
-      "date": "2026-03-23",
-      "time": "19:00",
-      "location": "Pöcking",
-      "address": "",
-      "description": "Comedy-Abend mit Moderation von Cornelia Grün",
-      "category": "erwachsene",
-      "tags": [
-        "theater"
-      ],
-      "url": "https://www.beccult.de/veranstaltungen",
-      "source": "beccult",
-      "region": "poecking",
-      "venue": null,
-      "isHighlight": false,
-      "id": 47
-    },
-    {
-      "title": "Bedrohte Pioniere: Wechselkröte und Laubfrosch",
-      "date": "2026-04-16",
-      "time": "19:00",
-      "location": "Tierpark Hellabrunn",
-      "address": "",
-      "description": "Vortrag über bedrohte Amphibien in München",
-      "category": "erwachsene",
-      "tags": [],
-      "url": "https://www.hellabrunn.de/veranstaltungen",
-      "source": "hellabrunn",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 48
-    },
-    {
-      "title": "Amelie Fried - Lesung",
-      "date": "2026-04-27",
-      "time": "19:00",
-      "location": "Pöcking",
-      "address": "",
-      "description": "Lesung aus dem aktuellen Roman 'Eine von uns'",
-      "category": "erwachsene",
-      "tags": [
-        "literatur"
-      ],
-      "url": "https://www.beccult.de/veranstaltungen",
-      "source": "beccult",
-      "region": "poecking",
-      "venue": null,
-      "isHighlight": false,
-      "id": 49
-    },
-    {
-      "title": "Konzert der Philharmonie Starnberger See",
-      "date": "2026-05-08",
-      "time": "20:00",
-      "location": "Pöcking",
-      "address": "",
-      "description": "Werke von Mozart, Bruch und Dvorak – Solist: Maurice Poschenrieder",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "natur"
-      ],
-      "url": "https://www.beccult.de/veranstaltungen",
-      "source": "beccult",
-      "region": "poecking",
-      "venue": null,
-      "isHighlight": false,
-      "id": 50
-    },
-    {
-      "title": "André Rieu - Konzert 2026",
-      "date": "2026-05-13",
-      "time": "20:00",
-      "location": "Olympiahalle München",
-      "address": "",
-      "description": "Der König des Walzers live mit seinem Johann Strauss Orchester",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
-      "source": "olympiapark",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 51
-    },
-    {
-      "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
-      "date": "2026-05-19",
-      "time": "19:00",
-      "location": "Tierpark Hellabrunn",
-      "address": "",
-      "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
-      "category": "erwachsene",
-      "tags": [],
-      "url": "https://www.hellabrunn.de/veranstaltungen",
-      "source": "hellabrunn",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 52
-    },
-    {
-      "title": "Richard Strauss Festival 2026",
-      "date": "2026-06-20",
-      "time": "19:00",
-      "location": "Garmisch-Partenkirchen",
-      "address": "",
-      "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
-      "category": "erwachsene",
-      "tags": [
-        "fest"
-      ],
-      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
-      "source": "gapa",
-      "region": "werdenfels",
-      "venue": null,
-      "isHighlight": true,
-      "id": 53
-    },
-    {
-      "title": "Der König der Löwen - Musical",
-      "date": "2026-06-20",
-      "time": "19:30",
-      "location": "Olympiahalle München",
-      "address": "",
-      "description": "Das Original Disney-Musical",
-      "category": "erwachsene",
-      "tags": [],
-      "url": "https://www.olympiapark.de/de/veranstaltungen",
-      "source": "olympiapark",
-      "region": "muenchen",
-      "venue": null,
-      "isHighlight": false,
-      "id": 54
-    },
-    {
-      "title": "Tegernseer Seefest mit Brillantfeuerwerk",
-      "date": "2026-08-15",
-      "time": "18:00",
-      "location": "Tegernsee",
-      "address": "",
-      "description": "Das traditionelle Seefest mit spektakulärem Feuerwerk über dem See",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur",
-        "brauchtum"
-      ],
-      "url": "https://www.tegernsee.com/hoehepunkte",
-      "source": "tegernsee",
-      "region": "tegernsee",
-      "venue": null,
-      "isHighlight": true,
-      "id": 55
-    },
-    {
-      "title": "Neujahrsskispringen 2027",
-      "date": "2027-01-01",
-      "time": "14:00",
-      "location": "Garmisch-Partenkirchen",
-      "address": "",
-      "description": "Vierschanzentournee – Weltcup-Skispringen an der Olympiaschanze",
-      "category": "familie",
-      "tags": [
-        "führung",
-        "sport"
-      ],
-      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
-      "source": "gapa",
-      "region": "werdenfels",
-      "venue": null,
-      "isHighlight": true,
       "id": 56
     },
     {
-      "id": 57,
-      "title": "Ré Soupault – Künstlerin der Avantgarde",
-      "date": "2026-02-05",
-      "time": "19:30",
-      "endTime": "21:00",
-      "location": "Pöcking",
-      "address": "Gemeindebücherei Pöcking, Hauptstr. 8, 82343 Pöcking",
-      "region": "poecking",
+      "title": "Florence + the Machine – The Everybody Scream Tour",
+      "date": "2026-03-04",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Konzert der britischen Indie-Rock-Band",
       "category": "erwachsene",
-      "description": "Vortrag über die Künstlerin der Avantgarde im Alten Pfarrhaus",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
       "tags": [
-        "literatur",
-        "kunst"
-      ]
+        "musik",
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/florence-the-machine-n5244",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 57
     },
     {
       "id": 58,
-      "title": "Senioren-Fasching in der Sozialstation",
-      "date": "2026-02-07",
-      "time": "14:00",
-      "endTime": "17:00",
-      "location": "Pöcking",
-      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
-      "region": "poecking",
-      "category": "familie",
-      "description": "Faschingsfeier für Senioren im Sozialdienst",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "fest",
-        "senioren"
-      ]
-    },
-    {
-      "id": 59,
-      "title": "Frauen-Treff im Stiftungshaus",
-      "date": "2026-02-10",
-      "time": "16:00",
-      "endTime": "18:00",
-      "location": "Pöcking",
-      "address": "Stiftung für Pöcking, Feldafinger Straße 21, 82343 Pöcking",
-      "region": "poecking",
-      "category": "familie",
-      "description": "Regelmäßiger Treff für Frauen zum Austausch",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "treffen"
-      ]
-    },
-    {
-      "id": 60,
       "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach",
       "date": "2026-03-06",
       "time": "20:00",
@@ -1052,7 +1088,117 @@
       ]
     },
     {
-      "id": 61,
+      "title": "Kraftklub – Sterben in Karl-Marx-Stadt Tour",
+      "date": "2026-03-06",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Kraftklub live auf Tour",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/kraftklub-n5069",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 59
+    },
+    {
+      "title": "Sean Paul – Timeless Tour",
+      "date": "2026-03-07",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Sean Paul live in München",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/sean-paul-n5460",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 60
+    },
+    {
+      "title": "Mario Barth – Männer sind nichts ohne die Frauen",
+      "date": "2026-03-08",
+      "time": "19:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Comedy-Show",
+      "category": "erwachsene",
+      "tags": [
+        "theater"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/mario-barth-n4915",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 61
+    },
+    {
+      "title": "Bushido – Alles wird gut Tour 2026",
+      "date": "2026-03-11",
+      "time": "20:00",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Bushido live in München",
+      "category": "familie",
+      "tags": [
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/bushido-n5062",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 62
+    },
+    {
+      "title": "Ben Zucker – Kämpferherz Arenatour 2026",
+      "date": "2026-03-12",
+      "time": "19:30",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Schlager-Star Ben Zucker live",
+      "category": "erwachsene",
+      "tags": [
+        "musik",
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/ben-zucker-n4724",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 63
+    },
+    {
+      "title": "André Rieu – Deutschlandtour 2026",
+      "date": "2026-03-13",
+      "time": "19:30",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Der König des Walzers live mit seinem Johann Strauss Orchester",
+      "category": "familie",
+      "tags": [
+        "musik",
+        "führung"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/andr-rieu-n4916",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 64
+    },
+    {
+      "id": 65,
       "title": "Pöckinger Ostermarkt",
       "date": "2026-03-14",
       "time": "10:00",
@@ -1070,7 +1216,63 @@
       ]
     },
     {
-      "id": 62,
+      "title": "Der Herr der Ringe: Die Rückkehr des Königs – In Concert",
+      "date": "2026-03-14",
+      "time": "18:30",
+      "location": "Olympiahalle München",
+      "address": "",
+      "description": "Live-to-Film-Konzert mit dem kompletten Film und Live-Orchester",
+      "category": "erwachsene",
+      "tags": [
+        "musik",
+        "kino"
+      ],
+      "url": "https://www.olympiapark.de/de/veranstaltungen/der-herr-der-ringe-die-ruckkehr-des-konigs-n4949",
+      "source": "olympiapark",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 66
+    },
+    {
+      "id": 67,
+      "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach (Sonntag)",
+      "date": "2026-03-15",
+      "time": "18:00",
+      "endTime": "20:30",
+      "location": "Pöcking",
+      "address": "Kath. Pfarrsaal St. Pius, Piusweg 4, 82343 Pöcking",
+      "region": "poecking",
+      "category": "erwachsene",
+      "description": "Komödie der Theatergruppe Pöcking – Sonntagsvorstellung",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "theater"
+      ]
+    },
+    {
+      "title": "Tegernseer Bergfilm-Festival 2026",
+      "date": "2026-03-15",
+      "time": "19:00",
+      "location": "Tegernsee",
+      "address": "",
+      "description": "Internationales Bergfilm-Festival mit Filmvorführungen und Gesprächen",
+      "category": "familie",
+      "tags": [
+        "kino",
+        "führung",
+        "fest"
+      ],
+      "url": "https://www.tegernsee.com/bergfilmfestival-tegernsee",
+      "source": "tegernsee",
+      "region": "tegernsee",
+      "venue": null,
+      "isHighlight": true,
+      "id": 68
+    },
+    {
+      "id": 69,
       "title": "(W)orte und Erinnerungen – Lesung mit Marion Oelmann",
       "date": "2026-03-20",
       "time": "19:00",
@@ -1085,131 +1287,6 @@
       "tags": [
         "literatur",
         "lesung"
-      ]
-    },
-    {
-      "id": 63,
-      "title": "Wenn nicht wer Du! – Lesung",
-      "date": "2026-04-16",
-      "time": "19:30",
-      "endTime": "22:00",
-      "location": "Pöcking",
-      "address": "Gemeindebücherei Pöcking, Hauptstr. 8, 82343 Pöcking",
-      "region": "poecking",
-      "category": "erwachsene",
-      "description": "Lesung im Alten Pfarrhaus",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "literatur",
-        "lesung"
-      ]
-    },
-    {
-      "id": 64,
-      "title": "Tango, Tango – Konzert",
-      "date": "2026-05-18",
-      "time": "19:00",
-      "endTime": "21:00",
-      "location": "Pöcking",
-      "address": "beccult, Weilheimer Str. 33a, 82343 Pöcking",
-      "region": "poecking",
-      "category": "erwachsene",
-      "description": "Konzertabend mit deutsch-kubanischer Mezzosopranistin Katarina Morfa – Tangos und mehr",
-      "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender",
-      "source": "beccult",
-      "tags": [
-        "musik",
-        "konzert",
-        "tango"
-      ]
-    },
-    {
-      "id": 65,
-      "title": "Country-Fest für ALLE",
-      "date": "2026-05-30",
-      "time": "17:00",
-      "endTime": "21:00",
-      "location": "Pöcking",
-      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
-      "region": "poecking",
-      "category": "familie",
-      "description": "Country-Musik und gute Stimmung für alle Altersgruppen",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "musik",
-        "fest"
-      ]
-    },
-    {
-      "id": 66,
-      "title": "Sonntagsbrunch auf dem Starnberger See",
-      "date": "2026-05-03",
-      "time": "10:00",
-      "location": "Starnberg",
-      "address": "MS STARNBERG, Abfahrt Starnberg",
-      "region": "starnberg-ammersee",
-      "category": "familie",
-      "description": "Sonntags-Brunch nach Herzenslust auf dem MS STARNBERG. Jeden Sonntag vom 03.05. bis 28.06.2026",
-      "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
-      "source": "seenschifffahrt.de",
-      "tags": [
-        "kulinarisch",
-        "schifffahrt"
-      ]
-    },
-    {
-      "id": 67,
-      "title": "Vintage-Flohmarkt in der Sozialstation",
-      "date": "2026-07-11",
-      "time": "14:00",
-      "endTime": "17:00",
-      "location": "Pöcking",
-      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
-      "region": "poecking",
-      "category": "familie",
-      "description": "Vintage-Schätze und Second-Hand-Fundstücke",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "markt",
-        "flohmarkt"
-      ]
-    },
-    {
-      "id": 68,
-      "title": "Ü30-Party auf dem Starnberger See",
-      "date": "2026-07-11",
-      "time": "20:00",
-      "endTime": "23:30",
-      "location": "Starnberg",
-      "address": "Katamaran STARNBERG, Abfahrt Starnberg",
-      "region": "starnberg-ammersee",
-      "category": "erwachsene",
-      "description": "Party auf dem See mit DJ – Hitmix für die Generation Ü30",
-      "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
-      "source": "seenschifffahrt.de",
-      "tags": [
-        "party",
-        "schifffahrt"
-      ]
-    },
-    {
-      "id": 69,
-      "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach (Sonntag)",
-      "date": "2026-03-15",
-      "time": "18:00",
-      "endTime": "20:30",
-      "location": "Pöcking",
-      "address": "Kath. Pfarrsaal St. Pius, Piusweg 4, 82343 Pöcking",
-      "region": "poecking",
-      "category": "erwachsene",
-      "description": "Komödie der Theatergruppe Pöcking – Sonntagsvorstellung",
-      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
-      "source": "poecking.de",
-      "tags": [
-        "theater"
       ]
     },
     {
@@ -1230,7 +1307,219 @@
       ]
     },
     {
-      "id": 71,
+      "title": "Kulturmontag - Comedy in Pöcking?",
+      "date": "2026-03-23",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Comedy-Abend mit Moderation von Cornelia Grün",
+      "category": "erwachsene",
+      "tags": [
+        "theater"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 71
+    },
+    {
+      "title": "Bedrohte Pioniere: Wechselkröte und Laubfrosch",
+      "date": "2026-04-16",
+      "time": "19:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Vortrag über bedrohte Amphibien in München",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 72
+    },
+    {
+      "id": 73,
+      "title": "Wenn nicht wer Du! – Lesung",
+      "date": "2026-04-16",
+      "time": "19:30",
+      "endTime": "22:00",
+      "location": "Pöcking",
+      "address": "Gemeindebücherei Pöcking, Hauptstr. 8, 82343 Pöcking",
+      "region": "poecking",
+      "category": "erwachsene",
+      "description": "Lesung im Alten Pfarrhaus",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "literatur",
+        "lesung"
+      ]
+    },
+    {
+      "title": "Amelie Fried - Lesung",
+      "date": "2026-04-27",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Lesung aus dem aktuellen Roman Eine von uns",
+      "category": "erwachsene",
+      "tags": [
+        "literatur"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 74
+    },
+    {
+      "id": 75,
+      "title": "Sonntagsbrunch auf dem Starnberger See",
+      "date": "2026-05-03",
+      "time": "10:00",
+      "location": "Starnberg",
+      "address": "MS STARNBERG, Abfahrt Starnberg",
+      "region": "starnberg-ammersee",
+      "category": "familie",
+      "description": "Sonntags-Brunch nach Herzenslust auf dem MS STARNBERG. Jeden Sonntag vom 03.05. bis 28.06.2026",
+      "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
+      "source": "seenschifffahrt.de",
+      "tags": [
+        "kulinarisch",
+        "schifffahrt"
+      ]
+    },
+    {
+      "title": "Konzert der Philharmonie Starnberger See",
+      "date": "2026-05-08",
+      "time": "20:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Werke von Mozart, Bruch und Dvorak – Solist: Maurice Poschenrieder",
+      "category": "erwachsene",
+      "tags": [
+        "musik",
+        "natur"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 76
+    },
+    {
+      "title": "Tango, Tango – Konzert",
+      "date": "2026-05-18",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Konzertabend mit deutsch-kubanischer Mezzosopranistin Katarina Morfa – Tangos und mehr",
+      "category": "erwachsene",
+      "tags": [
+        "musik"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 77
+    },
+    {
+      "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
+      "date": "2026-05-19",
+      "time": "19:00",
+      "location": "Tierpark Hellabrunn",
+      "address": "",
+      "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.hellabrunn.de/veranstaltungen",
+      "source": "hellabrunn",
+      "region": "muenchen",
+      "venue": null,
+      "isHighlight": false,
+      "id": 78
+    },
+    {
+      "id": 79,
+      "title": "Country-Fest für ALLE",
+      "date": "2026-05-30",
+      "time": "17:00",
+      "endTime": "21:00",
+      "location": "Pöcking",
+      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
+      "region": "poecking",
+      "category": "familie",
+      "description": "Country-Musik und gute Stimmung für alle Altersgruppen",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "musik",
+        "fest"
+      ]
+    },
+    {
+      "title": "Richard Strauss Festival 2026",
+      "date": "2026-06-20",
+      "time": "19:00",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
+      "category": "familie",
+      "tags": [
+        "fest"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 80
+    },
+    {
+      "id": 81,
+      "title": "Vintage-Flohmarkt in der Sozialstation",
+      "date": "2026-07-11",
+      "time": "14:00",
+      "endTime": "17:00",
+      "location": "Pöcking",
+      "address": "Sozialdienst e.V. Pöcking, Ahornweg 7, 82343 Pöcking",
+      "region": "poecking",
+      "category": "familie",
+      "description": "Vintage-Schätze und Second-Hand-Fundstücke",
+      "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
+      "source": "poecking.de",
+      "tags": [
+        "markt",
+        "flohmarkt"
+      ]
+    },
+    {
+      "id": 82,
+      "title": "Ü30-Party auf dem Starnberger See",
+      "date": "2026-07-11",
+      "time": "20:00",
+      "endTime": "23:30",
+      "location": "Starnberg",
+      "address": "Katamaran STARNBERG, Abfahrt Starnberg",
+      "region": "starnberg-ammersee",
+      "category": "erwachsene",
+      "description": "Party auf dem See mit DJ – Hitmix für die Generation Ü30",
+      "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
+      "source": "seenschifffahrt.de",
+      "tags": [
+        "party",
+        "schifffahrt"
+      ]
+    },
+    {
+      "id": 83,
       "title": "Pasta & Prosecco Schifffahrt",
       "date": "2026-07-19",
       "time": "19:00",
@@ -1247,7 +1536,7 @@
       ]
     },
     {
-      "id": 72,
+      "id": 84,
       "title": "Historische Fahrt: Auf königlichen Spuren",
       "date": "2026-07-29",
       "time": "19:00",
@@ -1265,22 +1554,136 @@
       ]
     },
     {
-      "id": 73,
-      "title": "Rosenmontagsball",
-      "date": "2026-02-16",
+      "title": "Tegernseer Seefest mit Brillantfeuerwerk",
+      "date": "2026-08-15",
+      "time": "18:00",
+      "location": "Tegernsee",
+      "address": "",
+      "description": "Das traditionelle Seefest mit spektakulärem Feuerwerk über dem See",
+      "category": "familie",
+      "tags": [
+        "fest",
+        "natur",
+        "brauchtum"
+      ],
+      "url": "https://www.tegernsee.com/seefeste",
+      "source": "tegernsee",
+      "region": "tegernsee",
+      "venue": null,
+      "isHighlight": true,
+      "id": 85
+    },
+    {
+      "title": "Rosstag Rottach-Egern",
+      "date": "2026-08-23",
+      "time": "09:00",
+      "location": "Rottach-Egern",
+      "address": "",
+      "description": "Traditioneller Rosstag mit Pferdewagen-Prozession, Brauchtumsumzug und Pferdesegnung",
+      "category": "familie",
+      "tags": [
+        "brauchtum"
+      ],
+      "url": "https://www.tegernsee.com/rosstag",
+      "source": "tegernsee",
+      "region": "tegernsee",
+      "venue": null,
+      "isHighlight": true,
+      "id": 86
+    },
+    {
+      "title": "Internationales Musikfest am Tegernsee",
+      "date": "2026-09-18",
       "time": "19:00",
-      "location": "Pöcking",
-      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
-      "description": "Rosenmontagsball des Pöckinger Faschings Clubs. Einlass & Beginn 19:00 Uhr, ab 16 Jahren.",
+      "location": "Tegernsee",
+      "address": "",
+      "description": "Klassik-Konzerte internationaler Künstler in einzigartiger Bergkulisse",
       "category": "erwachsene",
       "tags": [
-        "fasching",
-        "ball",
-        "party"
+        "musik",
+        "fest",
+        "natur"
       ],
-      "url": "https://www.pfc.de/veranstaltungen/",
+      "url": "https://www.tegernsee.com/internationales-musikfest-am-tegernsee-1",
+      "source": "tegernsee",
+      "region": "tegernsee",
+      "venue": null,
+      "isHighlight": true,
+      "id": 87
+    },
+    {
+      "title": "Kulturmontag - Alexander Netschajew",
+      "date": "2026-09-22",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Ein humoristischer Streifzug zum Schmunzeln und Schunkeln, zum Lachen und Genießen",
+      "category": "familie",
+      "tags": [],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
       "region": "poecking",
-      "source": "pfc"
+      "venue": null,
+      "isHighlight": false,
+      "id": 88
+    },
+    {
+      "title": "Kulturmontag - Kabarett Erich Kasberger",
+      "date": "2026-10-26",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Erich Kasberger – Was die Welt nicht braucht. Kabarett-Abend.",
+      "category": "erwachsene",
+      "tags": [
+        "theater",
+        "natur",
+        "brauchtum"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 89
+    },
+    {
+      "title": "Schlagergang – Aber bitte mit Schlager!",
+      "date": "2026-11-14",
+      "time": "19:00",
+      "location": "Pöcking",
+      "address": "",
+      "description": "Die Schlagergang – Aber bitte mit Schlager! Schlagerparty im beccult.",
+      "category": "erwachsene",
+      "tags": [
+        "musik",
+        "fest"
+      ],
+      "url": "https://www.beccult.de/veranstaltungen",
+      "source": "beccult",
+      "region": "poecking",
+      "venue": null,
+      "isHighlight": false,
+      "id": 90
+    },
+    {
+      "title": "Neujahrsskispringen 2027",
+      "date": "2027-01-01",
+      "time": "14:00",
+      "location": "Garmisch-Partenkirchen",
+      "address": "",
+      "description": "Vierschanzentournee – Weltcup-Skispringen an der Olympiaschanze",
+      "category": "familie",
+      "tags": [
+        "führung",
+        "sport"
+      ],
+      "url": "https://www.gapa-tourismus.de/veranstaltungskalender",
+      "source": "gapa",
+      "region": "werdenfels",
+      "venue": null,
+      "isHighlight": true,
+      "id": 91
     }
   ]
 }
