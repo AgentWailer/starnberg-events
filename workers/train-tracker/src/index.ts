@@ -480,7 +480,8 @@ async function handleDepartures(db: D1Database, url: URL): Promise<Response> {
   const date = url.searchParams.get('date') || todayStr();
 
   const deps = await db.prepare(`
-    SELECT trip_id, planned_when, planned_hour, delay, cancelled, direction, line, recorded_at
+    SELECT trip_id, planned_when, planned_hour, delay, cancelled, direction, line, recorded_at,
+           weather_code, temperature, precipitation, wind_speed
     FROM departures
     WHERE date = ?1
     ORDER BY planned_when
