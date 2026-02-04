@@ -477,6 +477,31 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
+  /* Desktop: scrollable event list with fixed height */
+  @media (min-width: 1200px) {
+    .events-list {
+      max-height: calc(100vh - 160px);
+      overflow-y: auto;
+      padding-right: var(--space-2);
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border) transparent;
+    }
+
+    .events-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .events-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .events-list::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: 3px;
+    }
+    .events-list::-webkit-scrollbar-thumb:hover {
+      background: var(--color-muted);
+    }
+  }
+
   /* Info Section */
   .section-info {
     padding-top: var(--space-8);
