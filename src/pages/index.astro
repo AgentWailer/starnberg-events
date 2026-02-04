@@ -140,15 +140,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             </section>
           )}
 
-          <!-- Mobile: Vor Ort (before events) -->
-          <section class="section section-info section-info--mobile">
-            <h2 class="section-title">Vor Ort</h2>
-            <div class="info-grid-single">
-              <MarketInfo />
-              <WebcamWidget />
-            </div>
-          </section>
-
           <!-- Events List -->
           <section class="section-events">
             <div class="events-header">
@@ -166,6 +157,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
               Weitere Events anzeigen
               <span class="load-more-count" id="load-more-count"></span>
             </button>
+          </section>
+
+          <!-- Mobile: Vor Ort (after events, reachable thanks to load-more) -->
+          <section class="section section-info section-info--mobile">
+            <h2 class="section-title">Vor Ort</h2>
+            <div class="info-grid-single">
+              <MarketInfo />
+              <WebcamWidget />
+            </div>
           </section>
         </div>
       </div>
@@ -516,13 +516,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* Info Section — Mobile version (before events) */
+  /* Info Section — Mobile version (after events) */
   .section-info--mobile {
     display: block;
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-6);
-    border-bottom: 1px solid var(--color-border-light);
-    margin-bottom: var(--space-8);
+    padding-top: var(--space-8);
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--color-border-light);
   }
 
   @media (min-width: 1200px) {
