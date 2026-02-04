@@ -13,29 +13,31 @@ const { lastUpdated } = Astro.props;
       <span class="navbar-title">Starnberg Events</span>
     </a>
 
-    <!-- Weather info (shows when scrolled) -->
-    <div class="navbar-weather" id="navbar-weather">
-      <span class="navbar-weather-item">
-        <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-        </svg>
-        <span id="navbar-temp">--°</span>
-      </span>
-      <span class="navbar-weather-item">
-        <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-        </svg>
-        <span id="navbar-water">--°</span>
-      </span>
-      <span class="navbar-weather-item navbar-train">
-        <span class="navbar-train-badge">S6</span>
-        <span id="navbar-train">--:--</span>
-      </span>
-    </div>
+    <!-- Right side: Weather + Theme Toggle -->
+    <div class="navbar-right">
+      <!-- Weather info (shows when scrolled) -->
+      <div class="navbar-weather" id="navbar-weather">
+        <span class="navbar-weather-item">
+          <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+          </svg>
+          <span id="navbar-temp">--°</span>
+        </span>
+        <span class="navbar-weather-item">
+          <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+          <span id="navbar-water">--°</span>
+        </span>
+        <span class="navbar-weather-item navbar-train">
+          <span class="navbar-train-badge">S6</span>
+          <span id="navbar-train">--:--</span>
+        </span>
+      </div>
 
-    <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
       <svg aria-hidden="true" class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="5"></circle>
         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -51,6 +53,7 @@ const { lastUpdated } = Astro.props;
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
       </svg>
     </button>
+    </div>
   </div>
 </nav>
 
@@ -98,6 +101,12 @@ const { lastUpdated } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
     gap: var(--space-4);
   }
 
