@@ -1,0 +1,590 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="S6 Pünktlichkeit · Possenhofen" description="Echtzeit-Analyse der S6 Pünktlichkeit am Bahnhof Possenhofen">
+
+<main class="s6-page">
+  <a href="/" class="s6-back">← Zurück zu Events</a>
+
+  <header class="s6-header">
+    <div class="s6-header__icon">🚆</div>
+    <div>
+      <h1 class="s6-header__title">S6 Pünktlichkeit</h1>
+      <p class="s6-header__sub">Bahnhof Possenhofen · Echtzeit-Analyse</p>
+    </div>
+  </header>
+
+  <!-- Period Toggle -->
+  <div class="s6-period-toggle">
+    <button class="period-btn active" data-period="today">Heute</button>
+    <button class="period-btn" data-period="week">7 Tage</button>
+    <button class="period-btn" data-period="month">30 Tage</button>
+  </div>
+
+  <!-- Loading State -->
+  <div class="s6-loading" id="s6-loading">
+    <div class="s6-loading__spinner"></div>
+    <p>Lade Daten…</p>
+  </div>
+
+  <!-- Empty State (before first data collection) -->
+  <div class="s6-empty" id="s6-empty" style="display:none;">
+    <p>📊 Noch keine Daten vorhanden.</p>
+    <p class="s6-empty__sub">Der Tracker sammelt ab Deployment alle 10 Minuten Daten. Die ersten Statistiken erscheinen nach wenigen Stunden.</p>
+  </div>
+
+  <!-- Stats Content -->
+  <div class="s6-content" id="s6-content" style="display:none;">
+
+    <!-- Scorecard -->
+    <div class="s6-scorecard">
+      <div class="score-card score-card--green">
+        <span class="score-card__value" id="sc-ontime">–</span>
+        <span class="score-card__label">Pünktlich</span>
+        <span class="score-card__sub">≤ 5 Min</span>
+      </div>
+      <div class="score-card score-card--yellow">
+        <span class="score-card__value" id="sc-delayed">–</span>
+        <span class="score-card__label">Verspätet</span>
+        <span class="score-card__sub">&gt; 5 Min</span>
+      </div>
+      <div class="score-card score-card--red">
+        <span class="score-card__value" id="sc-cancelled">–</span>
+        <span class="score-card__label">Ausgefallen</span>
+        <span class="score-card__sub">&nbsp;</span>
+      </div>
+    </div>
+
+    <!-- Pünktlichkeitsrate -->
+    <div class="s6-rate-section">
+      <div class="s6-rate">
+        <div class="s6-rate__ring">
+          <svg viewBox="0 0 120 120" class="rate-ring-svg">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-border-light)" stroke-width="8" />
+            <circle id="rate-ring" cx="60" cy="60" r="52" fill="none" stroke="var(--color-primary)" stroke-width="8"
+              stroke-dasharray="326.73" stroke-dashoffset="326.73" stroke-linecap="round"
+              transform="rotate(-90 60 60)" />
+          </svg>
+          <span class="s6-rate__percent" id="rate-percent">–%</span>
+        </div>
+        <div class="s6-rate__details">
+          <p class="s6-rate__label">Pünktlichkeitsrate</p>
+          <p class="s6-rate__avg">Ø Verspätung: <strong id="avg-delay">–</strong></p>
+          <p class="s6-rate__max">Max: <strong id="max-delay">–</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Richtungsvergleich -->
+    <div class="s6-directions">
+      <h2 class="s6-section-title">Nach Richtung</h2>
+      <div class="dir-bars">
+        <div class="dir-bar">
+          <span class="dir-bar__label">→ München</span>
+          <div class="dir-bar__track">
+            <div class="dir-bar__fill dir-bar__fill--green" id="dir-muc-bar" style="width:0%"></div>
+          </div>
+          <span class="dir-bar__value" id="dir-muc-val">–%</span>
+        </div>
+        <div class="dir-bar">
+          <span class="dir-bar__label">← Tutzing</span>
+          <div class="dir-bar__track">
+            <div class="dir-bar__fill dir-bar__fill--green" id="dir-tut-bar" style="width:0%"></div>
+          </div>
+          <span class="dir-bar__value" id="dir-tut-val">–%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stundenverlauf (nur bei "Heute") -->
+    <div class="s6-hourly" id="s6-hourly">
+      <h2 class="s6-section-title">Heute nach Stunde</h2>
+      <div class="hourly-chart" id="hourly-chart"></div>
+    </div>
+
+    <!-- Tagesverlauf (nur bei Woche/Monat) -->
+    <div class="s6-daily" id="s6-daily" style="display:none;">
+      <h2 class="s6-section-title">Tagesverlauf</h2>
+      <div class="daily-chart" id="daily-chart"></div>
+    </div>
+
+    <!-- Footer -->
+    <p class="s6-footer">
+      Daten werden alle 10 Minuten erhoben · Pünktlich = ≤ 5 Min Verspätung ·
+      Quelle: <a href="https://v6.db.transport.rest" target="_blank" rel="noopener">transport.rest</a>
+    </p>
+  </div>
+</main>
+</Layout>
+
+<style>
+  /* ── Page Layout ─────────────────────────────────────── */
+  .s6-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .s6-back {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+    transition: color var(--duration-fast) ease;
+  }
+  .s6-back:hover { color: var(--color-primary); }
+
+  /* ── Header ──────────────────────────────────────────── */
+  .s6-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+  .s6-header__icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+  .s6-header__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+  .s6-header__sub {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin: var(--space-1) 0 0;
+  }
+
+  /* ── Period Toggle ───────────────────────────────────── */
+  .s6-period-toggle {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    background: var(--color-bg-secondary);
+    padding: var(--space-1);
+    border-radius: var(--radius-lg);
+  }
+  .period-btn {
+    flex: 1;
+    padding: var(--space-2) var(--space-3);
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+  }
+  .period-btn:hover { color: var(--color-text); }
+  .period-btn.active {
+    background: var(--color-card);
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── Loading ─────────────────────────────────────────── */
+  .s6-loading {
+    text-align: center;
+    padding: var(--space-10) 0;
+    color: var(--color-text-secondary);
+  }
+  .s6-loading__spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--color-border-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    margin: 0 auto var(--space-4);
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .s6-empty { text-align: center; padding: var(--space-10) 0; color: var(--color-text-secondary); }
+  .s6-empty__sub { font-size: 0.875rem; margin-top: var(--space-2); }
+
+  /* ── Scorecard ───────────────────────────────────────── */
+  .s6-scorecard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+  .score-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-3);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .score-card__value {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .score-card__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    margin-top: var(--space-1);
+    color: var(--color-text-secondary);
+  }
+  .score-card__sub {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary, #999);
+    margin-top: 2px;
+  }
+  .score-card--green .score-card__value { color: #16a34a; }
+  .score-card--yellow .score-card__value { color: #d97706; }
+  .score-card--red .score-card__value { color: #dc2626; }
+
+  :root.dark .score-card--green .score-card__value { color: #4ade80; }
+  :root.dark .score-card--yellow .score-card__value { color: #fbbf24; }
+  :root.dark .score-card--red .score-card__value { color: #f87171; }
+
+  /* ── Rate Ring ───────────────────────────────────────── */
+  .s6-rate-section {
+    margin-bottom: var(--space-6);
+  }
+  .s6-rate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-sm);
+  }
+  .s6-rate__ring {
+    position: relative;
+    width: 120px; height: 120px;
+    flex-shrink: 0;
+  }
+  .rate-ring-svg { width: 100%; height: 100%; }
+  .s6-rate__percent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .s6-rate__label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+  }
+  .s6-rate__avg, .s6-rate__max {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: var(--space-1) 0 0;
+  }
+
+  /* ── Section Titles ──────────────────────────────────── */
+  .s6-section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  /* ── Direction Bars ──────────────────────────────────── */
+  .s6-directions {
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .dir-bars { display: flex; flex-direction: column; gap: var(--space-3); }
+  .dir-bar {
+    display: grid;
+    grid-template-columns: 100px 1fr 50px;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .dir-bar__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .dir-bar__track {
+    height: 24px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .dir-bar__fill {
+    height: 100%;
+    border-radius: var(--radius-sm);
+    transition: width 0.6s ease;
+  }
+  .dir-bar__fill--green { background: #16a34a; }
+  :root.dark .dir-bar__fill--green { background: #4ade80; }
+  .dir-bar__value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: right;
+  }
+
+  /* ── Hourly / Daily Charts ───────────────────────────── */
+  .s6-hourly, .s6-daily {
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .hourly-chart, .daily-chart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .chart-row {
+    display: grid;
+    grid-template-columns: 44px 1fr 40px;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.8125rem;
+  }
+  .chart-row__label {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .chart-row__bar {
+    height: 20px;
+    display: flex;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+  }
+  .bar-seg--green { background: #16a34a; }
+  .bar-seg--yellow { background: #d97706; }
+  .bar-seg--red { background: #dc2626; }
+  :root.dark .bar-seg--green { background: #4ade80; }
+  :root.dark .bar-seg--yellow { background: #fbbf24; }
+  :root.dark .bar-seg--red { background: #f87171; }
+  .chart-row__value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-align: right;
+    color: var(--color-text);
+  }
+
+  /* ── Footer ──────────────────────────────────────────── */
+  .s6-footer {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary, #999);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .s6-footer a { color: var(--color-primary); }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .s6-rate { flex-direction: column; text-align: center; }
+    .s6-rate__ring { width: 100px; height: 100px; }
+    .score-card__value { font-size: 1.5rem; }
+    .dir-bar { grid-template-columns: 80px 1fr 44px; }
+  }
+</style>
+
+<script>
+  // ── Config ──────────────────────────────────────────────
+  // Nach Worker-Deployment die URL hier eintragen:
+  const WORKER_URL = 'https://train-tracker.DEIN_SUBDOMAIN.workers.dev';
+
+  // ── State ───────────────────────────────────────────────
+  let currentPeriod = 'today';
+
+  // ── Elements ────────────────────────────────────────────
+  const loadingEl = document.getElementById('s6-loading')!;
+  const emptyEl = document.getElementById('s6-empty')!;
+  const contentEl = document.getElementById('s6-content')!;
+  const hourlySection = document.getElementById('s6-hourly')!;
+  const dailySection = document.getElementById('s6-daily')!;
+
+  // ── Period Toggle ───────────────────────────────────────
+  document.querySelectorAll('.period-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.period-btn.active')?.classList.remove('active');
+      btn.classList.add('active');
+      currentPeriod = (btn as HTMLElement).dataset.period || 'today';
+      loadData();
+    });
+  });
+
+  // ── Data Loading ────────────────────────────────────────
+  async function loadData() {
+    loadingEl.style.display = '';
+    contentEl.style.display = 'none';
+    emptyEl.style.display = 'none';
+
+    try {
+      const [statsResp, historyResp] = await Promise.all([
+        fetch(`${WORKER_URL}/api/stats?period=${currentPeriod}`),
+        currentPeriod !== 'today'
+          ? fetch(`${WORKER_URL}/api/history?days=${currentPeriod === 'week' ? 7 : 30}`)
+          : Promise.resolve(null),
+      ]);
+
+      if (!statsResp.ok) throw new Error(`Stats: ${statsResp.status}`);
+      const stats = await statsResp.json();
+
+      if (!stats.overall || stats.overall.total === 0) {
+        loadingEl.style.display = 'none';
+        emptyEl.style.display = '';
+        return;
+      }
+
+      const history = historyResp ? await historyResp.json() : null;
+
+      renderStats(stats, history);
+      loadingEl.style.display = 'none';
+      contentEl.style.display = '';
+    } catch (err) {
+      console.error('Train stats error:', err);
+      loadingEl.style.display = 'none';
+      emptyEl.style.display = '';
+      emptyEl.querySelector('p')!.textContent = '⚠️ Daten konnten nicht geladen werden.';
+    }
+  }
+
+  // ── Rendering ───────────────────────────────────────────
+  function renderStats(stats: any, history: any) {
+    const o = stats.overall;
+    const onTime = o.on_time || 0;
+    const delayed = o.delayed || 0;
+    const cancelled = o.cancelled || 0;
+    const total = onTime + delayed + cancelled;
+    const rate = total > 0 ? Math.round((onTime / total) * 100) : 0;
+
+    // Scorecard
+    document.getElementById('sc-ontime')!.textContent = String(onTime);
+    document.getElementById('sc-delayed')!.textContent = String(delayed);
+    document.getElementById('sc-cancelled')!.textContent = String(cancelled);
+
+    // Rate ring
+    const ring = document.getElementById('rate-ring')!;
+    const circumference = 2 * Math.PI * 52; // r=52
+    ring.style.strokeDashoffset = String(circumference - (rate / 100) * circumference);
+    ring.style.stroke = rate >= 80 ? '#16a34a' : rate >= 60 ? '#d97706' : '#dc2626';
+    document.getElementById('rate-percent')!.textContent = `${rate}%`;
+
+    // Avg / Max delay
+    const avgSec = o.avg_delay || 0;
+    const maxSec = o.max_delay || 0;
+    document.getElementById('avg-delay')!.textContent = formatDelay(avgSec);
+    document.getElementById('max-delay')!.textContent = formatDelay(maxSec);
+
+    // Directions
+    renderDirection(stats.byDirection, 'muenchen', 'dir-muc-bar', 'dir-muc-val');
+    renderDirection(stats.byDirection, 'tutzing', 'dir-tut-bar', 'dir-tut-val');
+
+    // Hourly chart (today only)
+    if (stats.byHour && currentPeriod === 'today') {
+      hourlySection.style.display = '';
+      dailySection.style.display = 'none';
+      renderHourlyChart(stats.byHour);
+    } else {
+      hourlySection.style.display = 'none';
+    }
+
+    // Daily chart (week/month)
+    if (history?.daily && currentPeriod !== 'today') {
+      dailySection.style.display = '';
+      renderDailyChart(history.daily);
+    } else {
+      dailySection.style.display = 'none';
+    }
+  }
+
+  function renderDirection(dirs: any[], dirKey: string, barId: string, valId: string) {
+    const d = dirs.find((x: any) => x.direction === dirKey);
+    if (!d) { 
+      document.getElementById(valId)!.textContent = '–'; 
+      return; 
+    }
+    const total = (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0);
+    const rate = total > 0 ? Math.round(((d.on_time || 0) / total) * 100) : 0;
+    document.getElementById(barId)!.style.width = `${rate}%`;
+    document.getElementById(valId)!.textContent = `${rate}%`;
+  }
+
+  function renderHourlyChart(hours: any[]) {
+    const chart = document.getElementById('hourly-chart')!;
+    chart.innerHTML = hours.map((h: any) => {
+      const total = (h.on_time || 0) + (h.delayed || 0) + (h.cancelled || 0);
+      if (total === 0) return '';
+      const greenPct = ((h.on_time || 0) / total) * 100;
+      const yellowPct = ((h.delayed || 0) / total) * 100;
+      const redPct = ((h.cancelled || 0) / total) * 100;
+      const rate = Math.round(greenPct);
+      return `
+        <div class="chart-row">
+          <span class="chart-row__label">${String(h.hour).padStart(2, '0')}:00</span>
+          <div class="chart-row__bar">
+            <div class="bar-seg--green" style="width:${greenPct}%"></div>
+            <div class="bar-seg--yellow" style="width:${yellowPct}%"></div>
+            <div class="bar-seg--red" style="width:${redPct}%"></div>
+          </div>
+          <span class="chart-row__value">${rate}%</span>
+        </div>`;
+    }).join('');
+  }
+
+  function renderDailyChart(days: any[]) {
+    const chart = document.getElementById('daily-chart')!;
+    const weekdays = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+    chart.innerHTML = days.map((d: any) => {
+      const total = (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0);
+      if (total === 0) return '';
+      const greenPct = ((d.on_time || 0) / total) * 100;
+      const yellowPct = ((d.delayed || 0) / total) * 100;
+      const redPct = ((d.cancelled || 0) / total) * 100;
+      const rate = Math.round(greenPct);
+      const dt = new Date(d.date + 'T12:00:00');
+      const label = `${weekdays[dt.getDay()]} ${dt.getDate()}.${dt.getMonth() + 1}`;
+      return `
+        <div class="chart-row">
+          <span class="chart-row__label">${label}</span>
+          <div class="chart-row__bar">
+            <div class="bar-seg--green" style="width:${greenPct}%"></div>
+            <div class="bar-seg--yellow" style="width:${yellowPct}%"></div>
+            <div class="bar-seg--red" style="width:${redPct}%"></div>
+          </div>
+          <span class="chart-row__value">${rate}%</span>
+        </div>`;
+    }).join('');
+  }
+
+  function formatDelay(seconds: number): string {
+    if (!seconds || seconds <= 0) return '0 Min';
+    const min = Math.round(seconds / 60);
+    return min < 1 ? '<1 Min' : `${min} Min`;
+  }
+
+  // ── Init ────────────────────────────────────────────────
+  loadData();
+</script>

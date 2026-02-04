@@ -56,16 +56,16 @@ const { lastUpdated } = Astro.props;
           <span id="navbar-sunset">--:--</span>
         </span>
         <span class="navbar-divider"></span>
-        <span class="navbar-weather-item navbar-train" title="Richtung München">
+        <a href="/s6" class="navbar-weather-item navbar-train" title="S6 Richtung München · Klick für Statistiken">
           <span class="navbar-train-badge">S6</span>
           <span class="navbar-train-dir">→ Muc</span>
           <span id="navbar-train-munich">--:--</span>
-        </span>
-        <span class="navbar-weather-item navbar-train" title="Richtung Tutzing">
+        </a>
+        <a href="/s6" class="navbar-weather-item navbar-train" title="S6 Richtung Tutzing · Klick für Statistiken">
           <span class="navbar-train-badge">S6</span>
           <span class="navbar-train-dir">→ Tut</span>
           <span id="navbar-train-tutzing">--:--</span>
-        </span>
+        </a>
       </div>
 
       <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
@@ -230,6 +230,11 @@ const { lastUpdated } = Astro.props;
   .navbar-weather-item span:last-child {
     font-weight: 600;
     color: var(--color-text);
+  }
+
+  a.navbar-train {
+    text-decoration: none;
+    color: inherit;
   }
 
   .navbar-train-badge {

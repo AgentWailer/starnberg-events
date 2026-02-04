@@ -1,0 +1,13 @@
+name = "train-tracker"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+
+# Cron: alle 10 Min, 4:00-23:59 UTC (≈ 5:00-1:00 CET/CEST)
+[triggers]
+crons = ["*/10 4-23 * * *", "*/10 0-0 * * *"]
+
+# D1 Datenbank — nach `npm run db:create` die database_id hier eintragen
+[[d1_databases]]
+binding = "DB"
+database_name = "train-stats"
+database_id = "REPLACE_WITH_YOUR_DATABASE_ID"

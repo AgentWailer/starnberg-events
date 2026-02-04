@@ -1,0 +1,17 @@
+{
+  "name": "train-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create train-stats",
+    "db:migrate": "wrangler d1 execute train-stats --file=schema.sql",
+    "db:migrate:local": "wrangler d1 execute train-stats --local --file=schema.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240806.0",
+    "typescript": "^5.5.0",
+    "wrangler": "^3.60.0"
+  }
+}
