@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import InfoTicker from '../components/InfoTicker.astro';
-import WeatherWidget from '../components/WeatherWidget.astro';
+// WeatherWidget moved to navbar
 import TrainInfo from '../components/TrainInfo.astro';
 import MarketInfo from '../components/MarketInfo.astro';
 import WebcamWidget from '../components/WebcamWidget.astro';
@@ -41,11 +41,6 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
       <div class="mobile-info-bar">
         <InfoTicker />
       </div>
-
-      <!-- Desktop: Full weather strip (full width) -->
-      <section class="section section-weather desktop-only">
-        <WeatherWidget />
-      </section>
 
       <!-- Content Grid: Sidebar + Main Content -->
       <div class="content-grid">
