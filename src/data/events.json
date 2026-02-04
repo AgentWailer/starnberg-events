@@ -41,7 +41,7 @@
       "date": "2026-02-05",
       "time": "12:00",
       "location": "Andechs",
-      "address": "82346 Andechs",
+      "address": "Kloster Andechs, Bergstraße 2, 82346 Andechs",
       "description": "Jeden Donnerstag öffentliche Führung",
       "category": "familie",
       "artTags": [
@@ -60,7 +60,7 @@
       "date": "2026-02-05",
       "time": "18:30",
       "location": "Pöcking",
-      "address": "82343 Pöcking",
+      "address": "Atelier Sandra Homberg, St.-Sebastian-Straße 11, 82343 Pöcking",
       "description": "Kreativkurs im professionellen Atelier",
       "category": "familie",
       "artTags": [
@@ -98,7 +98,7 @@
       "date": "2026-02-06",
       "time": "14:30",
       "location": "Dießen am Ammersee",
-      "address": "86911 Dießen am Ammersee",
+      "address": "Albert Teuto Bücherei, Hofmark 5, 86911 Dießen am Ammersee",
       "description": "Für Groß und Klein: Warmherzige Kuschelein!",
       "category": "kinder",
       "artTags": [
@@ -117,7 +117,7 @@
       "date": "2026-02-06",
       "time": "20:00",
       "location": "Bernried am Starnberger See",
-      "address": "82347 Bernried am Starnberger See",
+      "address": "Dorfstraße 26, 82347 Bernried am Starnberger See",
       "description": "Musikkabarett",
       "category": "erwachsene",
       "artTags": [
@@ -137,7 +137,7 @@
       "date": "2026-02-07",
       "time": "09:00",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Sonderausstellung in der Bibliothek – faszinierende Astrofotos von Freizeit-Astronomen: Nachtlandschaften, Sonnensystem und Deep Sky",
       "category": "familie",
       "artTags": [
@@ -157,7 +157,7 @@
       "date": "2026-02-07",
       "time": "10:00",
       "location": "Gilching",
-      "address": "80225 Gilching",
+      "address": "VHS Gilching, Landsberger Str. 17a, 82205 Gilching",
       "description": "Humorvoller Einblick in Sprache und Kultur der Bayern",
       "category": "familie",
       "artTags": [
@@ -176,7 +176,7 @@
       "date": "2026-02-07",
       "time": "11:00",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Live-Vorführung – wie man mit Funkamateuren in aller Welt kommuniziert",
       "category": "familie",
       "artTags": [
@@ -213,7 +213,7 @@
       "date": "2026-02-07",
       "time": "15:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Die neue Show über Träume, Mut und das Leben – Für Kinder und alle, die es einmal gewesen sind",
       "category": "kinder",
       "artTags": [
@@ -232,7 +232,7 @@
       "date": "2026-02-07",
       "time": "18:30",
       "location": "Herrsching",
-      "address": "82211 Herrsching",
+      "address": "Seehof Herrsching, Seestraße 58, 82211 Herrsching am Ammersee",
       "description": "Ein Stück gelebte Tradition am Ammersee",
       "category": "familie",
       "artTags": [
@@ -251,7 +251,7 @@
       "date": "2026-02-07",
       "time": "19:00",
       "location": "Seefeld",
-      "address": "82229 Seefeld",
+      "address": "Schlosshof 6, 82229 Seefeld",
       "description": "Klassikkonzert",
       "category": "erwachsene",
       "artTags": [
@@ -270,7 +270,7 @@
       "date": "2026-02-07",
       "time": "19:30",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Schlossberghalle, Vogelanger 2, 82319 Starnberg",
       "description": "Stilvolle Balltradition",
       "category": "erwachsene",
       "artTags": [
@@ -290,7 +290,7 @@
       "date": "2026-02-07",
       "time": "19:30",
       "location": "Tutzing",
-      "address": "82327 Tutzing",
+      "address": "Kulturtheater Tutzing, Kirchenstraße 3, 82327 Tutzing",
       "description": "Kurzfilme von Nachwuchs-Filmemachern mit Filmgespräch",
       "category": "familie",
       "artTags": [
@@ -309,7 +309,7 @@
       "date": "2026-02-07",
       "time": "19:30",
       "location": "Garmisch-Partenkirchen",
-      "address": "",
+      "address": "Kongresshaus, Richard-Strauss-Platz 1a, 82467 Garmisch-Partenkirchen",
       "description": "Die besten Bergfilme des Jahres – Abenteuer, Outdoor und Extremsport. Kongresshaus, Konzertsaal Richard Strauß",
       "category": "erwachsene",
       "artTags": [
@@ -329,7 +329,7 @@
       "date": "2026-02-07",
       "time": "20:00",
       "location": "Inning am Ammersee",
-      "address": "82266 Inning am Ammersee",
+      "address": "Landsberger Straße 57, 82266 Inning am Ammersee",
       "description": "Gitarristin Yasi Hofer und ihr Trio",
       "category": "familie",
       "artTags": [
@@ -348,7 +348,7 @@
       "date": "2026-02-08",
       "time": "08:00",
       "location": "Tegernsee",
-      "address": "",
+      "address": "Tegernseer Tal, 83684 Tegernsee",
       "description": "Großes Finale des Ballonfestivals – Heißluftballons über den Alpen",
       "category": "erwachsene",
       "artTags": [
@@ -367,7 +367,7 @@
       "date": "2026-02-08",
       "time": "11:30",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Spektakuläre Experimente mit minus 200°C – Supraleiter schweben und Blumen zerbersten",
       "category": "familie",
       "artTags": [
@@ -387,7 +387,7 @@
       "date": "2026-02-08",
       "time": "14:00",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Motoren, Turbinen und mehr – die Vielfalt der Antriebe entdecken",
       "category": "familie",
       "artTags": [
@@ -406,7 +406,7 @@
       "date": "2026-02-08",
       "time": "16:00",
       "location": "Seefeld",
-      "address": "82229 Seefeld",
+      "address": "Schlosshof 6, 82229 Seefeld",
       "description": "Kinderkonzert",
       "category": "kinder",
       "artTags": [
@@ -442,7 +442,7 @@
       "date": "2026-02-12",
       "time": "19:00",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Mehrzweckhalle Percha, Berger Straße 5, 82319 Starnberg",
       "description": "ATTENTION LADIES! Kreative Kostüme, tolle Stimmung und viel Girls-Power!",
       "category": "erwachsene",
       "artTags": [
@@ -461,7 +461,7 @@
       "date": "2026-02-12",
       "time": "20:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Weiberfasching im beccult",
       "category": "erwachsene",
       "artTags": [
@@ -480,7 +480,7 @@
       "date": "2026-02-13",
       "time": "19:00",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Straße 5, 82319 Starnberg",
       "description": "Wilfried vom Ammersee präsentiert Karl Valentin und die Liebe",
       "category": "familie",
       "artTags": [
@@ -499,7 +499,7 @@
       "date": "2026-02-13",
       "time": "20:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Die große Malle-Party in Pöcking",
       "category": "erwachsene",
       "artTags": [
@@ -519,7 +519,7 @@
       "date": "2026-02-13",
       "time": "20:00",
       "location": "Inning am Ammersee",
-      "address": "82266 Inning am Ammersee",
+      "address": "Landsberger Straße 57, 82266 Inning am Ammersee",
       "description": "Faschingsparty mit Live-Band",
       "category": "erwachsene",
       "artTags": [
@@ -539,7 +539,7 @@
       "date": "2026-02-14",
       "time": "07:00",
       "location": "Olympiapark München",
-      "address": "",
+      "address": "Olympiapark, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Bayerns größter Flohmarkt auf dem Olympiagelände – jeden 2. Samstag",
       "category": "familie",
       "artTags": [
@@ -557,7 +557,7 @@
       "date": "2026-02-14",
       "time": "11:00",
       "location": "Feldafing",
-      "address": "82340 Feldafing",
+      "address": "Starnberger Brauhaus, Alte Weilheimer Straße 3, 82340 Feldafing",
       "description": "Führung durch die Brauerei mit Erklärung der Brauprozesse",
       "category": "familie",
       "artTags": [
@@ -575,7 +575,7 @@
       "date": "2026-02-14",
       "time": "18:00",
       "location": "Tutzing",
-      "address": "82327 Tutzing",
+      "address": "Restaurant Theodor, Bräuhausstraße 1, 82327 Tutzing",
       "description": "Romantisches Dinner im Restaurant Theodor",
       "category": "familie",
       "artTags": [
@@ -593,7 +593,7 @@
       "date": "2026-02-14",
       "time": "18:00",
       "location": "Tierpark Hellabrunn",
-      "address": "",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Wenn die Liebe durch den Zoo spaziert – romantischer Abend im Tierpark",
       "category": "familie",
       "artTags": [
@@ -611,7 +611,7 @@
       "date": "2026-02-14",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Valentinstag mal anders – Schlager und Discofox",
       "category": "erwachsene",
       "artTags": [
@@ -631,7 +631,7 @@
       "date": "2026-02-14",
       "time": "19:30",
       "location": "Berg",
-      "address": "82335 Berg",
+      "address": "Marstall Berg, Mühlgasse 7, 82335 Berg",
       "description": "Julian Schad & Quartett mit Sopranistin Clara Orif aus Paris",
       "category": "familie",
       "artTags": [
@@ -650,7 +650,7 @@
       "date": "2026-02-14",
       "time": "20:00",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Turnhalle Percha, Berger Straße 5, 82319 Starnberg",
       "description": "Präsentiert von Perchalla e.V. & DJ Hap",
       "category": "erwachsene",
       "artTags": [
@@ -669,7 +669,7 @@
       "date": "2026-02-14",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Herbert Grönemeyer live in der Olympiahalle – akustisch und hautnah",
       "category": "familie",
       "artTags": [
@@ -688,7 +688,7 @@
       "date": "2026-02-15",
       "time": "14:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Buntes Treiben beim Kinderfasching! Mit Spielen, Tanz und vielen Überraschungen für unsere kleinen Faschingsfans",
       "category": "kinder",
       "artTags": [
@@ -707,7 +707,7 @@
       "date": "2026-02-15",
       "time": "14:00",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Erfahrt mehr über die Raumfahrt und den Transport von Menschen ins All",
       "category": "familie",
       "artTags": [
@@ -726,7 +726,7 @@
       "date": "2026-02-16",
       "time": "10:00",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Schauspielschule Schwarz, Mühlbergstraße 4, 82319 Starnberg",
       "description": "Gemeinsam einen Kurzfilm drehen – für Anfänger und Fortgeschrittene",
       "category": "erwachsene",
       "artTags": [
@@ -746,7 +746,7 @@
       "date": "2026-02-16",
       "time": "18:00",
       "location": "Starnberg",
-      "address": "82319 Starnberg",
+      "address": "Schlossberghalle, Vogelanger 2, 82319 Starnberg",
       "description": "Auftritte der Perchalla-Garden und Showeinlagen",
       "category": "familie",
       "artTags": [
@@ -783,7 +783,7 @@
       "date": "2026-02-17",
       "time": "15:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Faschingsdienstag – wir feiern den letzten Tag der närrischen Zeit",
       "category": "erwachsene",
       "artTags": [
@@ -802,7 +802,7 @@
       "date": "2026-02-17",
       "time": "18:30",
       "location": "Dießen",
-      "address": "86911 Dießen",
+      "address": "Craftbräu, Mühlstraße 12, 86911 Dießen am Ammersee",
       "description": "Kneipen-Chor im Craftbräu",
       "category": "familie",
       "artTags": [
@@ -821,7 +821,7 @@
       "date": "2026-02-17",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Machine Gun Kelly live",
       "category": "familie",
       "artTags": [
@@ -840,7 +840,7 @@
       "date": "2026-02-18",
       "time": "18:00",
       "location": "Tutzing",
-      "address": "82327 Tutzing",
+      "address": "Restaurant Theodor, Bräuhausstraße 1, 82327 Tutzing",
       "description": "Traditionelles Fischessen",
       "category": "familie",
       "artTags": [
@@ -858,7 +858,7 @@
       "date": "2026-02-20",
       "time": "10:00",
       "location": "Tierpark Hellabrunn",
-      "address": "",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Lesungen und Aktionen für Kinder und Familien im Tierpark",
       "category": "kinder",
       "artTags": [
@@ -877,7 +877,7 @@
       "date": "2026-02-21",
       "time": "15:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Die Pferdeshow für die ganze Familie",
       "category": "familie",
       "artTags": [
@@ -896,7 +896,7 @@
       "date": "2026-02-21",
       "time": "19:00",
       "location": "Seefeld",
-      "address": "82229 Seefeld",
+      "address": "Schlosshof 6, 82229 Seefeld",
       "description": "Jazzkonzert",
       "category": "erwachsene",
       "artTags": [
@@ -915,7 +915,7 @@
       "date": "2026-02-21",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Das Disney-Meisterwerk als Live-in-Concert-Erlebnis",
       "category": "familie",
       "artTags": [
@@ -934,7 +934,7 @@
       "date": "2026-02-22",
       "time": "10:30",
       "location": "Deutsches Museum",
-      "address": "",
+      "address": "Deutsches Museum, Museumsinsel 1, 80538 München",
       "description": "Zwischen Flugzeugen und Hubschraubern – wie fliegen Maschinen?",
       "category": "kinder",
       "artTags": [
@@ -953,7 +953,7 @@
       "date": "2026-02-22",
       "time": "19:30",
       "location": "Dießen",
-      "address": "86911 Dießen",
+      "address": "Fesch am Kirchsteig, Am Kirchsteig 30, 86911 Dießen am Ammersee",
       "description": "Literarisches Jazzkonzert",
       "category": "erwachsene",
       "artTags": [
@@ -973,7 +973,7 @@
       "date": "2026-02-22",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Der Musical-Erfolg des Autorenteams Sasson/Sautter",
       "category": "familie",
       "artTags": [
@@ -993,7 +993,7 @@
       "date": "2026-02-23",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Why Do Germans Love the Blues – Road Movie mit Filmgespräch",
       "category": "familie",
       "artTags": [
@@ -1012,7 +1012,7 @@
       "date": "2026-02-24",
       "time": "19:00",
       "location": "Tierpark Hellabrunn",
-      "address": "",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Wie funktioniert Artenschutz in einem Wildreservat?",
       "category": "familie",
       "artTags": [
@@ -1032,7 +1032,7 @@
       "date": "2026-02-25",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Eros Ramazzotti live auf Welttournee",
       "category": "familie",
       "artTags": [
@@ -1051,7 +1051,7 @@
       "date": "2026-02-26",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Jason Derulo live in München",
       "category": "familie",
       "artTags": [
@@ -1070,7 +1070,7 @@
       "date": "2026-02-28",
       "time": "08:00",
       "location": "Zugspitze",
-      "address": "",
+      "address": "Zugspitze, 82467 Garmisch-Partenkirchen",
       "description": "Geführte Bergwanderung auf Deutschlands höchsten Gipfel",
       "category": "familie",
       "artTags": [
@@ -1089,7 +1089,7 @@
       "date": "2026-03-01",
       "time": "19:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Die große Magie-Show der Ehrlich Brothers – Diamonds",
       "category": "familie",
       "artTags": [
@@ -1108,7 +1108,7 @@
       "date": "2026-03-04",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Konzert der britischen Indie-Rock-Band",
       "category": "erwachsene",
       "artTags": [
@@ -1145,7 +1145,7 @@
       "date": "2026-03-06",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Kraftklub live auf Tour",
       "category": "familie",
       "artTags": [
@@ -1164,7 +1164,7 @@
       "date": "2026-03-07",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Sean Paul live in München",
       "category": "familie",
       "artTags": [
@@ -1183,7 +1183,7 @@
       "date": "2026-03-08",
       "time": "19:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Comedy-Show",
       "category": "erwachsene",
       "artTags": [
@@ -1202,7 +1202,7 @@
       "date": "2026-03-11",
       "time": "20:00",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Bushido live in München",
       "category": "familie",
       "artTags": [
@@ -1221,7 +1221,7 @@
       "date": "2026-03-12",
       "time": "19:30",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Schlager-Star Ben Zucker live",
       "category": "erwachsene",
       "artTags": [
@@ -1240,7 +1240,7 @@
       "date": "2026-03-13",
       "time": "19:30",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Der König des Walzers live mit seinem Johann Strauss Orchester",
       "category": "familie",
       "artTags": [
@@ -1276,7 +1276,7 @@
       "date": "2026-03-14",
       "time": "18:30",
       "location": "Olympiahalle München",
-      "address": "",
+      "address": "Olympiahalle, Spiridon-Louis-Ring 21, 80809 München",
       "description": "Live-to-Film-Konzert mit dem kompletten Film und Live-Orchester",
       "category": "erwachsene",
       "artTags": [
@@ -1314,7 +1314,7 @@
       "date": "2026-03-15",
       "time": "19:00",
       "location": "Tegernsee",
-      "address": "",
+      "address": "Barocksaal, Rosenstraße 1, 83684 Tegernsee",
       "description": "Internationales Bergfilm-Festival mit Filmvorführungen und Gesprächen",
       "category": "familie",
       "artTags": [
@@ -1370,7 +1370,7 @@
       "date": "2026-03-23",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Comedy-Abend mit Moderation von Cornelia Grün",
       "category": "erwachsene",
       "artTags": [
@@ -1389,7 +1389,7 @@
       "date": "2026-04-16",
       "time": "19:00",
       "location": "Tierpark Hellabrunn",
-      "address": "",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Vortrag über bedrohte Amphibien in München",
       "category": "familie",
       "artTags": [
@@ -1427,7 +1427,7 @@
       "date": "2026-04-27",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Lesung aus dem aktuellen Roman Eine von uns",
       "category": "erwachsene",
       "artTags": [
@@ -1447,7 +1447,7 @@
       "date": "2026-05-03",
       "time": "10:00",
       "location": "Starnberg",
-      "address": "MS STARNBERG, Abfahrt Starnberg",
+      "address": "Bayerische Seenschifffahrt, Dampfschiffstr. 1, 82319 Starnberg",
       "region": "starnberg-ammersee",
       "category": "familie",
       "description": "Sonntags-Brunch nach Herzenslust auf dem MS STARNBERG. Jeden Sonntag vom 03.05. bis 28.06.2026",
@@ -1462,7 +1462,7 @@
       "date": "2026-05-08",
       "time": "20:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Werke von Mozart, Bruch und Dvorak – Solist: Maurice Poschenrieder",
       "category": "erwachsene",
       "artTags": [
@@ -1481,7 +1481,7 @@
       "date": "2026-05-18",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Konzertabend mit deutsch-kubanischer Mezzosopranistin Katarina Morfa – Tangos und mehr",
       "category": "erwachsene",
       "artTags": [
@@ -1500,7 +1500,7 @@
       "date": "2026-05-19",
       "time": "19:00",
       "location": "Tierpark Hellabrunn",
-      "address": "",
+      "address": "Tierpark Hellabrunn, Tierparkstr. 30, 81543 München",
       "description": "Vortrag über die Bedeutung von Insekten im Ökosystem",
       "category": "familie",
       "artTags": [
@@ -1538,7 +1538,7 @@
       "date": "2026-06-20",
       "time": "19:00",
       "location": "Garmisch-Partenkirchen",
-      "address": "",
+      "address": "Kongresshaus, Richard-Strauss-Platz 1a, 82467 Garmisch-Partenkirchen",
       "description": "Internationales Klassik-Festival zu Ehren des Komponisten",
       "category": "familie",
       "artTags": [
@@ -1577,7 +1577,7 @@
       "time": "20:00",
       "endTime": "23:30",
       "location": "Starnberg",
-      "address": "Katamaran STARNBERG, Abfahrt Starnberg",
+      "address": "Bayerische Seenschifffahrt, Dampfschiffstr. 1, 82319 Starnberg",
       "region": "starnberg-ammersee",
       "category": "erwachsene",
       "description": "Party auf dem See mit DJ – Hitmix für die Generation Ü30",
@@ -1595,7 +1595,7 @@
       "date": "2026-07-19",
       "time": "19:00",
       "location": "Starnberg",
-      "address": "MS STARNBERG, Abfahrt Starnberg",
+      "address": "Bayerische Seenschifffahrt, Dampfschiffstr. 1, 82319 Starnberg",
       "region": "starnberg-ammersee",
       "category": "erwachsene",
       "description": "Genussfahrt mit verschiedenen Pastavariationen auf dem Starnberger See",
@@ -1611,7 +1611,7 @@
       "date": "2026-07-29",
       "time": "19:00",
       "location": "Starnberg",
-      "address": "MS SEESHAUPT, Abfahrt Starnberg",
+      "address": "Bayerische Seenschifffahrt, Dampfschiffstr. 1, 82319 Starnberg",
       "region": "starnberg-ammersee",
       "category": "erwachsene",
       "description": "Entdeckungsreise mit Historikerin, 3-Gänge Menü, Musik und Erzählungen über König Ludwig II.",
@@ -1627,7 +1627,7 @@
       "date": "2026-08-15",
       "time": "18:00",
       "location": "Tegernsee",
-      "address": "",
+      "address": "Seepromenade, 83684 Tegernsee",
       "description": "Das traditionelle Seefest mit spektakulärem Feuerwerk über dem See",
       "category": "familie",
       "artTags": [
@@ -1646,7 +1646,7 @@
       "date": "2026-08-23",
       "time": "09:00",
       "location": "Rottach-Egern",
-      "address": "",
+      "address": "Nördliche Hauptstraße 32, 83700 Rottach-Egern",
       "description": "Traditioneller Rosstag mit Pferdewagen-Prozession, Brauchtumsumzug und Pferdesegnung",
       "category": "familie",
       "artTags": [
@@ -1665,7 +1665,7 @@
       "date": "2026-09-18",
       "time": "19:00",
       "location": "Tegernsee",
-      "address": "",
+      "address": "Barocksaal, Rosenstraße 1, 83684 Tegernsee",
       "description": "Klassik-Konzerte internationaler Künstler in einzigartiger Bergkulisse",
       "category": "erwachsene",
       "artTags": [
@@ -1685,7 +1685,7 @@
       "date": "2026-09-22",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Ein humoristischer Streifzug zum Schmunzeln und Schunkeln, zum Lachen und Genießen",
       "category": "familie",
       "artTags": [
@@ -1704,7 +1704,7 @@
       "date": "2026-10-26",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Erich Kasberger – Was die Welt nicht braucht. Kabarett-Abend.",
       "category": "erwachsene",
       "artTags": [
@@ -1723,7 +1723,7 @@
       "date": "2026-11-14",
       "time": "19:00",
       "location": "Pöcking",
-      "address": "",
+      "address": "Beccult, Weilheimer Str. 33, 82343 Pöcking",
       "description": "Die Schlagergang – Aber bitte mit Schlager! Schlagerparty im beccult.",
       "category": "erwachsene",
       "artTags": [
@@ -1743,7 +1743,7 @@
       "date": "2027-01-01",
       "time": "14:00",
       "location": "Garmisch-Partenkirchen",
-      "address": "",
+      "address": "Olympia-Skistadion, Karl-und-Martin-Neuner-Platz 1, 82467 Garmisch-Partenkirchen",
       "description": "Vierschanzentournee – Weltcup-Skispringen an der Olympiaschanze",
       "category": "familie",
       "artTags": [
