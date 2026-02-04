@@ -105,33 +105,49 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     </div>
   </div>
 
-  <!-- Art Tags Filter -->
+  <!-- Art Tags Filter (Collapsible) -->
   <div class="filter-section">
-    <h3 class="filter-section-title">Art</h3>
-    <div class="filter-chips" role="group" aria-label="Filter nach Art">
-      <button class="chip active" data-filter="all" data-type="art-tag">Alle</button>
-      {Object.entries(artTags).map(([id, tag]) => (
-        artTagCounts[id] > 0 && (
-          <button class="chip" data-filter={id} data-type="art-tag">
-            {tag.emoji} {tag.name} <span class="chip-count">{artTagCounts[id]}</span>
-          </button>
-        )
-      ))}
+    <button class="collapsible-header" id="art-tag-toggle" aria-expanded="false">
+      <h3 class="filter-section-title">Art</h3>
+      <span class="collapsible-badge" id="art-tag-active-count"></span>
+      <svg class="collapsible-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    <div class="collapsible-content" id="art-tag-content">
+      <div class="filter-chips" role="group" aria-label="Filter nach Art">
+        <button class="chip active" data-filter="all" data-type="art-tag">Alle</button>
+        {Object.entries(artTags).map(([id, tag]) => (
+          artTagCounts[id] > 0 && (
+            <button class="chip" data-filter={id} data-type="art-tag">
+              {tag.emoji} {tag.name} <span class="chip-count">{artTagCounts[id]}</span>
+            </button>
+          )
+        ))}
+      </div>
     </div>
   </div>
 
-  <!-- Region Filter -->
+  <!-- Region Filter (Collapsible) -->
   <div class="filter-section">
-    <h3 class="filter-section-title">Region</h3>
-    <div class="filter-chips" role="group" aria-label="Filter nach Region">
-      <button class="chip active" data-filter="all" data-type="region">Alle</button>
-      {Object.entries(regions).map(([id, region]) => (
-        regionCounts[id] > 0 && (
-          <button class="chip" data-filter={id} data-type="region">
-            {region.emoji} {region.name} <span class="chip-count">{regionCounts[id]}</span>
-          </button>
-        )
-      ))}
+    <button class="collapsible-header" id="region-toggle" aria-expanded="false">
+      <h3 class="filter-section-title">Region</h3>
+      <span class="collapsible-badge" id="region-active-count"></span>
+      <svg class="collapsible-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+    <div class="collapsible-content" id="region-content">
+      <div class="filter-chips" role="group" aria-label="Filter nach Region">
+        <button class="chip active" data-filter="all" data-type="region">Alle</button>
+        {Object.entries(regions).map(([id, region]) => (
+          regionCounts[id] > 0 && (
+            <button class="chip" data-filter={id} data-type="region">
+              {region.emoji} {region.name} <span class="chip-count">{regionCounts[id]}</span>
+            </button>
+          )
+        ))}
+      </div>
     </div>
   </div>
 
@@ -292,14 +308,14 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filter-sidebar {
     display: none;
     flex-direction: column;
-    gap: var(--space-5);
-    padding: var(--space-4);
+    gap: var(--space-6);
+    padding: var(--space-5);
     background: var(--color-card);
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border-light);
     position: sticky;
     top: 357px; /* Sticky below fixed header with equal gap */
-    width: 200px;
+    width: 260px;
     max-height: calc(100vh - 367px);
     overflow-y: auto;
     z-index: 90;
@@ -551,6 +567,69 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .chip.active .chip-count {
     color: rgba(255,255,255,0.7);
+  }
+
+  /* === COLLAPSIBLE SECTIONS === */
+  .collapsible-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-3) 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .collapsible-header:hover {
+    color: var(--color-primary);
+  }
+
+  .collapsible-header .filter-section-title {
+    flex: 1;
+    text-align: left;
+    margin: 0;
+  }
+
+  .collapsible-badge {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: 0.625rem;
+    font-weight: 700;
+  }
+
+  .collapsible-badge.visible {
+    display: inline-flex;
+  }
+
+  .collapsible-chevron {
+    width: 16px;
+    height: 16px;
+    color: var(--color-muted);
+    transition: transform var(--duration-fast) ease;
+    flex-shrink: 0;
+  }
+
+  .collapsible-header[aria-expanded="true"] .collapsible-chevron {
+    transform: rotate(180deg);
+  }
+
+  .collapsible-content {
+    display: none;
+    padding-top: var(--space-2);
+  }
+
+  .collapsible-content.open {
+    display: block;
   }
 
   .filter-select {
@@ -897,6 +976,38 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 </style>
 
 <script>
+  // Collapsible sections
+  function setupCollapsible(toggleId: string, contentId: string) {
+    const toggle = document.getElementById(toggleId);
+    const content = document.getElementById(contentId);
+    if (!toggle || !content) return;
+    
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      content.classList.toggle('open', !isOpen);
+    });
+  }
+
+  setupCollapsible('art-tag-toggle', 'art-tag-content');
+  setupCollapsible('region-toggle', 'region-content');
+
+  function updateCollapsibleBadges() {
+    const artBadge = document.getElementById('art-tag-active-count');
+    const regionBadge = document.getElementById('region-active-count');
+    
+    if (artBadge) {
+      const count = activeArtTags.has('all') ? 0 : activeArtTags.size;
+      artBadge.textContent = String(count);
+      artBadge.classList.toggle('visible', count > 0);
+    }
+    if (regionBadge) {
+      const count = activeRegions.has('all') ? 0 : activeRegions.size;
+      regionBadge.textContent = String(count);
+      regionBadge.classList.toggle('visible', count > 0);
+    }
+  }
+
   // State
   let activeCategories: Set<string> = new Set(['all']);
   let activeRegions: Set<string> = new Set(['all']);
@@ -1063,6 +1174,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
                       highlightsOnly;
     clearBtnDesktop?.classList.toggle('visible', hasFilters);
     updateMoreBtnState();
+    updateCollapsibleBadges();
   }
 
   function clearAllFilters() {
