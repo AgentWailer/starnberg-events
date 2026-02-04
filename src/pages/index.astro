@@ -48,6 +48,7 @@ nextSaturday.setHours(0, 0, 0, 0);
 const nextSunday = new Date(nextSaturday);
 nextSunday.setDate(nextSaturday.getDate() + 1);
 
+// Balanced: max 3 Saturday + max 3 Sunday
 const saturdayEvents = events.filter(event => {
   const eventDate = new Date(event.date);
   eventDate.setHours(0, 0, 0, 0);
@@ -60,12 +61,9 @@ const sundayEvents = events.filter(event => {
   return eventDate.getTime() === nextSunday.getTime();
 }).slice(0, 3);
 
-const hasWeekendEvents = saturdayEvents.length > 0 || sundayEvents.length > 0;
+const weekendEvents = [...saturdayEvents, ...sundayEvents];
+const hasWeekendEvents = weekendEvents.length > 0;
 const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "Heute" : "Dieses Wochenende";
-
-// Format day labels
-const satLabel = `Samstag, ${nextSaturday.getDate()}.${nextSaturday.getMonth() + 1}.`;
-const sunLabel = `Sonntag, ${nextSunday.getDate()}.${nextSunday.getMonth() + 1}.`;
 
 ---
 
@@ -91,87 +89,54 @@ const sunLabel = `Sonntag, ${nextSunday.getDate()}.${nextSunday.getMonth() + 1}.
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </section>
 
-          <!-- Weekend Highlights (split Sa/So) -->
+          <!-- Weekend Highlights (3 Sa + 3 So) -->
           {hasWeekendEvents && (
             <section class="section-highlights">
               <div class="highlights-header">
                 <h2 class="highlights-title">{weekendTitle}</h2>
-                <span class="highlights-count">{saturdayEvents.length + sundayEvents.length} Events</span>
+                <span class="highlights-count">{weekendEvents.length} Events</span>
               </div>
-
-              {saturdayEvents.length > 0 && (
-                <div class="highlights-day">
-                  <h3 class="highlights-day__label">📅 {satLabel}</h3>
-                  <div class="highlights-scroll">
-                    {saturdayEvents.map(event => (
-                      <button 
-                        class="highlight-card" 
-                        data-event-id={event.id}
-                        data-event-title={event.title}
-                        data-date={event.date}
-                        data-event-time={event.time}
-                        data-location={event.location}
-                        data-event-address={event.address}
-                        data-event-description={event.description}
-                        data-event-url={event.url}
-                        data-category={event.category}
-                        data-art-tags={event.artTags?.join(',')}
-                      >
-                        <div class="highlight-card__content">
-                          <div class="highlight-card__meta">
-                            {event.time && <span class="highlight-card__time">{event.time} Uhr</span>}
-                          </div>
-                          <span class="highlight-card__title">{event.title}</span>
-                          <span class="highlight-card__location">
-                            <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                              <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            {event.location}
-                          </span>
+              <div class="highlights-scroll">
+                {weekendEvents.map(event => {
+                  const evDate = new Date(event.date);
+                  const evDay = evDate.getDate();
+                  const evMonth = evDate.getMonth() + 1;
+                  const evWeekday = evDate.toLocaleDateString('de-DE', { weekday: 'short' });
+                  return (
+                    <button 
+                      class="highlight-card" 
+                      data-event-id={event.id}
+                      data-event-title={event.title}
+                      data-date={event.date}
+                      data-event-time={event.time}
+                      data-location={event.location}
+                      data-event-address={event.address}
+                      data-event-description={event.description}
+                      data-event-url={event.url}
+                      data-category={event.category}
+                      data-art-tags={event.artTags?.join(',')}
+                    >
+                      <div class="highlight-card__date">
+                        <span class="highlight-card__day">{evDay}.{evMonth}.</span>
+                        <span class="highlight-card__weekday">{evWeekday}</span>
+                      </div>
+                      <div class="highlight-card__content">
+                        <div class="highlight-card__meta">
+                          {event.time && <span class="highlight-card__time">{event.time} Uhr</span>}
                         </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {sundayEvents.length > 0 && (
-                <div class="highlights-day">
-                  <h3 class="highlights-day__label">📅 {sunLabel}</h3>
-                  <div class="highlights-scroll">
-                    {sundayEvents.map(event => (
-                      <button 
-                        class="highlight-card" 
-                        data-event-id={event.id}
-                        data-event-title={event.title}
-                        data-date={event.date}
-                        data-event-time={event.time}
-                        data-location={event.location}
-                        data-event-address={event.address}
-                        data-event-description={event.description}
-                        data-event-url={event.url}
-                        data-category={event.category}
-                        data-art-tags={event.artTags?.join(',')}
-                      >
-                        <div class="highlight-card__content">
-                          <div class="highlight-card__meta">
-                            {event.time && <span class="highlight-card__time">{event.time} Uhr</span>}
-                          </div>
-                          <span class="highlight-card__title">{event.title}</span>
-                          <span class="highlight-card__location">
-                            <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                              <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            {event.location}
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+                        <span class="highlight-card__title">{event.title}</span>
+                        <span class="highlight-card__location">
+                          <svg class="highlight-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                          {event.location}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </section>
           )}
 
@@ -332,22 +297,6 @@ const sunLabel = `Sonntag, ${nextSunday.getDate()}.${nextSunday.getMonth() + 1}.
     color: var(--color-muted);
   }
 
-  .highlights-day {
-    margin-bottom: var(--space-4);
-  }
-
-  .highlights-day:last-child {
-    margin-bottom: 0;
-  }
-
-  .highlights-day__label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-3);
-    padding-left: var(--space-1);
-  }
-
   .highlights-scroll {
     display: flex;
     gap: var(--space-4);
@@ -370,10 +319,10 @@ const sunLabel = `Sonntag, ${nextSunday.getDate()}.${nextSunday.getMonth() + 1}.
 
   /* Highlight card — same visual language as EventCard */
   .highlight-card {
-    flex: 0 0 250px;
+    flex: 0 0 280px;
     display: flex;
     align-items: start;
-    gap: var(--space-3);
+    gap: var(--space-4);
     background: var(--color-card);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-lg);
@@ -402,6 +351,35 @@ const sunLabel = `Sonntag, ${nextSunday.getDate()}.${nextSunday.getMonth() + 1}.
 
   .highlight-card:active {
     transform: scale(0.99);
+  }
+
+  .highlight-card__date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40px;
+    padding: var(--space-2);
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .highlight-card__day {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .highlight-card__weekday {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    margin-top: 3px;
   }
 
   .highlight-card__content {
