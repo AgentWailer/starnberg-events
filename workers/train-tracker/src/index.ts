@@ -37,6 +37,29 @@ interface ApiResponse {
 
 const POSSENHOFEN_ID = '8004874';
 const API_BASE = 'https://v6.db.transport.rest';
+const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,precipitation,rain,snowfall,weather_code,wind_speed_10m';
+
+interface WeatherData {
+  weather_code: number | null;
+  temperature: number | null;
+  precipitation: number | null;
+  wind_speed: number | null;
+}
+
+/**
+ * WMO Weather Code → Kategorie für Gruppierung
+ * 0=klar, 1-3=bewölkt, 45/48=Nebel, 51-67=Regen, 71-86=Schnee, 95-99=Gewitter
+ */
+function weatherCategory(code: number | null): string {
+  if (code === null || code === undefined) return 'unbekannt';
+  if (code === 0) return 'klar';
+  if (code <= 3) return 'bewölkt';
+  if (code <= 48) return 'nebel';
+  if (code <= 67) return 'regen';
+  if (code <= 86) return 'schnee';
+  if (code <= 99) return 'gewitter';
+  return 'unbekannt';
+}
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -85,19 +108,41 @@ function todayStr(): string {
 
 // ── Cron: Daten sammeln ────────────────────────────────────────────
 
+async function fetchWeather(): Promise<WeatherData> {
+  try {
+    const resp = await fetch(WEATHER_API, {
+      headers: { 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
+    });
+    if (!resp.ok) return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+    const data: any = await resp.json();
+    const c = data.current;
+    return {
+      weather_code: c?.weather_code ?? null,
+      temperature: c?.temperature_2m ?? null,
+      precipitation: c?.precipitation ?? null,
+      wind_speed: c?.wind_speed_10m ?? null,
+    };
+  } catch (e) {
+    console.error('Weather fetch failed:', e);
+    return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+  }
+}
+
 async function collectDepartures(env: Env): Promise<{ inserted: number; updated: number }> {
-  const url = `${API_BASE}/stops/${POSSENHOFEN_ID}/departures?duration=30&suburban=true`;
+  // Parallel: Abfahrten + Wetter
+  const [trainResp, weather] = await Promise.all([
+    fetch(`${API_BASE}/stops/${POSSENHOFEN_ID}/departures?duration=30&suburban=true`, {
+      headers: { 'Accept': 'application/json', 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
+    }),
+    fetchWeather(),
+  ]);
 
-  const resp = await fetch(url, {
-    headers: { 'Accept': 'application/json', 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
-  });
-
-  if (!resp.ok) {
-    console.error(`API error: ${resp.status} ${resp.statusText}`);
+  if (!trainResp.ok) {
+    console.error(`API error: ${trainResp.status} ${trainResp.statusText}`);
     return { inserted: 0, updated: 0 };
   }
 
-  const data: ApiResponse = await resp.json();
+  const data: ApiResponse = await trainResp.json();
   const now = new Date().toISOString();
 
   // Nur S-Bahn (suburban) — an Possenhofen fährt nur S6, aber sicher ist sicher
@@ -119,24 +164,29 @@ async function collectDepartures(env: Env): Promise<{ inserted: number; updated:
     )) ? 1 : 0;
 
     const result = await env.DB.prepare(`
-      INSERT INTO departures (trip_id, date, planned_when, planned_hour, delay, cancelled, direction, line, recorded_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO departures (trip_id, date, planned_when, planned_hour, delay, cancelled, direction, line, recorded_at, weather_code, temperature, precipitation, wind_speed)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT (trip_id, date) DO UPDATE SET
         delay = excluded.delay,
         cancelled = MAX(departures.cancelled, excluded.cancelled),
-        recorded_at = excluded.recorded_at
+        recorded_at = excluded.recorded_at,
+        weather_code = COALESCE(excluded.weather_code, departures.weather_code),
+        temperature = COALESCE(excluded.temperature, departures.temperature),
+        precipitation = COALESCE(excluded.precipitation, departures.precipitation),
+        wind_speed = COALESCE(excluded.wind_speed, departures.wind_speed)
     `).bind(
       dep.tripId, date, dep.plannedWhen, hour,
-      dep.delay, isCancelled, direction, dep.line.name, now
+      dep.delay, isCancelled, direction, dep.line.name, now,
+      weather.weather_code, weather.temperature, weather.precipitation, weather.wind_speed
     ).run();
 
     if (result.meta.changes > 0) {
-      // Heuristic: if rows_written > rows_read it's an insert
       updated++;
     }
     inserted++;
   }
 
+  console.log(`[weather] code=${weather.weather_code} temp=${weather.temperature}° precip=${weather.precipitation}mm wind=${weather.wind_speed}km/h`);
   return { inserted: s6.length, updated };
 }
 
@@ -340,17 +390,69 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
 
   // 10) Heutige Abfahrten
   const todayDepartures = (await db.prepare(`
-    SELECT planned_when, planned_hour, delay, cancelled, direction
+    SELECT planned_when, planned_hour, delay, cancelled, direction, weather_code, temperature, precipitation
     FROM departures WHERE date = ?1
     ORDER BY planned_when
   `).bind(today).all()).results;
+
+  // 11) Wetter-Korrelation
+  const byWeather = (await db.prepare(`
+    SELECT
+      CASE
+        WHEN weather_code IS NULL THEN 'unbekannt'
+        WHEN weather_code = 0 THEN 'klar'
+        WHEN weather_code <= 3 THEN 'bewölkt'
+        WHEN weather_code <= 48 THEN 'nebel'
+        WHEN weather_code <= 67 THEN 'regen'
+        WHEN weather_code <= 86 THEN 'schnee'
+        WHEN weather_code <= 99 THEN 'gewitter'
+        ELSE 'unbekannt'
+      END as weather,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay,
+      MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay,
+      ROUND(AVG(temperature), 1) as avg_temp,
+      ROUND(AVG(precipitation), 2) as avg_precip,
+      ROUND(AVG(wind_speed), 1) as avg_wind
+    FROM departures WHERE date >= ?1
+    GROUP BY weather
+    ORDER BY total DESC
+  `).bind(since).all()).results;
+
+  // 12) Temperatur-Korrelation (in 5°-Schritten)
+  const byTemperature = (await db.prepare(`
+    SELECT
+      CASE
+        WHEN temperature IS NULL THEN 'unbekannt'
+        WHEN temperature < -5 THEN 'unter -5°'
+        WHEN temperature < 0 THEN '-5 bis 0°'
+        WHEN temperature < 5 THEN '0 bis 5°'
+        WHEN temperature < 10 THEN '5 bis 10°'
+        WHEN temperature < 15 THEN '10 bis 15°'
+        WHEN temperature < 20 THEN '15 bis 20°'
+        WHEN temperature < 25 THEN '20 bis 25°'
+        ELSE 'über 25°'
+      END as temp_range,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1 AND temperature IS NOT NULL
+    GROUP BY temp_range
+    ORDER BY MIN(temperature)
+  `).bind(since).all()).results;
 
   return json({
     days, since, generatedAt: new Date().toISOString(),
     overall, today: todayStats,
     byDirection, byHour, byWeekday,
     delayDistribution, daily, rushHour,
-    worstDelays, todayDepartures
+    worstDelays, todayDepartures,
+    byWeather, byTemperature
   });
 }
 

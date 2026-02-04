@@ -115,7 +115,20 @@ import Layout from '../layouts/Layout.astro';
       <div class="dist-chart" id="dist-chart"></div>
     </section>
 
-    <!-- ══ 6. Tagesprofil (nach Stunde) ══ -->
+    <!-- ══ 6. Wetter-Korrelation ══ -->
+    <section class="s6-card" id="weather-section" style="display:none;">
+      <h2 class="s6-section-title">🌦️ Wetter & Pünktlichkeit</h2>
+      <p class="text-muted" style="margin-bottom:var(--space-3);font-size:0.8125rem;">Wie beeinflusst das Wetter die S6?</p>
+      <div class="weather-grid" id="weather-grid"></div>
+    </section>
+
+    <!-- ══ 6b. Temperatur-Korrelation ══ -->
+    <section class="s6-card" id="temp-section" style="display:none;">
+      <h2 class="s6-section-title">🌡️ Temperatur & Pünktlichkeit</h2>
+      <div class="bar-chart" id="temp-chart"></div>
+    </section>
+
+    <!-- ══ 7. Tagesprofil (nach Stunde) ══ -->
     <section class="s6-card">
       <h2 class="s6-section-title">Tagesprofil</h2>
       <p class="text-muted" style="margin-bottom:var(--space-3);font-size:0.8125rem;">Pünktlichkeit nach Tageszeit</p>
@@ -226,6 +239,14 @@ import Layout from '../layouts/Layout.astro';
   .rush-item__pct { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
   .rush-item__avg { display: block; font-size: 0.75rem; color: var(--color-text-tertiary, #aaa); margin-top: 2px; }
   @media (max-width: 400px) { .rush-grid { grid-template-columns: 1fr; } }
+
+  /* Weather grid */
+  .weather-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-3); }
+  .weather-item { text-align: center; padding: var(--space-4) var(--space-3); border-radius: var(--radius-md); background: var(--color-bg-secondary); }
+  .weather-item__icon { font-size: 1.5rem; margin-bottom: var(--space-1); }
+  .weather-item__label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+  .weather-item__pct { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.375rem; font-weight: 700; }
+  .weather-item__detail { display: block; font-size: 0.6875rem; color: var(--color-text-tertiary, #aaa); margin-top: 2px; line-height: 1.4; }
 
   /* Distribution chart */
   .dist-chart { display: flex; flex-direction: column; gap: var(--space-2); }
@@ -393,6 +414,10 @@ import Layout from '../layouts/Layout.astro';
 
     // Today departures
     renderTodayDeps(d.todayDepartures);
+
+    // Weather correlation
+    renderWeather(d.byWeather);
+    renderTemperature(d.byTemperature);
   }
 
   function renderDir(dirs: any[], key: string, prefix: string) {
@@ -502,6 +527,53 @@ import Layout from '../layouts/Layout.astro';
       }
       return `<span class="dep-chip ${cls}">${time} <span class="dep-chip__dir">${dir}</span> ${delayStr}</span>`;
     }).join('');
+  }
+
+  const WEATHER_ICONS: Record<string, string> = {
+    klar: '☀️', bewölkt: '☁️', nebel: '🌫️', regen: '🌧️',
+    schnee: '❄️', gewitter: '⛈️', unbekannt: '❓'
+  };
+  const WEATHER_LABELS: Record<string, string> = {
+    klar: 'Klar', bewölkt: 'Bewölkt', nebel: 'Nebel', regen: 'Regen',
+    schnee: 'Schnee', gewitter: 'Gewitter', unbekannt: 'Unbekannt'
+  };
+
+  function renderWeather(data: any[]) {
+    if (!data || data.length === 0 || (data.length === 1 && data[0].weather === 'unbekannt')) return;
+    const filtered = data.filter((w: any) => w.weather !== 'unbekannt' && w.total > 0);
+    if (filtered.length === 0) return;
+
+    $('weather-section').style.display = '';
+    $('weather-grid').innerHTML = filtered.map((w: any) => {
+      const total = (w.on_time || 0) + (w.delayed || 0) + (w.cancelled || 0);
+      const rate = pct(w.on_time || 0, total);
+      const icon = WEATHER_ICONS[w.weather] || '❓';
+      const label = WEATHER_LABELS[w.weather] || w.weather;
+      const avgMin = w.avg_delay ? fmtDelay(w.avg_delay) : '0 Min';
+      const cancelStr = w.cancelled > 0 ? `${w.cancelled} Ausfälle` : '';
+      const details = [`Ø ${avgMin}`, `${total} Züge`, cancelStr].filter(Boolean).join(' · ');
+      return `<div class="weather-item">
+        <span class="weather-item__icon">${icon}</span>
+        <span class="weather-item__label">${label}</span>
+        <span class="weather-item__pct" style="color:${rateColor(rate)}">${rate}%</span>
+        <span class="weather-item__detail">${details}</span>
+      </div>`;
+    }).join('');
+  }
+
+  function renderTemperature(data: any[]) {
+    if (!data || data.length === 0) return;
+    const filtered = data.filter((t: any) => t.temp_range !== 'unbekannt' && t.total > 0);
+    if (filtered.length === 0) return;
+
+    $('temp-section').style.display = '';
+    renderBarChart('temp-chart', filtered.map((t: any) => ({
+      ...t,
+      on_time: t.on_time || 0,
+      delayed: t.delayed || 0,
+      cancelled: t.cancelled || 0,
+      _label: t.temp_range
+    })), (r: any) => r._label || r.temp_range);
   }
 
   load();

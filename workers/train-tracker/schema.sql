@@ -3,17 +3,22 @@
 -- bei wiederholtem Poll wird delay/cancelled aktualisiert (letzter Wert = genauester)
 
 CREATE TABLE IF NOT EXISTS departures (
-  trip_id      TEXT    NOT NULL,
-  date         TEXT    NOT NULL,   -- YYYY-MM-DD (Betriebstag)
-  planned_when TEXT    NOT NULL,   -- ISO-Timestamp geplante Abfahrt
-  planned_hour INTEGER NOT NULL,   -- 0-23, für Stunden-Analyse
-  delay        INTEGER,            -- Sekunden, NULL = keine Echtzeitdaten
-  cancelled    INTEGER NOT NULL DEFAULT 0,  -- 1 = ausgefallen
-  direction    TEXT    NOT NULL,   -- 'muenchen' oder 'tutzing'
-  line         TEXT    NOT NULL,   -- z.B. 'S6'
-  recorded_at  TEXT    NOT NULL,   -- ISO-Timestamp letztes Update
+  trip_id       TEXT    NOT NULL,
+  date          TEXT    NOT NULL,   -- YYYY-MM-DD (Betriebstag)
+  planned_when  TEXT    NOT NULL,   -- ISO-Timestamp geplante Abfahrt
+  planned_hour  INTEGER NOT NULL,   -- 0-23, für Stunden-Analyse
+  delay         INTEGER,            -- Sekunden, NULL = keine Echtzeitdaten
+  cancelled     INTEGER NOT NULL DEFAULT 0,  -- 1 = ausgefallen
+  direction     TEXT    NOT NULL,   -- 'muenchen' oder 'tutzing'
+  line          TEXT    NOT NULL,   -- z.B. 'S6'
+  recorded_at   TEXT    NOT NULL,   -- ISO-Timestamp letztes Update
+  weather_code  INTEGER,            -- WMO Weather Code (0=klar, 61-67=Regen, etc.)
+  temperature   REAL,               -- °C bei Aufnahme
+  precipitation REAL,               -- mm Niederschlag
+  wind_speed    REAL,               -- km/h Windgeschwindigkeit
   PRIMARY KEY (trip_id, date)
 );
 
-CREATE INDEX IF NOT EXISTS idx_departures_date ON departures(date);
-CREATE INDEX IF NOT EXISTS idx_departures_dir  ON departures(date, direction);
+CREATE INDEX IF NOT EXISTS idx_departures_date    ON departures(date);
+CREATE INDEX IF NOT EXISTS idx_departures_dir     ON departures(date, direction);
+CREATE INDEX IF NOT EXISTS idx_departures_weather ON departures(date, weather_code);
