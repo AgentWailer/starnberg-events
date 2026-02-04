@@ -154,7 +154,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             </div>
 
             <button class="load-more-btn" id="load-more-btn">
-              Weitere Events anzeigen
+              <svg class="load-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <span class="load-more-text">Weitere Events anzeigen</span>
               <span class="load-more-count" id="load-more-count"></span>
             </button>
           </section>
@@ -597,33 +598,53 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-4) var(--space-5);
-    margin-top: var(--space-5);
-    background: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-lg);
-    color: var(--color-text-secondary);
-    font-size: 0.9375rem;
+    width: auto;
+    margin: var(--space-6) auto 0;
+    padding: var(--space-3) var(--space-6);
+    background: transparent;
+    border: 1.5px solid var(--color-primary);
+    border-radius: var(--radius-full);
+    color: var(--color-primary);
+    font-size: 0.8125rem;
     font-weight: 600;
     font-family: inherit;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: all var(--duration-fast) ease;
+    transition: all var(--duration-normal) ease;
   }
 
   .load-more-btn:hover {
-    background: var(--color-border-light);
-    color: var(--color-text);
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .load-more-btn:hover .load-more-count {
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .load-more-btn:active {
-    transform: scale(0.99);
+    transform: scale(0.97);
+  }
+
+  .load-more-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--duration-normal) ease;
+  }
+
+  .load-more-btn:hover .load-more-icon {
+    transform: translateY(2px);
+  }
+
+  .load-more-text {
+    /* inherits */
   }
 
   .load-more-count {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 400;
     color: var(--color-muted);
+    transition: color var(--duration-normal) ease;
   }
 </style>
 
