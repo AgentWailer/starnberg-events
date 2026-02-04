@@ -92,6 +92,10 @@
     opacity: 1;
   }
 
+  .event-modal-backdrop {
+    touch-action: none;
+  }
+
   /* === MODAL === */
   .event-modal {
     display: none;
@@ -107,6 +111,7 @@
     transform: translateY(100%);
     transition: transform var(--duration-normal) ease;
     overflow: hidden;
+    overscroll-behavior: contain;
   }
 
   .event-modal.visible {
@@ -373,9 +378,10 @@
     background: var(--color-border);
   }
 
-  /* Smooth scrolling in modal */
+  /* Smooth scrolling in modal — prevent scroll-through on mobile */
   .modal-body {
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-color: var(--color-border) transparent;
   }
@@ -500,10 +506,10 @@
       }
     }
 
-    // Show modal
+    // Show modal — lock body scroll (iOS-safe)
     modal?.classList.add('visible');
     backdrop?.classList.add('visible');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
 
     // Focus close button for accessibility
     closeBtn?.focus();
@@ -513,8 +519,29 @@
   function closeEventModal() {
     modal?.classList.remove('visible');
     backdrop?.classList.remove('visible');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
     currentEventData = null;
+  }
+
+  // iOS-safe body scroll lock
+  let savedScrollY = 0;
+
+  function lockBodyScroll() {
+    savedScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function unlockBodyScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, savedScrollY);
   }
 
   // Event listeners
