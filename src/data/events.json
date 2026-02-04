@@ -778,6 +778,28 @@
       "id": 380
     },
     {
+      "title": "KörperBewusstSein I – Innere Kraftquellen & Stärken",
+      "date": "2026-02-07",
+      "time": "10:00",
+      "endTime": "18:00",
+      "location": "Bernried am Starnberger See",
+      "address": "Schloß Höhenried, Bernried am Starnberger See",
+      "description": "Achtsamkeitsseminar für Frauen mit Fokus auf innere Kraftquellen und Stärken. Yoga, Meditation, Achtsamkeitsübungen und Impulse für bewusste Lebensgestaltung. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 140 € (inkl. Getränke, Snacks, Mittagessen).",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "meditation",
+        "wellness",
+        "bildung"
+      ],
+      "url": "https://elisabeth-dean.de/veranstaltungen/",
+      "source": "elisabeth-dean",
+      "region": "starnberger-see",
+      "venue": "Schloß Höhenried",
+      "isHighlight": true,
+      "id": 416
+    },
+    {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
       "date": "2026-02-08",
       "time": "08:00",
@@ -4950,6 +4972,26 @@
       "id": 175
     },
     {
+      "title": "ADFC Rennrad (Gravel) Tour Andechs",
+      "date": "2026-03-28",
+      "time": "10:00",
+      "location": "Steinebach (Wörthsee)",
+      "address": "Bahnhofstraße, 82237 Landkreis Starnberg",
+      "description": "Saisonstart-Tour: Rennrad/Graveltour entlang der Seen über Andechs. 38 km, 380 Hm, Durchschnitt 20 km/h, durchgehend Asphalt. Optional Pause beim Bernhardshof ('Omas Kuchen').",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur",
+        "sport"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187831-rennrad-gravel-tour-andechs",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 419
+    },
+    {
       "title": "Osterchallenge 2026 - Woche 1",
       "date": "2026-03-30",
       "time": "08:30",
@@ -5086,6 +5128,25 @@
       "id": 179
     },
     {
+      "title": "ADFC Gilchinger Feierabendtour",
+      "date": "2026-04-10",
+      "time": "17:00",
+      "location": "Gilching",
+      "address": "Marktplatz, 82205 Gilching",
+      "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr. Wiederkehrend freitags ab April.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187657-gilchinger-feierabendtour",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 420
+    },
+    {
       "title": "Wechseljahre – Workshop",
       "date": "2026-04-11",
       "time": null,
@@ -5180,6 +5241,25 @@
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
       "id": 183
+    },
+    {
+      "title": "ADFC Nachmittagstour Gauting",
+      "date": "2026-04-14",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Wöchentliche Radtour in die Umgebung von Gauting. Abwechselnd naturkundliche Touren und Cappuccino-Touren. Wiederkehrend dienstags.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188021-wochentliche-nachmittagstour-in-gauting",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 421
     },
     {
       "title": "nou Well cousines - Konzert",
@@ -5335,6 +5415,25 @@
       "id": 338
     },
     {
+      "title": "ADFC Gilchinger Feierabendtour",
+      "date": "2026-04-17",
+      "time": "17:00",
+      "location": "Gilching",
+      "address": "Marktplatz, 82205 Gilching",
+      "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187667-gilchinger-feierabendtour",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 422
+    },
+    {
       "title": "Yoga & Brunch",
       "date": "2026-04-18",
       "time": "10:00",
@@ -5429,6 +5528,25 @@
       "id": 341
     },
     {
+      "title": "ADFC Nachmittagstour Gauting",
+      "date": "2026-04-21",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Geführte Radtour in die Umgebung von Gauting. Wechselnd naturkundliche Touren und Cappuccino-Touren.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188030-wochentliche-nachmittagstour-in-gauting",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 423
+    },
+    {
       "title": "Swingin' Ladies plus 2: Swing, Blues and Boogie Woogie",
       "date": "2026-04-22",
       "time": "20:00",
@@ -5468,6 +5586,26 @@
       "id": 191
     },
     {
+      "title": "ADFC Tagestour 'Unterwegs im Südwesten'",
+      "date": "2026-04-23",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Zweiwöchentliche Tagestour ab Gauting zu naturkundlich, historisch oder kunsthistorisch interessanten Zielen im Südwesten von München. 50-60 km mit Steigungen, Einkehr inklusive. Rückkehr ca. 16 Uhr. Nichtmitglieder 5€.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur",
+        "kultur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188023-unterwegs-im-sudwesten",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 424
+    },
+    {
       "title": "Schneeberger & Bakanic Quartett: Avanti Avanti - Tournee 2026",
       "date": "2026-04-24",
       "time": "20:00",
@@ -5505,6 +5643,25 @@
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 400
+    },
+    {
+      "title": "ADFC Gilchinger Feierabendtour",
+      "date": "2026-04-24",
+      "time": "17:00",
+      "location": "Gilching",
+      "address": "Marktplatz, 82205 Gilching",
+      "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187668-gilchinger-feierabendtour",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 425
     },
     {
       "title": "Schleiferlturnier Tennis – TSV Gilching",
@@ -5561,6 +5718,28 @@
       "venue": null,
       "isHighlight": false,
       "id": 344
+    },
+    {
+      "title": "KörperBewusstSein II – Innere Orientierung & Stabilität",
+      "date": "2026-04-25",
+      "time": "10:00",
+      "endTime": "18:00",
+      "location": "Bad Tölz",
+      "address": "villa vivendi, Bad Tölz",
+      "description": "Achtsamkeitsseminar für Frauen mit Fokus auf innere Orientierung und Stabilität. Yoga, Meditation, Achtsamkeitsübungen und Impulse für bewusste Lebensgestaltung. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 160 € (inkl. Getränke, Snacks, Mittagessen).",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "meditation",
+        "wellness",
+        "bildung"
+      ],
+      "url": "https://elisabeth-dean.de/veranstaltungen/",
+      "source": "elisabeth-dean",
+      "region": "starnberger-see",
+      "venue": "villa vivendi",
+      "isHighlight": false,
+      "id": 417
     },
     {
       "title": "Amelie Fried - Lesung",
@@ -5637,6 +5816,25 @@
       "id": 345
     },
     {
+      "title": "ADFC Nachmittagstour Gauting",
+      "date": "2026-04-28",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Geführte Radtour in die Umgebung von Gauting. Wechselnd naturkundliche Touren und Cappuccino-Touren.",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188032-wochentliche-nachmittagstour-in-gauting",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 426
+    },
+    {
       "title": "Ramsee – Radtour durch den westlichen Landkreis",
       "date": "2026-05-01",
       "time": "10:00",
@@ -5674,6 +5872,26 @@
       "venue": "RSC Wolfratshausen",
       "isHighlight": false,
       "id": 198
+    },
+    {
+      "title": "ADFC Radtour 'Ramsee' – Zum verschwundenen Dorf",
+      "date": "2026-05-01",
+      "time": "10:00",
+      "location": "Gilching",
+      "address": "Am Markt, 82205 Gilching",
+      "description": "Abwechslungsreiche Rundtour (52 km, 400 Hm) durch den westlichen Landkreis zum seit 1860 verlassenen, vom Wald verschluckten Dorf Ramsee. Einkehr im Herrschinger Brauhaus. Anmeldung erforderlich!",
+      "category": "erwachsene",
+      "artTags": [
+        "radsport",
+        "natur",
+        "kultur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187880-ramsee",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 427
     },
     {
       "title": "Stressmanagement Workshop",
@@ -5750,6 +5968,27 @@
       "venue": "Gemeindebibliothek Berg",
       "isHighlight": false,
       "id": 202
+    },
+    {
+      "title": "ADFC 'Rote Route der Via Zeitreise' – Familientour Gilching",
+      "date": "2026-05-03",
+      "time": "14:00",
+      "location": "Gilching",
+      "address": "Am Markt 4, 82205 Gilching",
+      "description": "Familienfreundliche Radtour (16 km) in den Gilchinger Westen mit Erläuterungen zu Geologie, Archäologie und Ortsgeschichte. Geeignet für Familien, Kinder, Jugendliche, Senioren und Menschen mit Behinderungen.",
+      "category": "familie",
+      "artTags": [
+        "radsport",
+        "natur",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/186565-rote-route-der-via-zeitreise",
+      "source": "adfc-touren",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 428
     },
     {
       "title": "Treffen der Ortsgruppe Krailling",
@@ -7267,6 +7506,28 @@
       "venue": "DJK-SV Berg",
       "isHighlight": true,
       "id": 274
+    },
+    {
+      "title": "KörperBewusstSein III – Innere Netzwerke & Balance (2-Tages-Seminar)",
+      "date": "2026-09-26",
+      "time": "10:00",
+      "endTime": "17:00",
+      "location": "Bad Tölz",
+      "address": "villa vivendi, Bad Tölz",
+      "description": "Zweitägiges Achtsamkeitsseminar für Frauen (26.+27. September) mit Fokus auf innere Netzwerke und Balance. Yoga, Meditation, Achtsamkeitsübungen. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 330 € (inkl. Getränke, Snacks, Mittagessen).",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "meditation",
+        "wellness",
+        "bildung"
+      ],
+      "url": "https://elisabeth-dean.de/veranstaltungen/",
+      "source": "elisabeth-dean",
+      "region": "starnberger-see",
+      "venue": "villa vivendi",
+      "isHighlight": false,
+      "id": 418
     },
     {
       "title": "Hannes Ringlstetter SOLO - Konzert",
