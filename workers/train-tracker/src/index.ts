@@ -1,10 +1,15 @@
 /**
  * S6 Pünktlichkeits-Tracker — Cloudflare Worker
  *
- * Cron: pollt alle 10 Min die transport.rest API für Possenhofen
+ * Primary source: DB IRIS API (XML)
+ * Fallback: transport.rest API (JSON)
+ *
+ * Cron: pollt alle 10 Min
  * HTTP:  /api/stats?period=today|week|month  → Aggregierte Statistiken
  *        /api/history?days=30               → Tagesverlauf
  *        /api/departures?date=YYYY-MM-DD    → Einzelne Abfahrten
+ *        /api/analysis?days=30              → Umfassende Analyse
+ *        /api/live                          → Echtzeit S6-Abfahrten (2 min Cache)
  */
 
 interface Env {
@@ -13,6 +18,7 @@ interface Env {
 
 // ── Types ──────────────────────────────────────────────────────────
 
+// transport.rest types (for fallback)
 interface ApiDeparture {
   tripId: string;
   when: string | null;
@@ -33,12 +39,6 @@ interface ApiResponse {
   departures: ApiDeparture[];
 }
 
-// ── Helpers ────────────────────────────────────────────────────────
-
-const POSSENHOFEN_ID = '8004874';
-const API_BASE = 'https://v6.db.transport.rest';
-const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,precipitation,rain,snowfall,weather_code,wind_speed_10m';
-
 interface WeatherData {
   weather_code: number | null;
   temperature: number | null;
@@ -46,20 +46,40 @@ interface WeatherData {
   wind_speed: number | null;
 }
 
-/**
- * WMO Weather Code → Kategorie für Gruppierung
- * 0=klar, 1-3=bewölkt, 45/48=Nebel, 51-67=Regen, 71-86=Schnee, 95-99=Gewitter
- */
-function weatherCategory(code: number | null): string {
-  if (code === null || code === undefined) return 'unbekannt';
-  if (code === 0) return 'klar';
-  if (code <= 3) return 'bewölkt';
-  if (code <= 48) return 'nebel';
-  if (code <= 67) return 'regen';
-  if (code <= 86) return 'schnee';
-  if (code <= 99) return 'gewitter';
-  return 'unbekannt';
+// IRIS types
+interface IrisPlanStop {
+  id: string;
+  line: string;
+  plannedDep: string;   // YYMMDDHHMM
+  platform: string;
+  dpPath: string;       // future stations pipe-separated
 }
+
+interface IrisRealtimeUpdate {
+  depChangedTime: string | null; // YYMMDDHHMM
+  depCancelled: boolean;
+}
+
+interface MergedIrisDeparture {
+  id: string;
+  line: string;
+  plannedDep: string;     // YYMMDDHHMM
+  actualDep: string | null; // YYMMDDHHMM
+  delay: number;          // seconds
+  cancelled: boolean;
+  platform: string;
+  direction: 'muenchen' | 'tutzing';
+  directionName: string;  // last station in path
+}
+
+// ── Constants ──────────────────────────────────────────────────────
+
+const POSSENHOFEN_ID = '8004874';
+const API_BASE = 'https://v6.db.transport.rest';
+const IRIS_BASE = 'https://iris.noncd.db.de/iris-tts/timetable';
+const EVA_NO = '8004874';
+const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,precipitation,rain,snowfall,weather_code,wind_speed_10m';
+
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -67,9 +87,10 @@ const CORS = {
   'Cache-Control': 'public, max-age=300', // 5 min cache
 };
 
+// ── Generic Helpers ────────────────────────────────────────────────
+
 /**
  * Richtung: Tutzing/Feldafing/südlich = 'tutzing', alles andere = 'muenchen'
- * Identische Logik wie im Frontend (Header, InfoTicker)
  */
 function classifyDirection(dir: string): 'muenchen' | 'tutzing' {
   return /tutzing|feldafing|bernried|seeshaupt|weilheim|penzberg/i.test(dir)
@@ -77,9 +98,8 @@ function classifyDirection(dir: string): 'muenchen' | 'tutzing' {
     : 'muenchen';
 }
 
-/** Extrahiert die Stunde (0-23) aus einem ISO-Timestamp mit Timezone */
+/** Extrahiert die Stunde (0-23) aus einem ISO-Timestamp */
 function extractHour(isoStr: string): number {
-  // Format: 2026-02-04T14:37:00+01:00
   const match = isoStr.match(/T(\d{2}):/);
   return match ? parseInt(match[1], 10) : 0;
 }
@@ -88,7 +108,6 @@ function extractHour(isoStr: string): number {
 function extractDate(isoStr: string): string {
   const hour = extractHour(isoStr);
   const d = new Date(isoStr);
-  // Fahrten 0:00-3:59 zählen zum Vortag (Betriebstag)
   if (hour < 4) {
     d.setDate(d.getDate() - 1);
   }
@@ -106,7 +125,280 @@ function todayStr(): string {
   return now.toISOString().split('T')[0];
 }
 
-// ── Cron: Daten sammeln ────────────────────────────────────────────
+/**
+ * WMO Weather Code → Kategorie für Gruppierung
+ */
+function weatherCategory(code: number | null): string {
+  if (code === null || code === undefined) return 'unbekannt';
+  if (code === 0) return 'klar';
+  if (code <= 3) return 'bewölkt';
+  if (code <= 48) return 'nebel';
+  if (code <= 67) return 'regen';
+  if (code <= 86) return 'schnee';
+  if (code <= 99) return 'gewitter';
+  return 'unbekannt';
+}
+
+function json(data: unknown): Response {
+  return new Response(JSON.stringify(data), {
+    headers: { 'Content-Type': 'application/json', ...CORS },
+  });
+}
+
+// ── IRIS XML Helpers ───────────────────────────────────────────────
+
+/** Parse attributes from an XML tag string */
+function parseAttrs(s: string): Record<string, string> {
+  const attrs: Record<string, string> = {};
+  const re = /([\w-]+)="([^"]*)"/g;
+  let m;
+  while ((m = re.exec(s)) !== null) {
+    attrs[m[1]] = m[2];
+  }
+  return attrs;
+}
+
+/**
+ * Determine German timezone offset (CET +01:00 / CEST +02:00)
+ * DST: last Sunday of March 02:00 CET → last Sunday of October 03:00 CEST
+ */
+function germanOffset(year: number, month: number, day: number): string {
+  if (month < 3 || month > 10) return '+01:00';
+  if (month > 3 && month < 10) return '+02:00';
+  if (month === 3) {
+    const lastSun = 31 - new Date(year, 2, 31).getDay();
+    return day >= lastSun ? '+02:00' : '+01:00';
+  }
+  // October
+  const lastSun = 31 - new Date(year, 9, 31).getDay();
+  return day < lastSun ? '+02:00' : '+01:00';
+}
+
+/** Current German timezone offset in hours (1 or 2) */
+function getCurrentGermanOffsetHours(): number {
+  const now = new Date();
+  const month = now.getUTCMonth() + 1;
+  const year = now.getUTCFullYear();
+  if (month < 3 || month > 10) return 1;
+  if (month > 3 && month < 10) return 2;
+  if (month === 3) {
+    const lastSun = 31 - new Date(year, 2, 31).getDay();
+    return now.getUTCDate() >= lastSun ? 2 : 1;
+  }
+  const lastSun = 31 - new Date(year, 9, 31).getDay();
+  return now.getUTCDate() < lastSun ? 2 : 1;
+}
+
+/** Convert IRIS time (YYMMDDHHMM) to ISO 8601 with German timezone */
+function irisToISO(t: string): string {
+  const yy = t.substring(0, 2);
+  const mm = t.substring(2, 4);
+  const dd = t.substring(4, 6);
+  const hh = t.substring(6, 8);
+  const min = t.substring(8, 10);
+  const year = 2000 + parseInt(yy);
+  const offset = germanOffset(year, parseInt(mm), parseInt(dd));
+  return `${year}-${mm}-${dd}T${hh}:${min}:00${offset}`;
+}
+
+/** Convert IRIS time to milliseconds (for delay calculation) */
+function irisToMs(t: string): number {
+  const yy = parseInt(t.substring(0, 2));
+  const mm = parseInt(t.substring(2, 4)) - 1;
+  const dd = parseInt(t.substring(4, 6));
+  const hh = parseInt(t.substring(6, 8));
+  const min = parseInt(t.substring(8, 10));
+  return new Date(2000 + yy, mm, dd, hh, min, 0).getTime();
+}
+
+/** Calculate delay in seconds between two IRIS timestamps */
+function irisDelay(planned: string, actual: string): number {
+  return Math.round((irisToMs(actual) - irisToMs(planned)) / 1000);
+}
+
+/** Format IRIS time as HH:MM */
+function irisToHHMM(t: string): string {
+  return `${t.substring(6, 8)}:${t.substring(8, 10)}`;
+}
+
+/**
+ * Get IRIS plan URL parameters for current + next hour (and optionally previous hour)
+ */
+function getIrisPlanHours(includePrev: boolean = false): { yymmdd: string; hh: string }[] {
+  const offsetMs = getCurrentGermanOffsetHours() * 3600000;
+  const now = new Date(Date.now() + offsetMs);
+
+  const yy = String(now.getUTCFullYear()).substring(2);
+  const mm = String(now.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(now.getUTCDate()).padStart(2, '0');
+  const hh = now.getUTCHours();
+
+  const yymmdd = `${yy}${mm}${dd}`;
+  const hours: { yymmdd: string; hh: string }[] = [];
+
+  // Helper to compute yymmdd/hh for an offset in hours
+  const addHour = (offsetH: number) => {
+    const t = new Date(now.getTime() + offsetH * 3600000);
+    const y = String(t.getUTCFullYear()).substring(2);
+    const m = String(t.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(t.getUTCDate()).padStart(2, '0');
+    const h = String(t.getUTCHours()).padStart(2, '0');
+    hours.push({ yymmdd: `${y}${m}${d}`, hh: h });
+  };
+
+  if (includePrev) addHour(-1);
+  addHour(0);  // current
+  addHour(1);  // next
+
+  return hours;
+}
+
+// ── IRIS XML Parsing ───────────────────────────────────────────────
+
+/** Parse IRIS plan XML into an array of S6 departure stops */
+function parsePlanXml(xml: string): IrisPlanStop[] {
+  const stops: IrisPlanStop[] = [];
+  const stopRe = /<s\s+id="([^"]+)"[^>]*>([\s\S]*?)<\/s>/g;
+  let match;
+
+  while ((match = stopRe.exec(xml)) !== null) {
+    const id = match[1];
+    const body = match[2];
+
+    // Get departure attributes (self-closing or with children)
+    const dpMatch = body.match(/<dp\s+([^>]*?)\/?>/);
+    if (!dpMatch) continue; // no departure → skip
+
+    const dpAttrs = parseAttrs(dpMatch[1]);
+    const line = dpAttrs.l || '';
+
+    // Only S6
+    if (line !== 'S6') continue;
+
+    stops.push({
+      id,
+      line,
+      plannedDep: dpAttrs.pt || '',
+      platform: dpAttrs.pp || '',
+      dpPath: dpAttrs.ppth || '',
+    });
+  }
+
+  return stops;
+}
+
+/** Parse IRIS realtime (fchg) XML into a map of updates keyed by stop ID */
+function parseFchgXml(xml: string): Map<string, IrisRealtimeUpdate> {
+  const updates = new Map<string, IrisRealtimeUpdate>();
+  const stopRe = /<s\s+id="([^"]+)"[^>]*>([\s\S]*?)<\/s>/g;
+  let match;
+
+  while ((match = stopRe.exec(xml)) !== null) {
+    const id = match[1];
+    const body = match[2];
+
+    // Get departure realtime attributes
+    const dpMatch = body.match(/<dp\s+([^>]*?)\/?>/);
+    if (!dpMatch) continue;
+
+    const dpAttrs = parseAttrs(dpMatch[1]);
+
+    updates.set(id, {
+      depChangedTime: dpAttrs.ct || null,
+      depCancelled: dpAttrs.cs === 'c',
+    });
+  }
+
+  return updates;
+}
+
+// ── IRIS Fetch & Merge ─────────────────────────────────────────────
+
+/**
+ * Fetch S6 departures from IRIS (plan + realtime).
+ * Returns null on failure (caller should fall back to transport.rest).
+ */
+async function fetchIrisDepartures(
+  hours: { yymmdd: string; hh: string }[]
+): Promise<MergedIrisDeparture[] | null> {
+  try {
+    // Parallel: plan XMLs + fchg
+    const planPromises = hours.map(({ yymmdd, hh }) =>
+      fetch(`${IRIS_BASE}/plan/${EVA_NO}/${yymmdd}/${hh}`, {
+        headers: { 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
+      })
+    );
+
+    const fchgPromise = fetch(`${IRIS_BASE}/fchg/${EVA_NO}`, {
+      headers: { 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
+    });
+
+    const [fchgResp, ...planResps] = await Promise.all([fchgPromise, ...planPromises]);
+
+    // Verify plan responses
+    for (const resp of planResps) {
+      if (!resp.ok) {
+        console.error(`IRIS plan error: ${resp.status} ${resp.statusText}`);
+        return null;
+      }
+    }
+
+    // Parse all plan XMLs → deduplicated by stop ID
+    const planStops = new Map<string, IrisPlanStop>();
+    for (const resp of planResps) {
+      const xml = await resp.text();
+      for (const stop of parsePlanXml(xml)) {
+        planStops.set(stop.id, stop);
+      }
+    }
+
+    // Parse fchg (non-fatal if it fails — we just won't have realtime data)
+    let realtimeUpdates = new Map<string, IrisRealtimeUpdate>();
+    if (fchgResp.ok) {
+      const fchgXml = await fchgResp.text();
+      realtimeUpdates = parseFchgXml(fchgXml);
+    } else {
+      console.warn(`IRIS fchg error: ${fchgResp.status} — proceeding without realtime`);
+    }
+
+    // Merge plan + realtime
+    const departures: MergedIrisDeparture[] = [];
+
+    for (const [id, plan] of planStops) {
+      const rt = realtimeUpdates.get(id);
+      const cancelled = rt?.depCancelled ?? false;
+      const actualDep = rt?.depChangedTime ?? null;
+      const delay = actualDep ? irisDelay(plan.plannedDep, actualDep) : 0;
+
+      // Direction from departure path (last station)
+      const pathStations = plan.dpPath.split('|').filter(Boolean);
+      const directionName = pathStations[pathStations.length - 1] || 'Unbekannt';
+
+      departures.push({
+        id,
+        line: plan.line,
+        plannedDep: plan.plannedDep,
+        actualDep,
+        delay,
+        cancelled,
+        platform: plan.platform,
+        direction: classifyDirection(plan.dpPath),
+        directionName,
+      });
+    }
+
+    // Sort by planned departure
+    departures.sort((a, b) => a.plannedDep.localeCompare(b.plannedDep));
+
+    console.log(`[iris] Parsed ${departures.length} S6 departures from ${hours.length} plan hours`);
+    return departures;
+  } catch (err) {
+    console.error('IRIS fetch failed:', err);
+    return null;
+  }
+}
+
+// ── Weather ────────────────────────────────────────────────────────
 
 async function fetchWeather(): Promise<WeatherData> {
   try {
@@ -128,27 +420,91 @@ async function fetchWeather(): Promise<WeatherData> {
   }
 }
 
-async function collectDepartures(env: Env): Promise<{ inserted: number; updated: number }> {
-  // Parallel: Abfahrten + Wetter
-  const [trainResp, weather] = await Promise.all([
-    fetch(`${API_BASE}/stops/${POSSENHOFEN_ID}/departures?duration=30&suburban=true`, {
+// ── Cron: Daten sammeln ────────────────────────────────────────────
+
+/**
+ * Fallback: fetch departures from transport.rest (existing logic)
+ */
+async function fetchTransportRestDepartures(): Promise<ApiDeparture[]> {
+  const resp = await fetch(
+    `${API_BASE}/stops/${POSSENHOFEN_ID}/departures?duration=30&suburban=true`,
+    {
       headers: { 'Accept': 'application/json', 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
-    }),
+    }
+  );
+
+  if (!resp.ok) {
+    console.error(`transport.rest API error: ${resp.status} ${resp.statusText}`);
+    return [];
+  }
+
+  const data: ApiResponse = await resp.json();
+  return data.departures.filter(
+    (d) => d.line?.product === 'suburban' && /S6/i.test(d.line?.name || '')
+  );
+}
+
+async function collectDepartures(env: Env): Promise<{ inserted: number; updated: number; source: string }> {
+  const now = new Date().toISOString();
+
+  // Parallel: IRIS + Weather
+  const hours = getIrisPlanHours(false); // current + next hour
+  const [irisDeps, weather] = await Promise.all([
+    fetchIrisDepartures(hours),
     fetchWeather(),
   ]);
 
-  if (!trainResp.ok) {
-    console.error(`API error: ${trainResp.status} ${trainResp.statusText}`);
-    return { inserted: 0, updated: 0 };
+  console.log(`[weather] code=${weather.weather_code} temp=${weather.temperature}° precip=${weather.precipitation}mm wind=${weather.wind_speed}km/h`);
+
+  // ── Try IRIS first ──
+  if (irisDeps && irisDeps.length > 0) {
+    let inserted = 0;
+    let updated = 0;
+
+    for (const dep of irisDeps) {
+      const isoPlanned = irisToISO(dep.plannedDep);
+      const date = extractDate(isoPlanned);
+      const hour = extractHour(isoPlanned);
+      const isCancelled = dep.cancelled ? 1 : 0;
+
+      const result = await env.DB.prepare(`
+        INSERT INTO departures (trip_id, date, planned_when, planned_hour, delay, cancelled, direction, line, recorded_at, weather_code, temperature, precipitation, wind_speed)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT (trip_id, date) DO UPDATE SET
+          delay = excluded.delay,
+          cancelled = MAX(departures.cancelled, excluded.cancelled),
+          recorded_at = excluded.recorded_at,
+          weather_code = COALESCE(excluded.weather_code, departures.weather_code),
+          temperature = COALESCE(excluded.temperature, departures.temperature),
+          precipitation = COALESCE(excluded.precipitation, departures.precipitation),
+          wind_speed = COALESCE(excluded.wind_speed, departures.wind_speed)
+      `).bind(
+        dep.id, date, isoPlanned, hour,
+        dep.delay, isCancelled, dep.direction, dep.line, now,
+        weather.weather_code, weather.temperature, weather.precipitation, weather.wind_speed
+      ).run();
+
+      if (result.meta.changes > 0) updated++;
+      inserted++;
+    }
+
+    return { inserted: irisDeps.length, updated, source: 'iris' };
   }
 
-  const data: ApiResponse = await trainResp.json();
-  const now = new Date().toISOString();
+  // ── Fallback: transport.rest ──
+  console.warn('[cron] IRIS failed or empty, falling back to transport.rest');
 
-  // Nur S-Bahn (suburban) — an Possenhofen fährt nur S6, aber sicher ist sicher
-  const s6 = data.departures.filter(
-    (d) => d.line?.product === 'suburban' && /S6/i.test(d.line?.name || '')
-  );
+  let s6: ApiDeparture[];
+  try {
+    s6 = await fetchTransportRestDepartures();
+  } catch (err) {
+    console.error('transport.rest fallback also failed:', err);
+    return { inserted: 0, updated: 0, source: 'none' };
+  }
+
+  if (s6.length === 0) {
+    return { inserted: 0, updated: 0, source: 'transport.rest' };
+  }
 
   let inserted = 0;
   let updated = 0;
@@ -157,8 +513,6 @@ async function collectDepartures(env: Env): Promise<{ inserted: number; updated:
     const date = extractDate(dep.plannedWhen);
     const hour = extractHour(dep.plannedWhen);
     const direction = classifyDirection(dep.direction);
-    const cancelled = dep.cancelled ? 1 : (dep.when === null && dep.delay === null ? 0 : 0);
-    // Manche APIs setzen when=null bei Ausfall ohne cancelled-Flag
     const isCancelled = dep.cancelled === true || (dep.when === null && dep.remarks?.some(
       r => r.type === 'status' && /fällt aus|cancelled|Ausfall/i.test(r.text || '')
     )) ? 1 : 0;
@@ -180,14 +534,121 @@ async function collectDepartures(env: Env): Promise<{ inserted: number; updated:
       weather.weather_code, weather.temperature, weather.precipitation, weather.wind_speed
     ).run();
 
-    if (result.meta.changes > 0) {
-      updated++;
-    }
+    if (result.meta.changes > 0) updated++;
     inserted++;
   }
 
-  console.log(`[weather] code=${weather.weather_code} temp=${weather.temperature}° precip=${weather.precipitation}mm wind=${weather.wind_speed}km/h`);
-  return { inserted: s6.length, updated };
+  return { inserted: s6.length, updated, source: 'transport.rest' };
+}
+
+// ── /api/live: Echtzeit-Abfahrten ──────────────────────────────────
+
+async function handleLive(request: Request): Promise<Response> {
+  // Try Cloudflare Cache API (2 min TTL)
+  const cache = caches.default;
+  const cacheKey = new Request(new URL('/api/live', request.url).toString(), request);
+  const cachedResp = await cache.match(cacheKey);
+  if (cachedResp) return cachedResp;
+
+  // Fetch IRIS data (prev + current + next hour for comprehensive view)
+  const hours = getIrisPlanHours(true);
+  let departures: MergedIrisDeparture[] | null = null;
+  let source: 'iris' | 'transport.rest' = 'iris';
+
+  departures = await fetchIrisDepartures(hours);
+
+  // Fallback to transport.rest
+  if (!departures || departures.length === 0) {
+    source = 'transport.rest';
+    try {
+      const s6 = await fetchTransportRestDepartures();
+      departures = s6.map(dep => ({
+        id: dep.tripId,
+        line: dep.line.name,
+        plannedDep: '', // not in IRIS format
+        actualDep: null,
+        delay: dep.delay ?? 0,
+        cancelled: dep.cancelled ?? false,
+        platform: '',
+        direction: classifyDirection(dep.direction),
+        directionName: dep.direction,
+        // Store ISO times for transport.rest path
+        _plannedWhen: dep.plannedWhen,
+        _actualWhen: dep.when,
+      })) as any[];
+    } catch (err) {
+      console.error('Live: all sources failed:', err);
+      return json({ station: 'Possenhofen', departures: [], source: 'error', cachedAt: new Date().toISOString() });
+    }
+  }
+
+  // Filter to upcoming departures (past 5 min to +120 min)
+  const offsetMs = getCurrentGermanOffsetHours() * 3600000;
+  const nowLocal = new Date(Date.now() + offsetMs);
+  const nowMinutes = nowLocal.getUTCHours() * 60 + nowLocal.getUTCMinutes();
+
+  const formatted = (departures || [])
+    .filter(dep => {
+      if (source === 'transport.rest') return true; // transport.rest already filters by duration
+      // For IRIS: filter by time window
+      const depTime = dep.cancelled
+        ? dep.plannedDep
+        : (dep.actualDep || dep.plannedDep);
+      if (!depTime || depTime.length < 10) return true;
+      const depHH = parseInt(depTime.substring(6, 8));
+      const depMM = parseInt(depTime.substring(8, 10));
+      const depMinutes = depHH * 60 + depMM;
+      // Show trains from -5 min to +120 min
+      const diff = depMinutes - nowMinutes;
+      return diff >= -5 && diff <= 120;
+    })
+    .map(dep => {
+      if (source === 'transport.rest') {
+        const d = dep as any;
+        const pw = d._plannedWhen ? new Date(d._plannedWhen) : null;
+        const aw = d._actualWhen ? new Date(d._actualWhen) : null;
+        return {
+          line: dep.line,
+          direction: dep.directionName,
+          plannedTime: pw ? `${String(pw.getHours()).padStart(2, '0')}:${String(pw.getMinutes()).padStart(2, '0')}` : '--:--',
+          actualTime: aw ? `${String(aw.getHours()).padStart(2, '0')}:${String(aw.getMinutes()).padStart(2, '0')}` : null,
+          delay: Math.round(dep.delay / 60),
+          cancelled: dep.cancelled,
+          platform: dep.platform || null,
+        };
+      }
+      return {
+        line: dep.line,
+        direction: dep.directionName,
+        plannedTime: irisToHHMM(dep.plannedDep),
+        actualTime: dep.actualDep ? irisToHHMM(dep.actualDep) : null,
+        delay: Math.round(dep.delay / 60),
+        cancelled: dep.cancelled,
+        platform: dep.platform || null,
+      };
+    });
+
+  const cachedAt = new Date().toISOString();
+  const body = {
+    station: 'Possenhofen',
+    departures: formatted,
+    source,
+    cachedAt,
+  };
+
+  const response = new Response(JSON.stringify(body), {
+    headers: {
+      'Content-Type': 'application/json',
+      ...CORS,
+      'Cache-Control': 'public, max-age=120', // 2 min
+    },
+  });
+
+  // Store in cache (non-blocking)
+  const cacheResp = response.clone();
+  await cache.put(cacheKey, cacheResp);
+
+  return response;
 }
 
 // ── HTTP: Stats API ────────────────────────────────────────────────
@@ -201,13 +662,12 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
   switch (period) {
     case 'week':  dateFrom = daysAgo(7); break;
     case 'month': dateFrom = daysAgo(30); break;
-    default:      dateFrom = today; break; // 'today'
+    default:      dateFrom = today; break;
   }
 
   const isToday = period === 'today';
   const where = isToday ? 'date = ?1' : 'date >= ?1';
 
-  // Gesamt-Statistik
   const overall = await db.prepare(`
     SELECT
       COUNT(*) as total,
@@ -224,7 +684,6 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
     FROM departures WHERE ${where}
   `).bind(dateFrom).first();
 
-  // Nach Richtung
   const byDirection = await db.prepare(`
     SELECT
       direction,
@@ -239,7 +698,6 @@ async function handleStats(db: D1Database, url: URL): Promise<Response> {
     GROUP BY direction
   `).bind(dateFrom).all();
 
-  // Nach Stunde (für alle Perioden)
   const byHour = (await db.prepare(`
     SELECT
       planned_hour as hour,
@@ -262,7 +720,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
   const since = daysAgo(days);
   const today = todayStr();
 
-  // 1) Gesamt (gesamter Zeitraum)
   const overall = await db.prepare(`
     SELECT
       COUNT(*) as total,
@@ -281,7 +738,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     FROM departures WHERE date >= ?1
   `).bind(since).first();
 
-  // 2) Heute separat
   const todayStats = await db.prepare(`
     SELECT
       COUNT(*) as total,
@@ -292,7 +748,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     FROM departures WHERE date = ?1
   `).bind(today).first();
 
-  // 3) Nach Richtung
   const byDirection = (await db.prepare(`
     SELECT direction,
       COUNT(*) as total,
@@ -305,7 +760,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     FROM departures WHERE date >= ?1 GROUP BY direction
   `).bind(since).all()).results;
 
-  // 4) Nach Stunde (Tagesprofil)
   const byHour = (await db.prepare(`
     SELECT planned_hour as hour,
       COUNT(*) as total,
@@ -317,7 +771,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY planned_hour ORDER BY planned_hour
   `).bind(since).all()).results;
 
-  // 5) Nach Wochentag
   const byWeekday = (await db.prepare(`
     SELECT
       CAST(strftime('%w', date) AS INTEGER) as weekday,
@@ -330,7 +783,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY weekday ORDER BY weekday
   `).bind(since).all()).results;
 
-  // 6) Verspätungsverteilung (feingranular für kleine Verspätungen)
   const delayDistribution = (await db.prepare(`
     SELECT
       CASE
@@ -351,7 +803,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY bucket
   `).bind(since).all()).results;
 
-  // 7) Tagesverlauf
   const daily = (await db.prepare(`
     SELECT date,
       COUNT(*) as total,
@@ -363,7 +814,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY date ORDER BY date
   `).bind(since).all()).results;
 
-  // 8) Rush-Hour-Analyse (HVZ: 6-9 + 16-19 vs Rest)
   const rushHour = (await db.prepare(`
     SELECT
       CASE
@@ -380,7 +830,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     GROUP BY period
   `).bind(since).all()).results;
 
-  // 9) Top 10 schlimmste Verspätungen
   const worstDelays = (await db.prepare(`
     SELECT planned_when, delay, direction, date
     FROM departures
@@ -388,14 +837,12 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     ORDER BY delay DESC LIMIT 10
   `).bind(since).all()).results;
 
-  // 10) Heutige Abfahrten
   const todayDepartures = (await db.prepare(`
     SELECT planned_when, planned_hour, delay, cancelled, direction, weather_code, temperature, precipitation
     FROM departures WHERE date = ?1
     ORDER BY planned_when
   `).bind(today).all()).results;
 
-  // 11) Wetter-Korrelation
   const byWeather = (await db.prepare(`
     SELECT
       CASE
@@ -422,7 +869,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
     ORDER BY total DESC
   `).bind(since).all()).results;
 
-  // 12) Temperatur-Korrelation (in 5°-Schritten)
   const byTemperature = (await db.prepare(`
     SELECT
       CASE
@@ -490,21 +936,15 @@ async function handleDepartures(db: D1Database, url: URL): Promise<Response> {
   return json({ date, count: deps.results.length, departures: deps.results });
 }
 
-function json(data: unknown): Response {
-  return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json', ...CORS },
-  });
-}
-
 // ── Export ──────────────────────────────────────────────────────────
 
 export default {
   async scheduled(_event: ScheduledEvent, env: Env, _ctx: ExecutionContext) {
     const result = await collectDepartures(env);
-    console.log(`[cron] Collected ${result.inserted} S6 departures`);
+    console.log(`[cron] Collected ${result.inserted} S6 departures via ${result.source}`);
   },
 
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: CORS });
     }
@@ -517,12 +957,14 @@ export default {
         case '/api/history':    return handleHistory(env.DB, url);
         case '/api/departures': return handleDepartures(env.DB, url);
         case '/api/analysis':   return handleAnalysis(env.DB, url);
+        case '/api/live':       return handleLive(request);
         default:
           return new Response(
             JSON.stringify({
               name: 'S6 Train Tracker',
-              endpoints: ['/api/stats', '/api/history', '/api/departures'],
+              endpoints: ['/api/stats', '/api/history', '/api/departures', '/api/analysis', '/api/live'],
               station: 'Possenhofen',
+              source: 'IRIS + transport.rest fallback',
             }),
             { headers: { 'Content-Type': 'application/json', ...CORS } }
           );
