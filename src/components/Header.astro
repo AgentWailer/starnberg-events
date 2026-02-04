@@ -47,6 +47,17 @@ const { lastUpdated } = Astro.props;
     overflow: hidden;
   }
 
+  @media (min-width: 768px) {
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: var(--space-8) var(--space-8) var(--space-6);
+    }
+  }
+
   .theme-toggle {
     position: absolute;
     top: var(--space-4);
@@ -138,7 +149,7 @@ const { lastUpdated } = Astro.props;
     }
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 640px) and (max-width: 767px) {
     .header {
       padding: var(--space-20) var(--space-8) var(--space-16);
     }

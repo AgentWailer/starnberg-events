@@ -100,6 +100,13 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: var(--space-16);
   }
 
+  /* Space for fixed header on desktop */
+  @media (min-width: 768px) {
+    .main {
+      padding-top: 220px; /* Height of fixed header */
+    }
+  }
+
   .section {
     margin-bottom: var(--space-10);
   }
