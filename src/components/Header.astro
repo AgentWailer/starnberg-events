@@ -15,9 +15,9 @@ const { lastUpdated } = Astro.props;
 
     <!-- Right side: Weather + Theme Toggle -->
     <div class="navbar-right">
-      <!-- Weather info (shows when scrolled) -->
+      <!-- Weather info -->
       <div class="navbar-weather" id="navbar-weather">
-        <span class="navbar-weather-item">
+        <span class="navbar-weather-item" title="Lufttemperatur">
           <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="3"/>
@@ -25,13 +25,38 @@ const { lastUpdated } = Astro.props;
           </svg>
           <span id="navbar-temp">--°</span>
         </span>
-        <span class="navbar-weather-item">
+        <span class="navbar-weather-item" title="Wassertemperatur">
           <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
           </svg>
-          <span id="navbar-water">--°</span>
+          <span id="navbar-water">~4°</span>
         </span>
-        <span class="navbar-weather-item navbar-train">
+        <span class="navbar-weather-item" title="Sonnenaufgang">
+          <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 18a5 5 0 0 0-10 0"/>
+            <line x1="12" y1="2" x2="12" y2="9"/>
+            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+            <line x1="1" y1="18" x2="3" y2="18"/>
+            <line x1="21" y1="18" x2="23" y2="18"/>
+            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+            <polyline points="8 6 12 2 16 6"/>
+          </svg>
+          <span id="navbar-sunrise">--:--</span>
+        </span>
+        <span class="navbar-weather-item" title="Sonnenuntergang">
+          <svg class="navbar-weather-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 18a5 5 0 0 0-10 0"/>
+            <line x1="12" y1="9" x2="12" y2="2"/>
+            <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+            <line x1="1" y1="18" x2="3" y2="18"/>
+            <line x1="21" y1="18" x2="23" y2="18"/>
+            <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+            <polyline points="16 6 12 10 8 6"/>
+          </svg>
+          <span id="navbar-sunset">--:--</span>
+        </span>
+        <span class="navbar-divider"></span>
+        <span class="navbar-weather-item navbar-train" title="Nächste S6 Richtung München">
           <span class="navbar-train-badge">S6</span>
           <span id="navbar-train">--:--</span>
         </span>
@@ -128,17 +153,14 @@ const { lastUpdated } = Astro.props;
   .navbar-weather {
     display: flex;
     align-items: center;
-    gap: var(--space-5);
-    opacity: 0;
-    transform: translateY(-5px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    pointer-events: none;
+    gap: var(--space-4);
   }
 
-  .navbar-weather.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  .navbar-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--color-border);
+    margin: 0 var(--space-1);
   }
 
   .navbar-weather-item {
@@ -350,7 +372,6 @@ const { lastUpdated } = Astro.props;
   document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
-    const navbarWeather = document.getElementById('navbar-weather');
 
     // Theme toggle
     if (toggle) {
@@ -368,56 +389,63 @@ const { lastUpdated } = Astro.props;
       updateToggleState();
     }
 
-    // Show/hide navbar weather on scroll
-    if (navbarWeather) {
-      const weatherWidget = document.querySelector('.section-weather');
-      
-      function checkScroll() {
-        if (!weatherWidget) {
-          navbarWeather.classList.add('visible');
-          return;
-        }
+    // Load weather data directly
+    async function loadWeather() {
+      try {
+        const res = await fetch(
+          'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1'
+        );
+        if (!res.ok) return;
+        const data = await res.json();
         
-        const rect = weatherWidget.getBoundingClientRect();
-        const isHidden = rect.bottom < 60; // Weather widget scrolled out of view
-        navbarWeather.classList.toggle('visible', isHidden);
+        const temp = Math.round(data.current?.temperature_2m || 0);
+        const sunrise = data.daily?.sunrise?.[0];
+        const sunset = data.daily?.sunset?.[0];
+        
+        const navTemp = document.getElementById('navbar-temp');
+        const navSunrise = document.getElementById('navbar-sunrise');
+        const navSunset = document.getElementById('navbar-sunset');
+        
+        if (navTemp) navTemp.textContent = `${temp}°`;
+        if (navSunrise && sunrise) {
+          navSunrise.textContent = new Date(sunrise).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        }
+        if (navSunset && sunset) {
+          navSunset.textContent = new Date(sunset).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        }
+      } catch (e) {
+        console.error('Weather load failed:', e);
       }
+    }
 
-      window.addEventListener('scroll', checkScroll, { passive: true });
-      checkScroll();
-
-      // Sync weather data from WeatherWidget to navbar
-      const syncInterval = setInterval(() => {
-        const weatherTemp = document.getElementById('weather-temp');
-        const waterTemp = document.getElementById('water-temp');
-        const trainTime = document.getElementById('train-munich');
-
-        if (weatherTemp) {
-          const navTemp = document.getElementById('navbar-temp');
-          if (navTemp && weatherTemp.textContent !== '--°') {
-            navTemp.textContent = weatherTemp.textContent;
-          }
-        }
-
-        if (waterTemp) {
-          const navWater = document.getElementById('navbar-water');
-          if (navWater && waterTemp.textContent !== '--°') {
-            navWater.textContent = waterTemp.textContent;
-          }
-        }
-
-        if (trainTime) {
+    // Load train data
+    async function loadTrain() {
+      try {
+        const res = await fetch(
+          'https://v6.db.transport.rest/stops/8004874/departures?duration=120&suburban=true'
+        );
+        if (!res.ok) return;
+        const data = await res.json();
+        
+        // Find next train to Munich
+        const toMunich = data.departures?.find((d: any) => 
+          d.direction?.toLowerCase().includes('münchen') || 
+          d.direction?.toLowerCase().includes('munich')
+        );
+        
+        if (toMunich) {
+          const time = new Date(toMunich.when || toMunich.plannedWhen);
           const navTrain = document.getElementById('navbar-train');
           if (navTrain) {
-            // Extract just the time from the train element
-            const text = trainTime.textContent || trainTime.innerText || '--:--';
-            const timeMatch = text.match(/\d{1,2}:\d{2}/);
-            if (timeMatch) {
-              navTrain.textContent = timeMatch[0];
-            }
+            navTrain.textContent = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
           }
         }
-      }, 1000);
+      } catch (e) {
+        console.error('Train load failed:', e);
+      }
     }
+
+    loadWeather();
+    loadTrain();
   });
 </script>
