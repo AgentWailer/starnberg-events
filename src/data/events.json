@@ -17,9 +17,13 @@
       "name": "Pöcking",
       "emoji": "🏠"
     },
-    "starnberg-ammersee": {
-      "name": "Starnberg-Ammersee",
+    "starnberger-see": {
+      "name": "Starnberger See",
       "emoji": "🏔️"
+    },
+    "ammersee": {
+      "name": "Ammersee",
+      "emoji": "⛵"
     },
     "muenchen": {
       "name": "München",
