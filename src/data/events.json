@@ -1,16 +1,37 @@
 {
   "lastUpdated": "2026-02-04",
   "sources": [
-    "starnbergammersee",
-    "poecking.de",
-    "deutsches-museum",
     "beccult",
+    "deutsches-museum",
+    "east-coast-tanzstudio",
     "gapa",
-    "tegernsee",
-    "olympiapark",
+    "gilchinger-tanzzentrum",
     "hellabrunn",
+    "olympiapark",
     "pfc",
-    "seenschifffahrt.de"
+    "poecking.de",
+    "radsport-adfc-starnberg",
+    "radsport-rsc-wolfratshausen",
+    "seenschifffahrt.de",
+    "sportverein-djk-sv-berg",
+    "sportverein-koenigsmarsch",
+    "sportverein-lc-buchendorf",
+    "sportverein-sc-woerthsee",
+    "sportverein-seeschwimmen",
+    "sportverein-tsv-gilching",
+    "sportverein-wwk-volleys",
+    "starnbergammersee",
+    "tanzschule-peter-schuh",
+    "tegernsee",
+    "themen-tanz",
+    "turnverein-sv-inning",
+    "turnverein-tsv-gilching",
+    "turnverein-tsv-oberalting-seefeld",
+    "turnverein-tsv-starnberg",
+    "vhs-starnbergammersee",
+    "yoga-namaste",
+    "yoga-studio8",
+    "yoga-svastha-ammersee"
   ],
   "regions": {
     "poecking": {
@@ -38,7 +59,7 @@
       "emoji": "🎿"
     }
   },
-  "eventCount": 91,
+  "eventCount": 148,
   "events": [
     {
       "title": "Kloster Andechs: öffentliche Kirchenführung",
@@ -58,6 +79,24 @@
       "venue": null,
       "isHighlight": false,
       "id": 1
+    },
+    {
+      "title": "Babyballett Schnuppertag",
+      "date": "2026-02-05",
+      "time": "15:00",
+      "location": "Herrsching",
+      "address": "Gewerbestr. 74, 82211 Herrsching",
+      "description": "Kostenloser Schnuppertag für neuen Babyballett-Kurs (3-4 Jahre). Mit Begleit-Elternteil.",
+      "category": "kinder",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://tanzstudio-eastcoast.de",
+      "source": "east-coast-tanzstudio",
+      "region": "starnberger-see",
+      "venue": "East Coast Tanzstudio Herrsching",
+      "isHighlight": false,
+      "id": 122
     },
     {
       "title": "Mal- und Spachtelkurs für Erwachsene",
@@ -213,6 +252,24 @@
       ]
     },
     {
+      "title": "Discofox-Workshop Anfänger & Fortgeschrittene",
+      "date": "2026-02-07",
+      "time": "14:00",
+      "location": "Starnberg",
+      "address": "Brunnangerstr. 2, 82319 Starnberg",
+      "description": "Discofox-Workshops: 14:00 Anfänger, 15:30 Fortgeschrittene. Je 90 Min, 35€ (TSV-Mitglied 28€).",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.tanzschule-starnberg.de/Tanzkurse-Workshops",
+      "source": "tanzschule-peter-schuh",
+      "region": "starnberger-see",
+      "venue": "Tanzschule Peter Schuh",
+      "isHighlight": false,
+      "id": 109
+    },
+    {
       "title": "Willi live – Und wovon träumst du?",
       "date": "2026-02-07",
       "time": "15:00",
@@ -230,6 +287,24 @@
       "venue": null,
       "isHighlight": false,
       "id": 10
+    },
+    {
+      "title": "WCS Workshopnachmittag (West Coast Swing)",
+      "date": "2026-02-07",
+      "time": "15:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "West Coast Swing Workshop-Nachmittag im Gilchinger Tanzzentrum.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de/Kalender",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 110
     },
     {
       "title": "Münchner Schäfflertanz am Seehof Herrsching",
@@ -348,6 +423,24 @@
       "id": 16
     },
     {
+      "title": "Tanzparty bei Peter Schuh",
+      "date": "2026-02-07",
+      "time": "20:00",
+      "location": "Starnberg",
+      "address": "Brunnangerstr. 2, 82319 Starnberg",
+      "description": "Gesellschaftstanz-Tanzparty mit DJ. Cha-Cha-Cha, Walzer, Quickstep, Slowfox u.a. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.tanzschule-starnberg.de/Tanzpartys-Events",
+      "source": "tanzschule-peter-schuh",
+      "region": "starnberger-see",
+      "venue": "Tanzschule Peter Schuh",
+      "isHighlight": false,
+      "id": 108
+    },
+    {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
       "date": "2026-02-08",
       "time": "08:00",
@@ -442,6 +535,45 @@
       ]
     },
     {
+      "title": "WWK Volleys Herrsching – Bundesliga-Heimspiel",
+      "date": "2026-02-11",
+      "time": "20:00",
+      "location": "München",
+      "address": "BMW Park, München",
+      "description": "1. Volleyball-Bundesliga: WWK Volleys Herrsching vs. Helios GRIZZLYS Giesen. Spitzenvolleyball live!",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "volleyball"
+      ],
+      "url": "https://www.geilsterclubderwelt.de/",
+      "source": "sportverein-wwk-volleys",
+      "region": "muenchen",
+      "venue": "WWK Volleys Herrsching",
+      "isHighlight": true,
+      "id": 123
+    },
+    {
+      "title": "Großer Kinder-Turnfasching im TSV Starnberg",
+      "date": "2026-02-12",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "Brunnangerstraße 2, 82319 Starnberg",
+      "description": "Kinder-Turnfasching mit Auftritt der Mini- und Jugendgarde der Perchalla. Eintritt 2€. Saubere Turnschuhe mitbringen.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "turnen",
+        "fasching"
+      ],
+      "url": "https://tsv-starnberg.de",
+      "source": "turnverein-tsv-starnberg",
+      "region": "starnberger-see",
+      "venue": "TSV Starnberg von 1880 e.V.",
+      "isHighlight": true,
+      "id": 102
+    },
+    {
       "title": "Weiberfasching Starnberg",
       "date": "2026-02-12",
       "time": "19:00",
@@ -497,6 +629,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 24
+    },
+    {
+      "title": "Fasching im SC Wörthsee",
+      "date": "2026-02-13",
+      "time": "19:30",
+      "location": "Wörthsee",
+      "address": null,
+      "description": "Faschingsfeier des SC Wörthsee. 19:30-23:30 Uhr. Verkleidung erwünscht!",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "fasching"
+      ],
+      "url": "https://www.sc-woerthsee.de",
+      "source": "sportverein-sc-woerthsee",
+      "region": "starnberger-see",
+      "venue": "SC Wörthsee e.V.",
+      "isHighlight": false,
+      "id": 124
     },
     {
       "title": "Pöckinger Malle-Party 2026",
@@ -688,6 +839,26 @@
       "id": 34
     },
     {
+      "title": "Frauengesundheit – Nährstoffe & Bewegung",
+      "date": "2026-02-14",
+      "time": null,
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Vortrag zu Nährstoffen, Bewegung und liebevollem Blick auf den Körper. Kostenlos, Anmeldung verbindlich.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "gesundheit"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 137
+    },
+    {
       "title": "Kinderfasching",
       "date": "2026-02-15",
       "time": "14:00",
@@ -724,6 +895,44 @@
       "venue": null,
       "isHighlight": false,
       "id": 36
+    },
+    {
+      "title": "Valentinstag – Herzöffnung & Selbstliebe (Yoga Special)",
+      "date": "2026-02-15",
+      "time": "17:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Herzöffnendes Yoga, Kakao-Zeremonie und Klang-Meditation. 60€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "meditation"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": true,
+      "id": 138
+    },
+    {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-02-15",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de/Veranstaltungen_Paartanz-Specials_91/Milonga_3121",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": true,
+      "id": 111
     },
     {
       "title": "FILMWORKSHOP (Faschingsferien)",
@@ -877,6 +1086,24 @@
       "id": 44
     },
     {
+      "title": "Kreistanzen & Bewegungsanalyse – Wochenendseminar",
+      "date": "2026-02-21",
+      "time": "14:00",
+      "location": "Starnberg",
+      "address": "Hauptstraße 22, 82319 Starnberg",
+      "description": "Wochenendseminar mit Martin Wanke. Sa 14:00-18:30 + So 10:30-16:30. 120€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.themen-tanz.de/",
+      "source": "themen-tanz",
+      "region": "starnberger-see",
+      "venue": "Themen-Tanz – Schule für Kreistanz",
+      "isHighlight": false,
+      "id": 112
+    },
+    {
       "title": "Cavalluna – Tor zur Anderswelt",
       "date": "2026-02-21",
       "time": "15:00",
@@ -894,6 +1121,26 @@
       "venue": null,
       "isHighlight": false,
       "id": 45
+    },
+    {
+      "title": "Meridiane & Wohlfühlpunkte – Hände & Arme",
+      "date": "2026-02-21",
+      "time": "15:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Workshop über Meridiane und Akupressurpunkte. 4 Stunden, 79€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "tcm"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 139
     },
     {
       "title": "Vincent Meissner Trio",
@@ -1012,6 +1259,24 @@
       "id": 51
     },
     {
+      "title": "Tribal Style Belly Dance – VHS Kursstart",
+      "date": "2026-02-23",
+      "time": "19:00",
+      "location": "Herrsching",
+      "address": "vhs-Gymnastikraum, Reineckestraße 21, 82211 Herrsching",
+      "description": "Tribal Belly Dance Kurs (Anfänger) mit internationalen Einflüssen. 15 Termine, montags.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.vhs-starnbergammersee.de",
+      "source": "vhs-starnbergammersee",
+      "region": "starnberger-see",
+      "venue": "vhs StarnbergAmmersee",
+      "isHighlight": false,
+      "id": 113
+    },
+    {
       "title": "Artenschutz-Vortrag: Eine Reise in die Freiheit",
       "date": "2026-02-24",
       "time": "19:00",
@@ -1089,6 +1354,26 @@
       "id": 55
     },
     {
+      "title": "Aromatherapie für Schwangerschaft, Baby & Geburt",
+      "date": "2026-02-28",
+      "time": "12:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Workshop über ätherische Öle als Begleiter durch Schwangerschaft und Geburt.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "aromatherapie"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 140
+    },
+    {
       "title": "Ehrlich Brothers – Diamonds",
       "date": "2026-03-01",
       "time": "19:00",
@@ -1164,6 +1449,24 @@
       "id": 59
     },
     {
+      "title": "Ballett für Erwachsene – VHS/East Coast",
+      "date": "2026-03-07",
+      "time": "10:00",
+      "location": "Herrsching",
+      "address": "East Coast Tanzstudio, Gewerbestr. 74, 82211 Herrsching",
+      "description": "Ballett-Kurs für Einsteiger mit Grundkenntnissen. 10 Termine, samstags.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.vhs-starnbergammersee.de",
+      "source": "vhs-starnbergammersee",
+      "region": "starnberger-see",
+      "venue": "East Coast Tanzstudio / vhs",
+      "isHighlight": false,
+      "id": 114
+    },
+    {
       "title": "Sean Paul – Timeless Tour",
       "date": "2026-03-07",
       "time": "20:00",
@@ -1181,6 +1484,45 @@
       "venue": null,
       "isHighlight": false,
       "id": 60
+    },
+    {
+      "title": "Duftende Schätze – Aromatherapie Workshop",
+      "date": "2026-03-07",
+      "time": null,
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Düfte als Shortcut fürs Nervensystem. Kleine Rituale zum Stresslösen. Kostenlos.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "aromatherapie"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 141
+    },
+    {
+      "title": "Special Olympics Bayern Tennis Cup",
+      "date": "2026-03-08",
+      "time": "09:00",
+      "location": "Gilching",
+      "address": "Tennishalle TSV Gilching, Talhofstraße 13",
+      "description": "Inklusives Tennisturnier für Athleten mit geistiger Behinderung.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "tennis"
+      ],
+      "url": "https://tsv-ga.de/tennis/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": true,
+      "id": 125
     },
     {
       "title": "Mario Barth – Männer sind nichts ohne die Frauen",
@@ -1276,6 +1618,24 @@
       ]
     },
     {
+      "title": "Discofox-Workshop Anfänger & Fortgeschrittene",
+      "date": "2026-03-14",
+      "time": "14:00",
+      "location": "Starnberg",
+      "address": "Brunnangerstr. 2, 82319 Starnberg",
+      "description": "Discofox-Workshops: 14:00 Anfänger, 15:30 Fortgeschrittene. Je 90 Min, 35€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://www.tanzschule-starnberg.de/Tanzkurse-Workshops",
+      "source": "tanzschule-peter-schuh",
+      "region": "starnberger-see",
+      "venue": "Tanzschule Peter Schuh",
+      "isHighlight": false,
+      "id": 115
+    },
+    {
       "title": "Der Herr der Ringe: Die Rückkehr des Königs – In Concert",
       "date": "2026-03-14",
       "time": "18:30",
@@ -1296,6 +1656,25 @@
       "id": 66
     },
     {
+      "title": "Mixed Turnier Tennis – TSV Gilching",
+      "date": "2026-03-15",
+      "time": "13:00",
+      "location": "Gilching",
+      "address": "Tennishalle TSV Gilching, Talhofstraße 13",
+      "description": "Mixed-Doppel-Tennisturnier in der Halle.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "tennis"
+      ],
+      "url": "https://tsv-ga.de/tennis/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": false,
+      "id": 126
+    },
+    {
       "id": 67,
       "title": "Theatergruppe Pöcking: Der Vampir von Zwicklbach (Sonntag)",
       "date": "2026-03-15",
@@ -1312,6 +1691,24 @@
         "theater",
         "indoor"
       ]
+    },
+    {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-03-15",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 116
     },
     {
       "title": "Tegernseer Bergfilm-Festival 2026",
@@ -1334,6 +1731,46 @@
       "id": 68
     },
     {
+      "title": "Fahrsicherheitskurs für Senioren mit E-Bikes (Gilching)",
+      "date": "2026-03-19",
+      "time": "13:30",
+      "location": "Gilching",
+      "address": "Parkplatz Tennisheim, Frauwiesenweg, 82205 Gilching",
+      "description": "ADFC-Fahrsicherheitskurs für Senioren mit E-Bikes/Pedelecs. Inkl. kleiner Übungstour. Min. 5, max. 12 Teilnehmer. Helmpflicht. Anmeldung erforderlich.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "kurs"
+      ],
+      "url": "https://www.adfc-starnberg.de",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Kreisverband Starnberg - Ortsgruppe Gilching",
+      "isHighlight": false,
+      "id": 92
+    },
+    {
+      "title": "Intensivwochenende: Yogapraxis mit Ayurveda vertiefen",
+      "date": "2026-03-20",
+      "time": "16:00",
+      "location": "Herrsching",
+      "address": "Svastha Yoga Ammersee, Herrsching",
+      "description": "2-Tages-Seminar zu den drei Agni-Ebenen. Mudras, Bandhas, Pranayama, Mantra. Max. 11 Personen. 245€ Early Bird.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "ayurveda",
+        "meditation"
+      ],
+      "url": "https://svastha-ammersee.de",
+      "source": "yoga-svastha-ammersee",
+      "region": "starnberger-see",
+      "venue": "Svastha Yoga Ammersee",
+      "isHighlight": true,
+      "id": 142
+    },
+    {
       "id": 69,
       "title": "(W)orte und Erinnerungen – Lesung mit Marion Oelmann",
       "date": "2026-03-20",
@@ -1350,6 +1787,26 @@
         "bildung",
         "indoor"
       ]
+    },
+    {
+      "title": "Ostara – Yoga & Jahreskreis-Zeremonie",
+      "date": "2026-03-22",
+      "time": "17:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Yoga-Special zur Frühlings-Tagundnachtgleiche. 3 Stunden, 60€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "zeremonie"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": true,
+      "id": 143
     },
     {
       "id": 70,
@@ -1387,6 +1844,144 @@
       "venue": null,
       "isHighlight": false,
       "id": 71
+    },
+    {
+      "title": "Rennrad (Gravel) Tour Andechs",
+      "date": "2026-03-28",
+      "time": "10:00",
+      "location": "Steinebach am Wörthsee",
+      "address": "Bahnhofstraße, 82237 Steinebach (Wörthsee)",
+      "description": "Saisonstart-Tour! Rennrad/Gravel-Tour über Andechs. 38 km, ca. 380 Hm. Entlang Wörthsee nach Breitbrunn, Herrsching, Serpentinen hoch nach Andechs.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "gravel"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187831-rennrad-gravel-tour-andechs",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Kreisverband Starnberg",
+      "isHighlight": true,
+      "id": 93
+    },
+    {
+      "title": "TSV Starnberg Osterchallenge – Woche 1",
+      "date": "2026-03-31",
+      "time": "08:30",
+      "location": "Starnberg",
+      "address": "Brunnangerstraße 2, 82319 Starnberg",
+      "description": "Ferienprogramm für Kinder 6-12 Jahre. Spiel, Sport & Spaß. Halbtags oder ganztags buchbar. 31.03.–03.04.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "ferienprogramm"
+      ],
+      "url": "https://summerchallenge.info/osterchallenge/",
+      "source": "turnverein-tsv-starnberg",
+      "region": "starnberger-see",
+      "venue": "TSV Starnberg von 1880 e.V.",
+      "isHighlight": true,
+      "id": 103
+    },
+    {
+      "title": "TSV Starnberg Osterchallenge – Woche 2",
+      "date": "2026-04-07",
+      "time": "08:30",
+      "location": "Starnberg",
+      "address": "Brunnangerstraße 2, 82319 Starnberg",
+      "description": "Ferienprogramm für Kinder 6-12 Jahre. 07.04.–10.04.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "ferienprogramm"
+      ],
+      "url": "https://summerchallenge.info/osterchallenge/",
+      "source": "turnverein-tsv-starnberg",
+      "region": "starnberger-see",
+      "venue": "TSV Starnberg von 1880 e.V.",
+      "isHighlight": false,
+      "id": 104
+    },
+    {
+      "title": "Gilchinger Feierabendtour",
+      "date": "2026-04-10",
+      "time": "17:00",
+      "location": "Gilching",
+      "address": "Marktplatz, 82205 Gilching",
+      "description": "Gesellige Feierabend-Radtour, 25-30 km, ca. 3 Stunden inkl. Einkehr. Wöchentlich freitags April-August. Kostenlos.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "radtour"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187657-gilchinger-feierabendtour",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gilching",
+      "isHighlight": false,
+      "id": 94
+    },
+    {
+      "title": "Wechseljahre – Workshop",
+      "date": "2026-04-11",
+      "time": null,
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Workshop über Wechseljahre als Umbruchphase. Kostenlos, Anmeldung verbindlich.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "gesundheit"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 144
+    },
+    {
+      "title": "Wöchentliche Nachmittagstour ab Gauting",
+      "date": "2026-04-14",
+      "time": "14:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Dienstags-Radtour ab Rathaus Gauting. Naturkundliche Touren und Cappuccino-Touren. Ca. 25 km. Kostenlos.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "radtour"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188021",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gauting",
+      "isHighlight": false,
+      "id": 95
+    },
+    {
+      "title": "Fahrsicherheitskurs für Senioren mit E-Bikes (Starnberg)",
+      "date": "2026-04-16",
+      "time": "13:30",
+      "location": "Starnberg",
+      "address": "Kirchplatz, 82319 Starnberg",
+      "description": "ADFC-Fahrsicherheitskurs für Senioren mit E-Bikes/Pedelecs in Starnberg. Min. 5, max. 12 Teilnehmer. Helmpflicht.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "kurs"
+      ],
+      "url": "https://www.adfc-starnberg.de",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Kreisverband Starnberg",
+      "isHighlight": false,
+      "id": 96
     },
     {
       "title": "Bedrohte Pioniere: Wechselkröte und Laubfrosch",
@@ -1427,6 +2022,63 @@
       ]
     },
     {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-04-19",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 117
+    },
+    {
+      "title": "Unterwegs im Südwesten – Tagestour ab Gauting",
+      "date": "2026-04-23",
+      "time": "10:00",
+      "location": "Gauting",
+      "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
+      "description": "Zweiwöchentliche Tagestour zu naturkundlichen/historischen Zielen. 50-60 km mit Steigungen. Mittagseinkehr. Für Fortgeschrittene.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "radtour"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/188023",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gauting",
+      "isHighlight": false,
+      "id": 97
+    },
+    {
+      "title": "Schleiferlturnier Tennis – TSV Gilching",
+      "date": "2026-04-25",
+      "time": "13:00",
+      "location": "Gilching",
+      "address": "TSV Gilching, Talhofstraße 13",
+      "description": "Offenes Schleiferlturnier auf den Außenplätzen mit wechselnden Partnern.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "tennis"
+      ],
+      "url": "https://tsv-ga.de/tennis/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": false,
+      "id": 127
+    },
+    {
       "title": "Amelie Fried - Lesung",
       "date": "2026-04-27",
       "time": "19:00",
@@ -1446,6 +2098,65 @@
       "id": 74
     },
     {
+      "title": "Ramsee – Radtour durch den westlichen Landkreis",
+      "date": "2026-05-01",
+      "time": "10:00",
+      "location": "Gilching",
+      "address": "Am Markt, 82205 Gilching",
+      "description": "Rundtour (52 km, 400 Hm) zum verlassenen Dorf Ramsee zwischen Andechs und Wartaweil. Einkehr im Herrschinger Mühlfelder Brauhaus. Anmeldung erforderlich!",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "radtour"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/187880-ramsee",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gilching",
+      "isHighlight": true,
+      "id": 98
+    },
+    {
+      "title": "RSC Wolfratshausen – Anradeln (Saisonstart)",
+      "date": "2026-05-01",
+      "time": "10:00",
+      "location": "Wolfratshausen",
+      "address": "Parkplatz Isar-Loisach Stadion, Kräuterstraße 29",
+      "description": "Traditionelles Anradeln zum Saisonstart des RSC Wolfratshausen.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport"
+      ],
+      "url": "https://rsc-wolfratshausen.de/events/",
+      "source": "radsport-rsc-wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "RSC Wolfratshausen",
+      "isHighlight": false,
+      "id": 99
+    },
+    {
+      "title": "Stressmanagement Workshop",
+      "date": "2026-05-02",
+      "time": null,
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Atem-Tools, Mini-Pausen und bewusste Routinen. Kostenlos, Anmeldung verbindlich.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "meditation"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": false,
+      "id": 145
+    },
+    {
       "id": 75,
       "title": "Sonntagsbrunch auf dem Starnberger See",
       "date": "2026-05-03",
@@ -1460,6 +2171,26 @@
       "artTags": [
         "natur"
       ]
+    },
+    {
+      "title": "Rote Route der Via Zeitreise – Familienradtour",
+      "date": "2026-05-03",
+      "time": "14:00",
+      "location": "Gilching",
+      "address": "Am Markt 4, 82205 Gilching",
+      "description": "Familienfreundliche Tour (16 km, 150 Hm) mit Erläuterungen zu Geologie, Archäologie und Ortsgeschichte. Auch mit Anhänger/Tandem.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "radsport",
+        "kultur"
+      ],
+      "url": "https://touren-termine.adfc.de/radveranstaltung/186565",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gilching",
+      "isHighlight": false,
+      "id": 100
     },
     {
       "title": "Konzert der Philharmonie Starnberger See",
@@ -1479,6 +2210,24 @@
       "venue": null,
       "isHighlight": false,
       "id": 76
+    },
+    {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-05-17",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 118
     },
     {
       "title": "Tango, Tango – Konzert",
@@ -1520,6 +2269,26 @@
       "id": 78
     },
     {
+      "title": "Real Madrid Fußballcamp beim TSV Oberalting-Seefeld",
+      "date": "2026-05-26",
+      "time": null,
+      "location": "Seefeld",
+      "address": "Aubachstadion, Jahnweg 3, 82229 Seefeld",
+      "description": "Fußballcamp der Fundación Real Madrid für Kids 7-16 Jahre. 26.–29. Mai. Top-Teilnehmer können sich für Madrid-Wochenende qualifizieren.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "fussball",
+        "ferienprogramm"
+      ],
+      "url": "https://frmclinics.com/TSV-Oberalting-Seefeld-2026",
+      "source": "turnverein-tsv-oberalting-seefeld",
+      "region": "starnberger-see",
+      "venue": "TSV Oberalting-Seefeld e.V.",
+      "isHighlight": true,
+      "id": 105
+    },
+    {
       "id": 79,
       "title": "Country-Fest für ALLE",
       "date": "2026-05-30",
@@ -1536,6 +2305,44 @@
         "musik",
         "fest"
       ]
+    },
+    {
+      "title": "Bavaria Königsmarsch – 50 km Nachtwanderung",
+      "date": "2026-06-12",
+      "time": "22:00",
+      "location": "Starnberger See",
+      "address": "Start/Ziel wird bekanntgegeben",
+      "description": "Kult-Nacht-Ultrawanderung: 50 km rund um den Starnberger See. Max. 300 Teilnehmer. Anlässlich des 140. Todestags von König Ludwig II.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "wandern"
+      ],
+      "url": "https://www.koenigsmarsch.de/",
+      "source": "sportverein-koenigsmarsch",
+      "region": "starnberger-see",
+      "venue": "Bavaria Königsmarsch",
+      "isHighlight": true,
+      "id": 128
+    },
+    {
+      "title": "Johannisfeier Tennis – DJK-SV Berg",
+      "date": "2026-06-19",
+      "time": "19:00",
+      "location": "Berg",
+      "address": null,
+      "description": "Traditionelle Johannisfeier der Tennisabteilung.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "tennis"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "sportverein-djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "DJK-SV Berg",
+      "isHighlight": false,
+      "id": 129
     },
     {
       "title": "Richard Strauss Festival 2026",
@@ -1556,6 +2363,102 @@
       "venue": null,
       "isHighlight": true,
       "id": 80
+    },
+    {
+      "title": "Bayerische Meisterschaft Einrad-Rennen & Nachwuchs-Cup",
+      "date": "2026-06-20",
+      "time": null,
+      "location": "Gilching",
+      "address": "Kies-Arena, Talhofstraße 13, 82205 Gilching",
+      "description": "Offene Bayerische Meisterschaft im Einrad-Rennen. 20.–21. Juni.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "einrad"
+      ],
+      "url": "https://tsv-ga.de/einrad/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": true,
+      "id": 130
+    },
+    {
+      "title": "Sommersonnenwende – Yoga & Zeremonie",
+      "date": "2026-06-21",
+      "time": "17:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Yoga-Special zur Sommersonnenwende. 3 Stunden, 60€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "zeremonie"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": true,
+      "id": 146
+    },
+    {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-06-21",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 119
+    },
+    {
+      "title": "SUP Yoga Teacher Training (3-tägig)",
+      "date": "2026-06-26",
+      "time": null,
+      "location": "Herrsching",
+      "address": "Mühlfelderstr. 56, 82211 Herrsching",
+      "description": "3-tägige SUP Yoga Lehrer-Ausbildung (20h) auf dem Ammersee. 300€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "sup",
+        "sport"
+      ],
+      "url": "https://www.namaste-yoga.de/",
+      "source": "yoga-namaste",
+      "region": "starnberger-see",
+      "venue": "Namasté Yoga Studio Herrsching",
+      "isHighlight": true,
+      "id": 147
+    },
+    {
+      "title": "DJK-SV Berg beim Berger Bürgerfest",
+      "date": "2026-07-10",
+      "time": null,
+      "location": "Berg",
+      "address": null,
+      "description": "Sportvereins-Beteiligung am Berger Bürgerfest. 10.–12. Juli.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "fest"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "sportverein-djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "DJK-SV Berg",
+      "isHighlight": false,
+      "id": 133
     },
     {
       "id": 81,
@@ -1594,6 +2497,43 @@
       ]
     },
     {
+      "title": "Stockschützen Turnier der Vereine Gilching",
+      "date": "2026-07-18",
+      "time": null,
+      "location": "Gilching",
+      "address": "Stockschützenheim TSV Gilching",
+      "description": "Turnier für Nicht-Stockschützen-Vereine. Stöcke zum Ausleihen, schöne Sachpreise.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "stockschießen"
+      ],
+      "url": "https://tsv-ga.de/stockschuetzen/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": false,
+      "id": 131
+    },
+    {
+      "title": "Milonga La Luz – Tango Argentino",
+      "date": "2026-07-19",
+      "time": "18:00",
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Tango Argentino Tanzabend. Jeden 3. Sonntag im Monat. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": false,
+      "id": 120
+    },
+    {
       "id": 83,
       "title": "Pasta & Prosecco Schifffahrt",
       "date": "2026-07-19",
@@ -1608,6 +2548,26 @@
       "artTags": [
         "natur"
       ]
+    },
+    {
+      "title": "Lautersee & Schloss Elmau – Ganztages-Radtour",
+      "date": "2026-07-25",
+      "time": "07:00",
+      "location": "Gilching",
+      "address": "Marktplatz, 82205 Gilching",
+      "description": "Ganztages-Radtour von Gilching nach Klais, Schloss Elmau, Lautersee, Ferchensee und Leutaschklamm. 07:00-20:00 Uhr.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "radsport",
+        "radtour"
+      ],
+      "url": "https://www.adfc-starnberg.de",
+      "source": "radsport-adfc-starnberg",
+      "region": "starnberger-see",
+      "venue": "ADFC Ortsgruppe Gilching",
+      "isHighlight": true,
+      "id": 101
     },
     {
       "id": 84,
@@ -1625,6 +2585,62 @@
         "bildung",
         "natur"
       ]
+    },
+    {
+      "title": "Starnberger See Schwimmen – Possenhofen/Leoni",
+      "date": "2026-08-02",
+      "time": "08:45",
+      "location": "Pöcking",
+      "address": "Beach Paradies, Kurt-Stieler-Str., Possenhofen",
+      "description": "Freiwasser-Schwimmwettbewerb: 2 km oder 4 km im Starnberger See. Max. 500 Teilnehmer. Ab Jahrgang 2012.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "schwimmen"
+      ],
+      "url": "https://starnbergersee-schwimmen.de",
+      "source": "sportverein-seeschwimmen",
+      "region": "starnberger-see",
+      "venue": "Starnberger See Schwimmen",
+      "isHighlight": true,
+      "id": 132
+    },
+    {
+      "title": "TSV Starnberg Summerchallenge 2026",
+      "date": "2026-08-03",
+      "time": "08:30",
+      "location": "Starnberg",
+      "address": "Brunnangerstraße 2, 82319 Starnberg",
+      "description": "Großes Sommer-Ferienprogramm für Kinder 6-12 Jahre. 5 Wochen Sommerferien. Sport, Schwimmen, Spiel.",
+      "category": "kinder",
+      "artTags": [
+        "sport",
+        "ferienprogramm"
+      ],
+      "url": "https://summerchallenge.info/summerchallenge/",
+      "source": "turnverein-tsv-starnberg",
+      "region": "starnberger-see",
+      "venue": "TSV Starnberg von 1880 e.V.",
+      "isHighlight": true,
+      "id": 106
+    },
+    {
+      "title": "Sommer Dance Camp – Kinder 6-12",
+      "date": "2026-08-10",
+      "time": null,
+      "location": "Gilching",
+      "address": "Landsberger Straße 18, 82205 Gilching",
+      "description": "Fünftägiges Dance Camp für Kinder: Hip Hop, Pop, verschiedene Tanzstile. 10.–14. August. Abschluss-Auftritt.",
+      "category": "kinder",
+      "artTags": [
+        "tanz"
+      ],
+      "url": "https://gilchinger-tanzzentrum.de",
+      "source": "gilchinger-tanzzentrum",
+      "region": "starnberger-see",
+      "venue": "Gilchinger Tanzzentrum",
+      "isHighlight": true,
+      "id": 121
     },
     {
       "title": "Tegernseer Seefest mit Brillantfeuerwerk",
@@ -1685,6 +2701,26 @@
       "id": 87
     },
     {
+      "title": "Mabon – Yoga & Herbst-Tagundnachtgleiche",
+      "date": "2026-09-20",
+      "time": "17:00",
+      "location": "Herrsching",
+      "address": "Seestraße 34, 82211 Herrsching",
+      "description": "Yoga-Special zur Herbst-Tagundnachtgleiche. 3 Stunden, 60€.",
+      "category": "erwachsene",
+      "artTags": [
+        "yoga",
+        "wellness",
+        "zeremonie"
+      ],
+      "url": "https://www.studio8amsee.de",
+      "source": "yoga-studio8",
+      "region": "starnberger-see",
+      "venue": "Studio 8 Herrsching",
+      "isHighlight": true,
+      "id": 148
+    },
+    {
       "title": "Kulturmontag - Alexander Netschajew",
       "date": "2026-09-22",
       "time": "19:00",
@@ -1702,6 +2738,82 @@
       "venue": null,
       "isHighlight": false,
       "id": 88
+    },
+    {
+      "title": "50 Jahre Handballabteilung – DJK-SV Berg",
+      "date": "2026-09-26",
+      "time": null,
+      "location": "Berg",
+      "address": null,
+      "description": "Jubiläumsfeier 50 Jahre Handball. 26.–27. September.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "handball"
+      ],
+      "url": "https://www.djk-sv-berg.com/termine/",
+      "source": "sportverein-djk-sv-berg",
+      "region": "starnberger-see",
+      "venue": "DJK-SV Berg",
+      "isHighlight": true,
+      "id": 134
+    },
+    {
+      "title": "Gilching Läuft 2026 – Volkslauf",
+      "date": "2026-10-03",
+      "time": "10:30",
+      "location": "Gilching",
+      "address": "Talhofstraße 13, 82205 Gilching",
+      "description": "Jährlicher Volkslauf am Tag der Deutschen Einheit. 700m bis 10km. Tombola, Verpflegung, Siegerehrung.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "laufen"
+      ],
+      "url": "https://gilching-laeuft.de",
+      "source": "turnverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried e.V.",
+      "isHighlight": true,
+      "id": 107
+    },
+    {
+      "title": "42. Starnberger Landkreislauf",
+      "date": "2026-10-10",
+      "time": "12:00",
+      "location": "Gauting",
+      "address": "Gauting (Strecke wird bekanntgegeben)",
+      "description": "Traditioneller Staffellauf mit 6 Läufern pro Team. Großes Lauf-Sportfest.",
+      "category": "erwachsene",
+      "artTags": [
+        "sport",
+        "laufen"
+      ],
+      "url": "https://www.lc-buchendorf.de/",
+      "source": "sportverein-lc-buchendorf",
+      "region": "starnberger-see",
+      "venue": "LC Buchendorf & Gautinger SC",
+      "isHighlight": true,
+      "id": 135
+    },
+    {
+      "title": "Süddeutsche Meisterschaft Einrad Freestyle",
+      "date": "2026-10-16",
+      "time": null,
+      "location": "Gilching",
+      "address": "Christoph-Probst-Gymnasium, Talhofstraße 7, 82205 Gilching",
+      "description": "Süddeutsche Meisterschaft Einrad Freestyle. 16.–18. Oktober.",
+      "category": "familie",
+      "artTags": [
+        "sport",
+        "einrad"
+      ],
+      "url": "https://tsv-ga.de/einrad/",
+      "source": "sportverein-tsv-gilching",
+      "region": "starnberger-see",
+      "venue": "TSV Gilching-Argelsried",
+      "isHighlight": true,
+      "id": 136
     },
     {
       "title": "Kulturmontag - Kabarett Erich Kasberger",
