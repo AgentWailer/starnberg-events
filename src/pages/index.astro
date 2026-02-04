@@ -155,9 +155,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             </div>
 
             <button class="load-more-btn" id="load-more-btn">
-              <span class="load-more-text">Weitere Events</span>
-              <span class="load-more-count" id="load-more-count"></span>
-              <svg class="load-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              Weitere Events <span class="load-more-count" id="load-more-count"></span>
             </button>
           </section>
 
@@ -595,61 +593,34 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   /* Load More */
   .load-more-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
+    display: block;
     width: 100%;
-    max-width: 280px;
-    margin: var(--space-6) auto 0;
-    padding: 12px var(--space-5);
-    background: rgba(13, 74, 92, 0.08);
-    border: 1px solid rgba(13, 74, 92, 0.15);
-    border-radius: var(--radius-lg);
-    color: var(--color-primary);
+    margin: var(--space-4) 0 0;
+    padding: 14px 0;
+    background: var(--color-card-bg, #fff);
+    border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+    border-radius: var(--radius-lg, 12px);
+    color: var(--color-text-secondary, #666);
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 500;
     font-family: inherit;
-    letter-spacing: 0.01em;
+    text-align: center;
     cursor: pointer;
-    transition: all var(--duration-normal) ease;
-  }
-
-  :root[data-theme="dark"] .load-more-btn {
-    background: rgba(201, 169, 98, 0.08);
-    border-color: rgba(201, 169, 98, 0.2);
-    color: var(--color-accent);
+    transition: all 0.2s ease;
   }
 
   .load-more-btn:hover {
-    background: rgba(13, 74, 92, 0.12);
-    border-color: rgba(13, 74, 92, 0.3);
-  }
-
-  :root[data-theme="dark"] .load-more-btn:hover {
-    background: rgba(201, 169, 98, 0.14);
-    border-color: rgba(201, 169, 98, 0.35);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
   }
 
   .load-more-btn:active {
-    transform: scale(0.98);
-  }
-
-  .load-more-icon {
-    width: 14px;
-    height: 14px;
-    opacity: 0.6;
-    transition: transform var(--duration-normal) ease;
-  }
-
-  .load-more-btn:hover .load-more-icon {
-    transform: translateY(2px);
+    transform: scale(0.99);
   }
 
   .load-more-count {
-    font-size: 0.8125rem;
+    opacity: 0.5;
     font-weight: 400;
-    opacity: 0.6;
   }
 </style>
 
