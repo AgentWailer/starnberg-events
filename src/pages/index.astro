@@ -688,7 +688,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     if (hiddenByLimit === 0) {
       loadMoreBtn.style.display = 'none';
     } else {
-      loadMoreBtn.style.display = 'flex';
+      loadMoreBtn.style.display = 'block';
       if (loadMoreCount) loadMoreCount.textContent = `· ${hiddenByLimit} mehr`;
     }
   }
