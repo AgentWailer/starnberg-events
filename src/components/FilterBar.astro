@@ -153,22 +153,22 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: none;
     flex-direction: column;
     gap: var(--space-5);
-    padding: var(--space-4) var(--space-4);
+    padding: var(--space-4);
     background: var(--color-card);
-    border-radius: 0 0 var(--radius-lg) 0;
-    border-right: 1px solid var(--color-border-light);
-    border-bottom: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-light);
     position: fixed;
-    left: 0;
-    top: 140px; /* Directly below header */
+    /* Position at left edge of content container (max-width: 900px) */
+    left: calc(50% - 450px - 220px - var(--space-5));
+    top: 200px; /* Below header */
     width: 200px;
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - 220px);
     overflow-y: auto;
-    z-index: 49; /* Below header */
-    box-shadow: 2px 4px 12px rgba(0,0,0,0.05);
+    z-index: 49;
+    box-shadow: var(--shadow-md);
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1200px) {
     .filter-sidebar {
       display: flex;
     }
@@ -304,7 +304,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1200px) {
     .mobile-filter-bar {
       display: none;
     }
@@ -497,7 +497,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     text-decoration: underline;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1200px) {
     .filter-sheet,
     .filter-sheet-backdrop {
       display: none !important;
@@ -505,7 +505,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   }
 
   /* Space for fixed bottom bar on mobile */
-  @media (max-width: 1099px) {
+  @media (max-width: 1199px) {
     :global(body) {
       padding-bottom: 80px;
     }
