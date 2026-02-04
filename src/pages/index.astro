@@ -35,13 +35,13 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
   <Header lastUpdated={eventsData.lastUpdated} />
   
+  <!-- Mobile: Sticky Ticker -->
+  <div class="mobile-info-bar">
+    <InfoTicker />
+  </div>
+
   <main class="main" id="main-content">
     <div class="container">
-      <!-- Mobile: Ticker -->
-      <div class="mobile-info-bar">
-        <InfoTicker />
-      </div>
-
       <!-- Content Grid: Sidebar + Main Content -->
       <div class="content-grid">
         <!-- Desktop Sidebar -->
@@ -137,7 +137,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
   /* Mobile Info Bar - sticky at top */
   .mobile-info-bar {
-    margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) 0;
+    display: block;
     position: sticky;
     top: 0;
     z-index: 100;
