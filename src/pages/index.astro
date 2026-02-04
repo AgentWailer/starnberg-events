@@ -54,7 +54,10 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
       <!-- Events + Filter Layout -->
       <div class="content-layout">
-        <!-- Events List (left on desktop) -->
+        <!-- Filter Sidebar (left on desktop) -->
+        <FilterBar events={events} regions={regions} />
+
+        <!-- Events List (right on desktop) -->
         <section class="section-events">
           <div class="events-header">
             <h2 class="events-title">Kommende Events</h2>
@@ -67,9 +70,6 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
             ))}
           </div>
         </section>
-
-        <!-- Filter Sidebar (right on desktop) -->
-        <FilterBar events={events} regions={regions} />
       </div>
 
       <!-- Local Info (Collapsed) -->
@@ -161,7 +161,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
   @media (min-width: 900px) {
     .content-layout {
       display: grid;
-      grid-template-columns: 1fr 260px;
+      grid-template-columns: 260px 1fr;
       gap: var(--space-6);
       align-items: start;
     }
