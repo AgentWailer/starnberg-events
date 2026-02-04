@@ -97,8 +97,8 @@ const { lastUpdated } = Astro.props;
   <div class="header-inner">
     <p class="location">Starnberger See</p>
     <h1 class="title">
-      Was ist los<br/>
-      <span class="title-accent">in Pöcking?</span>
+      Was ist los in<br/>
+      <span class="title-accent">und um Pöcking?</span>
     </h1>
     <p class="tagline">Events & Veranstaltungen für die ganze Familie</p>
   </div>
@@ -363,6 +363,13 @@ const { lastUpdated } = Astro.props;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+  }
+
+  @media (min-width: 1200px) {
+    .header-inner {
+      max-width: 1140px;
+      padding: 0 var(--space-5);
+    }
   }
 
   .location {
