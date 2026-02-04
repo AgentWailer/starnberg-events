@@ -34,9 +34,6 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
 
 <Layout title="Starnberg Events — Was ist los in Pöcking?">
   <Header lastUpdated={eventsData.lastUpdated} />
-
-  <!-- Desktop: Fixed Filter Sidebar (outside container) -->
-  <FilterBar events={events} regions={regions} />
   
   <main class="main" id="main-content">
     <div class="container">
@@ -55,19 +52,25 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <TrainInfo station="Possenhofen" stationCode="MPH" />
       </section>
 
-      <!-- Events List -->
-      <section class="section-events">
-        <div class="events-header">
-          <h2 class="events-title">Kommende Events</h2>
-          <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
-        </div>
-        
-        <div class="events-list">
-          {events.map(event => (
-            <EventCard event={event} regions={regions} />
-          ))}
-        </div>
-      </section>
+      <!-- Content Grid: Sidebar + Events -->
+      <div class="content-grid">
+        <!-- Desktop Sidebar -->
+        <FilterBar events={events} regions={regions} />
+
+        <!-- Events List -->
+        <section class="section-events">
+          <div class="events-header">
+            <h2 class="events-title">Kommende Events</h2>
+            <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+          </div>
+          
+          <div class="events-list">
+            {events.map(event => (
+              <EventCard event={event} regions={regions} />
+            ))}
+          </div>
+        </section>
+      </div>
 
       <!-- Local Info (Collapsed) -->
       <section class="section section-info">
@@ -100,7 +103,19 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: var(--space-16);
   }
 
-  /* No extra padding needed - navbar is in Header component */
+  /* Content Grid: Sidebar + Events */
+  .content-grid {
+    display: block;
+  }
+
+  @media (min-width: 1200px) {
+    .content-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+  }
 
   .section {
     margin-bottom: var(--space-10);

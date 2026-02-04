@@ -157,15 +157,14 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     background: var(--color-card);
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border-light);
-    position: fixed;
-    /* Position at left edge of content container (max-width: 900px) */
-    left: calc(50% - 450px - 220px - var(--space-5));
-    top: 70px; /* Below compact navbar */
+    position: sticky;
+    top: 70px; /* Sticky below navbar when scrolling */
     width: 200px;
     max-height: calc(100vh - 90px);
     overflow-y: auto;
     z-index: 90;
     box-shadow: var(--shadow-md);
+    align-self: start;
   }
 
   @media (min-width: 1200px) {
