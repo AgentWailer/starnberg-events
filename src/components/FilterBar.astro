@@ -34,43 +34,16 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
 <!-- Desktop Sidebar -->
 <aside class="filter-sidebar" id="filter-sidebar">
-  <!-- Search Field -->
-  <div class="filter-section">
-    <div class="search-wrapper">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"></circle>
-        <path d="m21 21-4.35-4.35"></path>
-      </svg>
-      <input 
-        type="text" 
-        id="search-input" 
-        class="search-input" 
-        placeholder="Event, Ort oder Stichwort..."
-        autocomplete="off"
-      />
-      <button class="search-clear" id="search-clear" aria-label="Suche löschen" style="display: none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Favorites Filter -->
-  <div class="filter-section">
-    <button class="favorites-filter-btn" id="favorites-filter-btn">
+  <!-- Favorites + Highlights (compact row) -->
+  <div class="filter-section filter-toggles-row">
+    <button class="toggle-pill" id="favorites-filter-btn">
       <svg class="heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
       </svg>
       <span>Favoriten</span>
       <span class="favorites-badge" id="favorites-badge">0</span>
     </button>
-  </div>
-
-  <!-- Highlight Filter -->
-  <div class="filter-section">
-    <button class="highlight-filter-btn" id="highlight-filter-btn">
+    <button class="toggle-pill" id="highlight-filter-btn">
       <span class="highlight-star">⭐</span>
       <span>Highlights</span>
       <span class="highlight-badge">{highlightCount}</span>
@@ -390,46 +363,51 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     height: 14px;
   }
 
-  /* Favorites Filter Button */
-  .favorites-filter-btn {
-    display: flex;
+  /* Toggle Row (Favorites + Highlights) */
+  .filter-toggles-row {
+    flex-direction: row !important;
+    gap: var(--space-2) !important;
+  }
+
+  .toggle-pill {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-4) var(--space-5);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-bg);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text);
+    gap: 6px;
+    flex: 1;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-muted);
     cursor: pointer;
     transition: all var(--duration-fast) ease;
-    position: relative;
+    justify-content: center;
+    white-space: nowrap;
   }
 
-  .favorites-filter-btn:hover {
-    border-color: #e74c3c;
-    color: #e74c3c;
-    background: color-mix(in srgb, #e74c3c 5%, transparent);
+  .toggle-pill:hover {
+    border-color: var(--color-text-secondary);
+    color: var(--color-text);
   }
 
-  .favorites-filter-btn.active {
+  /* Favorites toggle */
+  #favorites-filter-btn.active {
     background: #e74c3c;
     border-color: #e74c3c;
     color: white;
   }
 
-  .favorites-filter-btn .heart-icon {
-    width: 18px;
-    height: 18px;
+  #favorites-filter-btn .heart-icon {
+    width: 14px;
+    height: 14px;
     stroke: currentColor;
     fill: none;
     transition: fill var(--duration-fast) ease;
   }
 
-  .favorites-filter-btn.active .heart-icon {
+  #favorites-filter-btn.active .heart-icon {
     fill: white;
   }
 
@@ -437,53 +415,30 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
     background: var(--color-border);
     color: var(--color-text-secondary);
     border-radius: var(--radius-full);
-    font-size: 0.6875rem;
+    font-size: 0.5625rem;
     font-weight: 600;
   }
 
-  .favorites-filter-btn.active .favorites-badge {
+  #favorites-filter-btn.active .favorites-badge {
     background: rgba(255, 255, 255, 0.3);
     color: white;
   }
 
-  /* Highlight Filter Button */
-  .highlight-filter-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-4) var(--space-5);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-bg);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text);
-    cursor: pointer;
-    transition: all var(--duration-fast) ease;
-  }
-
-  .highlight-filter-btn:hover {
-    border-color: #f59e0b;
-    color: #b45309;
-    background: color-mix(in srgb, #f59e0b 8%, transparent);
-  }
-
-  .highlight-filter-btn.active {
+  /* Highlight toggle */
+  #highlight-filter-btn.active {
     background: linear-gradient(135deg, #f59e0b, #d97706);
     border-color: #d97706;
     color: white;
   }
 
   .highlight-star {
-    font-size: 1rem;
+    font-size: 0.75rem;
     line-height: 1;
   }
 
@@ -491,17 +446,17 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
     background: var(--color-border);
     color: var(--color-text-secondary);
     border-radius: var(--radius-full);
-    font-size: 0.6875rem;
+    font-size: 0.5625rem;
     font-weight: 600;
   }
 
-  .highlight-filter-btn.active .highlight-badge {
+  #highlight-filter-btn.active .highlight-badge {
     background: rgba(255, 255, 255, 0.3);
     color: white;
   }

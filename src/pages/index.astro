@@ -144,8 +144,31 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           <!-- Events List -->
           <section class="section-events">
             <div class="events-header">
-              <h2 class="events-title">Kommende Events</h2>
-              <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+              <div class="events-header-top">
+                <h2 class="events-title">Kommende Events</h2>
+                <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+              </div>
+              <div class="events-search-bar" id="desktop-search-bar">
+                <div class="search-wrapper">
+                  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                  </svg>
+                  <input 
+                    type="text" 
+                    id="search-input" 
+                    class="search-input" 
+                    placeholder="Event, Ort oder Stichwort..."
+                    autocomplete="off"
+                  />
+                  <button class="search-clear" id="search-clear" aria-label="Suche löschen" style="display: none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
             
             <div class="events-list" id="events-list">
@@ -462,11 +485,17 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   /* Events */
   .events-header {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--space-4);
     margin-bottom: var(--space-6);
     padding-bottom: var(--space-4);
     border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .events-header-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
 
   .events-title {
@@ -477,6 +506,78 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   .events-count {
     font-size: 0.875rem;
     color: var(--color-muted);
+  }
+
+  /* Desktop search bar in events header */
+  .events-search-bar {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    .events-search-bar {
+      display: block;
+      max-width: 400px;
+    }
+  }
+
+  .events-search-bar .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .events-search-bar .search-icon {
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    color: var(--color-muted);
+    pointer-events: none;
+  }
+
+  .events-search-bar .search-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-10);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.875rem;
+    color: var(--color-text);
+    transition: border-color var(--duration-fast) ease;
+  }
+
+  .events-search-bar .search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .events-search-bar .search-input::placeholder {
+    color: var(--color-muted);
+  }
+
+  .events-search-bar .search-clear {
+    position: absolute;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--color-muted);
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    transition: background var(--duration-fast) ease;
+  }
+
+  .events-search-bar .search-clear:hover {
+    background: var(--color-bg-secondary);
+  }
+
+  .events-search-bar .search-clear svg {
+    width: 14px;
+    height: 14px;
   }
 
   .events-list {
