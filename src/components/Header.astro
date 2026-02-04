@@ -415,11 +415,9 @@ const { lastUpdated } = Astro.props;
         var maxScroll = 300; // Max scroll distance for full effect
         var progress = Math.min(scrollY / maxScroll, 1);
         
-        // Move brand left, right section right
-        navbarBrand.style.transform = 'translateX(' + (-progress * 150) + 'px)';
-        navbarBrand.style.opacity = 1 - progress;
-        navbarRight.style.transform = 'translateX(' + (progress * 150) + 'px)';
-        navbarRight.style.opacity = 1 - progress;
+        // Move brand left, right section right (no fade)
+        navbarBrand.style.transform = 'translateX(' + (-progress * 200) + 'px)';
+        navbarRight.style.transform = 'translateX(' + (progress * 300) + 'px)';
         
         ticking = false;
       }
