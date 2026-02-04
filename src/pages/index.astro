@@ -140,6 +140,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             </section>
           )}
 
+          <!-- Mobile: Vor Ort (before events) -->
+          <section class="section section-info section-info--mobile">
+            <h2 class="section-title">Vor Ort</h2>
+            <div class="info-grid-single">
+              <MarketInfo />
+              <WebcamWidget />
+            </div>
+          </section>
+
           <!-- Events List -->
           <section class="section-events">
             <div class="events-header">
@@ -147,17 +156,22 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
               <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
             </div>
             
-            <div class="events-list">
+            <div class="events-list" id="events-list">
               {events.map(event => (
                 <EventCard event={event} regions={regions} artTagsData={artTags} />
               ))}
             </div>
+
+            <button class="load-more-btn" id="load-more-btn">
+              Weitere Events anzeigen
+              <span class="load-more-count" id="load-more-count"></span>
+            </button>
           </section>
         </div>
       </div>
 
-      <!-- Local Info (Collapsed) -->
-      <section class="section section-info">
+      <!-- Desktop: Vor Ort (after events) -->
+      <section class="section section-info section-info--desktop">
         <h2 class="section-title">Vor Ort</h2>
         <div class="info-grid-single">
           <MarketInfo />
@@ -502,11 +516,36 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* Info Section */
-  .section-info {
+  /* Info Section — Mobile version (before events) */
+  .section-info--mobile {
+    display: block;
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border-light);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 1200px) {
+    .section-info--mobile {
+      display: none;
+    }
+  }
+
+  /* Info Section — Desktop version (after events) */
+  .section-info--desktop {
+    display: none;
     padding-top: var(--space-8);
     border-top: 1px solid var(--color-border-light);
   }
+
+  @media (min-width: 1200px) {
+    .section-info--desktop {
+      display: block;
+    }
+  }
+
+  /* Info Section shared */
+  .section-info {
 
   .section-title {
     font-size: 1rem;
@@ -552,6 +591,41 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   .footer-links a:hover {
     text-decoration-color: var(--color-muted);
   }
+
+  /* Load More */
+  .load-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    margin-top: var(--space-5);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+  }
+
+  .load-more-btn:hover {
+    background: var(--color-border-light);
+    color: var(--color-text);
+  }
+
+  .load-more-btn:active {
+    transform: scale(0.99);
+  }
+
+  .load-more-count {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
 </style>
 
 <script>
@@ -576,4 +650,78 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       }
     });
   });
+
+  // Load More functionality (mobile only)
+  const BATCH_SIZE = 10;
+  const loadMoreBtn = document.getElementById('load-more-btn') as HTMLButtonElement;
+  const loadMoreCount = document.getElementById('load-more-count');
+  let visibleLimit = 10;
+  const isDesktop = () => window.innerWidth >= 1200;
+
+  function applyLoadMoreLimit() {
+    if (isDesktop()) {
+      loadMoreBtn.style.display = 'none';
+      return;
+    }
+
+    const cards = document.querySelectorAll('.event-card');
+    let visibleCount = 0;
+    let hiddenByLimit = 0;
+
+    cards.forEach(card => {
+      const el = card as HTMLElement;
+      // Only count cards not hidden by filters
+      const hiddenByFilter = el.style.display === 'none' && !el.hasAttribute('data-load-more-hidden');
+      if (hiddenByFilter) return;
+
+      visibleCount++;
+      if (visibleCount > visibleLimit) {
+        el.style.display = 'none';
+        el.setAttribute('data-load-more-hidden', '');
+        hiddenByLimit++;
+      } else {
+        // Only restore if it was hidden by load-more, not by filter
+        if (el.hasAttribute('data-load-more-hidden')) {
+          el.style.display = '';
+          el.removeAttribute('data-load-more-hidden');
+        }
+      }
+    });
+
+    if (hiddenByLimit === 0) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'flex';
+      if (loadMoreCount) loadMoreCount.textContent = `(${hiddenByLimit} weitere)`;
+    }
+  }
+
+  loadMoreBtn?.addEventListener('click', () => {
+    visibleLimit += BATCH_SIZE;
+    // Remove all load-more-hidden attrs first
+    document.querySelectorAll('[data-load-more-hidden]').forEach(el => {
+      (el as HTMLElement).style.display = '';
+      el.removeAttribute('data-load-more-hidden');
+    });
+    applyLoadMoreLimit();
+  });
+
+  // Re-apply after filters change — observe the visible-count text
+  const countEl = document.getElementById('visible-count');
+  if (countEl) {
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll('[data-load-more-hidden]').forEach(el => {
+        (el as HTMLElement).style.display = '';
+        el.removeAttribute('data-load-more-hidden');
+      });
+      applyLoadMoreLimit();
+    });
+    observer.observe(countEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  // Handle resize
+  window.addEventListener('resize', () => applyLoadMoreLimit());
+
+  // Initial apply
+  applyLoadMoreLimit();
 </script>
