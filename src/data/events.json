@@ -361,6 +361,26 @@
       "id": 291
     },
     {
+      "title": "Tarzan – das Musical",
+      "date": "2026-02-06",
+      "time": "16:00",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Atemberaubendes Dschungel-Abenteuer! Spektakuläre Eigenkompositionen, Spannung und Romantik.",
+      "category": "familie",
+      "artTags": [
+        "show",
+        "musik",
+        "theater"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 387
+    },
+    {
       "title": "Nächtliche Welten - Fotoausstellung",
       "date": "2026-02-07",
       "time": "09:00",
@@ -738,6 +758,26 @@
       "id": 292
     },
     {
+      "title": "Direktorenführung: Heinz Butz",
+      "date": "2026-02-07",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Sonderausstellung: Ein stiller Avantgardist in Oberbayern. 5€ zzgl. Eintritt.",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 380
+    },
+    {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
       "date": "2026-02-08",
       "time": "08:00",
@@ -870,6 +910,26 @@
       "venue": null,
       "isHighlight": false,
       "id": 294
+    },
+    {
+      "title": "Fasching: Wolfratshausen NARRISCH",
+      "date": "2026-02-08",
+      "time": "13:00",
+      "location": "Wolfratshausen",
+      "address": "Am Loisachufer, 82515 Wolfratshausen",
+      "description": "Narren ziehen ein! Garden aus Nah und Fern zelebrieren Faschingstrubel am Loisachufer.",
+      "category": "familie",
+      "artTags": [
+        "fasching",
+        "fest",
+        "show"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": true,
+      "id": 388
     },
     {
       "title": "Wie viel Arbeit braucht der Mensch? – 7. Tutzinger Depressionstagung",
@@ -1681,6 +1741,45 @@
       "id": 275
     },
     {
+      "title": "Valentinstag in LA VILLA",
+      "date": "2026-02-14",
+      "time": "19:00",
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Ein Hoch auf die Liebe! Exklusives Valentinstags-Menü: 4-Gang (120€) oder 5-Gang (130€) pro Person. Weinbegleitung ab 69€.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "fest"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": true,
+      "id": 372
+    },
+    {
+      "title": "Kinderfasching Wolfratshausen",
+      "date": "2026-02-14",
+      "time": "14:00",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Großer Kinderfasching! Live-Tanz-Musik, lustige Spiele und Spaß für Groß und Klein.",
+      "category": "kinder",
+      "artTags": [
+        "fasching",
+        "fest",
+        "tanz"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 389
+    },
+    {
       "title": "Kinderfasching",
       "date": "2026-02-15",
       "time": "14:00",
@@ -1810,6 +1909,26 @@
       "venue": "Silberfasan Inning",
       "isHighlight": false,
       "id": 267
+    },
+    {
+      "title": "Direktorenführung: Heinz Butz",
+      "date": "2026-02-15",
+      "time": "15:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Sonderausstellung: Ein stiller Avantgardist in Oberbayern. 5€ zzgl. Eintritt.",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 381
     },
     {
       "title": "FILMWORKSHOP (Faschingsferien)",
@@ -1965,6 +2084,25 @@
       "id": 85
     },
     {
+      "title": "Sinfonietta Isartal – Zwischen Tanz und Tragik",
+      "date": "2026-02-17",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Schubert, Coleridge-Taylor und die Unvollendete. Schüler/Studenten frei!",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 390
+    },
+    {
       "title": "Aschermittwoch im Theodor",
       "date": "2026-02-18",
       "time": "18:00",
@@ -2052,6 +2190,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 302
+    },
+    {
+      "title": "Sisis Familie – Vortrag und Buchvorstellung",
+      "date": "2026-02-19",
+      "time": "19:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Dr. Bernhard Graf stellt sein Buch über Sisis Familie vor. 12/8€.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": true,
+      "id": 382
     },
     {
       "title": "Großer Lesetag 2026",
@@ -2241,6 +2398,24 @@
       "venue": "Condrobs Starnberg",
       "isHighlight": false,
       "id": 265
+    },
+    {
+      "title": "Kulinarische Höhepunkte in LA VILLA",
+      "date": "2026-02-21",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Tauchen Sie ein in die Welt der exquisiten Gastronomie von LA VILLA.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": false,
+      "id": 373
     },
     {
       "title": "Kinderführung: Willkommen an Bord unserer Maschine",
@@ -2602,6 +2777,25 @@
       "id": 308
     },
     {
+      "title": "Genuss und Entspannung in LA VILLA",
+      "date": "2026-02-26",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Gönnen Sie sich eine Auszeit vom Alltag. Zweitägiges Genuss- und Entspannungserlebnis am See (26.-27.02.).",
+      "category": "erwachsene",
+      "artTags": [
+        "wellness",
+        "kultur"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": false,
+      "id": 374
+    },
+    {
       "title": "Von Gaswolken und Filamenten zu Sternen und Planeten",
       "date": "2026-02-27",
       "time": "20:00",
@@ -2656,6 +2850,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 309
+    },
+    {
+      "title": "Starkbierfest Wolfratshausen 2026",
+      "date": "2026-02-27",
+      "time": "19:00",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Traditionelles Starkbierfest mit Starkbieranstich und Stadtkapelle.",
+      "category": "erwachsene",
+      "artTags": [
+        "fest",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 391
     },
     {
       "title": "Führung auf die Zugspitze",
@@ -2846,6 +3059,25 @@
       "id": 312
     },
     {
+      "title": "Museumssonntag – Eintritt nur 1€",
+      "date": "2026-03-01",
+      "time": "11:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Erster Sonntag im Monat: Museum zum Sonderpreis von nur 1€.",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 383
+    },
+    {
       "title": "Künstliche kulinarische Intelligenz – KI, Ethik und Esskultur",
       "date": "2026-03-02",
       "time": null,
@@ -2976,6 +3208,26 @@
       "id": 122
     },
     {
+      "title": "3D-Show: Süd-Afrika",
+      "date": "2026-03-04",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Live 3D-Multivision von Stephan Schulz: Von Kapstadt zum Kilimanjaro.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "bildung",
+        "natur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 392
+    },
+    {
       "title": "Miniaturen mit Blattgold",
       "date": "2026-03-05",
       "time": "11:00",
@@ -3067,6 +3319,25 @@
       "venue": "Bayerische Volkssternwarte München",
       "isHighlight": false,
       "id": 126
+    },
+    {
+      "title": "Neue Philharmonie München – Wogen und Wellen",
+      "date": "2026-03-06",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Smetanas Moldau, Ravels Klavierkonzert, Debussys La Mer. Schüler/Studenten frei!",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 393
     },
     {
       "title": "Ballett für Erwachsene – VHS/East Coast",
@@ -3203,6 +3474,25 @@
       "id": 314
     },
     {
+      "title": "Sisters in Jazz – LOISACHJAZZ",
+      "date": "2026-03-07",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Preisgekrönte Multi-Instrumentalistin Izabella Effenberg und europäisches Musikerinnen-Netzwerk.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 394
+    },
+    {
       "title": "Special Olympics Bayern Tennis Cup",
       "date": "2026-03-08",
       "time": "09:00",
@@ -3314,6 +3604,26 @@
       "venue": null,
       "isHighlight": false,
       "id": 315
+    },
+    {
+      "title": "Filmvorführung: Heinz Butz – Eremit am leeren Tisch",
+      "date": "2026-03-08",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Film über die Bildwerkstatt des Zeichners und Malers Heinz Butz.",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "show"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 384
     },
     {
       "title": "Politische Bildung in Grundschulen – Junges Forum",
@@ -3558,6 +3868,26 @@
       "venue": null,
       "isHighlight": true,
       "id": 320
+    },
+    {
+      "title": "Martin Schmitt – Schmitt Happens (Klavierkabarett)",
+      "date": "2026-03-13",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "KRÄMMEL Forum, Hans-Urmiller-Ring 46a, 82515 Wolfratshausen",
+      "description": "Pointiertes Klavierkabarett, wunderbare Songs und Charmeoffensiven.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "musik",
+        "theater"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "KRÄMMEL Forum",
+      "isHighlight": false,
+      "id": 395
     },
     {
       "id": 145,
@@ -4144,6 +4474,25 @@
       "id": 163
     },
     {
+      "title": "Lesung: Christina Pertl – Wo keine Rettung naht",
+      "date": "2026-03-16",
+      "time": "19:00",
+      "location": "Wolfratshausen",
+      "address": "Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Die Wolfratshauser Autorin liest ihren neuesten Krimi.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": false,
+      "id": 396
+    },
+    {
       "title": "Fliegende Volksbühne Frankfurt: \"Goethe: Faust 1\"",
       "date": "2026-03-18",
       "time": "20:00",
@@ -4259,6 +4608,25 @@
       "id": 333
     },
     {
+      "title": "Das Apostelspiel – Fastenzeit-Theater",
+      "date": "2026-03-20",
+      "time": "20:00",
+      "location": "Wolfratshausen",
+      "address": "Trachtenverein Loisachtaler, Hans-Urmiller-Ring 53, 82515 Wolfratshausen",
+      "description": "Besinnliches Stück von Max Mell zur Fastenzeit. Auch am 21.03. Eintritt 10€.",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 397
+    },
+    {
       "title": "Stadtkapelle Starnberg - Konzert",
       "date": "2026-03-21",
       "time": "20:00",
@@ -4331,6 +4699,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 334
+    },
+    {
+      "title": "Ganzheitlicher Detox Day in LA VILLA",
+      "date": "2026-03-21",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Exklusiver Detox Day – reinige Deinen Körper und Geist für ein neues, revitalisiertes Ich!",
+      "category": "erwachsene",
+      "artTags": [
+        "wellness",
+        "yoga"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": false,
+      "id": 375
     },
     {
       "title": "Ostara – Yoga & Jahreskreis-Zeremonie",
@@ -4448,6 +4835,26 @@
       "id": 173
     },
     {
+      "title": "Direktorenführung: Heinz Butz (Abend)",
+      "date": "2026-03-26",
+      "time": "18:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Abendführung durch die Sonderausstellung. 5€ zzgl. Eintritt.",
+      "category": "erwachsene",
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 385
+    },
+    {
       "title": "Yoga & Bowls",
       "date": "2026-03-27",
       "time": "18:30",
@@ -4484,6 +4891,25 @@
       "venue": null,
       "isHighlight": true,
       "id": 280
+    },
+    {
+      "title": "Christian Elsässer Quintett – LOISACHJAZZ",
+      "date": "2026-03-27",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Saal der Musikschule, Untermarkt 64, 82515 Wolfratshausen",
+      "description": "Jazz-Quintett: Saxofon, Vibraphon, Piano, Bass und Schlagzeug.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Musikschule Wolfratshausen",
+      "isHighlight": false,
+      "id": 398
     },
     {
       "title": "Rennrad (Gravel) Tour Andechs",
@@ -4582,6 +5008,25 @@
       "id": 177
     },
     {
+      "title": "Museumssonntag – Eintritt nur 1€",
+      "date": "2026-04-05",
+      "time": "11:00",
+      "location": "Starnberg",
+      "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
+      "description": "Erster Sonntag im Monat: Museum zum Sonderpreis von nur 1€.",
+      "category": "familie",
+      "artTags": [
+        "kunst",
+        "kultur"
+      ],
+      "url": "https://www.museum-starnberger-see.de/veranstaltungen",
+      "source": "museum-starnberger-see",
+      "region": "starnberger-see",
+      "venue": "Museum Starnberger See",
+      "isHighlight": false,
+      "id": 386
+    },
+    {
       "title": "TSV Starnberg Osterchallenge – Woche 2",
       "date": "2026-04-07",
       "time": "08:30",
@@ -4659,6 +5104,25 @@
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 180
+    },
+    {
+      "title": "Ana und August Zirner – Lesung: Ella und Laura",
+      "date": "2026-04-13",
+      "time": "19:00",
+      "location": "Wolfratshausen",
+      "address": "Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Vater und Tochter spüren ihren Großmüttern nach – Flucht, Vertreibung, Emigration.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": true,
+      "id": 399
     },
     {
       "title": "Wöchentliche Nachmittagstour ab Gauting",
@@ -5023,6 +5487,26 @@
       "id": 343
     },
     {
+      "title": "Opern auf Bayrisch – Anthoff, Glogger & Schleich",
+      "date": "2026-04-24",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Seit 40 Jahren Kult: Opern auf Bayrisch mit Gerd Anthoff, Conny Glogger und Helmut Schleich!",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "musik",
+        "show"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 400
+    },
+    {
       "title": "Schleiferlturnier Tennis – TSV Gilching",
       "date": "2026-04-25",
       "time": "13:00",
@@ -5342,6 +5826,25 @@
       "id": 206
     },
     {
+      "title": "Matthias Bublath – Solo Piano Visions",
+      "date": "2026-05-08",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Saal der Musikschule, Untermarkt 64, 82515 Wolfratshausen",
+      "description": "Latin-Jazz, Funk, Classical, Blues vom Münchner Tastenvirtuosen.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Musikschule Wolfratshausen",
+      "isHighlight": false,
+      "id": 401
+    },
+    {
       "title": "Konzert der Philharmonie Starnberger See e.V.",
       "date": "2026-05-09",
       "time": "20:00",
@@ -5377,6 +5880,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 346
+    },
+    {
+      "title": "Muttertag Brunch in LA VILLA",
+      "date": "2026-05-10",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Feiern Sie den Muttertag mit köstlichem Brunch! Saisonale Spezialitäten, herzhafte Genüsse und süße Überraschungen.",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "kultur"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": true,
+      "id": 376
     },
     {
       "title": "boox: Sommerlese",
@@ -5528,6 +6050,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 210
+    },
+    {
+      "title": "Lesung: Martina Bogdahn – Mirabellentage",
+      "date": "2026-05-18",
+      "time": "19:00",
+      "location": "Wolfratshausen",
+      "address": "Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Eine Frau, die alles hinterfragt und eine neue Sicht aufs Leben gewinnt.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "bildung"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": false,
+      "id": 402
     },
     {
       "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
@@ -5743,6 +6284,25 @@
       "id": 216
     },
     {
+      "title": "Marion & Sobo – Gypsy Jazz & Global Music (Open Air)",
+      "date": "2026-06-13",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Innenhof des Rathauses, Marienplatz 1, 82515 Wolfratshausen",
+      "description": "Deutsch-französisch-polnische Band im Rathausinnenhof. Akustische Weltmusik.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Rathaus Wolfratshausen",
+      "isHighlight": false,
+      "id": 403
+    },
+    {
       "title": "Yoga & Cake",
       "date": "2026-06-14",
       "time": "15:00",
@@ -5854,6 +6414,25 @@
       "venue": "DJK-SV Berg",
       "isHighlight": false,
       "id": 272
+    },
+    {
+      "title": "Poetry Slam – Sommer Session (Open Air)",
+      "date": "2026-06-19",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Garten der Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Poetry Slam draußen im Garten! Wortkünstler und Sprachakrobaten.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "show"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": false,
+      "id": 404
     },
     {
       "title": "Richard Strauss Festival 2026",
@@ -6218,6 +6797,65 @@
       "isHighlight": false
     },
     {
+      "title": "Franziska Wanninger – Kabarett",
+      "date": "2026-07-11",
+      "time": "20:00",
+      "location": "Wolfratshausen",
+      "address": "Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Neues Kabarettprogramm: Wenn du wen brauchst, ruf mich nicht an.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "theater"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": false,
+      "id": 405
+    },
+    {
+      "title": "LA VILLA Sommerfest und Cross'n Chill 2026",
+      "date": "2026-07-12",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Sommerlich leichte Kulinarik, Musik, Grillduft, SUP, Kinderspaß, Bootfahren und Sonnenbaden am Seeufer.",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "musik",
+        "sport",
+        "natur"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": true,
+      "id": 377
+    },
+    {
+      "title": "Sara Brandhuber – A scheena Schmarrn!",
+      "date": "2026-07-12",
+      "time": "20:00",
+      "location": "Wolfratshausen",
+      "address": "Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
+      "description": "Trägerin des Bayerischen Dialektpreises mit ihrem dritten Erfolgsprogramm.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "theater"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Stadtbücherei Wolfratshausen",
+      "isHighlight": false,
+      "id": 406
+    },
+    {
       "title": "Videoclub Starnberger See",
       "date": "2026-07-14",
       "time": "19:30",
@@ -6574,6 +7212,25 @@
       "id": 245
     },
     {
+      "title": "Duende – LOISACHJAZZ (Harfe & Elektronik)",
+      "date": "2026-09-25",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Saal der Musikschule, Untermarkt 64, 82515 Wolfratshausen",
+      "description": "Harfe, Schlagzeug und Elektronik – kammermusikalische Raffinesse trifft rhythmische Energie.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Musikschule Wolfratshausen",
+      "isHighlight": false,
+      "id": 407
+    },
+    {
       "title": "50 Jahre Handballabteilung – DJK-SV Berg",
       "date": "2026-09-26",
       "time": null,
@@ -6631,6 +7288,25 @@
       "id": 247
     },
     {
+      "title": "Poetry Slam – Herbst Session",
+      "date": "2026-10-02",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Wortkünstler und Sprachakrobaten im Herbst-Wettstreit.",
+      "category": "erwachsene",
+      "artTags": [
+        "kultur",
+        "show"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 408
+    },
+    {
       "title": "Gilching Läuft 2026 – Volkslauf",
       "date": "2026-10-03",
       "time": "10:30",
@@ -6686,6 +7362,25 @@
       "venue": null,
       "isHighlight": false,
       "id": 366
+    },
+    {
+      "title": "Stefan Kröll und Kapelle So & So – Helden und Legenden",
+      "date": "2026-10-09",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Kabarettist und Kapelle So&So mit großer Fangemeinde weit über Bayern hinaus.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "musik"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 409
     },
     {
       "title": "42. Starnberger Landkreislauf",
@@ -6761,6 +7456,25 @@
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 253
+    },
+    {
+      "title": "Lou Hoffner & Gedeon Burkhard – Liebe, Lust und Hexenschuss",
+      "date": "2026-10-16",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Theater-Komödie: Ein alterndes Ehepaar vor den Scherben seiner Ehe. Angriff auf die Lachmuskeln!",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "show"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 410
     },
     {
       "title": "BRUSTMANN, SCHÄFER, HORN - Literatur/Lesung",
@@ -6855,6 +7569,26 @@
       "id": 368
     },
     {
+      "title": "Multivision: Bretagne – Land im Meer",
+      "date": "2026-11-13",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Live Multivision von Hartmut Krinitz: Leuchttürme, Sandstrände, die raue Küste der Bretagne.",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "bildung",
+        "natur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 411
+    },
+    {
       "title": "Schlagergang – Aber bitte mit Schlager!",
       "date": "2026-11-14",
       "time": "19:00",
@@ -6875,6 +7609,25 @@
       "id": 257
     },
     {
+      "title": "Der Gott des Gemetzels – Theater auf Bairisch",
+      "date": "2026-11-14",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Yasmina Rezas Kultkomödie in bairischer Sprache. Mit Ina Meling, Cornelia von Fürstenberg u.a.",
+      "category": "erwachsene",
+      "artTags": [
+        "theater",
+        "kultur"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 412
+    },
+    {
       "title": "Andechser Advents- und Spanschachtel-Markt 2026",
       "date": "2026-11-20",
       "time": "",
@@ -6892,6 +7645,25 @@
       "venue": "Florian-Stadl, Kloster Andechs",
       "isHighlight": false,
       "id": 258
+    },
+    {
+      "title": "Vogelkundlicher Spaziergang am Starnberger See",
+      "date": "2026-11-22",
+      "time": "08:30",
+      "location": "Wolfratshausen",
+      "address": "Treffpunkt wird Angemeldeten bekanntgegeben",
+      "description": "Wasservögel-Beobachtung: Pracht- und Sterntaucher, Rothals- und Ohrentaucher. Fernglas mitbringen!",
+      "category": "familie",
+      "artTags": [
+        "natur",
+        "bildung"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": null,
+      "isHighlight": false,
+      "id": 413
     },
     {
       "title": "Alfred Dorfer - Comedy/Kabarett",
@@ -6932,6 +7704,44 @@
       "id": 369
     },
     {
+      "title": "30. LA VILLA Weihnachtsmarkt",
+      "date": "2026-11-28",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Lichterglanz, Glühweinduft, festliche Klänge, Geschenkideen. 28.-29.11.2026.",
+      "category": "familie",
+      "artTags": [
+        "markt",
+        "fest"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": true,
+      "id": 378
+    },
+    {
+      "title": "Weihnachtsbacken im LA VILLA",
+      "date": "2026-12-06",
+      "time": null,
+      "location": "Niederpöcking",
+      "address": "LA VILLA am Starnberger See, Ferdinand-Von-Miller-Str. 39-41, 82343 Niederpöcking",
+      "description": "Hexenhaus, Plätzchen und X-mas Kekse backen. Perfekt für Familien!",
+      "category": "familie",
+      "artTags": [
+        "fest",
+        "kultur"
+      ],
+      "url": "https://www.lavilla.de/la-villa/events",
+      "source": "lavilla",
+      "region": "starnberger-see",
+      "venue": "LA VILLA am Starnberger See",
+      "isHighlight": false,
+      "id": 379
+    },
+    {
       "title": "Linodruck und Postkartengestaltung",
       "date": "2026-12-10",
       "time": "11:00",
@@ -6949,6 +7759,46 @@
       "venue": null,
       "isHighlight": false,
       "id": 370
+    },
+    {
+      "title": "The Hot Stuff Jazzband – Weihnachtsjazz",
+      "date": "2026-12-11",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Weihnachtlicher Swing & Jazz der Extraklasse. Mini Big Band Sound.",
+      "category": "erwachsene",
+      "artTags": [
+        "musik",
+        "kultur",
+        "fest"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": false,
+      "id": 414
+    },
+    {
+      "title": "Wolfgang Krebs – Die Weihnachts-Gala",
+      "date": "2026-12-13",
+      "time": "19:30",
+      "location": "Wolfratshausen",
+      "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
+      "description": "Weihnachten in der Staatskanzlei – Bayerisches Kabarett vom Feinsten!",
+      "category": "erwachsene",
+      "artTags": [
+        "show",
+        "theater",
+        "fest"
+      ],
+      "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
+      "source": "wolfratshausen",
+      "region": "starnberger-see",
+      "venue": "Loisachhalle Wolfratshausen",
+      "isHighlight": true,
+      "id": 415
     },
     {
       "title": "Selbst im Bild",

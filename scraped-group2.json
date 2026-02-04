@@ -1,0 +1,103 @@
+[
+  {
+    "title": "KörperBewusstSein I – Innere Kraftquellen & Stärken",
+    "date": "2026-02-07",
+    "time": "10:00",
+    "endTime": "18:00",
+    "location": "Bernried am Starnberger See",
+    "address": "Schloß Höhenried, Bernried am Starnberger See",
+    "description": "Achtsamkeitsseminar für Frauen mit Fokus auf innere Kraftquellen und Stärken. Yoga, Meditation, Achtsamkeitsübungen und Impulse für bewusste Lebensgestaltung. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 140 € (inkl. Getränke, Snacks, Mittagessen).",
+    "category": "erwachsene",
+    "artTags": ["yoga", "meditation", "wellness", "bildung"],
+    "url": "https://elisabeth-dean.de/veranstaltungen/",
+    "source": "elisabeth-dean",
+    "region": "starnberger-see",
+    "venue": "Schloß Höhenried",
+    "isHighlight": true
+  },
+  {
+    "title": "KörperBewusstSein II – Innere Orientierung & Stabilität",
+    "date": "2026-04-25",
+    "time": "10:00",
+    "endTime": "18:00",
+    "location": "Bad Tölz",
+    "address": "villa vivendi, Bad Tölz",
+    "description": "Achtsamkeitsseminar für Frauen mit Fokus auf innere Orientierung und Stabilität. Yoga, Meditation, Achtsamkeitsübungen und Impulse für bewusste Lebensgestaltung. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 160 € (inkl. Getränke, Snacks, Mittagessen).",
+    "category": "erwachsene",
+    "artTags": ["yoga", "meditation", "wellness", "bildung"],
+    "url": "https://elisabeth-dean.de/veranstaltungen/",
+    "source": "elisabeth-dean",
+    "region": "starnberger-see",
+    "venue": "villa vivendi",
+    "isHighlight": false
+  },
+  {
+    "title": "KörperBewusstSein III – Innere Netzwerke & Balance (2-Tages-Seminar)",
+    "date": "2026-09-26",
+    "time": "10:00",
+    "endTime": "17:00",
+    "location": "Bad Tölz",
+    "address": "villa vivendi, Bad Tölz",
+    "description": "Zweitägiges Achtsamkeitsseminar für Frauen (26.+27. September) mit Fokus auf innere Netzwerke und Balance. Yoga, Meditation, Achtsamkeitsübungen. Seminarleitung: Elisabeth Dean & Dr. Gudrun Tellmann. Teilnahmegebühr: 330 € (inkl. Getränke, Snacks, Mittagessen).",
+    "category": "erwachsene",
+    "artTags": ["yoga", "meditation", "wellness", "bildung"],
+    "url": "https://elisabeth-dean.de/veranstaltungen/",
+    "source": "elisabeth-dean",
+    "region": "starnberger-see",
+    "venue": "villa vivendi",
+    "isHighlight": false
+  },
+  {
+    "title": "Move & Mind – Workshop für Bewegung, Entspannung und innere Ruhe",
+    "date": "",
+    "time": "14:30",
+    "endTime": "17:30",
+    "location": "Starnberg",
+    "address": "neues Tanzen, Josef-Jägerhuber-Straße 7, Starnberg",
+    "description": "Monatlicher Achtsamkeits- und Bewegungsworkshop (samstags) mit freiem Tanzen und bewusster Wahrnehmung. Kein Vorkenntnisse nötig. Leitung: Elisabeth Dean & Claudia Sprekemeier. 65 €. Hinweis: Nächster Termin 2026 noch nicht veröffentlicht, findet monatlich samstags statt.",
+    "category": "erwachsene",
+    "artTags": ["tanz", "wellness", "meditation"],
+    "url": "https://elisabeth-dean.de/veranstaltungen/",
+    "source": "elisabeth-dean",
+    "region": "starnberger-see",
+    "venue": "neues Tanzen",
+    "isHighlight": false,
+    "note": "Monatlicher Workshop, 2026-Termine noch nicht veröffentlicht. Letzter bekannter Termin: 22.11.2025."
+  },
+  {
+    "note": "Nur reguläre Kurse (Vinyasa Flow, Pilates, Gentle Yoga, Yin Yoga, Morning Flow), keine besonderen Events gefunden. Bietet dauerhaft kostenlose Schnupperstunde an (ohne festes Datum). Adresse: Firnhaberstraße 12A, 82340 Feldafing.",
+    "source": "happyyoga-feldafing",
+    "url": "https://happyyoga-cristina.de",
+    "region": "starnberger-see"
+  },
+  {
+    "note": "Nur reguläre Kursangebote (Breath & Yoga, Athletic Performance Breathwork, Healing Breathwork). Website verweist auf WhatsApp-Community für Updates zu Workshops & Retreats, aber keine konkreten Events mit Datum auf der Website. Adresse: Ziegeleistr. 1b, 82327 Tutzing.",
+    "source": "amangupta-studio-ag",
+    "url": "https://www.amangupta.de/studio-ag",
+    "region": "starnberger-see"
+  },
+  {
+    "note": "Seite durch Cloudflare blockiert (403). Archivierte Version zeigt nur reguläre wöchentliche Hatha Yoga und Slow Flow Yoga Kurse in Feldafing und Tutzing. Keine besonderen Events gefunden. Naturheilpraxis in Tutzing, Hauptstr. 93.",
+    "source": "yoga-shantiom",
+    "url": "https://www.yoga-shantiom.de",
+    "region": "starnberger-see"
+  },
+  {
+    "note": "Nur reguläre Kurse: Iyengar Yoga und Hatha Flow Yoga als Wochenkurse in Feldafing. Keine Workshops oder Specials gefunden.",
+    "source": "fitness-suite-yoga",
+    "url": "https://www.fitness-suite-starnberg.de/yoga-feldafing.html",
+    "region": "starnberger-see"
+  },
+  {
+    "note": "Seite durch Cloudflare komplett blockiert (403). Keine archivierte Version verfügbar. Konnte nicht geprüft werden.",
+    "source": "yogaraum-tutzing",
+    "url": "https://www.eversports.de/s/yogaraum-tutzing",
+    "region": "starnberger-see"
+  },
+  {
+    "note": "Nur reguläre VHS-Yogakurse in Starnberg/Aufkirchen (Dienstag/Mittwoch). Yoga-Reisen Griechenland-Seite veraltet (Termine nur für 2021 geplant, keine aktuellen Daten). Keine besonderen Events gefunden. Kontakt: Gabriela Laghezza, 82327 Tutzing.",
+    "source": "rainflower-yoga",
+    "url": "https://www.rainflower-yoga.com",
+    "region": "starnberger-see"
+  }
+]
