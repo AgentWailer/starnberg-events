@@ -438,10 +438,11 @@ const { lastUpdated } = Astro.props;
         const data = await res.json();
         
         // Find next train to Munich
-        const toMunich = data.departures?.find((d: any) => 
-          d.direction?.toLowerCase().includes('münchen') || 
-          d.direction?.toLowerCase().includes('munich')
-        );
+        const departures = data.departures || [];
+        const toMunich = departures.find(function(d) {
+          const dir = (d.direction || '').toLowerCase();
+          return dir.includes('münchen') || dir.includes('munich');
+        });
         
         if (toMunich) {
           const time = new Date(toMunich.when || toMunich.plannedWhen);
