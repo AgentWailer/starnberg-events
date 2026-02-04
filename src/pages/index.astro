@@ -42,34 +42,37 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
         <InfoTicker />
       </div>
 
-      <!-- Desktop: Full weather strip -->
-      <section class="section section-weather desktop-only">
-        <WeatherWidget />
-      </section>
-
-      <!-- Desktop: Quick Transport Info -->
-      <section class="section section-transport desktop-only">
-        <TrainInfo station="Possenhofen" stationCode="MPH" />
-      </section>
-
-      <!-- Content Grid: Sidebar + Events -->
+      <!-- Content Grid: Sidebar + Main Content -->
       <div class="content-grid">
         <!-- Desktop Sidebar -->
         <FilterBar events={events} regions={regions} />
 
-        <!-- Events List -->
-        <section class="section-events">
-          <div class="events-header">
-            <h2 class="events-title">Kommende Events</h2>
-            <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
-          </div>
-          
-          <div class="events-list">
-            {events.map(event => (
-              <EventCard event={event} regions={regions} />
-            ))}
-          </div>
-        </section>
+        <!-- Main Content Column -->
+        <div class="main-content">
+          <!-- Desktop: Full weather strip -->
+          <section class="section section-weather desktop-only">
+            <WeatherWidget />
+          </section>
+
+          <!-- Desktop: Quick Transport Info -->
+          <section class="section section-transport desktop-only">
+            <TrainInfo station="Possenhofen" stationCode="MPH" />
+          </section>
+
+          <!-- Events List -->
+          <section class="section-events">
+            <div class="events-header">
+              <h2 class="events-title">Kommende Events</h2>
+              <p class="events-count"><span id="visible-count">{events.length}</span> Veranstaltungen</p>
+            </div>
+            
+            <div class="events-list">
+              {events.map(event => (
+                <EventCard event={event} regions={regions} />
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
 
       <!-- Local Info (Collapsed) -->
@@ -103,7 +106,7 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
     padding-bottom: var(--space-16);
   }
 
-  /* Content Grid: Sidebar + Events */
+  /* Content Grid: Sidebar + Main Content */
   .content-grid {
     display: block;
   }
@@ -115,6 +118,10 @@ const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
       gap: var(--space-6);
       align-items: start;
     }
+  }
+
+  .main-content {
+    min-width: 0; /* Prevent grid blowout */
   }
 
   .section {
