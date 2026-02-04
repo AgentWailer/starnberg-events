@@ -435,21 +435,25 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function renderRush(rush: any[]) {
-    const svgSunrise = '<svg class="rush-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>';
-    const svgSunset = '<svg class="rush-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="16 6 12 10 8 6"/></svg>';
-    const svgClock = '<svg class="rush-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+    const svgSunrise = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>';
+    const svgSunset = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="16 6 12 10 8 6"/></svg>';
+    const svgClock = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
     const labels: Record<string, string> = { morning_rush: svgSunrise + ' Morgen HVZ\n6:00–9:00', evening_rush: svgSunset + ' Abend HVZ\n16:00–19:00', off_peak: svgClock + ' Nebenzeit\nRest' };
     const grid = $('rush-grid');
     const order = ['morning_rush', 'evening_rush', 'off_peak'];
+    const itemStyle = 'text-align:center;padding:var(--space-4) var(--space-3);border-radius:var(--radius-md);background:var(--color-bg-secondary)';
+    const labelStyle = 'display:block;font-size:0.75rem;font-weight:600;color:var(--color-text-secondary);margin-bottom:var(--space-2);line-height:1.4';
+    const pctStyle = 'display:block;font-size:1.25rem;font-weight:700';
+    const avgStyle = 'display:block;font-size:0.6875rem;color:var(--color-muted);margin-top:var(--space-1)';
     grid.innerHTML = order.map(key => {
       const r = rush.find((x: any) => x.period === key);
-      if (!r) return `<div class="rush-item"><span class="rush-item__label">${labels[key]?.replace('\n','<br>') || key}</span><span class="rush-item__pct">–</span></div>`;
+      if (!r) return `<div style="${itemStyle}"><span style="${labelStyle}">${labels[key]?.replace('\n','<br>') || key}</span><span style="${pctStyle}">–</span></div>`;
       const total = (r.on_time || 0) + (r.delayed || 0) + (r.cancelled || 0);
       const rate = pct(r.on_time || 0, total);
-      return `<div class="rush-item">
-        <span class="rush-item__label">${labels[key]?.replace('\n','<br>') || key}</span>
-        <span class="rush-item__pct" style="color:${rateColor(rate)}">${rate}%</span>
-        <span class="rush-item__avg">Ø ${fmtDelay(r.avg_delay)} · ${total} Züge</span>
+      return `<div style="${itemStyle}">
+        <span style="${labelStyle}">${labels[key]?.replace('\n','<br>') || key}</span>
+        <span style="${pctStyle};color:${rateColor(rate)}">${rate}%</span>
+        <span style="${avgStyle}">Ø ${fmtDelay(r.avg_delay)} · ${total} Züge</span>
       </div>`;
     }).join('');
   }
@@ -535,7 +539,7 @@ import Layout from '../layouts/Layout.astro';
     }).join('');
   }
 
-  const wi = (d: string) => `<svg class="weather-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const wi = (d: string) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6;flex-shrink:0">${d}</svg>`;
   const WEATHER_ICONS: Record<string, string> = {
     klar: wi('<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'),
     bewölkt: wi('<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>'),
@@ -564,11 +568,11 @@ import Layout from '../layouts/Layout.astro';
       const avgMin = w.avg_delay ? fmtDelay(w.avg_delay) : '0 Min';
       const cancelStr = w.cancelled > 0 ? `${w.cancelled} Ausfälle` : '';
       const details = [`Ø ${avgMin}`, `${total} Züge`, cancelStr].filter(Boolean).join(' · ');
-      return `<div class="weather-item">
-        <span class="weather-item__icon">${icon}</span>
-        <span class="weather-item__label">${label}</span>
-        <span class="weather-item__pct" style="color:${rateColor(rate)}">${rate}%</span>
-        <span class="weather-item__detail">${details}</span>
+      return `<div style="text-align:center;padding:var(--space-4) var(--space-3);border-radius:var(--radius-md);background:var(--color-bg-secondary)">
+        <span style="display:flex;justify-content:center;margin-bottom:var(--space-1)">${icon}</span>
+        <span style="display:block;font-size:0.8125rem;font-weight:600;color:var(--color-text)">${label}</span>
+        <span style="display:block;font-size:1.25rem;font-weight:700;color:${rateColor(rate)};margin:var(--space-1) 0">${rate}%</span>
+        <span style="display:block;font-size:0.6875rem;color:var(--color-muted)">${details}</span>
       </div>`;
     }).join('');
   }
