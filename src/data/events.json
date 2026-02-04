@@ -73,7 +73,8 @@
         "kunst",
         "bildung",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Das Lochmannhaus",
@@ -300,7 +301,8 @@
       "artTags": [
         "fest",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Discofox-Workshop Anfänger & Fortgeschrittene",
@@ -412,7 +414,7 @@
       "source": "starnbergammersee",
       "region": "starnberger-see",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 22
     },
     {
@@ -507,7 +509,7 @@
       "source": "schlossberghalle",
       "region": "starnberger-see",
       "venue": "Schlossberghalle Starnberg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 27
     },
     {
@@ -526,7 +528,7 @@
       "source": "lbv-starnberg",
       "region": "starnberger-see",
       "venue": "Seeshaupter Bucht, Starnberger See",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 28
     },
     {
@@ -749,7 +751,8 @@
       "source": "poecking.de",
       "artTags": [
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Videoclub Starnberger See – Viktor Brunschlik",
@@ -862,7 +865,7 @@
       "source": "turnverein-tsv-starnberg",
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 46
     },
     {
@@ -919,7 +922,7 @@
       "source": "schlossberghalle",
       "region": "starnberger-see",
       "venue": "Schlossberghalle Starnberg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 49
     },
     {
@@ -937,7 +940,7 @@
       "source": "starnberg-stadt",
       "region": "starnberger-see",
       "venue": "Schlossberghalle Starnberg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 50
     },
     {
@@ -1219,7 +1222,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 65
     },
     {
@@ -1259,7 +1262,7 @@
       "source": "schlossberghalle",
       "region": "starnberger-see",
       "venue": "Schlossberghalle Starnberg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 67
     },
     {
@@ -1300,7 +1303,7 @@
       "source": "dav-starnberg",
       "region": "starnberger-see",
       "venue": "Hörnle",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 69
     },
     {
@@ -1318,7 +1321,7 @@
       "source": "volkssternwarte",
       "region": "muenchen",
       "venue": "Bayerische Volkssternwarte München",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 70
     },
     {
@@ -1433,7 +1436,7 @@
       "source": "yoga-studio8",
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 76
     },
     {
@@ -1451,7 +1454,7 @@
       "source": "gilchinger-tanzzentrum",
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 77
     },
     {
@@ -1528,7 +1531,8 @@
       ],
       "url": "https://www.pfc.de/veranstaltungen/",
       "region": "poecking",
-      "source": "pfc"
+      "source": "pfc",
+      "isHighlight": false
     },
     {
       "title": "Starnberger Garderevue",
@@ -1603,7 +1607,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 85
     },
     {
@@ -1709,7 +1713,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 91
     },
     {
@@ -1767,7 +1771,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 94
     },
     {
@@ -1863,7 +1867,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 99
     },
     {
@@ -1992,7 +1996,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 106
     },
     {
@@ -2011,7 +2015,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 107
     },
     {
@@ -2048,7 +2052,7 @@
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 109
     },
     {
@@ -2124,7 +2128,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 113
     },
     {
@@ -2237,7 +2241,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 119
     },
     {
@@ -2311,7 +2315,8 @@
       "artTags": [
         "theater",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Kraftklub – Sterben in Karl-Marx-Stadt Tour",
@@ -2329,7 +2334,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 124
     },
     {
@@ -2402,7 +2407,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 128
     },
     {
@@ -2442,7 +2447,7 @@
       "source": "lbv-starnberg",
       "region": "starnberger-see",
       "venue": "Bernrieder Park",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 130
     },
     {
@@ -2498,7 +2503,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 133
     },
     {
@@ -2609,7 +2614,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 139
     },
     {
@@ -2628,7 +2633,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 140
     },
     {
@@ -2665,7 +2670,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 142
     },
     {
@@ -2702,7 +2707,7 @@
       "source": "andechs",
       "region": "ammersee",
       "venue": "Florian-Stadl, Kloster Andechs",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 144
     },
     {
@@ -2720,7 +2725,8 @@
       "source": "poecking.de",
       "artTags": [
         "markt"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Discofox-Workshop Anfänger & Fortgeschrittene",
@@ -2757,7 +2763,7 @@
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 147
     },
     {
@@ -2925,7 +2931,8 @@
       "artTags": [
         "theater",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -3113,7 +3120,7 @@
       "source": "yoga-svastha-ammersee",
       "region": "starnberger-see",
       "venue": "Svastha Yoga Ammersee",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 166
     },
     {
@@ -3132,7 +3139,8 @@
       "artTags": [
         "bildung",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Stadtkapelle Starnberg - Konzert",
@@ -3187,7 +3195,7 @@
       "source": "yoga-studio8",
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 170
     },
     {
@@ -3206,7 +3214,8 @@
       "artTags": [
         "theater",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Kulturmontag - Comedy in Pöcking?",
@@ -3263,7 +3272,7 @@
       "source": "radsport-adfc-starnberg",
       "region": "starnberger-see",
       "venue": "ADFC Kreisverband Starnberg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 174
     },
     {
@@ -3300,7 +3309,7 @@
       "source": "turnverein-tsv-starnberg",
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 176
     },
     {
@@ -3512,7 +3521,8 @@
       "artTags": [
         "bildung",
         "indoor"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Toni und Max Uthoff - Comedy/Kabarett",
@@ -3643,7 +3653,7 @@
       "source": "beccult",
       "region": "poecking",
       "venue": null,
-      "isHighlight": false,
+      "isHighlight": true,
       "id": 194
     },
     {
@@ -3698,7 +3708,7 @@
       "source": "radsport-adfc-starnberg",
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 197
     },
     {
@@ -3754,7 +3764,8 @@
       "source": "seenschifffahrt.de",
       "artTags": [
         "natur"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Rote Route der Via Zeitreise – Familienradtour",
@@ -3999,7 +4010,8 @@
       "artTags": [
         "musik",
         "fest"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Videoclub Starnberger See",
@@ -4130,7 +4142,7 @@
       "source": "sportverein-tsv-gilching",
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 220
     },
     {
@@ -4150,7 +4162,7 @@
       "source": "yoga-studio8",
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 221
     },
     {
@@ -4188,7 +4200,7 @@
       "source": "yoga-namaste",
       "region": "starnberger-see",
       "venue": "Namasté Yoga Studio Herrsching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 223
     },
     {
@@ -4260,7 +4272,7 @@
       "source": "starnberg-stadt",
       "region": "starnberger-see",
       "venue": "Perchting",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 227
     },
     {
@@ -4280,7 +4292,7 @@
       "source": "starnberg-stadt",
       "region": "starnberger-see",
       "venue": "Starnberger Innenstadt",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 228
     },
     {
@@ -4298,7 +4310,8 @@
       "source": "poecking.de",
       "artTags": [
         "markt"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "id": 230,
@@ -4317,7 +4330,8 @@
         "fest",
         "musik",
         "natur"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Videoclub Starnberger See",
@@ -4389,7 +4403,8 @@
       "source": "seenschifffahrt.de",
       "artTags": [
         "natur"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Lautersee & Schloss Elmau – Ganztages-Radtour",
@@ -4408,7 +4423,7 @@
       "source": "radsport-adfc-starnberg",
       "region": "starnberger-see",
       "venue": "ADFC Ortsgruppe Gilching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 235
     },
     {
@@ -4426,7 +4441,8 @@
       "artTags": [
         "bildung",
         "natur"
-      ]
+      ],
+      "isHighlight": false
     },
     {
       "title": "Starnberger See Schwimmen – Possenhofen/Leoni",
@@ -4463,7 +4479,7 @@
       "source": "turnverein-tsv-starnberg",
       "region": "starnberger-see",
       "venue": "TSV Starnberg von 1880 e.V.",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 238
     },
     {
@@ -4481,7 +4497,7 @@
       "source": "gilchinger-tanzzentrum",
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 239
     },
     {
@@ -4575,7 +4591,7 @@
       "source": "yoga-studio8",
       "region": "starnberger-see",
       "venue": "Studio 8 Herrsching",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 244
     },
     {
@@ -4613,7 +4629,7 @@
       "source": "sportverein-djk-sv-berg",
       "region": "starnberger-see",
       "venue": "DJK-SV Berg",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 246
     },
     {
@@ -4651,7 +4667,7 @@
       "source": "turnverein-tsv-gilching",
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried e.V.",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 248
     },
     {
@@ -4670,7 +4686,7 @@
       "source": "gilching-laeuft",
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 249
     },
     {
@@ -4689,7 +4705,7 @@
       "source": "sportverein-lc-buchendorf",
       "region": "starnberger-see",
       "venue": "LC Buchendorf & Gautinger SC",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 250
     },
     {
@@ -4745,7 +4761,7 @@
       "source": "sportverein-tsv-gilching",
       "region": "starnberger-see",
       "venue": "TSV Gilching-Argelsried",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 253
     },
     {
@@ -4838,7 +4854,7 @@
       "source": "andechs",
       "region": "ammersee",
       "venue": "Florian-Stadl, Kloster Andechs",
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 258
     },
     {
@@ -4891,7 +4907,7 @@
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
-      "isHighlight": true,
+      "isHighlight": false,
       "id": 261
     }
   ]

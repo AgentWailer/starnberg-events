@@ -14,6 +14,8 @@ const counts = {
   erwachsene: events.filter(e => e.category === 'erwachsene').length,
 };
 
+const highlightCount = events.filter(e => e.isHighlight).length;
+
 // Count by region
 const regionCounts: Record<string, number> = {};
 Object.keys(regions).forEach(r => {
@@ -63,6 +65,15 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </svg>
       <span>Favoriten</span>
       <span class="favorites-badge" id="favorites-badge">0</span>
+    </button>
+  </div>
+
+  <!-- Highlight Filter -->
+  <div class="filter-section">
+    <button class="highlight-filter-btn" id="highlight-filter-btn">
+      <span class="highlight-star">⭐</span>
+      <span>Highlights</span>
+      <span class="highlight-badge">{highlightCount}</span>
     </button>
   </div>
 
@@ -154,6 +165,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </svg>
       <span class="favorites-badge" id="mobile-favorites-badge">0</span>
     </button>
+    <button class="mobile-pill mobile-highlight" id="mobile-highlight-btn">⭐</button>
     <button class="mobile-pill active" data-filter="all" data-type="category">Alle</button>
     <button class="mobile-pill" data-filter="kinder" data-type="category">Kinder</button>
     <button class="mobile-pill" data-filter="familie" data-type="category">Familie</button>
@@ -424,6 +436,60 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: white;
   }
 
+  /* Highlight Filter Button */
+  .highlight-filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+  }
+
+  .highlight-filter-btn:hover {
+    border-color: #f59e0b;
+    color: #b45309;
+    background: color-mix(in srgb, #f59e0b 8%, transparent);
+  }
+
+  .highlight-filter-btn.active {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-color: #d97706;
+    color: white;
+  }
+
+  .highlight-star {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .highlight-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: var(--color-border);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+
+  .highlight-filter-btn.active .highlight-badge {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+
   .filter-section {
     display: flex;
     flex-direction: column;
@@ -645,6 +711,18 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     color: #e74c3c;
   }
 
+  .mobile-highlight {
+    padding: var(--space-2) var(--space-3);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .mobile-highlight.active {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-color: #d97706;
+    color: white;
+  }
+
   .mobile-more {
     padding: var(--space-2) var(--space-3);
   }
@@ -827,6 +905,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   let activeLocation = 'all';
   let searchQuery = '';
   let favoritesOnly = false;
+  let highlightsOnly = false;
   let userFavorites: Set<number> = new Set();
 
   // Elements
@@ -844,12 +923,14 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   const timeChips = document.querySelectorAll('.filter-sidebar .chip[data-type="time"]');
   const favoritesBtn = document.getElementById('favorites-filter-btn');
   const favoritesBadge = document.getElementById('favorites-badge');
+  const highlightBtn = document.getElementById('highlight-filter-btn');
 
   // Mobile
   const mobilePills = document.querySelectorAll('.mobile-filter-bar .mobile-pill[data-type="category"]');
   const moreBtn = document.getElementById('mobile-more-btn');
   const mobileFavoritesBtn = document.getElementById('mobile-favorites-btn');
   const mobileFavoritesBadge = document.getElementById('mobile-favorites-badge');
+  const mobileHighlightBtn = document.getElementById('mobile-highlight-btn');
   const sheet = document.getElementById('filter-sheet');
   const backdrop = document.getElementById('filter-sheet-backdrop');
   const closeBtn = document.getElementById('filter-sheet-close');
@@ -950,6 +1031,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       const eventDate = el.querySelector('.card-date')?.getAttribute('data-date') || 
                        el.querySelector('[data-date]')?.getAttribute('data-date') || '';
       const eventId = parseInt(el.dataset.eventId || '0');
+      const isHighlight = el.dataset.highlight === 'true';
 
       const matchCat = activeCategories.has('all') || activeCategories.has(cat);
       const matchReg = activeRegions.has('all') || activeRegions.has(reg);
@@ -959,8 +1041,9 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       const matchTime = matchesTimeFilter(eventDate || new Date().toISOString().split('T')[0]);
       const matchSearch = searchQuery === '' || searchText.includes(searchQuery.toLowerCase());
       const matchFavorite = !favoritesOnly || userFavorites.has(eventId);
+      const matchHighlight = !highlightsOnly || isHighlight;
 
-      if (matchCat && matchReg && matchLoc && matchArtTag && matchTime && matchSearch && matchFavorite) {
+      if (matchCat && matchReg && matchLoc && matchArtTag && matchTime && matchSearch && matchFavorite && matchHighlight) {
         el.style.display = '';
         count++;
       } else {
@@ -976,7 +1059,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
                       activeLocation !== 'all' || 
                       activeTimeFilter !== 'all' ||
                       searchQuery !== '' ||
-                      favoritesOnly;
+                      favoritesOnly ||
+                      highlightsOnly;
     clearBtnDesktop?.classList.toggle('visible', hasFilters);
     updateMoreBtnState();
   }
@@ -989,6 +1073,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     activeLocation = 'all';
     searchQuery = '';
     favoritesOnly = false;
+    highlightsOnly = false;
 
     // Update all UI
     categoryChips.forEach(c => c.classList.toggle('active', (c as HTMLElement).dataset.filter === 'all'));
@@ -1002,6 +1087,8 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     
     favoritesBtn?.classList.remove('active');
     mobileFavoritesBtn?.classList.remove('active');
+    highlightBtn?.classList.remove('active');
+    mobileHighlightBtn?.classList.remove('active');
     
     if (locationSelect) locationSelect.value = 'all';
     if (mobileLocationSelect) mobileLocationSelect.value = 'all';
@@ -1344,6 +1431,21 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     favoritesOnly = !favoritesOnly;
     mobileFavoritesBtn.classList.toggle('active', favoritesOnly);
     favoritesBtn?.classList.toggle('active', favoritesOnly);
+    filterEvents();
+  });
+
+  // Highlight filter buttons
+  highlightBtn?.addEventListener('click', () => {
+    highlightsOnly = !highlightsOnly;
+    highlightBtn.classList.toggle('active', highlightsOnly);
+    mobileHighlightBtn?.classList.toggle('active', highlightsOnly);
+    filterEvents();
+  });
+
+  mobileHighlightBtn?.addEventListener('click', () => {
+    highlightsOnly = !highlightsOnly;
+    mobileHighlightBtn.classList.toggle('active', highlightsOnly);
+    highlightBtn?.classList.toggle('active', highlightsOnly);
     filterEvents();
   });
 

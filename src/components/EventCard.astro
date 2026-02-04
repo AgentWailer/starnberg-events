@@ -48,6 +48,7 @@ const catLabel = categoryLabels[event.category] || 'Familie';
   data-event-description={event.description}
   data-event-address={event.address}
   data-event-url={event.url}
+  data-highlight={event.isHighlight ? 'true' : 'false'}
 >
   <!-- Favorite Heart Icon -->
   <button class="favorite-btn" data-event-id={event.id} aria-label="Zu Favoriten hinzufügen" title="Zu Favoriten hinzufügen">
