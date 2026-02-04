@@ -102,6 +102,14 @@
         <span class="ticker-label">→ Tutzing</span>
       </a>
 
+      <!-- S6 Pünktlichkeit (dynamisch eingeblendet) -->
+      <span class="ticker-divider ticker-punctuality-sep" id="ticker-punct-sep" style="display:none;">|</span>
+      <a class="ticker-item ticker-link ticker-punctuality" id="ticker-punctuality" href="/s6" style="display:none;">
+        <span class="ticker-punct-dot" id="ticker-punct-dot"></span>
+        <span class="ticker-value" id="ticker-punct-value">–%</span>
+        <span class="ticker-label">S6 pünktlich</span>
+      </a>
+
       <span class="ticker-divider">|</span>
     </div>
     <!-- Duplicate for seamless loop -->
@@ -191,6 +199,20 @@
     font-weight: 700;
     line-height: 1.2;
   }
+
+  .ticker-punct-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-muted, #999);
+    flex-shrink: 0;
+  }
+  .ticker-punct-dot.good { background: #16a34a; }
+  .ticker-punct-dot.mid  { background: #d97706; }
+  .ticker-punct-dot.bad  { background: #dc2626; }
+  :root.dark .ticker-punct-dot.good { background: #4ade80; }
+  :root.dark .ticker-punct-dot.mid  { background: #fbbf24; }
+  :root.dark .ticker-punct-dot.bad  { background: #f87171; }
 
   .ticker-divider {
     color: var(--color-border);
@@ -559,6 +581,34 @@
     }
   }
 
+  // S6 Punctuality from Worker
+  async function loadPunctuality(): Promise<void> {
+    try {
+      const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=today');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const o = data.overall;
+      if (!o || o.total === 0) return;
+
+      const onTime = o.on_time || 0;
+      const total = (onTime) + (o.delayed || 0) + (o.cancelled || 0);
+      if (total === 0) return;
+
+      const rate = Math.round((onTime / total) * 100);
+      const cls = rate >= 80 ? 'good' : rate >= 60 ? 'mid' : 'bad';
+
+      document.querySelectorAll('#ticker-punct-dot').forEach(el => {
+        el.className = 'ticker-punct-dot ' + cls;
+      });
+      document.querySelectorAll('#ticker-punct-value').forEach(el => {
+        el.textContent = rate + '%';
+      });
+      document.querySelectorAll('#ticker-punct-sep, #ticker-punctuality').forEach(el => {
+        (el as HTMLElement).style.display = '';
+      });
+    } catch (e) { /* silent */ }
+  }
+
   // Update cloned content after data loads
   function updateClone(): void {
     const content = document.getElementById('ticker-content');
@@ -580,7 +630,8 @@
     await Promise.all([
       loadWeather(),
       loadWaterTemp(),
-      loadTrains()
+      loadTrains(),
+      loadPunctuality()
     ]);
 
     // Update clone after data loaded

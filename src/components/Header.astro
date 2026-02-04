@@ -66,6 +66,10 @@ const { lastUpdated } = Astro.props;
           <span class="navbar-train-dir">→ Tut</span>
           <span id="navbar-train-tutzing">--:--</span>
         </a>
+        <a href="/s6" class="navbar-weather-item navbar-punctuality" id="navbar-punctuality" title="S6 Pünktlichkeit heute" style="display:none;">
+          <span class="punctuality-dot" id="punctuality-dot"></span>
+          <span class="punctuality-value" id="punctuality-value">–%</span>
+        </a>
       </div>
 
       <button class="theme-toggle" id="theme-toggle" aria-label="Farbschema wechseln">
@@ -232,9 +236,37 @@ const { lastUpdated } = Astro.props;
     color: var(--color-text);
   }
 
-  a.navbar-train {
+  a.navbar-train, a.navbar-punctuality {
     text-decoration: none;
     color: inherit;
+  }
+
+  .navbar-punctuality {
+    gap: 4px !important;
+    opacity: 0.85;
+    transition: opacity var(--duration-fast) ease;
+  }
+  .navbar-punctuality:hover { opacity: 1; }
+
+  .punctuality-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-muted, #999);
+    flex-shrink: 0;
+  }
+  .punctuality-dot.good { background: #16a34a; }
+  .punctuality-dot.mid  { background: #d97706; }
+  .punctuality-dot.bad  { background: #dc2626; }
+  :root.dark .punctuality-dot.good { background: #4ade80; }
+  :root.dark .punctuality-dot.mid  { background: #fbbf24; }
+  :root.dark .punctuality-dot.bad  { background: #f87171; }
+
+  .punctuality-value {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
   }
 
   .navbar-train-badge {
@@ -580,7 +612,34 @@ const { lastUpdated } = Astro.props;
       }
     }
 
+    // S6 Punctuality from Worker
+    async function loadPunctuality() {
+      try {
+        const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=today');
+        if (!resp.ok) return;
+        const data = await resp.json();
+        const o = data.overall;
+        if (!o || o.total === 0) return;
+
+        const onTime = o.on_time || 0;
+        const delayed = o.delayed || 0;
+        const cancelled = o.cancelled || 0;
+        const total = onTime + delayed + cancelled;
+        if (total === 0) return;
+
+        const rate = Math.round((onTime / total) * 100);
+        const dot = document.getElementById('punctuality-dot');
+        const val = document.getElementById('punctuality-value');
+        const wrap = document.getElementById('navbar-punctuality');
+
+        if (dot) dot.className = 'punctuality-dot ' + (rate >= 80 ? 'good' : rate >= 60 ? 'mid' : 'bad');
+        if (val) val.textContent = rate + '%';
+        if (wrap) wrap.style.display = '';
+      } catch (e) { /* silent */ }
+    }
+
     loadWeather();
     loadTrain();
+    loadPunctuality();
   });
 </script>
