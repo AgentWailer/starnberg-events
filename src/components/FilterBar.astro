@@ -30,6 +30,26 @@ Object.keys(artTags).forEach(tag => {
 
 // Unique locations
 const locations = [...new Set(events.map(e => e.location))].sort();
+
+// Art tag groups
+const artTagGroups = [
+  {
+    label: '🎭 Kultur & Bühne',
+    tags: ['musik', 'theater', 'kunst', 'kultur', 'show', 'tanz', 'fasching'],
+  },
+  {
+    label: '🏃 Sport & Outdoor',
+    tags: ['sport', 'natur', 'radsport', 'radtour', 'wandern', 'laufen', 'schwimmen', 'tennis', 'fussball', 'volleyball', 'handball', 'turnen', 'einrad', 'wintersport', 'stockschießen', 'sup', 'gravel'],
+  },
+  {
+    label: '🧘 Wellness',
+    tags: ['yoga', 'wellness', 'meditation', 'zeremonie', 'gesundheit', 'aromatherapie', 'tcm', 'ayurveda'],
+  },
+  {
+    label: '📚 Bildung & Feste',
+    tags: ['bildung', 'fest', 'markt', 'ferienprogramm', 'kurs', 'indoor'],
+  },
+];
 ---
 
 <!-- Desktop Sidebar -->
@@ -88,16 +108,24 @@ const locations = [...new Set(events.map(e => e.location))].sort();
       </svg>
     </button>
     <div class="collapsible-content" id="art-tag-content">
-      <div class="filter-chips" role="group" aria-label="Filter nach Art">
+      <div class="filter-chips art-tag-reset-row" role="group">
         <button class="chip active" data-filter="all" data-type="art-tag">Alle</button>
-        {Object.entries(artTags).map(([id, tag]) => (
-          artTagCounts[id] > 0 && (
-            <button class="chip" data-filter={id} data-type="art-tag">
-              {tag.emoji} {tag.name} <span class="chip-count">{artTagCounts[id]}</span>
-            </button>
-          )
-        ))}
       </div>
+      {artTagGroups.map(group => {
+        const visibleTags = group.tags.filter(id => artTags[id] && artTagCounts[id] > 0);
+        return visibleTags.length > 0 && (
+          <div class="art-tag-group">
+            <span class="art-tag-group-label">{group.label}</span>
+            <div class="filter-chips" role="group">
+              {visibleTags.map(id => (
+                <button class="chip" data-filter={id} data-type="art-tag">
+                  {artTags[id].emoji} {artTags[id].name} <span class="chip-count">{artTagCounts[id]}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   </div>
 
@@ -288,7 +316,7 @@ const locations = [...new Set(events.map(e => e.location))].sort();
     border: 1px solid var(--color-border-light);
     position: sticky;
     top: 357px; /* Sticky below fixed header with equal gap */
-    width: 260px;
+    width: 280px;
     max-height: calc(100vh - 367px);
     overflow-y: auto;
     z-index: 90;
@@ -479,18 +507,19 @@ const locations = [...new Set(events.map(e => e.location))].sort();
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    gap: 8px;
   }
 
   .chip {
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
-    padding: 6px 10px;
+    padding: 8px 14px;
+    min-height: 36px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     background: var(--color-bg);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 500;
     color: var(--color-text-secondary);
     cursor: pointer;
@@ -585,6 +614,34 @@ const locations = [...new Set(events.map(e => e.location))].sort();
 
   .collapsible-content.open {
     display: block;
+  }
+
+  /* Art tag groups */
+  .art-tag-reset-row {
+    margin-bottom: var(--space-2);
+  }
+
+  .art-tag-group {
+    margin-bottom: var(--space-4);
+  }
+
+  .art-tag-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .art-tag-group-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    margin-bottom: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .art-tag-group:first-child .art-tag-group-label {
+    border-top: none;
+    padding-top: 0;
   }
 
   .filter-select {
