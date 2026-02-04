@@ -56,9 +56,15 @@ const { lastUpdated } = Astro.props;
           <span id="navbar-sunset">--:--</span>
         </span>
         <span class="navbar-divider"></span>
-        <span class="navbar-weather-item navbar-train" title="Nächste S6 Richtung München">
+        <span class="navbar-weather-item navbar-train" title="Richtung München">
           <span class="navbar-train-badge">S6</span>
-          <span id="navbar-train">--:--</span>
+          <span class="navbar-train-dir">→ Muc</span>
+          <span id="navbar-train-munich">--:--</span>
+        </span>
+        <span class="navbar-weather-item navbar-train" title="Richtung Tutzing">
+          <span class="navbar-train-badge">S6</span>
+          <span class="navbar-train-dir">→ Tut</span>
+          <span id="navbar-train-tutzing">--:--</span>
         </span>
       </div>
 
@@ -191,6 +197,18 @@ const { lastUpdated } = Astro.props;
     border-radius: 3px;
     font-size: 0.625rem;
     font-weight: 700;
+  }
+
+  .navbar-train-dir {
+    font-size: 0.6875rem;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .navbar-train-delay {
+    font-size: 0.6875rem;
+    color: #dc2626;
+    font-weight: 600;
   }
 
   .navbar .theme-toggle {
@@ -428,7 +446,7 @@ const { lastUpdated } = Astro.props;
       }
     }
 
-    // Load train data
+    // Load train data for both directions
     async function loadTrain() {
       try {
         const res = await fetch(
@@ -440,18 +458,41 @@ const { lastUpdated } = Astro.props;
         const departures = data.departures || [];
         if (departures.length === 0) return;
         
-        // Prefer Munich direction, fallback to first departure
+        // Find next train to Munich
         const toMunich = departures.find(function(d) {
           const dir = (d.direction || '').toLowerCase();
           return dir.includes('münchen') || dir.includes('munich') || dir.includes('pasing');
         });
         
-        const next = toMunich || departures[0];
-        if (next) {
-          const time = new Date(next.when || next.plannedWhen);
-          const navTrain = document.getElementById('navbar-train');
-          if (navTrain) {
-            navTrain.textContent = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+        // Find next train to Tutzing
+        const toTutzing = departures.find(function(d) {
+          const dir = (d.direction || '').toLowerCase();
+          return dir.includes('tutzing');
+        });
+        
+        // Update Munich
+        if (toMunich) {
+          const time = new Date(toMunich.when || toMunich.plannedWhen);
+          const navMunich = document.getElementById('navbar-train-munich');
+          if (navMunich) {
+            var timeStr = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+            if (toMunich.delay && toMunich.delay > 0) {
+              timeStr += ' <span class="navbar-train-delay">+' + Math.round(toMunich.delay / 60) + '</span>';
+            }
+            navMunich.innerHTML = timeStr;
+          }
+        }
+        
+        // Update Tutzing
+        if (toTutzing) {
+          const time = new Date(toTutzing.when || toTutzing.plannedWhen);
+          const navTutzing = document.getElementById('navbar-train-tutzing');
+          if (navTutzing) {
+            var timeStr = time.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+            if (toTutzing.delay && toTutzing.delay > 0) {
+              timeStr += ' <span class="navbar-train-delay">+' + Math.round(toTutzing.delay / 60) + '</span>';
+            }
+            navTutzing.innerHTML = timeStr;
           }
         }
       } catch (e) {
