@@ -74,6 +74,29 @@ const artTagGroups = [
     </button>
   </div>
 
+  <!-- Search -->
+  <div class="filter-section">
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="Event, Ort oder Stichwort..."
+        autocomplete="off"
+      />
+      <button class="search-clear" id="search-clear" aria-label="Suche löschen" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <!-- Time Filter -->
   <div class="filter-section">
     <h3 class="filter-section-title">Zeitraum</h3>
