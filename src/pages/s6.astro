@@ -53,7 +53,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="sc sc--red">
           <span class="sc__val" id="sc-cancelled">–</span>
           <span class="sc__lbl">Ausgefallen</span>
-          <span class="sc__sub">&nbsp;</span>
+          <span class="sc__sub" id="sc-cancelled-pct">&nbsp;</span>
         </div>
         <div class="sc sc--blue">
           <span class="sc__val" id="sc-total">–</span>
@@ -153,10 +153,16 @@ import Layout from '../layouts/Layout.astro';
       <div class="worst-table" id="worst-table"></div>
     </section>
 
-    <!-- ══ 10. Heutige Abfahrten ══ -->
+    <!-- ══ 10. Heutige Abfahrten (collapsible) ══ -->
     <section class="s6-card">
-      <h2 class="s6-section-title">Heutige Abfahrten</h2>
-      <div class="departures-list" id="today-deps"></div>
+      <h2 class="s6-section-title s6-collapse-toggle" id="today-toggle">
+        <span>Heutige Abfahrten</span>
+        <span class="collapse-summary" id="today-summary"></span>
+        <span class="collapse-chevron">▸</span>
+      </h2>
+      <div class="s6-collapse-body" id="today-deps-wrap">
+        <div class="departures-list" id="today-deps"></div>
+      </div>
     </section>
 
     <!-- Footer -->
@@ -182,7 +188,7 @@ import Layout from '../layouts/Layout.astro';
 
   /* Period toggle */
   .s6-period-toggle { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); background: var(--color-bg-secondary); padding: var(--space-1); border-radius: var(--radius-lg); }
-  .period-btn { flex: 1; padding: var(--space-2) var(--space-3); border: none; border-radius: var(--radius-md); background: transparent; color: var(--color-text-secondary); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all var(--duration-fast) ease; }
+  .period-btn { flex: 1; padding: var(--space-2) var(--space-3); min-height: 44px; border: none; border-radius: var(--radius-md); background: transparent; color: var(--color-text-secondary); font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all var(--duration-fast) ease; -webkit-tap-highlight-color: transparent; }
   .period-btn:hover { color: var(--color-text); }
   .period-btn.active { background: var(--color-card); color: var(--color-text); box-shadow: var(--shadow-sm); }
 
@@ -291,6 +297,16 @@ import Layout from '../layouts/Layout.astro';
   :root.dark .dep-chip--late { border-left-color: #fbbf24; }
   :root.dark .dep-chip__delay--minor { color: #a3e635; }
 
+  /* Collapsible section */
+  .s6-collapse-toggle { cursor: pointer; user-select: none; }
+  .s6-collapse-toggle:hover { color: var(--color-primary); }
+  .collapse-chevron { margin-left: auto; font-size: 0.875rem; transition: transform 0.2s ease; display: inline-block; }
+  .s6-collapse-toggle.open .collapse-chevron { transform: rotate(90deg); }
+  .collapse-summary { font-size: 0.75rem; font-weight: 400; color: var(--color-text-secondary); margin-left: var(--space-2); }
+  .s6-collapse-toggle.open .collapse-summary { display: none; }
+  .s6-collapse-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+  .s6-collapse-body.open { max-height: 2000px; transition: max-height 0.5s ease-in; }
+
   /* Footer */
   .s6-meta { font-size: 0.75rem; color: var(--color-text-tertiary, #999); text-align: center; line-height: 1.6; margin-top: var(--space-4); }
   .s6-meta a { color: var(--color-primary); }
@@ -305,6 +321,23 @@ import Layout from '../layouts/Layout.astro';
   .hour-dot:hover { r: 7; }
   .chart-tooltip { position: fixed; pointer-events: none; background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 8px 12px; font-size: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.12); z-index: 1000; opacity: 0; transition: opacity 0.15s ease; color: var(--color-text); max-width: 200px; line-height: 1.5; }
   .chart-tooltip.visible { opacity: 1; }
+
+  /* Mobile optimization */
+  @media (max-width: 600px) {
+    .s6-page { padding: var(--space-4) var(--space-3); }
+    .s6-card { padding: var(--space-4) var(--space-3); }
+    .s6-header__title { font-size: 1.375rem; }
+    .chart-container { margin: 0 -4px; }
+    .chart-container svg { font-size: 10px; }
+    .rush-item__pct, .weather-item__pct { font-size: 1.125rem; }
+    .worst-tbl { font-size: 0.75rem; }
+    .worst-tbl th, .worst-tbl td { padding: var(--space-1) var(--space-2); }
+  }
+  @media (max-width: 400px) {
+    .s6-scorecard { gap: var(--space-2); }
+    .sc { padding: var(--space-2); }
+    .sc__val { font-size: 1.25rem; }
+  }
 </style>
 
 <script>
@@ -321,6 +354,24 @@ import Layout from '../layouts/Layout.astro';
       currentDays = parseInt((btn as HTMLElement).dataset.period || '30', 10);
       load();
     });
+  });
+
+  // ── Collapsible "Heutige Abfahrten" ──
+  const todayToggle = $('today-toggle');
+  const todayWrap = $('today-deps-wrap');
+  todayToggle.addEventListener('click', () => {
+    const isOpen = todayToggle.classList.toggle('open');
+    todayWrap.classList.toggle('open', isOpen);
+    const chevron = todayToggle.querySelector('.collapse-chevron');
+    if (chevron) chevron.textContent = isOpen ? '▾' : '▸';
+  });
+
+  // ── Global touch dismiss for tooltips ──
+  document.addEventListener('touchstart', (e: TouchEvent) => {
+    const tip = $('chart-tooltip');
+    if (tip.classList.contains('visible') && !(e.target as HTMLElement).closest('.hour-dot, .weekday-dot, .chart-bar, .dist-bar')) {
+      tip.classList.remove('visible');
+    }
   });
 
   // ── Helpers ──
@@ -379,6 +430,8 @@ import Layout from '../layouts/Layout.astro';
     $('sc-ontime').textContent = String(onTime);
     $('sc-delayed').textContent = String(delayed);
     $('sc-cancelled').textContent = String(cancelled);
+    const cancelledPct = total > 0 ? ((cancelled / total) * 100).toFixed(1) : '0.0';
+    $('sc-cancelled-pct').textContent = `${cancelledPct}%`;
     $('sc-total').textContent = String(total);
     $('sc-period-label').textContent = `${currentDays} Tage`;
     // Sub-detail: wie viele exakt vs. leicht verspätet
@@ -418,8 +471,8 @@ import Layout from '../layouts/Layout.astro';
     // Hourly (SVG line chart)
     renderHourlyLineChart(d.byHour);
 
-    // Weekday
-    renderBarChart('weekday-chart', d.byWeekday, (w: any) => WEEKDAYS[w.weekday] || '?');
+    // Weekday (SVG line chart)
+    renderWeekdayLineChart(d.byWeekday);
 
     // Daily (SVG stacked bar chart)
     renderDailyStackedChart(d.daily);
@@ -450,7 +503,7 @@ import Layout from '../layouts/Layout.astro';
     const svgSunrise = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>';
     const svgSunset = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="16 6 12 10 8 6"/></svg>';
     const svgClock = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-2px;opacity:0.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
-    const labels: Record<string, string> = { morning_rush: svgSunrise + ' Morgen HVZ\n6:00–9:00', evening_rush: svgSunset + ' Abend HVZ\n16:00–19:00', off_peak: svgClock + ' Nebenzeit\nRest' };
+    const labels: Record<string, string> = { morning_rush: svgSunrise + ' Morning Rush\n6:00–9:00', evening_rush: svgSunset + ' Evening Rush\n16:00–19:00', off_peak: svgClock + ' Nebenzeit\nRest' };
     const grid = $('rush-grid');
     const order = ['morning_rush', 'evening_rush', 'off_peak'];
     const itemStyle = 'text-align:center;padding:var(--space-4) var(--space-3);border-radius:var(--radius-md);background:var(--color-bg-secondary)';
@@ -524,20 +577,19 @@ import Layout from '../layouts/Layout.astro';
     }
     el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>${cancelledHtml}`;
 
-    // Tooltip
+    // Tooltip (mouse + touch)
     el.querySelectorAll('.dist-bar').forEach(bar => {
-      bar.addEventListener('mouseenter', (e: Event) => {
-        const t = e.target as HTMLElement;
+      const showTip = (t: HTMLElement, x: number, y: number) => {
         const tip = $('chart-tooltip');
         tip.innerHTML = `<strong>${t.dataset.label} Min</strong><br>${t.dataset.count} Züge`;
         tip.classList.add('visible');
-      });
-      bar.addEventListener('mousemove', (e: MouseEvent) => {
-        const tip = $('chart-tooltip');
-        tip.style.left = (e.clientX + 12) + 'px';
-        tip.style.top = (e.clientY - 10) + 'px';
-      });
+        tip.style.left = (x + 12) + 'px';
+        tip.style.top = (y - 10) + 'px';
+      };
+      bar.addEventListener('mouseenter', (e: Event) => { const me = e as MouseEvent; showTip(e.target as HTMLElement, me.clientX, me.clientY); });
+      bar.addEventListener('mousemove', (e: Event) => { const me = e as MouseEvent; const tip = $('chart-tooltip'); tip.style.left = (me.clientX + 12) + 'px'; tip.style.top = (me.clientY - 10) + 'px'; });
       bar.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+      bar.addEventListener('touchstart', (e: Event) => { e.preventDefault(); const te = e as TouchEvent; const touch = te.touches[0]; showTip(e.target as HTMLElement, touch.clientX, touch.clientY); }, { passive: false } as any);
     });
   }
 
@@ -611,21 +663,20 @@ import Layout from '../layouts/Layout.astro';
 
     el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>`;
 
-    // Tooltip
+    // Tooltip (mouse + touch)
     el.querySelectorAll('.chart-bar').forEach(bar => {
-      bar.addEventListener('mouseenter', (e: Event) => {
-        const t = e.target as HTMLElement;
+      const showTip = (t: HTMLElement, x: number, y: number) => {
         const tip = $('chart-tooltip');
         const r = t.dataset.total ? pct(parseInt(t.dataset.ontime||'0'), parseInt(t.dataset.total||'1')) : 0;
         tip.innerHTML = `<strong>${t.dataset.day}</strong><br>✓ ${t.dataset.ontime} pünktlich<br>⚠ ${t.dataset.delayed} verspätet<br>✕ ${t.dataset.cancelled} ausgefallen<br>Rate: ${r}%`;
         tip.classList.add('visible');
-      });
-      bar.addEventListener('mousemove', (e: MouseEvent) => {
-        const tip = $('chart-tooltip');
-        tip.style.left = (e.clientX + 12) + 'px';
-        tip.style.top = (e.clientY - 10) + 'px';
-      });
+        tip.style.left = (x + 12) + 'px';
+        tip.style.top = (y - 10) + 'px';
+      };
+      bar.addEventListener('mouseenter', (e: Event) => { const me = e as MouseEvent; showTip(e.target as HTMLElement, me.clientX, me.clientY); });
+      bar.addEventListener('mousemove', (e: Event) => { const me = e as MouseEvent; const tip = $('chart-tooltip'); tip.style.left = (me.clientX + 12) + 'px'; tip.style.top = (me.clientY - 10) + 'px'; });
       bar.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+      bar.addEventListener('touchstart', (e: Event) => { e.preventDefault(); const te = e as TouchEvent; const touch = te.touches[0]; showTip(e.target as HTMLElement, touch.clientX, touch.clientY); }, { passive: false } as any);
     });
   }
 
@@ -654,7 +705,7 @@ import Layout from '../layouts/Layout.astro';
       const x1 = Math.max(xS(s), pad.left), x2 = Math.min(xS(e), W - pad.right);
       if (x2 > x1) {
         svg += `<rect x="${x1}" y="${pad.top}" width="${x2 - x1}" height="${cH}" fill="var(--chart-rush-bg)" rx="4"/>`;
-        svg += `<text x="${(x1 + x2) / 2}" y="${pad.top + 14}" text-anchor="middle" fill="var(--color-text-tertiary, #aaa)" font-size="8" font-style="italic">HVZ</text>`;
+        svg += `<text x="${(x1 + x2) / 2}" y="${pad.top + 14}" text-anchor="middle" fill="var(--color-text-tertiary, #aaa)" font-size="8" font-style="italic">Rush Hour</text>`;
       }
     });
 
@@ -689,20 +740,106 @@ import Layout from '../layouts/Layout.astro';
 
     el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>`;
 
-    // Tooltip
+    // Tooltip (mouse + touch)
     el.querySelectorAll('.hour-dot').forEach(dot => {
-      dot.addEventListener('mouseenter', (e: Event) => {
-        const t = e.target as HTMLElement;
+      const showTip = (t: HTMLElement, x: number, y: number) => {
         const tip = $('chart-tooltip');
         tip.innerHTML = `<strong>${t.dataset.hour}:00 Uhr</strong><br>Rate: ${t.dataset.rate}%<br>✓ ${t.dataset.ontime} pünktlich<br>⚠ ${t.dataset.delayed} verspätet<br>✕ ${t.dataset.cancelled} ausgefallen`;
         tip.classList.add('visible');
-      });
-      dot.addEventListener('mousemove', (e: MouseEvent) => {
-        const tip = $('chart-tooltip');
-        tip.style.left = (e.clientX + 12) + 'px';
-        tip.style.top = (e.clientY - 10) + 'px';
-      });
+        tip.style.left = (x + 12) + 'px';
+        tip.style.top = (y - 10) + 'px';
+      };
+      dot.addEventListener('mouseenter', (e: Event) => { const me = e as MouseEvent; showTip(e.target as HTMLElement, me.clientX, me.clientY); });
+      dot.addEventListener('mousemove', (e: Event) => { const me = e as MouseEvent; const tip = $('chart-tooltip'); tip.style.left = (me.clientX + 12) + 'px'; tip.style.top = (me.clientY - 10) + 'px'; });
       dot.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+      dot.addEventListener('touchstart', (e: Event) => { e.preventDefault(); const te = e as TouchEvent; const touch = te.touches[0]; showTip(e.target as HTMLElement, touch.clientX, touch.clientY); }, { passive: false } as any);
+    });
+  }
+
+  function renderWeekdayLineChart(byWeekday: any[]) {
+    const el = $('weekday-chart');
+    if (!byWeekday || byWeekday.length === 0) { el.innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Daten</p>'; return; }
+
+    // Reorder: Mo(1), Di(2), Mi(3), Do(4), Fr(5), Sa(6), So(0)
+    const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+    const dayLabels = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+
+    const days = dayOrder.map((wd, i) => {
+      const d = byWeekday.find((w: any) => w.weekday === wd);
+      const total = d ? (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0) : 0;
+      const rate = total > 0 ? ((d?.on_time || 0) / total) * 100 : 0;
+      return { label: dayLabels[i], rate, total, onTime: d?.on_time || 0, delayed: d?.delayed || 0, cancelled: d?.cancelled || 0 };
+    }).filter(d => d.total > 0);
+
+    if (days.length === 0) { el.innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Daten</p>'; return; }
+
+    const pad = { top: 20, right: 15, bottom: 42, left: 42 };
+    const chartW = 700, chartH = 260;
+    const cW = chartW - pad.left - pad.right;
+    const cH = chartH - pad.top - pad.bottom;
+    const xS = (i: number) => pad.left + (days.length > 1 ? (i / (days.length - 1)) * cW : cW / 2);
+    const yS = (v: number) => pad.top + cH - (v / 100) * cH;
+
+    let svg = '';
+
+    // Weekend highlight
+    const saIdx = days.findIndex(d => d.label === 'Sa');
+    const soIdx = days.findIndex(d => d.label === 'So');
+    if (saIdx >= 0 && soIdx >= 0) {
+      const x1 = xS(saIdx) - 20;
+      const x2 = xS(soIdx) + 20;
+      svg += `<rect x="${x1}" y="${pad.top}" width="${x2 - x1}" height="${cH}" fill="var(--chart-rush-bg)" rx="4"/>`;
+      svg += `<text x="${(x1 + x2) / 2}" y="${pad.top + 14}" text-anchor="middle" fill="var(--color-text-tertiary, #aaa)" font-size="8" font-style="italic">Wochenende</text>`;
+    } else if (saIdx >= 0) {
+      const x1 = xS(saIdx) - 20;
+      const x2 = xS(saIdx) + 20;
+      svg += `<rect x="${x1}" y="${pad.top}" width="${x2 - x1}" height="${cH}" fill="var(--chart-rush-bg)" rx="4"/>`;
+    }
+
+    // Y grid
+    [0, 25, 50, 75, 100].forEach(v => {
+      const y = yS(v);
+      svg += `<line x1="${pad.left}" y1="${y}" x2="${chartW - pad.right}" y2="${y}" stroke="var(--chart-grid)" stroke-width="1"/>`;
+      svg += `<text x="${pad.left - 6}" y="${y + 3}" text-anchor="end" fill="var(--color-text-secondary)" font-size="10" font-family="'Space Grotesk',sans-serif">${v}%</text>`;
+    });
+
+    // Area fill
+    if (days.length > 1) {
+      let area = `M ${xS(0)} ${yS(days[0].rate)}`;
+      days.slice(1).forEach((d, i) => { area += ` L ${xS(i + 1)} ${yS(d.rate)}`; });
+      area += ` L ${xS(days.length - 1)} ${yS(0)} L ${xS(0)} ${yS(0)} Z`;
+      svg += `<path d="${area}" fill="var(--chart-line)" opacity="0.07"/>`;
+    }
+
+    // Line
+    if (days.length > 1) {
+      let line = `M ${xS(0)} ${yS(days[0].rate)}`;
+      days.slice(1).forEach((d, i) => { line += ` L ${xS(i + 1)} ${yS(d.rate)}`; });
+      svg += `<path d="${line}" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+
+    // Data points + X labels
+    days.forEach((d, i) => {
+      const cx = xS(i), cy = yS(d.rate);
+      svg += `<circle cx="${cx}" cy="${cy}" r="6" fill="var(--color-card)" stroke="${rateColor(d.rate)}" stroke-width="2.5" class="weekday-dot" data-label="${d.label}" data-rate="${Math.round(d.rate)}" data-total="${d.total}" data-ontime="${d.onTime}" data-delayed="${d.delayed}" data-cancelled="${d.cancelled}"/>`;
+      svg += `<text x="${cx}" y="${chartH - 8}" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11" font-weight="600" font-family="'Space Grotesk',sans-serif">${d.label}</text>`;
+    });
+
+    el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${chartW} ${chartH}">${svg}</svg></div>`;
+
+    // Tooltip (mouse + touch)
+    el.querySelectorAll('.weekday-dot').forEach(dot => {
+      const showTip = (t: HTMLElement, x: number, y: number) => {
+        const tip = $('chart-tooltip');
+        tip.innerHTML = `<strong>${t.dataset.label}</strong><br>Rate: ${t.dataset.rate}%<br>✓ ${t.dataset.ontime} pünktlich<br>⚠ ${t.dataset.delayed} verspätet<br>✕ ${t.dataset.cancelled} ausgefallen<br>Gesamt: ${t.dataset.total} Züge`;
+        tip.classList.add('visible');
+        tip.style.left = (x + 12) + 'px';
+        tip.style.top = (y - 10) + 'px';
+      };
+      dot.addEventListener('mouseenter', (e: Event) => { const me = e as MouseEvent; showTip(e.target as HTMLElement, me.clientX, me.clientY); });
+      dot.addEventListener('mousemove', (e: Event) => { const me = e as MouseEvent; const tip = $('chart-tooltip'); tip.style.left = (me.clientX + 12) + 'px'; tip.style.top = (me.clientY - 10) + 'px'; });
+      dot.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+      dot.addEventListener('touchstart', (e: Event) => { e.preventDefault(); const te = e as TouchEvent; const touch = te.touches[0]; showTip(e.target as HTMLElement, touch.clientX, touch.clientY); }, { passive: false } as any);
     });
   }
 
@@ -724,10 +861,18 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function renderTodayDeps(deps: any[]) {
+    const summaryEl = $('today-summary');
     if (!deps || deps.length === 0) {
       $('today-deps').innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Noch keine Abfahrten erfasst</p>';
+      summaryEl.textContent = 'Keine Daten';
       return;
     }
+    // Summary for collapsed state
+    const totalDeps = deps.length;
+    const ontimeDeps = deps.filter((d: any) => !d.cancelled && (!d.delay || d.delay <= 300)).length;
+    const pctOntime = totalDeps > 0 ? Math.round((ontimeDeps / totalDeps) * 100) : 0;
+    summaryEl.textContent = `${totalDeps} Abfahrten · ${pctOntime}% pünktlich`;
+
     $('today-deps').innerHTML = deps.map((d: any) => {
       const delaySec = d.delay || 0;
       const delayMin = Math.round(delaySec / 60);

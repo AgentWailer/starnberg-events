@@ -132,11 +132,13 @@ function weatherCategory(code: number | null): string {
   if (code === null || code === undefined) return 'unbekannt';
   if (code === 0) return 'klar';
   if (code <= 3) return 'bewölkt';
-  if (code <= 48) return 'nebel';
-  if (code <= 67) return 'regen';
-  if (code <= 86) return 'schnee';
-  if (code <= 99) return 'gewitter';
-  return 'unbekannt';
+  if (code === 45 || code === 48) return 'nebel';
+  if (code >= 51 && code <= 67) return 'regen';   // 51-57 drizzle, 61-67 rain
+  if (code >= 71 && code <= 77) return 'schnee';   // snowfall
+  if (code >= 80 && code <= 82) return 'regen';    // rain showers
+  if (code >= 85 && code <= 86) return 'schnee';   // snow showers
+  if (code >= 95) return 'gewitter';
+  return 'bewölkt'; // fallback for codes 4-44, 49-50, 68-70, 78-79, 83-84, 87-94
 }
 
 function json(data: unknown): Response {
@@ -934,11 +936,13 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
         WHEN weather_code IS NULL THEN 'unbekannt'
         WHEN weather_code = 0 THEN 'klar'
         WHEN weather_code <= 3 THEN 'bewölkt'
-        WHEN weather_code <= 48 THEN 'nebel'
-        WHEN weather_code <= 67 THEN 'regen'
-        WHEN weather_code <= 86 THEN 'schnee'
-        WHEN weather_code <= 99 THEN 'gewitter'
-        ELSE 'unbekannt'
+        WHEN weather_code IN (45, 48) THEN 'nebel'
+        WHEN weather_code BETWEEN 51 AND 67 THEN 'regen'
+        WHEN weather_code BETWEEN 71 AND 77 THEN 'schnee'
+        WHEN weather_code BETWEEN 80 AND 82 THEN 'regen'
+        WHEN weather_code BETWEEN 85 AND 86 THEN 'schnee'
+        WHEN weather_code >= 95 THEN 'gewitter'
+        ELSE 'bewölkt'
       END as weather,
       COUNT(*) as total,
       SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
