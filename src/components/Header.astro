@@ -363,12 +363,13 @@ const { lastUpdated } = Astro.props;
     }
   }
 
-  /* Desktop App Shell: Header is flex child, JS controls max-height proportional to scroll */
+  /* Desktop App Shell: Header is flex child, JS slides it under the navbar */
   @media (min-width: 1200px) {
     .header {
       flex-shrink: 0;
       overflow: hidden;
-      /* No CSS transition — JS drives max-height/opacity directly from scroll position */
+      position: relative;
+      z-index: 2; /* Above main content (no z-index), below navbar (z:100) */
     }
   }
 

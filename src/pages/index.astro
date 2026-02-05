@@ -1150,25 +1150,28 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     function onScroll() {
       // Use the maximum scrollTop across all columns
       const maxScrollY = Math.max(...columns.map(c => c.scrollTop));
-      const remaining = Math.max(0, headerHeight - maxScrollY);
+      const slideAmount = Math.min(maxScrollY, headerHeight);
 
-      // Proportional max-height: header shrinks pixel-by-pixel with scroll
-      header.style.maxHeight = remaining + 'px';
+      // Slide header up under navbar via negative margin-top.
+      // This reduces the header's effective layout contribution so main grows,
+      // while the header visually slides behind the navbar (z:100 > header z:2).
+      header.style.marginTop = -slideAmount + 'px';
 
-      // Opacity: full until 50% scrolled, then fade to 0
-      if (maxScrollY < headerHeight * 0.5) {
+      // Opacity: full until 65% scrolled, then fade to 0
+      const fadeStart = headerHeight * 0.65;
+      if (slideAmount < fadeStart) {
         header.style.opacity = '1';
       } else {
-        const fadeProgress = (maxScrollY - headerHeight * 0.5) / (headerHeight * 0.5);
+        const fadeProgress = (slideAmount - fadeStart) / (headerHeight - fadeStart);
         header.style.opacity = String(Math.max(0, 1 - fadeProgress));
       }
 
-      if (remaining <= 0 && !collapsed) {
+      if (slideAmount >= headerHeight && !collapsed) {
         header.style.visibility = 'hidden';
         header.style.pointerEvents = 'none';
         navbarBrand?.classList.add('visible');
         collapsed = true;
-      } else if (remaining > 0 && collapsed) {
+      } else if (slideAmount < headerHeight && collapsed) {
         header.style.visibility = '';
         header.style.pointerEvents = '';
         navbarBrand?.classList.remove('visible');
@@ -1190,7 +1193,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     let listenersAttached = true;
     mql.addEventListener('change', (e) => {
       if (!e.matches) {
-        header.style.maxHeight = '';
+        header.style.marginTop = '';
         header.style.opacity = '';
         header.style.visibility = '';
         header.style.pointerEvents = '';
@@ -1216,14 +1219,73 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       if (!mql.matches) return;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        const prevMax = header.style.maxHeight;
-        header.style.maxHeight = '';
+        const prevMargin = header.style.marginTop;
+        header.style.marginTop = '';
         header.style.visibility = '';
         header.style.opacity = '';
         headerHeight = header.offsetHeight;
-        header.style.maxHeight = prevMax;
+        header.style.marginTop = prevMargin;
         onScroll();
       }, 150);
+    });
+  }
+
+  // === Forward wheel events from non-scrollable areas to center column ===
+  // Ensures scrolling over the left column (filters), page edges, or the header
+  // all scroll the center column and collapse the header.
+  function initWheelForwarding() {
+    const mql = window.matchMedia('(min-width: 1200px)');
+    if (!mql.matches) return;
+
+    const centerCol = document.querySelector('.column-center') as HTMLElement;
+    if (!centerCol) return;
+
+    function getColumn(el: Element | null): HTMLElement | null {
+      while (el && el !== document.documentElement) {
+        if (el instanceof HTMLElement) {
+          if (el.classList.contains('column-left') ||
+              el.classList.contains('column-center') ||
+              el.classList.contains('column-right')) {
+            return el;
+          }
+        }
+        el = el.parentElement;
+      }
+      return null;
+    }
+
+    function canScroll(el: HTMLElement, deltaY: number): boolean {
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 1) return false;
+      if (deltaY > 0) return el.scrollTop < maxScroll - 1;
+      if (deltaY < 0) return el.scrollTop > 1;
+      return false;
+    }
+
+    function onWheel(e: WheelEvent) {
+      if (!mql.matches) return;
+
+      const target = e.target as HTMLElement;
+
+      // Don't interfere with modals/overlays
+      if (target.closest('.event-modal, .filter-sheet, .filter-sheet-backdrop')) return;
+
+      const col = getColumn(target);
+
+      // Inside center column → natural scroll handles it
+      if (col === centerCol) return;
+
+      // Inside a sidebar that can scroll in this direction → let it scroll naturally
+      if (col && canScroll(col, e.deltaY)) return;
+
+      // Forward scroll to center column (page edges, non-scrollable left column, header, etc.)
+      centerCol.scrollTop += e.deltaY;
+    }
+
+    document.addEventListener('wheel', onWheel, { passive: true });
+
+    mql.addEventListener('change', (e) => {
+      // Listener stays attached but checks mql.matches inside onWheel
     });
   }
 
@@ -1233,6 +1295,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         initAppShellCollapse();
+        initWheelForwarding();
       });
     });
   }
