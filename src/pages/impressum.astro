@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Impressum · Was ist los in Pöcking?">
+<main class="legal-page">
+  <a href="/" class="legal-back">← Zurück</a>
+
+  <h1>Impressum</h1>
+
+  <h2>Angaben gemäß § 5 TMG</h2>
+  <p>
+    <!-- TODO: Persönliche Daten einfügen -->
+    Steffen von Lindern<br>
+    [Straße Hausnummer]<br>
+    [PLZ Ort]
+  </p>
+
+  <h2>Kontakt</h2>
+  <p>
+    E-Mail: [email@example.com]
+  </p>
+
+  <h2>Inhaltlich verantwortlich gemäß § 18 Abs. 2 MStV</h2>
+  <p>
+    Steffen von Lindern<br>
+    Anschrift wie oben
+  </p>
+
+  <h2>Haftung für Inhalte</h2>
+  <p>
+    Die Inhalte dieser Website werden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+    Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.
+  </p>
+  <p>Insbesondere:</p>
+  <ul>
+    <li><strong>Event-Daten</strong> werden automatisiert von Drittquellen (u.a. beccult.de,
+      starnbergammersee.de, muenchen.de) aggregiert. Änderungen, Absagen oder Verschiebungen
+      werden möglicherweise nicht in Echtzeit übernommen. Maßgeblich sind stets die Angaben
+      des jeweiligen Veranstalters.</li>
+    <li><strong>S-Bahn-Daten</strong> (S6 Possenhofen) werden automatisiert von der DB IRIS API
+      erhoben und statistisch ausgewertet. Die angezeigten Analysen dienen nur der allgemeinen
+      Information und sind keine verbindliche Fahrplanauskunft.</li>
+    <li><strong>KI-generierte Inhalte</strong> (Textanalysen, Event-Bewertungen) werden
+      automatisiert erstellt und können Fehler enthalten. Sie stellen keine redaktionelle
+      Bewertung dar.</li>
+  </ul>
+  <p>
+    Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
+    nach den allgemeinen Gesetzen verantwortlich.
+  </p>
+
+  <h2>Haftung für Links</h2>
+  <p>
+    Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte kein Einfluss
+    besteht. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber
+    verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche
+    Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zu diesem Zeitpunkt nicht erkennbar.
+    Bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.
+  </p>
+
+  <h2>Hinweis zu KI-generierten Inhalten</h2>
+  <p>
+    Diese Website verwendet künstliche Intelligenz (Cloudflare Workers AI) zur Erstellung von:
+  </p>
+  <ul>
+    <li>Analysetexten zur S-Bahn-Pünktlichkeit</li>
+    <li>Zusammenfassungen und Bewertungen von Veranstaltungen</li>
+  </ul>
+  <p>
+    Diese Inhalte werden automatisiert generiert und nicht redaktionell geprüft.
+    Sie können ungenau oder fehlerhaft sein.
+  </p>
+</main>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-4) var(--space-10);
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+  .legal-back {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-5);
+  }
+  .legal-back:hover { color: var(--color-primary); }
+  h1 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+  }
+  h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+  p, li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+  ul {
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+  li { margin-bottom: var(--space-2); }
+  li strong { color: var(--color-text); }
+</style>

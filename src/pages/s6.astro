@@ -176,6 +176,8 @@ import Layout from '../layouts/Layout.astro';
     <p class="s6-meta">
       Datenerhebung alle 10 Minuten · Pünktlich = ≤ 5 Min Verspätung ·
       Quelle: DB IRIS API · Fallback: <a href="https://v6.db.transport.rest" target="_blank" rel="noopener">transport.rest API</a>
+      <br>
+      <a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a>
     </p>
   </div>
   <div class="chart-tooltip" id="chart-tooltip"></div>
@@ -970,7 +972,7 @@ import Layout from '../layouts/Layout.astro';
         $('ai-section').style.display = '';
         $('ai-insight').textContent = data.insight;
         const date = new Date(data.generatedAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-        $('ai-meta').textContent = `Analyse generiert am ${date} — basierend auf ${data.dataPoints} Datenpunkten`;
+        $('ai-meta').textContent = `Automatisch generiert durch KI (Cloudflare Workers AI) am ${date} — basierend auf ${data.dataPoints} Datenpunkten. Keine redaktionelle Prüfung.`;
       } else {
         $('ai-section').style.display = 'none';
       }

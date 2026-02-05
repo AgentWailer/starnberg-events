@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Datenschutzerklärung · Was ist los in Pöcking?">
+<main class="legal-page">
+  <a href="/" class="legal-back">← Zurück</a>
+
+  <h1>Datenschutzerklärung</h1>
+
+  <h2>1. Verantwortlicher</h2>
+  <p>
+    <!-- TODO: Persönliche Daten einfügen -->
+    Steffen von Lindern<br>
+    [Straße Hausnummer]<br>
+    [PLZ Ort]<br>
+    E-Mail: [email@example.com]
+  </p>
+
+  <h2>2. Überblick</h2>
+  <p>
+    Diese Website erhebt und verarbeitet personenbezogene Daten ausschließlich im Rahmen der
+    gesetzlichen Bestimmungen. Wir verwenden <strong>keine Cookies</strong>,
+    <strong>kein Tracking</strong> und <strong>keine Analyse-Tools</strong> wie Google Analytics oder Matomo.
+  </p>
+
+  <h2>3. Hosting und Content Delivery Network</h2>
+  <p>
+    Diese Website wird über Cloudflare Pages (Cloudflare, Inc., 101 Townsend St, San Francisco,
+    CA 94107, USA) bereitgestellt. Bei jedem Zugriff werden automatisch folgende Daten in
+    Server-Logfiles erhoben:
+  </p>
+  <ul>
+    <li>IP-Adresse des anfragenden Rechners</li>
+    <li>Datum und Uhrzeit des Zugriffs</li>
+    <li>Aufgerufene URL</li>
+    <li>HTTP-Statuscode und übertragene Datenmenge</li>
+    <li>Referrer-URL, Browser-Typ und Betriebssystem</li>
+  </ul>
+  <p>
+    Diese Daten werden für die Bereitstellung und Sicherheit der Website benötigt.
+    Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+    sicheren und effizienten Bereitstellung).
+  </p>
+  <p>
+    Cloudflare ist als Auftragsverarbeiter tätig. Ein Auftragsverarbeitungsvertrag
+    (Data Processing Addendum) besteht. Cloudflare ist unter dem EU-US Data Privacy
+    Framework zertifiziert.<br>
+    Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>
+  </p>
+
+  <h2>4. S-Bahn-Daten (Cloudflare Worker)</h2>
+  <p>
+    Für die Anzeige aktueller S-Bahn-Abfahrten und Pünktlichkeitsstatistiken wird ein
+    Cloudflare Worker eingesetzt. Bei Aufruf wird Ihre IP-Adresse an den Worker übertragen.
+    Der Worker leitet Ihre IP-Adresse nicht an die Deutsche Bahn oder andere Drittanbieter
+    weiter — die Daten werden serverseitig abgerufen.
+  </p>
+  <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+  <h2>5. Wetterdaten (Open-Meteo)</h2>
+  <p>
+    Zur Korrelation von Wetterdaten mit S-Bahn-Pünktlichkeit wird die Open-Meteo API
+    (open-meteo.com) serverseitig aufgerufen. Beim reinen Seitenaufruf werden keine
+    Nutzerdaten an Open-Meteo übermittelt.
+  </p>
+  <p>
+    Weitere Informationen: <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener">open-meteo.com/en/terms</a>
+  </p>
+
+  <h2>6. Lokale Speicherung (localStorage)</h2>
+  <p>
+    Diese Website nutzt den localStorage Ihres Browsers für:
+  </p>
+  <ul>
+    <li>Speicherung Ihrer Theme-Einstellung (helles/dunkles Design)</li>
+    <li>Speicherung Ihrer Favoriten-Auswahl</li>
+    <li>Speicherung des UI-Zustands (auf-/zugeklappte Bereiche)</li>
+  </ul>
+  <p>
+    Diese Daten werden ausschließlich lokal in Ihrem Browser gespeichert und
+    <strong>nicht</strong> an unsere oder fremde Server übertragen. Es handelt sich um
+    technisch notwendige Speicherungen gemäß § 25 Abs. 2 Nr. 2 TTDSG. Eine Einwilligung
+    ist hierfür nicht erforderlich.
+  </p>
+
+  <h2>7. Künstliche Intelligenz</h2>
+  <p>
+    <strong>S-Bahn-Analyse:</strong> Auf der Pünktlichkeitsseite werden aggregierte
+    Statistikdaten durch Cloudflare Workers AI analysiert und als Textanalyse dargestellt.
+    Es werden keine personenbezogenen Daten der Nutzer an das KI-Modell übergeben —
+    lediglich aggregierte Zugdaten.
+  </p>
+  <p>
+    <strong>Event-Bewertungen:</strong> Veranstaltungen werden durch KI-Modelle mit
+    Bewertungen und Zusammenfassungen versehen. Diese werden vorab berechnet und als
+    statische Daten ausgeliefert. Es findet keine Echtzeit-KI-Verarbeitung von
+    Nutzerdaten statt.
+  </p>
+  <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+  <h2>8. Keine Cookies</h2>
+  <p>
+    Diese Website setzt keine eigenen Cookies. Cloudflare kann technisch notwendige
+    Cookies setzen (z.B. für DDoS-Schutz). Diese sind gemäß § 25 Abs. 2 Nr. 2 TTDSG
+    als technisch notwendig einzustufen und bedürfen keiner Einwilligung.
+  </p>
+
+  <h2>9. Keine Weitergabe an Dritte</h2>
+  <p>
+    Personenbezogene Daten werden nicht an Dritte weitergegeben, verkauft oder anderweitig
+    übermittelt — mit Ausnahme der in dieser Erklärung genannten technischen Dienstleister
+    (Cloudflare).
+  </p>
+
+  <h2>10. SSL/TLS-Verschlüsselung</h2>
+  <p>
+    Diese Website nutzt aus Sicherheitsgründen eine SSL/TLS-Verschlüsselung. Eine
+    verschlüsselte Verbindung erkennen Sie am Schloss-Symbol in der Adressleiste Ihres
+    Browsers und daran, dass die Adresse mit "https://" beginnt.
+  </p>
+
+  <h2>11. Ihre Rechte</h2>
+  <p>Sie haben gegenüber dem Verantwortlichen folgende Rechte:</p>
+  <ul>
+    <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+    <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+    <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+    <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+    <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+    <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+  </ul>
+  <p>
+    Zur Ausübung Ihrer Rechte wenden Sie sich bitte an die oben genannte E-Mail-Adresse.
+  </p>
+
+  <h2>12. Beschwerderecht</h2>
+  <p>
+    Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren.
+    Die für Bayern zuständige Aufsichtsbehörde ist:
+  </p>
+  <p>
+    Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)<br>
+    Promenade 18<br>
+    91522 Ansbach<br>
+    <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>
+  </p>
+
+  <h2>13. Änderungen</h2>
+  <p>
+    Diese Datenschutzerklärung wird bei Bedarf aktualisiert. Die aktuelle Fassung ist
+    stets unter dieser URL abrufbar.
+  </p>
+  <p class="legal-date">Stand: Februar 2026</p>
+</main>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-4) var(--space-10);
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+  .legal-back {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-5);
+  }
+  .legal-back:hover { color: var(--color-primary); }
+  h1 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-6);
+  }
+  h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+  p, li {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+  ul {
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+  li { margin-bottom: var(--space-2); }
+  li strong, p strong { color: var(--color-text); }
+  a { color: var(--color-primary); }
+  .legal-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-tertiary, #999);
+    margin-top: var(--space-6);
+  }
+</style>
