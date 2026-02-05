@@ -75,20 +75,21 @@ const dayLabel = isToday
 
   @media (min-width: 768px) {
     .section-heading {
-      top: 377px; /* Match sidebar sticky position */
+      top: 0; /* Sticky within scroll container (same as right sidebar) */
       padding-top: 0;
+      z-index: 5;
     }
 
+    /* No ::before needed — scroll container handles clipping */
     .section-heading::before {
-      left: -40px;
-      right: -40px;
-      height: 10px; /* Small safety buffer */
+      display: none;
     }
 
+    /* Clean fade below heading — same as right sidebar */
     .section-heading::after {
-      left: -40px;
-      right: -40px;
-      height: 32px;
+      left: 0;
+      right: 0;
+      height: 16px;
     }
   }
 
@@ -102,7 +103,7 @@ const dayLabel = isToday
 
   @media (min-width: 768px) {
     .day-events {
-      padding-top: 0; /* Align first card with sidebar widgets */
+      gap: var(--space-5);
     }
   }
 </style>
