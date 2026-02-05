@@ -272,7 +272,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   /* Mobile: Single column (< 768px) */
   @media (max-width: 767px) {
-    .column-left,
+    .column-left {
+      display: contents; /* Remove box but keep children — mobile filter bar (position:fixed) needs to render */
+    }
+    .column-left > .section-heading {
+      display: none; /* Hide "Filter" heading on mobile */
+    }
     .column-right {
       display: none;
     }
