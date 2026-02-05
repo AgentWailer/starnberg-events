@@ -681,17 +681,25 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     display: flex;
     gap: var(--space-4);
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: var(--space-2);
     /* Allow cards to peek out on the right to hint at scrollability */
     margin-right: calc(-1 * var(--space-4));
     padding-right: var(--space-4);
+    /* Flywheel: smooth deceleration */
+    scroll-behavior: smooth;
   }
 
   .wk-carousel-track::-webkit-scrollbar {
     display: none;
+  }
+
+  /* During active touch/drag, disable smooth+snap so momentum flows freely */
+  .wk-carousel-track.is-dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
   }
 
   .wk-card {
@@ -1657,4 +1665,129 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   if (!isDesktop()) {
     applyLoadMoreLimit();
   }
+</script>
+
+<script>
+  // === Carousel Flywheel / Momentum Scroll ===
+  // Makes the weekend highlights carousel feel like a flywheel:
+  // - Touch: disables snap during swipe so iOS momentum carries through, re-snaps after coast
+  // - Mouse drag: adds pointer-based drag with velocity-tracked momentum + deceleration
+  (function initCarouselFlywheel() {
+    const track = document.querySelector('.wk-carousel-track') as HTMLElement | null;
+    if (!track) return;
+
+    // --- Touch: suspend snap during swipe, re-enable after momentum settles ---
+    let snapTimer: ReturnType<typeof setTimeout>;
+
+    track.addEventListener('touchstart', () => {
+      track.classList.add('is-dragging');
+      clearTimeout(snapTimer);
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+      // Wait for momentum to settle, then re-enable snap
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(() => {
+        track.classList.remove('is-dragging');
+      }, 1200);
+    }, { passive: true });
+
+    // Detect when scroll actually stops (refinement)
+    let scrollEndTimer: ReturnType<typeof setTimeout>;
+    track.addEventListener('scroll', () => {
+      if (!track.classList.contains('is-dragging')) return;
+      clearTimeout(scrollEndTimer);
+      clearTimeout(snapTimer);
+      scrollEndTimer = setTimeout(() => {
+        track.classList.remove('is-dragging');
+      }, 150);
+    }, { passive: true });
+
+    // --- Mouse/Pointer drag with momentum (desktop & hybrid devices) ---
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let velocityX = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let momentumRaf = 0;
+
+    track.addEventListener('pointerdown', (e: PointerEvent) => {
+      // Only handle mouse (touch already has native momentum)
+      if (e.pointerType === 'touch') return;
+
+      isDragging = true;
+      startX = e.clientX;
+      scrollStart = track.scrollLeft;
+      velocityX = 0;
+      lastX = e.clientX;
+      lastTime = Date.now();
+      cancelAnimationFrame(momentumRaf);
+
+      track.classList.add('is-dragging');
+      track.style.cursor = 'grabbing';
+      track.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+
+    track.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDragging || e.pointerType === 'touch') return;
+
+      const dx = e.clientX - startX;
+      track.scrollLeft = scrollStart - dx;
+
+      // Track velocity (exponential moving average)
+      const now = Date.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        const instantV = (e.clientX - lastX) / dt;
+        velocityX = velocityX * 0.6 + instantV * 0.4;
+      }
+      lastX = e.clientX;
+      lastTime = now;
+
+      e.preventDefault();
+    });
+
+    const endDrag = (e: PointerEvent) => {
+      if (!isDragging || e.pointerType === 'touch') return;
+      isDragging = false;
+      track.style.cursor = '';
+      track.releasePointerCapture(e.pointerId);
+
+      // Apply momentum (flywheel deceleration)
+      const friction = 0.95;
+      let v = velocityX * 16; // px per frame at ~60fps
+
+      const coast = () => {
+        if (Math.abs(v) < 0.5) {
+          track.classList.remove('is-dragging');
+          return;
+        }
+        track.scrollLeft -= v;
+        v *= friction;
+        momentumRaf = requestAnimationFrame(coast);
+      };
+
+      if (Math.abs(v) > 1) {
+        coast();
+      } else {
+        track.classList.remove('is-dragging');
+      }
+    };
+
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // Prevent link/button clicks after drag
+    track.addEventListener('click', (e) => {
+      if (Math.abs(velocityX) > 0.05) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // Default cursor
+    track.style.cursor = 'grab';
+  })();
 </script>
