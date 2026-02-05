@@ -122,16 +122,16 @@ const { lastUpdated } = Astro.props;
   @media (min-width: 768px) {
     .navbar {
       display: block;
-    }
-  }
-
-  /* Desktop App Shell: navbar in flow */
-  @media (min-width: 1200px) {
-    .navbar {
-      position: relative;
+      position: relative; /* In flow on both tablet and desktop */
       top: auto;
       left: auto;
       width: auto;
+    }
+  }
+
+  /* Desktop App Shell: navbar is flex child */
+  @media (min-width: 1200px) {
+    .navbar {
       flex-shrink: 0;
     }
   }
@@ -356,25 +356,16 @@ const { lastUpdated } = Astro.props;
 
   @media (min-width: 768px) {
     .header {
-      position: fixed;
-      top: 65px; /* Below navbar */
-      left: 0;
-      right: 0;
-      z-index: 95;
+      /* Visual enhancements for wider screens — stays position: relative (in flow) */
       padding: var(--space-10) var(--space-8) var(--space-8);
       border-bottom: 1px solid var(--color-border-light);
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
   }
 
-  /* Desktop App Shell: Header in flow, collapsible */
+  /* Desktop App Shell: Header is flex child, collapsible */
   @media (min-width: 1200px) {
     .header {
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      z-index: 1;
       flex-shrink: 0;
       overflow: hidden;
       max-height: 400px;
