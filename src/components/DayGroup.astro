@@ -60,19 +60,14 @@ const dayLabel = isToday
     background: var(--color-bg);
   }
 
-  /*
-   * Cover below heading: opaque for margin-bottom zone, then soft fade.
-   * The heading's margin-bottom (--space-4 = 16px) has NO background.
-   * Without this cover, scrolling content is visible in that gap.
-   * Solution: ::after is opaque for 20px (covers margin) then fades out.
-   */
+  /* Mobile: cover gap between ticker and heading */
   .section-heading::after {
     content: '';
     position: absolute;
     left: -20px;
     right: -20px;
     top: 100%;
-    height: 36px;
+    height: 24px;
     background: linear-gradient(to bottom, var(--color-bg) 55%, transparent);
     pointer-events: none;
     z-index: 1;
@@ -80,24 +75,26 @@ const dayLabel = isToday
 
   @media (min-width: 768px) {
     .section-heading {
-      top: 0; /* Sticky within scroll container (same as right sidebar) */
+      top: 0;
       padding-top: 0;
       z-index: 5;
+      /*
+       * CRITICAL: Convert margin-bottom to padding-bottom on desktop.
+       * margin has NO background → content bleeds through.
+       * padding IS covered by the heading's opaque background.
+       * No ::after gradient needed → no idle fade artifact.
+       */
+      padding-bottom: calc(var(--space-3) + var(--space-4));
+      margin-bottom: 0;
     }
 
-    /* No ::before needed — scroll container handles clipping */
     .section-heading::before {
       display: none;
     }
 
-    /* Desktop: opaque cover for margin-bottom (16px) + short fade
-     * 75% of 36px = 27px opaque — covers margin + safety buffer.
-     * Remaining 9px is gentle fade so cards don't cut off harshly. */
+    /* No ::after needed on desktop — padding-bottom covers the full gap */
     .section-heading::after {
-      left: 0;
-      right: 0;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--color-bg) 75%, transparent);
+      display: none;
     }
   }
 

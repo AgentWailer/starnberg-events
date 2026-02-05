@@ -492,25 +492,18 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       top: 0;
       background: var(--color-bg);
       z-index: 5;
-      padding-bottom: var(--space-3);
-      margin-bottom: var(--space-4);
+      /*
+       * Convert margin to padding so heading background covers the full gap.
+       * No ::after gradient needed → no idle fade artifact.
+       */
+      padding-bottom: calc(var(--space-3) + var(--space-4));
+      margin-bottom: 0;
     }
 
-    /*
-     * Cover below sticky heading: opaque zone for margin-bottom gap, then fade.
-     * heading margin-bottom = 16px (no background). This ::after covers that
-     * gap opaquely, then fades out so content can't bleed through.
-     */
+    /* No ::after on right sidebar headings — padding covers the gap */
     .column-right > .section-heading::after,
     .column-right .context-widget-group > .section-heading::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 100%;
-      height: 36px;
-      background: linear-gradient(to bottom, var(--color-bg) 75%, transparent);
-      pointer-events: none;
+      display: none;
     }
   }
 
