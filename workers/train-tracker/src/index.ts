@@ -1315,6 +1315,8 @@ async function handlePageview(request: Request, env: Env): Promise<Response> {
     const body: any = await request.json();
     const path = (body.p || '/').slice(0, 200);
     const screenWidth = body.w ? parseInt(body.w) : undefined;
+    const language = (body.l || '').slice(0, 10);
+    const isNew = body.n === 1 ? 1 : 0;
 
     const ip = request.headers.get('CF-Connecting-IP') || '';
     const ua = request.headers.get('User-Agent') || '';
@@ -1330,9 +1332,9 @@ async function handlePageview(request: Request, env: Env): Promise<Response> {
     const ts = Math.floor(Date.now() / 1000);
 
     await env.DB.prepare(
-      `INSERT INTO analytics_pageviews (ts, date, path, referrer, country, device, browser, visitor_id)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-    ).bind(ts, date, path, cleanRef, country, device, browser, visitorId).run();
+      `INSERT INTO analytics_pageviews (ts, date, path, referrer, country, device, browser, visitor_id, language, is_new)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(ts, date, path, cleanRef, country, device, browser, visitorId, language, isNew).run();
 
     return new Response(null, { status: 204, headers: CORS });
   } catch (err) {
@@ -1351,50 +1353,128 @@ async function handleAnalyticsData(env: Env, url: URL): Promise<Response> {
 
   const days = parseInt(url.searchParams.get('days') || '30');
   const since = daysAgo(days);
+  const prevSince = daysAgo(days * 2);
+  const nowTs = Math.floor(Date.now() / 1000);
 
-  const [dailyResult, pagesResult, referrersResult, countriesResult, devicesResult, browsersResult, totalResult] = await Promise.all([
+  const [dailyResult, pagesResult, referrersResult, countriesResult, devicesResult, browsersResult, totalResult, prevResult, hourlyResult, weekdayResult, languagesResult, newRetResult, realtimeResult] = await Promise.all([
+    // Daily pageviews + unique visitors
     env.DB.prepare(`
       SELECT date, COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors
       FROM analytics_pageviews WHERE date >= ? GROUP BY date ORDER BY date
     `).bind(since).all(),
 
+    // Top pages
     env.DB.prepare(`
       SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_id) as visitors
       FROM analytics_pageviews WHERE date >= ?
       GROUP BY path ORDER BY views DESC LIMIT 20
     `).bind(since).all(),
 
+    // Top referrers
     env.DB.prepare(`
       SELECT referrer, COUNT(*) as count
       FROM analytics_pageviews WHERE date >= ? AND referrer != ''
       GROUP BY referrer ORDER BY count DESC LIMIT 20
     `).bind(since).all(),
 
+    // Countries
     env.DB.prepare(`
       SELECT country, COUNT(*) as count, COUNT(DISTINCT visitor_id) as visitors
       FROM analytics_pageviews WHERE date >= ? AND country != ''
       GROUP BY country ORDER BY count DESC LIMIT 30
     `).bind(since).all(),
 
+    // Devices
     env.DB.prepare(`
       SELECT device, COUNT(*) as count
       FROM analytics_pageviews WHERE date >= ?
       GROUP BY device ORDER BY count DESC
     `).bind(since).all(),
 
+    // Browsers
     env.DB.prepare(`
       SELECT browser, COUNT(*) as count
       FROM analytics_pageviews WHERE date >= ?
       GROUP BY browser ORDER BY count DESC
     `).bind(since).all(),
 
+    // Total summary (current period)
     env.DB.prepare(`
       SELECT COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors, COUNT(DISTINCT date) as days
       FROM analytics_pageviews WHERE date >= ?
     `).bind(since).all(),
+
+    // Previous period summary (for trend comparison)
+    env.DB.prepare(`
+      SELECT COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ? AND date < ?
+    `).bind(prevSince, since).all(),
+
+    // Hourly distribution (adjust for CET: UTC+1)
+    env.DB.prepare(`
+      SELECT ((ts + 3600) / 3600 % 24) as hour, COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY hour ORDER BY hour
+    `).bind(since).all(),
+
+    // Weekday distribution (0=Sunday in SQLite strftime)
+    env.DB.prepare(`
+      SELECT CAST(strftime('%w', date) AS INTEGER) as weekday, COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY weekday ORDER BY weekday
+    `).bind(since).all(),
+
+    // Languages
+    env.DB.prepare(`
+      SELECT language, COUNT(*) as count
+      FROM analytics_pageviews WHERE date >= ? AND language != ''
+      GROUP BY language ORDER BY count DESC LIMIT 15
+    `).bind(since).all(),
+
+    // New vs returning
+    env.DB.prepare(`
+      SELECT is_new, COUNT(*) as count
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY is_new
+    `).bind(since).all(),
+
+    // Real-time: last 5 min and last 30 min
+    env.DB.prepare(`
+      SELECT
+        SUM(CASE WHEN ts >= ? THEN 1 ELSE 0 END) as last5min,
+        SUM(CASE WHEN ts >= ? THEN 1 ELSE 0 END) as last30min
+      FROM analytics_pageviews WHERE ts >= ?
+    `).bind(nowTs - 300, nowTs - 1800, nowTs - 1800).all(),
   ]);
 
   const summary = totalResult.results?.[0] as any || { pageviews: 0, visitors: 0, days: 0 };
+  const prev = prevResult.results?.[0] as any || { pageviews: 0, visitors: 0 };
+  const rt = realtimeResult.results?.[0] as any || { last5min: 0, last30min: 0 };
+
+  // Build full hourly array (0-23, fill gaps with 0)
+  const hourlyMap = new Map((hourlyResult.results || []).map((r: any) => [r.hour, r]));
+  const hourly = Array.from({ length: 24 }, (_, i) => ({
+    hour: i,
+    pageviews: (hourlyMap.get(i) as any)?.pageviews || 0,
+    visitors: (hourlyMap.get(i) as any)?.visitors || 0,
+  }));
+
+  // Build weekday array (reorder: Mo=0 ... So=6 for German convention)
+  const weekdayNames = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+  // SQLite: 0=So, 1=Mo, ... 6=Sa → remap to Mo=0
+  const wdMap = new Map((weekdayResult.results || []).map((r: any) => [r.weekday, r]));
+  const weekdays = [1, 2, 3, 4, 5, 6, 0].map((sqlDay, i) => ({
+    name: weekdayNames[i],
+    pageviews: (wdMap.get(sqlDay) as any)?.pageviews || 0,
+    visitors: (wdMap.get(sqlDay) as any)?.visitors || 0,
+  }));
+
+  // New vs returning
+  const newRetMap = new Map((newRetResult.results || []).map((r: any) => [r.is_new, r.count]));
+  const newVsReturning = {
+    new: (newRetMap.get(1) || 0) as number,
+    returning: (newRetMap.get(0) || 0) as number,
+  };
 
   return new Response(JSON.stringify({
     period: { days, since },
@@ -1404,12 +1484,26 @@ async function handleAnalyticsData(env: Env, url: URL): Promise<Response> {
       activeDays: summary.days || 0,
       avgPerDay: summary.days ? Math.round((summary.pageviews || 0) / summary.days) : 0,
     },
+    trend: {
+      pageviews: (summary.pageviews || 0) - (prev.pageviews || 0),
+      visitors: (summary.visitors || 0) - (prev.visitors || 0),
+      prevPageviews: prev.pageviews || 0,
+      prevVisitors: prev.visitors || 0,
+    },
+    realtime: {
+      last5min: rt.last5min || 0,
+      last30min: rt.last30min || 0,
+    },
     daily: dailyResult.results || [],
+    hourly,
+    weekdays,
     pages: pagesResult.results || [],
     referrers: referrersResult.results || [],
     countries: countriesResult.results || [],
     devices: devicesResult.results || [],
     browsers: browsersResult.results || [],
+    languages: languagesResult.results || [],
+    newVsReturning,
   }), {
     headers: { 'Content-Type': 'application/json', ...CORS, 'Cache-Control': 'no-store' }
   });

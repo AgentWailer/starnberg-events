@@ -27,7 +27,14 @@ import Layout from '../layouts/Layout.astro';
         <h1 class="an-header__title">Analytics</h1>
         <p class="an-header__sub">Website-Statistiken</p>
       </div>
-      <button class="an-logout" id="an-logout" title="Abmelden">Abmelden</button>
+      <div class="an-header__right">
+        <div class="an-realtime" id="an-realtime" style="display:none;">
+          <span class="an-realtime__dot"></span>
+          <span class="an-realtime__text" id="an-realtime-text"></span>
+        </div>
+        <span class="an-updated" id="an-updated"></span>
+        <button class="an-logout" id="an-logout" title="Abmelden">Abmelden</button>
+      </div>
     </header>
 
     <!-- Period Toggle -->
@@ -47,61 +54,66 @@ import Layout from '../layouts/Layout.astro';
     <div class="an-content" id="an-content" style="display:none;">
 
       <!-- 1. Summary Cards -->
-      <section class="an-card">
-        <div class="an-summary">
-          <div class="an-sc">
-            <span class="an-sc__val" id="sc-pageviews">&ndash;</span>
-            <span class="an-sc__lbl">Seitenaufrufe</span>
-          </div>
-          <div class="an-sc">
-            <span class="an-sc__val" id="sc-visitors">&ndash;</span>
-            <span class="an-sc__lbl">Besucher</span>
-          </div>
-          <div class="an-sc">
-            <span class="an-sc__val" id="sc-days">&ndash;</span>
-            <span class="an-sc__lbl">Aktive Tage</span>
-          </div>
-          <div class="an-sc">
-            <span class="an-sc__val" id="sc-avg">&ndash;</span>
-            <span class="an-sc__lbl">&empty; pro Tag</span>
-          </div>
-        </div>
-      </section>
+      <div class="an-summary" id="an-summary"></div>
 
-      <!-- 2. Daily Chart -->
+      <!-- 2. Tagesverlauf -->
       <section class="an-card">
         <h2 class="an-section-title">Tagesverlauf</h2>
         <div class="an-chart-wrap" id="an-daily-chart"></div>
       </section>
 
-      <!-- 3. Top Seiten -->
+      <!-- 3. Stündliche Verteilung -->
+      <section class="an-card">
+        <h2 class="an-section-title">Stündliche Verteilung</h2>
+        <div class="an-chart-wrap" id="an-hourly-chart"></div>
+      </section>
+
+      <!-- 4. Wochentage -->
+      <section class="an-card">
+        <h2 class="an-section-title">Wochentage</h2>
+        <div class="an-bar-list" id="an-weekday-bars"></div>
+      </section>
+
+      <!-- 5. Neue vs. Wiederkehrende Besucher -->
+      <section class="an-card">
+        <h2 class="an-section-title">Neue vs. Wiederkehrende Besucher</h2>
+        <div id="an-newret"></div>
+      </section>
+
+      <!-- 6. Top Seiten -->
       <section class="an-card">
         <h2 class="an-section-title">Top Seiten</h2>
         <div class="an-table-wrap" id="an-pages-table"></div>
       </section>
 
-      <!-- 4. Herkunft -->
+      <!-- 7. Herkunft -->
       <section class="an-card">
         <h2 class="an-section-title">Herkunft</h2>
         <div class="an-table-wrap" id="an-referrers-table"></div>
       </section>
 
-      <!-- 5. Länder -->
+      <!-- 8. Länder -->
       <section class="an-card">
         <h2 class="an-section-title">Länder</h2>
         <div class="an-bar-list" id="an-countries-bars"></div>
       </section>
 
-      <!-- 6. Geräte -->
+      <!-- 9. Geräte -->
       <section class="an-card">
         <h2 class="an-section-title">Geräte</h2>
         <div class="an-bar-list" id="an-devices-bars"></div>
       </section>
 
-      <!-- 7. Browser -->
+      <!-- 10. Browser -->
       <section class="an-card">
         <h2 class="an-section-title">Browser</h2>
         <div class="an-bar-list" id="an-browsers-bars"></div>
+      </section>
+
+      <!-- 11. Sprachen -->
+      <section class="an-card">
+        <h2 class="an-section-title">Sprachen</h2>
+        <div class="an-bar-list" id="an-languages-bars"></div>
       </section>
     </div>
 
@@ -135,11 +147,19 @@ import Layout from '../layouts/Layout.astro';
   :root.dark .an-auth-error { color: #f87171; }
 
   /* Header */
-  .an-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-5); }
+  .an-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-5); gap: var(--space-3); }
   .an-header__title { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: var(--color-text); margin: 0; }
   .an-header__sub { font-size: 0.9375rem; color: var(--color-text-secondary); margin: var(--space-1) 0 0; }
+  .an-header__right { display: flex; flex-direction: column; align-items: flex-end; gap: var(--space-2); }
   .an-logout { background: none; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); color: var(--color-text-secondary); font-size: 0.8125rem; cursor: pointer; transition: all var(--duration-fast) ease; min-height: 44px; }
   .an-logout:hover { color: var(--color-text); border-color: var(--color-text-secondary); }
+  .an-updated { font-size: 0.6875rem; color: var(--color-muted); }
+
+  /* Real-time indicator */
+  .an-realtime { display: flex; align-items: center; gap: var(--space-2); font-size: 0.75rem; color: var(--color-text-secondary); }
+  .an-realtime__dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; animation: an-pulse 2s ease-in-out infinite; }
+  @keyframes an-pulse { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); } 50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); } }
+  .an-realtime__text { white-space: nowrap; }
 
   /* Period toggle */
   .an-period-toggle { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); background: var(--color-bg-secondary); padding: var(--space-1); border-radius: var(--radius-lg); }
@@ -157,11 +177,16 @@ import Layout from '../layouts/Layout.astro';
   .an-section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-text); margin: 0 0 var(--space-4); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-light); }
 
   /* Summary cards */
-  .an-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
-  .an-sc { text-align: center; padding: var(--space-3) var(--space-2); border-radius: var(--radius-md); background: var(--color-bg-secondary); }
+  .an-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-4); }
+  .an-sc { background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-3); text-align: center; box-shadow: var(--shadow-sm); }
   .an-sc__val { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; line-height: 1.1; color: var(--color-primary); }
   .an-sc__lbl { display: block; font-size: 0.75rem; font-weight: 600; margin-top: 4px; color: var(--color-text-secondary); }
-  @media (max-width: 480px) { .an-summary { grid-template-columns: repeat(2, 1fr); } .an-sc__val { font-size: 1.5rem; } }
+  .an-sc__trend { display: block; font-size: 0.6875rem; margin-top: 6px; font-weight: 600; }
+  .an-sc__trend--up { color: #10b981; }
+  .an-sc__trend--down { color: #ef4444; }
+  .an-sc__trend--flat { color: var(--color-muted); }
+  .an-sc__trend-sub { display: block; font-size: 0.625rem; color: var(--color-muted); margin-top: 2px; }
+  @media (max-width: 540px) { .an-summary { grid-template-columns: repeat(2, 1fr); } .an-sc__val { font-size: 1.5rem; } }
 
   /* Chart wrapper */
   .an-chart-wrap { width: 100%; overflow: hidden; }
@@ -184,7 +209,21 @@ import Layout from '../layouts/Layout.astro';
   .an-bar-label { font-weight: 500; color: var(--color-text); }
   .an-bar-value { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
   .an-bar-track { height: 24px; background: var(--color-bg-secondary); border-radius: var(--radius-sm); overflow: hidden; }
-  .an-bar-fill { height: 100%; border-radius: var(--radius-sm); background: var(--color-primary); transition: width 0.4s ease; min-width: 2px; }
+  .an-bar-fill { height: 100%; border-radius: var(--radius-sm); background: var(--color-primary); transition: width 0.6s ease; min-width: 2px; }
+  .an-bar-fill--accent { background: var(--color-accent); }
+
+  /* New vs returning split bar */
+  .an-newret-bar { display: flex; height: 32px; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-bg-secondary); }
+  .an-newret-bar__new { background: var(--color-accent); transition: width 0.6s ease; }
+  .an-newret-bar__ret { background: var(--color-primary); transition: width 0.6s ease; }
+  .an-newret-labels { display: flex; justify-content: space-between; margin-top: var(--space-2); font-size: 0.8125rem; }
+  .an-newret-labels span:first-child { color: var(--color-accent); font-weight: 600; }
+  .an-newret-labels span:last-child { color: var(--color-primary); font-weight: 600; }
+  .an-newret-empty { font-size: 0.875rem; color: var(--color-text-secondary); }
+
+  /* Chart legend */
+  .an-chart-legend { display: flex; gap: var(--space-4); justify-content: center; margin-top: var(--space-2); font-size: 0.75rem; color: var(--color-text-secondary); }
+  .an-chart-legend__swatch { display: inline-block; width: 12px; height: 3px; vertical-align: middle; margin-right: 4px; border-radius: 2px; }
 
   /* Footer */
   .an-meta { font-size: 0.75rem; color: var(--color-text-tertiary, #999); text-align: center; line-height: 1.6; margin-top: var(--space-4); max-width: none; margin-left: auto; margin-right: auto; }
@@ -196,6 +235,7 @@ import Layout from '../layouts/Layout.astro';
     .an-page { padding: var(--space-4) var(--space-3); }
     .an-card { padding: var(--space-4) var(--space-3); }
     .an-header__title { font-size: 1.375rem; }
+    .an-header { flex-wrap: wrap; }
     .an-tbl { font-size: 0.75rem; }
     .an-tbl th, .an-tbl td { padding: var(--space-1) var(--space-2); }
   }
@@ -207,6 +247,14 @@ import Layout from '../layouts/Layout.astro';
   let analyticsKey = localStorage.getItem('analytics_key') || '';
 
   const $ = (id: string) => document.getElementById(id)!;
+
+  const PAGE_NAMES: Record<string, string> = {
+    '/': 'Startseite',
+    '/s6/': 'S6 Pünktlichkeit',
+    '/impressum/': 'Impressum',
+    '/datenschutz/': 'Datenschutz',
+    '/analytics/': 'Analytics',
+  };
 
   // ── Auth ──
   const authScreen = $('an-auth');
@@ -284,19 +332,59 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
-  // ── Render ──
+  // ── Helpers ──
+  function num(n: number): string {
+    return n.toLocaleString('de-DE');
+  }
+
+  function esc(s: string): string {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function pageName(path: string): string {
+    return PAGE_NAMES[path] || path;
+  }
+
+  // ── Render Dashboard ──
   function renderDashboard(data: any) {
     $('an-loading').style.display = 'none';
     $('an-content').style.display = '';
 
-    // Summary
-    $('sc-pageviews').textContent = num(data.summary.pageviews);
-    $('sc-visitors').textContent = num(data.summary.visitors);
-    $('sc-days').textContent = String(data.summary.activeDays);
-    $('sc-avg').textContent = num(data.summary.avgPerDay);
+    // Updated timestamp
+    const now = new Date();
+    $('an-updated').textContent = `Letzte Aktualisierung: ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+    // Real-time indicator
+    const rtEl = $('an-realtime');
+    const rtText = $('an-realtime-text');
+    if (data.realtime) {
+      if (data.realtime.last5min > 0) {
+        rtEl.style.display = 'flex';
+        rtText.textContent = `${data.realtime.last5min} aktiv (letzte 5 Min)`;
+      } else if (data.realtime.last30min > 0) {
+        rtEl.style.display = 'flex';
+        rtText.textContent = `${data.realtime.last30min} in letzten 30 Min`;
+      } else {
+        rtEl.style.display = 'none';
+      }
+    } else {
+      rtEl.style.display = 'none';
+    }
+
+    // Summary cards with trends
+    renderSummaryCards(data);
 
     // Daily chart
     renderDailyChart(data.daily);
+
+    // Hourly chart
+    renderHourlyChart(data.hourly);
+
+    // Weekday bars
+    renderWeekdayBars(data.weekdays);
+
+    // New vs returning
+    renderNewVsReturning(data.newVsReturning);
 
     // Pages table
     renderPagesTable(data.pages);
@@ -305,7 +393,12 @@ import Layout from '../layouts/Layout.astro';
     renderReferrersTable(data.referrers);
 
     // Countries
-    renderBarList('an-countries-bars', data.countries.map((c: any) => ({ label: c.country || '??', value: c.count })));
+    const totalCountries = data.countries.reduce((s: number, c: any) => s + c.count, 0);
+    renderBarList('an-countries-bars', data.countries.map((c: any) => ({
+      label: c.country || '??',
+      value: c.count,
+      pct: totalCountries > 0 ? Math.round((c.count / totalCountries) * 100) : 0,
+    })));
 
     // Devices
     const totalDevices = data.devices.reduce((s: number, d: any) => s + d.count, 0);
@@ -322,15 +415,51 @@ import Layout from '../layouts/Layout.astro';
       value: b.count,
       pct: totalBrowsers > 0 ? Math.round((b.count / totalBrowsers) * 100) : 0,
     })));
+
+    // Languages
+    renderBarList('an-languages-bars', (data.languages || []).map((l: any) => ({
+      label: l.language,
+      value: l.count,
+    })));
   }
 
-  // ── Helpers ──
-  function num(n: number): string {
-    return n.toLocaleString('de-DE');
-  }
+  // ── Summary Cards ──
+  function renderSummaryCards(data: any) {
+    const container = $('an-summary');
+    const s = data.summary;
+    const t = data.trend || {};
+    const days = data.period?.days || currentDays;
 
-  function esc(s: string): string {
-    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    function trendHtml(diff: number): string {
+      if (diff > 0) return `<span class="an-sc__trend an-sc__trend--up">&uarr; +${num(diff)}</span>`;
+      if (diff < 0) return `<span class="an-sc__trend an-sc__trend--down">&darr; ${num(diff)}</span>`;
+      return `<span class="an-sc__trend an-sc__trend--flat">&rarr; 0</span>`;
+    }
+
+    const prevLabel = `vs. vorherige ${days} Tage`;
+
+    container.innerHTML = `
+      <div class="an-sc">
+        <span class="an-sc__val">${num(s.pageviews)}</span>
+        <span class="an-sc__lbl">Seitenaufrufe</span>
+        ${t.pageviews !== undefined ? trendHtml(t.pageviews) : ''}
+        ${t.pageviews !== undefined ? `<span class="an-sc__trend-sub">${esc(prevLabel)}</span>` : ''}
+      </div>
+      <div class="an-sc">
+        <span class="an-sc__val">${num(s.visitors)}</span>
+        <span class="an-sc__lbl">Besucher</span>
+        ${t.visitors !== undefined ? trendHtml(t.visitors) : ''}
+        ${t.visitors !== undefined ? `<span class="an-sc__trend-sub">${esc(prevLabel)}</span>` : ''}
+      </div>
+      <div class="an-sc">
+        <span class="an-sc__val">${s.activeDays}</span>
+        <span class="an-sc__lbl">Aktive Tage</span>
+      </div>
+      <div class="an-sc">
+        <span class="an-sc__val">${num(s.avgPerDay)}</span>
+        <span class="an-sc__lbl">&empty; pro Tag</span>
+      </div>
+    `;
   }
 
   // ── Daily Chart (SVG) ──
@@ -341,16 +470,15 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
 
-    const W = 700, H = 220, PAD_L = 40, PAD_R = 10, PAD_T = 15, PAD_B = 40;
+    const W = 700, H = 240, PAD_L = 44, PAD_R = 10, PAD_T = 15, PAD_B = 44;
     const cw = W - PAD_L - PAD_R;
     const ch = H - PAD_T - PAD_B;
 
     const maxPV = Math.max(...daily.map((d: any) => d.pageviews), 1);
-    const maxVal = Math.ceil(maxPV / 5) * 5 || 5;
+    const maxVal = Math.ceil(maxPV * 1.1 / 5) * 5 || 5;
 
     const xStep = daily.length > 1 ? cw / (daily.length - 1) : cw / 2;
 
-    // Build points for pageviews area + line
     const pvPoints: string[] = [];
     const visPoints: string[] = [];
     daily.forEach((d: any, i: number) => {
@@ -361,12 +489,11 @@ import Layout from '../layouts/Layout.astro';
       visPoints.push(`${x.toFixed(1)},${yVis.toFixed(1)}`);
     });
 
-    // Area path for pageviews
-    const areaPath = `M${PAD_L},${PAD_T + ch} L${pvPoints.join(' L')} L${PAD_L + (daily.length - 1) * xStep},${PAD_T + ch} Z`;
+    const areaPath = `M${PAD_L},${PAD_T + ch} L${pvPoints.join(' L')} L${(PAD_L + (daily.length - 1) * xStep).toFixed(1)},${PAD_T + ch} Z`;
     const pvLine = `M${pvPoints.join(' L')}`;
     const visLine = `M${visPoints.join(' L')}`;
 
-    // Grid lines
+    // Grid lines + Y labels
     const gridLines: string[] = [];
     const yLabels: string[] = [];
     const gridSteps = 4;
@@ -374,45 +501,157 @@ import Layout from '../layouts/Layout.astro';
       const y = PAD_T + ch - (i / gridSteps) * ch;
       const val = Math.round((i / gridSteps) * maxVal);
       gridLines.push(`<line x1="${PAD_L}" y1="${y.toFixed(1)}" x2="${W - PAD_R}" y2="${y.toFixed(1)}" stroke="var(--color-border-light)" stroke-width="1" />`);
-      yLabels.push(`<text x="${PAD_L - 6}" y="${(y + 3).toFixed(1)}" text-anchor="end" fill="var(--color-muted)" font-size="10">${val}</text>`);
+      yLabels.push(`<text x="${PAD_L - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="var(--color-muted)" font-size="10" font-family="system-ui">${val}</text>`);
     }
 
-    // X-axis labels (show ~7 labels max)
+    // X-axis labels (max ~10 labels)
     const xLabels: string[] = [];
-    const labelInterval = Math.max(1, Math.floor(daily.length / 7));
+    const maxLabels = 10;
+    const labelInterval = Math.max(1, Math.ceil(daily.length / maxLabels));
     daily.forEach((d: any, i: number) => {
       if (i % labelInterval === 0 || i === daily.length - 1) {
         const x = PAD_L + i * xStep;
-        const dateStr = d.date.slice(5); // MM-DD
-        xLabels.push(`<text x="${x.toFixed(1)}" y="${H - 8}" text-anchor="middle" fill="var(--color-muted)" font-size="10">${dateStr}</text>`);
+        const parts = d.date.split('-');
+        const dateStr = `${parts[2]}.${parts[1]}.`;
+        xLabels.push(`<text x="${x.toFixed(1)}" y="${H - 8}" text-anchor="middle" fill="var(--color-muted)" font-size="10" font-family="system-ui">${dateStr}</text>`);
       }
     });
 
-    // Dots for pageviews and visitors
-    const pvDots: string[] = [];
-    const visDots: string[] = [];
-    daily.forEach((d: any, i: number) => {
+    // Dots
+    const pvDots = daily.map((d: any, i: number) => {
       const x = PAD_L + i * xStep;
-      const yPV = PAD_T + ch - (d.pageviews / maxVal) * ch;
-      const yVis = PAD_T + ch - (d.visitors / maxVal) * ch;
-      pvDots.push(`<circle cx="${x.toFixed(1)}" cy="${yPV.toFixed(1)}" r="3" fill="var(--color-primary)" />`);
-      visDots.push(`<circle cx="${x.toFixed(1)}" cy="${yVis.toFixed(1)}" r="3" fill="var(--color-accent)" />`);
-    });
+      const y = PAD_T + ch - (d.pageviews / maxVal) * ch;
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="var(--color-primary)" />`;
+    }).join('');
+    const visDots = daily.map((d: any, i: number) => {
+      const x = PAD_L + i * xStep;
+      const y = PAD_T + ch - (d.visitors / maxVal) * ch;
+      return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.5" fill="var(--color-accent)" />`;
+    }).join('');
 
     container.innerHTML = `
       <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
         ${gridLines.join('')}
         ${yLabels.join('')}
         ${xLabels.join('')}
-        <path d="${areaPath}" fill="var(--color-primary)" opacity="0.12" />
+        <path d="${areaPath}" fill="var(--color-primary)" opacity="0.15" />
         <path d="${pvLine}" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
         <path d="${visLine}" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6,3" />
-        ${pvDots.join('')}
-        ${visDots.join('')}
+        ${pvDots}
+        ${visDots}
       </svg>
-      <div style="display:flex;gap:var(--space-4);justify-content:center;margin-top:var(--space-2);font-size:0.75rem;color:var(--color-text-secondary);">
-        <span><span style="display:inline-block;width:12px;height:3px;background:var(--color-primary);vertical-align:middle;margin-right:4px;border-radius:2px;"></span>Seitenaufrufe</span>
-        <span><span style="display:inline-block;width:12px;height:3px;background:var(--color-accent);vertical-align:middle;margin-right:4px;border-radius:2px;border-top:1px dashed var(--color-accent);"></span>Besucher</span>
+      <div class="an-chart-legend">
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-primary)"></span>Seitenaufrufe</span>
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-accent);border-top:1px dashed var(--color-accent)"></span>Besucher</span>
+      </div>
+    `;
+  }
+
+  // ── Hourly Bar Chart (SVG) ──
+  function renderHourlyChart(hourly: any[]) {
+    const container = $('an-hourly-chart');
+    if (!hourly || hourly.length === 0) {
+      container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Daten.</p>';
+      return;
+    }
+
+    const W = 700, H = 200, PAD_L = 44, PAD_R = 10, PAD_T = 10, PAD_B = 32;
+    const cw = W - PAD_L - PAD_R;
+    const ch = H - PAD_T - PAD_B;
+
+    const maxPV = Math.max(...hourly.map((h: any) => h.pageviews), 1);
+    const maxVal = Math.ceil(maxPV * 1.1 / 5) * 5 || 5;
+    const barW = cw / 24;
+    const gap = barW * 0.15;
+    const currentHour = new Date().getHours();
+
+    // Grid lines
+    const gridSteps = 3;
+    const grid: string[] = [];
+    for (let i = 0; i <= gridSteps; i++) {
+      const y = PAD_T + ch - (i / gridSteps) * ch;
+      const val = Math.round((i / gridSteps) * maxVal);
+      grid.push(`<line x1="${PAD_L}" y1="${y.toFixed(1)}" x2="${W - PAD_R}" y2="${y.toFixed(1)}" stroke="var(--color-border-light)" stroke-width="1" />`);
+      grid.push(`<text x="${PAD_L - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="var(--color-muted)" font-size="10" font-family="system-ui">${val}</text>`);
+    }
+
+    // Bars
+    const bars: string[] = [];
+    const labels: string[] = [];
+    hourly.forEach((h: any, i: number) => {
+      const x = PAD_L + i * barW + gap;
+      const w = barW - gap * 2;
+      const barH = maxVal > 0 ? (h.pageviews / maxVal) * ch : 0;
+      const y = PAD_T + ch - barH;
+      const isCurrentHour = i === currentHour;
+      const fill = isCurrentHour ? 'var(--color-accent)' : 'var(--color-primary)';
+      bars.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${barH.toFixed(1)}" rx="2" fill="${fill}" opacity="${isCurrentHour ? 1 : 0.8}" />`);
+
+      // Labels every 3 hours
+      if (i % 3 === 0) {
+        labels.push(`<text x="${(PAD_L + i * barW + barW / 2).toFixed(1)}" y="${H - 8}" text-anchor="middle" fill="var(--color-muted)" font-size="10" font-family="system-ui">${i}</text>`);
+      }
+    });
+
+    container.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
+        ${grid.join('')}
+        ${bars.join('')}
+        ${labels.join('')}
+      </svg>
+      <div class="an-chart-legend">
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-primary)"></span>Seitenaufrufe pro Stunde</span>
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-accent)"></span>Aktuelle Stunde</span>
+      </div>
+    `;
+  }
+
+  // ── Weekday Bars ──
+  function renderWeekdayBars(weekdays: any[]) {
+    const container = $('an-weekday-bars');
+    if (!weekdays || weekdays.length === 0) {
+      container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Daten.</p>';
+      return;
+    }
+
+    const maxPV = Math.max(...weekdays.map((w: any) => w.pageviews), 1);
+    let html = '';
+    weekdays.forEach((w: any, i: number) => {
+      const width = Math.max(2, (w.pageviews / maxPV) * 100);
+      const isWeekend = i >= 5; // Sa=5, So=6
+      const fillClass = isWeekend ? ' an-bar-fill--accent' : '';
+      html += `
+        <div class="an-bar-item">
+          <div class="an-bar-header">
+            <span class="an-bar-label">${esc(w.name)}</span>
+            <span class="an-bar-value">${num(w.pageviews)} Aufrufe</span>
+          </div>
+          <div class="an-bar-track"><div class="an-bar-fill${fillClass}" style="width:${width.toFixed(1)}%"></div></div>
+        </div>`;
+    });
+    container.innerHTML = html;
+  }
+
+  // ── New vs Returning ──
+  function renderNewVsReturning(nv: any) {
+    const container = $('an-newret');
+    if (!nv || (nv.new === 0 && nv.returning === 0)) {
+      container.innerHTML = '<p class="an-newret-empty">Noch nicht genug Daten</p>';
+      return;
+    }
+
+    const total = nv.new + nv.returning;
+    const newPct = total > 0 ? Math.round((nv.new / total) * 100) : 0;
+    const retPct = 100 - newPct;
+
+    container.innerHTML = `
+      <div class="an-newret-bar">
+        <div class="an-newret-bar__new" style="width:${newPct}%"></div>
+        <div class="an-newret-bar__ret" style="width:${retPct}%"></div>
+      </div>
+      <div class="an-newret-labels">
+        <span>Neu: ${num(nv.new)} (${newPct}%)</span>
+        <span>Wiederkehrend: ${num(nv.returning)} (${retPct}%)</span>
       </div>
     `;
   }
@@ -426,7 +665,7 @@ import Layout from '../layouts/Layout.astro';
     }
     let html = `<table class="an-tbl"><thead><tr><th>Seite</th><th>Aufrufe</th><th>Besucher</th></tr></thead><tbody>`;
     pages.forEach((p: any) => {
-      html += `<tr><td>${esc(p.path)}</td><td class="an-num">${num(p.views)}</td><td class="an-num">${num(p.visitors)}</td></tr>`;
+      html += `<tr><td>${esc(pageName(p.path))}</td><td class="an-num">${num(p.views)}</td><td class="an-num">${num(p.visitors)}</td></tr>`;
     });
     html += `</tbody></table>`;
     container.innerHTML = html;
@@ -447,7 +686,7 @@ import Layout from '../layouts/Layout.astro';
     container.innerHTML = html;
   }
 
-  // ── Bar List (countries, devices, browsers) ──
+  // ── Bar List ──
   function renderBarList(containerId: string, items: Array<{label: string; value: number; pct?: number}>) {
     const container = $(containerId);
     if (!items || items.length === 0) {
