@@ -905,7 +905,7 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
   const rushHour = (await db.prepare(`
     SELECT
       CASE
-        WHEN planned_hour BETWEEN 6 AND 8 THEN 'morning_rush'
+        WHEN planned_hour BETWEEN 7 AND 9 THEN 'morning_rush'
         WHEN planned_hour BETWEEN 16 AND 18 THEN 'evening_rush'
         ELSE 'off_peak'
       END as period,
@@ -1091,7 +1091,7 @@ async function handleAiInsight(env: Env, url: URL): Promise<Response> {
   const rushHour = (await env.DB.prepare(`
     SELECT
       CASE
-        WHEN planned_hour BETWEEN 6 AND 8 THEN 'morning_rush'
+        WHEN planned_hour BETWEEN 7 AND 9 THEN 'morning_rush'
         WHEN planned_hour BETWEEN 16 AND 18 THEN 'evening_rush'
         ELSE 'off_peak'
       END as period,
@@ -1202,7 +1202,7 @@ Richtungsvergleich:
 - Tutzing: ${tutRate}% puenktlich, Ø ${Math.round(tutAvg / 60)} Min (${tutTotal} Zuege)
 
 Rush Hour:
-- Morning Rush (6-9): ${rushPct(morning)}%
+- Morning Rush (7-10): ${rushPct(morning)}%
 - Evening Rush (16-19): ${rushPct(evening)}%
 - Nebenzeit: ${rushPct(offPeak)}%
 
@@ -1222,38 +1222,19 @@ Halte dich an die Fakten. Sei direkt und sachlich. Keine Floskeln. Keine Emojis.
 
   // Call Workers AI
   try {
-    // gpt-oss-120b uses the Responses API format (not Chat Completions)
     const aiResponse = await env.AI.run('@cf/openai/gpt-oss-120b', {
       input: prompt,
       reasoning: { effort: 'low' },
     });
 
-    // Responses API: extract text from output array
-    // Format: output = [{type:"reasoning",...}, {type:"message", content:[{text:"..."}]}]
-    let insightText = '';
-    if (aiResponse?.output_text) {
-      // Some bindings provide output_text directly
-      insightText = aiResponse.output_text;
-    } else if (aiResponse?.response) {
-      // Chat completions fallback
-      insightText = aiResponse.response;
-    } else if (Array.isArray(aiResponse?.output)) {
-      // Responses API format: find the message-type output
-      for (const item of aiResponse.output) {
-        if (item.type === 'message' && Array.isArray(item.content)) {
-          for (const block of item.content) {
-            if (block.text) insightText += block.text;
-          }
-        }
-      }
-    }
-    if (typeof insightText !== 'string') insightText = JSON.stringify(insightText);
+    // Responses API: extract text from output_text or response field
+    let insightText = aiResponse?.output_text || aiResponse?.response || '';
+    if (typeof insightText !== 'string') insightText = '';
     insightText = insightText.trim();
-    console.log(`[ai-insight] Extracted ${insightText.length} chars`);
 
     if (!insightText) {
       console.error('[ai-insight] Empty response from AI');
-      return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false, _debug: { keys: Object.keys(aiResponse || {}), raw: JSON.stringify(aiResponse).substring(0, 2000) } });
+      return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false });
     }
 
     const generatedAt = new Date().toISOString();
