@@ -112,9 +112,10 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       <div class="content-grid">
         
         <!-- LEFT COLUMN: Filters -->
-        <aside class="column-left">
+        <div class="column-left">
+          <h3 class="section-heading">Filter</h3>
           <FilterBar events={events} regions={regions} artTags={artTags} />
-        </aside>
+        </div>
 
         <!-- CENTER COLUMN: Event List -->
         <div class="column-center">
@@ -146,14 +147,14 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         <!-- RIGHT COLUMN: Context (Desktop only) -->
         <aside class="column-right">
           <!-- S-Bahn Info -->
+          <h3 class="section-heading">S-Bahn aktuell</h3>
           <div class="context-widget">
-            <h3 class="section-heading">S-Bahn aktuell</h3>
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </div>
 
           <!-- Weekend Highlights (Vertical) -->
           {hasWeekendEvents && (
-            <div class="context-widget">
+            <div class="context-widget-group">
               <h3 class="section-heading">{weekendTitle}</h3>
               <div class="highlights-vertical">
                 {weekendEvents.map(event => {
@@ -220,8 +221,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           )}
 
           <!-- Vor Ort Widgets -->
+          <h3 class="section-heading">Vor Ort</h3>
           <div class="context-widget">
-            <h3 class="section-heading">Vor Ort</h3>
             <div class="vor-ort-stack">
               <MarketInfo />
               <WebcamWidget />
