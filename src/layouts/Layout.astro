@@ -15,9 +15,13 @@ const { title, description = "Events & Veranstaltungen am Starnberger See", appS
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Self-hosted fonts (DSGVO-konform, keine Datenübermittlung an Google) -->
+    <style>
+      @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/space-grotesk-400.ttf') format('truetype'); }
+      @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/space-grotesk-500.ttf') format('truetype'); }
+      @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/space-grotesk-600.ttf') format('truetype'); }
+      @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/space-grotesk-700.ttf') format('truetype'); }
+    </style>
     <link rel="dns-prefetch" href="https://api.open-meteo.com">
     <link rel="dns-prefetch" href="https://dbf.finalrewind.org">
     <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
