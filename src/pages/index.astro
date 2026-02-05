@@ -122,6 +122,82 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           <!-- Hidden count for filter JS -->
           <span id="visible-count" style="display:none">{events.length}</span>
 
+          <!-- Weekend Highlights Carousel (Mobile/Tablet only) -->
+          {hasWeekendEvents && (
+            <section class="wk-carousel-section">
+              <div class="wk-carousel-header">
+                <h3 class="wk-carousel-title">🔥 {weekendTitle}</h3>
+                <span class="wk-carousel-count">{weekendEvents.length} Empfehlungen</span>
+              </div>
+              <div class="wk-carousel-track">
+                {weekendEvents.map(event => {
+                  const evDate = new Date(event.date);
+                  const evDay = evDate.getDate();
+                  const evMonth = evDate.getMonth() + 1;
+                  const evWeekday = evDate.toLocaleDateString('de-DE', { weekday: 'short' });
+                  const curation = event.aiCuration;
+                  const score = curation?.scores?.overall ?? 0;
+                  const bestFor = curation?.bestFor;
+                  const bestForEmoji = bestFor === 'familie' ? '👨‍👩‍👧‍👦' : bestFor === 'kinder' ? '🧒' : bestFor === 'erwachsene' ? '👫' : bestFor === 'alle' ? '🌟' : '';
+                  const scoreColor = score >= 8 ? 'var(--wk-score-high)' : score >= 6 ? 'var(--wk-score-mid)' : 'var(--wk-score-low)';
+                  return (
+                    <button 
+                      class="wk-card" 
+                      data-event-id={event.id}
+                      data-event-title={event.title}
+                      data-date={event.date}
+                      data-event-time={event.time}
+                      data-location={event.location}
+                      data-event-address={event.address}
+                      data-event-description={event.description}
+                      data-event-url={event.url}
+                      data-category={event.category}
+                      data-art-tags={event.artTags?.join(',')}
+                      data-ai-summary={curation?.aiSummary}
+                      data-ai-best-for={bestFor}
+                      data-ai-score={score}
+                      data-ai-price={curation?.priceInfo}
+                      data-ai-tips={curation?.tips}
+                      data-ai-age-range={curation?.ageRange}
+                      data-ai-family-score={curation?.scores?.family}
+                      data-ai-kids-score={curation?.scores?.kids}
+                      data-ai-adults-score={curation?.scores?.adults}
+                    >
+                      <div class="wk-card-top">
+                        {curation && (
+                          <div class="wk-score-badge" style={`--score-color: ${scoreColor}`}>
+                            <span class="wk-score-val">{score}</span>
+                            <span class="wk-score-max">/10</span>
+                          </div>
+                        )}
+                        <div class="wk-card-meta">
+                          <span class="wk-day">{evWeekday} {evDay}.{evMonth}.</span>
+                          {event.time && <span class="wk-time">{event.time} Uhr</span>}
+                        </div>
+                      </div>
+                      <h4 class="wk-card-title">{event.title}</h4>
+                      {curation?.aiSummary && (
+                        <p class="wk-card-summary">{curation.aiSummary.length > 80 ? curation.aiSummary.slice(0, 80) + '…' : curation.aiSummary}</p>
+                      )}
+                      <div class="wk-card-footer">
+                        <div class="wk-card-location">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="wk-loc-icon">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                          {event.location}
+                        </div>
+                        {bestFor && (
+                          <span class={`wk-for-badge wk-for--${bestFor}`}>{bestForEmoji}</span>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
           <!-- Day Groups -->
           <div class="events-list" id="events-list">
             {sortedDays.map(([dayKey, dayData]) => (
@@ -381,6 +457,211 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     /* No max-height or overflow on mobile/tablet - normal flow */
   }
 
+  /* ===== WEEKEND HIGHLIGHTS CAROUSEL (Mobile/Tablet) ===== */
+  .wk-carousel-section {
+    --wk-score-high: #10b981;
+    --wk-score-mid: #f59e0b;
+    --wk-score-low: #6366f1;
+    margin-bottom: var(--space-6);
+  }
+
+  @media (min-width: 1200px) {
+    .wk-carousel-section {
+      display: none; /* Desktop: shown in right sidebar instead */
+    }
+  }
+
+  .wk-carousel-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    padding: 0 var(--space-1);
+  }
+
+  .wk-carousel-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .wk-carousel-count {
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .wk-carousel-track {
+    display: flex;
+    gap: var(--space-4);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: var(--space-2);
+    /* Allow cards to peek out on the right to hint at scrollability */
+    margin-right: calc(-1 * var(--space-4));
+    padding-right: var(--space-4);
+  }
+
+  .wk-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wk-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    background: var(--color-card);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-xl, 16px);
+    cursor: pointer;
+    transition: all var(--duration-normal) ease;
+    font-family: inherit;
+    color: inherit;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wk-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--score-color, var(--color-primary)), transparent);
+    opacity: 0.7;
+  }
+
+  .wk-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.15));
+    border-color: var(--color-primary);
+  }
+
+  .wk-card:active {
+    transform: scale(0.98);
+  }
+
+  .wk-card-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .wk-score-badge {
+    display: flex;
+    align-items: baseline;
+    gap: 1px;
+    background: color-mix(in srgb, var(--score-color) 12%, transparent);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+  }
+
+  .wk-score-val {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--score-color);
+  }
+
+  .wk-score-max {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--score-color);
+    opacity: 0.6;
+  }
+
+  .wk-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .wk-day {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  .wk-time {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    padding: 1px 6px;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-full);
+  }
+
+  .wk-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .wk-card-summary {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .wk-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .wk-card-location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .wk-loc-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .wk-for-badge {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Tablet: slightly larger cards */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .wk-card {
+      flex: 0 0 300px;
+    }
+  }
+
   /* ===== WEEKEND HIGHLIGHTS (Right Sidebar - Vertical) ===== */
   .highlights-vertical {
     display: flex;
@@ -637,8 +918,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </script>
 
 <script>
-  // Weekend highlight card click → open modal
-  document.querySelectorAll('.wh-card').forEach(card => {
+  // Weekend highlight card click → open modal (both sidebar .wh-card and carousel .wk-card)
+  function attachHighlightCardHandler(card: Element) {
     card.addEventListener('click', () => {
       const el = card as HTMLElement;
       const eventData = {
@@ -667,7 +948,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         (window as any).openEventModal(eventData);
       }
     });
-  });
+  }
+  document.querySelectorAll('.wh-card').forEach(attachHighlightCardHandler);
+  document.querySelectorAll('.wk-card').forEach(attachHighlightCardHandler);
 
   // Load More functionality (mobile/tablet only)
   const BATCH_SIZE = 10;
