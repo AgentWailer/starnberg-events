@@ -333,7 +333,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     padding-bottom: var(--space-16);
   }
 
-  @media (min-width: 768px) {
+  /* Tablet: fixed header, needs padding */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .main {
+      padding-top: 377px;
+    }
+  }
+
+  /* Desktop App Shell: no padding, flex layout */
+  @media (min-width: 1200px) {
     .main {
       flex: 1;
       min-height: 0;
@@ -357,32 +365,31 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     display: block;
   }
 
-  /* Mobile: Single column (< 768px) */
-  @media (max-width: 767px) {
+  /* Mobile + Tablet: Single column (< 1200px) */
+  @media (max-width: 1199px) {
     .column-left {
       display: contents; /* Remove box but keep children — mobile filter bar (position:fixed) needs to render */
     }
     .column-left > .section-heading {
-      display: none; /* Hide "Filter" heading on mobile */
+      display: none; /* Hide "Filter" heading on mobile/tablet */
     }
     .column-right {
       display: none;
     }
   }
 
-  /* Tablet: 2 columns (768px - 1199px) */
+  /* Tablet: Single column within App Shell (768px - 1199px) */
   @media (min-width: 768px) and (max-width: 1199px) {
     .content-grid {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: var(--space-8);
-      align-items: stretch; /* App Shell: columns fill grid height */
+      display: flex;
+      flex-direction: column;
       flex: 1;
       min-height: 0;
     }
-    
-    .column-right {
-      display: none; /* Hide right column on tablet */
+
+    .column-center {
+      flex: 1;
+      padding-bottom: 60px; /* Space for mobile-filter-bar at bottom */
     }
   }
 
@@ -401,8 +408,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   }
 
   /* ===== LEFT COLUMN (Filter Sidebar) ===== */
-  /* App Shell: column is a grid child that stretches to fill container */
-  @media (min-width: 768px) {
+  /* App Shell: column is a grid child that stretches to fill container (Desktop only) */
+  @media (min-width: 1200px) {
     .column-left {
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -959,9 +966,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     background: var(--color-bg-secondary);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     .footer {
-      flex-shrink: 0;
+      display: none; /* Hidden in App Shell mode — columns fill viewport */
     }
   }
 
@@ -1027,9 +1034,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </style>
 
 <script>
-  // === App Shell: Header collapse on center-column scroll (Desktop ≥768px) ===
+  // === App Shell: Header collapse on center-column scroll (Desktop ≥1200px) ===
   function initAppShellCollapse() {
-    const mql = window.matchMedia('(min-width: 768px)');
+    const mql = window.matchMedia('(min-width: 1200px)');
     if (!mql.matches) return;
 
     const header = document.querySelector('.header') as HTMLElement;

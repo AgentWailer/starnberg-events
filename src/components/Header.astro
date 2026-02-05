@@ -122,6 +122,12 @@ const { lastUpdated } = Astro.props;
   @media (min-width: 768px) {
     .navbar {
       display: block;
+    }
+  }
+
+  /* Desktop App Shell: navbar in flow */
+  @media (min-width: 1200px) {
+    .navbar {
       position: relative;
       top: auto;
       left: auto;
@@ -350,6 +356,20 @@ const { lastUpdated } = Astro.props;
 
   @media (min-width: 768px) {
     .header {
+      position: fixed;
+      top: 65px; /* Below navbar */
+      left: 0;
+      right: 0;
+      z-index: 95;
+      padding: var(--space-10) var(--space-8) var(--space-8);
+      border-bottom: 1px solid var(--color-border-light);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+  }
+
+  /* Desktop App Shell: Header in flow, collapsible */
+  @media (min-width: 1200px) {
+    .header {
       position: relative;
       top: auto;
       left: auto;
@@ -357,10 +377,7 @@ const { lastUpdated } = Astro.props;
       z-index: 1;
       flex-shrink: 0;
       overflow: hidden;
-      max-height: 400px; /* generous max for collapse transition */
-      padding: var(--space-10) var(--space-8) var(--space-8);
-      border-bottom: 1px solid var(--color-border-light);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      max-height: 400px;
       transition: max-height 0.35s ease, opacity 0.25s ease,
                   padding 0.35s ease, border-color 0.35s ease,
                   box-shadow 0.35s ease;
@@ -371,13 +388,15 @@ const { lastUpdated } = Astro.props;
       opacity: 0;
       padding-top: 0;
       padding-bottom: 0;
+      margin: 0;
+      border: none;
       pointer-events: none;
-      border-bottom-color: transparent;
       box-shadow: none;
+      visibility: hidden;
     }
   }
 
-  @media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  @media (min-width: 1200px) and (prefers-reduced-motion: reduce) {
     .header {
       transition: none;
     }

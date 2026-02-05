@@ -355,6 +355,11 @@ const artTagGroups = [
   @media (min-width: 1200px) {
     .filter-sidebar {
       display: flex;
+      position: relative; /* App Shell: not sticky — column-left handles scroll */
+      top: 0;
+      width: auto; /* Fill column-left grid track */
+      max-height: none; /* Column-left handles overflow */
+      box-shadow: none; /* Cleaner within App Shell column */
     }
   }
 
