@@ -90,12 +90,14 @@ const dayLabel = isToday
       display: none;
     }
 
-    /* Desktop: taller cover for margin-bottom zone */
+    /* Desktop: opaque cover for margin-bottom (16px) + short fade
+     * 75% of 36px = 27px opaque — covers margin + safety buffer.
+     * Remaining 9px is gentle fade so cards don't cut off harshly. */
     .section-heading::after {
       left: 0;
       right: 0;
       height: 36px;
-      background: linear-gradient(to bottom, var(--color-bg) 55%, transparent);
+      background: linear-gradient(to bottom, var(--color-bg) 75%, transparent);
     }
   }
 
