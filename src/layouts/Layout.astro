@@ -2,13 +2,14 @@
 interface Props {
   title: string;
   description?: string;
+  appShell?: boolean;
 }
 
-const { title, description = "Events & Veranstaltungen am Starnberger See" } = Astro.props;
+const { title, description = "Events & Veranstaltungen am Starnberger See", appShell = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang="de" class:list={[appShell && 'app-shell']}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -176,14 +177,14 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     overflow-y: scroll;
   }
 
-  /* Desktop: hide all scrollbars (App Shell with overflow:hidden anyway) */
+  /* Desktop App Shell: hide scrollbars (only on pages with appShell=true) */
   @media (min-width: 1200px) {
-    html {
+    html.app-shell {
       overflow-y: hidden;
       scrollbar-width: none;
     }
 
-    html::-webkit-scrollbar {
+    html.app-shell::-webkit-scrollbar {
       display: none;
     }
   }
@@ -199,14 +200,14 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     -webkit-text-size-adjust: 100%;
   }
 
-  /* === App Shell: Desktop ≥1200px — no page scroll, flex column layout === */
+  /* === App Shell: Desktop ≥1200px — only on pages with appShell=true === */
   @media (min-width: 1200px) {
-    html {
+    html.app-shell {
       height: 100%;
       overflow: hidden;
     }
 
-    body {
+    html.app-shell body {
       height: 100%;
       overflow: hidden;
       display: flex;
