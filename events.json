@@ -11,7 +11,10 @@
       "address": "82343 Pöcking",
       "description": "Kreativkurs im professionellen Atelier",
       "category": "erwachsene",
-      "tags": ["kunst", "workshop"],
+      "tags": [
+        "kunst",
+        "workshop"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6968e09c9f949426f44bdd4f"
     },
     {
@@ -23,7 +26,10 @@
       "address": "82346 Andechs",
       "description": "Jeden Donnerstag öffentliche Führung",
       "category": "familie",
-      "tags": ["führung", "kultur"],
+      "tags": [
+        "führung",
+        "kultur"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=692466e7205b8f3bc56641c7"
     },
     {
@@ -35,7 +41,10 @@
       "address": "86911 Dießen am Ammersee",
       "description": "Für Groß und Klein: Warmherzige Kuschelei'n!",
       "category": "kinder",
-      "tags": ["kinder", "literatur"],
+      "tags": [
+        "kinder",
+        "literatur"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=68e39acbdd2dd53cd0779a90"
     },
     {
@@ -47,7 +56,10 @@
       "address": "82347 Bernried am Starnberger See",
       "description": "Musikkabarett",
       "category": "erwachsene",
-      "tags": ["musik", "theater"],
+      "tags": [
+        "musik",
+        "theater"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6911b46f35610140e567d18b"
     },
     {
@@ -59,7 +71,10 @@
       "address": "80225 Gilching",
       "description": "Humorvoller Einblick in Sprache und Kultur der Bayern",
       "category": "erwachsene",
-      "tags": ["workshop", "kulinarisch"],
+      "tags": [
+        "workshop",
+        "kulinarisch"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69412e13ec880c50d43641be"
     },
     {
@@ -71,7 +86,10 @@
       "address": "82343 Pöcking",
       "description": "Die Show über Träume, Mut und das Leben – für Kinder und alle, die es einmal gewesen sind",
       "category": "kinder",
-      "tags": ["kinder", "theater"],
+      "tags": [
+        "kinder",
+        "theater"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=68da4b8550eea724c58423a5"
     },
     {
@@ -83,7 +101,9 @@
       "address": "82229 Seefeld",
       "description": "Klassikkonzert",
       "category": "erwachsene",
-      "tags": ["musik"],
+      "tags": [
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3df1ec880c50d436388e"
     },
     {
@@ -95,7 +115,10 @@
       "address": "82319 Starnberg",
       "description": "Stilvolle Balltradition",
       "category": "erwachsene",
-      "tags": ["tanz", "fest"],
+      "tags": [
+        "tanz",
+        "fest"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6941226aec880c50d436419a"
     },
     {
@@ -107,7 +130,9 @@
       "address": "82327 Tutzing",
       "description": "Kurzfilme von Nachwuchs-Filmemachern mit Filmgespräch",
       "category": "erwachsene",
-      "tags": ["kino"],
+      "tags": [
+        "kino"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69677121c8652f72520d808d"
     },
     {
@@ -119,7 +144,9 @@
       "address": "82266 Inning am Ammersee",
       "description": "Gitarristin Yasi Hofer und ihr Trio",
       "category": "erwachsene",
-      "tags": ["musik"],
+      "tags": [
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69305e44d5d91861c35733e5"
     },
     {
@@ -131,7 +158,10 @@
       "address": "82229 Seefeld",
       "description": "Kinderkonzert",
       "category": "kinder",
-      "tags": ["kinder", "musik"],
+      "tags": [
+        "kinder",
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3eebec880c50d4363894"
     },
     {
@@ -143,7 +173,10 @@
       "address": "82319 Starnberg",
       "description": "Girls-Power und kreative Kostüme!",
       "category": "erwachsene",
-      "tags": ["fest", "musik"],
+      "tags": [
+        "fest",
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d02b9fc49d222d537304"
     },
     {
@@ -155,7 +188,10 @@
       "address": "82266 Inning am Ammersee",
       "description": "Faschingsparty mit Live-Band",
       "category": "erwachsene",
-      "tags": ["fest", "musik"],
+      "tags": [
+        "fest",
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69305fb3d5d91861c3573446"
     },
     {
@@ -167,7 +203,10 @@
       "address": "82340 Feldafing",
       "description": "Führung durch die Brauerei mit Erklärung der Brauprozesse",
       "category": "familie",
-      "tags": ["führung", "kulinarisch"],
+      "tags": [
+        "führung",
+        "kulinarisch"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69245abd205b8f3bc566419e"
     },
     {
@@ -179,19 +218,23 @@
       "address": "82327 Tutzing",
       "description": "Romantisches Dinner im Restaurant Theodor",
       "category": "erwachsene",
-      "tags": ["kulinarisch"],
+      "tags": [
+        "kulinarisch"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6971d9e59f949426f44be8e8"
     },
     {
       "id": 16,
-      "title": "Klassik 2.0 / Club - „Paris trifft See"",
+      "title": "Klassik 2.0 / Club - „Paris trifft See",
       "date": "2026-02-14",
       "time": "19:30",
       "location": "Berg",
       "address": "82335 Berg",
       "description": "Julian Schad & Quartett mit Sopranistin Clara Orif aus Paris",
       "category": "erwachsene",
-      "tags": ["musik"],
+      "tags": [
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69666943f3edc40bae3ad4a1"
     },
     {
@@ -203,7 +246,9 @@
       "address": "82319 Starnberg",
       "description": "Präsentiert von Perchalla e.V. & DJ Hap",
       "category": "erwachsene",
-      "tags": ["fest"],
+      "tags": [
+        "fest"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=67877e6d74da950e18c95ec0"
     },
     {
@@ -215,7 +260,11 @@
       "address": "82319 Starnberg",
       "description": "Gemeinsam einen Kurzfilm drehen – für Anfänger und Fortgeschrittene",
       "category": "kinder",
-      "tags": ["kinder", "workshop", "kino"],
+      "tags": [
+        "kinder",
+        "workshop",
+        "kino"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=697b27af9fcdb03730df2bd2"
     },
     {
@@ -227,7 +276,10 @@
       "address": "82319 Starnberg",
       "description": "Auftritte der Perchalla-Garden und Showeinlagen",
       "category": "familie",
-      "tags": ["tanz", "fest"],
+      "tags": [
+        "tanz",
+        "fest"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d3ae9fc49d222d53bb24"
     },
     {
@@ -239,7 +291,9 @@
       "address": "86911 Dießen",
       "description": "Kneipen-Chor im Craftbräu",
       "category": "erwachsene",
-      "tags": ["musik"],
+      "tags": [
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6647643502d3e043d16976bc"
     },
     {
@@ -251,7 +305,9 @@
       "address": "82327 Tutzing",
       "description": "Traditionelles Fischessen",
       "category": "familie",
-      "tags": ["kulinarisch"],
+      "tags": [
+        "kulinarisch"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=6971e7229f949426f44be901"
     },
     {
@@ -263,19 +319,24 @@
       "address": "82229 Seefeld",
       "description": "Jazzkonzert",
       "category": "erwachsene",
-      "tags": ["musik"],
+      "tags": [
+        "musik"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3fdeec880c50d436389a"
     },
     {
       "id": 23,
-      "title": "„Fremd ist der Fremde nur in der Fremde."",
+      "title": "„Fremd ist der Fremde nur in der Fremde.",
       "date": "2026-02-22",
       "time": "19:30",
       "location": "Dießen",
       "address": "86911 Dießen",
       "description": "Literarisches Jazzkonzert",
       "category": "erwachsene",
-      "tags": ["musik", "literatur"],
+      "tags": [
+        "musik",
+        "literatur"
+      ],
       "url": "https://www.starnbergammersee.de/detail/id=69707b3940fda3056402d3a0"
     }
   ]
