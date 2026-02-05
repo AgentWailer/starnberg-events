@@ -211,6 +211,18 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
               <WebcamWidget />
             </div>
           </section>
+
+          <!-- Desktop: Footer at bottom of center column scroll area -->
+          <footer class="column-footer">
+            <p>
+              {events.length} Events aus {sources.length} Quellen ·
+              <span class="footer-links">
+                <a href="https://www.beccult.de" target="_blank" rel="noopener">beccult</a>,
+                <a href="https://www.starnbergammersee.de" target="_blank" rel="noopener">starnbergammersee.de</a>,
+                <a href="https://www.muenchen.de" target="_blank" rel="noopener">muenchen.de</a>
+              </span>
+            </p>
+          </footer>
         </div>
 
         <!-- RIGHT COLUMN: Context (Desktop only) -->
@@ -971,7 +983,35 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* ===== FOOTER ===== */
+  /* ===== DESKTOP COLUMN FOOTER (inside center column scroll area) ===== */
+  .column-footer {
+    display: none;
+  }
+
+  @media (min-width: 1200px) {
+    .column-footer {
+      display: block;
+      padding: var(--space-8) 0;
+      margin-top: var(--space-8);
+      border-top: 1px solid var(--color-border-light);
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+      text-align: center;
+    }
+
+    .column-footer a {
+      color: var(--color-muted);
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color var(--duration-fast) ease;
+    }
+
+    .column-footer a:hover {
+      text-decoration-color: var(--color-muted);
+    }
+  }
+
+  /* ===== FOOTER (Mobile/Tablet only) ===== */
   .footer {
     padding: var(--space-8) 0;
     border-top: 1px solid var(--color-border-light);
@@ -980,7 +1020,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 1200px) {
     .footer {
-      display: none; /* Hidden in App Shell mode — columns fill viewport */
+      display: none; /* Desktop uses .column-footer inside center column */
     }
   }
 
@@ -1047,32 +1087,39 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
 <script>
   // === App Shell: Header collapse proportional to scroll (Desktop ≥1200px) ===
+  // Scroll in ANY column (left, center, right) collapses the header.
+  // Header re-expands only when ALL columns are scrolled back to top.
   function initAppShellCollapse() {
     const mql = window.matchMedia('(min-width: 1200px)');
     if (!mql.matches) return;
 
     const header = document.querySelector('.header') as HTMLElement;
-    const centerCol = document.querySelector('.column-center') as HTMLElement;
+    const columns = [
+      document.querySelector('.column-left'),
+      document.querySelector('.column-center'),
+      document.querySelector('.column-right')
+    ].filter(Boolean) as HTMLElement[];
     const navbarBrand = document.querySelector('.navbar-brand') as HTMLElement;
 
-    if (!header || !centerCol) return;
+    if (!header || columns.length === 0) return;
 
     // Measure header's natural height (before any scroll)
     let headerHeight = header.offsetHeight;
     let collapsed = false;
 
     function onScroll() {
-      const scrollY = centerCol.scrollTop;
-      const remaining = Math.max(0, headerHeight - scrollY);
+      // Use the maximum scrollTop across all columns
+      const maxScrollY = Math.max(...columns.map(c => c.scrollTop));
+      const remaining = Math.max(0, headerHeight - maxScrollY);
 
       // Proportional max-height: header shrinks pixel-by-pixel with scroll
       header.style.maxHeight = remaining + 'px';
 
       // Opacity: full until 50% scrolled, then fade to 0
-      if (scrollY < headerHeight * 0.5) {
+      if (maxScrollY < headerHeight * 0.5) {
         header.style.opacity = '1';
       } else {
-        const fadeProgress = (scrollY - headerHeight * 0.5) / (headerHeight * 0.5);
+        const fadeProgress = (maxScrollY - headerHeight * 0.5) / (headerHeight * 0.5);
         header.style.opacity = String(Math.max(0, 1 - fadeProgress));
       }
 
@@ -1089,10 +1136,18 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       }
     }
 
-    centerCol.addEventListener('scroll', onScroll, { passive: true });
+    function attachListeners() {
+      columns.forEach(col => col.addEventListener('scroll', onScroll, { passive: true }));
+    }
 
-    // Handle breakpoint changes — add/remove listener + clean up
-    let listenerAttached = true;
+    function detachListeners() {
+      columns.forEach(col => col.removeEventListener('scroll', onScroll));
+    }
+
+    attachListeners();
+
+    // Handle breakpoint changes — add/remove listeners + clean up
+    let listenersAttached = true;
     mql.addEventListener('change', (e) => {
       if (!e.matches) {
         header.style.maxHeight = '';
@@ -1101,15 +1156,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         header.style.pointerEvents = '';
         navbarBrand?.classList.remove('visible');
         collapsed = false;
-        if (listenerAttached) {
-          centerCol.removeEventListener('scroll', onScroll);
-          listenerAttached = false;
+        if (listenersAttached) {
+          detachListeners();
+          listenersAttached = false;
         }
       } else {
         headerHeight = header.offsetHeight;
-        if (!listenerAttached) {
-          centerCol.addEventListener('scroll', onScroll, { passive: true });
-          listenerAttached = true;
+        if (!listenersAttached) {
+          attachListeners();
+          listenersAttached = true;
         }
         onScroll();
       }
@@ -1121,7 +1176,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       if (!mql.matches) return;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        // Temporarily reset to measure natural height
         const prevMax = header.style.maxHeight;
         header.style.maxHeight = '';
         header.style.visibility = '';
