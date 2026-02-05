@@ -1,0 +1,79 @@
+---
+import EventCard from './EventCard.astro';
+
+interface Props {
+  date: Date;
+  events: any[];
+  regions?: Record<string, { name: string; emoji: string }>;
+  artTagsData?: Record<string, { name: string; emoji: string }>;
+}
+
+const { date, events, regions = {}, artTagsData = {} } = Astro.props;
+
+// Check if today
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const compareDate = new Date(date);
+compareDate.setHours(0, 0, 0, 0);
+const isToday = compareDate.getTime() === today.getTime();
+
+// Format day header
+const weekdayLong = date.toLocaleDateString('de-DE', { weekday: 'long' });
+const dayNum = date.getDate();
+const monthLong = date.toLocaleDateString('de-DE', { month: 'long' });
+
+const dayLabel = isToday 
+  ? `Heute · ${weekdayLong}, ${dayNum}. ${monthLong}`
+  : `${weekdayLong}, ${dayNum}. ${monthLong}`;
+---
+
+<div class="day-group">
+  <h3 class="day-header">{dayLabel}</h3>
+  <div class="day-events">
+    {events.map(event => (
+      <EventCard event={event} regions={regions} artTagsData={artTagsData} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .day-group {
+    margin-bottom: var(--space-8);
+  }
+
+  .day-header {
+    position: sticky;
+    top: 0;
+    background: var(--color-card);
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 2px solid var(--color-primary);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    margin-bottom: var(--space-4);
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .day-header {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .day-events {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 640px) {
+    .day-events {
+      gap: var(--space-5);
+    }
+  }
+</style>
