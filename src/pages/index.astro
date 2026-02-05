@@ -397,6 +397,14 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       margin: 0 auto;
       flex: 1;
       min-height: 0;
+      /*
+       * CRITICAL: padding-top MUST be on the grid, NOT on individual columns.
+       * Columns are scroll containers (overflow-y: auto). CSS spec says sticky
+       * top:0 references the scroll port = the column's padding-box.
+       * Any padding-top on a column creates a visible gap above sticky headings
+       * where content bleeds through. Grid padding is outside the scroll ports.
+       */
+      padding-top: var(--space-6);
     }
   }
 
@@ -407,7 +415,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
-      padding-top: var(--space-6); /* Match spacing below section headings */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -430,10 +437,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
+  /* Desktop center column: no padding-top! See .content-grid comment. */
   @media (min-width: 1200px) {
     .column-center {
-      padding-top: var(--space-6); /* Match spacing below section headings */
-    }
 
     .column-center::-webkit-scrollbar {
       width: 4px;
@@ -460,7 +466,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
-      padding-top: var(--space-6); /* Match spacing below section headings */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -1113,11 +1118,20 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     });
   }
 
-  // Run after DOM is ready
+  // Run after DOM + layout ready (Astro bundles as ESM module = deferred)
+  function startCollapse() {
+    // Wait one frame so layout is computed and header height is accurate
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        initAppShellCollapse();
+      });
+    });
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAppShellCollapse);
+    document.addEventListener('DOMContentLoaded', startCollapse);
   } else {
-    initAppShellCollapse();
+    startCollapse();
   }
 </script>
 
