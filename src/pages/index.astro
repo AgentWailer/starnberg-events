@@ -582,6 +582,13 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </style>
 
 <style is:global>
+  /* ===== ALIGNMENT FIX: First day-group heading should align with sidebar headings ===== */
+  @media (min-width: 768px) {
+    #events-list > .day-group:first-child > .section-heading {
+      padding-top: 0 !important;
+    }
+  }
+
   /* ===== LOAD MORE BUTTON ===== */
   #load-more-btn {
     display: block;

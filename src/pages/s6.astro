@@ -462,26 +462,51 @@ import Layout from '../layouts/Layout.astro';
     const bucketOrder = ['exact', '0-1min', '1-2min', '2-3min', '3-4min', '4-5min', '5-10min', '10-20min', '20min+'];
     const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1 Min', '1-2min': '1–2 Min', '2-3min': '2–3 Min', '3-4min': '3–4 Min', '4-5min': '4–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min' };
     const bucketColors: Record<string, string> = { exact: '#16a34a', '0-1min': '#22c55e', '1-2min': '#4ade80', '2-3min': '#86efac', '3-4min': '#a3e635', '4-5min': '#84cc16', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626' };
-    const maxCount = Math.max(...dist.map((d: any) => d.count || 0), 1);
 
-    $('dist-chart').innerHTML = bucketOrder.map(key => {
+    // Separate running trains from cancelled for display
+    let totalCancelled = 0;
+    const cancelledByBucket: string[] = [];
+    const runningCounts: Record<string, number> = {};
+
+    for (const key of bucketOrder) {
       const item = dist.find((d: any) => d.bucket === key);
       const count = item?.count || 0;
-      const cancelledCount = item?.cancelled_count || 0;
-      const runningCount = count - cancelledCount;
-      const w = (count / maxCount) * 100;
-      const cancelledPct = count > 0 ? (cancelledCount / count) * 100 : 0;
-      const runningPct = 100 - cancelledPct;
-      const cancelledNote = cancelledCount > 0 ? ` (${cancelledCount}× ✕)` : '';
+      const cc = item?.cancelled_count || 0;
+      totalCancelled += cc;
+      runningCounts[key] = count - cc;
+      if (cc > 0) cancelledByBucket.push(`${cc}× ${bucketLabels[key] || key}`);
+    }
+
+    const maxCount = Math.max(...Object.values(runningCounts), 1);
+
+    let html = bucketOrder.map(key => {
+      const running = runningCounts[key];
+      const w = (running / maxCount) * 100;
       return `<div class="dist-row">
         <span class="dist-row__label">${bucketLabels[key] || key}</span>
-        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;display:flex;">
-          <div style="width:${w * runningPct / 100}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
-          ${cancelledCount > 0 ? `<div style="width:${w * cancelledPct / 100}%;height:100%;background:${bucketColors[key] || '#888'};opacity:0.4;background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,0.15) 3px,rgba(0,0,0,0.15) 6px);"></div>` : ''}
+        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
+          <div style="width:${w}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
         </div>
-        <span class="dist-row__val" title="${cancelledCount > 0 ? `davon ${cancelledCount} ausgefallen` : ''}">${count}${cancelledNote}</span>
+        <span class="dist-row__val">${running}</span>
       </div>`;
-    }).join('') + '<p style="font-size:0.6875rem;color:var(--color-text-tertiary, #aaa);margin-top:var(--space-2);">✕ = ausgefallene Züge (nach letzter bekannter Verspätung einsortiert)</p>';
+    }).join('');
+
+    // Add cancelled row
+    if (totalCancelled > 0) {
+      const cw = (totalCancelled / maxCount) * 100;
+      html += `<div class="dist-row" style="margin-top:var(--space-2);padding-top:var(--space-2);border-top:1px dashed var(--color-border-light);">
+        <span class="dist-row__label" style="color:#dc2626;font-weight:600;">Ausfall</span>
+        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
+          <div style="width:${Math.min(cw, 100)}%;height:100%;background:#dc2626;opacity:0.6;background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,0.15) 3px,rgba(0,0,0,0.15) 6px);"></div>
+        </div>
+        <span class="dist-row__val" style="color:#dc2626;">${totalCancelled}</span>
+      </div>`;
+      if (cancelledByBucket.length > 0) {
+        html += `<p style="font-size:0.6875rem;color:var(--color-text-tertiary, #aaa);margin-top:var(--space-1);">Ausfälle nach letzter Verspätung: ${cancelledByBucket.join(', ')}</p>`;
+      }
+    }
+
+    $('dist-chart').innerHTML = html;
   }
 
   function renderBarChart(elId: string, rows: any[], labelFn: (r: any) => string) {
