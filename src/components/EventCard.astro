@@ -13,6 +13,15 @@ interface Props {
     source?: string;
     region?: string;
     isHighlight?: boolean;
+    aiCuration?: {
+      scores: { family: number; kids: number; adults: number; uniqueness: number; overall: number };
+      ageRange?: string;
+      bestFor?: string;
+      aiSummary?: string;
+      aiTags?: string[];
+      priceInfo?: string;
+      tips?: string;
+    };
   };
   regions?: Record<string, { name: string; emoji: string }>;
   artTagsData?: Record<string, { name: string; emoji: string }>;
@@ -49,6 +58,15 @@ const catLabel = categoryLabels[event.category] || 'Familie';
   data-event-address={event.address}
   data-event-url={event.url}
   data-highlight={event.isHighlight ? 'true' : 'false'}
+  data-ai-summary={event.aiCuration?.aiSummary}
+  data-ai-best-for={event.aiCuration?.bestFor}
+  data-ai-score={event.aiCuration?.scores?.overall}
+  data-ai-price={event.aiCuration?.priceInfo}
+  data-ai-tips={event.aiCuration?.tips}
+  data-ai-age-range={event.aiCuration?.ageRange}
+  data-ai-family-score={event.aiCuration?.scores?.family}
+  data-ai-kids-score={event.aiCuration?.scores?.kids}
+  data-ai-adults-score={event.aiCuration?.scores?.adults}
 >
   <!-- Favorite Heart Icon -->
   <button class="favorite-btn" data-event-id={event.id} aria-label="Zu Favoriten hinzufügen" title="Zu Favoriten hinzufügen">
@@ -438,7 +456,17 @@ const catLabel = categoryLabels[event.category] || 'Familie';
           description: card.dataset.eventDescription,
           category: card.dataset.category,
           url: card.dataset.eventUrl,
-          tags: card.dataset.artTags?.split(',').filter(Boolean) || []
+          tags: card.dataset.artTags?.split(',').filter(Boolean) || [],
+          // AI curation data
+          aiSummary: card.dataset.aiSummary || '',
+          aiBestFor: card.dataset.aiBestFor || '',
+          aiScore: parseInt(card.dataset.aiScore || '0'),
+          aiPrice: card.dataset.aiPrice || '',
+          aiTips: card.dataset.aiTips || '',
+          aiAgeRange: card.dataset.aiAgeRange || '',
+          aiFamilyScore: parseInt(card.dataset.aiFamilyScore || '0'),
+          aiKidsScore: parseInt(card.dataset.aiKidsScore || '0'),
+          aiAdultsScore: parseInt(card.dataset.aiAdultsScore || '0'),
         };
 
         // Call global function from EventModal

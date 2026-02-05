@@ -1,0 +1,130 @@
+[
+  {
+    "id": 13,
+    "scores": {
+      "family": 6,
+      "kids": 4,
+      "adults": 7,
+      "uniqueness": 5,
+      "overall": 6
+    },
+    "ageRange": "ab 6 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Sonderausstellung im Vorraum der Bibliothek des Deutschen Museums mit Astrofotos von Freizeit-Astronomen – Nachtlandschaften, Sonnensystem und Deep Sky. Die Ausstellung selbst ist eher klein und foto-basiert, aber als Ergänzung zu einem ohnehin geplanten Museumsbesuch lohnenswert. Für Kinder ist das Museum selbst (Kinderreich, Flugsimulator, Modellbahn) das eigentliche Highlight.",
+    "aiTags": ["indoor", "bildung", "astronomie", "fotografie", "museum"],
+    "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 Jahre frei",
+    "tips": "Am besten mit einem ganzen Museumstag kombinieren – die Fotoausstellung allein rechtfertigt die Anfahrt nach München nicht. Anfahrt von Pöcking ca. 40 Min mit Auto oder S6 bis Isartor. Tipp: Das Kinderreich (3-8 Jahre) und Flugsimulator sind für Kinder die wahren Magneten."
+  },
+  {
+    "id": 416,
+    "scores": {
+      "family": 1,
+      "kids": 0,
+      "adults": 7,
+      "uniqueness": 4,
+      "overall": 5
+    },
+    "ageRange": "Erwachsene Frauen",
+    "bestFor": "erwachsene",
+    "aiSummary": "Ganztägiges Achtsamkeitsseminar exklusiv für Frauen im wunderschönen Schloss Höhenried in Bernried. Yoga, Meditation und Impulse für bewusste Lebensgestaltung. Top-Lokation direkt am Starnberger See, aber klar ein Erwachsenen-Event ohne Familien-Relevanz.",
+    "aiTags": ["indoor", "wellness", "yoga", "meditation", "frauen", "premium"],
+    "priceInfo": "140 € Teilnahmegebühr (inkl. Getränke, Snacks, Mittagessen)",
+    "tips": "Bernried ist nur ca. 10 Min von Pöcking entfernt – ideal für einen Me-Time-Tag, während der Partner die Kids betreut. Schloss Höhenried hat einen schönen Park, auch im Winter. Warme Kleidung für eventuelle Pausen im Freien."
+  },
+  {
+    "id": 18,
+    "scores": {
+      "family": 10,
+      "kids": 10,
+      "adults": 7,
+      "uniqueness": 8,
+      "overall": 9
+    },
+    "ageRange": "ab 4 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "DAS Familien-Highlight des Wochenendes! Willi Weitzel (bekannt aus 'Willi wills wissen') kommt mit seiner neuen Live-Show direkt nach Pöcking ins BecCult. 90 Minuten über Träume, Mut und das Leben – mit Fotos von seinen Weltreisen, lustigen Anekdoten und viel Interaktion. Für Kinder und alle, die es einmal gewesen sind. Unbedingt hin!",
+    "aiTags": ["indoor", "kindershow", "interaktiv", "prominent", "lokal", "unterhaltung"],
+    "priceInfo": "Tickets über Eventim (genaue Preise auf eventim.de)",
+    "tips": "Das Event ist IN PÖCKING – keine Anfahrt nötig! BecCult, Weilheimer Str. 33. Frühzeitig Tickets sichern, Willi Weitzel ist ein Publikumsmagnet. Um 15:00 Uhr – perfekte Nachmittagszeit für Familien. Parkplätze am BecCult begrenzt, ggf. zu Fuß oder mit dem Rad."
+  },
+  {
+    "id": 20,
+    "scores": {
+      "family": 7,
+      "kids": 5,
+      "adults": 8,
+      "uniqueness": 10,
+      "overall": 8
+    },
+    "ageRange": "alle Alter",
+    "bestFor": "alle",
+    "aiSummary": "Der Münchner Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Die Tradition reicht bis 1517 zurück: Kunstvolle Tanzfiguren, der berühmte Reifenschwung und Live-Musik direkt am winterlichen Ammersee. Ein einmaliges Kulturerlebnis, aber outdoor im Februar – warm anziehen!",
+    "aiTags": ["outdoor", "tradition", "kostenlos", "brauchtum", "einmalig", "kultur", "live-musik"],
+    "priceInfo": "Eintritt frei. Heiße Getränke und Bratwurstsemmeln an der Außenbar",
+    "tips": "Herrsching ist nur ca. 15 Min von Pöcking entfernt. WARM ANZIEHEN – es ist Februar am See! Mütze, Handschuhe, warme Schuhe sind Pflicht. Für Kinder: Vorher erklären, was der Schäfflertanz ist – dann wird's spannender. Von 18:30-20:00 Uhr, danach ggf. noch im Seehof einkehren. Nur alle 7 Jahre – nicht verpassen!"
+  },
+  {
+    "id": 24,
+    "scores": {
+      "family": 3,
+      "kids": 2,
+      "adults": 9,
+      "uniqueness": 7,
+      "overall": 7
+    },
+    "ageRange": "ab 12 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die besten Bergfilme des Jahres auf großer Leinwand im Kongresshaus Garmisch – ein Muss für Outdoor- und Bergsport-Enthusiasten. Abenteuer, Extremsport und atemberaubende Natur. Allerdings Abendveranstaltung um 19:30 Uhr und Garmisch ist ca. 1 Stunde von Pöcking entfernt – eher ein Date-Night-Tipp als ein Familienausflug.",
+    "aiTags": ["indoor", "film", "bergsport", "abenteuer", "outdoor-lifestyle", "abendveranstaltung"],
+    "priceInfo": "Typisch ca. 20-25 € (Preise nicht direkt abrufbar, Tickets vorab sichern)",
+    "tips": "Anfahrt von Pöcking nach Garmisch ca. 1 Stunde über die A95/B2. Rückfahrt spät abends – Winterreifen und ggf. Glatteisgefahr beachten. Ideal als Paar-Abend ohne Kids. Kongresshaus hat gute Parkplätze direkt am Haus."
+  },
+  {
+    "id": 292,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 8,
+      "uniqueness": 6,
+      "overall": 6
+    },
+    "ageRange": "ab 14 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Preisträgerkonzert des Kurt Maas Jazz Awards im bosco Gauting: Zwei junge, preisgekrönte Jazz-Ensembles (Fernanda von Sachsen Quartett, 1. Preis + Edi May Trio). Spannend für Jazz-Liebhaber, die junge Talente entdecken wollen. In Kooperation mit der Münchner Musikhochschule – qualitativ hochwertig, aber klar ein Erwachsenen-Abendprogramm.",
+    "aiTags": ["indoor", "jazz", "konzert", "kultur", "nachwuchs", "abendveranstaltung"],
+    "priceInfo": "Ticketpreise über bosco-gauting.de (Kartenbestellung) – typisch 15-25 € im bosco",
+    "tips": "Gauting ist nur ca. 15-20 Min von Pöcking entfernt – perfekt für einen spontanen Kulturabend. Bosco ist ein kleiner, intimer Veranstaltungsort mit toller Atmosphäre. Rechtzeitig reservieren, der Saal ist überschaubar. Gut mit Abendessen in Gauting kombinierbar."
+  },
+  {
+    "id": 34,
+    "scores": {
+      "family": 9,
+      "kids": 8,
+      "adults": 7,
+      "uniqueness": 4,
+      "overall": 8
+    },
+    "ageRange": "ab 5 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Speziell konzipierte Familienführung im Deutschen Museum: Motoren, Turbinen und die Vielfalt der Antriebe entdecken. Perfekt für technikbegeisterte Kids und ihre Eltern. Das Museum bietet daneben Kinderreich, Flugsimulator und Modellbahn – ein ganzer Erlebnistag. Sonntag 14:00 Uhr ist eine familienfreundliche Zeit.",
+    "aiTags": ["indoor", "bildung", "technik", "interaktiv", "museum", "familienführung"],
+    "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 frei. Führung im Eintritt enthalten.",
+    "tips": "Sonntagnachmittag im Museum kann voll sein – am besten Online-Tickets vorab kaufen. Anfahrt von Pöcking ca. 40 Min (S6 bis Isartor oder Auto). Ganzen Tag einplanen – das Museum hat 20 Ausstellungen auf 20.000 m². Deutsches Museum App runterladen für Audioguide. Kinderreich für jüngere Geschwister (3-8 Jahre) ist im gleichen Haus."
+  },
+  {
+    "id": 36,
+    "scores": {
+      "family": 4,
+      "kids": 5,
+      "adults": 3,
+      "uniqueness": 7,
+      "overall": 5
+    },
+    "ageRange": "ab 12 Jahre",
+    "bestFor": "kinder",
+    "aiSummary": "Studientag für Jugendliche ab 12 Jahren an der Evangelischen Akademie Tutzing zum Thema Glück – mit Impulsen aus Religion (Islam & Christentum), Politik und der bhutanischen Glücksphilosophie. Eine Expertin aus Bhutan ist vor Ort. Spannend für nachdenkliche Teens, aber für jüngere Kinder oder als Familienausflug ungeeignet.",
+    "aiTags": ["indoor", "bildung", "jugend", "workshop", "interreligiös", "philosophie"],
+    "priceInfo": "Nicht explizit genannt – Akademie-Veranstaltungen für Jugendliche oft kostenfrei oder günstiger, Anmeldung erforderlich (Tel. 08158 251-123)",
+    "tips": "Tutzing ist nur ca. 10 Min von Pöcking entfernt! Programm von 9:00-14:30 Uhr inkl. Mittagessen. Ideal für Teens, die sich für gesellschaftliche Themen interessieren. Eltern können in der Zwischenzeit Tutzing oder den Seeuferweg erkunden. Akademie-Gelände direkt am See ist auch im Winter schön."
+  }
+]

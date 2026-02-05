@@ -378,7 +378,28 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 13
+      "id": 13,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 4,
+          "adults": 7,
+          "uniqueness": 5,
+          "overall": 6
+        },
+        "ageRange": "ab 6 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Sonderausstellung im Vorraum der Bibliothek des Deutschen Museums mit Astrofotos von Freizeit-Astronomen – Nachtlandschaften, Sonnensystem und Deep Sky. Die Ausstellung selbst ist eher klein und foto-basiert, aber als Ergänzung zu einem ohnehin geplanten Museumsbesuch lohnenswert. Für Kinder ist das Museum selbst (Kinderreich, Flugsimulator, Modellbahn) das eigentliche Highlight.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "astronomie",
+          "fotografie",
+          "museum"
+        ],
+        "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 Jahre frei",
+        "tips": "Am besten mit einem ganzen Museumstag kombinieren – die Fotoausstellung allein rechtfertigt die Anfahrt nach München nicht. Anfahrt von Pöcking ca. 40 Min mit Auto oder S6 bis Isartor. Tipp: Das Kinderreich (3-8 Jahre) und Flugsimulator sind für Kinder die wahren Magneten."
+      }
     },
     {
       "title": "VHS Gilching - Bairisch für Zuagroaste mit Weißwurstfrühstück",
@@ -397,7 +418,29 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 14
+      "id": 14,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 2,
+          "adults": 8,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Unterhaltsamer Bairisch-Kurs mit dem bekannten Kabarettisten Thomas 'Vogelmayer' Mayer – humorvoll, lehrreich und mit Weißwurstfrühstück zum Abschluss. Für Zugezogene ein echtes Highlight, aber für Kinder eher langweilig, da es primär um Sprachkunde und bayerische Kultur geht.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "humor",
+          "kabarett",
+          "bayerisch",
+          "kulinarisch"
+        ],
+        "priceInfo": "Kursgebühr über VHS Gilching (vermutlich 25-40€, Anmeldung erforderlich)",
+        "tips": "Anmeldung bei der VHS Gilching nötig! Von Pöcking ca. 15-20 Min. Fahrt. Parkplätze an der VHS vorhanden. Kurs geht von 10-13 Uhr inkl. Weißwurstfrühstück."
+      }
     },
     {
       "title": "Vorführung: Amateurfunk",
@@ -416,7 +459,29 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 15
+      "id": 15,
+      "aiCuration": {
+        "scores": {
+          "family": 7,
+          "kids": 6,
+          "adults": 6,
+          "uniqueness": 4,
+          "overall": 7
+        },
+        "ageRange": "ab 6 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Live-Vorführung Amateurfunk im Deutschen Museum – man kann erleben, wie mit Funkamateuren weltweit kommuniziert wird. Für technikbegeisterte Kinder faszinierend, aber als Einzelevent recht kurz. Der wahre Bonus: Das Deutsche Museum selbst ist eines der besten Familienmuseen Deutschlands mit Kinderreich, Robotik, Raumfahrt, Flugsimulator und Modellbahn. Man sollte den ganzen Tag einplanen.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "technik",
+          "interaktiv",
+          "museum",
+          "winter-tipp"
+        ],
+        "priceInfo": "Museumseintritt: 16€ regulär, 9€ ermäßigt, 33€ Familienkarte, Kinder bis 5 frei. Vorführung im Eintritt enthalten.",
+        "tips": "Anfahrt von Pöcking ca. 45-50 Min (S6 ab Possenhofen → München, dann S-Bahn Isartor). Auto eher schwierig (Parkplätze in München teuer). Ganztagesausflug einplanen – das Museum allein lohnt sich. App mit Audioguide kostenlos verfügbar. Im Winter ideal als Indoor-Alternative."
+      }
     },
     {
       "id": 16,
@@ -435,7 +500,27 @@
         "fest",
         "indoor"
       ],
-      "isHighlight": false
+      "isHighlight": false,
+      "aiCuration": {
+        "scores": {
+          "family": 1,
+          "kids": 0,
+          "adults": 3,
+          "uniqueness": 3,
+          "overall": 2
+        },
+        "ageRange": "ab 65 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Faschingsfeier explizit für Senioren im Sozialdienst Pöcking. Für Familien und Kinder komplett ungeeignet – die Zielgruppe sind ältere Mitbürger. Nett für Oma und Opa, aber kein Familienausflug.",
+        "aiTags": [
+          "indoor",
+          "senioren",
+          "fasching",
+          "lokal"
+        ],
+        "priceInfo": "Vermutlich kostenlos oder geringer Beitrag (Sozialdienst-Veranstaltung)",
+        "tips": "Direkt in Pöcking, also keine Anfahrt nötig. Aber wirklich nur für die Zielgruppe Senioren gedacht – keine Kinder mitbringen."
+      }
     },
     {
       "title": "Discofox-Workshop Anfänger & Fortgeschrittene",
@@ -453,7 +538,28 @@
       "region": "starnberger-see",
       "venue": "Tanzschule Peter Schuh",
       "isHighlight": false,
-      "id": 17
+      "id": 17,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 7,
+          "uniqueness": 3,
+          "overall": 5
+        },
+        "ageRange": "ab 16 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Kompakter 90-Minuten-Discofox-Workshop – ideal für Paare, die einen unterhaltsamen Nachmittag mit Tanzen verbringen wollen. Der Workshop findet monatlich statt und ist daher nicht einmalig. Paarweise Anmeldung empfohlen, für Kinder ungeeignet.",
+        "aiTags": [
+          "tanz",
+          "indoor",
+          "kurs",
+          "paar-aktivität",
+          "regelmäßig"
+        ],
+        "priceInfo": "35€ pro Person (TSV-Mitglieder 28€), 90 Minuten",
+        "tips": "Von Pöcking nach Starnberg nur ca. 10 Min. Fahrt. Anmeldung per E-Mail an kontakt@tanzschule-starnberg.de. Keine speziellen Tanzschuhe nötig – flache Schuhe oder Ledersohlen reichen. Kann gut mit der Tanzparty am Abend (20 Uhr) kombiniert werden."
+      }
     },
     {
       "title": "Willi live – Und wovon träumst du?",
@@ -472,7 +578,29 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 18
+      "id": 18,
+      "aiCuration": {
+        "scores": {
+          "family": 10,
+          "kids": 10,
+          "adults": 7,
+          "uniqueness": 8,
+          "overall": 9
+        },
+        "ageRange": "ab 4 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "DAS Familien-Highlight des Wochenendes! Willi Weitzel (bekannt aus 'Willi wills wissen') kommt mit seiner neuen Live-Show direkt nach Pöcking ins BecCult. 90 Minuten über Träume, Mut und das Leben – mit Fotos von seinen Weltreisen, lustigen Anekdoten und viel Interaktion. Für Kinder und alle, die es einmal gewesen sind. Unbedingt hin!",
+        "aiTags": [
+          "indoor",
+          "kindershow",
+          "interaktiv",
+          "prominent",
+          "lokal",
+          "unterhaltung"
+        ],
+        "priceInfo": "Tickets über Eventim (genaue Preise auf eventim.de)",
+        "tips": "Das Event ist IN PÖCKING – keine Anfahrt nötig! BecCult, Weilheimer Str. 33. Frühzeitig Tickets sichern, Willi Weitzel ist ein Publikumsmagnet. Um 15:00 Uhr – perfekte Nachmittagszeit für Familien. Parkplätze am BecCult begrenzt, ggf. zu Fuß oder mit dem Rad."
+      }
     },
     {
       "title": "WCS Workshopnachmittag (West Coast Swing)",
@@ -490,7 +618,28 @@
       "region": "starnberger-see",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
-      "id": 19
+      "id": 19,
+      "aiCuration": {
+        "scores": {
+          "family": 1,
+          "kids": 0,
+          "adults": 6,
+          "uniqueness": 3,
+          "overall": 4
+        },
+        "ageRange": "ab 16 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "West Coast Swing Workshop im Gilchinger Tanzzentrum – ein spezialisierter Tanzworkshop für Erwachsene, die diesen Paartanz lernen oder vertiefen wollen. Für Familien und Kinder komplett ungeeignet. Für tanzbegeisterte Paare oder Singles mit WCS-Interesse durchaus attraktiv, aber ein regelmäßiges Kursangebot, kein besonderes Event.",
+        "aiTags": [
+          "indoor",
+          "tanz",
+          "kurs",
+          "paare",
+          "sport"
+        ],
+        "priceInfo": "Nicht gefunden – vermutlich Kursgebühr, Infos direkt beim Gilchinger Tanzzentrum erfragen.",
+        "tips": "Gilching ist nur ca. 15 Min. mit dem Auto von Pöcking. Tanzzentrum an der Landsberger Straße 18. Am besten vorher anmelden, da Workshops oft limitierte Plätze haben. Tanzschuhe mitbringen."
+      }
     },
     {
       "title": "Münchner Schäfflertanz am Seehof Herrsching",
@@ -509,7 +658,30 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 20
+      "id": 20,
+      "aiCuration": {
+        "scores": {
+          "family": 7,
+          "kids": 5,
+          "adults": 8,
+          "uniqueness": 10,
+          "overall": 8
+        },
+        "ageRange": "alle Alter",
+        "bestFor": "alle",
+        "aiSummary": "Der Münchner Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Die Tradition reicht bis 1517 zurück: Kunstvolle Tanzfiguren, der berühmte Reifenschwung und Live-Musik direkt am winterlichen Ammersee. Ein einmaliges Kulturerlebnis, aber outdoor im Februar – warm anziehen!",
+        "aiTags": [
+          "outdoor",
+          "tradition",
+          "kostenlos",
+          "brauchtum",
+          "einmalig",
+          "kultur",
+          "live-musik"
+        ],
+        "priceInfo": "Eintritt frei. Heiße Getränke und Bratwurstsemmeln an der Außenbar",
+        "tips": "Herrsching ist nur ca. 15 Min von Pöcking entfernt. WARM ANZIEHEN – es ist Februar am See! Mütze, Handschuhe, warme Schuhe sind Pflicht. Für Kinder: Vorher erklären, was der Schäfflertanz ist – dann wird's spannender. Von 18:30-20:00 Uhr, danach ggf. noch im Seehof einkehren. Nur alle 7 Jahre – nicht verpassen!"
+      }
     },
     {
       "title": "Henschel-Quartett & Hendrik Blumenroth",
@@ -528,7 +700,29 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 21
+      "id": 21,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 1,
+          "adults": 8,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Hochkarätiges Klassikkonzert mit dem international gefeierten Henschel Quartett in Seefeld. Highlight: eine Uraufführung des Streichquintetts 'Streicher pur' der Komponistin Dorothee Eberhardt aus Gilching – ein packendes Werk voller Kontraste. Für Klassikliebhaber ein echtes Erlebnis in intimem Rahmen. Für Kinder eher ungeeignet (2 Stunden Kammermusik).",
+        "aiTags": [
+          "indoor",
+          "musik",
+          "klassik",
+          "kultur",
+          "uraufführung",
+          "kammermusik"
+        ],
+        "priceInfo": "Nicht auf der Webseite gefunden – Karten vermutlich im Vorverkauf, Preis erfragen.",
+        "tips": "Seefeld (Schlosshof 6) ist nur ca. 10-15 Min. von Pöcking mit dem Auto. Sehr kurze Anfahrt! Schöner Winterabend-Ausflug für Paare. Konzertdauer ca. 19-21 Uhr. Parkplätze am Schloss vorhanden."
+      }
     },
     {
       "title": "2. Tutzinger Kurzfilmnacht",
@@ -547,7 +741,29 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 23
+      "id": 23,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 8,
+          "uniqueness": 8,
+          "overall": 6
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Kulturell anspruchsvoller Abend mit Kurzfilmen von Nachwuchs-Filmemachern plus Filmgespräch mit Regisseur Lukas März. Themen wie Mobbing, Diversität und Generationenkonflikte sind definitiv erwachsenenorientiert – nichts für Kinder. Für Cineasten und Kulturinteressierte ein echtes Highlight, zumal die 2. Ausgabe nach erfolgreicher Premiere zeigt, dass das Format funktioniert.",
+        "aiTags": [
+          "kultur",
+          "film",
+          "indoor",
+          "abendprogramm",
+          "filmgespräch",
+          "nachwuchskunst"
+        ],
+        "priceInfo": "Nicht angegeben – Einlass ab 19:00, Veranstaltung 19:30-21:30",
+        "tips": "Super nah von Pöcking: Tutzing ist nur ca. 10 Min. mit dem Auto oder per S-Bahn erreichbar. Kulturtheater Tutzing in der Kirchenstraße 3, zentrale Lage. Idealer Date-Night-Termin für Paare. Ggf. vorher Karten sichern – das Kulturtheater ist klein und gemütlich."
+      }
     },
     {
       "title": "Banff Mountain Film Festival World Tour",
@@ -567,7 +783,29 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 24
+      "id": 24,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 2,
+          "adults": 9,
+          "uniqueness": 7,
+          "overall": 7
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die besten Bergfilme des Jahres auf großer Leinwand im Kongresshaus Garmisch – ein Muss für Outdoor- und Bergsport-Enthusiasten. Abenteuer, Extremsport und atemberaubende Natur. Allerdings Abendveranstaltung um 19:30 Uhr und Garmisch ist ca. 1 Stunde von Pöcking entfernt – eher ein Date-Night-Tipp als ein Familienausflug.",
+        "aiTags": [
+          "indoor",
+          "film",
+          "bergsport",
+          "abenteuer",
+          "outdoor-lifestyle",
+          "abendveranstaltung"
+        ],
+        "priceInfo": "Typisch ca. 20-25 € (Preise nicht direkt abrufbar, Tickets vorab sichern)",
+        "tips": "Anfahrt von Pöcking nach Garmisch ca. 1 Stunde über die A95/B2. Rückfahrt spät abends – Winterreifen und ggf. Glatteisgefahr beachten. Ideal als Paar-Abend ohne Kids. Kongresshaus hat gute Parkplätze direkt am Haus."
+      }
     },
     {
       "title": "Yasi Hofer Trio – Best Of Tour",
@@ -586,7 +824,28 @@
       "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 25
+      "id": 25,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 7,
+          "uniqueness": 6,
+          "overall": 6
+        },
+        "ageRange": "ab 16 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die virtuose Gitarristin Yasi Hofer, bekannt als Begleiterin von Helene Fischer und Robbie Williams, spielt mit ihrem Trio ein Best-Of-Programm. Für Musikfans und Gitarren-Liebhaber ein Genuss – die Frau kann spielen. Für Familien mit Kindern wegen der Abendzeit (20 Uhr) und dem Format nicht geeignet.",
+        "aiTags": [
+          "indoor",
+          "musik",
+          "konzert",
+          "live",
+          "gitarre"
+        ],
+        "priceInfo": "Ticketpreis nicht auf der Seite gefunden – vermutlich 20-30€ (Vorabkauf empfohlen)",
+        "tips": "Einlass ab 19 Uhr, Konzert 20-22:30 Uhr. Inning am Ammersee ist von Pöcking ca. 20 Min. entfernt. Landsberger Straße 57 – vorher Tickets sichern, kleinere Venue könnte schnell voll sein."
+      }
     },
     {
       "title": "Tanzparty bei Peter Schuh",
@@ -604,7 +863,28 @@
       "region": "starnberger-see",
       "venue": "Tanzschule Peter Schuh",
       "isHighlight": false,
-      "id": 26
+      "id": 26,
+      "aiCuration": {
+        "scores": {
+          "family": 1,
+          "kids": 0,
+          "adults": 7,
+          "uniqueness": 2,
+          "overall": 5
+        },
+        "ageRange": "ab 18 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Wöchentliche Gesellschaftstanz-Party mit DJ – lockere Atmosphäre zum Tanzen von Cha-Cha-Cha, Walzer, Quickstep und mehr. Netter Samstagabend für tanzbegeisterte Erwachsene, aber kein besonderes Event – findet fast jede Woche statt. Getränke/Snacks dürfen mitgebracht werden oder im Restaurant 'Lilo' unten gekauft werden.",
+        "aiTags": [
+          "tanz",
+          "indoor",
+          "abendprogramm",
+          "regelmäßig",
+          "gesellig"
+        ],
+        "priceInfo": "10€ pro Person, Getränke separat (mitbringen oder Bar)",
+        "tips": "Von Pöcking nach Starnberg ca. 10 Min. TSV Starnberg, Brunnangerstraße 2. Parkmöglichkeiten vorhanden. Kann perfekt mit dem Discofox-Workshop am Nachmittag kombiniert werden. Nicht für absolute Anfänger – Grundkenntnisse im Gesellschaftstanz empfohlen."
+      }
     },
     {
       "title": "1. Starnberger Ballnacht",
@@ -623,7 +903,30 @@
       "region": "starnberger-see",
       "venue": "Schlossberghalle Starnberg",
       "isHighlight": false,
-      "id": 27
+      "id": 27,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 8,
+          "uniqueness": 8,
+          "overall": 7
+        },
+        "ageRange": "ab 18 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die erste Starnberger Ballnacht ist die stilvolle Neuauflage der traditionellen Redoute – ein festlicher Ball mit Salonorchester Monaco, Tanzeinlagen der Perchalla-Garde, Verleihung des Seerosenordens und Tombola. Für Erwachsene, die gerne tanzen und einen eleganten Abend erleben wollen, ein echtes Highlight. Premiere-Event mit lokalem Charme. Für Kinder absolut ungeeignet (Dresscode: festliche Abendmode, bis 1 Uhr nachts).",
+        "aiTags": [
+          "indoor",
+          "tanz",
+          "kultur",
+          "festlich",
+          "ball",
+          "tradition",
+          "premiere"
+        ],
+        "priceInfo": "28€ inkl. Sektempfang. Karten über login.vr-ticket.de/Perchalla-Kartenbestellung/Ballnacht2026/",
+        "tips": "Schlossberghalle Starnberg – nur 5-10 Min. von Pöcking! Einlass ab 18 Uhr, Beginn 19:30, Ende ca. 1 Uhr. Dresscode festliche Abendmode beachten! Warme Speisen, Getränke und Bar vor Ort. Babysitter organisieren – das ist ein reiner Erwachsenen-Abend. Preis-Leistung mit 28€ inkl. Sekt ist fair."
+      }
     },
     {
       "title": "Seetaucherexkursion im Ramsar-Gebiet Starnberger See",
@@ -642,7 +945,29 @@
       "region": "starnberger-see",
       "venue": "Seeshaupter Bucht, Starnberger See",
       "isHighlight": false,
-      "id": 28
+      "id": 28,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 3,
+          "adults": 7,
+          "uniqueness": 8,
+          "overall": 5
+        },
+        "ageRange": "ab 10 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Seltene Gelegenheit, überwinternde Prachttaucher und Sterntaucher am Starnberger See zu beobachten – ein Highlight für Vogelbeobachter und Naturinteressierte. Für Familien mit kleineren Kindern allerdings schwierig: 3 Stunden bei Winterkälte am Seeufer stehen erfordert Geduld und Ausdauer, die jüngere Kinder selten mitbringen. Anmeldung war bis 05.02. erforderlich – kurzfristig nicht mehr möglich.",
+        "aiTags": [
+          "natur",
+          "outdoor",
+          "bildung",
+          "winter",
+          "vogelbeobachtung",
+          "anmeldung-erforderlich"
+        ],
+        "priceInfo": "Nicht angegeben, vermutlich kostenlos (LBV-Exkursion)",
+        "tips": "Anmeldung bis 05.02. nötig (evtl. zu spät!). Unbedingt sehr warme Kleidung, Handschuhe und Fernglas mitbringen. Genauer Treffpunkt wird erst bei Anmeldung bekannt gegeben. Von Pöcking ca. 25 Min. Fahrt Richtung Seeshaupt/Münsing. Für Kinder nur geeignet, wenn sie echtes Naturinteresse und Kältetoleranz mitbringen."
+      }
     },
     {
       "title": "Entbuschen am Normanberg Söcking – Helfer und Helferinnen gesucht",
@@ -660,7 +985,28 @@
       "region": "starnberger-see",
       "venue": "Normanberg Söcking",
       "isHighlight": false,
-      "id": 29
+      "id": 29,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 5,
+          "uniqueness": 4,
+          "overall": 3
+        },
+        "ageRange": "ab 16 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Ehrenamtlicher Arbeitseinsatz des BUND Naturschutz: Büsche und Jungbäume am Normanberg Söcking werden zurückgeschnitten, damit Schmetterlinge und Sommerflora profitieren. Für naturverbundene Erwachsene mit Lust auf körperliche Arbeit im Freien eine sinnvolle Sache – aber kein Familien-Ausflugsziel. Kinder langweilen sich hier schnell, zumal das Gelände am Hang liegt und Werkzeug nötig ist.",
+        "aiTags": [
+          "outdoor",
+          "ehrenamt",
+          "natur",
+          "körperlich",
+          "winter"
+        ],
+        "priceInfo": "Kostenlos (ehrenamtlich)",
+        "tips": "Anmeldung per Mail an in-franken@t-online.de nötig (Handynummer angeben). Astscheren/Sägen mitbringen, gutes Schuhwerk und Arbeitshandschuhe Pflicht. Dauer 9-12 Uhr. Söcking ist sehr nah an Pöcking (~5 Min. Auto). Bei schlechtem Wetter evtl. Absage – man wird per Handy informiert."
+      }
     },
     {
       "title": "Aufführung der Theaterzwerge - Die Träne der Elfe",
@@ -678,7 +1024,28 @@
       "region": "starnberger-see",
       "venue": "Arthotel Andechser Hof",
       "isHighlight": false,
-      "id": 30
+      "id": 30,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 9,
+          "adults": 5,
+          "uniqueness": 7,
+          "overall": 8
+        },
+        "ageRange": "ab 4 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Bezauberndes Kindertheaterstück der 'Theaterzwerge' des Ammerseer Bauerntheaters: Ein Märchenspiel über Elfen, Zauberer und den Kampf um eine heile Welt – spannend, unterhaltsam und kindgerecht. Indoor im gemütlichen Andechser Hof in Herrsching, perfekt für einen Winternachmittag. Auch am Sonntag spielbar, falls Samstag nicht passt.",
+        "aiTags": [
+          "theater",
+          "indoor",
+          "märchen",
+          "kindertheater",
+          "winter-tipp"
+        ],
+        "priceInfo": "Nicht auf der Website angegeben – telefonisch beim Veranstalter erfragen",
+        "tips": "Von Pöcking nach Herrsching ca. 20 Min. über Andechs oder via S-Bahn (Pöcking → Herrsching ist gut per S8 erreichbar). Direkt am Landungssteg Herrsching, Parkplätze vorhanden. Für einen schönen Familienausflug kann man vorher am Ammersee-Ufer spazieren. Auch am Sonntag (08.02.) um 16 Uhr!"
+      }
     },
     {
       "title": "Volleyball Heimspiele in der Nikolaushalle",
@@ -696,7 +1063,28 @@
       "region": "starnberger-see",
       "venue": "Nikolaushalle",
       "isHighlight": false,
-      "id": 31
+      "id": 31,
+      "aiCuration": {
+        "scores": {
+          "family": 5,
+          "kids": 5,
+          "adults": 6,
+          "uniqueness": 4,
+          "overall": 5
+        },
+        "ageRange": "alle Alter",
+        "bestFor": "alle",
+        "aiSummary": "Regionalliga-Volleyball (4. Bundesliga) des TSV Herrsching II in der Nikolaushalle. Gutes Niveau, lebhafte Atmosphäre in der Halle. Für sportbegeisterte Familien ein netter Abend – Herrsching hat eine tolle Volleyball-Tradition. Allerdings 19 Uhr Anpfiff ist für jüngere Kinder spät.",
+        "aiTags": [
+          "indoor",
+          "sport",
+          "volleyball",
+          "live",
+          "regional"
+        ],
+        "priceInfo": "Vermutlich 5-8€ Eintritt (Regionalliga-Spiel), Kinder oft günstiger oder frei",
+        "tips": "Von Pöcking ca. 20-25 Min. nach Herrsching. Nikolaushalle, Nikolausstraße 11. Gut mit dem Auto erreichbar, Parkplätze in der Umgebung. Warme Kleidung für Anreise, in der Halle ist es warm. Stimmung bei Herrsching-Spielen meist gut!"
+      }
     },
     {
       "title": "Fernanda von Sachsen Quartett & Edi May Trio: Preisträgerkonzert Kurt Maas Jazz Award",
@@ -715,7 +1103,29 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 292
+      "id": 292,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 1,
+          "adults": 8,
+          "uniqueness": 6,
+          "overall": 6
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Preisträgerkonzert des Kurt Maas Jazz Awards im bosco Gauting: Zwei junge, preisgekrönte Jazz-Ensembles (Fernanda von Sachsen Quartett, 1. Preis + Edi May Trio). Spannend für Jazz-Liebhaber, die junge Talente entdecken wollen. In Kooperation mit der Münchner Musikhochschule – qualitativ hochwertig, aber klar ein Erwachsenen-Abendprogramm.",
+        "aiTags": [
+          "indoor",
+          "jazz",
+          "konzert",
+          "kultur",
+          "nachwuchs",
+          "abendveranstaltung"
+        ],
+        "priceInfo": "Ticketpreise über bosco-gauting.de (Kartenbestellung) – typisch 15-25 € im bosco",
+        "tips": "Gauting ist nur ca. 15-20 Min von Pöcking entfernt – perfekt für einen spontanen Kulturabend. Bosco ist ein kleiner, intimer Veranstaltungsort mit toller Atmosphäre. Rechtzeitig reservieren, der Saal ist überschaubar. Gut mit Abendessen in Gauting kombinierbar."
+      }
     },
     {
       "title": "Direktorenführung: Heinz Butz",
@@ -735,7 +1145,28 @@
       "region": "starnberger-see",
       "venue": "Museum Starnberger See",
       "isHighlight": false,
-      "id": 380
+      "id": 380,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 1,
+          "adults": 7,
+          "uniqueness": 5,
+          "overall": 5
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Museumsleiter Benjamin Tillig führt persönlich durch die Sonderausstellung über Heinz Butz, einen wenig bekannten Avantgardisten aus Oberbayern. Für Kunstinteressierte eine seltene Gelegenheit, die Werke durch den Direktor selbst erklärt zu bekommen. Für Kinder ungeeignet – abstrakte Kunst und Führungsformat.",
+        "aiTags": [
+          "indoor",
+          "kunst",
+          "kultur",
+          "museum",
+          "führung"
+        ],
+        "priceInfo": "5€ Teilnahmegebühr zzgl. Museumseintritt. Museum: Mi-Fr 14-18 Uhr, Sa/So 11-18 Uhr.",
+        "tips": "Anmeldung per E-Mail (info@museum-starnberger-see.de) oder Tel. 08151-4477570 empfohlen. Von Pöcking nur 5 Min. nach Starnberg. Treffpunkt im Foyer. Kann gut mit einem Winterspaziergang am See kombiniert werden."
+      }
     },
     {
       "title": "KörperBewusstSein I – Innere Kraftquellen & Stärken",
@@ -757,7 +1188,29 @@
       "region": "starnberger-see",
       "venue": "Schloß Höhenried",
       "isHighlight": true,
-      "id": 416
+      "id": 416,
+      "aiCuration": {
+        "scores": {
+          "family": 1,
+          "kids": 0,
+          "adults": 7,
+          "uniqueness": 4,
+          "overall": 5
+        },
+        "ageRange": "Erwachsene Frauen",
+        "bestFor": "erwachsene",
+        "aiSummary": "Ganztägiges Achtsamkeitsseminar exklusiv für Frauen im wunderschönen Schloss Höhenried in Bernried. Yoga, Meditation und Impulse für bewusste Lebensgestaltung. Top-Lokation direkt am Starnberger See, aber klar ein Erwachsenen-Event ohne Familien-Relevanz.",
+        "aiTags": [
+          "indoor",
+          "wellness",
+          "yoga",
+          "meditation",
+          "frauen",
+          "premium"
+        ],
+        "priceInfo": "140 € Teilnahmegebühr (inkl. Getränke, Snacks, Mittagessen)",
+        "tips": "Bernried ist nur ca. 10 Min von Pöcking entfernt – ideal für einen Me-Time-Tag, während der Partner die Kids betreut. Schloss Höhenried hat einen schönen Park, auch im Winter. Warme Kleidung für eventuelle Pausen im Freien."
+      }
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade - Finale",
@@ -776,7 +1229,31 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 32
+      "id": 32,
+      "aiCuration": {
+        "scores": {
+          "family": 8,
+          "kids": 8,
+          "adults": 8,
+          "uniqueness": 9,
+          "overall": 8
+        },
+        "ageRange": "alle Alter",
+        "bestFor": "alle",
+        "aiSummary": "Das große Finale der 25. Tegernseer Tal Montgolfiade – rund 28 bunte Heißluftballons schweben über dem winterlichen Tegernsee mit Alpenpanorama. Das Jubiläumsevent (25 Jahre!) ist ein visuelles Spektakel, das Kinder wie Erwachsene gleichermaßen fasziniert. Kostenlos zuschauen, oder eine Ballonfahrt buchen (wetterabhängig!). Einziges Manko: die Anfahrt von Pöcking ist weit (~50 Min.) und das Wetter muss mitspielen.",
+        "aiTags": [
+          "outdoor",
+          "spektakel",
+          "natur",
+          "winter",
+          "fotogen",
+          "jubiläum",
+          "alpen",
+          "kostenlos"
+        ],
+        "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar über tegernsee.bayern (Preis nicht angegeben, typisch 200-350€ pro Person).",
+        "tips": "Ballonstarts typisch 8:30-11 Uhr – FRÜH aufstehen! Anfahrt von Pöcking ca. 50-60 Min über A95/A8 Richtung Tegernsee. Warm anziehen – Winter am See kann bitter kalt sein! Kamera mitbringen, das Fotomotiv ist grandios. Wetterabhängig – am Vorabend tegernsee.com checken. Letzter Tag des Festivals, also letzte Chance!"
+      }
     },
     {
       "title": "Science Show: Flüssiger Stickstoff",
@@ -796,7 +1273,30 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 33
+      "id": 33,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 10,
+          "adults": 7,
+          "uniqueness": 7,
+          "overall": 9
+        },
+        "ageRange": "ab 5 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Spektakuläre Live-Experimente mit flüssigem Stickstoff bei minus 200°C – Supraleiter schweben, Blumen zerbersten, Gummibälle zerspringen. Das Deutsche Museum bietet damit eines der besten Familien-Highlights der Region. Absolutes Muss für neugierige Kinder! Die Fahrt nach München lohnt sich, und man kann den ganzen Tag im Museum verbringen.",
+        "aiTags": [
+          "indoor",
+          "show",
+          "wissenschaft",
+          "interaktiv",
+          "bildung",
+          "wow-effekt",
+          "kinderfreundlich"
+        ],
+        "priceInfo": "Familienkarte 33€, Erwachsene 16€, ermäßigt 9€, Kinder unter 5 frei. Science Show im Eintrittspreis enthalten.",
+        "tips": "Von Pöcking ca. 40-50 Min. nach München. Am besten mit der S6 ab Possenhofen bis Isartor (ca. 50 Min.) – dann 5 Min. Fußweg. Am Wochenende Tickets online vorab kaufen! Ganzen Tag einplanen: Kinderreich (3-8 J.), Flugsimulator, Modellbahn – Kinder werden nicht fertig. Show um 11:30 Uhr als Highlight einplanen."
+      }
     },
     {
       "title": "Familienführung: Was die Welt antreibt",
@@ -815,7 +1315,29 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 34
+      "id": 34,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 8,
+          "adults": 7,
+          "uniqueness": 4,
+          "overall": 8
+        },
+        "ageRange": "ab 5 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Speziell konzipierte Familienführung im Deutschen Museum: Motoren, Turbinen und die Vielfalt der Antriebe entdecken. Perfekt für technikbegeisterte Kids und ihre Eltern. Das Museum bietet daneben Kinderreich, Flugsimulator und Modellbahn – ein ganzer Erlebnistag. Sonntag 14:00 Uhr ist eine familienfreundliche Zeit.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "technik",
+          "interaktiv",
+          "museum",
+          "familienführung"
+        ],
+        "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 frei. Führung im Eintritt enthalten.",
+        "tips": "Sonntagnachmittag im Museum kann voll sein – am besten Online-Tickets vorab kaufen. Anfahrt von Pöcking ca. 40 Min (S6 bis Isartor oder Auto). Ganzen Tag einplanen – das Museum hat 20 Ausstellungen auf 20.000 m². Deutsches Museum App runterladen für Audioguide. Kinderreich für jüngere Geschwister (3-8 Jahre) ist im gleichen Haus."
+      }
     },
     {
       "title": "Umgedreht Unterwegs - ein Kinderkonzert rund um die Welt",
@@ -834,7 +1356,30 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 35
+      "id": 35,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 9,
+          "adults": 5,
+          "uniqueness": 7,
+          "overall": 8
+        },
+        "ageRange": "3-10 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Interaktives Kinderkonzert mit Weltmusik – Klavier, Querflöte, Gitarre, Gesang und Percussion nehmen die kleinen Zuhörer mit auf eine musikalische Reise rund um den Globus. Kinder machen aktiv mit, es geht um Vielfalt und Neugier. Perfekt für einen Sonntagnachmittag mit der Familie, schön nah in Seefeld.",
+        "aiTags": [
+          "indoor",
+          "musik",
+          "interaktiv",
+          "kinderkonzert",
+          "mitmachen",
+          "weltmusik",
+          "kulturell"
+        ],
+        "priceInfo": "Nicht auf der Webseite angegeben – vermutlich 5-10€ (typisch für Kinderkonzerte in der Region)",
+        "tips": "Seefeld ist von Pöcking nur ca. 15 Min. entfernt – super erreichbar! Schlosshof 6, Seefeld. Nur 1 Stunde (16-17 Uhr), also gut planbar. Ideal als Sonntagnachmittags-Programm, vorher oder nachher noch ein Spaziergang in Seefeld möglich."
+      }
     },
     {
       "title": "Glück – Junges Forum",
@@ -853,7 +1398,29 @@
       "region": "starnberger-see",
       "venue": "Evangelische Akademie Tutzing",
       "isHighlight": false,
-      "id": 36
+      "id": 36,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 5,
+          "adults": 3,
+          "uniqueness": 7,
+          "overall": 5
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "kinder",
+        "aiSummary": "Studientag für Jugendliche ab 12 Jahren an der Evangelischen Akademie Tutzing zum Thema Glück – mit Impulsen aus Religion (Islam & Christentum), Politik und der bhutanischen Glücksphilosophie. Eine Expertin aus Bhutan ist vor Ort. Spannend für nachdenkliche Teens, aber für jüngere Kinder oder als Familienausflug ungeeignet.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "jugend",
+          "workshop",
+          "interreligiös",
+          "philosophie"
+        ],
+        "priceInfo": "Nicht explizit genannt – Akademie-Veranstaltungen für Jugendliche oft kostenfrei oder günstiger, Anmeldung erforderlich (Tel. 08158 251-123)",
+        "tips": "Tutzing ist nur ca. 10 Min von Pöcking entfernt! Programm von 9:00-14:30 Uhr inkl. Mittagessen. Ideal für Teens, die sich für gesellschaftliche Themen interessieren. Eltern können in der Zwischenzeit Tutzing oder den Seeuferweg erkunden. Akademie-Gelände direkt am See ist auch im Winter schön."
+      }
     },
     {
       "title": "Aufführung der Theaterzwerge - Die Träne der Elfe (Sonntag)",
@@ -871,7 +1438,29 @@
       "region": "starnberger-see",
       "venue": "Arthotel Andechser Hof",
       "isHighlight": false,
-      "id": 37
+      "id": 37,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 9,
+          "adults": 5,
+          "uniqueness": 7,
+          "overall": 8
+        },
+        "ageRange": "ab 4 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Sonntagsvorstellung desselben bezaubernden Kindertheaterstücks 'Die Träne der Elfe'. Perfekte Alternative falls der Samstag nicht passt. Am Sonntagnachmittag ein wunderbarer Abschluss fürs Wochenende – Indoor, warm und kindgerecht. Ideal wenn man Samstag z.B. den Fasching in Wolfratshausen besucht und Sonntag gemütlicher ausklingen lassen will.",
+        "aiTags": [
+          "theater",
+          "indoor",
+          "märchen",
+          "kindertheater",
+          "winter-tipp",
+          "sonntagsprogramm"
+        ],
+        "priceInfo": "Nicht auf der Website angegeben – telefonisch beim Veranstalter erfragen",
+        "tips": "Von Pöcking nach Herrsching ca. 20 Min. Gleicher Veranstaltungsort wie Samstag: Arthotel Andechser Hof am Landungssteg. Gute Kombi: Vormittags Spaziergang am Ammersee, 16 Uhr Theater. Alternativ S-Bahn-Anreise möglich."
+      }
     },
     {
       "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",
@@ -891,7 +1480,29 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 294
+      "id": 294,
+      "aiCuration": {
+        "scores": {
+          "family": 5,
+          "kids": 3,
+          "adults": 7,
+          "uniqueness": 4,
+          "overall": 5
+        },
+        "ageRange": "ab 8 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Öffentliche Führung durch die Ausstellung 'Ausgesucht – Weitere Werke aus der Sammlung' im Buchheim Museum der Phantasie in Bernried. Das Museum am Starnberger See besticht durch seine einzigartige Architektur und Seelage. Am Sonntag gibt es auch ein Offenes Atelier für Kinder (ab 6, 3,50€). Die Führung selbst ist eher für Erwachsene interessant. Tipp: Kombination aus Museumsbesuch + Café Buffi + Spaziergang am See.",
+        "aiTags": [
+          "indoor",
+          "kunst",
+          "kultur",
+          "bildung",
+          "museum",
+          "see-nähe"
+        ],
+        "priceInfo": "Führung 5€ zzgl. Museumseintritt (Eintritt ca. 9-10€ Erwachsene). Offenes Atelier für Kinder 3,50€ zzgl. Eintritt. Kinder typisch ermäßigt.",
+        "tips": "Bernried liegt direkt am Westufer – von Pöcking nur ca. 15 Min. südlich! Sehr nahe Anfahrt. Sonntags Offenes Atelier 11-17 Uhr für Kinder – gute Ergänzung zur Führung um 15 Uhr. Café Buffi im Museum für Kuchen und warme Speisen. Achtung: Kleiner Saal und Boot-Raum wegen Baumaßnahmen geschlossen. Museum schließt ab 17.03.2026 für Umbau – also jetzt noch die Chance nutzen!"
+      }
     },
     {
       "title": "Fasching: Wolfratshausen NARRISCH",
@@ -911,7 +1522,30 @@
       "region": "starnberger-see",
       "venue": null,
       "isHighlight": true,
-      "id": 388
+      "id": 388,
+      "aiCuration": {
+        "scores": {
+          "family": 7,
+          "kids": 7,
+          "adults": 6,
+          "uniqueness": 8,
+          "overall": 7
+        },
+        "ageRange": "alle Alter",
+        "bestFor": "familie",
+        "aiSummary": "Faschingstreiben am Loisachufer mit Garden aus Nah und Fern – bunte Kostüme, Tanzeinlagen und Fasching-Atmosphäre direkt am Fluss. Ein tolles Spektakel besonders für Kinder, die Verkleidung und Trubel lieben. Allerdings: Outdoor im Februar von 13-18 Uhr kann bei Winterkälte eine Herausforderung werden. Die Anfahrt von Pöcking (ca. 35 Min.) ist etwas weiter.",
+        "aiTags": [
+          "fasching",
+          "outdoor",
+          "fest",
+          "show",
+          "verkleidung",
+          "garde-auftritte",
+          "winter"
+        ],
+        "priceInfo": "Vermutlich kostenlos (öffentliche Faschingsveranstaltung am Loisachufer)",
+        "tips": "Von Pöcking ca. 35 Min. Fahrt via Starnberg/Wolfratshausen. Unbedingt warm anziehen – 5 Stunden Outdoor im Februar! Verkleidung für Kinder nicht vergessen. Bühne neben 'Bürger für Bürger' hinter dem Rathaus. Achtung: Parkplatzsuche in Wolfratshausen kann tricky sein – frühzeitig kommen. Heißen Kakao/Tee in Thermoskannen einpacken!"
+      }
     },
     {
       "title": "Wie viel Arbeit braucht der Mensch? – 7. Tutzinger Depressionstagung",

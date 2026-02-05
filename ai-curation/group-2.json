@@ -1,0 +1,114 @@
+[
+  {
+    "id": 29,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 5,
+      "uniqueness": 4,
+      "overall": 3
+    },
+    "ageRange": "ab 16 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Ehrenamtlicher Arbeitseinsatz des BUND Naturschutz: Büsche und Jungbäume am Normanberg Söcking werden zurückgeschnitten, damit Schmetterlinge und Sommerflora profitieren. Für naturverbundene Erwachsene mit Lust auf körperliche Arbeit im Freien eine sinnvolle Sache – aber kein Familien-Ausflugsziel. Kinder langweilen sich hier schnell, zumal das Gelände am Hang liegt und Werkzeug nötig ist.",
+    "aiTags": ["outdoor", "ehrenamt", "natur", "körperlich", "winter"],
+    "priceInfo": "Kostenlos (ehrenamtlich)",
+    "tips": "Anmeldung per Mail an in-franken@t-online.de nötig (Handynummer angeben). Astscheren/Sägen mitbringen, gutes Schuhwerk und Arbeitshandschuhe Pflicht. Dauer 9-12 Uhr. Söcking ist sehr nah an Pöcking (~5 Min. Auto). Bei schlechtem Wetter evtl. Absage – man wird per Handy informiert."
+  },
+  {
+    "id": 15,
+    "scores": {
+      "family": 7,
+      "kids": 6,
+      "adults": 6,
+      "uniqueness": 4,
+      "overall": 7
+    },
+    "ageRange": "ab 6 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Live-Vorführung Amateurfunk im Deutschen Museum – man kann erleben, wie mit Funkamateuren weltweit kommuniziert wird. Für technikbegeisterte Kinder faszinierend, aber als Einzelevent recht kurz. Der wahre Bonus: Das Deutsche Museum selbst ist eines der besten Familienmuseen Deutschlands mit Kinderreich, Robotik, Raumfahrt, Flugsimulator und Modellbahn. Man sollte den ganzen Tag einplanen.",
+    "aiTags": ["indoor", "bildung", "technik", "interaktiv", "museum", "winter-tipp"],
+    "priceInfo": "Museumseintritt: 16€ regulär, 9€ ermäßigt, 33€ Familienkarte, Kinder bis 5 frei. Vorführung im Eintritt enthalten.",
+    "tips": "Anfahrt von Pöcking ca. 45-50 Min (S6 ab Possenhofen → München, dann S-Bahn Isartor). Auto eher schwierig (Parkplätze in München teuer). Ganztagesausflug einplanen – das Museum allein lohnt sich. App mit Audioguide kostenlos verfügbar. Im Winter ideal als Indoor-Alternative."
+  },
+  {
+    "id": 19,
+    "scores": {
+      "family": 1,
+      "kids": 0,
+      "adults": 6,
+      "uniqueness": 3,
+      "overall": 4
+    },
+    "ageRange": "ab 16 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "West Coast Swing Workshop im Gilchinger Tanzzentrum – ein spezialisierter Tanzworkshop für Erwachsene, die diesen Paartanz lernen oder vertiefen wollen. Für Familien und Kinder komplett ungeeignet. Für tanzbegeisterte Paare oder Singles mit WCS-Interesse durchaus attraktiv, aber ein regelmäßiges Kursangebot, kein besonderes Event.",
+    "aiTags": ["indoor", "tanz", "kurs", "paare", "sport"],
+    "priceInfo": "Nicht gefunden – vermutlich Kursgebühr, Infos direkt beim Gilchinger Tanzzentrum erfragen.",
+    "tips": "Gilching ist nur ca. 15 Min. mit dem Auto von Pöcking. Tanzzentrum an der Landsberger Straße 18. Am besten vorher anmelden, da Workshops oft limitierte Plätze haben. Tanzschuhe mitbringen."
+  },
+  {
+    "id": 21,
+    "scores": {
+      "family": 3,
+      "kids": 1,
+      "adults": 8,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 12 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Hochkarätiges Klassikkonzert mit dem international gefeierten Henschel Quartett in Seefeld. Highlight: eine Uraufführung des Streichquintetts 'Streicher pur' der Komponistin Dorothee Eberhardt aus Gilching – ein packendes Werk voller Kontraste. Für Klassikliebhaber ein echtes Erlebnis in intimem Rahmen. Für Kinder eher ungeeignet (2 Stunden Kammermusik).",
+    "aiTags": ["indoor", "musik", "klassik", "kultur", "uraufführung", "kammermusik"],
+    "priceInfo": "Nicht auf der Webseite gefunden – Karten vermutlich im Vorverkauf, Preis erfragen.",
+    "tips": "Seefeld (Schlosshof 6) ist nur ca. 10-15 Min. von Pöcking mit dem Auto. Sehr kurze Anfahrt! Schöner Winterabend-Ausflug für Paare. Konzertdauer ca. 19-21 Uhr. Parkplätze am Schloss vorhanden."
+  },
+  {
+    "id": 27,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 8,
+      "uniqueness": 8,
+      "overall": 7
+    },
+    "ageRange": "ab 18 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die erste Starnberger Ballnacht ist die stilvolle Neuauflage der traditionellen Redoute – ein festlicher Ball mit Salonorchester Monaco, Tanzeinlagen der Perchalla-Garde, Verleihung des Seerosenordens und Tombola. Für Erwachsene, die gerne tanzen und einen eleganten Abend erleben wollen, ein echtes Highlight. Premiere-Event mit lokalem Charme. Für Kinder absolut ungeeignet (Dresscode: festliche Abendmode, bis 1 Uhr nachts).",
+    "aiTags": ["indoor", "tanz", "kultur", "festlich", "ball", "tradition", "premiere"],
+    "priceInfo": "28€ inkl. Sektempfang. Karten über login.vr-ticket.de/Perchalla-Kartenbestellung/Ballnacht2026/",
+    "tips": "Schlossberghalle Starnberg – nur 5-10 Min. von Pöcking! Einlass ab 18 Uhr, Beginn 19:30, Ende ca. 1 Uhr. Dresscode festliche Abendmode beachten! Warme Speisen, Getränke und Bar vor Ort. Babysitter organisieren – das ist ein reiner Erwachsenen-Abend. Preis-Leistung mit 28€ inkl. Sekt ist fair."
+  },
+  {
+    "id": 32,
+    "scores": {
+      "family": 8,
+      "kids": 8,
+      "adults": 8,
+      "uniqueness": 9,
+      "overall": 8
+    },
+    "ageRange": "alle Alter",
+    "bestFor": "alle",
+    "aiSummary": "Das große Finale der 25. Tegernseer Tal Montgolfiade – rund 28 bunte Heißluftballons schweben über dem winterlichen Tegernsee mit Alpenpanorama. Das Jubiläumsevent (25 Jahre!) ist ein visuelles Spektakel, das Kinder wie Erwachsene gleichermaßen fasziniert. Kostenlos zuschauen, oder eine Ballonfahrt buchen (wetterabhängig!). Einziges Manko: die Anfahrt von Pöcking ist weit (~50 Min.) und das Wetter muss mitspielen.",
+    "aiTags": ["outdoor", "spektakel", "natur", "winter", "fotogen", "jubiläum", "alpen", "kostenlos"],
+    "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar über tegernsee.bayern (Preis nicht angegeben, typisch 200-350€ pro Person).",
+    "tips": "Ballonstarts typisch 8:30-11 Uhr – FRÜH aufstehen! Anfahrt von Pöcking ca. 50-60 Min über A95/A8 Richtung Tegernsee. Warm anziehen – Winter am See kann bitter kalt sein! Kamera mitbringen, das Fotomotiv ist grandios. Wetterabhängig – am Vorabend tegernsee.com checken. Letzter Tag des Festivals, also letzte Chance!"
+  },
+  {
+    "id": 294,
+    "scores": {
+      "family": 5,
+      "kids": 3,
+      "adults": 7,
+      "uniqueness": 4,
+      "overall": 5
+    },
+    "ageRange": "ab 8 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Öffentliche Führung durch die Ausstellung 'Ausgesucht – Weitere Werke aus der Sammlung' im Buchheim Museum der Phantasie in Bernried. Das Museum am Starnberger See besticht durch seine einzigartige Architektur und Seelage. Am Sonntag gibt es auch ein Offenes Atelier für Kinder (ab 6, 3,50€). Die Führung selbst ist eher für Erwachsene interessant. Tipp: Kombination aus Museumsbesuch + Café Buffi + Spaziergang am See.",
+    "aiTags": ["indoor", "kunst", "kultur", "bildung", "museum", "see-nähe"],
+    "priceInfo": "Führung 5€ zzgl. Museumseintritt (Eintritt ca. 9-10€ Erwachsene). Offenes Atelier für Kinder 3,50€ zzgl. Eintritt. Kinder typisch ermäßigt.",
+    "tips": "Bernried liegt direkt am Westufer – von Pöcking nur ca. 15 Min. südlich! Sehr nahe Anfahrt. Sonntags Offenes Atelier 11-17 Uhr für Kinder – gute Ergänzung zur Führung um 15 Uhr. Café Buffi im Museum für Kuchen und warme Speisen. Achtung: Kleiner Saal und Boot-Raum wegen Baumaßnahmen geschlossen. Museum schließt ab 17.03.2026 für Umbau – also jetzt noch die Chance nutzen!"
+  }
+]

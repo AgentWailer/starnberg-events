@@ -1,0 +1,114 @@
+[
+  {
+    "id": 14,
+    "scores": {
+      "family": 4,
+      "kids": 2,
+      "adults": 8,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 14 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Unterhaltsamer Bairisch-Kurs mit dem bekannten Kabarettisten Thomas 'Vogelmayer' Mayer – humorvoll, lehrreich und mit Weißwurstfrühstück zum Abschluss. Für Zugezogene ein echtes Highlight, aber für Kinder eher langweilig, da es primär um Sprachkunde und bayerische Kultur geht.",
+    "aiTags": ["indoor", "bildung", "humor", "kabarett", "bayerisch", "kulinarisch"],
+    "priceInfo": "Kursgebühr über VHS Gilching (vermutlich 25-40€, Anmeldung erforderlich)",
+    "tips": "Anmeldung bei der VHS Gilching nötig! Von Pöcking ca. 15-20 Min. Fahrt. Parkplätze an der VHS vorhanden. Kurs geht von 10-13 Uhr inkl. Weißwurstfrühstück."
+  },
+  {
+    "id": 16,
+    "scores": {
+      "family": 1,
+      "kids": 0,
+      "adults": 3,
+      "uniqueness": 3,
+      "overall": 2
+    },
+    "ageRange": "ab 65 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Faschingsfeier explizit für Senioren im Sozialdienst Pöcking. Für Familien und Kinder komplett ungeeignet – die Zielgruppe sind ältere Mitbürger. Nett für Oma und Opa, aber kein Familienausflug.",
+    "aiTags": ["indoor", "senioren", "fasching", "lokal"],
+    "priceInfo": "Vermutlich kostenlos oder geringer Beitrag (Sozialdienst-Veranstaltung)",
+    "tips": "Direkt in Pöcking, also keine Anfahrt nötig. Aber wirklich nur für die Zielgruppe Senioren gedacht – keine Kinder mitbringen."
+  },
+  {
+    "id": 380,
+    "scores": {
+      "family": 3,
+      "kids": 1,
+      "adults": 7,
+      "uniqueness": 5,
+      "overall": 5
+    },
+    "ageRange": "ab 14 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Museumsleiter Benjamin Tillig führt persönlich durch die Sonderausstellung über Heinz Butz, einen wenig bekannten Avantgardisten aus Oberbayern. Für Kunstinteressierte eine seltene Gelegenheit, die Werke durch den Direktor selbst erklärt zu bekommen. Für Kinder ungeeignet – abstrakte Kunst und Führungsformat.",
+    "aiTags": ["indoor", "kunst", "kultur", "museum", "führung"],
+    "priceInfo": "5€ Teilnahmegebühr zzgl. Museumseintritt. Museum: Mi-Fr 14-18 Uhr, Sa/So 11-18 Uhr.",
+    "tips": "Anmeldung per E-Mail (info@museum-starnberger-see.de) oder Tel. 08151-4477570 empfohlen. Von Pöcking nur 5 Min. nach Starnberg. Treffpunkt im Foyer. Kann gut mit einem Winterspaziergang am See kombiniert werden."
+  },
+  {
+    "id": 31,
+    "scores": {
+      "family": 5,
+      "kids": 5,
+      "adults": 6,
+      "uniqueness": 4,
+      "overall": 5
+    },
+    "ageRange": "alle Alter",
+    "bestFor": "alle",
+    "aiSummary": "Regionalliga-Volleyball (4. Bundesliga) des TSV Herrsching II in der Nikolaushalle. Gutes Niveau, lebhafte Atmosphäre in der Halle. Für sportbegeisterte Familien ein netter Abend – Herrsching hat eine tolle Volleyball-Tradition. Allerdings 19 Uhr Anpfiff ist für jüngere Kinder spät.",
+    "aiTags": ["indoor", "sport", "volleyball", "live", "regional"],
+    "priceInfo": "Vermutlich 5-8€ Eintritt (Regionalliga-Spiel), Kinder oft günstiger oder frei",
+    "tips": "Von Pöcking ca. 20-25 Min. nach Herrsching. Nikolaushalle, Nikolausstraße 11. Gut mit dem Auto erreichbar, Parkplätze in der Umgebung. Warme Kleidung für Anreise, in der Halle ist es warm. Stimmung bei Herrsching-Spielen meist gut!"
+  },
+  {
+    "id": 25,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 7,
+      "uniqueness": 6,
+      "overall": 6
+    },
+    "ageRange": "ab 16 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die virtuose Gitarristin Yasi Hofer, bekannt als Begleiterin von Helene Fischer und Robbie Williams, spielt mit ihrem Trio ein Best-Of-Programm. Für Musikfans und Gitarren-Liebhaber ein Genuss – die Frau kann spielen. Für Familien mit Kindern wegen der Abendzeit (20 Uhr) und dem Format nicht geeignet.",
+    "aiTags": ["indoor", "musik", "konzert", "live", "gitarre"],
+    "priceInfo": "Ticketpreis nicht auf der Seite gefunden – vermutlich 20-30€ (Vorabkauf empfohlen)",
+    "tips": "Einlass ab 19 Uhr, Konzert 20-22:30 Uhr. Inning am Ammersee ist von Pöcking ca. 20 Min. entfernt. Landsberger Straße 57 – vorher Tickets sichern, kleinere Venue könnte schnell voll sein."
+  },
+  {
+    "id": 33,
+    "scores": {
+      "family": 9,
+      "kids": 10,
+      "adults": 7,
+      "uniqueness": 7,
+      "overall": 9
+    },
+    "ageRange": "ab 5 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Spektakuläre Live-Experimente mit flüssigem Stickstoff bei minus 200°C – Supraleiter schweben, Blumen zerbersten, Gummibälle zerspringen. Das Deutsche Museum bietet damit eines der besten Familien-Highlights der Region. Absolutes Muss für neugierige Kinder! Die Fahrt nach München lohnt sich, und man kann den ganzen Tag im Museum verbringen.",
+    "aiTags": ["indoor", "show", "wissenschaft", "interaktiv", "bildung", "wow-effekt", "kinderfreundlich"],
+    "priceInfo": "Familienkarte 33€, Erwachsene 16€, ermäßigt 9€, Kinder unter 5 frei. Science Show im Eintrittspreis enthalten.",
+    "tips": "Von Pöcking ca. 40-50 Min. nach München. Am besten mit der S6 ab Possenhofen bis Isartor (ca. 50 Min.) – dann 5 Min. Fußweg. Am Wochenende Tickets online vorab kaufen! Ganzen Tag einplanen: Kinderreich (3-8 J.), Flugsimulator, Modellbahn – Kinder werden nicht fertig. Show um 11:30 Uhr als Highlight einplanen."
+  },
+  {
+    "id": 35,
+    "scores": {
+      "family": 9,
+      "kids": 9,
+      "adults": 5,
+      "uniqueness": 7,
+      "overall": 8
+    },
+    "ageRange": "3-10 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Interaktives Kinderkonzert mit Weltmusik – Klavier, Querflöte, Gitarre, Gesang und Percussion nehmen die kleinen Zuhörer mit auf eine musikalische Reise rund um den Globus. Kinder machen aktiv mit, es geht um Vielfalt und Neugier. Perfekt für einen Sonntagnachmittag mit der Familie, schön nah in Seefeld.",
+    "aiTags": ["indoor", "musik", "interaktiv", "kinderkonzert", "mitmachen", "weltmusik", "kulturell"],
+    "priceInfo": "Nicht auf der Webseite angegeben – vermutlich 5-10€ (typisch für Kinderkonzerte in der Region)",
+    "tips": "Seefeld ist von Pöcking nur ca. 15 Min. entfernt – super erreichbar! Schlosshof 6, Seefeld. Nur 1 Stunde (16-17 Uhr), also gut planbar. Ideal als Sonntagnachmittags-Programm, vorher oder nachher noch ein Spaziergang in Seefeld möglich."
+  }
+]

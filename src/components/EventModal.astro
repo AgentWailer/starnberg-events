@@ -63,6 +63,45 @@
           </div>
         </div>
 
+        <!-- AI Curation Section -->
+        <div class="modal-ai-curation" id="modal-ai-curation" style="display:none;">
+          <div class="ai-curation-header">
+            <span class="ai-curation-label">✨ KI-Bewertung</span>
+          </div>
+          <p class="ai-curation-summary" id="ai-summary-text"></p>
+          <div class="ai-scores-grid" id="ai-scores-grid">
+            <div class="ai-score-item">
+              <span class="ai-score-emoji">👨‍👩‍👧‍👦</span>
+              <span class="ai-score-label">Familien</span>
+              <div class="ai-score-bar"><div class="ai-score-fill" id="ai-score-family"></div></div>
+            </div>
+            <div class="ai-score-item">
+              <span class="ai-score-emoji">🧒</span>
+              <span class="ai-score-label">Kinder</span>
+              <div class="ai-score-bar"><div class="ai-score-fill" id="ai-score-kids"></div></div>
+            </div>
+            <div class="ai-score-item">
+              <span class="ai-score-emoji">👫</span>
+              <span class="ai-score-label">Erwachsene</span>
+              <div class="ai-score-bar"><div class="ai-score-fill" id="ai-score-adults"></div></div>
+            </div>
+          </div>
+          <div class="ai-details" id="ai-details">
+            <div class="ai-detail-row" id="ai-age-row">
+              <span class="ai-detail-icon">🎂</span>
+              <span class="ai-detail-text" id="ai-age-text"></span>
+            </div>
+            <div class="ai-detail-row" id="ai-price-row">
+              <span class="ai-detail-icon">💰</span>
+              <span class="ai-detail-text" id="ai-price-text"></span>
+            </div>
+            <div class="ai-detail-row" id="ai-tips-row">
+              <span class="ai-detail-icon">💡</span>
+              <span class="ai-detail-text" id="ai-tips-text"></span>
+            </div>
+          </div>
+        </div>
+
         <!-- Description -->
         <div class="modal-description" id="modal-description"></div>
 
@@ -416,6 +455,112 @@
     display: none;
   }
 
+  /* === AI CURATION === */
+  .modal-ai-curation {
+    background: var(--color-bg-secondary);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-curation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ai-curation-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ai-curation-summary {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .ai-scores-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-score-item {
+    display: grid;
+    grid-template-columns: 24px 80px 1fr;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-score-emoji {
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .ai-score-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .ai-score-bar {
+    height: 6px;
+    background: var(--color-border-light);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .ai-score-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    background: var(--color-primary);
+  }
+
+  .ai-score-fill[data-score="0"],
+  .ai-score-fill[data-score="1"],
+  .ai-score-fill[data-score="2"] { background: #ef4444; }
+  .ai-score-fill[data-score="3"],
+  .ai-score-fill[data-score="4"] { background: #f97316; }
+  .ai-score-fill[data-score="5"],
+  .ai-score-fill[data-score="6"] { background: #eab308; }
+  .ai-score-fill[data-score="7"],
+  .ai-score-fill[data-score="8"] { background: #22c55e; }
+  .ai-score-fill[data-score="9"],
+  .ai-score-fill[data-score="10"] { background: #10b981; }
+
+  .ai-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ai-detail-row {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+  }
+
+  .ai-detail-icon {
+    font-size: 0.8125rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+
+  .ai-detail-text {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
   .modal-description {
     font-size: 0.875rem;
     line-height: 1.6;
@@ -728,6 +873,50 @@
 
     // Reset map overlay
     mapOverlay?.classList.remove('hidden');
+
+    // AI Curation
+    const aiSection = document.getElementById('modal-ai-curation');
+    const aiSummaryText = document.getElementById('ai-summary-text');
+    const aiScoreFamily = document.getElementById('ai-score-family');
+    const aiScoreKids = document.getElementById('ai-score-kids');
+    const aiScoreAdults = document.getElementById('ai-score-adults');
+    const aiAgeRow = document.getElementById('ai-age-row');
+    const aiAgeText = document.getElementById('ai-age-text');
+    const aiPriceRow = document.getElementById('ai-price-row');
+    const aiPriceText = document.getElementById('ai-price-text');
+    const aiTipsRow = document.getElementById('ai-tips-row');
+    const aiTipsText = document.getElementById('ai-tips-text');
+
+    if (eventData.aiSummary && aiSection) {
+      aiSection.style.display = '';
+      if (aiSummaryText) aiSummaryText.textContent = eventData.aiSummary;
+
+      // Score bars
+      const setScoreBar = (el: HTMLElement | null, score: number) => {
+        if (!el) return;
+        el.style.width = `${score * 10}%`;
+        el.setAttribute('data-score', String(score));
+      };
+      setScoreBar(aiScoreFamily, eventData.aiFamilyScore ?? 0);
+      setScoreBar(aiScoreKids, eventData.aiKidsScore ?? 0);
+      setScoreBar(aiScoreAdults, eventData.aiAdultsScore ?? 0);
+
+      // Detail rows
+      if (aiAgeRow && aiAgeText) {
+        if (eventData.aiAgeRange) { aiAgeRow.style.display = ''; aiAgeText.textContent = eventData.aiAgeRange; }
+        else aiAgeRow.style.display = 'none';
+      }
+      if (aiPriceRow && aiPriceText) {
+        if (eventData.aiPrice) { aiPriceRow.style.display = ''; aiPriceText.textContent = eventData.aiPrice; }
+        else aiPriceRow.style.display = 'none';
+      }
+      if (aiTipsRow && aiTipsText) {
+        if (eventData.aiTips) { aiTipsRow.style.display = ''; aiTipsText.textContent = eventData.aiTips; }
+        else aiTipsRow.style.display = 'none';
+      }
+    } else if (aiSection) {
+      aiSection.style.display = 'none';
+    }
 
     // Description
     if (descriptionEl) {

@@ -1,0 +1,114 @@
+[
+  {
+    "id": 28,
+    "scores": {
+      "family": 4,
+      "kids": 3,
+      "adults": 7,
+      "uniqueness": 8,
+      "overall": 5
+    },
+    "ageRange": "ab 10 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Seltene Gelegenheit, überwinternde Prachttaucher und Sterntaucher am Starnberger See zu beobachten – ein Highlight für Vogelbeobachter und Naturinteressierte. Für Familien mit kleineren Kindern allerdings schwierig: 3 Stunden bei Winterkälte am Seeufer stehen erfordert Geduld und Ausdauer, die jüngere Kinder selten mitbringen. Anmeldung war bis 05.02. erforderlich – kurzfristig nicht mehr möglich.",
+    "aiTags": ["natur", "outdoor", "bildung", "winter", "vogelbeobachtung", "anmeldung-erforderlich"],
+    "priceInfo": "Nicht angegeben, vermutlich kostenlos (LBV-Exkursion)",
+    "tips": "Anmeldung bis 05.02. nötig (evtl. zu spät!). Unbedingt sehr warme Kleidung, Handschuhe und Fernglas mitbringen. Genauer Treffpunkt wird erst bei Anmeldung bekannt gegeben. Von Pöcking ca. 25 Min. Fahrt Richtung Seeshaupt/Münsing. Für Kinder nur geeignet, wenn sie echtes Naturinteresse und Kältetoleranz mitbringen."
+  },
+  {
+    "id": 17,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 7,
+      "uniqueness": 3,
+      "overall": 5
+    },
+    "ageRange": "ab 16 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Kompakter 90-Minuten-Discofox-Workshop – ideal für Paare, die einen unterhaltsamen Nachmittag mit Tanzen verbringen wollen. Der Workshop findet monatlich statt und ist daher nicht einmalig. Paarweise Anmeldung empfohlen, für Kinder ungeeignet.",
+    "aiTags": ["tanz", "indoor", "kurs", "paar-aktivität", "regelmäßig"],
+    "priceInfo": "35€ pro Person (TSV-Mitglieder 28€), 90 Minuten",
+    "tips": "Von Pöcking nach Starnberg nur ca. 10 Min. Fahrt. Anmeldung per E-Mail an kontakt@tanzschule-starnberg.de. Keine speziellen Tanzschuhe nötig – flache Schuhe oder Ledersohlen reichen. Kann gut mit der Tanzparty am Abend (20 Uhr) kombiniert werden."
+  },
+  {
+    "id": 30,
+    "scores": {
+      "family": 9,
+      "kids": 9,
+      "adults": 5,
+      "uniqueness": 7,
+      "overall": 8
+    },
+    "ageRange": "ab 4 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Bezauberndes Kindertheaterstück der 'Theaterzwerge' des Ammerseer Bauerntheaters: Ein Märchenspiel über Elfen, Zauberer und den Kampf um eine heile Welt – spannend, unterhaltsam und kindgerecht. Indoor im gemütlichen Andechser Hof in Herrsching, perfekt für einen Winternachmittag. Auch am Sonntag spielbar, falls Samstag nicht passt.",
+    "aiTags": ["theater", "indoor", "märchen", "kindertheater", "winter-tipp"],
+    "priceInfo": "Nicht auf der Website angegeben – telefonisch beim Veranstalter erfragen",
+    "tips": "Von Pöcking nach Herrsching ca. 20 Min. über Andechs oder via S-Bahn (Pöcking → Herrsching ist gut per S8 erreichbar). Direkt am Landungssteg Herrsching, Parkplätze vorhanden. Für einen schönen Familienausflug kann man vorher am Ammersee-Ufer spazieren. Auch am Sonntag (08.02.) um 16 Uhr!"
+  },
+  {
+    "id": 23,
+    "scores": {
+      "family": 2,
+      "kids": 1,
+      "adults": 8,
+      "uniqueness": 8,
+      "overall": 6
+    },
+    "ageRange": "ab 14 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Kulturell anspruchsvoller Abend mit Kurzfilmen von Nachwuchs-Filmemachern plus Filmgespräch mit Regisseur Lukas März. Themen wie Mobbing, Diversität und Generationenkonflikte sind definitiv erwachsenenorientiert – nichts für Kinder. Für Cineasten und Kulturinteressierte ein echtes Highlight, zumal die 2. Ausgabe nach erfolgreicher Premiere zeigt, dass das Format funktioniert.",
+    "aiTags": ["kultur", "film", "indoor", "abendprogramm", "filmgespräch", "nachwuchskunst"],
+    "priceInfo": "Nicht angegeben – Einlass ab 19:00, Veranstaltung 19:30-21:30",
+    "tips": "Super nah von Pöcking: Tutzing ist nur ca. 10 Min. mit dem Auto oder per S-Bahn erreichbar. Kulturtheater Tutzing in der Kirchenstraße 3, zentrale Lage. Idealer Date-Night-Termin für Paare. Ggf. vorher Karten sichern – das Kulturtheater ist klein und gemütlich."
+  },
+  {
+    "id": 26,
+    "scores": {
+      "family": 1,
+      "kids": 0,
+      "adults": 7,
+      "uniqueness": 2,
+      "overall": 5
+    },
+    "ageRange": "ab 18 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Wöchentliche Gesellschaftstanz-Party mit DJ – lockere Atmosphäre zum Tanzen von Cha-Cha-Cha, Walzer, Quickstep und mehr. Netter Samstagabend für tanzbegeisterte Erwachsene, aber kein besonderes Event – findet fast jede Woche statt. Getränke/Snacks dürfen mitgebracht werden oder im Restaurant 'Lilo' unten gekauft werden.",
+    "aiTags": ["tanz", "indoor", "abendprogramm", "regelmäßig", "gesellig"],
+    "priceInfo": "10€ pro Person, Getränke separat (mitbringen oder Bar)",
+    "tips": "Von Pöcking nach Starnberg ca. 10 Min. TSV Starnberg, Brunnangerstraße 2. Parkmöglichkeiten vorhanden. Kann perfekt mit dem Discofox-Workshop am Nachmittag kombiniert werden. Nicht für absolute Anfänger – Grundkenntnisse im Gesellschaftstanz empfohlen."
+  },
+  {
+    "id": 388,
+    "scores": {
+      "family": 7,
+      "kids": 7,
+      "adults": 6,
+      "uniqueness": 8,
+      "overall": 7
+    },
+    "ageRange": "alle Alter",
+    "bestFor": "familie",
+    "aiSummary": "Faschingstreiben am Loisachufer mit Garden aus Nah und Fern – bunte Kostüme, Tanzeinlagen und Fasching-Atmosphäre direkt am Fluss. Ein tolles Spektakel besonders für Kinder, die Verkleidung und Trubel lieben. Allerdings: Outdoor im Februar von 13-18 Uhr kann bei Winterkälte eine Herausforderung werden. Die Anfahrt von Pöcking (ca. 35 Min.) ist etwas weiter.",
+    "aiTags": ["fasching", "outdoor", "fest", "show", "verkleidung", "garde-auftritte", "winter"],
+    "priceInfo": "Vermutlich kostenlos (öffentliche Faschingsveranstaltung am Loisachufer)",
+    "tips": "Von Pöcking ca. 35 Min. Fahrt via Starnberg/Wolfratshausen. Unbedingt warm anziehen – 5 Stunden Outdoor im Februar! Verkleidung für Kinder nicht vergessen. Bühne neben 'Bürger für Bürger' hinter dem Rathaus. Achtung: Parkplatzsuche in Wolfratshausen kann tricky sein – frühzeitig kommen. Heißen Kakao/Tee in Thermoskannen einpacken!"
+  },
+  {
+    "id": 37,
+    "scores": {
+      "family": 9,
+      "kids": 9,
+      "adults": 5,
+      "uniqueness": 7,
+      "overall": 8
+    },
+    "ageRange": "ab 4 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Sonntagsvorstellung desselben bezaubernden Kindertheaterstücks 'Die Träne der Elfe'. Perfekte Alternative falls der Samstag nicht passt. Am Sonntagnachmittag ein wunderbarer Abschluss fürs Wochenende – Indoor, warm und kindgerecht. Ideal wenn man Samstag z.B. den Fasching in Wolfratshausen besucht und Sonntag gemütlicher ausklingen lassen will.",
+    "aiTags": ["theater", "indoor", "märchen", "kindertheater", "winter-tipp", "sonntagsprogramm"],
+    "priceInfo": "Nicht auf der Website angegeben – telefonisch beim Veranstalter erfragen",
+    "tips": "Von Pöcking nach Herrsching ca. 20 Min. Gleicher Veranstaltungsort wie Samstag: Arthotel Andechser Hof am Landungssteg. Gute Kombi: Vormittags Spaziergang am Ammersee, 16 Uhr Theater. Alternativ S-Bahn-Anreise möglich."
+  }
+]
