@@ -23,13 +23,10 @@ const regions = eventsData.regions || {
 // Get artTags from data
 const artTags = eventsData.artTags || {};
 
-// Filter: only events from today up to 1 month ahead
+// Filter out past events and sort by date
 const todayStr = new Date().toISOString().split('T')[0];
-const maxDate = new Date();
-maxDate.setMonth(maxDate.getMonth() + 1);
-const maxDateStr = maxDate.toISOString().split('T')[0];
 const events = eventsData.events
-  .filter(e => e.date >= todayStr && e.date <= maxDateStr)
+  .filter(e => e.date >= todayStr)
   .sort((a, b) => {
     const dateCompare = a.date.localeCompare(b.date);
     if (dateCompare !== 0) return dateCompare;
