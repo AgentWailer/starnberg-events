@@ -459,23 +459,29 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function renderDistribution(dist: any[], total: number) {
-    const bucketOrder = ['exact', '0-1min', '1-2min', '2-3min', '3-4min', '4-5min', '5-10min', '10-20min', '20min+', 'cancelled'];
-    const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1 Min', '1-2min': '1–2 Min', '2-3min': '2–3 Min', '3-4min': '3–4 Min', '4-5min': '4–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min', cancelled: 'Ausfall' };
-    const bucketColors: Record<string, string> = { exact: '#16a34a', '0-1min': '#22c55e', '1-2min': '#4ade80', '2-3min': '#86efac', '3-4min': '#a3e635', '4-5min': '#84cc16', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626', cancelled: '#dc2626' };
+    const bucketOrder = ['exact', '0-1min', '1-2min', '2-3min', '3-4min', '4-5min', '5-10min', '10-20min', '20min+'];
+    const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1 Min', '1-2min': '1–2 Min', '2-3min': '2–3 Min', '3-4min': '3–4 Min', '4-5min': '4–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min' };
+    const bucketColors: Record<string, string> = { exact: '#16a34a', '0-1min': '#22c55e', '1-2min': '#4ade80', '2-3min': '#86efac', '3-4min': '#a3e635', '4-5min': '#84cc16', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626' };
     const maxCount = Math.max(...dist.map((d: any) => d.count || 0), 1);
 
     $('dist-chart').innerHTML = bucketOrder.map(key => {
       const item = dist.find((d: any) => d.bucket === key);
       const count = item?.count || 0;
+      const cancelledCount = item?.cancelled_count || 0;
+      const runningCount = count - cancelledCount;
       const w = (count / maxCount) * 100;
+      const cancelledPct = count > 0 ? (cancelledCount / count) * 100 : 0;
+      const runningPct = 100 - cancelledPct;
+      const cancelledNote = cancelledCount > 0 ? ` (${cancelledCount}× ✕)` : '';
       return `<div class="dist-row">
         <span class="dist-row__label">${bucketLabels[key] || key}</span>
-        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
-          <div class="dist-row__bar" style="width:${w}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
+        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;display:flex;">
+          <div style="width:${w * runningPct / 100}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
+          ${cancelledCount > 0 ? `<div style="width:${w * cancelledPct / 100}%;height:100%;background:${bucketColors[key] || '#888'};opacity:0.4;background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,0.15) 3px,rgba(0,0,0,0.15) 6px);"></div>` : ''}
         </div>
-        <span class="dist-row__val">${count}</span>
+        <span class="dist-row__val" title="${cancelledCount > 0 ? `davon ${cancelledCount} ausgefallen` : ''}">${count}${cancelledNote}</span>
       </div>`;
-    }).join('');
+    }).join('') + '<p style="font-size:0.6875rem;color:var(--color-text-tertiary, #aaa);margin-top:var(--space-2);">✕ = ausgefallene Züge (nach letzter bekannter Verspätung einsortiert)</p>';
   }
 
   function renderBarChart(elId: string, rows: any[], labelFn: (r: any) => string) {
@@ -505,12 +511,13 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
     $('worst-table').innerHTML = `<table class="worst-tbl">
-      <thead><tr><th>Datum</th><th>Uhrzeit</th><th>Richtung</th><th>Verspätung</th></tr></thead>
-      <tbody>${delays.map((d: any) => `<tr>
+      <thead><tr><th>Datum</th><th>Uhrzeit</th><th>Richtung</th><th>Verspätung</th><th></th></tr></thead>
+      <tbody>${delays.map((d: any) => `<tr${d.cancelled ? ' style="opacity:0.6"' : ''}>
         <td>${fmtDate(d.date)}</td>
         <td>${fmtTime(d.planned_when)}</td>
         <td>${d.direction === 'muenchen' ? '→ München' : '← Tutzing'}</td>
         <td class="delay-val">+${Math.round(d.delay / 60)} Min</td>
+        <td>${d.cancelled ? '<span style="font-size:0.6875rem;color:#dc2626;">Ausfall</span>' : ''}</td>
       </tr>`).join('')}</tbody>
     </table>`;
   }
@@ -531,9 +538,13 @@ import Layout from '../layouts/Layout.astro';
       const time = fmtTime(d.planned_when);
       const dir = d.direction === 'muenchen' ? '→Muc' : '→Tut';
       let delayStr = '';
-      if (d.delay && d.delay > 0) {
+      // Only show delay for non-cancelled trains
+      if (d.delay && d.delay > 0 && !d.cancelled) {
         const delayClass = delaySec > 300 ? 'dep-chip__delay' : 'dep-chip__delay--minor';
         delayStr = `<span class="${delayClass}">+${delayMin}</span>`;
+      }
+      if (d.cancelled) {
+        delayStr = '<span style="font-size:0.625rem;color:#dc2626;font-weight:600;">✕</span>';
       }
       return `<span class="dep-chip ${cls}">${time} <span class="dep-chip__dir">${dir}</span> ${delayStr}</span>`;
     }).join('');

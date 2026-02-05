@@ -871,7 +871,6 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
   const delayDistribution = (await db.prepare(`
     SELECT
       CASE
-        WHEN cancelled = 1 THEN 'cancelled'
         WHEN delay IS NULL THEN 'no_data'
         WHEN delay <= 0 THEN 'exact'
         WHEN delay <= 60 THEN '0-1min'
@@ -883,7 +882,8 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
         WHEN delay <= 1200 THEN '10-20min'
         ELSE '20min+'
       END as bucket,
-      COUNT(*) as count
+      COUNT(*) as count,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled_count
     FROM departures WHERE date >= ?1
     GROUP BY bucket
   `).bind(since).all()).results;
@@ -916,9 +916,9 @@ async function handleAnalysis(db: D1Database, url: URL): Promise<Response> {
   `).bind(since).all()).results;
 
   const worstDelays = (await db.prepare(`
-    SELECT planned_when, delay, direction, date
+    SELECT planned_when, delay, direction, date, cancelled
     FROM departures
-    WHERE date >= ?1 AND cancelled = 0 AND delay IS NOT NULL AND delay > 300
+    WHERE date >= ?1 AND delay IS NOT NULL AND delay > 300
     ORDER BY delay DESC LIMIT 10
   `).bind(since).all()).results;
 
