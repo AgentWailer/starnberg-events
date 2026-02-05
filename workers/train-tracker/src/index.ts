@@ -1227,8 +1227,21 @@ Halte dich an die Fakten. Sei direkt und sachlich. Keine Floskeln. Keine Emojis.
       reasoning: { effort: 'low' },
     });
 
-    // Responses API: extract text from output_text or response field
-    let insightText = aiResponse?.output_text || aiResponse?.response || '';
+    // Responses API format: output = [{type:"reasoning",...}, {type:"message", content:[{text:"..."}]}]
+    let insightText = '';
+    if (aiResponse?.output_text) {
+      insightText = aiResponse.output_text;
+    } else if (Array.isArray(aiResponse?.output)) {
+      for (const item of aiResponse.output) {
+        if (item.type === 'message' && Array.isArray(item.content)) {
+          for (const block of item.content) {
+            if (block.text) insightText += block.text;
+          }
+        }
+      }
+    } else if (aiResponse?.response) {
+      insightText = aiResponse.response;
+    }
     if (typeof insightText !== 'string') insightText = '';
     insightText = insightText.trim();
 
