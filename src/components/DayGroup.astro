@@ -39,19 +39,18 @@ const dayLabel = isToday
 <style>
   .day-group {
     margin-bottom: var(--space-5);
-    isolation: isolate; /* Contain z-index of heading within group — prevents covering previous day's events */
   }
 
   .section-heading {
     position: sticky;
-    top: 0;
+    top: 52px; /* Below mobile info ticker (~51px) */
     background: var(--color-bg);
     z-index: 2;
   }
 
   @media (min-width: 768px) {
     .section-heading {
-      top: 357px; /* Below fixed header */
+      top: 357px; /* Below fixed header + navbar */
     }
   }
 
