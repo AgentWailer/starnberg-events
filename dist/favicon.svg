@@ -1,3 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <text y=".9em" font-size="90">🏔️</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d4a5c"/>
+      <stop offset="100%" stop-color="#1a6a82"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="32" height="32" rx="6" fill="url(#bg)"/>
+  <!-- Mountain silhouette -->
+  <polygon points="4,22 10,13 14,17 18,10 24,16 28,14 28,22" fill="#ffffff" opacity="0.15"/>
+  <!-- Lake line -->
+  <line x1="4" y1="22" x2="28" y2="22" stroke="#c9a962" stroke-width="1" opacity="0.6"/>
+  <!-- Letter P for Pöcking -->
+  <text x="16" y="22" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#ffffff">P</text>
+  <!-- Gold accent dot -->
+  <circle cx="22" cy="8" r="2" fill="#c9a962"/>
 </svg>
