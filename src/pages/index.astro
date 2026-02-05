@@ -395,7 +395,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   /* ===== CENTER COLUMN (Event List) ===== */
   .column-center {
     min-width: 0; /* Prevent grid blowout */
-    overflow: hidden; /* Prevent DayGroup heading pseudo-elements from bleeding into sidebar */
+    overflow: clip; /* Clip DayGroup pseudo-elements without breaking position:sticky */
   }
 
   /* ===== RIGHT COLUMN (Context Sidebar) ===== */
