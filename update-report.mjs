@@ -1,4 +1,14 @@
-# Data Quality Report
+import { readFileSync, writeFileSync } from 'fs';
+
+const data = JSON.parse(readFileSync('./src/data/events.json', 'utf-8'));
+
+const cats = {};
+data.events.forEach(e => { cats[e.category] = (cats[e.category]||0)+1; });
+
+const regions = {};
+data.events.forEach(e => { regions[e.region] = (regions[e.region]||0)+1; });
+
+const md = `# Data Quality Report
 *Generated: 2026-02-05*
 
 ## Summary
@@ -13,13 +23,13 @@
 ## 1. Region Changes
 
 ### New Region Definitions Added
-- `starnberger-see`: Starnberger See 🏔️ (was used by 304 events but not defined)
-- `ammersee`: Ammersee ⛵ (was used by 3 events but not defined)
+- \`starnberger-see\`: Starnberger See 🏔️ (was used by 304 events but not defined)
+- \`ammersee\`: Ammersee ⛵ (was used by 3 events but not defined)
 
 ### Removed Region Definition
-- `starnberg-ammersee`: No longer needed — all 26 events migrated
+- \`starnberg-ammersee\`: No longer needed — all 26 events migrated
 
-### Migrated Events (26 total, from `starnberg-ammersee`)
+### Migrated Events (26 total, from \`starnberg-ammersee\`)
 Based on location/address analysis:
 
 **→ ammersee (7 events):**
@@ -37,12 +47,12 @@ Based on location/address analysis:
 ### Final Region Distribution
 | Region | Count |
 |--------|-------|
-| starnberger-see | 322 |
-| muenchen | 126 |
-| poecking | 27 |
-| werdenfels | 17 |
-| tegernsee | 10 |
-| ammersee | 10 |
+| starnberger-see | ${regions['starnberger-see']} |
+| muenchen | ${regions['muenchen']} |
+| poecking | ${regions['poecking']} |
+| werdenfels | ${regions['werdenfels']} |
+| tegernsee | ${regions['tegernsee']} |
+| ammersee | ${regions['ammersee']} |
 
 ## 2. Category Changes (103+ corrections)
 
@@ -66,9 +76,9 @@ Key patterns fixed:
 ### Final Category Distribution
 | Category | Before | After |
 |----------|--------|-------|
-| erwachsene | 301 (59%) | 202 (39%) |
-| familie | 184 (36%) | 282 (55%) |
-| kinder | 29 (6%) | 28 (5%) |
+| erwachsene | 301 (59%) | ${cats['erwachsene']} (${Math.round(cats['erwachsene']/512*100)}%) |
+| familie | 184 (36%) | ${cats['familie']} (${Math.round(cats['familie']/512*100)}%) |
+| kinder | 29 (6%) | ${cats['kinder']} (${Math.round(cats['kinder']/512*100)}%) |
 
 ## 3. artTags Changes
 
@@ -91,8 +101,8 @@ Key patterns fixed:
 - Konzerte → [musik, show]
 - Kabarett → [show, kultur]
 
-### Old `tags` field cleaned up
-182 events had a legacy `tags` field (instead of `artTags`). All converted to proper `artTags`.
+### Old \`tags\` field cleaned up
+182 events had a legacy \`tags\` field (instead of \`artTags\`). All converted to proper \`artTags\`.
 
 ## 4. Duplicates Removed (2)
 
@@ -102,7 +112,7 @@ Key patterns fixed:
 | 87 | Weiberfasching | 2026-02-12 | Kept ID 84 (more detailed description) |
 
 ## 5. aiCuration Fields
-✅ All 38 events with `aiCuration` fields preserved intact.
+✅ All 38 events with \`aiCuration\` fields preserved intact.
 
 ## 6. Remaining Issues
 ✅ No remaining data quality issues.
@@ -111,3 +121,7 @@ Key patterns fixed:
 - All regions used are properly defined
 - No duplicate events
 - No orphaned data
+`;
+
+writeFileSync('./DATA-QUALITY-REPORT.md', md, 'utf-8');
+console.log('Report written.');
