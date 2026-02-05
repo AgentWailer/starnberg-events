@@ -335,10 +335,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 768px) {
     .main {
-      margin-top: 377px; /* Below fixed header */
-      height: calc(100vh - 377px);
-      overflow: hidden; /* Page itself doesn't scroll — columns scroll independently */
-      padding-bottom: 0;
+      padding-top: 377px; /* Space for fixed header */
     }
   }
 
@@ -367,7 +364,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       grid-template-columns: 240px 1fr;
       gap: var(--space-8);
       align-items: start;
-      height: 100%;
     }
     
     .column-right {
@@ -382,7 +378,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       grid-template-columns: 340px 1fr 340px;
       gap: var(--space-8); /* 2rem = 32px */
       align-items: start;
-      height: 100%;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -390,9 +385,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   /* ===== LEFT COLUMN (Filter Sidebar) ===== */
   .column-left {
-    max-height: 100%;
+    position: sticky;
+    top: 382px;
+    max-height: calc(100vh - 382px);
     overflow-y: auto;
-    padding-top: 5px;
+    overscroll-behavior: contain; /* Prevent scroll chaining to page */
+    align-self: start;
   }
 
   /* ===== CENTER COLUMN (Event List) ===== */
@@ -402,9 +400,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 768px) {
     .column-center {
-      max-height: 100%;
+      position: sticky;
+      top: 382px;
+      max-height: calc(100vh - 382px);
       overflow-y: auto;
-      padding-top: 5px;
+      overscroll-behavior: contain;
+      align-self: start;
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
     }
@@ -431,9 +432,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   @media (min-width: 1200px) {
     .column-right {
       display: block;
-      max-height: 100%;
+      position: sticky;
+      top: 382px;
+      max-height: calc(100vh - 382px);
       overflow-y: auto;
-      padding-top: 5px;
+      overscroll-behavior: contain;
+      align-self: start;
     }
 
     /* Sticky section headings inside scrollable right sidebar */
