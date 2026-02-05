@@ -48,6 +48,17 @@ const dayLabel = isToday
     z-index: 20;
   }
 
+  /* Cover the gap between fixed page header and sticky day header */
+  .section-heading::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    right: -32px;
+    bottom: 100%;
+    height: 400px; /* tall enough to cover gap to fixed header */
+    background: var(--color-bg);
+  }
+
   @media (min-width: 768px) {
     .section-heading {
       top: 357px; /* Below fixed header */
