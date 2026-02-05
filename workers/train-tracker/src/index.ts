@@ -14,6 +14,7 @@
 
 interface Env {
   DB: D1Database;
+  AI: any;  // Workers AI binding
 }
 
 // ── Types ──────────────────────────────────────────────────────────
@@ -1025,6 +1026,255 @@ async function handleDepartures(db: D1Database, url: URL): Promise<Response> {
   return json({ date, count: deps.results.length, departures: deps.results });
 }
 
+// ── AI Insight ─────────────────────────────────────────────────────
+
+async function handleAiInsight(env: Env, url: URL): Promise<Response> {
+  const days = Math.min(parseInt(url.searchParams.get('days') || '30', 10), 90);
+  const since = daysAgo(days);
+
+  // Ensure cache table exists
+  await env.DB.prepare(`
+    CREATE TABLE IF NOT EXISTS ai_insights (
+      id INTEGER PRIMARY KEY,
+      period_days INTEGER NOT NULL,
+      insight_text TEXT NOT NULL,
+      data_hash TEXT NOT NULL,
+      generated_at TEXT NOT NULL
+    )
+  `).run();
+
+  // Fetch analysis data (reuse same queries as /api/analysis)
+  const overall = await env.DB.prepare(`
+    SELECT
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 1 THEN 1 ELSE 0 END) as cancelled,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 0 THEN 1 ELSE 0 END) as on_time_exact,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay > 300 THEN 1 ELSE 0 END) as delayed,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay,
+      MAX(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END) as max_delay
+    FROM departures WHERE date >= ?1
+  `).bind(since).first();
+
+  if (!overall || !overall.total || (overall.total as number) === 0) {
+    return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: 0, cached: false });
+  }
+
+  const total = overall.total as number;
+  const onTime = (overall.on_time || 0) as number;
+  const cancelled = (overall.cancelled || 0) as number;
+  const delayed = (overall.delayed || 0) as number;
+  const avgDelay = (overall.avg_delay || 0) as number;
+  const maxDelay = (overall.max_delay || 0) as number;
+  const rate = total > 0 ? Math.round((onTime / total) * 100) : 0;
+  const cancelRate = total > 0 ? ((cancelled / total) * 100).toFixed(1) : '0.0';
+
+  // Direction stats
+  const byDirection = (await env.DB.prepare(`
+    SELECT direction,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1 GROUP BY direction
+  `).bind(since).all()).results;
+
+  const muc = byDirection.find((d: any) => d.direction === 'muenchen') as any;
+  const tut = byDirection.find((d: any) => d.direction === 'tutzing') as any;
+  const mucTotal = muc ? (muc.total as number) : 0;
+  const mucOnTime = muc ? (muc.on_time as number) : 0;
+  const mucAvg = muc ? (muc.avg_delay as number) : 0;
+  const tutTotal = tut ? (tut.total as number) : 0;
+  const tutOnTime = tut ? (tut.on_time as number) : 0;
+  const tutAvg = tut ? (tut.avg_delay as number) : 0;
+
+  // Rush hour stats
+  const rushHour = (await env.DB.prepare(`
+    SELECT
+      CASE
+        WHEN planned_hour BETWEEN 6 AND 8 THEN 'morning_rush'
+        WHEN planned_hour BETWEEN 16 AND 18 THEN 'evening_rush'
+        ELSE 'off_peak'
+      END as period,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time
+    FROM departures WHERE date >= ?1
+    GROUP BY period
+  `).bind(since).all()).results;
+
+  const morning = rushHour.find((r: any) => r.period === 'morning_rush') as any;
+  const evening = rushHour.find((r: any) => r.period === 'evening_rush') as any;
+  const offPeak = rushHour.find((r: any) => r.period === 'off_peak') as any;
+  const rushPct = (item: any) => item && item.total > 0 ? Math.round(((item.on_time || 0) / item.total) * 100) : 0;
+
+  // Weather correlation
+  const byWeather = (await env.DB.prepare(`
+    SELECT
+      CASE
+        WHEN weather_code IS NULL THEN 'unbekannt'
+        WHEN weather_code = 0 THEN 'klar'
+        WHEN weather_code <= 3 THEN 'bewoelkt'
+        WHEN weather_code IN (45, 48) THEN 'nebel'
+        WHEN weather_code BETWEEN 51 AND 67 THEN 'regen'
+        WHEN weather_code BETWEEN 71 AND 77 THEN 'schnee'
+        WHEN weather_code BETWEEN 80 AND 82 THEN 'regen'
+        WHEN weather_code BETWEEN 85 AND 86 THEN 'schnee'
+        WHEN weather_code >= 95 THEN 'gewitter'
+        ELSE 'bewoelkt'
+      END as weather,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY weather ORDER BY total DESC
+  `).bind(since).all()).results;
+
+  const weatherLines = byWeather
+    .filter((w: any) => w.weather !== 'unbekannt' && (w.total as number) > 0)
+    .map((w: any) => {
+      const wTotal = w.total as number;
+      const wRate = wTotal > 0 ? Math.round(((w.on_time as number || 0) / wTotal) * 100) : 0;
+      const wAvg = Math.round((w.avg_delay as number || 0) / 60);
+      return `- ${w.weather}: ${wRate}% puenktlich, Ø ${wAvg} Min (${wTotal} Zuege)`;
+    }).join('\n');
+
+  // Weekday stats
+  const byWeekday = (await env.DB.prepare(`
+    SELECT
+      CAST(strftime('%w', date) AS INTEGER) as weekday,
+      COUNT(*) as total,
+      SUM(CASE WHEN cancelled = 0 AND delay IS NOT NULL AND delay <= 300 THEN 1 ELSE 0 END) as on_time,
+      ROUND(AVG(CASE WHEN cancelled = 0 AND delay IS NOT NULL THEN delay END), 0) as avg_delay
+    FROM departures WHERE date >= ?1
+    GROUP BY weekday ORDER BY weekday
+  `).bind(since).all()).results;
+
+  const dayNames = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  const weekdayLines = byWeekday.map((w: any) => {
+    const wTotal = w.total as number;
+    const wRate = wTotal > 0 ? Math.round(((w.on_time as number || 0) / wTotal) * 100) : 0;
+    const wAvg = Math.round((w.avg_delay as number || 0) / 60);
+    return `- ${dayNames[w.weekday as number]}: ${wRate}% puenktlich, Ø ${wAvg} Min (${wTotal} Zuege)`;
+  }).join('\n');
+
+  // Create data hash for cache invalidation
+  const hashInput = `${days}|${total}|${onTime}|${cancelled}|${rate}|${avgDelay}|${maxDelay}`;
+  // Simple hash: convert to base36 checksum
+  let hash = 0;
+  for (let i = 0; i < hashInput.length; i++) {
+    hash = ((hash << 5) - hash + hashInput.charCodeAt(i)) | 0;
+  }
+  const dataHash = Math.abs(hash).toString(36);
+
+  // Check cache
+  const cached = await env.DB.prepare(`
+    SELECT insight_text, data_hash, generated_at FROM ai_insights WHERE period_days = ?1
+  `).bind(days).first<{ insight_text: string; data_hash: string; generated_at: string }>();
+
+  if (cached && cached.data_hash === dataHash) {
+    const age = Date.now() - new Date(cached.generated_at).getTime();
+    if (age < 24 * 60 * 60 * 1000) {
+      console.log(`[ai-insight] Returning cached insight for ${days}d (${Math.round(age / 3600000)}h old)`);
+      return json({
+        insight: cached.insight_text,
+        generatedAt: cached.generated_at,
+        periodDays: days,
+        dataPoints: total,
+        cached: true,
+      });
+    }
+  }
+
+  // Build prompt
+  const mucRate = mucTotal > 0 ? Math.round((mucOnTime / mucTotal) * 100) : 0;
+  const tutRate = tutTotal > 0 ? Math.round((tutOnTime / tutTotal) * 100) : 0;
+
+  const prompt = `Du bist ein Datenanalyst fuer den S-Bahn-Verkehr. Analysiere die folgenden Statistiken der S6 am Bahnhof Possenhofen und erstelle eine kurze, praegnante Analyse auf Deutsch. Keine Emojis verwenden.
+
+Zeitraum: ${days} Tage
+Gesamtzuege: ${total}
+Puenktlichkeitsrate: ${rate}%
+Ausfallrate: ${cancelRate}%
+Durchschnittliche Verspaetung: ${Math.round(avgDelay / 60)} Min
+Maximale Verspaetung: ${Math.round(maxDelay / 60)} Min
+
+Richtungsvergleich:
+- Muenchen: ${mucRate}% puenktlich, Ø ${Math.round(mucAvg / 60)} Min (${mucTotal} Zuege)
+- Tutzing: ${tutRate}% puenktlich, Ø ${Math.round(tutAvg / 60)} Min (${tutTotal} Zuege)
+
+Rush Hour:
+- Morning Rush (6-9): ${rushPct(morning)}%
+- Evening Rush (16-19): ${rushPct(evening)}%
+- Nebenzeit: ${rushPct(offPeak)}%
+
+Wetter-Korrelation:
+${weatherLines || 'Keine Wetterdaten verfuegbar'}
+
+Wochentag-Muster:
+${weekdayLines || 'Keine Wochentagdaten verfuegbar'}
+
+Schreibe eine Analyse in 3-5 Absaetzen:
+1. Gesamtbewertung der Zuverlaessigkeit
+2. Auffaellige Muster (Richtung, Tageszeit, Wochentag)
+3. Wetter-Einfluss (falls erkennbar)
+4. Fazit und Einordnung
+
+Halte dich an die Fakten. Sei direkt und sachlich. Keine Floskeln. Keine Emojis. Antworte nur mit der Analyse, ohne Ueberschriften oder Nummerierung.`;
+
+  // Call Workers AI
+  try {
+    const aiResponse = await env.AI.run('@cf/deepseek-ai/deepseek-r1-distill-qwen-32b', {
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 1024,
+      temperature: 0.3,
+    });
+
+    let insightText = aiResponse?.response || '';
+    // Strip thinking tags if present (DeepSeek R1 sometimes includes <think>...</think>)
+    insightText = insightText.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+
+    if (!insightText) {
+      console.error('[ai-insight] Empty response from AI');
+      return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false });
+    }
+
+    const generatedAt = new Date().toISOString();
+
+    // Store in cache (upsert by period_days)
+    await env.DB.prepare(`
+      INSERT INTO ai_insights (id, period_days, insight_text, data_hash, generated_at)
+      VALUES (?1, ?2, ?3, ?4, ?5)
+      ON CONFLICT (id) DO UPDATE SET
+        period_days = excluded.period_days,
+        insight_text = excluded.insight_text,
+        data_hash = excluded.data_hash,
+        generated_at = excluded.generated_at
+    `).bind(days, days, insightText, dataHash, generatedAt).run();
+
+    console.log(`[ai-insight] Generated new insight for ${days}d (${insightText.length} chars)`);
+
+    return json({
+      insight: insightText,
+      generatedAt,
+      periodDays: days,
+      dataPoints: total,
+      cached: false,
+    });
+  } catch (err) {
+    console.error('[ai-insight] AI call failed:', err);
+    // Return stale cache if available
+    if (cached) {
+      return json({
+        insight: cached.insight_text,
+        generatedAt: cached.generated_at,
+        periodDays: days,
+        dataPoints: total,
+        cached: true,
+      });
+    }
+    return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false });
+  }
+}
+
 // ── Export ──────────────────────────────────────────────────────────
 
 export default {
@@ -1042,16 +1292,17 @@ export default {
 
     try {
       switch (url.pathname) {
-        case '/api/stats':      return handleStats(env.DB, url);
-        case '/api/history':    return handleHistory(env.DB, url);
-        case '/api/departures': return handleDepartures(env.DB, url);
-        case '/api/analysis':   return handleAnalysis(env.DB, url);
-        case '/api/live':       return handleLive(request);
+        case '/api/stats':       return handleStats(env.DB, url);
+        case '/api/history':     return handleHistory(env.DB, url);
+        case '/api/departures':  return handleDepartures(env.DB, url);
+        case '/api/analysis':    return handleAnalysis(env.DB, url);
+        case '/api/live':        return handleLive(request);
+        case '/api/ai-insight':  return handleAiInsight(env, url);
         default:
           return new Response(
             JSON.stringify({
               name: 'S6 Train Tracker',
-              endpoints: ['/api/stats', '/api/history', '/api/departures', '/api/analysis', '/api/live'],
+              endpoints: ['/api/stats', '/api/history', '/api/departures', '/api/analysis', '/api/live', '/api/ai-insight'],
               station: 'Possenhofen',
               source: 'IRIS + transport.rest fallback',
             }),

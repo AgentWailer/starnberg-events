@@ -12,3 +12,6 @@ crons = ["*/10 4-23 * * *", "*/10 0-0 * * *"]
 binding = "DB"
 database_name = "train-stats"
 database_id = "6f4c86a7-6e7e-4b8b-8e16-75f574f875a2"
+
+[ai]
+binding = "AI"
