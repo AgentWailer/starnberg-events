@@ -407,6 +407,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
+      padding-top: var(--space-6); /* Match spacing below section headings */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -426,6 +427,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .column-center {
+      padding-top: var(--space-6); /* Match spacing below section headings */
     }
 
     .column-center::-webkit-scrollbar {
@@ -453,6 +460,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
+      padding-top: var(--space-6); /* Match spacing below section headings */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -1027,7 +1035,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </style>
 
 <script>
-  // === App Shell: Header collapse on center-column scroll (Desktop ≥1200px) ===
+  // === App Shell: Header collapse proportional to scroll (Desktop ≥1200px) ===
   function initAppShellCollapse() {
     const mql = window.matchMedia('(min-width: 1200px)');
     if (!mql.matches) return;
@@ -1038,19 +1046,71 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
     if (!header || !centerCol) return;
 
+    // Measure header's natural height (before any scroll)
+    let headerHeight = header.offsetHeight;
     let collapsed = false;
 
-    centerCol.addEventListener('scroll', () => {
-      if (!collapsed && centerCol.scrollTop > 20) {
-        header.classList.add('collapsed');
+    function onScroll() {
+      const scrollY = centerCol.scrollTop;
+      const remaining = Math.max(0, headerHeight - scrollY);
+
+      // Proportional max-height: header shrinks pixel-by-pixel with scroll
+      header.style.maxHeight = remaining + 'px';
+
+      // Opacity: full until 50% scrolled, then fade to 0
+      if (scrollY < headerHeight * 0.5) {
+        header.style.opacity = '1';
+      } else {
+        const fadeProgress = (scrollY - headerHeight * 0.5) / (headerHeight * 0.5);
+        header.style.opacity = String(Math.max(0, 1 - fadeProgress));
+      }
+
+      if (remaining <= 0 && !collapsed) {
+        header.style.visibility = 'hidden';
+        header.style.pointerEvents = 'none';
         navbarBrand?.classList.add('visible');
         collapsed = true;
-      } else if (collapsed && centerCol.scrollTop === 0) {
-        header.classList.remove('collapsed');
+      } else if (remaining > 0 && collapsed) {
+        header.style.visibility = '';
+        header.style.pointerEvents = '';
         navbarBrand?.classList.remove('visible');
         collapsed = false;
       }
-    }, { passive: true });
+    }
+
+    centerCol.addEventListener('scroll', onScroll, { passive: true });
+
+    // Clean up inline styles when leaving desktop breakpoint
+    mql.addEventListener('change', (e) => {
+      if (!e.matches) {
+        header.style.maxHeight = '';
+        header.style.opacity = '';
+        header.style.visibility = '';
+        header.style.pointerEvents = '';
+        navbarBrand?.classList.remove('visible');
+        collapsed = false;
+      } else {
+        headerHeight = header.offsetHeight;
+        onScroll();
+      }
+    });
+
+    // Re-measure on resize (within desktop)
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      if (!mql.matches) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        // Temporarily reset to measure natural height
+        const prevMax = header.style.maxHeight;
+        header.style.maxHeight = '';
+        header.style.visibility = '';
+        header.style.opacity = '';
+        headerHeight = header.offsetHeight;
+        header.style.maxHeight = prevMax;
+        onScroll();
+      }, 150);
+    });
   }
 
   // Run after DOM is ready
