@@ -44,6 +44,7 @@ const { title, description = "Events & Veranstaltungen am Starnberger See", appS
     <script is:inline>
       (function(){
         if (navigator.doNotTrack === '1') return;
+        if (location.pathname.indexOf('/analytics') === 0) return;
         var d = {p: location.pathname, w: screen.width, r: document.referrer};
         try { navigator.sendBeacon('https://train-tracker.steffenvonlindern-be7.workers.dev/api/pageview', JSON.stringify(d)); }
         catch(e) { /* silent */ }

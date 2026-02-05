@@ -1411,7 +1411,7 @@ async function handleAnalyticsData(env: Env, url: URL): Promise<Response> {
     devices: devicesResult.results || [],
     browsers: browsersResult.results || [],
   }), {
-    headers: { 'Content-Type': 'application/json', ...CORS, 'Cache-Control': 'public, max-age=60' }
+    headers: { 'Content-Type': 'application/json', ...CORS, 'Cache-Control': 'no-store' }
   });
 }
 
