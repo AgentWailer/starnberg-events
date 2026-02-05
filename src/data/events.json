@@ -670,7 +670,28 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 33
+      "id": 33,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 4,
+          "adults": 7,
+          "uniqueness": 5,
+          "overall": 6
+        },
+        "ageRange": "ab 6 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Sonderausstellung im Vorraum der Bibliothek des Deutschen Museums mit Astrofotos von Freizeit-Astronomen – Nachtlandschaften, Sonnensystem und Deep Sky. Die Ausstellung selbst ist eher klein und foto-basiert, aber als Ergänzung zu einem ohnehin geplanten Museumsbesuch lohnenswert. Für Kinder ist das Museum selbst (Kinderreich, Flugsimulator, Modellbahn) das eigentliche Highlight.",
+        "aiTags": [
+          "indoor",
+          "bildung",
+          "astronomie",
+          "fotografie",
+          "museum"
+        ],
+        "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 Jahre frei",
+        "tips": "Am besten mit einem ganzen Museumstag kombinieren – die Fotoausstellung allein rechtfertigt die Anfahrt nach München nicht. Anfahrt von Pöcking ca. 40 Min mit Auto oder S6 bis Isartor. Tipp: Das Kinderreich (3-8 Jahre) und Flugsimulator sind für Kinder die wahren Magneten."
+      }
     },
     {
       "title": "Mit WLAN ohne Kamera sehen – Interaktive Ausstellung",
@@ -1024,7 +1045,29 @@
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 45
+      "id": 45,
+      "aiCuration": {
+        "scores": {
+          "family": 10,
+          "kids": 10,
+          "adults": 7,
+          "uniqueness": 8,
+          "overall": 9
+        },
+        "ageRange": "ab 4 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "DAS Familien-Highlight des Wochenendes! Willi Weitzel (bekannt aus 'Willi wills wissen') kommt mit seiner neuen Live-Show direkt nach Pöcking ins BecCult. 90 Minuten über Träume, Mut und das Leben – mit Fotos von seinen Weltreisen, lustigen Anekdoten und viel Interaktion. Für Kinder und alle, die es einmal gewesen sind. Unbedingt hin!",
+        "aiTags": [
+          "indoor",
+          "kindershow",
+          "interaktiv",
+          "prominent",
+          "lokal",
+          "unterhaltung"
+        ],
+        "priceInfo": "Tickets über Eventim (genaue Preise auf eventim.de)",
+        "tips": "Das Event ist IN PÖCKING – keine Anfahrt nötig! BecCult, Weilheimer Str. 33. Frühzeitig Tickets sichern, Willi Weitzel ist ein Publikumsmagnet. Um 15:00 Uhr – perfekte Nachmittagszeit für Familien. Parkplätze am BecCult begrenzt, ggf. zu Fuß oder mit dem Rad."
+      }
     },
     {
       "title": "Aufführung der Theaterzwerge - Die Träne der Elfe",
@@ -1083,7 +1126,30 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 47
+      "id": 47,
+      "aiCuration": {
+        "scores": {
+          "family": 7,
+          "kids": 5,
+          "adults": 8,
+          "uniqueness": 10,
+          "overall": 8
+        },
+        "ageRange": "alle Alter",
+        "bestFor": "alle",
+        "aiSummary": "Der Münchner Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Die Tradition reicht bis 1517 zurück: Kunstvolle Tanzfiguren, der berühmte Reifenschwung und Live-Musik direkt am winterlichen Ammersee. Ein einmaliges Kulturerlebnis, aber outdoor im Februar – warm anziehen!",
+        "aiTags": [
+          "outdoor",
+          "tradition",
+          "kostenlos",
+          "brauchtum",
+          "einmalig",
+          "kultur",
+          "live-musik"
+        ],
+        "priceInfo": "Eintritt frei. Heiße Getränke und Bratwurstsemmeln an der Außenbar",
+        "tips": "Herrsching ist nur ca. 15 Min von Pöcking entfernt. WARM ANZIEHEN – es ist Februar am See! Mütze, Handschuhe, warme Schuhe sind Pflicht. Für Kinder: Vorher erklären, was der Schäfflertanz ist – dann wird's spannender. Von 18:30-20:00 Uhr, danach ggf. noch im Seehof einkehren. Nur alle 7 Jahre – nicht verpassen!"
+      }
     },
     {
       "title": "Volleyball Heimspiele in der Nikolaushalle",
@@ -1140,7 +1206,29 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 49
+      "id": 49,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 1,
+          "adults": 8,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Hochkarätiges Klassikkonzert mit dem international gefeierten Henschel Quartett in Seefeld. Highlight: eine Uraufführung des Streichquintetts 'Streicher pur' der Komponistin Dorothee Eberhardt aus Gilching – ein packendes Werk voller Kontraste. Für Klassikliebhaber ein echtes Erlebnis in intimem Rahmen. Für Kinder eher ungeeignet (2 Stunden Kammermusik).",
+        "aiTags": [
+          "indoor",
+          "musik",
+          "klassik",
+          "kultur",
+          "uraufführung",
+          "kammermusik"
+        ],
+        "priceInfo": "Nicht auf der Webseite gefunden – Karten vermutlich im Vorverkauf, Preis erfragen.",
+        "tips": "Seefeld (Schlosshof 6) ist nur ca. 10-15 Min. von Pöcking mit dem Auto. Sehr kurze Anfahrt! Schöner Winterabend-Ausflug für Paare. Konzertdauer ca. 19-21 Uhr. Parkplätze am Schloss vorhanden."
+      }
     },
     {
       "title": "1. Starnberger Ballnacht",
@@ -1242,7 +1330,29 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 53
+      "id": 53,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 2,
+          "adults": 9,
+          "uniqueness": 7,
+          "overall": 7
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die besten Bergfilme des Jahres auf großer Leinwand im Kongresshaus Garmisch – ein Muss für Outdoor- und Bergsport-Enthusiasten. Abenteuer, Extremsport und atemberaubende Natur. Allerdings Abendveranstaltung um 19:30 Uhr und Garmisch ist ca. 1 Stunde von Pöcking entfernt – eher ein Date-Night-Tipp als ein Familienausflug.",
+        "aiTags": [
+          "indoor",
+          "film",
+          "bergsport",
+          "abenteuer",
+          "outdoor-lifestyle",
+          "abendveranstaltung"
+        ],
+        "priceInfo": "Typisch ca. 20-25 € (Preise nicht direkt abrufbar, Tickets vorab sichern)",
+        "tips": "Anfahrt von Pöcking nach Garmisch ca. 1 Stunde über die A95/B2. Rückfahrt spät abends – Winterreifen und ggf. Glatteisgefahr beachten. Ideal als Paar-Abend ohne Kids. Kongresshaus hat gute Parkplätze direkt am Haus."
+      }
     },
     {
       "title": "Tanzparty bei Peter Schuh",
@@ -1619,7 +1729,30 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 67
+      "id": 67,
+      "aiCuration": {
+        "scores": {
+          "family": 9,
+          "kids": 9,
+          "adults": 5,
+          "uniqueness": 7,
+          "overall": 8
+        },
+        "ageRange": "3-10 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Interaktives Kinderkonzert mit Weltmusik – Klavier, Querflöte, Gitarre, Gesang und Percussion nehmen die kleinen Zuhörer mit auf eine musikalische Reise rund um den Globus. Kinder machen aktiv mit, es geht um Vielfalt und Neugier. Perfekt für einen Sonntagnachmittag mit der Familie, schön nah in Seefeld.",
+        "aiTags": [
+          "indoor",
+          "musik",
+          "interaktiv",
+          "kinderkonzert",
+          "mitmachen",
+          "weltmusik",
+          "kulturell"
+        ],
+        "priceInfo": "Nicht auf der Webseite angegeben – vermutlich 5-10€ (typisch für Kinderkonzerte in der Region)",
+        "tips": "Seefeld ist von Pöcking nur ca. 15 Min. entfernt – super erreichbar! Schlosshof 6, Seefeld. Nur 1 Stunde (16-17 Uhr), also gut planbar. Ideal als Sonntagnachmittags-Programm, vorher oder nachher noch ein Spaziergang in Seefeld möglich."
+      }
     },
     {
       "title": "Glück – Junges Forum",

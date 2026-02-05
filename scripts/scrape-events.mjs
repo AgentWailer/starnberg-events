@@ -227,23 +227,52 @@ async function scrapeAllSources() {
 }
 
 /**
- * Merge and deduplicate events
+ * Merge and deduplicate events.
+ * IMPORTANT: Preserves aiCuration data from existing events when merging duplicates.
  */
 function mergeEvents(existingEvents, newEvents) {
+  // Build lookup for existing event metadata (aiCuration, isHighlight, etc.)
+  // Key: "title|date" → existing event data
+  const existingLookup = new Map();
+  for (const e of existingEvents) {
+    const key = `${e.title}|${e.date}`;
+    existingLookup.set(key, e);
+  }
+
   // Keep manual events
   const manualEvents = existingEvents.filter(e => e.manual === true);
   
   // Remove past events from existing
   const futureExisting = existingEvents.filter(e => !isPastEvent(e.date) && !e.manual);
   
-  // Remove duplicates from new events
-  const uniqueNewEvents = newEvents.filter(e => 
-    !isDuplicate(e, futureExisting) && 
-    !isDuplicate(e, manualEvents)
-  );
+  // Remove duplicates from new events, but merge metadata from existing
+  const uniqueNewEvents = newEvents
+    .filter(e => !isDuplicate(e, futureExisting) && !isDuplicate(e, manualEvents))
+    .map(e => {
+      // If there's an existing event with same title+date, carry over aiCuration
+      const key = `${e.title}|${e.date}`;
+      const existing = existingLookup.get(key);
+      if (existing?.aiCuration) {
+        e.aiCuration = existing.aiCuration;
+      }
+      if (existing?.isHighlight) {
+        e.isHighlight = existing.isHighlight;
+      }
+      return e;
+    });
   
+  // For existing events: ensure aiCuration is preserved (not overwritten)
+  const mergedExisting = futureExisting.map(e => {
+    const key = `${e.title}|${e.date}`;
+    const original = existingLookup.get(key);
+    if (original?.aiCuration && !e.aiCuration) {
+      e.aiCuration = original.aiCuration;
+    }
+    return e;
+  });
+
   // Combine all
-  const allEvents = [...manualEvents, ...futureExisting, ...uniqueNewEvents];
+  const allEvents = [...manualEvents, ...mergedExisting, ...uniqueNewEvents];
   
   // Sort by date
   allEvents.sort((a, b) => {
