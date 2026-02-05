@@ -221,13 +221,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </div>
 
-          <!-- Weekend Highlights (Vertical, scrollable) -->
+          <!-- Weekend Highlights (Vertical, collapsible) -->
           {hasWeekendEvents && (
             <div class="context-widget-group">
               <h3 class="section-heading">{weekendTitle}</h3>
-              <div class="highlights-scroll-wrapper" id="highlights-scroll-wrapper">
-                <div class="highlights-vertical">
-                {weekendEvents.map(event => {
+              <div class="highlights-vertical" id="highlights-vertical">
+                {weekendEvents.map((event, index) => {
                   const evDate = new Date(event.date);
                   const evDay = evDate.getDate();
                   const evMonth = evDate.getMonth() + 1;
@@ -236,7 +235,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                   const score = curation?.scores?.overall ?? 0;
                   return (
                     <button 
-                      class="wh-card" 
+                      class={`wh-card ${index >= 3 ? 'wh-card--collapsed' : ''}`}
                       data-event-id={event.id}
                       data-event-title={event.title}
                       data-date={event.date}
@@ -283,9 +282,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                     </button>
                   );
                 })}
-                </div>
-                <div class="highlights-scroll-fade" id="highlights-scroll-fade"></div>
               </div>
+              {weekendEvents.length > 3 && (
+                <button class="wh-show-more" id="wh-show-more">
+                  <span class="wh-show-more-text" id="wh-show-more-text">{weekendEvents.length - 3} weitere anzeigen</span>
+                  <svg class="wh-show-more-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+              )}
             </div>
           )}
 
@@ -655,50 +660,56 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* ===== WEEKEND HIGHLIGHTS (Right Sidebar - Vertical, Scrollable) ===== */
-  .highlights-scroll-wrapper {
-    position: relative;
-    max-height: 520px; /* ~3 cards visible */
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-    border-radius: var(--radius-lg);
-  }
-
-  .highlights-scroll-wrapper::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .highlights-scroll-wrapper::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .highlights-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 2px;
-  }
-
-  .highlights-scroll-fade {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 48px;
-    background: linear-gradient(to bottom, transparent, var(--color-bg));
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 0.3s ease;
-  }
-
-  .highlights-scroll-fade.hidden {
-    opacity: 0;
-  }
-
+  /* ===== WEEKEND HIGHLIGHTS (Right Sidebar - Vertical, Collapsible) ===== */
   .highlights-vertical {
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+  }
+
+  /* Collapsed cards: hidden by default on desktop */
+  .wh-card--collapsed {
+    display: none;
+  }
+
+  .highlights-vertical.expanded .wh-card--collapsed {
+    display: flex;
+  }
+
+  /* "X weitere anzeigen" button */
+  .wh-show-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    font-family: inherit;
+  }
+
+  .wh-show-more:hover {
+    background: var(--color-border-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .wh-show-more-chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--duration-fast) ease;
+  }
+
+  .wh-show-more.expanded .wh-show-more-chevron {
+    transform: rotate(180deg);
   }
 
   /* Weekend Highlight Card (Vertical Layout) */
@@ -1003,12 +1014,46 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       el.style.display = (showAll || activeCategories.has(cat)) ? '' : 'none';
     });
 
-    // Filter .wh-card (desktop sidebar)
+    // Filter .wh-card (desktop sidebar) — respect collapsed state
+    const hlContainer = document.getElementById('highlights-vertical');
+    const isExpanded = hlContainer?.classList.contains('expanded');
+    let visibleIndex = 0;
+    let hiddenByCollapse = 0;
+
     document.querySelectorAll('.wh-card').forEach(card => {
       const el = card as HTMLElement;
       const cat = el.dataset.category || '';
-      el.style.display = (showAll || activeCategories.has(cat)) ? '' : 'none';
+      const matchesCat = showAll || activeCategories.has(cat);
+
+      if (!matchesCat) {
+        el.style.display = 'none';
+        return;
+      }
+
+      // Card matches filter — check collapse state
+      if (!isExpanded && visibleIndex >= 3) {
+        el.style.display = 'none';
+        hiddenByCollapse++;
+      } else {
+        el.style.display = '';
+      }
+      visibleIndex++;
     });
+
+    // Update "X weitere anzeigen" button count
+    const smText = document.getElementById('wh-show-more-text');
+    const smBtn = document.getElementById('wh-show-more');
+    if (smBtn && smText) {
+      if (!isExpanded && hiddenByCollapse > 0) {
+        smBtn.style.display = '';
+        smText.textContent = `${hiddenByCollapse} weitere anzeigen`;
+      } else if (isExpanded) {
+        smBtn.style.display = '';
+        smText.textContent = 'Weniger anzeigen';
+      } else {
+        smBtn.style.display = 'none';
+      }
+    }
 
     // Hide entire weekend section if no cards visible
     const wkSection = document.querySelector('.wk-carousel-section');
@@ -1030,18 +1075,19 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     weekendFilterObserver.observe(vcEl, { childList: true, characterData: true, subtree: true });
   }
 
-  // === Scroll fade hint for desktop weekend sidebar ===
-  const scrollWrapper = document.getElementById('highlights-scroll-wrapper');
-  const scrollFade = document.getElementById('highlights-scroll-fade');
-  if (scrollWrapper && scrollFade) {
-    function updateScrollFade() {
-      if (!scrollWrapper || !scrollFade) return;
-      const atBottom = scrollWrapper.scrollTop + scrollWrapper.clientHeight >= scrollWrapper.scrollHeight - 10;
-      scrollFade.classList.toggle('hidden', atBottom);
-    }
-    scrollWrapper.addEventListener('scroll', updateScrollFade, { passive: true });
-    // Initial check
-    updateScrollFade();
+  // === Desktop: Collapsible weekend highlights ===
+  const showMoreBtn = document.getElementById('wh-show-more');
+  const highlightsContainer = document.getElementById('highlights-vertical');
+  const showMoreText = document.getElementById('wh-show-more-text');
+
+  if (showMoreBtn && highlightsContainer) {
+    showMoreBtn.addEventListener('click', () => {
+      const isExpanded = highlightsContainer.classList.contains('expanded');
+      highlightsContainer.classList.toggle('expanded', !isExpanded);
+      showMoreBtn.classList.toggle('expanded', !isExpanded);
+      // Re-run filter to update visibility + button text
+      filterWeekendCards();
+    });
   }
 
   // Load More functionality (mobile/tablet only)

@@ -113,9 +113,6 @@ const catLabel = categoryLabels[event.category] || 'Familie';
       </div>
     </div>
 
-    <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M7 17L17 7M17 7H7M17 7V17"></path>
-    </svg>
   </button>
 </article>
 
@@ -136,11 +133,6 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     .event-card:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
-    }
-
-    .event-card:hover .card-arrow {
-      opacity: 1;
-      transform: translate(0, 0);
     }
 
     .event-card:hover .card-title {
@@ -194,7 +186,7 @@ const catLabel = categoryLabels[event.category] || 'Familie';
 
   .card-link {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     gap: var(--space-4);
     padding: var(--space-5);
     color: inherit;
@@ -349,27 +341,6 @@ const catLabel = categoryLabels[event.category] || 'Familie';
     opacity: 0.6;
   }
 
-  /* Arrow */
-  .card-arrow {
-    width: 20px;
-    height: 20px;
-    color: var(--color-muted);
-    opacity: 0;
-    transform: translate(-4px, 4px);
-    transition: 
-      opacity var(--duration-normal) ease,
-      transform var(--duration-normal) ease;
-    align-self: center;
-    flex-shrink: 0;
-  }
-
-  /* Mobile: Always show arrow */
-  @media (hover: none) {
-    .card-arrow {
-      opacity: 0.4;
-      transform: none;
-    }
-  }
 </style>
 
 <script>
