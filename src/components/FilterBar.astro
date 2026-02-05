@@ -1212,6 +1212,13 @@ const artTagGroups = [
     });
 
     if (countEl) countEl.textContent = String(count);
+
+    // Hide day groups with no visible cards
+    document.querySelectorAll('.day-group').forEach(group => {
+      const cards = group.querySelectorAll('.event-card');
+      const hasVisible = [...cards].some(c => (c as HTMLElement).style.display !== 'none');
+      (group as HTMLElement).style.display = hasVisible ? '' : 'none';
+    });
     
     const hasFilters = !activeCategories.has('all') || 
                       !activeRegions.has('all') || 

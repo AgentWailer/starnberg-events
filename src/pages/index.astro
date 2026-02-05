@@ -697,6 +697,16 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       loadMoreBtn.style.display = 'block';
       if (loadMoreCount) loadMoreCount.textContent = `· ${hiddenByLimit} mehr`;
     }
+
+    // Hide day groups that have no visible event cards
+    document.querySelectorAll('.day-group').forEach(group => {
+      const cards = group.querySelectorAll('.event-card');
+      const hasVisible = [...cards].some(c => {
+        const el = c as HTMLElement;
+        return el.style.display !== 'none';
+      });
+      (group as HTMLElement).style.display = hasVisible ? '' : 'none';
+    });
   }
 
   loadMoreBtn?.addEventListener('click', () => {
