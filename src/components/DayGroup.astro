@@ -60,15 +60,20 @@ const dayLabel = isToday
     background: var(--color-bg);
   }
 
-  /* Soft fade below heading — cards "roll away" behind it */
+  /*
+   * Cover below heading: opaque for margin-bottom zone, then soft fade.
+   * The heading's margin-bottom (--space-4 = 16px) has NO background.
+   * Without this cover, scrolling content is visible in that gap.
+   * Solution: ::after is opaque for 20px (covers margin) then fades out.
+   */
   .section-heading::after {
     content: '';
     position: absolute;
     left: -20px;
     right: -20px;
     top: 100%;
-    height: 24px;
-    background: linear-gradient(to bottom, var(--color-bg), transparent);
+    height: 36px;
+    background: linear-gradient(to bottom, var(--color-bg) 55%, transparent);
     pointer-events: none;
     z-index: 1;
   }
@@ -85,11 +90,12 @@ const dayLabel = isToday
       display: none;
     }
 
-    /* Clean fade below heading — same as right sidebar */
+    /* Desktop: taller cover for margin-bottom zone */
     .section-heading::after {
       left: 0;
       right: 0;
-      height: 16px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--color-bg) 55%, transparent);
     }
   }
 

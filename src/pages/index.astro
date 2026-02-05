@@ -415,6 +415,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
+      isolation: isolate; /* Stacking context boundary — z-index works within column */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -437,9 +438,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* Desktop center column: no padding-top! See .content-grid comment. */
   @media (min-width: 1200px) {
     .column-center {
+      isolation: isolate; /* Stacking context boundary — z-index works within column */
 
     .column-center::-webkit-scrollbar {
       width: 4px;
@@ -466,6 +467,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
+      isolation: isolate; /* Stacking context boundary — z-index works within column */
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
       touch-action: pan-y;
@@ -482,7 +484,11 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       margin-bottom: var(--space-4);
     }
 
-    /* Fade below sticky heading in right column */
+    /*
+     * Cover below sticky heading: opaque zone for margin-bottom gap, then fade.
+     * heading margin-bottom = 16px (no background). This ::after covers that
+     * gap opaquely, then fades out so content can't bleed through.
+     */
     .column-right > .section-heading::after,
     .column-right .context-widget-group > .section-heading::after {
       content: '';
@@ -490,8 +496,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       left: 0;
       right: 0;
       top: 100%;
-      height: 16px;
-      background: linear-gradient(to bottom, var(--color-bg), transparent);
+      height: 36px;
+      background: linear-gradient(to bottom, var(--color-bg) 55%, transparent);
       pointer-events: none;
     }
   }
@@ -1085,7 +1091,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
     centerCol.addEventListener('scroll', onScroll, { passive: true });
 
-    // Clean up inline styles when leaving desktop breakpoint
+    // Handle breakpoint changes — add/remove listener + clean up
+    let listenerAttached = true;
     mql.addEventListener('change', (e) => {
       if (!e.matches) {
         header.style.maxHeight = '';
@@ -1094,8 +1101,16 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         header.style.pointerEvents = '';
         navbarBrand?.classList.remove('visible');
         collapsed = false;
+        if (listenerAttached) {
+          centerCol.removeEventListener('scroll', onScroll);
+          listenerAttached = false;
+        }
       } else {
         headerHeight = header.offsetHeight;
+        if (!listenerAttached) {
+          centerCol.addEventListener('scroll', onScroll, { passive: true });
+          listenerAttached = true;
+        }
         onScroll();
       }
     });
