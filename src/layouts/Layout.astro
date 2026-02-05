@@ -187,6 +187,22 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
     -webkit-text-size-adjust: 100%;
   }
 
+  /* === App Shell: Desktop ≥768px — no page scroll, flex column layout === */
+  @media (min-width: 768px) {
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+  }
+
   /* === Typography - Space Grotesk for Headlines === */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', system-ui, sans-serif;

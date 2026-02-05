@@ -335,7 +335,20 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 768px) {
     .main {
-      padding-top: 377px; /* Space for fixed header */
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .main > .container {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
   }
 
@@ -363,7 +376,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       display: grid;
       grid-template-columns: 240px 1fr;
       gap: var(--space-8);
-      align-items: start;
+      align-items: stretch; /* App Shell: columns fill grid height */
+      flex: 1;
+      min-height: 0;
     }
     
     .column-right {
@@ -377,20 +392,25 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       display: grid;
       grid-template-columns: 340px 1fr 340px;
       gap: var(--space-8); /* 2rem = 32px */
-      align-items: start;
+      align-items: stretch; /* App Shell: columns fill grid height */
       max-width: 1400px;
       margin: 0 auto;
+      flex: 1;
+      min-height: 0;
     }
   }
 
   /* ===== LEFT COLUMN (Filter Sidebar) ===== */
-  .column-left {
-    position: sticky;
-    top: 382px;
-    max-height: calc(100vh - 382px);
-    overflow-y: auto;
-    overscroll-behavior: contain; /* Prevent scroll chaining to page */
-    align-self: start;
+  /* App Shell: column is a grid child that stretches to fill container */
+  @media (min-width: 768px) {
+    .column-left {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      min-height: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border) transparent;
+      touch-action: pan-y;
+    }
   }
 
   /* ===== CENTER COLUMN (Event List) ===== */
@@ -400,14 +420,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 768px) {
     .column-center {
-      position: sticky;
-      top: 382px;
-      max-height: calc(100vh - 382px);
       overflow-y: auto;
       overscroll-behavior: contain;
-      align-self: start;
+      min-height: 0;
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
+      touch-action: pan-y;
     }
 
     .column-center::-webkit-scrollbar {
@@ -432,12 +450,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   @media (min-width: 1200px) {
     .column-right {
       display: block;
-      position: sticky;
-      top: 382px;
-      max-height: calc(100vh - 382px);
       overflow-y: auto;
       overscroll-behavior: contain;
-      align-self: start;
+      min-height: 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border) transparent;
+      touch-action: pan-y;
     }
 
     /* Sticky section headings inside scrollable right sidebar */
@@ -941,6 +959,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     background: var(--color-bg-secondary);
   }
 
+  @media (min-width: 768px) {
+    .footer {
+      flex-shrink: 0;
+    }
+  }
+
   .footer-text {
     font-size: 0.8125rem;
     color: var(--color-muted);
@@ -1001,6 +1025,41 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     font-weight: 400;
   }
 </style>
+
+<script>
+  // === App Shell: Header collapse on center-column scroll (Desktop ≥768px) ===
+  function initAppShellCollapse() {
+    const mql = window.matchMedia('(min-width: 768px)');
+    if (!mql.matches) return;
+
+    const header = document.querySelector('.header') as HTMLElement;
+    const centerCol = document.querySelector('.column-center') as HTMLElement;
+    const navbarBrand = document.querySelector('.navbar-brand') as HTMLElement;
+
+    if (!header || !centerCol) return;
+
+    let collapsed = false;
+
+    centerCol.addEventListener('scroll', () => {
+      if (!collapsed && centerCol.scrollTop > 20) {
+        header.classList.add('collapsed');
+        navbarBrand?.classList.add('visible');
+        collapsed = true;
+      } else if (collapsed && centerCol.scrollTop === 0) {
+        header.classList.remove('collapsed');
+        navbarBrand?.classList.remove('visible');
+        collapsed = false;
+      }
+    }, { passive: true });
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAppShellCollapse);
+  } else {
+    initAppShellCollapse();
+  }
+</script>
 
 <script define:vars={{ artTags }}>
   // Make artTags available globally for modal
