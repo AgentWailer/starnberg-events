@@ -1,130 +1,130 @@
 [
   {
-    "id": 13,
+    "id": 31,
     "scores": {
-      "family": 6,
-      "kids": 4,
-      "adults": 7,
-      "uniqueness": 5,
-      "overall": 6
-    },
-    "ageRange": "ab 6 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Sonderausstellung im Vorraum der Bibliothek des Deutschen Museums mit Astrofotos von Freizeit-Astronomen – Nachtlandschaften, Sonnensystem und Deep Sky. Die Ausstellung selbst ist eher klein und foto-basiert, aber als Ergänzung zu einem ohnehin geplanten Museumsbesuch lohnenswert. Für Kinder ist das Museum selbst (Kinderreich, Flugsimulator, Modellbahn) das eigentliche Highlight.",
-    "aiTags": ["indoor", "bildung", "astronomie", "fotografie", "museum"],
-    "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 Jahre frei",
-    "tips": "Am besten mit einem ganzen Museumstag kombinieren – die Fotoausstellung allein rechtfertigt die Anfahrt nach München nicht. Anfahrt von Pöcking ca. 40 Min mit Auto oder S6 bis Isartor. Tipp: Das Kinderreich (3-8 Jahre) und Flugsimulator sind für Kinder die wahren Magneten."
-  },
-  {
-    "id": 416,
-    "scores": {
-      "family": 1,
-      "kids": 0,
-      "adults": 7,
-      "uniqueness": 4,
-      "overall": 5
-    },
-    "ageRange": "Erwachsene Frauen",
-    "bestFor": "erwachsene",
-    "aiSummary": "Ganztägiges Achtsamkeitsseminar exklusiv für Frauen im wunderschönen Schloss Höhenried in Bernried. Yoga, Meditation und Impulse für bewusste Lebensgestaltung. Top-Lokation direkt am Starnberger See, aber klar ein Erwachsenen-Event ohne Familien-Relevanz.",
-    "aiTags": ["indoor", "wellness", "yoga", "meditation", "frauen", "premium"],
-    "priceInfo": "140 € Teilnahmegebühr (inkl. Getränke, Snacks, Mittagessen)",
-    "tips": "Bernried ist nur ca. 10 Min von Pöcking entfernt – ideal für einen Me-Time-Tag, während der Partner die Kids betreut. Schloss Höhenried hat einen schönen Park, auch im Winter. Warme Kleidung für eventuelle Pausen im Freien."
-  },
-  {
-    "id": 18,
-    "scores": {
-      "family": 10,
-      "kids": 10,
-      "adults": 7,
-      "uniqueness": 8,
-      "overall": 9
-    },
-    "ageRange": "ab 4 Jahre",
-    "bestFor": "familie",
-    "aiSummary": "DAS Familien-Highlight des Wochenendes! Willi Weitzel (bekannt aus 'Willi wills wissen') kommt mit seiner neuen Live-Show direkt nach Pöcking ins BecCult. 90 Minuten über Träume, Mut und das Leben – mit Fotos von seinen Weltreisen, lustigen Anekdoten und viel Interaktion. Für Kinder und alle, die es einmal gewesen sind. Unbedingt hin!",
-    "aiTags": ["indoor", "kindershow", "interaktiv", "prominent", "lokal", "unterhaltung"],
-    "priceInfo": "Tickets über Eventim (genaue Preise auf eventim.de)",
-    "tips": "Das Event ist IN PÖCKING – keine Anfahrt nötig! BecCult, Weilheimer Str. 33. Frühzeitig Tickets sichern, Willi Weitzel ist ein Publikumsmagnet. Um 15:00 Uhr – perfekte Nachmittagszeit für Familien. Parkplätze am BecCult begrenzt, ggf. zu Fuß oder mit dem Rad."
-  },
-  {
-    "id": 20,
-    "scores": {
-      "family": 7,
-      "kids": 5,
-      "adults": 8,
-      "uniqueness": 10,
+      "family": 8,
+      "kids": 7,
+      "adults": 9,
+      "uniqueness": 9,
       "overall": 8
     },
-    "ageRange": "alle Alter",
+    "ageRange": "ab 4 Jahre (Zuschauen), ab 6 Jahre (Ballonfahrt mit Begleitung)",
     "bestFor": "alle",
-    "aiSummary": "Der Münchner Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Die Tradition reicht bis 1517 zurück: Kunstvolle Tanzfiguren, der berühmte Reifenschwung und Live-Musik direkt am winterlichen Ammersee. Ein einmaliges Kulturerlebnis, aber outdoor im Februar – warm anziehen!",
-    "aiTags": ["outdoor", "tradition", "kostenlos", "brauchtum", "einmalig", "kultur", "live-musik"],
-    "priceInfo": "Eintritt frei. Heiße Getränke und Bratwurstsemmeln an der Außenbar",
-    "tips": "Herrsching ist nur ca. 15 Min von Pöcking entfernt. WARM ANZIEHEN – es ist Februar am See! Mütze, Handschuhe, warme Schuhe sind Pflicht. Für Kinder: Vorher erklären, was der Schäfflertanz ist – dann wird's spannender. Von 18:30-20:00 Uhr, danach ggf. noch im Seehof einkehren. Nur alle 7 Jahre – nicht verpassen!"
-  },
-  {
-    "id": 24,
-    "scores": {
-      "family": 3,
-      "kids": 2,
-      "adults": 9,
-      "uniqueness": 7,
-      "overall": 7
-    },
-    "ageRange": "ab 12 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Die besten Bergfilme des Jahres auf großer Leinwand im Kongresshaus Garmisch – ein Muss für Outdoor- und Bergsport-Enthusiasten. Abenteuer, Extremsport und atemberaubende Natur. Allerdings Abendveranstaltung um 19:30 Uhr und Garmisch ist ca. 1 Stunde von Pöcking entfernt – eher ein Date-Night-Tipp als ein Familienausflug.",
-    "aiTags": ["indoor", "film", "bergsport", "abenteuer", "outdoor-lifestyle", "abendveranstaltung"],
-    "priceInfo": "Typisch ca. 20-25 € (Preise nicht direkt abrufbar, Tickets vorab sichern)",
-    "tips": "Anfahrt von Pöcking nach Garmisch ca. 1 Stunde über die A95/B2. Rückfahrt spät abends – Winterreifen und ggf. Glatteisgefahr beachten. Ideal als Paar-Abend ohne Kids. Kongresshaus hat gute Parkplätze direkt am Haus."
-  },
-  {
-    "id": 292,
-    "scores": {
-      "family": 2,
-      "kids": 1,
-      "adults": 8,
-      "uniqueness": 6,
-      "overall": 6
-    },
-    "ageRange": "ab 14 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Preisträgerkonzert des Kurt Maas Jazz Awards im bosco Gauting: Zwei junge, preisgekrönte Jazz-Ensembles (Fernanda von Sachsen Quartett, 1. Preis + Edi May Trio). Spannend für Jazz-Liebhaber, die junge Talente entdecken wollen. In Kooperation mit der Münchner Musikhochschule – qualitativ hochwertig, aber klar ein Erwachsenen-Abendprogramm.",
-    "aiTags": ["indoor", "jazz", "konzert", "kultur", "nachwuchs", "abendveranstaltung"],
-    "priceInfo": "Ticketpreise über bosco-gauting.de (Kartenbestellung) – typisch 15-25 € im bosco",
-    "tips": "Gauting ist nur ca. 15-20 Min von Pöcking entfernt – perfekt für einen spontanen Kulturabend. Bosco ist ein kleiner, intimer Veranstaltungsort mit toller Atmosphäre. Rechtzeitig reservieren, der Saal ist überschaubar. Gut mit Abendessen in Gauting kombinierbar."
+    "aiSummary": "Die 25. Tegernseer Tal Montgolfiade ist ein echtes Winterhighlight: Dutzende Heißluftballone über dem verschneiten Tegernseer Tal – ein einmaliges Fotomotiv. Das Zuschauen ist kostenlos und beeindruckend, Ballonfahrten können extra gebucht werden. Nachteil: 50 Min Anfahrt, wetterabhängig (Starts können kurzfristig ausfallen), und der frühe Start um 8 Uhr erfordert Planung.",
+    "aiTags": ["outdoor", "winter", "spektakulär", "fotogen", "wetterabhängig", "jubiläum"],
+    "priceInfo": "Zuschauen kostenlos. Ballonfahrt separat buchbar (ca. 250-350€ p.P., vorab über tegernsee.bayern)",
+    "tips": "Von Pöcking ca. 50 Min über A95 → B472 → B307. Früh losfahren für den 8-Uhr-Start! Warme Kleidung und Thermoskanne mitbringen – man steht draußen im Tal. Wetter-Updates auf tegernsee.com checken, da Starts wetterbedingt oft verschoben werden. Kombination mit Winterspaziergang am Tegernsee sinnvoll."
   },
   {
     "id": 34,
     "scores": {
-      "family": 9,
-      "kids": 8,
-      "adults": 7,
-      "uniqueness": 4,
-      "overall": 8
-    },
-    "ageRange": "ab 5 Jahre",
-    "bestFor": "familie",
-    "aiSummary": "Speziell konzipierte Familienführung im Deutschen Museum: Motoren, Turbinen und die Vielfalt der Antriebe entdecken. Perfekt für technikbegeisterte Kids und ihre Eltern. Das Museum bietet daneben Kinderreich, Flugsimulator und Modellbahn – ein ganzer Erlebnistag. Sonntag 14:00 Uhr ist eine familienfreundliche Zeit.",
-    "aiTags": ["indoor", "bildung", "technik", "interaktiv", "museum", "familienführung"],
-    "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 frei. Führung im Eintritt enthalten.",
-    "tips": "Sonntagnachmittag im Museum kann voll sein – am besten Online-Tickets vorab kaufen. Anfahrt von Pöcking ca. 40 Min (S6 bis Isartor oder Auto). Ganzen Tag einplanen – das Museum hat 20 Ausstellungen auf 20.000 m². Deutsches Museum App runterladen für Audioguide. Kinderreich für jüngere Geschwister (3-8 Jahre) ist im gleichen Haus."
-  },
-  {
-    "id": 36,
-    "scores": {
       "family": 4,
-      "kids": 5,
-      "adults": 3,
-      "uniqueness": 7,
-      "overall": 5
+      "kids": 3,
+      "adults": 6,
+      "uniqueness": 6,
+      "overall": 4
     },
     "ageRange": "ab 12 Jahre",
-    "bestFor": "kinder",
-    "aiSummary": "Studientag für Jugendliche ab 12 Jahren an der Evangelischen Akademie Tutzing zum Thema Glück – mit Impulsen aus Religion (Islam & Christentum), Politik und der bhutanischen Glücksphilosophie. Eine Expertin aus Bhutan ist vor Ort. Spannend für nachdenkliche Teens, aber für jüngere Kinder oder als Familienausflug ungeeignet.",
-    "aiTags": ["indoor", "bildung", "jugend", "workshop", "interreligiös", "philosophie"],
-    "priceInfo": "Nicht explizit genannt – Akademie-Veranstaltungen für Jugendliche oft kostenfrei oder günstiger, Anmeldung erforderlich (Tel. 08158 251-123)",
-    "tips": "Tutzing ist nur ca. 10 Min von Pöcking entfernt! Programm von 9:00-14:30 Uhr inkl. Mittagessen. Ideal für Teens, die sich für gesellschaftliche Themen interessieren. Eltern können in der Zwischenzeit Tutzing oder den Seeuferweg erkunden. Akademie-Gelände direkt am See ist auch im Winter schön."
+    "bestFor": "erwachsene",
+    "aiSummary": "Interaktive Poster-Ausstellung über WLAN-Sensing-Technologie im Science Communication Lab des Deutschen Museums. EU-Forschungsprojekt, bei dem man über die Technologie abstimmen kann. Konzeptionell interessant für Technikbegeisterte, aber letztlich eine Posterausstellung – kein Wow-Faktor für einen Samstagausflug. Eher ein Mitnahme-Effekt, wenn man ohnehin im Museum ist.",
+    "aiTags": ["indoor", "wissenschaft", "interaktiv", "poster", "technik", "nischenthema"],
+    "priceInfo": "Im Museumseintritt enthalten (Deutsches Museum: ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
+    "tips": "40 Min Anfahrt von Pöcking nach München. S-Bahn S6 ab Possenhofen bis Isartor, dann 5 Min Fußweg. Als Einzelevent lohnt die Anfahrt kaum – besser mit Future Box (ID 38) oder Übersichtsführung (ID 39) kombinieren."
+  },
+  {
+    "id": 37,
+    "scores": {
+      "family": 3,
+      "kids": 1,
+      "adults": 7,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 16 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Humorvoller Bairisch-Kurs vom Kabarettisten 'Vogelmayer' mit Weißwurstfrühstück zum Abschluss. Perfekt für Zugezogene, die Bayern verstehen wollen – unterhaltsam, lehrreich, mit Zertifikat. Gilching ist nur 15 Min von Pöcking entfernt, also minimal Aufwand. Für Kinder komplett ungeeignet, für Erwachsene mit Humor ein netter Samstagvormittag.",
+    "aiTags": ["indoor", "humor", "kultur", "dialekt", "kulinarisch", "lokal", "weißwurst"],
+    "priceInfo": "Kursgebühr über VHS Gilching (typisch 25-40€ inkl. Weißwurstfrühstück, Anmeldung erforderlich)",
+    "tips": "Nur 15 Min von Pöcking! Auto über Hauptstraße/Weilheimer Str., Parkplätze an der Schule. Vorab bei VHS Gilching anmelden – Plätze sind begrenzt. Kurs läuft 10:00-13:00 Uhr, danach ist der Nachmittag noch frei."
+  },
+  {
+    "id": 38,
+    "scores": {
+      "family": 6,
+      "kids": 7,
+      "adults": 8,
+      "uniqueness": 9,
+      "overall": 8
+    },
+    "ageRange": "ab 12 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Die Future Box ist das neue Highlight im Deutschen Museum: Eine KI-geführte interaktive Erlebnisausstellung mit VR-Experience, nur 16 Personen pro Führung. Themen wie Quantencomputer, Robotik und Raumfahrt – sehr zeitgemäß und einzigartig in der Region. Ab 12 Jahren empfohlen, also ideal für Familien mit Teenagern. Unbedingt vorher online buchen!",
+    "aiTags": ["indoor", "interaktiv", "KI", "VR", "zukunft", "technologie", "geführt", "premium"],
+    "priceInfo": "12€ regulär, 7,50€ ermäßigt (Kinder/Jugendliche bis 17, Studenten, Senioren ab 65). Mitglieder kostenlos.",
+    "tips": "40 Min Anfahrt von Pöcking. Tickets UNBEDINGT vorab online buchen – nur 16 Plätze pro Führung! 15 Min vor Start am Check-in erscheinen (Forum der Zukunft, Ludwigsbrücke). S6 ab Possenhofen bis Isartor. Kein nachträglicher Einlass möglich."
+  },
+  {
+    "id": 39,
+    "scores": {
+      "family": 6,
+      "kids": 4,
+      "adults": 7,
+      "uniqueness": 4,
+      "overall": 5
+    },
+    "ageRange": "ab 8 Jahre",
+    "bestFor": "alle",
+    "aiSummary": "Klassische 90-minütige Übersichtsführung durch die Highlights des Deutschen Museums – Luftfahrt, Landwirtschaft, Kommunikation und mehr. Solider Einstieg für Erstbesucher, aber nichts Besonderes oder Einmaliges. Findet regelmäßig statt, kein Muss gerade an diesem Samstag. Über alle Ebenen hinweg – für kleine Kinder anstrengend.",
+    "aiTags": ["indoor", "museum", "geführt", "bildung", "standard"],
+    "priceInfo": "Führung im Museumseintritt enthalten (ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
+    "tips": "40 Min Anfahrt von Pöcking. Gut kombinierbar mit Future Box um 10:30 (erst Future Box, dann 14-Uhr-Führung statt 11:30). S6 Possenhofen → Isartor. Für kleinere Kinder zu lang – lieber den Kinderbereich eigenständig erkunden."
+  },
+  {
+    "id": 40,
+    "scores": {
+      "family": 7,
+      "kids": 7,
+      "adults": 8,
+      "uniqueness": 10,
+      "overall": 7
+    },
+    "ageRange": "ab 6 Jahre",
+    "bestFor": "familie",
+    "aiSummary": "Historisches Bobrennen auf der Olympia-Bobbahn von 1936 – ein absolut einzigartiges Event! Wo sonst kann man historische Bobs auf einer Originalbahn sehen, plus Führung durch das Bobmuseum? Höchste Einzigartigkeitswertung, aber die 60 Min Anfahrt nach Garmisch drückt den Gesamtscore. Für sportbegeisterte Familien ein echter Tagesausflug-Kandidat.",
+    "aiTags": ["outdoor", "wintersport", "historisch", "einzigartig", "museum", "olympia", "spektakulär"],
+    "priceInfo": "Genaue Preise nicht online abrufbar (vermutlich Eintritt Bobmuseum ca. 5-8€, Rennen ggf. kostenlos zuschauen)",
+    "tips": "60 Min Anfahrt von Pöcking über A95. Start 13:00 Uhr – nicht zu spät losfahren, Parkplätze an der Bobbahn begrenzt. Warme Kleidung! Gut als Tagesausflug kombinierbar mit Bummel durch Garmisch oder Zugspitz-Blick. Bei Schnee Winterreifen prüfen."
+  },
+  {
+    "id": 51,
+    "scores": {
+      "family": 2,
+      "kids": 0,
+      "adults": 8,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 18 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die erste Starnberger Ballnacht in der Schlossberghalle – ein neues Gesellschaftsereignis direkt vor der Haustür. Salonorchester, Gardetanz, Seerosen-Orden und Tombola. Für tanzbegeisterte Erwachsene ein eleganter Abend zum fairen Preis. Für Familien mit Kindern komplett ungeeignet (Abendveranstaltung mit Dresscode). Als Premiere besonders reizvoll.",
+    "aiTags": ["indoor", "tanz", "elegant", "tradition", "fasching", "premiere", "abendveranstaltung", "lokal"],
+    "priceInfo": "28€ inkl. Glas Sekt zur Begrüßung. Warme Speisen und Getränke separat.",
+    "tips": "Nur 10 Min von Pöcking nach Starnberg! Schlossberghalle, Vogelanger 2. Einlass ab 18:00 mit Sektempfang, Beginn 19:30, Ende ca. 1:00 Uhr. Dresscode: Festliche Abendmode. Karten vorab online bestellen (vr-ticket.de). Taxi zurück einplanen oder Fahrer organisieren."
+  },
+  {
+    "id": 52,
+    "scores": {
+      "family": 4,
+      "kids": 2,
+      "adults": 7,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 14 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die 2. Tutzinger Kurzfilmnacht im Kulturtheater zeigt Kurzfilme von Nachwuchs-Filmemachern zu gesellschaftlichen Themen wie Mobbing, Diversität und Generationenkonflikte – mit Filmgespräch. Kulturell wertvoll, sehr nah (Tutzing ist 5-10 Min entfernt) und kompakt (19:30-21:30). Für Cineasten und kulturinteressierte Erwachsene ein schöner Samstagabend, für Kinder thematisch zu schwer.",
+    "aiTags": ["indoor", "kultur", "film", "lokal", "kurzfilm", "gesellschaft", "nachwuchs", "filmgespräch"],
+    "priceInfo": "Nicht online angegeben (vermutlich 8-12€, Infos beim Kulturtheater Tutzing)",
+    "tips": "Nur 5-10 Min von Pöcking nach Tutzing! Kirchenstraße 3. Einlass ab 19:00. Leicht mit dem Rad oder Auto erreichbar. Zeitlich nicht mit Ballnacht (ID 51) kombinierbar – beides startet um 19:30. Zwei Blöcke mit Kurzfilmen, ideal für einen entspannten, kurzen Kulturabend."
   }
 ]

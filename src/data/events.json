@@ -613,7 +613,29 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 31
+      "id": 31,
+      "aiCuration": {
+        "scores": {
+          "family": 8,
+          "kids": 7,
+          "adults": 9,
+          "uniqueness": 9,
+          "overall": 8
+        },
+        "ageRange": "ab 4 Jahre (Zuschauen), ab 6 Jahre (Ballonfahrt mit Begleitung)",
+        "bestFor": "alle",
+        "aiSummary": "Die 25. Tegernseer Tal Montgolfiade ist ein echtes Winterhighlight: Dutzende Heißluftballone über dem verschneiten Tegernseer Tal – ein einmaliges Fotomotiv. Das Zuschauen ist kostenlos und beeindruckend, Ballonfahrten können extra gebucht werden. Nachteil: 50 Min Anfahrt, wetterabhängig (Starts können kurzfristig ausfallen), und der frühe Start um 8 Uhr erfordert Planung.",
+        "aiTags": [
+          "outdoor",
+          "winter",
+          "spektakulär",
+          "fotogen",
+          "wetterabhängig",
+          "jubiläum"
+        ],
+        "priceInfo": "Zuschauen kostenlos. Ballonfahrt separat buchbar (ca. 250-350€ p.P., vorab über tegernsee.bayern)",
+        "tips": "Von Pöcking ca. 50 Min über A95 → B472 → B307. Früh losfahren für den 8-Uhr-Start! Warme Kleidung und Thermoskanne mitbringen – man steht draußen im Tal. Wetter-Updates auf tegernsee.com checken, da Starts wetterbedingt oft verschoben werden. Kombination mit Winterspaziergang am Tegernsee sinnvoll."
+      }
     },
     {
       "title": "Entbuschen am Normanberg Söcking – Helfer und Helferinnen gesucht",
@@ -710,7 +732,29 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 34
+      "id": 34,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 3,
+          "adults": 6,
+          "uniqueness": 6,
+          "overall": 4
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Interaktive Poster-Ausstellung über WLAN-Sensing-Technologie im Science Communication Lab des Deutschen Museums. EU-Forschungsprojekt, bei dem man über die Technologie abstimmen kann. Konzeptionell interessant für Technikbegeisterte, aber letztlich eine Posterausstellung – kein Wow-Faktor für einen Samstagausflug. Eher ein Mitnahme-Effekt, wenn man ohnehin im Museum ist.",
+        "aiTags": [
+          "indoor",
+          "wissenschaft",
+          "interaktiv",
+          "poster",
+          "technik",
+          "nischenthema"
+        ],
+        "priceInfo": "Im Museumseintritt enthalten (Deutsches Museum: ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
+        "tips": "40 Min Anfahrt von Pöcking nach München. S-Bahn S6 ab Possenhofen bis Isartor, dann 5 Min Fußweg. Als Einzelevent lohnt die Anfahrt kaum – besser mit Future Box (ID 38) oder Übersichtsführung (ID 39) kombinieren."
+      }
     },
     {
       "title": "Seetaucherexkursion im Ramsar-Gebiet Starnberger See",
@@ -813,7 +857,30 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 37
+      "id": 37,
+      "aiCuration": {
+        "scores": {
+          "family": 3,
+          "kids": 1,
+          "adults": 7,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 16 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Humorvoller Bairisch-Kurs vom Kabarettisten 'Vogelmayer' mit Weißwurstfrühstück zum Abschluss. Perfekt für Zugezogene, die Bayern verstehen wollen – unterhaltsam, lehrreich, mit Zertifikat. Gilching ist nur 15 Min von Pöcking entfernt, also minimal Aufwand. Für Kinder komplett ungeeignet, für Erwachsene mit Humor ein netter Samstagvormittag.",
+        "aiTags": [
+          "indoor",
+          "humor",
+          "kultur",
+          "dialekt",
+          "kulinarisch",
+          "lokal",
+          "weißwurst"
+        ],
+        "priceInfo": "Kursgebühr über VHS Gilching (typisch 25-40€ inkl. Weißwurstfrühstück, Anmeldung erforderlich)",
+        "tips": "Nur 15 Min von Pöcking! Auto über Hauptstraße/Weilheimer Str., Parkplätze an der Schule. Vorab bei VHS Gilching anmelden – Plätze sind begrenzt. Kurs läuft 10:00-13:00 Uhr, danach ist der Nachmittag noch frei."
+      }
     },
     {
       "title": "Future Box – Interaktive Führung",
@@ -831,7 +898,31 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 38
+      "id": 38,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 7,
+          "adults": 8,
+          "uniqueness": 9,
+          "overall": 8
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Die Future Box ist das neue Highlight im Deutschen Museum: Eine KI-geführte interaktive Erlebnisausstellung mit VR-Experience, nur 16 Personen pro Führung. Themen wie Quantencomputer, Robotik und Raumfahrt – sehr zeitgemäß und einzigartig in der Region. Ab 12 Jahren empfohlen, also ideal für Familien mit Teenagern. Unbedingt vorher online buchen!",
+        "aiTags": [
+          "indoor",
+          "interaktiv",
+          "KI",
+          "VR",
+          "zukunft",
+          "technologie",
+          "geführt",
+          "premium"
+        ],
+        "priceInfo": "12€ regulär, 7,50€ ermäßigt (Kinder/Jugendliche bis 17, Studenten, Senioren ab 65). Mitglieder kostenlos.",
+        "tips": "40 Min Anfahrt von Pöcking. Tickets UNBEDINGT vorab online buchen – nur 16 Plätze pro Führung! 15 Min vor Start am Check-in erscheinen (Forum der Zukunft, Ludwigsbrücke). S6 ab Possenhofen bis Isartor. Kein nachträglicher Einlass möglich."
+      }
     },
     {
       "title": "Übersichtsführung",
@@ -850,7 +941,28 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 39
+      "id": 39,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 4,
+          "adults": 7,
+          "uniqueness": 4,
+          "overall": 5
+        },
+        "ageRange": "ab 8 Jahre",
+        "bestFor": "alle",
+        "aiSummary": "Klassische 90-minütige Übersichtsführung durch die Highlights des Deutschen Museums – Luftfahrt, Landwirtschaft, Kommunikation und mehr. Solider Einstieg für Erstbesucher, aber nichts Besonderes oder Einmaliges. Findet regelmäßig statt, kein Muss gerade an diesem Samstag. Über alle Ebenen hinweg – für kleine Kinder anstrengend.",
+        "aiTags": [
+          "indoor",
+          "museum",
+          "geführt",
+          "bildung",
+          "standard"
+        ],
+        "priceInfo": "Führung im Museumseintritt enthalten (ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
+        "tips": "40 Min Anfahrt von Pöcking. Gut kombinierbar mit Future Box um 10:30 (erst Future Box, dann 14-Uhr-Führung statt 11:30). S6 Possenhofen → Isartor. Für kleinere Kinder zu lang – lieber den Kinderbereich eigenständig erkunden."
+      }
     },
     {
       "title": "Historisches Bobrennen und Führung durchs Bobmuseum",
@@ -869,7 +981,30 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 40
+      "id": 40,
+      "aiCuration": {
+        "scores": {
+          "family": 7,
+          "kids": 7,
+          "adults": 8,
+          "uniqueness": 10,
+          "overall": 7
+        },
+        "ageRange": "ab 6 Jahre",
+        "bestFor": "familie",
+        "aiSummary": "Historisches Bobrennen auf der Olympia-Bobbahn von 1936 – ein absolut einzigartiges Event! Wo sonst kann man historische Bobs auf einer Originalbahn sehen, plus Führung durch das Bobmuseum? Höchste Einzigartigkeitswertung, aber die 60 Min Anfahrt nach Garmisch drückt den Gesamtscore. Für sportbegeisterte Familien ein echter Tagesausflug-Kandidat.",
+        "aiTags": [
+          "outdoor",
+          "wintersport",
+          "historisch",
+          "einzigartig",
+          "museum",
+          "olympia",
+          "spektakulär"
+        ],
+        "priceInfo": "Genaue Preise nicht online abrufbar (vermutlich Eintritt Bobmuseum ca. 5-8€, Rennen ggf. kostenlos zuschauen)",
+        "tips": "60 Min Anfahrt von Pöcking über A95. Start 13:00 Uhr – nicht zu spät losfahren, Parkplätze an der Bobbahn begrenzt. Warme Kleidung! Gut als Tagesausflug kombinierbar mit Bummel durch Garmisch oder Zugspitz-Blick. Bei Schnee Winterreifen prüfen."
+      }
     },
     {
       "id": 41,
@@ -1290,7 +1425,31 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 51
+      "id": 51,
+      "aiCuration": {
+        "scores": {
+          "family": 2,
+          "kids": 0,
+          "adults": 8,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 18 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die erste Starnberger Ballnacht in der Schlossberghalle – ein neues Gesellschaftsereignis direkt vor der Haustür. Salonorchester, Gardetanz, Seerosen-Orden und Tombola. Für tanzbegeisterte Erwachsene ein eleganter Abend zum fairen Preis. Für Familien mit Kindern komplett ungeeignet (Abendveranstaltung mit Dresscode). Als Premiere besonders reizvoll.",
+        "aiTags": [
+          "indoor",
+          "tanz",
+          "elegant",
+          "tradition",
+          "fasching",
+          "premiere",
+          "abendveranstaltung",
+          "lokal"
+        ],
+        "priceInfo": "28€ inkl. Glas Sekt zur Begrüßung. Warme Speisen und Getränke separat.",
+        "tips": "Nur 10 Min von Pöcking nach Starnberg! Schlossberghalle, Vogelanger 2. Einlass ab 18:00 mit Sektempfang, Beginn 19:30, Ende ca. 1:00 Uhr. Dresscode: Festliche Abendmode. Karten vorab online bestellen (vr-ticket.de). Taxi zurück einplanen oder Fahrer organisieren."
+      }
     },
     {
       "title": "2. Tutzinger Kurzfilmnacht mit Filmgespräch im Kulturtheater Tutzing",
@@ -1310,7 +1469,31 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 52
+      "id": 52,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 2,
+          "adults": 7,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die 2. Tutzinger Kurzfilmnacht im Kulturtheater zeigt Kurzfilme von Nachwuchs-Filmemachern zu gesellschaftlichen Themen wie Mobbing, Diversität und Generationenkonflikte – mit Filmgespräch. Kulturell wertvoll, sehr nah (Tutzing ist 5-10 Min entfernt) und kompakt (19:30-21:30). Für Cineasten und kulturinteressierte Erwachsene ein schöner Samstagabend, für Kinder thematisch zu schwer.",
+        "aiTags": [
+          "indoor",
+          "kultur",
+          "film",
+          "lokal",
+          "kurzfilm",
+          "gesellschaft",
+          "nachwuchs",
+          "filmgespräch"
+        ],
+        "priceInfo": "Nicht online angegeben (vermutlich 8-12€, Infos beim Kulturtheater Tutzing)",
+        "tips": "Nur 5-10 Min von Pöcking nach Tutzing! Kirchenstraße 3. Einlass ab 19:00. Leicht mit dem Rad oder Auto erreichbar. Zeitlich nicht mit Ballnacht (ID 51) kombinierbar – beides startet um 19:30. Zwei Blöcke mit Kurzfilmen, ideal für einen entspannten, kurzen Kulturabend."
+      }
     },
     {
       "title": "Banff Mountain Film Festival World Tour",
@@ -1452,7 +1635,27 @@
       "region": "starnberg-ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 56
+      "id": 56,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 2,
+          "adults": 7,
+          "uniqueness": 6,
+          "overall": 5
+        },
+        "ageRange": "ab 14 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Yasi Hofer ist eine versierte Gitarristin, die schon mit Helene Fischer und Robbie Williams auf der Bühne stand – ihr Trio liefert einen abwechslungsreichen Mix aus Rock, Blues und Virtuosität. Als Abendkonzert (20:00–22:30) eher nichts für kleine Kinder, aber ein solider Ausgehabend für Erwachsene. Kein Mega-Highlight, aber die kurze Anfahrt nach Inning macht es unkompliziert.",
+        "aiTags": [
+          "musik",
+          "live-konzert",
+          "abendprogramm",
+          "indoor"
+        ],
+        "priceInfo": "Ticketpreis nicht online gefunden – vermutlich ca. 20–30 € (Vorab-Kauf empfohlen, kleine Location)",
+        "tips": "Inning am Ammersee ist nur ca. 20 Min von Pöcking entfernt – sehr kurze Anfahrt. Einlass ab 19:00, Beginn 20:00. Parkplätze vor Ort begrenzt, früh da sein. Babysitter einplanen, wenn Kinder daheim bleiben."
+      }
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade",
@@ -1471,7 +1674,30 @@
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 57
+      "id": 57,
+      "aiCuration": {
+        "scores": {
+          "family": 8,
+          "kids": 8,
+          "adults": 8,
+          "uniqueness": 9,
+          "overall": 8
+        },
+        "ageRange": "alle Altersgruppen",
+        "bestFor": "alle",
+        "aiSummary": "Die 25. Tegernseer Tal Montgolfiade ist ein echtes Highlight: Dutzende bunte Heißluftballons über dem winterlichen Tegernsee mit Alpenpanorama – ein magisches Bild, das Kinder und Erwachsene gleichermaßen fasziniert. 25-jähriges Jubiläum macht es besonders festlich. Achtung: Wetterabhängig! Am letzten Tag (8.2.) sind die Chancen auf Starts morgens oder nachmittags gut, aber nicht garantiert.",
+        "aiTags": [
+          "outdoor",
+          "winter",
+          "spektakel",
+          "fotogen",
+          "kostenlos-zuschauen",
+          "jubiläum",
+          "familienfreundlich"
+        ],
+        "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar (ca. 250–350 €/Person), nur für Erwachsene sinnvoll. Keine Eintrittsgebühr für Zuschauer.",
+        "tips": "Von Pöcking ca. 50 Min Fahrt. Früh losfahren (Treffpunkt Piloten 08:00), Starts oft morgens bei ruhiger Luft. Warm anziehen! Fernglas und Kamera nicht vergessen. Parkplätze in Bad Wiessee oder Tegernsee nutzen. Falls morgens wetterbedingt abgesagt, Briefing um 12:00 für Nachmittagsstarts – flexibel bleiben. Letzter Veranstaltungstag, also letzte Chance dieses Jahr!"
+      }
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -1489,7 +1715,28 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 58
+      "id": 58,
+      "aiCuration": {
+        "scores": {
+          "family": 4,
+          "kids": 3,
+          "adults": 6,
+          "uniqueness": 5,
+          "overall": 4
+        },
+        "ageRange": "ab 10 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Eine kleine Sonderausstellung mit Astrofotos der Beobachtergruppe der Sternwarte im Vorraum der Bibliothek – nett, aber kein Grund allein ins Deutsche Museum zu fahren. Die Bilder von Nachtlandschaften, Sonnensystem und Deep Sky sind faszinierend für Weltraum-Fans, aber der Umfang ist begrenzt. Am besten als Bonus mitnehmen, wenn man ohnehin im Museum ist.",
+        "aiTags": [
+          "indoor",
+          "ausstellung",
+          "fotografie",
+          "astronomie",
+          "museum"
+        ],
+        "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+        "tips": "40 Min Anfahrt von Pöcking nach München. Am Sonntag Parkhaus an der Ludwigsbrücke oder S-Bahn (Isartor). Lässt sich gut mit den anderen Deutsches-Museum-Events (IDs 59–61) kombinieren – dann lohnt sich die Fahrt."
+      }
     },
     {
       "title": "Mit WLAN ohne Kamera sehen – Interaktive Ausstellung",
@@ -1508,7 +1755,29 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 59
+      "id": 59,
+      "aiCuration": {
+        "scores": {
+          "family": 5,
+          "kids": 4,
+          "adults": 7,
+          "uniqueness": 7,
+          "overall": 6
+        },
+        "ageRange": "ab 10 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Eine interaktive Poster-Ausstellung im Science Communication Lab, die zeigt, wie WLAN-Signale zur Umgebungsbeobachtung genutzt werden können – inklusive Aktivitätserkennung und Vitalzeichenmessung. Spannend für Technik-Interessierte und zum Nachdenken über Datenschutz. EU-Forschungsprojekt, bei dem Besucher abstimmen können. Für kleine Kinder zu abstrakt, aber ältere Kinder und Teens finden es vermutlich cool.",
+        "aiTags": [
+          "indoor",
+          "interaktiv",
+          "technologie",
+          "museum",
+          "forschung",
+          "datenschutz"
+        ],
+        "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+        "tips": "Im Science Communication Lab auf Ebene -1 (Eingangsbereich). Gut kombinierbar mit dem restlichen Museumsbesuch. Kein separates Ticket nötig."
+      }
     },
     {
       "title": "Future Box – Interaktive Führung",
@@ -1526,7 +1795,31 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 60
+      "id": 60,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 5,
+          "adults": 8,
+          "uniqueness": 9,
+          "overall": 7
+        },
+        "ageRange": "ab 12 Jahre",
+        "bestFor": "erwachsene",
+        "aiSummary": "Die Future Box ist das spannendste Angebot im Deutschen Museum gerade: Eine KI namens AI-ME führt zusammen mit menschlichen Hosts durch eine interaktive Ausstellung zu Quantencomputern, Raumfahrt und humanoiden Robotern – inklusive VR-Erlebnis. Nur bis März 2026! Die Kombination aus KI-Interaktion und Zukunftstechnologien ist wirklich einzigartig. Aber: Ab 12 Jahre empfohlen, maximal 16 Plätze pro Führung, Vorab-Buchung Pflicht.",
+        "aiTags": [
+          "indoor",
+          "interaktiv",
+          "technologie",
+          "ki",
+          "vr",
+          "zukunft",
+          "geführt",
+          "limitiert"
+        ],
+        "priceInfo": "Separates Ticket: 12 € regulär, 7,50 € ermäßigt (zusätzlich zum Museumseintritt, falls man auch ins Haupthaus will)",
+        "tips": "ACHTUNG: Nicht im Haupthaus, sondern im Forum der Zukunft an der Ludwigsbrücke! Unbedingt Ticket vorab online buchen – nur 16 Plätze pro Führung. Führung dauert ca. 90 Min. Nicht geeignet für Menschen mit Epilepsie/Fotosensitivität. Nur auf Deutsch. Für Kinder unter 12 nicht empfohlen."
+      }
     },
     {
       "title": "Übersichtsführung",
@@ -1545,7 +1838,27 @@
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 61
+      "id": 61,
+      "aiCuration": {
+        "scores": {
+          "family": 6,
+          "kids": 4,
+          "adults": 7,
+          "uniqueness": 4,
+          "overall": 5
+        },
+        "ageRange": "ab 8 Jahre",
+        "bestFor": "alle",
+        "aiSummary": "Die klassische Übersichtsführung durch das Deutsche Museum – ideal für Erstbesucher, die in 90 Minuten die Highlights von Luftfahrt über Landwirtschaft bis Kommunikation kennenlernen wollen. Solide, aber kein besonderes Event – das gibt es jeden Donnerstag bis Sonntag. Für Familien mit älteren Kindern eine gute Orientierung im riesigen Museum.",
+        "aiTags": [
+          "indoor",
+          "museum",
+          "geführt",
+          "bildung"
+        ],
+        "priceInfo": "Führung im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+        "tips": "Jeden Do–So um 11:30 und 14:00 Uhr – kein seltenes Event. 90 Minuten, über alle Ebenen. S-Bahn Isartor ist die nächste Haltestelle. Kinder unter 12 nur in Begleitung Erwachsener. Gut kombinierbar mit Events 58 und 59."
+      }
     },
     {
       "title": "Fasching: Wolfratshausen NARRISCH",
@@ -1608,7 +1921,30 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 63
+      "id": 63,
+      "aiCuration": {
+        "scores": {
+          "family": 8,
+          "kids": 7,
+          "adults": 8,
+          "uniqueness": 10,
+          "overall": 8
+        },
+        "ageRange": "alle Altersgruppen",
+        "bestFor": "alle",
+        "aiSummary": "Der Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Ein jahrhundertealter bayerischer Brauch, bei dem die Schäffler (Fassmacher) in traditionellen Trachten durch die Straßen tanzen. Das ist ein echtes Once-in-a-Decade-Erlebnis und bayerisches Kulturgut pur. Die 60 Minuten Anfahrt nach Garmisch lohnen sich absolut für dieses seltene Spektakel.",
+        "aiTags": [
+          "outdoor",
+          "tradition",
+          "brauchtum",
+          "kostenlos",
+          "spektakel",
+          "einmalig",
+          "bayerisch"
+        ],
+        "priceInfo": "Kostenlos (Straßenveranstaltung)",
+        "tips": "Von Pöcking ca. 60 Min nach Garmisch-Partenkirchen. Findet nur alle 7 Jahre statt! Perfekt kombinierbar mit dem Fosnachtsumzug (ID 64), der zur gleichen Zeit in Garmisch stattfindet. Warm anziehen, feste Schuhe. Früh losfahren für Parkplatz – Partenkirchen wird voll. P+R oder Bahnhof Garmisch-Partenkirchen nutzen."
+      }
     },
     {
       "title": "Fosnachtsumzug Garmisch",
@@ -1628,7 +1964,29 @@
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 64
+      "id": 64,
+      "aiCuration": {
+        "scores": {
+          "family": 8,
+          "kids": 8,
+          "adults": 7,
+          "uniqueness": 7,
+          "overall": 7
+        },
+        "ageRange": "alle Altersgruppen",
+        "bestFor": "familie",
+        "aiSummary": "Der traditionelle Garmischer Faschingsumzug (Fosnacht) durch die Fußgängerzone – bunt, laut, lustig und echtes oberbayerisches Brauchtum. Kinder lieben die Kostüme, Wägen und das Treiben. Nicht so einzigartig wie der Schäfflertanz, da Faschingsumzüge jährlich stattfinden, aber die Garmischer Version hat ihren eigenen alpinen Charme.",
+        "aiTags": [
+          "outdoor",
+          "fasching",
+          "brauchtum",
+          "kostenlos",
+          "familienfreundlich",
+          "bayerisch"
+        ],
+        "priceInfo": "Kostenlos (Straßenveranstaltung)",
+        "tips": "Gleiche Zeit und gleicher Ort wie der Schäfflertanz (ID 63) – unbedingt kombinieren! Von Pöcking ca. 60 Min. Fußgängerzone Garmisch. Kinder warm einpacken, eventuell Ohrschützer (kann laut werden). Süßigkeiten werden oft geworfen – Tüte mitbringen. Parken am Bahnhof oder P+R."
+      }
     },
     {
       "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",

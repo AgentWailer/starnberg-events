@@ -1,86 +1,22 @@
 [
   {
-    "id": 29,
+    "id": 56,
     "scores": {
-      "family": 2,
-      "kids": 1,
-      "adults": 5,
-      "uniqueness": 4,
-      "overall": 3
+      "family": 4,
+      "kids": 2,
+      "adults": 7,
+      "uniqueness": 6,
+      "overall": 5
     },
-    "ageRange": "ab 16 Jahre",
+    "ageRange": "ab 14 Jahre",
     "bestFor": "erwachsene",
-    "aiSummary": "Ehrenamtlicher Arbeitseinsatz des BUND Naturschutz: Büsche und Jungbäume am Normanberg Söcking werden zurückgeschnitten, damit Schmetterlinge und Sommerflora profitieren. Für naturverbundene Erwachsene mit Lust auf körperliche Arbeit im Freien eine sinnvolle Sache – aber kein Familien-Ausflugsziel. Kinder langweilen sich hier schnell, zumal das Gelände am Hang liegt und Werkzeug nötig ist.",
-    "aiTags": ["outdoor", "ehrenamt", "natur", "körperlich", "winter"],
-    "priceInfo": "Kostenlos (ehrenamtlich)",
-    "tips": "Anmeldung per Mail an in-franken@t-online.de nötig (Handynummer angeben). Astscheren/Sägen mitbringen, gutes Schuhwerk und Arbeitshandschuhe Pflicht. Dauer 9-12 Uhr. Söcking ist sehr nah an Pöcking (~5 Min. Auto). Bei schlechtem Wetter evtl. Absage – man wird per Handy informiert."
+    "aiSummary": "Yasi Hofer ist eine versierte Gitarristin, die schon mit Helene Fischer und Robbie Williams auf der Bühne stand – ihr Trio liefert einen abwechslungsreichen Mix aus Rock, Blues und Virtuosität. Als Abendkonzert (20:00–22:30) eher nichts für kleine Kinder, aber ein solider Ausgehabend für Erwachsene. Kein Mega-Highlight, aber die kurze Anfahrt nach Inning macht es unkompliziert.",
+    "aiTags": ["musik", "live-konzert", "abendprogramm", "indoor"],
+    "priceInfo": "Ticketpreis nicht online gefunden – vermutlich ca. 20–30 € (Vorab-Kauf empfohlen, kleine Location)",
+    "tips": "Inning am Ammersee ist nur ca. 20 Min von Pöcking entfernt – sehr kurze Anfahrt. Einlass ab 19:00, Beginn 20:00. Parkplätze vor Ort begrenzt, früh da sein. Babysitter einplanen, wenn Kinder daheim bleiben."
   },
   {
-    "id": 15,
-    "scores": {
-      "family": 7,
-      "kids": 6,
-      "adults": 6,
-      "uniqueness": 4,
-      "overall": 7
-    },
-    "ageRange": "ab 6 Jahre",
-    "bestFor": "familie",
-    "aiSummary": "Live-Vorführung Amateurfunk im Deutschen Museum – man kann erleben, wie mit Funkamateuren weltweit kommuniziert wird. Für technikbegeisterte Kinder faszinierend, aber als Einzelevent recht kurz. Der wahre Bonus: Das Deutsche Museum selbst ist eines der besten Familienmuseen Deutschlands mit Kinderreich, Robotik, Raumfahrt, Flugsimulator und Modellbahn. Man sollte den ganzen Tag einplanen.",
-    "aiTags": ["indoor", "bildung", "technik", "interaktiv", "museum", "winter-tipp"],
-    "priceInfo": "Museumseintritt: 16€ regulär, 9€ ermäßigt, 33€ Familienkarte, Kinder bis 5 frei. Vorführung im Eintritt enthalten.",
-    "tips": "Anfahrt von Pöcking ca. 45-50 Min (S6 ab Possenhofen → München, dann S-Bahn Isartor). Auto eher schwierig (Parkplätze in München teuer). Ganztagesausflug einplanen – das Museum allein lohnt sich. App mit Audioguide kostenlos verfügbar. Im Winter ideal als Indoor-Alternative."
-  },
-  {
-    "id": 19,
-    "scores": {
-      "family": 1,
-      "kids": 0,
-      "adults": 6,
-      "uniqueness": 3,
-      "overall": 4
-    },
-    "ageRange": "ab 16 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "West Coast Swing Workshop im Gilchinger Tanzzentrum – ein spezialisierter Tanzworkshop für Erwachsene, die diesen Paartanz lernen oder vertiefen wollen. Für Familien und Kinder komplett ungeeignet. Für tanzbegeisterte Paare oder Singles mit WCS-Interesse durchaus attraktiv, aber ein regelmäßiges Kursangebot, kein besonderes Event.",
-    "aiTags": ["indoor", "tanz", "kurs", "paare", "sport"],
-    "priceInfo": "Nicht gefunden – vermutlich Kursgebühr, Infos direkt beim Gilchinger Tanzzentrum erfragen.",
-    "tips": "Gilching ist nur ca. 15 Min. mit dem Auto von Pöcking. Tanzzentrum an der Landsberger Straße 18. Am besten vorher anmelden, da Workshops oft limitierte Plätze haben. Tanzschuhe mitbringen."
-  },
-  {
-    "id": 21,
-    "scores": {
-      "family": 3,
-      "kids": 1,
-      "adults": 8,
-      "uniqueness": 7,
-      "overall": 6
-    },
-    "ageRange": "ab 12 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Hochkarätiges Klassikkonzert mit dem international gefeierten Henschel Quartett in Seefeld. Highlight: eine Uraufführung des Streichquintetts 'Streicher pur' der Komponistin Dorothee Eberhardt aus Gilching – ein packendes Werk voller Kontraste. Für Klassikliebhaber ein echtes Erlebnis in intimem Rahmen. Für Kinder eher ungeeignet (2 Stunden Kammermusik).",
-    "aiTags": ["indoor", "musik", "klassik", "kultur", "uraufführung", "kammermusik"],
-    "priceInfo": "Nicht auf der Webseite gefunden – Karten vermutlich im Vorverkauf, Preis erfragen.",
-    "tips": "Seefeld (Schlosshof 6) ist nur ca. 10-15 Min. von Pöcking mit dem Auto. Sehr kurze Anfahrt! Schöner Winterabend-Ausflug für Paare. Konzertdauer ca. 19-21 Uhr. Parkplätze am Schloss vorhanden."
-  },
-  {
-    "id": 27,
-    "scores": {
-      "family": 2,
-      "kids": 1,
-      "adults": 8,
-      "uniqueness": 8,
-      "overall": 7
-    },
-    "ageRange": "ab 18 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Die erste Starnberger Ballnacht ist die stilvolle Neuauflage der traditionellen Redoute – ein festlicher Ball mit Salonorchester Monaco, Tanzeinlagen der Perchalla-Garde, Verleihung des Seerosenordens und Tombola. Für Erwachsene, die gerne tanzen und einen eleganten Abend erleben wollen, ein echtes Highlight. Premiere-Event mit lokalem Charme. Für Kinder absolut ungeeignet (Dresscode: festliche Abendmode, bis 1 Uhr nachts).",
-    "aiTags": ["indoor", "tanz", "kultur", "festlich", "ball", "tradition", "premiere"],
-    "priceInfo": "28€ inkl. Sektempfang. Karten über login.vr-ticket.de/Perchalla-Kartenbestellung/Ballnacht2026/",
-    "tips": "Schlossberghalle Starnberg – nur 5-10 Min. von Pöcking! Einlass ab 18 Uhr, Beginn 19:30, Ende ca. 1 Uhr. Dresscode festliche Abendmode beachten! Warme Speisen, Getränke und Bar vor Ort. Babysitter organisieren – das ist ein reiner Erwachsenen-Abend. Preis-Leistung mit 28€ inkl. Sekt ist fair."
-  },
-  {
-    "id": 32,
+    "id": 57,
     "scores": {
       "family": 8,
       "kids": 8,
@@ -88,27 +24,107 @@
       "uniqueness": 9,
       "overall": 8
     },
-    "ageRange": "alle Alter",
+    "ageRange": "alle Altersgruppen",
     "bestFor": "alle",
-    "aiSummary": "Das große Finale der 25. Tegernseer Tal Montgolfiade – rund 28 bunte Heißluftballons schweben über dem winterlichen Tegernsee mit Alpenpanorama. Das Jubiläumsevent (25 Jahre!) ist ein visuelles Spektakel, das Kinder wie Erwachsene gleichermaßen fasziniert. Kostenlos zuschauen, oder eine Ballonfahrt buchen (wetterabhängig!). Einziges Manko: die Anfahrt von Pöcking ist weit (~50 Min.) und das Wetter muss mitspielen.",
-    "aiTags": ["outdoor", "spektakel", "natur", "winter", "fotogen", "jubiläum", "alpen", "kostenlos"],
-    "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar über tegernsee.bayern (Preis nicht angegeben, typisch 200-350€ pro Person).",
-    "tips": "Ballonstarts typisch 8:30-11 Uhr – FRÜH aufstehen! Anfahrt von Pöcking ca. 50-60 Min über A95/A8 Richtung Tegernsee. Warm anziehen – Winter am See kann bitter kalt sein! Kamera mitbringen, das Fotomotiv ist grandios. Wetterabhängig – am Vorabend tegernsee.com checken. Letzter Tag des Festivals, also letzte Chance!"
+    "aiSummary": "Die 25. Tegernseer Tal Montgolfiade ist ein echtes Highlight: Dutzende bunte Heißluftballons über dem winterlichen Tegernsee mit Alpenpanorama – ein magisches Bild, das Kinder und Erwachsene gleichermaßen fasziniert. 25-jähriges Jubiläum macht es besonders festlich. Achtung: Wetterabhängig! Am letzten Tag (8.2.) sind die Chancen auf Starts morgens oder nachmittags gut, aber nicht garantiert.",
+    "aiTags": ["outdoor", "winter", "spektakel", "fotogen", "kostenlos-zuschauen", "jubiläum", "familienfreundlich"],
+    "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar (ca. 250–350 €/Person), nur für Erwachsene sinnvoll. Keine Eintrittsgebühr für Zuschauer.",
+    "tips": "Von Pöcking ca. 50 Min Fahrt. Früh losfahren (Treffpunkt Piloten 08:00), Starts oft morgens bei ruhiger Luft. Warm anziehen! Fernglas und Kamera nicht vergessen. Parkplätze in Bad Wiessee oder Tegernsee nutzen. Falls morgens wetterbedingt abgesagt, Briefing um 12:00 für Nachmittagsstarts – flexibel bleiben. Letzter Veranstaltungstag, also letzte Chance dieses Jahr!"
   },
   {
-    "id": 294,
+    "id": 58,
+    "scores": {
+      "family": 4,
+      "kids": 3,
+      "adults": 6,
+      "uniqueness": 5,
+      "overall": 4
+    },
+    "ageRange": "ab 10 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Eine kleine Sonderausstellung mit Astrofotos der Beobachtergruppe der Sternwarte im Vorraum der Bibliothek – nett, aber kein Grund allein ins Deutsche Museum zu fahren. Die Bilder von Nachtlandschaften, Sonnensystem und Deep Sky sind faszinierend für Weltraum-Fans, aber der Umfang ist begrenzt. Am besten als Bonus mitnehmen, wenn man ohnehin im Museum ist.",
+    "aiTags": ["indoor", "ausstellung", "fotografie", "astronomie", "museum"],
+    "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+    "tips": "40 Min Anfahrt von Pöcking nach München. Am Sonntag Parkhaus an der Ludwigsbrücke oder S-Bahn (Isartor). Lässt sich gut mit den anderen Deutsches-Museum-Events (IDs 59–61) kombinieren – dann lohnt sich die Fahrt."
+  },
+  {
+    "id": 59,
     "scores": {
       "family": 5,
-      "kids": 3,
+      "kids": 4,
+      "adults": 7,
+      "uniqueness": 7,
+      "overall": 6
+    },
+    "ageRange": "ab 10 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Eine interaktive Poster-Ausstellung im Science Communication Lab, die zeigt, wie WLAN-Signale zur Umgebungsbeobachtung genutzt werden können – inklusive Aktivitätserkennung und Vitalzeichenmessung. Spannend für Technik-Interessierte und zum Nachdenken über Datenschutz. EU-Forschungsprojekt, bei dem Besucher abstimmen können. Für kleine Kinder zu abstrakt, aber ältere Kinder und Teens finden es vermutlich cool.",
+    "aiTags": ["indoor", "interaktiv", "technologie", "museum", "forschung", "datenschutz"],
+    "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+    "tips": "Im Science Communication Lab auf Ebene -1 (Eingangsbereich). Gut kombinierbar mit dem restlichen Museumsbesuch. Kein separates Ticket nötig."
+  },
+  {
+    "id": 60,
+    "scores": {
+      "family": 6,
+      "kids": 5,
+      "adults": 8,
+      "uniqueness": 9,
+      "overall": 7
+    },
+    "ageRange": "ab 12 Jahre",
+    "bestFor": "erwachsene",
+    "aiSummary": "Die Future Box ist das spannendste Angebot im Deutschen Museum gerade: Eine KI namens AI-ME führt zusammen mit menschlichen Hosts durch eine interaktive Ausstellung zu Quantencomputern, Raumfahrt und humanoiden Robotern – inklusive VR-Erlebnis. Nur bis März 2026! Die Kombination aus KI-Interaktion und Zukunftstechnologien ist wirklich einzigartig. Aber: Ab 12 Jahre empfohlen, maximal 16 Plätze pro Führung, Vorab-Buchung Pflicht.",
+    "aiTags": ["indoor", "interaktiv", "technologie", "ki", "vr", "zukunft", "geführt", "limitiert"],
+    "priceInfo": "Separates Ticket: 12 € regulär, 7,50 € ermäßigt (zusätzlich zum Museumseintritt, falls man auch ins Haupthaus will)",
+    "tips": "ACHTUNG: Nicht im Haupthaus, sondern im Forum der Zukunft an der Ludwigsbrücke! Unbedingt Ticket vorab online buchen – nur 16 Plätze pro Führung. Führung dauert ca. 90 Min. Nicht geeignet für Menschen mit Epilepsie/Fotosensitivität. Nur auf Deutsch. Für Kinder unter 12 nicht empfohlen."
+  },
+  {
+    "id": 61,
+    "scores": {
+      "family": 6,
+      "kids": 4,
       "adults": 7,
       "uniqueness": 4,
       "overall": 5
     },
     "ageRange": "ab 8 Jahre",
-    "bestFor": "erwachsene",
-    "aiSummary": "Öffentliche Führung durch die Ausstellung 'Ausgesucht – Weitere Werke aus der Sammlung' im Buchheim Museum der Phantasie in Bernried. Das Museum am Starnberger See besticht durch seine einzigartige Architektur und Seelage. Am Sonntag gibt es auch ein Offenes Atelier für Kinder (ab 6, 3,50€). Die Führung selbst ist eher für Erwachsene interessant. Tipp: Kombination aus Museumsbesuch + Café Buffi + Spaziergang am See.",
-    "aiTags": ["indoor", "kunst", "kultur", "bildung", "museum", "see-nähe"],
-    "priceInfo": "Führung 5€ zzgl. Museumseintritt (Eintritt ca. 9-10€ Erwachsene). Offenes Atelier für Kinder 3,50€ zzgl. Eintritt. Kinder typisch ermäßigt.",
-    "tips": "Bernried liegt direkt am Westufer – von Pöcking nur ca. 15 Min. südlich! Sehr nahe Anfahrt. Sonntags Offenes Atelier 11-17 Uhr für Kinder – gute Ergänzung zur Führung um 15 Uhr. Café Buffi im Museum für Kuchen und warme Speisen. Achtung: Kleiner Saal und Boot-Raum wegen Baumaßnahmen geschlossen. Museum schließt ab 17.03.2026 für Umbau – also jetzt noch die Chance nutzen!"
+    "bestFor": "alle",
+    "aiSummary": "Die klassische Übersichtsführung durch das Deutsche Museum – ideal für Erstbesucher, die in 90 Minuten die Highlights von Luftfahrt über Landwirtschaft bis Kommunikation kennenlernen wollen. Solide, aber kein besonderes Event – das gibt es jeden Donnerstag bis Sonntag. Für Familien mit älteren Kindern eine gute Orientierung im riesigen Museum.",
+    "aiTags": ["indoor", "museum", "geführt", "bildung"],
+    "priceInfo": "Führung im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
+    "tips": "Jeden Do–So um 11:30 und 14:00 Uhr – kein seltenes Event. 90 Minuten, über alle Ebenen. S-Bahn Isartor ist die nächste Haltestelle. Kinder unter 12 nur in Begleitung Erwachsener. Gut kombinierbar mit Events 58 und 59."
+  },
+  {
+    "id": 63,
+    "scores": {
+      "family": 8,
+      "kids": 7,
+      "adults": 8,
+      "uniqueness": 10,
+      "overall": 8
+    },
+    "ageRange": "alle Altersgruppen",
+    "bestFor": "alle",
+    "aiSummary": "Der Schäfflertanz findet nur alle 7 Jahre statt – die nächste Chance wäre erst 2033! Ein jahrhundertealter bayerischer Brauch, bei dem die Schäffler (Fassmacher) in traditionellen Trachten durch die Straßen tanzen. Das ist ein echtes Once-in-a-Decade-Erlebnis und bayerisches Kulturgut pur. Die 60 Minuten Anfahrt nach Garmisch lohnen sich absolut für dieses seltene Spektakel.",
+    "aiTags": ["outdoor", "tradition", "brauchtum", "kostenlos", "spektakel", "einmalig", "bayerisch"],
+    "priceInfo": "Kostenlos (Straßenveranstaltung)",
+    "tips": "Von Pöcking ca. 60 Min nach Garmisch-Partenkirchen. Findet nur alle 7 Jahre statt! Perfekt kombinierbar mit dem Fosnachtsumzug (ID 64), der zur gleichen Zeit in Garmisch stattfindet. Warm anziehen, feste Schuhe. Früh losfahren für Parkplatz – Partenkirchen wird voll. P+R oder Bahnhof Garmisch-Partenkirchen nutzen."
+  },
+  {
+    "id": 64,
+    "scores": {
+      "family": 8,
+      "kids": 8,
+      "adults": 7,
+      "uniqueness": 7,
+      "overall": 7
+    },
+    "ageRange": "alle Altersgruppen",
+    "bestFor": "familie",
+    "aiSummary": "Der traditionelle Garmischer Faschingsumzug (Fosnacht) durch die Fußgängerzone – bunt, laut, lustig und echtes oberbayerisches Brauchtum. Kinder lieben die Kostüme, Wägen und das Treiben. Nicht so einzigartig wie der Schäfflertanz, da Faschingsumzüge jährlich stattfinden, aber die Garmischer Version hat ihren eigenen alpinen Charme.",
+    "aiTags": ["outdoor", "fasching", "brauchtum", "kostenlos", "familienfreundlich", "bayerisch"],
+    "priceInfo": "Kostenlos (Straßenveranstaltung)",
+    "tips": "Gleiche Zeit und gleicher Ort wie der Schäfflertanz (ID 63) – unbedingt kombinieren! Von Pöcking ca. 60 Min. Fußgängerzone Garmisch. Kinder warm einpacken, eventuell Ohrschützer (kann laut werden). Süßigkeiten werden oft geworfen – Tüte mitbringen. Parken am Bahnhof oder P+R."
   }
 ]

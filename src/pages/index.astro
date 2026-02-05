@@ -90,7 +90,7 @@ const weekendEvents = allWeekendEvents
     if (dateCompare !== 0) return dateCompare;
     return (a.time || '99:99').localeCompare(b.time || '99:99');
   })
-  .slice(0, 6); // Top 6 by AI score
+  // Show ALL weekend events, sorted by score
 
 const hasWeekendEvents = weekendEvents.length > 0;
 const hasCuration = weekendEvents.some(e => e.aiCuration);
@@ -170,6 +170,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                         <div class="wk-card-meta">
                           <span class="wk-day">{evWeekday} {evDay}.{evMonth}.</span>
                           {event.time && <span class="wk-time">{event.time} Uhr</span>}
+                          <span class={`wk-cat-badge wk-cat--${event.category}`}>{event.category === 'kinder' ? 'Kinder' : event.category === 'familie' ? 'Familie' : 'Erwachsene'}</span>
                         </div>
                       </div>
                       <h4 class="wk-card-title">{event.title}</h4>
@@ -272,7 +273,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                       <div class="wh-content">
                         <div class="wh-meta">
                           <span class="wh-date">{evWeekday} {evDay}.{evMonth}.</span>
-                          {bestFor && <span class={`wh-badge wh-badge--${bestFor}`}>{bestForEmoji} {bestForLabel}</span>}
+                          <span class={`wh-cat-badge wh-cat--${event.category}`}>{event.category === 'kinder' ? 'Kinder' : event.category === 'familie' ? 'Familie' : 'Erwachsene'}</span>
                         </div>
                         <h4 class="wh-title">{event.title}</h4>
                         {curation?.aiSummary && (
@@ -631,6 +632,32 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     flex-shrink: 0;
   }
 
+  /* Category badge on carousel cards */
+  .wk-cat-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .wk-cat--kinder {
+    background: color-mix(in srgb, var(--color-kinder) 12%, transparent);
+    color: var(--color-kinder);
+  }
+
+  .wk-cat--familie {
+    background: color-mix(in srgb, var(--color-familie) 12%, transparent);
+    color: var(--color-familie);
+  }
+
+  .wk-cat--erwachsene {
+    background: color-mix(in srgb, var(--color-erwachsene) 12%, transparent);
+    color: var(--color-erwachsene);
+  }
+
   /* Tablet: slightly larger cards */
   @media (min-width: 768px) and (max-width: 1199px) {
     .wk-card {
@@ -717,32 +744,30 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     color: var(--color-text-secondary);
   }
 
-  .wh-badge {
+  /* Category badge on sidebar weekend cards */
+  .wh-cat-badge {
     font-size: 0.6875rem;
     font-weight: 600;
     padding: 2px 8px;
     border-radius: var(--radius-full);
     white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
-  .wh-badge--familie {
-    background: color-mix(in srgb, #10b981 12%, transparent);
-    color: #059669;
+  .wh-cat--kinder {
+    background: color-mix(in srgb, var(--color-kinder) 12%, transparent);
+    color: var(--color-kinder);
   }
 
-  .wh-badge--kinder {
-    background: color-mix(in srgb, #f59e0b 12%, transparent);
-    color: #d97706;
+  .wh-cat--familie {
+    background: color-mix(in srgb, var(--color-familie) 12%, transparent);
+    color: var(--color-familie);
   }
 
-  .wh-badge--erwachsene {
-    background: color-mix(in srgb, #6366f1 12%, transparent);
-    color: #4f46e5;
-  }
-
-  .wh-badge--alle {
-    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-    color: var(--color-primary);
+  .wh-cat--erwachsene {
+    background: color-mix(in srgb, var(--color-erwachsene) 12%, transparent);
+    color: var(--color-erwachsene);
   }
 
   .wh-title {
@@ -927,6 +952,54 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   }
   document.querySelectorAll('.wh-card').forEach(attachHighlightCardHandler);
   document.querySelectorAll('.wk-card').forEach(attachHighlightCardHandler);
+
+  // === Weekend cards: react to category filter ===
+  // Observe the visible-count element for changes (triggered by FilterBar's filterEvents())
+  // Then apply the same category filter to weekend cards
+  function filterWeekendCards() {
+    // Read active category from the desktop sidebar chips (source of truth)
+    const activeChips = document.querySelectorAll('.filter-sidebar .chip.active[data-type="category"]');
+    const activeCategories = new Set<string>();
+    activeChips.forEach(chip => {
+      const f = (chip as HTMLElement).dataset.filter;
+      if (f) activeCategories.add(f);
+    });
+
+    const showAll = activeCategories.has('all') || activeCategories.size === 0;
+
+    // Filter .wk-card (mobile carousel)
+    document.querySelectorAll('.wk-card').forEach(card => {
+      const el = card as HTMLElement;
+      const cat = el.dataset.category || '';
+      el.style.display = (showAll || activeCategories.has(cat)) ? '' : 'none';
+    });
+
+    // Filter .wh-card (desktop sidebar)
+    document.querySelectorAll('.wh-card').forEach(card => {
+      const el = card as HTMLElement;
+      const cat = el.dataset.category || '';
+      el.style.display = (showAll || activeCategories.has(cat)) ? '' : 'none';
+    });
+
+    // Hide entire weekend section if no cards visible
+    const wkSection = document.querySelector('.wk-carousel-section');
+    if (wkSection) {
+      const anyVisible = [...document.querySelectorAll('.wk-card')].some(c => (c as HTMLElement).style.display !== 'none');
+      (wkSection as HTMLElement).style.display = anyVisible ? '' : 'none';
+    }
+    const whGroup = document.querySelector('.context-widget-group');
+    if (whGroup) {
+      const anyVisible = [...document.querySelectorAll('.wh-card')].some(c => (c as HTMLElement).style.display !== 'none');
+      (whGroup as HTMLElement).style.display = anyVisible ? '' : 'none';
+    }
+  }
+
+  // Hook into filter changes by observing visible-count mutations
+  const weekendFilterObserver = new MutationObserver(filterWeekendCards);
+  const vcEl = document.getElementById('visible-count');
+  if (vcEl) {
+    weekendFilterObserver.observe(vcEl, { childList: true, characterData: true, subtree: true });
+  }
 
   // Load More functionality (mobile/tablet only)
   const BATCH_SIZE = 10;
