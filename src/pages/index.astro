@@ -100,6 +100,26 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 ---
 
 <Layout title="Starnberg Events — Was ist los in und um Pöcking?" appShell={true}>
+  <!-- JSON-LD: WebSite + SearchAction (SEO) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Pöcking Events",
+    "url": "https://starnberg-events.pages.dev",
+    "description": "Events & Veranstaltungen am Starnberger See — Was ist los in und um Pöcking?",
+    "inLanguage": "de",
+    "publisher": {
+      "@type": "Person",
+      "name": "Steffen von Lindern",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hindenburgstr. 39a",
+        "addressLocality": "Pöcking",
+        "postalCode": "82343",
+        "addressCountry": "DE"
+      }
+    }
+  })} />
   <Header lastUpdated={eventsData.lastUpdated} />
   
   <!-- Mobile: Sticky Ticker -->
@@ -114,7 +134,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         
         <!-- LEFT COLUMN: Filters -->
         <div class="column-left">
-          <h3 class="section-heading">Filter</h3>
+          <h2 class="section-heading">Filter</h2>
           <FilterBar events={events} regions={regions} artTags={artTags} />
         </div>
 
@@ -126,7 +146,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           <!-- Weekend Highlights Carousel (Mobile/Tablet only) -->
           {hasWeekendEvents && (
             <section class="wk-carousel-section">
-              <h3 class="section-heading">{weekendTitle}</h3>
+              <h2 class="section-heading">{weekendTitle}</h2>
               <div class="wk-carousel-track">
                 {weekendEvents.map(event => {
                   const evDate = new Date(event.date);
@@ -206,7 +226,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
           <!-- Mobile: Vor Ort -->
           <section class="section section-info section-info--mobile">
-            <h3 class="section-heading">Vor Ort</h3>
+            <h2 class="section-heading">Vor Ort</h2>
             <div class="info-grid-single">
               <MarketInfo />
               <WebcamWidget />
@@ -229,7 +249,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         <!-- RIGHT COLUMN: Context (Desktop only) -->
         <aside class="column-right">
           <!-- S-Bahn Info -->
-          <h3 class="section-heading">S-Bahn aktuell</h3>
+          <h2 class="section-heading">S-Bahn aktuell</h2>
           <div class="context-widget">
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </div>
@@ -237,7 +257,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           <!-- Weekend Highlights (Vertical, collapsible) -->
           {hasWeekendEvents && (
             <div class="context-widget-group">
-              <h3 class="section-heading">{weekendTitle}</h3>
+              <h2 class="section-heading">{weekendTitle}</h2>
               <div class="highlights-vertical" id="highlights-vertical">
                 {weekendEvents.map((event, index) => {
                   const evDate = new Date(event.date);
@@ -308,7 +328,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
           )}
 
           <!-- Vor Ort Widgets -->
-          <h3 class="section-heading">Vor Ort</h3>
+          <h2 class="section-heading">Vor Ort</h2>
           <div class="context-widget">
             <div class="vor-ort-stack">
               <MarketInfo />

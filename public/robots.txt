@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /analytics
+
+Sitemap: https://starnberg-events.pages.dev/sitemap-index.xml

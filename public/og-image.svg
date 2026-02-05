@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4a5c"/>
+      <stop offset="100%" style="stop-color:#1a6a82"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3f0ed;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#f3f0ed;stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative mountains -->
+  <polygon points="0,630 200,350 400,450 600,300 800,400 1000,320 1200,420 1200,630" fill="url(#mountain)"/>
+  
+  <!-- Lake reflection line -->
+  <line x1="100" y1="480" x2="1100" y2="480" stroke="#c9a962" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Location tag -->
+  <text x="600" y="200" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#c9a962" letter-spacing="4">STARNBERGER SEE</text>
+  
+  <!-- Main title -->
+  <text x="600" y="290" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#faf8f6">Was ist los in</text>
+  <text x="600" y="370" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#c9a962">und um Pöcking?</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="430" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#f3f0ed" opacity="0.8">Events &amp; Veranstaltungen für die ganze Familie</text>
+  
+  <!-- URL -->
+  <text x="600" y="580" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="400" fill="#f3f0ed" opacity="0.5">starnberg-events.pages.dev</text>
+</svg>
