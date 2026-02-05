@@ -399,9 +399,11 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   @media (min-width: 768px) {
     .column-center {
-      max-height: calc(100vh - 377px);
-      padding-top: 5px;
+      position: sticky;
+      top: 382px;
+      max-height: calc(100vh - 382px);
       overflow-y: auto;
+      align-self: start;
       scrollbar-width: thin;
       scrollbar-color: var(--color-border) transparent;
     }
