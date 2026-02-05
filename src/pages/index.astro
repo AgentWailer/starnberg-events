@@ -680,29 +680,22 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   .wk-carousel-track {
     display: flex;
     gap: var(--space-4);
-    overflow: hidden;
-    touch-action: pan-y pinch-zoom;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: var(--space-2);
     /* Allow cards to peek out on the right to hint at scrollability */
     margin-right: calc(-1 * var(--space-4));
     padding-right: var(--space-4);
-    user-select: none;
-    -webkit-user-select: none;
-    cursor: grab;
+    /* No snap — allows free momentum scrolling */
   }
 
   .wk-carousel-track::-webkit-scrollbar {
     display: none;
   }
 
-  .wk-carousel-track.is-dragging {
-    cursor: grabbing;
-  }
-
   .wk-card {
     flex: 0 0 280px;
-    scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -1666,194 +1659,33 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </script>
 
 <script>
-  // === Carousel Flywheel — Custom Physics ===
-  // Full takeover of scroll: overflow:hidden + manual translateX with momentum deceleration.
-  // Works identically on iOS Safari, Chrome, and desktop.
-  (function initCarouselFlywheel() {
+  // === Carousel: Mouse drag for desktop (touch uses native momentum) ===
+  (function initCarouselDrag() {
     const track = document.querySelector('.wk-carousel-track') as HTMLElement | null;
     if (!track) return;
-    const cards = track.querySelectorAll('.wk-card');
-    if (!cards.length) return;
 
-    let offset = 0;          // current translateX offset (negative = scrolled right)
-    let velocity = 0;        // px/ms
-    let lastX = 0;
-    let lastTime = 0;
     let isDragging = false;
     let startX = 0;
-    let startOffset = 0;
+    let scrollStart = 0;
+    let velocityX = 0;
+    let lastX = 0;
+    let lastTime = 0;
     let rafId = 0;
     let didMove = false;
 
-    // Compute scroll bounds
-    function getMaxOffset() {
-      const trackW = track!.clientWidth;
-      const contentW = track!.scrollWidth;
-      return Math.min(0, trackW - contentW);
-    }
-
-    function applyTransform(x: number) {
-      // Clamp with rubber-band at edges
-      const maxOff = getMaxOffset();
-      if (x > 0) {
-        x = x * 0.3; // rubber-band left edge
-      } else if (x < maxOff) {
-        x = maxOff + (x - maxOff) * 0.3; // rubber-band right edge
-      }
-      track!.style.transform = `translateX(${x}px)`;
-    }
-
-    function clamp(x: number) {
-      const maxOff = getMaxOffset();
-      return Math.max(maxOff, Math.min(0, x));
-    }
-
-    // Snap to nearest card edge (soft snap after coast)
-    function getCardWidth() {
-      const card = cards[0] as HTMLElement;
-      const gap = parseFloat(getComputedStyle(track!).gap) || 16;
-      return card.offsetWidth + gap;
-    }
-
-    function snapTo(x: number) {
-      const cardW = getCardWidth();
-      const idx = Math.round(-x / cardW);
-      const maxIdx = cards.length - Math.floor(track!.clientWidth / cardW);
-      const snappedIdx = Math.max(0, Math.min(maxIdx, idx));
-      return clamp(-snappedIdx * cardW);
-    }
-
-    // Animate to target position (ease-out)
-    function animateTo(target: number, duration = 400) {
-      cancelAnimationFrame(rafId);
-      const start = offset;
-      const dist = target - start;
-      const t0 = performance.now();
-
-      function tick(now: number) {
-        const elapsed = now - t0;
-        const progress = Math.min(1, elapsed / duration);
-        // Ease out cubic
-        const ease = 1 - Math.pow(1 - progress, 3);
-        offset = start + dist * ease;
-        applyTransform(offset);
-
-        if (progress < 1) {
-          rafId = requestAnimationFrame(tick);
-        }
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-
-    // Momentum coast with friction, then snap
-    function coast() {
-      cancelAnimationFrame(rafId);
-      const friction = 0.97;  // higher = more flywheel
-      let lastFrame = performance.now();
-
-      function tick(now: number) {
-        const dt = now - lastFrame;
-        lastFrame = now;
-
-        velocity *= Math.pow(friction, dt / 16);  // framerate-independent friction
-        offset += velocity * dt;
-
-        // Hard stop at edges (no infinite rubber-band)
-        const maxOff = getMaxOffset();
-        if (offset > 0) {
-          offset = 0;
-          velocity = 0;
-        } else if (offset < maxOff) {
-          offset = maxOff;
-          velocity = 0;
-        }
-
-        applyTransform(offset);
-
-        if (Math.abs(velocity) > 0.02) {
-          rafId = requestAnimationFrame(tick);
-        } else {
-          // Coast finished — soft snap to nearest card
-          velocity = 0;
-          const target = snapTo(offset);
-          if (Math.abs(target - offset) > 1) {
-            animateTo(target, 300);
-          } else {
-            offset = target;
-            applyTransform(offset);
-          }
-        }
-      }
-      rafId = requestAnimationFrame(tick);
-    }
-
-    // --- Touch handlers ---
-    track.addEventListener('touchstart', (e: TouchEvent) => {
-      cancelAnimationFrame(rafId);
-      velocity = 0;
-      isDragging = true;
-      didMove = false;
-      startX = e.touches[0].clientX;
-      startOffset = offset;
-      lastX = startX;
-      lastTime = performance.now();
-      track!.classList.add('is-dragging');
-    }, { passive: true });
-
-    track.addEventListener('touchmove', (e: TouchEvent) => {
-      if (!isDragging) return;
-      const x = e.touches[0].clientX;
-      const dx = x - startX;
-
-      if (Math.abs(dx) > 5) didMove = true;
-
-      // Only prevent default for horizontal swipes (allow vertical scroll)
-      if (didMove) {
-        offset = startOffset + dx;
-        applyTransform(offset);
-
-        // Track velocity
-        const now = performance.now();
-        const dt = now - lastTime;
-        if (dt > 0) {
-          const instantV = (x - lastX) / dt;
-          velocity = velocity * 0.7 + instantV * 0.3;
-        }
-        lastX = x;
-        lastTime = now;
-      }
-    }, { passive: true });
-
-    track.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      track!.classList.remove('is-dragging');
-
-      // Boost velocity slightly for more flywheel feel
-      velocity *= 1.2;
-
-      if (Math.abs(velocity) > 0.1) {
-        coast();
-      } else {
-        // No momentum — snap to nearest
-        const target = snapTo(offset);
-        animateTo(target, 300);
-      }
-    }, { passive: true });
-
-    // --- Mouse/Pointer drag (desktop) ---
+    // Mouse/pointer drag only (touch has native momentum via -webkit-overflow-scrolling)
     track.addEventListener('pointerdown', (e: PointerEvent) => {
       if (e.pointerType === 'touch') return;
       cancelAnimationFrame(rafId);
-      velocity = 0;
       isDragging = true;
       didMove = false;
       startX = e.clientX;
-      startOffset = offset;
+      scrollStart = track.scrollLeft;
+      velocityX = 0;
       lastX = startX;
       lastTime = performance.now();
-      track!.classList.add('is-dragging');
-      track!.setPointerCapture(e.pointerId);
+      track.style.cursor = 'grabbing';
+      track.setPointerCapture(e.pointerId);
       e.preventDefault();
     });
 
@@ -1861,45 +1693,45 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       if (!isDragging || e.pointerType === 'touch') return;
       const dx = e.clientX - startX;
       if (Math.abs(dx) > 3) didMove = true;
-
-      offset = startOffset + dx;
-      applyTransform(offset);
+      track.scrollLeft = scrollStart - dx;
 
       const now = performance.now();
       const dt = now - lastTime;
       if (dt > 0) {
-        const instantV = (e.clientX - lastX) / dt;
-        velocity = velocity * 0.7 + instantV * 0.3;
+        const v = (e.clientX - lastX) / dt;
+        velocityX = velocityX * 0.7 + v * 0.3;
       }
       lastX = e.clientX;
       lastTime = now;
       e.preventDefault();
     });
 
-    const endPointer = (e: PointerEvent) => {
+    const end = (e: PointerEvent) => {
       if (!isDragging || e.pointerType === 'touch') return;
       isDragging = false;
-      track!.classList.remove('is-dragging');
-      track!.releasePointerCapture(e.pointerId);
+      track.style.cursor = 'grab';
+      track.releasePointerCapture(e.pointerId);
 
-      velocity *= 1.2;
-      if (Math.abs(velocity) > 0.1) {
-        coast();
-      } else {
-        const target = snapTo(offset);
-        animateTo(target, 300);
-      }
+      // Momentum coast
+      let v = velocityX * 18;
+      const friction = 0.95;
+      const coast = () => {
+        if (Math.abs(v) < 0.5) return;
+        track.scrollLeft -= v;
+        v *= friction;
+        rafId = requestAnimationFrame(coast);
+      };
+      if (Math.abs(v) > 1) coast();
     };
 
-    track.addEventListener('pointerup', endPointer);
-    track.addEventListener('pointercancel', endPointer);
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
 
     // Prevent clicks after drag
     track.addEventListener('click', (e) => {
-      if (didMove) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      if (didMove) { e.preventDefault(); e.stopPropagation(); }
     }, true);
+
+    track.style.cursor = 'grab';
   })();
 </script>
