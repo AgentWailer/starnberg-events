@@ -16,6 +16,18 @@
       "name": "Pöcking",
       "emoji": "🏠"
     },
+    "starnberger-see": {
+      "name": "Starnberger See",
+      "emoji": "🏔️"
+    },
+    "ammersee": {
+      "name": "Ammersee",
+      "emoji": "⛵"
+    },
+    "wuermtal": {
+      "name": "Würmtal",
+      "emoji": "🌊"
+    },
     "muenchen": {
       "name": "München",
       "emoji": "🏙️"
@@ -27,14 +39,6 @@
     "werdenfels": {
       "name": "Werdenfelser Land",
       "emoji": "🎿"
-    },
-    "starnberger-see": {
-      "name": "Starnberger See",
-      "emoji": "🏔️"
-    },
-    "ammersee": {
-      "name": "Ammersee",
-      "emoji": "⛵"
     }
   },
   "eventCount": 512,
@@ -177,7 +181,7 @@
       "title": "Kloster Andechs: öffentliche Kirchenführung",
       "date": "2026-02-05",
       "time": "12:00",
-      "location": "Bergstraße 2",
+      "location": "Andechs",
       "address": "",
       "description": "Jeden Donnerstag um 12 Uhr",
       "category": "familie",
@@ -223,7 +227,7 @@
       ],
       "url": "https://tanzstudio-eastcoast.de",
       "source": "east-coast-tanzstudio",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "East Coast Tanzstudio Herrsching",
       "isHighlight": false,
       "id": 10
@@ -261,7 +265,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/gemeinde-gauting-klimaschutzkonzept-fuer-gauting",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 12
@@ -301,7 +305,7 @@
       ],
       "url": "https://www.gautinger-sportclub.de",
       "source": "gautinger-sc",
-      "region": "starnberger-see",
+      "region": "werdenfels",
       "venue": "Tannheimer Tal",
       "isHighlight": false,
       "id": 14
@@ -358,7 +362,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2357",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Naturschutz und Jugendzentrum Wartaweil",
       "isHighlight": false,
       "id": 17
@@ -454,7 +458,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 23
@@ -473,7 +477,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2383",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Stellwerk - Haus der Jugend",
       "isHighlight": false,
       "id": 24
@@ -547,7 +551,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/stefan-danziger-mittel-und-wege",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 28
@@ -1097,7 +1101,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de/Kalender",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 43,
@@ -1217,7 +1221,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2342",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Arthotel Andechser Hof",
       "isHighlight": false,
       "id": 46,
@@ -1300,7 +1304,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2241",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 48,
@@ -1593,7 +1597,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/fernanda-von-sachsen-quartett-edi-may-trio-preistraegerkonzert-kurt-maas-jazz-award",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 55,
@@ -1879,7 +1883,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 62,
@@ -2049,7 +2053,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2343",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Arthotel Andechser Hof",
       "isHighlight": false,
       "id": 66,
@@ -2173,7 +2177,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2148",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Gemeindehaus an der Evangelischen Kirche",
       "isHighlight": false,
       "id": 69
@@ -2283,7 +2287,7 @@
       ],
       "url": "https://starnberg.lbv.de/über-uns/veranstaltungen-steinbruch/2026-02-10-ornist-jahresrückblick/",
       "source": "lbv-starnberg",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "Restaurant La Fattoria",
       "isHighlight": false,
       "id": 75
@@ -2338,7 +2342,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/buendis-90-die-gruenen-ov-gauting-bahnhofsareal-gauting-jetzt-oder-nie",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 78
@@ -2492,7 +2496,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/mfg-menschen-fuer-gauting-familienfreundliches-gauting",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 86
@@ -2510,7 +2514,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2282",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Pfarrzentrum Sankt Nikolaus",
       "isHighlight": false,
       "id": 88
@@ -2566,7 +2570,7 @@
       ],
       "url": "https://www.sc-woerthsee.de",
       "source": "sportverein-sc-woerthsee",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "SC Wörthsee e.V.",
       "isHighlight": false,
       "id": 91
@@ -2661,7 +2665,7 @@
       ],
       "url": "https://ayouga.de",
       "source": "ayouga",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": true,
       "id": 96
@@ -2700,7 +2704,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 98
@@ -2814,7 +2818,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": true,
       "id": 104
@@ -2947,7 +2951,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 111
@@ -2968,7 +2972,7 @@
       ],
       "url": "https://www.dav-starnberg.de/artikel/Aktionstag-Naturlich-auf-Tour-am-Hornle---Helfer-gesucht-/132448",
       "source": "dav-starnberg",
-      "region": "starnberger-see",
+      "region": "werdenfels",
       "venue": "Hörnle",
       "isHighlight": false,
       "id": 112
@@ -3106,7 +3110,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 119
@@ -3124,7 +3128,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de/Veranstaltungen_Paartanz-Specials_91/Milonga_3121",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 120
@@ -3142,7 +3146,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de/Kalender",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 121
@@ -3341,7 +3345,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 131
@@ -3377,7 +3381,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2356",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Arthotel Andechser Hof",
       "isHighlight": false,
       "id": 133
@@ -3433,7 +3437,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2228",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Gasthof DIE POST",
       "isHighlight": false,
       "id": 136
@@ -3471,7 +3475,7 @@
       ],
       "url": "https://www.kulturforum-starnberg.de/newpage",
       "source": "kulturforum-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 138
@@ -3547,7 +3551,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 142
@@ -3603,7 +3607,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": false,
       "id": 145
@@ -3641,7 +3645,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2265",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 147
@@ -3717,7 +3721,7 @@
       ],
       "url": "https://www.vhs-starnbergammersee.de",
       "source": "vhs-starnbergammersee",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "vhs StarnbergAmmersee",
       "isHighlight": false,
       "id": 151
@@ -3886,7 +3890,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/laszlo-fenyoe-violoncello-julia-okruashvili-klavier-beethoven-kodaly-grieg",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 160
@@ -3924,7 +3928,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": false,
       "id": 162
@@ -3962,7 +3966,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 164
@@ -3999,7 +4003,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/sara-brandhuber-scheena-schmarrn",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 166
@@ -4093,7 +4097,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 171
@@ -4204,7 +4208,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2385",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Naturschutz und Jugendzentrum Wartaweil",
       "isHighlight": false,
       "id": 177
@@ -4297,7 +4301,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2386",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Freiwillige Feuerwehr Herrsching",
       "isHighlight": false,
       "id": 182
@@ -4317,7 +4321,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 183
@@ -4410,7 +4414,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 188
@@ -4521,7 +4525,7 @@
       ],
       "url": "https://www.vhs-starnbergammersee.de",
       "source": "vhs-starnbergammersee",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "East Coast Tanzstudio / vhs",
       "isHighlight": false,
       "id": 194
@@ -4558,7 +4562,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 196
@@ -4577,7 +4581,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/brustmann-schaefer-horn-isara-rapidus",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 197
@@ -4616,7 +4620,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 199
@@ -4635,7 +4639,7 @@
       ],
       "url": "https://tsv-ga.de/tennis/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": true,
       "id": 200
@@ -4787,7 +4791,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/tabea-zimmermann-viola-javier-perianes-klavier-schumann-brahms-britten",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 208
@@ -4823,7 +4827,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/seniorenbeirat-gauting-betrugspraevention",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 210
@@ -4917,7 +4921,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-ein-familienfest-der-fantasie",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 215
@@ -4972,7 +4976,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/julia-fischer-lena-neudauer-family-concert",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 218
@@ -4992,7 +4996,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "KRÄMMEL Forum",
       "isHighlight": false,
       "id": 219
@@ -5068,7 +5072,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2384",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Naturschutz und Jugendzentrum Wartaweil",
       "isHighlight": false,
       "id": 223
@@ -5086,7 +5090,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-maerchenjurte-am-vorplatz",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 224
@@ -5107,7 +5111,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-workshop-was-fuer-ein-theater",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 225
@@ -5146,7 +5150,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/figurentheater-hattenkofer-als-der-kleine-koriander-kam",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 227
@@ -5164,7 +5168,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2380",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Sporthalle Realschule Herrsching",
       "isHighlight": false,
       "id": 228
@@ -5201,7 +5205,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-fritzi-ferkel-ferdinand",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 230
@@ -5258,7 +5262,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/die-exen-dorothee-carls-pony-im-koffer",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 233
@@ -5332,7 +5336,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2242",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 237
@@ -5352,7 +5356,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/mackefisch-komplizirkus-songwriter-kabarett",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 238
@@ -5370,7 +5374,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/bosco-bambini-maerchenjurte-am-vorplatz_So",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 239
@@ -5408,7 +5412,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/johannes-x-schachtner-die-kindersinfoniker-karneval-der-tiere-nach-camille-saint",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 241
@@ -5447,7 +5451,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2266",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 243
@@ -5466,7 +5470,7 @@
       ],
       "url": "https://tsv-ga.de/tennis/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 244
@@ -5485,7 +5489,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-b%C3%BChne-frei",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 245
@@ -5577,7 +5581,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 250
@@ -5615,7 +5619,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2322",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Gemeindehaus an der Evangelischen Kirche",
       "isHighlight": false,
       "id": 252
@@ -5634,7 +5638,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": false,
       "id": 253
@@ -5671,7 +5675,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/fliegende-volksbuehne-frankfurt-goethe-faust-1-kommentierte-darbietung-von-und-mit",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 255
@@ -5691,7 +5695,7 @@
       ],
       "url": "https://www.adfc-starnberg.de",
       "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "ADFC Kreisverband Starnberg - Ortsgruppe Gilching",
       "isHighlight": false,
       "id": 256
@@ -5709,7 +5713,7 @@
       ],
       "url": "https://starnberg.bund-naturschutz.de/termine/termin/jahresmitgliederversammlung-der-kreisgruppe-starnberg-2-1",
       "source": "bund-naturschutz-starnberg",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "BUND Naturschutzzentrum Wartaweil",
       "isHighlight": false,
       "id": 257
@@ -5729,7 +5733,7 @@
       ],
       "url": "https://svastha-ammersee.de",
       "source": "yoga-svastha-ammersee",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Svastha Yoga Ammersee",
       "isHighlight": false,
       "id": 258
@@ -5767,7 +5771,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/christoph-sieber-weitermachen",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 260
@@ -5786,7 +5790,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 261
@@ -5822,7 +5826,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2388",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Pfarrzentrum Sankt Nikolaus",
       "isHighlight": false,
       "id": 263
@@ -5841,7 +5845,7 @@
       ],
       "url": "https://ayouga.de",
       "source": "ayouga",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
       "id": 264
@@ -5878,7 +5882,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/jakob-fichert-klavier-matthias-gredler-violoncello-schumann-beethoven-mendelssohn",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 266
@@ -5897,7 +5901,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": false,
       "id": 267
@@ -5917,7 +5921,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 268
@@ -5955,7 +5959,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/kat-menschik-durch-den-wilden-kaukasus",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 270
@@ -5993,7 +5997,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/clarinet-trio-anthology-daniel-ottensamer-stephan-koncz-christoph-traxler",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 272
@@ -6106,7 +6110,7 @@
       ],
       "url": "https://www.tanzstudiotutzing.de",
       "source": "tanzstudio-tutzing",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 278
@@ -6144,7 +6148,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Musikschule Wolfratshausen",
       "isHighlight": false,
       "id": 280
@@ -6164,7 +6168,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187831-rennrad-gravel-tour-andechs",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
       "id": 281
@@ -6183,7 +6187,7 @@
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2267",
       "source": "herrsching-gemeinde",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Nikolaushalle",
       "isHighlight": false,
       "id": 282
@@ -6278,7 +6282,7 @@
       ],
       "url": "https://starnberg.bund-naturschutz.de/termine/termin/bn-ausstellung-amphibien-taucher-schwimmer-wandersleut",
       "source": "bund-naturschutz-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Caritas Altenheim Maria Eich",
       "isHighlight": false,
       "id": 287
@@ -6356,7 +6360,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187657-gilchinger-feierabendtour",
       "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": false,
       "id": 291
@@ -6394,7 +6398,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 293
@@ -6431,7 +6435,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": true,
       "id": 295
@@ -6451,7 +6455,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188021-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 296
@@ -6620,7 +6624,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/theater-der-ruhr-s-wie-schaedel-szenische-reflexion-einer-ungreifbaren-welt-auf",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 305
@@ -6659,7 +6663,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187667-gilchinger-feierabendtour",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 307
@@ -6678,7 +6682,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/isaria-kollektiv-giuseppe-verdi-la-traviata-kammerfassung",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 308
@@ -6754,7 +6758,7 @@
       ],
       "url": "https://ayouga.de",
       "source": "ayouga",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
       "id": 312
@@ -6791,7 +6795,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/simon-jan-das-beste",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 314
@@ -6810,7 +6814,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/talking-heads-6",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 315
@@ -6828,7 +6832,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 316
@@ -6867,7 +6871,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188030-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 318
@@ -6886,7 +6890,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/swingin-ladies-plus-2-swing-blues-and-boogie-woogie",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 319
@@ -6906,7 +6910,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188023-unterwegs-im-sudwesten",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 320
@@ -6944,7 +6948,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187668-gilchinger-feierabendtour",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 322
@@ -6964,7 +6968,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 323
@@ -6983,7 +6987,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/schneeberger-bakanic-quartett-avanti-avanti-tournee-2026",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 324
@@ -7044,7 +7048,7 @@
       ],
       "url": "https://elisabeth-dean.de/veranstaltungen/",
       "source": "elisabeth-dean",
-      "region": "starnberger-see",
+      "region": "tegernsee",
       "venue": "villa vivendi",
       "isHighlight": false,
       "id": 327
@@ -7063,7 +7067,7 @@
       ],
       "url": "https://tsv-ga.de/tennis/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 328
@@ -7118,7 +7122,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/luise-kinseher-mary-bavary-endlich-solo",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 331
@@ -7214,7 +7218,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188032-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 336
@@ -7253,7 +7257,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-unser-bodem-unser-erbe",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 338
@@ -7311,7 +7315,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187880-ramsee",
       "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": false,
       "id": 341
@@ -7330,7 +7334,7 @@
       ],
       "url": "https://rsc-wolfratshausen.de/events/",
       "source": "radsport-rsc-wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "RSC Wolfratshausen",
       "isHighlight": false,
       "id": 342
@@ -7351,7 +7355,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187880-ramsee",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 343
@@ -7391,7 +7395,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 345
@@ -7449,7 +7453,7 @@
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/186565-rote-route-der-via-zeitreise",
       "source": "adfc-touren",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 348
@@ -7467,7 +7471,7 @@
       ],
       "url": "https://starnberg.bund-naturschutz.de/termine/termin/treffen-der-ortsgruppe-krailling-8",
       "source": "bund-naturschutz-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gemeindehaus der Waldkirche Planegg",
       "isHighlight": false,
       "id": 349
@@ -7523,7 +7527,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Musikschule Wolfratshausen",
       "isHighlight": false,
       "id": 352
@@ -7599,7 +7603,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/theater-zitadelle-theater-anna-rampe-einmal-schneewittchen-bitte-nach-den-bruedern",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 356
@@ -7618,7 +7622,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": true,
       "id": 357
@@ -7637,7 +7641,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/boox-sommerlese26",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 358
@@ -7656,7 +7660,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/festival-der-ard-preistraegerinnen-gesang-klavier-klarinette-viola-violoncello",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": true,
       "id": 359
@@ -7675,7 +7679,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/metropoltheater-muenchen-das-achte-leben-fuer-brilka-von-nino-haratischwili-Nachholtermin",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 360
@@ -7713,7 +7717,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/metropoltheater-muenchen-das-achte-leben-fuer-brilka-von-nino-haratischwili-2-nachholtermin",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 362
@@ -7732,7 +7736,7 @@
       ],
       "url": "https://ayouga.de",
       "source": "ayouga",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
       "id": 363
@@ -7769,7 +7773,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 365
@@ -7807,7 +7811,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": false,
       "id": 367
@@ -7903,7 +7907,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/hg-butzko-der-will-nicht-nur-spielen",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 372
@@ -7997,7 +8001,7 @@
       ],
       "url": "https://frmclinics.com/TSV-Oberalting-Seefeld-2026",
       "source": "tsv-oberalting-seefeld",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Aubachstadion Seefeld",
       "isHighlight": false,
       "id": 377
@@ -8017,7 +8021,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-die-wiese",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 378
@@ -8132,7 +8136,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-Rivers-and-Tides",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 384
@@ -8207,7 +8211,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Rathaus Wolfratshausen",
       "isHighlight": false,
       "id": 388
@@ -8245,7 +8249,7 @@
       ],
       "url": "https://ayouga.de",
       "source": "ayouga",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": true,
       "id": 390
@@ -8264,7 +8268,7 @@
       ],
       "url": "https://bosco-gauting.de/node/5660",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 391
@@ -8430,7 +8434,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": false,
       "id": 400
@@ -8449,7 +8453,7 @@
       ],
       "url": "https://tsv-ga.de/einrad/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 401
@@ -8468,7 +8472,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/sonntagsmatinee-julia-fischer-praesentiert-anton-carus-violine",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 402
@@ -8488,7 +8492,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 403
@@ -8506,7 +8510,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 404
@@ -8544,7 +8548,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-Erde",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 406
@@ -8602,7 +8606,7 @@
       ],
       "url": "https://www.namaste-yoga.de/",
       "source": "namaste-yoga-herrsching",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Namasté Yoga Studio Herrsching",
       "isHighlight": false,
       "id": 409
@@ -8677,7 +8681,7 @@
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/film-im-kino-breitwand-das-salz-der-erde",
       "source": "bosco-gauting",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 413
@@ -8866,7 +8870,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": false,
       "id": 423
@@ -8903,7 +8907,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Stadtbücherei Wolfratshausen",
       "isHighlight": false,
       "id": 425
@@ -8924,7 +8928,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": true,
       "id": 426
@@ -9019,7 +9023,7 @@
       ],
       "url": "https://tsv-ga.de/stockschuetzen/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 431
@@ -9037,7 +9041,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 432
@@ -9093,7 +9097,7 @@
       ],
       "url": "https://www.adfc-starnberg.de",
       "source": "radsport-adfc-starnberg",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "ADFC Ortsgruppe Gilching",
       "isHighlight": false,
       "id": 435
@@ -9148,7 +9152,7 @@
       ],
       "url": "https://starnbergersee-schwimmen.de",
       "source": "sportverein-seeschwimmen",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "Starnberger See Schwimmen",
       "isHighlight": true,
       "id": 438
@@ -9204,7 +9208,7 @@
       ],
       "url": "https://gilchinger-tanzzentrum.de",
       "source": "gilchinger-tanzzentrum",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Gilchinger Tanzzentrum",
       "isHighlight": false,
       "id": 441
@@ -9339,7 +9343,7 @@
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
-      "region": "starnberger-see",
+      "region": "ammersee",
       "venue": "Studio 8 Herrsching",
       "isHighlight": false,
       "id": 448
@@ -9376,7 +9380,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Musikschule Wolfratshausen",
       "isHighlight": false,
       "id": 450
@@ -9398,7 +9402,7 @@
       ],
       "url": "https://elisabeth-dean.de/veranstaltungen/",
       "source": "elisabeth-dean",
-      "region": "starnberger-see",
+      "region": "tegernsee",
       "venue": "villa vivendi",
       "isHighlight": false,
       "id": 451
@@ -9493,7 +9497,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 456
@@ -9513,7 +9517,7 @@
       ],
       "url": "https://gilching-laeuft.de",
       "source": "gilching-laeuft",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 457
@@ -9551,7 +9555,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 459
@@ -9570,7 +9574,7 @@
       ],
       "url": "https://www.lc-buchendorf.de/",
       "source": "sportverein-lc-buchendorf",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "LC Buchendorf & Gautinger SC",
       "isHighlight": false,
       "id": 460
@@ -9645,7 +9649,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 464
@@ -9664,7 +9668,7 @@
       ],
       "url": "https://tsv-ga.de/einrad/",
       "source": "sportverein-tsv-gilching",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "TSV Gilching-Argelsried",
       "isHighlight": false,
       "id": 465
@@ -9909,7 +9913,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 478
@@ -9966,7 +9970,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 481
@@ -10022,7 +10026,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": null,
       "isHighlight": false,
       "id": 484
@@ -10097,7 +10101,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": true,
       "id": 488
@@ -10172,7 +10176,7 @@
       ],
       "url": "https://www.lavilla.de/la-villa/events",
       "source": "lavilla",
-      "region": "starnberger-see",
+      "region": "poecking",
       "venue": "LA VILLA am Starnberger See",
       "isHighlight": false,
       "id": 492
@@ -10211,7 +10215,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": false,
       "id": 494
@@ -10249,7 +10253,7 @@
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
-      "region": "starnberger-see",
+      "region": "wuermtal",
       "venue": "Loisachhalle Wolfratshausen",
       "isHighlight": true,
       "id": 496
