@@ -205,7 +205,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
           <!-- Mobile: Vor Ort -->
           <section class="section section-info section-info--mobile">
-            <h2 class="section-title">Vor Ort</h2>
+            <h3 class="section-heading">Vor Ort</h3>
             <div class="info-grid-single">
               <MarketInfo />
               <WebcamWidget />
@@ -411,6 +411,10 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       align-self: start;
     }
+  }
+
+  .context-widget-group {
+    margin-bottom: var(--space-10, 2.5rem);
   }
 
   .context-widget {
