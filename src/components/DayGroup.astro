@@ -48,10 +48,9 @@ const dayLabel = isToday
     z-index: 10;
   }
 
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
-    .day-header {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    .section-heading {
+      top: 357px; /* Below fixed header */
     }
   }
 
