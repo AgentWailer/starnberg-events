@@ -1188,37 +1188,15 @@ async function handleAiInsight(env: Env, url: URL): Promise<Response> {
   const mucRate = mucTotal > 0 ? Math.round((mucOnTime / mucTotal) * 100) : 0;
   const tutRate = tutTotal > 0 ? Math.round((tutOnTime / tutTotal) * 100) : 0;
 
-  const prompt = `Du bist ein Datenanalyst fuer den S-Bahn-Verkehr. Analysiere die folgenden Statistiken der S6 am Bahnhof Possenhofen und erstelle eine kurze, praegnante Analyse auf Deutsch. Keine Emojis verwenden.
+  const prompt = `Analysiere diese S6-Statistiken (Bahnhof Possenhofen) und fasse die wichtigsten Erkenntnisse in 2-3 kurzen Saetzen zusammen. Deutsch, sachlich, keine Emojis, keine Ueberschriften.
 
-Zeitraum: ${days} Tage
-Gesamtzuege: ${total}
-Puenktlichkeitsrate: ${rate}%
-Ausfallrate: ${cancelRate}%
-Durchschnittliche Verspaetung: ${Math.round(avgDelay / 60)} Min
-Maximale Verspaetung: ${Math.round(maxDelay / 60)} Min
+Zeitraum: ${days} Tage | ${total} Zuege | ${rate}% puenktlich | ${cancelRate}% ausgefallen | Ø ${Math.round(avgDelay / 60)} Min Verspaetung | Max ${Math.round(maxDelay / 60)} Min
+Richtung Muenchen: ${mucRate}% (${mucTotal} Zuege) | Richtung Tutzing: ${tutRate}% (${tutTotal} Zuege)
+Rush Hour Morgen 7-10: ${rushPct(morning)}% | Abend 16-19: ${rushPct(evening)}% | Nebenzeit: ${rushPct(offPeak)}%
+${weatherLines ? 'Wetter: ' + weatherLines : ''}
+${weekdayLines ? 'Wochentage: ' + weekdayLines : ''}
 
-Richtungsvergleich:
-- Muenchen: ${mucRate}% puenktlich, Ø ${Math.round(mucAvg / 60)} Min (${mucTotal} Zuege)
-- Tutzing: ${tutRate}% puenktlich, Ø ${Math.round(tutAvg / 60)} Min (${tutTotal} Zuege)
-
-Rush Hour:
-- Morning Rush (7-10): ${rushPct(morning)}%
-- Evening Rush (16-19): ${rushPct(evening)}%
-- Nebenzeit: ${rushPct(offPeak)}%
-
-Wetter-Korrelation:
-${weatherLines || 'Keine Wetterdaten verfuegbar'}
-
-Wochentag-Muster:
-${weekdayLines || 'Keine Wochentagdaten verfuegbar'}
-
-Schreibe eine Analyse in 3-5 Absaetzen:
-1. Gesamtbewertung der Zuverlaessigkeit
-2. Auffaellige Muster (Richtung, Tageszeit, Wochentag)
-3. Wetter-Einfluss (falls erkennbar)
-4. Fazit und Einordnung
-
-Halte dich an die Fakten. Sei direkt und sachlich. Keine Floskeln. Keine Emojis. Antworte nur mit der Analyse, ohne Ueberschriften oder Nummerierung.`;
+Antworte NUR mit 2-3 Saetzen. Keine Aufzaehlungen, keine Absaetze, kein Drumherum.`;
 
   // Call Workers AI
   try {
