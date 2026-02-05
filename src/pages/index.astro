@@ -23,10 +23,13 @@ const regions = eventsData.regions || {
 // Get artTags from data
 const artTags = eventsData.artTags || {};
 
-// Filter out past events and sort by date
+// Filter: only events from today up to 1 month ahead
 const todayStr = new Date().toISOString().split('T')[0];
+const maxDate = new Date();
+maxDate.setMonth(maxDate.getMonth() + 1);
+const maxDateStr = maxDate.toISOString().split('T')[0];
 const events = eventsData.events
-  .filter(e => e.date >= todayStr)
+  .filter(e => e.date >= todayStr && e.date <= maxDateStr)
   .sort((a, b) => {
     const dateCompare = a.date.localeCompare(b.date);
     if (dateCompare !== 0) return dateCompare;
@@ -1019,44 +1022,22 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* ===== DESKTOP COLUMN FOOTER (inside center column scroll area) ===== */
+  /* Column footer hidden — page-level footer used instead */
   .column-footer {
     display: none;
   }
 
-  @media (min-width: 1200px) {
-    .column-footer {
-      display: block;
-      padding: var(--space-8) 0;
-      margin-top: var(--space-8);
-      border-top: 1px solid var(--color-border-light);
-      font-size: 0.8125rem;
-      color: var(--color-muted);
-      text-align: center;
-    }
-
-    .column-footer a {
-      color: var(--color-muted);
-      text-decoration: underline;
-      text-decoration-color: transparent;
-      transition: text-decoration-color var(--duration-fast) ease;
-    }
-
-    .column-footer a:hover {
-      text-decoration-color: var(--color-muted);
-    }
-  }
-
-  /* ===== FOOTER (Mobile/Tablet only) ===== */
+  /* ===== FOOTER (all screen sizes) ===== */
   .footer {
     padding: var(--space-8) 0;
     border-top: 1px solid var(--color-border-light);
     background: var(--color-bg-secondary);
   }
 
+  /* Desktop App Shell: footer is flex child at bottom of viewport */
   @media (min-width: 1200px) {
     .footer {
-      display: none; /* Desktop uses .column-footer inside center column */
+      flex-shrink: 0;
     }
   }
 
