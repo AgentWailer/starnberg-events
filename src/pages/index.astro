@@ -935,14 +935,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </style>
 
 <style is:global>
-  /* ===== ALIGNMENT FIX: First day-group heading aligns with sidebar headings ===== */
-  /* The padding-top on .section-heading is needed for sticky behavior (keeps text */
-  /* below the fixed header). We compensate with negative margin so initial position aligns. */
-  @media (min-width: 768px) {
-    #events-list > .day-group:first-child {
-      margin-top: calc(-1 * var(--space-4));
-    }
-  }
+  /* First day-group: no extra negative margin needed — headings aligned via sticky top values */
 
   /* ===== LOAD MORE BUTTON ===== */
   #load-more-btn {
