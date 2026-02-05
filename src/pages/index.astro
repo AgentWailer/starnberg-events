@@ -1126,35 +1126,48 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 </style>
 
 <script>
-  // === App Shell: Header collapse proportional to scroll (Desktop ≥1200px) ===
-  // Scroll in ANY column (left, center, right) collapses the header.
-  // Header re-expands only when ALL columns are scrolled back to top.
+  // === App Shell: Header collapse + wheel forwarding (Desktop ≥1200px) ===
+  //
+  // TWO scroll sources drive the header collapse:
+  //   1. Column scroll (center/right): internal content scrolling also collapses header
+  //   2. Edge scroll (left column, page edges, header): "page-level" scroll that ONLY
+  //      moves the header — does NOT scroll any column's internal content
+  //
+  // Effective header collapse = max(edgeOffset, maxColumnScrollTop), capped at headerHeight.
+  // When columns scroll past headerHeight, edgeOffset resets (columns take over).
   function initAppShellCollapse() {
     const mql = window.matchMedia('(min-width: 1200px)');
     if (!mql.matches) return;
 
     const header = document.querySelector('.header') as HTMLElement;
+    const centerCol = document.querySelector('.column-center') as HTMLElement;
     const columns = [
       document.querySelector('.column-left'),
-      document.querySelector('.column-center'),
+      centerCol,
       document.querySelector('.column-right')
     ].filter(Boolean) as HTMLElement[];
     const navbarBrand = document.querySelector('.navbar-brand') as HTMLElement;
 
-    if (!header || columns.length === 0) return;
+    if (!header || columns.length === 0 || !centerCol) return;
 
-    // Measure header's natural height (before any scroll)
     let headerHeight = header.offsetHeight;
     let collapsed = false;
+    let edgeOffset = 0; // Accumulated scroll from left/edge wheel events (0..headerHeight)
 
-    function onScroll() {
-      // Use the maximum scrollTop across all columns
-      const maxScrollY = Math.max(...columns.map(c => c.scrollTop));
-      const slideAmount = Math.min(maxScrollY, headerHeight);
+    // --- Shared header state application ---
+    function applyHeaderState() {
+      const maxColumnScroll = Math.max(...columns.map(c => c.scrollTop));
 
-      // Slide header up under navbar via negative margin-top.
-      // This reduces the header's effective layout contribution so main grows,
-      // while the header visually slides behind the navbar (z:100 > header z:2).
+      // When columns have scrolled past header height, they "take over" —
+      // reset edgeOffset so scrolling columns back to top re-expands the header.
+      if (maxColumnScroll >= headerHeight) {
+        edgeOffset = 0;
+      }
+
+      const effectiveScroll = Math.max(edgeOffset, maxColumnScroll);
+      const slideAmount = Math.min(effectiveScroll, headerHeight);
+
+      // Slide header up under navbar via negative margin-top
       header.style.marginTop = -slideAmount + 'px';
 
       // Opacity: full until 65% scrolled, then fade to 0
@@ -1179,67 +1192,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       }
     }
 
-    function attachListeners() {
-      columns.forEach(col => col.addEventListener('scroll', onScroll, { passive: true }));
+    // --- Column scroll handler ---
+    function onColumnScroll() {
+      applyHeaderState();
     }
 
-    function detachListeners() {
-      columns.forEach(col => col.removeEventListener('scroll', onScroll));
-    }
-
-    attachListeners();
-
-    // Handle breakpoint changes — add/remove listeners + clean up
-    let listenersAttached = true;
-    mql.addEventListener('change', (e) => {
-      if (!e.matches) {
-        header.style.marginTop = '';
-        header.style.opacity = '';
-        header.style.visibility = '';
-        header.style.pointerEvents = '';
-        navbarBrand?.classList.remove('visible');
-        collapsed = false;
-        if (listenersAttached) {
-          detachListeners();
-          listenersAttached = false;
-        }
-      } else {
-        headerHeight = header.offsetHeight;
-        if (!listenersAttached) {
-          attachListeners();
-          listenersAttached = true;
-        }
-        onScroll();
-      }
-    });
-
-    // Re-measure on resize (within desktop)
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    window.addEventListener('resize', () => {
-      if (!mql.matches) return;
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const prevMargin = header.style.marginTop;
-        header.style.marginTop = '';
-        header.style.visibility = '';
-        header.style.opacity = '';
-        headerHeight = header.offsetHeight;
-        header.style.marginTop = prevMargin;
-        onScroll();
-      }, 150);
-    });
-  }
-
-  // === Forward wheel events from non-scrollable areas to center column ===
-  // Ensures scrolling over the left column (filters), page edges, or the header
-  // all scroll the center column and collapse the header.
-  function initWheelForwarding() {
-    const mql = window.matchMedia('(min-width: 1200px)');
-    if (!mql.matches) return;
-
-    const centerCol = document.querySelector('.column-center') as HTMLElement;
-    if (!centerCol) return;
-
+    // --- Wheel forwarding: detect which column (if any) the cursor is over ---
     function getColumn(el: Element | null): HTMLElement | null {
       while (el && el !== document.documentElement) {
         if (el instanceof HTMLElement) {
@@ -1272,30 +1230,83 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
       const col = getColumn(target);
 
-      // Inside center column → natural scroll handles it
+      // Inside center column → natural scroll (onColumnScroll handles header)
       if (col === centerCol) return;
 
-      // Inside a sidebar that can scroll in this direction → let it scroll naturally
-      if (col && canScroll(col, e.deltaY)) return;
+      // Inside right column → natural scroll (onColumnScroll handles header)
+      if (col && col.classList.contains('column-right')) {
+        // If right column can scroll, let it; header updates via onColumnScroll
+        if (canScroll(col, e.deltaY)) return;
+        // Right column can't scroll further → drive header via edgeOffset
+      }
 
-      // Forward scroll to center column (page edges, non-scrollable left column, header, etc.)
-      centerCol.scrollTop += e.deltaY;
+      // Inside left column that can scroll → let it scroll naturally
+      if (col && col.classList.contains('column-left') && canScroll(col, e.deltaY)) return;
+
+      // Page-level scroll: drive header collapse directly (no column scrolling)
+      edgeOffset = Math.max(0, Math.min(headerHeight, edgeOffset + e.deltaY));
+      applyHeaderState();
     }
 
+    // --- Attach/detach listeners ---
+    function attachListeners() {
+      columns.forEach(col => col.addEventListener('scroll', onColumnScroll, { passive: true }));
+    }
+
+    function detachListeners() {
+      columns.forEach(col => col.removeEventListener('scroll', onColumnScroll));
+    }
+
+    attachListeners();
     document.addEventListener('wheel', onWheel, { passive: true });
 
+    // Handle breakpoint changes
+    let listenersAttached = true;
     mql.addEventListener('change', (e) => {
-      // Listener stays attached but checks mql.matches inside onWheel
+      if (!e.matches) {
+        header.style.marginTop = '';
+        header.style.opacity = '';
+        header.style.visibility = '';
+        header.style.pointerEvents = '';
+        navbarBrand?.classList.remove('visible');
+        collapsed = false;
+        edgeOffset = 0;
+        if (listenersAttached) {
+          detachListeners();
+          listenersAttached = false;
+        }
+      } else {
+        headerHeight = header.offsetHeight;
+        if (!listenersAttached) {
+          attachListeners();
+          listenersAttached = true;
+        }
+        applyHeaderState();
+      }
+    });
+
+    // Re-measure on resize (within desktop)
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      if (!mql.matches) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const prevMargin = header.style.marginTop;
+        header.style.marginTop = '';
+        header.style.visibility = '';
+        header.style.opacity = '';
+        headerHeight = header.offsetHeight;
+        header.style.marginTop = prevMargin;
+        applyHeaderState();
+      }, 150);
     });
   }
 
   // Run after DOM + layout ready (Astro bundles as ESM module = deferred)
   function startCollapse() {
-    // Wait one frame so layout is computed and header height is accurate
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         initAppShellCollapse();
-        initWheelForwarding();
       });
     });
   }
