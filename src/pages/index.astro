@@ -1229,15 +1229,11 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       // Inside center column → natural scroll (onColumnScroll handles header)
       if (col === centerCol) return;
 
-      // Inside right column → natural scroll (onColumnScroll handles header)
-      if (col && col.classList.contains('column-right')) {
-        // If right column can scroll, let it; header updates via onColumnScroll
+      // Left and right columns: page-level scroll only (same behavior)
+      // Only let them scroll internally if they actually have overflow
+      if (col && (col.classList.contains('column-left') || col.classList.contains('column-right'))) {
         if (canScroll(col, e.deltaY)) return;
-        // Right column can't scroll further → drive header via edgeOffset
       }
-
-      // Inside left column that can scroll → let it scroll naturally
-      if (col && col.classList.contains('column-left') && canScroll(col, e.deltaY)) return;
 
       // Page-level scroll: drive header collapse directly (no column scrolling)
       edgeOffset = Math.max(0, Math.min(headerHeight, edgeOffset + e.deltaY));
