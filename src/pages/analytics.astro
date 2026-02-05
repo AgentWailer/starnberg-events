@@ -71,7 +71,7 @@ import Layout from '../layouts/Layout.astro';
       <!-- 4. Wochentage -->
       <section class="an-card">
         <h2 class="an-section-title">Wochentage</h2>
-        <div class="an-bar-list" id="an-weekday-bars"></div>
+        <div class="an-chart-wrap" id="an-weekday-bars"></div>
       </section>
 
       <!-- 5. Neue vs. Wiederkehrende Besucher -->
@@ -101,13 +101,13 @@ import Layout from '../layouts/Layout.astro';
       <!-- 9. Geräte -->
       <section class="an-card">
         <h2 class="an-section-title">Geräte</h2>
-        <div class="an-bar-list" id="an-devices-bars"></div>
+        <div id="an-devices-bars"></div>
       </section>
 
       <!-- 10. Browser -->
       <section class="an-card">
         <h2 class="an-section-title">Browser</h2>
-        <div class="an-bar-list" id="an-browsers-bars"></div>
+        <div id="an-browsers-bars"></div>
       </section>
 
       <!-- 11. Sprachen -->
@@ -180,6 +180,7 @@ import Layout from '../layouts/Layout.astro';
   .an-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-4); }
   .an-sc { background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-3); text-align: center; box-shadow: var(--shadow-sm); }
   .an-sc__val { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; line-height: 1.1; color: var(--color-primary); }
+  .an-sc__spark { display: block; margin: 6px auto 2px; opacity: 0.7; }
   .an-sc__lbl { display: block; font-size: 0.75rem; font-weight: 600; margin-top: 4px; color: var(--color-text-secondary); }
   .an-sc__trend { display: block; font-size: 0.6875rem; margin-top: 6px; font-weight: 600; }
   .an-sc__trend--up { color: #10b981; }
@@ -202,24 +203,47 @@ import Layout from '../layouts/Layout.astro';
   .an-tbl td:first-child { font-weight: 500; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .an-tbl .an-num { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-variant-numeric: tabular-nums; }
 
+  /* Inline bar inside table cells */
+  .an-bar-inline-cell { position: relative; }
+  .an-bar-inline { position: absolute; top: 0; left: 0; height: 100%; background: var(--color-primary); opacity: 0.12; border-radius: 2px; pointer-events: none; transition: width 0.6s ease; }
+  .an-bar-inline-cell > span { position: relative; z-index: 1; }
+
   /* Bar list */
   .an-bar-list { display: flex; flex-direction: column; gap: var(--space-3); }
   .an-bar-item { display: flex; flex-direction: column; gap: var(--space-1); }
   .an-bar-header { display: flex; justify-content: space-between; font-size: 0.8125rem; }
   .an-bar-label { font-weight: 500; color: var(--color-text); }
   .an-bar-value { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--color-text-secondary); font-variant-numeric: tabular-nums; }
-  .an-bar-track { height: 24px; background: var(--color-bg-secondary); border-radius: var(--radius-sm); overflow: hidden; }
+  .an-bar-track { height: 28px; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); overflow: hidden; }
   .an-bar-fill { height: 100%; border-radius: var(--radius-sm); background: var(--color-primary); transition: width 0.6s ease; min-width: 2px; }
   .an-bar-fill--accent { background: var(--color-accent); }
 
+  /* Country bars with labels inside */
+  .an-country-item { height: 28px; background: rgba(255,255,255,0.04); border-radius: var(--radius-sm); overflow: hidden; position: relative; margin-bottom: 6px; }
+  .an-country-item:last-child { margin-bottom: 0; }
+  .an-country-fill { height: 100%; border-radius: var(--radius-sm); background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light)); transition: width 0.6s ease; min-width: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; }
+  .an-country-label { font-size: 0.75rem; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap; }
+  .an-country-value { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
   /* New vs returning split bar */
-  .an-newret-bar { display: flex; height: 32px; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-bg-secondary); }
-  .an-newret-bar__new { background: var(--color-accent); transition: width 0.6s ease; }
-  .an-newret-bar__ret { background: var(--color-primary); transition: width 0.6s ease; }
-  .an-newret-labels { display: flex; justify-content: space-between; margin-top: var(--space-2); font-size: 0.8125rem; }
+  .an-newret-bar { display: flex; height: 40px; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-bg-secondary); }
+  .an-newret-bar__new { background: var(--color-accent); transition: width 0.6s ease; display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden; }
+  .an-newret-bar__ret { background: var(--color-primary); transition: width 0.6s ease; display: flex; align-items: center; justify-content: center; min-width: 0; overflow: hidden; }
+  .an-newret-bar__text { font-size: 0.8125rem; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); white-space: nowrap; }
+  .an-newret-labels { display: flex; justify-content: space-between; margin-top: var(--space-3); font-size: 0.8125rem; flex-wrap: wrap; gap: var(--space-2); }
+  .an-newret-labels span { display: inline-flex; align-items: center; gap: 5px; }
   .an-newret-labels span:first-child { color: var(--color-accent); font-weight: 600; }
   .an-newret-labels span:last-child { color: var(--color-primary); font-weight: 600; }
+  .an-newret-labels svg { flex-shrink: 0; }
   .an-newret-empty { font-size: 0.875rem; color: var(--color-text-secondary); }
+
+  /* Donut chart */
+  .an-donut-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .an-donut-svg-wrap { position: relative; }
+  .an-donut-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) var(--space-4); }
+  .an-donut-legend__item { display: flex; align-items: center; gap: 6px; font-size: 0.8125rem; color: var(--color-text-secondary); }
+  .an-donut-legend__dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .an-donut-legend__pct { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums; margin-left: 2px; }
 
   /* Chart legend */
   .an-chart-legend { display: flex; gap: var(--space-4); justify-content: center; margin-top: var(--space-2); font-size: 0.75rem; color: var(--color-text-secondary); }
@@ -238,6 +262,10 @@ import Layout from '../layouts/Layout.astro';
     .an-header { flex-wrap: wrap; }
     .an-tbl { font-size: 0.75rem; }
     .an-tbl th, .an-tbl td { padding: var(--space-1) var(--space-2); }
+    .an-donut-wrap { gap: var(--space-3); }
+    .an-country-fill { min-width: 60px; padding: 0 8px; }
+    .an-country-label { font-size: 0.6875rem; }
+    .an-country-value { font-size: 0.625rem; }
   }
 </style>
 
@@ -245,6 +273,7 @@ import Layout from '../layouts/Layout.astro';
   const API = 'https://train-tracker.steffenvonlindern-be7.workers.dev';
   let currentDays = 30;
   let analyticsKey = localStorage.getItem('analytics_key') || '';
+  let lastDailyData: any[] | null = null;
 
   const $ = (id: string) => document.getElementById(id)!;
 
@@ -345,10 +374,28 @@ import Layout from '../layouts/Layout.astro';
     return PAGE_NAMES[path] || path;
   }
 
+  // ── Mini Sparkline helper ──
+  function miniSparkline(daily: any[], key: string, color: string): string {
+    if (!daily || daily.length < 2) return '';
+    const values = daily.map((d: any) => d[key] || 0);
+    const max = Math.max(...values, 1);
+    const min = Math.min(...values, 0);
+    const range = max - min || 1;
+    const W = 60, H = 24;
+    const points = values.map((v: number, i: number) => {
+      const x = (i / (values.length - 1)) * W;
+      const y = H - 2 - ((v - min) / range) * (H - 4);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(' ');
+    return `<svg class="an-sc__spark" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" preserveAspectRatio="none"><polyline points="${points}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>`;
+  }
+
   // ── Render Dashboard ──
   function renderDashboard(data: any) {
     $('an-loading').style.display = 'none';
     $('an-content').style.display = '';
+
+    lastDailyData = data.daily || null;
 
     // Updated timestamp
     const now = new Date();
@@ -371,7 +418,7 @@ import Layout from '../layouts/Layout.astro';
       rtEl.style.display = 'none';
     }
 
-    // Summary cards with trends
+    // Summary cards with trends + sparklines
     renderSummaryCards(data);
 
     // Daily chart
@@ -380,41 +427,59 @@ import Layout from '../layouts/Layout.astro';
     // Hourly chart
     renderHourlyChart(data.hourly);
 
-    // Weekday bars
+    // Weekday vertical bar chart
     renderWeekdayBars(data.weekdays);
 
     // New vs returning
     renderNewVsReturning(data.newVsReturning);
 
-    // Pages table
+    // Pages table (with inline bars)
     renderPagesTable(data.pages);
 
-    // Referrers table
+    // Referrers table (with inline bars)
     renderReferrersTable(data.referrers);
 
-    // Countries
-    const totalCountries = data.countries.reduce((s: number, c: any) => s + c.count, 0);
-    renderBarList('an-countries-bars', data.countries.map((c: any) => ({
-      label: c.country || '??',
-      value: c.count,
-      pct: totalCountries > 0 ? Math.round((c.count / totalCountries) * 100) : 0,
-    })));
+    // Countries (gradient bars with labels inside)
+    renderCountryBars(data.countries);
 
-    // Devices
+    // Devices (donut chart)
     const totalDevices = data.devices.reduce((s: number, d: any) => s + d.count, 0);
-    renderBarList('an-devices-bars', data.devices.map((d: any) => ({
+    const deviceItems = data.devices.map((d: any) => ({
       label: d.device.charAt(0).toUpperCase() + d.device.slice(1),
       value: d.count,
-      pct: totalDevices > 0 ? Math.round((d.count / totalDevices) * 100) : 0,
-    })));
+    }));
+    const deviceColors: Record<string, string> = {
+      'Desktop': 'var(--color-primary)',
+      'Tablet': 'var(--color-accent)',
+      'Mobile': '#e07a5f',
+      'mobile': '#e07a5f',
+    };
+    renderDonutChart('an-devices-bars', deviceItems, deviceColors, 'var(--color-muted)');
 
-    // Browsers
-    const totalBrowsers = data.browsers.reduce((s: number, b: any) => s + b.count, 0);
-    renderBarList('an-browsers-bars', data.browsers.map((b: any) => ({
+    // Browsers (donut chart)
+    const browserItems = data.browsers.map((b: any) => ({
       label: b.browser,
       value: b.count,
-      pct: totalBrowsers > 0 ? Math.round((b.count / totalBrowsers) * 100) : 0,
-    })));
+    }));
+    const browserColors: Record<string, string> = {
+      'Chrome': '#4285f4',
+      'Safari': '#8e8e93',
+      'Firefox': '#ff7139',
+      'Edge': '#0078d4',
+      'Samsung Browser': '#1428a0',
+      'Opera': '#ff1b2d',
+    };
+    if (browserItems.length >= 2) {
+      renderDonutChart('an-browsers-bars', browserItems, browserColors, 'var(--color-muted)');
+    } else {
+      // Single browser or empty: show simple bar
+      const totalBrowsers = data.browsers.reduce((s: number, b: any) => s + b.count, 0);
+      renderBarList('an-browsers-bars', data.browsers.map((b: any) => ({
+        label: b.browser,
+        value: b.count,
+        pct: totalBrowsers > 0 ? Math.round((b.count / totalBrowsers) * 100) : 0,
+      })));
+    }
 
     // Languages
     renderBarList('an-languages-bars', (data.languages || []).map((l: any) => ({
@@ -423,12 +488,13 @@ import Layout from '../layouts/Layout.astro';
     })));
   }
 
-  // ── Summary Cards ──
+  // ── Summary Cards with Sparklines ──
   function renderSummaryCards(data: any) {
     const container = $('an-summary');
     const s = data.summary;
     const t = data.trend || {};
     const days = data.period?.days || currentDays;
+    const daily = data.daily || [];
 
     function trendHtml(diff: number): string {
       if (diff > 0) return `<span class="an-sc__trend an-sc__trend--up">&uarr; +${num(diff)}</span>`;
@@ -437,16 +503,20 @@ import Layout from '../layouts/Layout.astro';
     }
 
     const prevLabel = `vs. vorherige ${days} Tage`;
+    const pvSpark = miniSparkline(daily, 'pageviews', 'var(--color-primary)');
+    const visSpark = miniSparkline(daily, 'visitors', 'var(--color-accent)');
 
     container.innerHTML = `
       <div class="an-sc">
         <span class="an-sc__val">${num(s.pageviews)}</span>
+        ${pvSpark}
         <span class="an-sc__lbl">Seitenaufrufe</span>
         ${t.pageviews !== undefined ? trendHtml(t.pageviews) : ''}
         ${t.pageviews !== undefined ? `<span class="an-sc__trend-sub">${esc(prevLabel)}</span>` : ''}
       </div>
       <div class="an-sc">
         <span class="an-sc__val">${num(s.visitors)}</span>
+        ${visSpark}
         <span class="an-sc__lbl">Besucher</span>
         ${t.visitors !== undefined ? trendHtml(t.visitors) : ''}
         ${t.visitors !== undefined ? `<span class="an-sc__trend-sub">${esc(prevLabel)}</span>` : ''}
@@ -606,7 +676,7 @@ import Layout from '../layouts/Layout.astro';
     `;
   }
 
-  // ── Weekday Bars ──
+  // ── Weekday Vertical Bar Chart (SVG) ──
   function renderWeekdayBars(weekdays: any[]) {
     const container = $('an-weekday-bars');
     if (!weekdays || weekdays.length === 0) {
@@ -614,25 +684,60 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
 
+    const W = 700, H = 180, PAD_L = 44, PAD_R = 10, PAD_T = 10, PAD_B = 32;
+    const cw = W - PAD_L - PAD_R;
+    const ch = H - PAD_T - PAD_B;
+
     const maxPV = Math.max(...weekdays.map((w: any) => w.pageviews), 1);
-    let html = '';
+    const maxVal = Math.ceil(maxPV * 1.1 / 5) * 5 || 5;
+    const barW = cw / 7;
+    const gap = barW * 0.15;
+
+    // Grid lines + Y labels
+    const gridSteps = 3;
+    const grid: string[] = [];
+    for (let i = 0; i <= gridSteps; i++) {
+      const y = PAD_T + ch - (i / gridSteps) * ch;
+      const val = Math.round((i / gridSteps) * maxVal);
+      grid.push(`<line x1="${PAD_L}" y1="${y.toFixed(1)}" x2="${W - PAD_R}" y2="${y.toFixed(1)}" stroke="var(--color-border-light)" stroke-width="1" />`);
+      grid.push(`<text x="${PAD_L - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="var(--color-muted)" font-size="10" font-family="system-ui">${val}</text>`);
+    }
+
+    // Bars + labels
+    const dayLabels = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+    const bars: string[] = [];
+    const xLabels: string[] = [];
     weekdays.forEach((w: any, i: number) => {
-      const width = Math.max(2, (w.pageviews / maxPV) * 100);
-      const isWeekend = i >= 5; // Sa=5, So=6
-      const fillClass = isWeekend ? ' an-bar-fill--accent' : '';
-      html += `
-        <div class="an-bar-item">
-          <div class="an-bar-header">
-            <span class="an-bar-label">${esc(w.name)}</span>
-            <span class="an-bar-value">${num(w.pageviews)} Aufrufe</span>
-          </div>
-          <div class="an-bar-track"><div class="an-bar-fill${fillClass}" style="width:${width.toFixed(1)}%"></div></div>
-        </div>`;
+      const x = PAD_L + i * barW + gap;
+      const bw = barW - gap * 2;
+      const barH = maxVal > 0 ? (w.pageviews / maxVal) * ch : 0;
+      const y = PAD_T + ch - barH;
+      const isWeekend = i >= 5;
+      const fill = isWeekend ? 'var(--color-accent)' : 'var(--color-primary)';
+      bars.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(barH, 0).toFixed(1)}" rx="3" fill="${fill}" opacity="0.85" />`);
+
+      // Value on top of bar
+      if (w.pageviews > 0) {
+        bars.push(`<text x="${(x + bw / 2).toFixed(1)}" y="${(y - 5).toFixed(1)}" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9" font-family="'Space Grotesk', sans-serif" font-weight="600">${num(w.pageviews)}</text>`);
+      }
+
+      xLabels.push(`<text x="${(PAD_L + i * barW + barW / 2).toFixed(1)}" y="${H - 8}" text-anchor="middle" fill="${isWeekend ? 'var(--color-accent)' : 'var(--color-muted)'}" font-size="11" font-family="system-ui" font-weight="${isWeekend ? '600' : '500'}">${dayLabels[i]}</text>`);
     });
-    container.innerHTML = html;
+
+    container.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
+        ${grid.join('')}
+        ${bars.join('')}
+        ${xLabels.join('')}
+      </svg>
+      <div class="an-chart-legend">
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-primary)"></span>Wochentage</span>
+        <span><span class="an-chart-legend__swatch" style="background:var(--color-accent)"></span>Wochenende</span>
+      </div>
+    `;
   }
 
-  // ── New vs Returning ──
+  // ── New vs Returning (with icons + text inside bar) ──
   function renderNewVsReturning(nv: any) {
     const container = $('an-newret');
     if (!nv || (nv.new === 0 && nv.returning === 0)) {
@@ -644,49 +749,145 @@ import Layout from '../layouts/Layout.astro';
     const newPct = total > 0 ? Math.round((nv.new / total) * 100) : 0;
     const retPct = 100 - newPct;
 
+    const starIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.85"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+    const refreshIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.85"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>`;
+
     container.innerHTML = `
       <div class="an-newret-bar">
-        <div class="an-newret-bar__new" style="width:${newPct}%"></div>
-        <div class="an-newret-bar__ret" style="width:${retPct}%"></div>
+        <div class="an-newret-bar__new" style="width:${newPct}%">
+          ${newPct >= 12 ? `<span class="an-newret-bar__text">${newPct}%</span>` : ''}
+        </div>
+        <div class="an-newret-bar__ret" style="width:${retPct}%">
+          ${retPct >= 12 ? `<span class="an-newret-bar__text">${retPct}%</span>` : ''}
+        </div>
       </div>
       <div class="an-newret-labels">
-        <span>Neu: ${num(nv.new)} (${newPct}%)</span>
-        <span>Wiederkehrend: ${num(nv.returning)} (${retPct}%)</span>
+        <span>${starIcon} Neu: ${num(nv.new)} (${newPct}%)</span>
+        <span>${refreshIcon} Wiederkehrend: ${num(nv.returning)} (${retPct}%)</span>
       </div>
     `;
   }
 
-  // ── Pages Table ──
+  // ── Pages Table (with inline bars) ──
   function renderPagesTable(pages: any[]) {
     const container = $('an-pages-table');
     if (!pages || pages.length === 0) {
       container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Daten.</p>';
       return;
     }
+    const maxViews = Math.max(...pages.map((p: any) => p.views), 1);
     let html = `<table class="an-tbl"><thead><tr><th>Seite</th><th>Aufrufe</th><th>Besucher</th></tr></thead><tbody>`;
     pages.forEach((p: any) => {
-      html += `<tr><td>${esc(pageName(p.path))}</td><td class="an-num">${num(p.views)}</td><td class="an-num">${num(p.visitors)}</td></tr>`;
+      const barWidth = (p.views / maxViews) * 100;
+      html += `<tr><td>${esc(pageName(p.path))}</td><td class="an-num an-bar-inline-cell"><div class="an-bar-inline" style="width:${barWidth.toFixed(1)}%"></div><span>${num(p.views)}</span></td><td class="an-num">${num(p.visitors)}</td></tr>`;
     });
     html += `</tbody></table>`;
     container.innerHTML = html;
   }
 
-  // ── Referrers Table ──
+  // ── Referrers Table (with inline bars) ──
   function renderReferrersTable(referrers: any[]) {
     const container = $('an-referrers-table');
     if (!referrers || referrers.length === 0) {
       container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Referrer-Daten.</p>';
       return;
     }
+    const maxCount = Math.max(...referrers.map((r: any) => r.count), 1);
     let html = `<table class="an-tbl"><thead><tr><th>Referrer</th><th>Aufrufe</th></tr></thead><tbody>`;
     referrers.forEach((r: any) => {
-      html += `<tr><td>${esc(r.referrer)}</td><td class="an-num">${num(r.count)}</td></tr>`;
+      const barWidth = (r.count / maxCount) * 100;
+      html += `<tr><td>${esc(r.referrer)}</td><td class="an-num an-bar-inline-cell"><div class="an-bar-inline" style="width:${barWidth.toFixed(1)}%"></div><span>${num(r.count)}</span></td></tr>`;
     });
     html += `</tbody></table>`;
     container.innerHTML = html;
   }
 
-  // ── Bar List ──
+  // ── Country Bars (gradient with labels inside) ──
+  function renderCountryBars(countries: any[]) {
+    const container = $('an-countries-bars');
+    if (!countries || countries.length === 0) {
+      container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Daten.</p>';
+      return;
+    }
+
+    const totalCountries = countries.reduce((s: number, c: any) => s + c.count, 0);
+    const maxVal = Math.max(...countries.map((c: any) => c.count), 1);
+
+    let html = '';
+    countries.forEach((c: any) => {
+      const width = Math.max(12, (c.count / maxVal) * 100);
+      const pct = totalCountries > 0 ? Math.round((c.count / totalCountries) * 100) : 0;
+      const label = c.country || '??';
+      html += `
+        <div class="an-country-item">
+          <div class="an-country-fill" style="width:${width.toFixed(1)}%">
+            <span class="an-country-label">${esc(label)}</span>
+            <span class="an-country-value">${num(c.count)} (${pct}%)</span>
+          </div>
+        </div>`;
+    });
+    container.innerHTML = html;
+  }
+
+  // ── Donut Chart (SVG) ──
+  function renderDonutChart(containerId: string, items: Array<{label: string; value: number}>, colorMap: Record<string, string>, defaultColor: string) {
+    const container = $(containerId);
+    const total = items.reduce((s, i) => s + i.value, 0);
+    if (!items.length || total === 0) {
+      container.innerHTML = '<p style="color:var(--color-text-secondary);font-size:0.875rem;">Keine Daten.</p>';
+      return;
+    }
+
+    const R = 60;
+    const SW = 24;
+    const SIZE = (R + SW / 2 + 6) * 2;
+    const C = SIZE / 2;
+    const circumference = 2 * Math.PI * R;
+
+    let segments = '';
+    let legend = '';
+
+    if (items.length === 1) {
+      // Single item: full ring
+      const color = colorMap[items[0].label] || defaultColor;
+      segments = `<circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${color}" stroke-width="${SW}" />`;
+      legend = `<div class="an-donut-legend__item"><span class="an-donut-legend__dot" style="background:${color}"></span>${esc(items[0].label)} <span class="an-donut-legend__pct">100%</span></div>`;
+    } else {
+      let cumulativeLength = 0;
+      // Small gap between segments for visual separation
+      const gapLen = items.length > 1 ? 2 : 0;
+
+      items.forEach((item) => {
+        const pct = item.value / total;
+        const segLen = Math.max(pct * circumference - gapLen, 0.5);
+        const color = colorMap[item.label] || defaultColor;
+        const dashoffset = -cumulativeLength;
+
+        segments += `<circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="${color}" stroke-width="${SW}" stroke-dasharray="${segLen.toFixed(2)} ${(circumference - segLen).toFixed(2)}" stroke-dashoffset="${dashoffset.toFixed(2)}" transform="rotate(-90 ${C} ${C})" stroke-linecap="round" />`;
+
+        cumulativeLength += pct * circumference;
+
+        const pctLabel = Math.round(pct * 100);
+        legend += `<div class="an-donut-legend__item"><span class="an-donut-legend__dot" style="background:${color}"></span>${esc(item.label)} <span class="an-donut-legend__pct">${pctLabel}%</span></div>`;
+      });
+    }
+
+    container.innerHTML = `
+      <div class="an-donut-wrap">
+        <div class="an-donut-svg-wrap">
+          <svg viewBox="0 0 ${SIZE} ${SIZE}" width="160" height="160">
+            <!-- Track ring -->
+            <circle cx="${C}" cy="${C}" r="${R}" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="${SW}" />
+            ${segments}
+            <text x="${C}" y="${C}" text-anchor="middle" dominant-baseline="central" fill="var(--color-text)" font-family="'Space Grotesk', sans-serif" font-size="22" font-weight="700">${num(total)}</text>
+          </svg>
+        </div>
+        <div class="an-donut-legend">${legend}</div>
+      </div>
+    `;
+  }
+
+  // ── Bar List (for languages + fallback) ──
   function renderBarList(containerId: string, items: Array<{label: string; value: number; pct?: number}>) {
     const container = $(containerId);
     if (!items || items.length === 0) {
