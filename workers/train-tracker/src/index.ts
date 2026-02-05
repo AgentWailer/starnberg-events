@@ -15,6 +15,7 @@
 interface Env {
   DB: D1Database;
   AI: any;  // Workers AI binding
+  ANALYTICS_KEY: string;
 }
 
 // ── Types ──────────────────────────────────────────────────────────
@@ -83,7 +84,7 @@ const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&lon
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Cache-Control': 'public, max-age=300', // 5 min cache
 };
@@ -1266,6 +1267,154 @@ Antworte NUR mit 2-3 Saetzen. Keine Aufzaehlungen, keine Absaetze, kein Drumheru
   }
 }
 
+// ── Analytics ──────────────────────────────────────────────────────
+
+async function hashSHA256(input: string): Promise<string> {
+  const data = new TextEncoder().encode(input);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function classifyDevice(ua: string, screenWidth?: number): string {
+  if (screenWidth) {
+    if (screenWidth < 768) return 'mobile';
+    if (screenWidth < 1024) return 'tablet';
+    return 'desktop';
+  }
+  if (/mobile|android.*phone|iphone/i.test(ua)) return 'mobile';
+  if (/ipad|android(?!.*mobile)|tablet/i.test(ua)) return 'tablet';
+  return 'desktop';
+}
+
+function classifyBrowser(ua: string): string {
+  if (/edg\//i.test(ua)) return 'Edge';
+  if (/chrome|crios/i.test(ua) && !/edg/i.test(ua)) return 'Chrome';
+  if (/firefox|fxios/i.test(ua)) return 'Firefox';
+  if (/safari/i.test(ua) && !/chrome|crios/i.test(ua)) return 'Safari';
+  if (/opera|opr\//i.test(ua)) return 'Opera';
+  return 'Other';
+}
+
+function cleanReferrer(ref: string | null): string {
+  if (!ref) return '';
+  try {
+    const u = new URL(ref);
+    if (u.hostname.includes('starnberg-events')) return '';
+    return u.hostname;
+  } catch {
+    return '';
+  }
+}
+
+async function handlePageview(request: Request, env: Env): Promise<Response> {
+  if (request.method !== 'POST') {
+    return new Response('Method not allowed', { status: 405, headers: CORS });
+  }
+
+  try {
+    const body: any = await request.json();
+    const path = (body.p || '/').slice(0, 200);
+    const screenWidth = body.w ? parseInt(body.w) : undefined;
+
+    const ip = request.headers.get('CF-Connecting-IP') || '';
+    const ua = request.headers.get('User-Agent') || '';
+    const country = request.headers.get('CF-IPCountry') || '';
+    const ref = request.headers.get('Referer') || body.r || '';
+    const date = todayStr();
+
+    const visitorId = (await hashSHA256(`${ip}|${ua}|${date}`)).slice(0, 16);
+
+    const device = classifyDevice(ua, screenWidth);
+    const browser = classifyBrowser(ua);
+    const cleanRef = cleanReferrer(ref);
+    const ts = Math.floor(Date.now() / 1000);
+
+    await env.DB.prepare(
+      `INSERT INTO analytics_pageviews (ts, date, path, referrer, country, device, browser, visitor_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(ts, date, path, cleanRef, country, device, browser, visitorId).run();
+
+    return new Response(null, { status: 204, headers: CORS });
+  } catch (err) {
+    console.error('[analytics] pageview error:', err);
+    return new Response(null, { status: 204, headers: CORS });
+  }
+}
+
+async function handleAnalyticsData(env: Env, url: URL): Promise<Response> {
+  const key = url.searchParams.get('key');
+  if (!env.ANALYTICS_KEY || key !== env.ANALYTICS_KEY) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401, headers: { 'Content-Type': 'application/json', ...CORS }
+    });
+  }
+
+  const days = parseInt(url.searchParams.get('days') || '30');
+  const since = daysAgo(days);
+
+  const [dailyResult, pagesResult, referrersResult, countriesResult, devicesResult, browsersResult, totalResult] = await Promise.all([
+    env.DB.prepare(`
+      SELECT date, COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ? GROUP BY date ORDER BY date
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT path, COUNT(*) as views, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY path ORDER BY views DESC LIMIT 20
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT referrer, COUNT(*) as count
+      FROM analytics_pageviews WHERE date >= ? AND referrer != ''
+      GROUP BY referrer ORDER BY count DESC LIMIT 20
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT country, COUNT(*) as count, COUNT(DISTINCT visitor_id) as visitors
+      FROM analytics_pageviews WHERE date >= ? AND country != ''
+      GROUP BY country ORDER BY count DESC LIMIT 30
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT device, COUNT(*) as count
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY device ORDER BY count DESC
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT browser, COUNT(*) as count
+      FROM analytics_pageviews WHERE date >= ?
+      GROUP BY browser ORDER BY count DESC
+    `).bind(since).all(),
+
+    env.DB.prepare(`
+      SELECT COUNT(*) as pageviews, COUNT(DISTINCT visitor_id) as visitors, COUNT(DISTINCT date) as days
+      FROM analytics_pageviews WHERE date >= ?
+    `).bind(since).all(),
+  ]);
+
+  const summary = totalResult.results?.[0] as any || { pageviews: 0, visitors: 0, days: 0 };
+
+  return new Response(JSON.stringify({
+    period: { days, since },
+    summary: {
+      pageviews: summary.pageviews || 0,
+      visitors: summary.visitors || 0,
+      activeDays: summary.days || 0,
+      avgPerDay: summary.days ? Math.round((summary.pageviews || 0) / summary.days) : 0,
+    },
+    daily: dailyResult.results || [],
+    pages: pagesResult.results || [],
+    referrers: referrersResult.results || [],
+    countries: countriesResult.results || [],
+    devices: devicesResult.results || [],
+    browsers: browsersResult.results || [],
+  }), {
+    headers: { 'Content-Type': 'application/json', ...CORS, 'Cache-Control': 'public, max-age=60' }
+  });
+}
+
 // ── Export ──────────────────────────────────────────────────────────
 
 export default {
@@ -1289,6 +1438,8 @@ export default {
         case '/api/analysis':    return handleAnalysis(env.DB, url);
         case '/api/live':        return handleLive(request);
         case '/api/ai-insight':  return handleAiInsight(env, url);
+        case '/api/pageview':    return handlePageview(request, env);
+        case '/api/analytics':   return handleAnalyticsData(env, url);
         default:
           return new Response(
             JSON.stringify({

@@ -20,8 +20,10 @@ import Layout from '../layouts/Layout.astro';
   <h2>2. Überblick</h2>
   <p>
     Diese Website erhebt und verarbeitet personenbezogene Daten ausschließlich im Rahmen der
-    gesetzlichen Bestimmungen. Wir verwenden <strong>keine Cookies</strong>,
-    <strong>kein Tracking</strong> und <strong>keine Analyse-Tools</strong> wie Google Analytics oder Matomo.
+    gesetzlichen Bestimmungen. Wir verwenden <strong>keine Cookies</strong> und
+    <strong>keine externen Analyse-Tools</strong> wie Google Analytics oder Matomo.
+    Für die Reichweitenmessung setzen wir eine selbstgehostete, datenschutzfreundliche
+    Lösung ein (siehe Abschnitt 4a).
   </p>
 
   <h2>3. Hosting und Content Delivery Network</h2>
@@ -57,6 +59,33 @@ import Layout from '../layouts/Layout.astro';
     weiter — die Daten werden serverseitig abgerufen.
   </p>
   <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+
+  <h2>4a. Selbstgehostete Reichweitenmessung</h2>
+  <p>
+    Diese Website verwendet eine selbstgehostete, datenschutzfreundliche Analyse zur
+    Reichweitenmessung. Dabei werden folgende Daten erfasst:
+  </p>
+  <ul>
+    <li>Aufgerufene Seite (Pfad)</li>
+    <li>Gerätetyp (Desktop/Tablet/Mobil) und Browser-Kategorie</li>
+    <li>Herkunftsland (aus dem Cloudflare-Header, nicht IP-basiert)</li>
+    <li>Referrer-Domain (woher der Besuch kam)</li>
+  </ul>
+  <p>
+    <strong>Keine Cookies:</strong> Es werden keinerlei Cookies gesetzt.<br>
+    <strong>Keine personenbezogenen Daten:</strong> Die IP-Adresse wird ausschließlich
+    in Kombination mit dem Datum und dem User-Agent zu einem nicht umkehrbaren
+    SHA-256-Hash verarbeitet (gekürzt auf 16 Zeichen). Dieser Hash dient lediglich der
+    Erkennung eindeutiger Tagesbesucher und wird täglich ungültig. Ein Rückschluss
+    auf einzelne Personen ist nicht möglich.<br>
+    <strong>Kein externer Dienst:</strong> Alle Daten werden auf unserem eigenen
+    Cloudflare Worker verarbeitet und in einer Cloudflare D1-Datenbank (EU-Region)
+    gespeichert. Es findet keine Weitergabe an Dritte statt.<br>
+    <strong>Do Not Track:</strong> Wenn Ihr Browser das Do-Not-Track-Signal sendet,
+    wird keine Erfassung durchgeführt.
+  </p>
+  <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+    Reichweitenmessung und Verbesserung des Angebots).</p>
 
   <h2>5. Wetterdaten (Open-Meteo)</h2>
   <p>

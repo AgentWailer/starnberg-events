@@ -40,6 +40,15 @@ const { title, description = "Events & Veranstaltungen am Starnberger See", appS
   <body>
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
     <slot />
+    <!-- Self-hosted Analytics (kein Cookie, kein Tracking-Dienst) -->
+    <script is:inline>
+      (function(){
+        if (navigator.doNotTrack === '1') return;
+        var d = {p: location.pathname, w: screen.width, r: document.referrer};
+        try { navigator.sendBeacon('https://train-tracker.steffenvonlindern-be7.workers.dev/api/pageview', JSON.stringify(d)); }
+        catch(e) { /* silent */ }
+      })();
+    </script>
   </body>
 </html>
 
