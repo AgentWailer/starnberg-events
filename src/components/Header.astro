@@ -370,6 +370,7 @@ const { lastUpdated } = Astro.props;
       overflow: hidden;
       position: relative;
       z-index: 2; /* Above main content (no z-index), below navbar (z:100) */
+      will-change: margin-top, opacity; /* GPU-optimized header collapse animation */
     }
   }
 

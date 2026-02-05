@@ -435,6 +435,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       isolation: isolate; /* Stacking context boundary — z-index works within column */
       scrollbar-width: none;
       touch-action: pan-y;
+      contain: layout paint; /* Performance: isolate repaints (P2) */
     }
 
     .column-left::-webkit-scrollbar {
@@ -462,10 +463,17 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       scrollbar-width: none;
       touch-action: pan-y;
       isolation: isolate; /* Stacking context boundary — z-index works within column */
+      contain: layout paint; /* Performance: isolate repaints (P2) */
     }
 
     .column-center::-webkit-scrollbar {
       display: none;
+    }
+
+    /* Subtle focus indicator for keyboard navigation (P3) */
+    .column-center:focus-within {
+      outline: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+      outline-offset: -2px;
     }
   }
 
@@ -483,10 +491,32 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       isolation: isolate; /* Stacking context boundary — z-index works within column */
       scrollbar-width: none;
       touch-action: pan-y;
+      contain: layout paint; /* Performance: isolate repaints (P2) */
     }
 
     .column-right::-webkit-scrollbar {
       display: none;
+    }
+
+    /* Scroll-hint: fade gradient at bottom of sidebars (P1) */
+    .column-right::after,
+    .column-left::after {
+      content: '';
+      display: block;
+      position: sticky;
+      bottom: 0;
+      height: 48px;
+      margin-top: -48px;
+      background: linear-gradient(to top, var(--color-bg), transparent);
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 300ms ease;
+    }
+
+    /* Hide gradient when scrolled to end or no overflow */
+    .column-right[data-scrolled-end]::after,
+    .column-left[data-scrolled-end]::after {
+      opacity: 0;
     }
 
     /* Sticky section headings inside scrollable right sidebar */
@@ -1026,8 +1056,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
   /* ===== FOOTER (all screen sizes) ===== */
   .footer {
-    margin-top: var(--space-8);
-    padding: var(--space-8) 0;
+    margin-top: var(--space-4);
+    padding: var(--space-3) 0;
     border-top: 1px solid var(--color-border-light);
     background: var(--color-bg-secondary);
   }
@@ -1040,7 +1070,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   }
 
   .footer-text {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: var(--color-muted);
     text-align: center;
   }
@@ -1145,8 +1175,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       // Slide header up under navbar via negative margin-top
       header.style.marginTop = -slideAmount + 'px';
 
-      // Opacity: full until 65% scrolled, then fade to 0
-      const fadeStart = headerHeight * 0.65;
+      // Opacity: full until 50% scrolled, then fade to 0 (P3: earlier fade avoids clipped text)
+      const fadeStart = headerHeight * 0.5;
       if (slideAmount < fadeStart) {
         header.style.opacity = '1';
       } else {
@@ -1165,6 +1195,9 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         navbarBrand?.classList.remove('visible');
         collapsed = false;
       }
+
+      // Update scroll-hint gradients (sidebar height changes with header collapse)
+      if (typeof updateAllScrollHints === 'function') updateAllScrollHints();
     }
 
     // --- Column scroll handler ---
@@ -1215,12 +1248,21 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       }
 
       // Page-level scroll: first collapse header, then scroll center column
+      // Scroll spill (P2): excess delta carries over to the next phase
       if (e.deltaY > 0) {
         // Scrolling DOWN
         if (edgeOffset < headerHeight) {
-          // Phase 1: collapse header
-          edgeOffset = Math.min(headerHeight, edgeOffset + e.deltaY);
-          applyHeaderState();
+          const remaining = headerHeight - edgeOffset;
+          if (e.deltaY <= remaining) {
+            // Entire delta absorbed by header collapse
+            edgeOffset += e.deltaY;
+            applyHeaderState();
+          } else {
+            // Finish header collapse + spill rest into center column
+            edgeOffset = headerHeight;
+            applyHeaderState();
+            centerCol.scrollTop += (e.deltaY - remaining);
+          }
         } else {
           // Phase 2: header fully collapsed → scroll center column
           centerCol.scrollTop += e.deltaY;
@@ -1229,7 +1271,15 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         // Scrolling UP
         if (centerCol.scrollTop > 0) {
           // Phase 1: scroll center column back up first
-          centerCol.scrollTop += e.deltaY;
+          const prevScrollTop = centerCol.scrollTop;
+          centerCol.scrollTop += e.deltaY; // deltaY is negative
+          // Scroll spill: if center reached top, pass rest to header expand
+          const consumed = prevScrollTop - centerCol.scrollTop;
+          const spill = Math.abs(e.deltaY) - consumed;
+          if (spill > 0 && edgeOffset > 0) {
+            edgeOffset = Math.max(0, edgeOffset - spill);
+            applyHeaderState();
+          }
         } else {
           // Phase 2: center at top → re-expand header
           edgeOffset = Math.max(0, edgeOffset + e.deltaY);
@@ -1249,6 +1299,35 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
     attachListeners();
     document.addEventListener('wheel', onWheel, { passive: true });
+
+    // --- Scroll-hint gradient: hide when scrolled to end or no overflow (P1) ---
+    function updateScrollHint(el: HTMLElement) {
+      const atEnd = el.scrollHeight - el.scrollTop - el.clientHeight < 2;
+      const noOverflow = el.scrollHeight <= el.clientHeight + 2;
+      if (atEnd || noOverflow) {
+        el.setAttribute('data-scrolled-end', '');
+      } else {
+        el.removeAttribute('data-scrolled-end');
+      }
+    }
+
+    function updateAllScrollHints() {
+      columns.forEach(col => {
+        if (col.classList.contains('column-left') || col.classList.contains('column-right')) {
+          updateScrollHint(col);
+        }
+      });
+    }
+
+    // Attach scroll listeners for sidebar hint updates
+    columns.forEach(col => {
+      if (col.classList.contains('column-left') || col.classList.contains('column-right')) {
+        col.addEventListener('scroll', () => updateScrollHint(col), { passive: true });
+      }
+    });
+
+    // Initial check (deferred so layout is settled)
+    requestAnimationFrame(updateAllScrollHints);
 
     // Handle breakpoint changes
     let listenersAttached = true;
