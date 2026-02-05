@@ -254,6 +254,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
 
 <style>
   .main {
+    position: relative;
+    z-index: 1; /* Keep all scrolling content below fixed header (z:95) & navbar (z:100) */
     padding-bottom: var(--space-16);
   }
 
