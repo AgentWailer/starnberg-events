@@ -24,14 +24,17 @@ const regions = eventsData.regions || {
 // Get artTags from data
 const artTags = eventsData.artTags || {};
 
-// Sort events by date
-const events = eventsData.events.sort((a, b) => {
-  const dateCompare = a.date.localeCompare(b.date);
-  if (dateCompare !== 0) return dateCompare;
-  if (!a.time) return 1;
-  if (!b.time) return -1;
-  return a.time.localeCompare(b.time);
-});
+// Filter out past events and sort by date
+const todayStr = new Date().toISOString().split('T')[0];
+const events = eventsData.events
+  .filter(e => e.date >= todayStr)
+  .sort((a, b) => {
+    const dateCompare = a.date.localeCompare(b.date);
+    if (dateCompare !== 0) return dateCompare;
+    if (!a.time) return 1;
+    if (!b.time) return -1;
+    return a.time.localeCompare(b.time);
+  });
 
 // Get unique sources
 const sources = [...new Set(events.map(e => e.source).filter(Boolean))];
