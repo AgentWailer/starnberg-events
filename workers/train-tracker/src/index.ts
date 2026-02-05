@@ -1222,19 +1222,38 @@ Halte dich an die Fakten. Sei direkt und sachlich. Keine Floskeln. Keine Emojis.
 
   // Call Workers AI
   try {
-    const aiResponse = await env.AI.run('@cf/deepseek-ai/deepseek-r1-distill-qwen-32b', {
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 1024,
-      temperature: 0.3,
+    // gpt-oss-120b uses the Responses API format (not Chat Completions)
+    const aiResponse = await env.AI.run('@cf/openai/gpt-oss-120b', {
+      input: prompt,
+      reasoning: { effort: 'low' },
     });
 
-    let insightText = aiResponse?.response || '';
-    // Strip thinking tags if present (DeepSeek R1 sometimes includes <think>...</think>)
-    insightText = insightText.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+    // Responses API: extract text from output array
+    // Format: output = [{type:"reasoning",...}, {type:"message", content:[{text:"..."}]}]
+    let insightText = '';
+    if (aiResponse?.output_text) {
+      // Some bindings provide output_text directly
+      insightText = aiResponse.output_text;
+    } else if (aiResponse?.response) {
+      // Chat completions fallback
+      insightText = aiResponse.response;
+    } else if (Array.isArray(aiResponse?.output)) {
+      // Responses API format: find the message-type output
+      for (const item of aiResponse.output) {
+        if (item.type === 'message' && Array.isArray(item.content)) {
+          for (const block of item.content) {
+            if (block.text) insightText += block.text;
+          }
+        }
+      }
+    }
+    if (typeof insightText !== 'string') insightText = JSON.stringify(insightText);
+    insightText = insightText.trim();
+    console.log(`[ai-insight] Extracted ${insightText.length} chars`);
 
     if (!insightText) {
       console.error('[ai-insight] Empty response from AI');
-      return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false });
+      return json({ insight: null, generatedAt: null, periodDays: days, dataPoints: total, cached: false, _debug: { keys: Object.keys(aiResponse || {}), raw: JSON.stringify(aiResponse).substring(0, 2000) } });
     }
 
     const generatedAt = new Date().toISOString();
