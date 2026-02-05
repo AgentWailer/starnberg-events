@@ -134,8 +134,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                   const evWeekday = evDate.toLocaleDateString('de-DE', { weekday: 'short' });
                   const curation = event.aiCuration;
                   const score = curation?.scores?.overall ?? 0;
-                  const bestFor = curation?.bestFor;
-                  const bestForEmoji = bestFor === 'familie' ? '👨‍👩‍👧‍👦' : bestFor === 'kinder' ? '🧒' : bestFor === 'erwachsene' ? '👫' : bestFor === 'alle' ? '🌟' : '';
                   const scoreColor = score >= 8 ? 'var(--wk-score-high)' : score >= 6 ? 'var(--wk-score-mid)' : 'var(--wk-score-low)';
                   return (
                     <button 
@@ -151,7 +149,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                       data-category={event.category}
                       data-art-tags={event.artTags?.join(',')}
                       data-ai-summary={curation?.aiSummary}
-                      data-ai-best-for={bestFor}
+                      data-ai-best-for={curation?.bestFor}
                       data-ai-score={score}
                       data-ai-price={curation?.priceInfo}
                       data-ai-tips={curation?.tips}
@@ -185,9 +183,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                           </svg>
                           {event.location}
                         </div>
-                        {bestFor && (
-                          <span class={`wk-for-badge wk-for--${bestFor}`}>{bestForEmoji}</span>
-                        )}
                       </div>
                     </button>
                   );
@@ -226,11 +221,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
             <TrainInfo station="Possenhofen" stationCode="MPH" />
           </div>
 
-          <!-- Weekend Highlights (Vertical) -->
+          <!-- Weekend Highlights (Vertical, scrollable) -->
           {hasWeekendEvents && (
             <div class="context-widget-group">
               <h3 class="section-heading">{weekendTitle}</h3>
-              <div class="highlights-vertical">
+              <div class="highlights-scroll-wrapper" id="highlights-scroll-wrapper">
+                <div class="highlights-vertical">
                 {weekendEvents.map(event => {
                   const evDate = new Date(event.date);
                   const evDay = evDate.getDate();
@@ -238,9 +234,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                   const evWeekday = evDate.toLocaleDateString('de-DE', { weekday: 'short' });
                   const curation = event.aiCuration;
                   const score = curation?.scores?.overall ?? 0;
-                  const bestFor = curation?.bestFor;
-                  const bestForEmoji = bestFor === 'familie' ? '👨‍👩‍👧‍👦' : bestFor === 'kinder' ? '🧒' : bestFor === 'erwachsene' ? '👫' : bestFor === 'alle' ? '🌟' : '';
-                  const bestForLabel = bestFor === 'familie' ? 'Familie' : bestFor === 'kinder' ? 'Kinder' : bestFor === 'erwachsene' ? 'Erwachsene' : bestFor === 'alle' ? 'Alle' : '';
                   return (
                     <button 
                       class="wh-card" 
@@ -255,7 +248,7 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                       data-category={event.category}
                       data-art-tags={event.artTags?.join(',')}
                       data-ai-summary={curation?.aiSummary}
-                      data-ai-best-for={bestFor}
+                      data-ai-best-for={curation?.bestFor}
                       data-ai-score={score}
                       data-ai-price={curation?.priceInfo}
                       data-ai-tips={curation?.tips}
@@ -290,6 +283,8 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
                     </button>
                   );
                 })}
+                </div>
+                <div class="highlights-scroll-fade" id="highlights-scroll-fade"></div>
               </div>
             </div>
           )}
@@ -627,11 +622,6 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     flex-shrink: 0;
   }
 
-  .wk-for-badge {
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
   /* Category badge on carousel cards */
   .wk-cat-badge {
     font-size: 0.6875rem;
@@ -665,7 +655,46 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
     }
   }
 
-  /* ===== WEEKEND HIGHLIGHTS (Right Sidebar - Vertical) ===== */
+  /* ===== WEEKEND HIGHLIGHTS (Right Sidebar - Vertical, Scrollable) ===== */
+  .highlights-scroll-wrapper {
+    position: relative;
+    max-height: 520px; /* ~3 cards visible */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+    border-radius: var(--radius-lg);
+  }
+
+  .highlights-scroll-wrapper::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .highlights-scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .highlights-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  .highlights-scroll-fade {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, var(--color-bg));
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+
+  .highlights-scroll-fade.hidden {
+    opacity: 0;
+  }
+
   .highlights-vertical {
     display: flex;
     flex-direction: column;
@@ -999,6 +1028,20 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
   const vcEl = document.getElementById('visible-count');
   if (vcEl) {
     weekendFilterObserver.observe(vcEl, { childList: true, characterData: true, subtree: true });
+  }
+
+  // === Scroll fade hint for desktop weekend sidebar ===
+  const scrollWrapper = document.getElementById('highlights-scroll-wrapper');
+  const scrollFade = document.getElementById('highlights-scroll-fade');
+  if (scrollWrapper && scrollFade) {
+    function updateScrollFade() {
+      if (!scrollWrapper || !scrollFade) return;
+      const atBottom = scrollWrapper.scrollTop + scrollWrapper.clientHeight >= scrollWrapper.scrollHeight - 10;
+      scrollFade.classList.toggle('hidden', atBottom);
+    }
+    scrollWrapper.addEventListener('scroll', updateScrollFade, { passive: true });
+    // Initial check
+    updateScrollFade();
   }
 
   // Load More functionality (mobile/tablet only)
