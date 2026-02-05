@@ -16,10 +16,6 @@
       "name": "Pöcking",
       "emoji": "🏠"
     },
-    "starnberg-ammersee": {
-      "name": "Starnberg-Ammersee",
-      "emoji": "🏔️"
-    },
     "muenchen": {
       "name": "München",
       "emoji": "🏙️"
@@ -31,9 +27,17 @@
     "werdenfels": {
       "name": "Werdenfelser Land",
       "emoji": "🎿"
+    },
+    "starnberger-see": {
+      "name": "Starnberger See",
+      "emoji": "🏔️"
+    },
+    "ammersee": {
+      "name": "Ammersee",
+      "emoji": "⛵"
     }
   },
-  "eventCount": 514,
+  "eventCount": 512,
   "events": [
     {
       "title": "Führung Ausstellung Heinz Butz - Ein stiller Avantgardist in Oberbayern",
@@ -42,7 +46,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Straße 5",
       "description": "Der Leiter des Starnberger Museums führt durch die Ausstellung über den Maler Heinz Butz. Ausstellung läuft vom 23. November 2025 bis 3. Mai 2026",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -62,17 +66,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Die beliebte Winter-Freiluftveranstaltung feiert ihr 25-jähriges Jubiläum. Zahlreiche Ballone über dem Tegernsee bewundern oder selber mit dem Ballon abheben. Das Gipfeltreffen der Ballonfahrer vom 1.-8. Februar 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/montgolfiade",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 2
+      "id": 2,
+      "artTags": [
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -82,15 +86,16 @@
       "address": "",
       "description": "In der Sonderausstellung zeigen Freizeit-Astronomen faszinierende Astrofotos aus den Kategorien Nachtlandschaften, Sonnensystem, Deep Sky und München. Sonderausstellung in der Bibliothek.",
       "category": "familie",
-      "tags": [
-        "kunst"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 3
+      "id": 3,
+      "artTags": [
+        "kunst",
+        "indoor"
+      ]
     },
     {
       "title": "Future Box – Interaktive Führung",
@@ -100,15 +105,15 @@
       "address": "",
       "description": "Quantencomputer, Raumschiffe, humanoide Roboter: Wie werden wir Menschen neueste Innovationen mit ihren Chancen und Risiken einsetzen, um die Zukunft zu gestalten? Lasst euch durch die Future Box im Forum der Zukunft führen. Führung im Forum der Zukunft.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/future-box-interaktive-fuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 4
+      "id": 4,
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Das Lochmannhaus",
@@ -117,7 +122,7 @@
       "location": "Starnberg",
       "address": "Possenhofener Str. 5, 82319 Starnberg",
       "description": "Dauerausstellung im Museum Starnberger See über das historische Lochmannhaus. Geöffnet 11:00-18:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kultur",
         "kunst"
@@ -136,7 +141,7 @@
       "location": "Starnberg",
       "address": "Possenhofener Str. 5, 82319 Starnberg",
       "description": "Dauerausstellung im Museum Starnberger See zur höfischen Schifffahrt und Seegeschichte. Geöffnet 11:00-18:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kultur",
         "kunst"
@@ -156,16 +161,17 @@
       "address": "",
       "description": "Lernen Sie die Highlights kennen und erleben Sie unsere Themenvielfalt. Wir führen Sie durch ausgewählte Ausstellungen und zeigen Ihnen beliebte Exponate und erklären aktuelle Themen. Führung durch das Deutsche Museum.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/programm-heute/uebersichtsfuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 7
+      "id": 7,
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Kloster Andechs: öffentliche Kirchenführung",
@@ -175,15 +181,16 @@
       "address": "",
       "description": "Jeden Donnerstag um 12 Uhr",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=692466e7205b8f3bc56641c7",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 8
+      "id": 8,
+      "artTags": [
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Offener Handarbeits- und Basteltreff \"Pack die Wolle ein!\"",
@@ -229,16 +236,17 @@
       "address": "",
       "description": "In einem professionellen Atelier in Pöcking-Aschering kannst Du mit und ohne Vorkenntnisse nach Herzenslust malen, spachteln, ausprobieren, spielen.",
       "category": "familie",
-      "tags": [
-        "workshop",
-        "kulinarisch"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6968e09c9f949426f44bdd4f",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 11
+      "id": 11,
+      "artTags": [
+        "kunst",
+        "bildung",
+        "wellness"
+      ]
     },
     {
       "title": "Klimaschutzkonzept für Gauting",
@@ -285,10 +293,11 @@
       "location": "Tannheimer Tal",
       "address": "Tannheimer Tal, Tirol",
       "description": "Wintersport-Tage des Gautinger SC: Langlauf, Skifahren, Rodeln, Schlittschuhlaufen, Winterwandern, Schneeschuhwandern, Pferdeschlitten fahren, Eisstockschießen. Organisiert von der Bergsport-Abteilung. Anmeldung/Info: Walter Eisenreich, 0162-77 456 88 oder eisisport@web.de. Vom 04./05. bis 08. Februar 2026.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
-        "wintersport"
+        "wintersport",
+        "wandern"
       ],
       "url": "https://www.gautinger-sportclub.de",
       "source": "gautinger-sc",
@@ -304,17 +313,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Die beliebte Winter-Freiluftveranstaltung feiert ihr 25-jähriges Jubiläum. Zahlreiche Ballone über dem Tegernsee bewundern oder selber mit dem Ballon abheben. Das Gipfeltreffen der Ballonfahrer vom 1.-8. Februar 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/montgolfiade",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 15
+      "id": 15,
+      "artTags": [
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -324,15 +333,16 @@
       "address": "",
       "description": "In der Sonderausstellung zeigen Freizeit-Astronomen faszinierende Astrofotos aus den Kategorien Nachtlandschaften, Sonnensystem, Deep Sky und München. Sonderausstellung in der Bibliothek.",
       "category": "familie",
-      "tags": [
-        "kunst"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 16
+      "id": 16,
+      "artTags": [
+        "kunst",
+        "indoor"
+      ]
     },
     {
       "title": "Die Demokratie des Waldes",
@@ -354,24 +364,6 @@
       "id": 17
     },
     {
-      "title": "Die Demokratie des Waldes",
-      "date": "2026-02-06",
-      "time": "10:00",
-      "location": "Wartaweil 77",
-      "address": "",
-      "description": "Ein Gemeinschaftsexperiment zum Thema Wald im Wandel. Die zweitägige Veranstaltung lädt BildungsreferentInnen verschiedener Interessensgruppen zu einer gemeinsamen Entdeckungsreise in die Zukunft des Waldes ein.",
-      "category": "familie",
-      "tags": [
-        "kulinarisch"
-      ],
-      "url": "https://www.starnbergammersee.de/detail/id=695f6ffdf2fc7c40857125a1",
-      "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
-      "venue": null,
-      "isHighlight": false,
-      "id": 18
-    },
-    {
       "title": "Future Box – Interaktive Führung",
       "date": "2026-02-06",
       "time": "10:30",
@@ -379,15 +371,15 @@
       "address": "",
       "description": "Quantencomputer, Raumschiffe, humanoide Roboter: Wie werden wir Menschen neueste Innovationen mit ihren Chancen und Risiken einsetzen, um die Zukunft zu gestalten? Lasst euch durch die Future Box im Forum der Zukunft führen. Führung im Forum der Zukunft.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/future-box-interaktive-fuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 19
+      "id": 19,
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Übersichtsführung",
@@ -397,16 +389,17 @@
       "address": "",
       "description": "Lernen Sie die Highlights kennen und erleben Sie unsere Themenvielfalt. Wir führen Sie durch ausgewählte Ausstellungen und zeigen Ihnen beliebte Exponate und erklären aktuelle Themen. Führung durch das Deutsche Museum.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/programm-heute/uebersichtsfuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 20
+      "id": 20,
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Märchenstunde in der Bücherei Dießen",
@@ -415,16 +408,17 @@
       "location": "Hofmark 5",
       "address": "",
       "description": "Für Groß und Klein: Warmherzige Kuschelei'n! Märchenstunde in der Bücherei Dießen",
-      "category": "kinder",
-      "tags": [
-        "kinder"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=68e39acbdd2dd53cd0779a90",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 21
+      "id": 21,
+      "artTags": [
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Beckenboden-Beine-Po",
@@ -474,7 +468,8 @@
       "description": "Helau und Alaaf! Faschingsparty für Teenager. 17:00-21:00 Uhr.",
       "category": "kinder",
       "artTags": [
-        "fest"
+        "fest",
+        "fasching"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2383",
       "source": "herrsching-gemeinde",
@@ -490,7 +485,7 @@
       "location": "Münsing",
       "address": "Foyer Bürgerhaus Münsing",
       "description": "Kunstausstellung von Kunst am See e.V. bis 1. März 2026",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur"
@@ -510,15 +505,15 @@
       "address": "",
       "description": "Feierliche Eröffnung des Gedenkjahres zum 90. Jubiläum der IV. Olympischen Winterspiele 1936. Ein besonderes Highlight mit Zeitdokumenten und Zeitzeugenberichten.",
       "category": "familie",
-      "tags": [
-        "fest"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/b083d4e9-9f2b-414c-9f68-3c42c61e667a/eroeffnung-gedenkjahr---90-jahre-olympische-winterspiele-1936",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 26
+      "id": 26,
+      "artTags": [
+        "fest"
+      ]
     },
     {
       "title": "Building Universes: Modeling the Cosmos with Supercomputers",
@@ -585,16 +580,17 @@
       "address": "",
       "description": "David Berlinghof mit Felix Renner Wohlfühlprogramm (Musikkabarett)",
       "category": "erwachsene",
-      "tags": [
-        "musik",
-        "theater"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6911b46f35610140e567d18b",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 30
+      "id": 30,
+      "artTags": [
+        "musik",
+        "show",
+        "wellness"
+      ]
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade",
@@ -603,11 +599,7 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Die beliebte Winter-Freiluftveranstaltung feiert ihr 25-jähriges Jubiläum. Zahlreiche Ballone über dem Tegernsee bewundern oder selber mit dem Ballon abheben. Das Gipfeltreffen der Ballonfahrer vom 1.-8. Februar 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/montgolfiade",
       "source": "tegernsee",
       "region": "tegernsee",
@@ -635,7 +627,11 @@
         ],
         "priceInfo": "Zuschauen kostenlos. Ballonfahrt separat buchbar (ca. 250-350€ p.P., vorab über tegernsee.bayern)",
         "tips": "Von Pöcking ca. 50 Min über A95 → B472 → B307. Früh losfahren für den 8-Uhr-Start! Warme Kleidung und Thermoskanne mitbringen – man steht draußen im Tal. Wetter-Updates auf tegernsee.com checken, da Starts wetterbedingt oft verschoben werden. Kombination mit Winterspaziergang am Tegernsee sinnvoll."
-      }
+      },
+      "artTags": [
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Entbuschen am Normanberg Söcking – Helfer und Helferinnen gesucht",
@@ -684,9 +680,6 @@
       "address": "",
       "description": "In der Sonderausstellung zeigen Freizeit-Astronomen faszinierende Astrofotos aus den Kategorien Nachtlandschaften, Sonnensystem, Deep Sky und München. Sonderausstellung in der Bibliothek.",
       "category": "familie",
-      "tags": [
-        "kunst"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -713,7 +706,11 @@
         ],
         "priceInfo": "Museumseintritt: 16 € regulär, 9 € ermäßigt, 33 € Familienkarte, Kinder bis 5 Jahre frei",
         "tips": "Am besten mit einem ganzen Museumstag kombinieren – die Fotoausstellung allein rechtfertigt die Anfahrt nach München nicht. Anfahrt von Pöcking ca. 40 Min mit Auto oder S6 bis Isartor. Tipp: Das Kinderreich (3-8 Jahre) und Flugsimulator sind für Kinder die wahren Magneten."
-      }
+      },
+      "artTags": [
+        "kunst",
+        "indoor"
+      ]
     },
     {
       "title": "Mit WLAN ohne Kamera sehen – Interaktive Ausstellung",
@@ -723,10 +720,6 @@
       "address": "",
       "description": "Wussten Sie, dass mit WLAN Bewegungsmuster erkannt werden können? Erkunden Sie diese interaktive Poster-Ausstellung des Science Communication Lab, um mehr zu erfahren. Sonderprogramm für Familien und Jugendliche.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "kinder"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/mit-wlan-ohne-kamera-sehen",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -754,7 +747,10 @@
         ],
         "priceInfo": "Im Museumseintritt enthalten (Deutsches Museum: ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
         "tips": "40 Min Anfahrt von Pöcking nach München. S-Bahn S6 ab Possenhofen bis Isartor, dann 5 Min Fußweg. Als Einzelevent lohnt die Anfahrt kaum – besser mit Future Box (ID 38) oder Übersichtsführung (ID 39) kombinieren."
-      }
+      },
+      "artTags": [
+        "kunst"
+      ]
     },
     {
       "title": "Seetaucherexkursion im Ramsar-Gebiet Starnberger See",
@@ -763,7 +759,7 @@
       "location": "Münsing",
       "address": "Seeshaupter Bucht, 82541 Münsing",
       "description": "Am Starnberger See überwintern regelmäßig Prachttaucher, Sterntaucher und andere Wasservogelarten aus dem hohen Norden. In der Seeshaupter Bucht machen wir uns auf die Suche nach diesen seltenen Gästen und informieren über die internationale Bedeutung des Sees als Ramsar-Gebiet. Anmeldung erforderlich bis 05.02.2026 unter starnberger-see@lbv.de. Bitte sehr warme Kleidung, Handschuhe und Fernglas mitbringen.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "natur",
         "bildung"
@@ -849,12 +845,9 @@
       "address": "",
       "description": "Ein humorvoller Einblick in Sprache, Kultur und Mentalität der Bayern - mit Weißwurstfrühstück",
       "category": "familie",
-      "tags": [
-        "brauchtum"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=69412e13ec880c50d43641be",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 37,
@@ -880,7 +873,11 @@
         ],
         "priceInfo": "Kursgebühr über VHS Gilching (typisch 25-40€ inkl. Weißwurstfrühstück, Anmeldung erforderlich)",
         "tips": "Nur 15 Min von Pöcking! Auto über Hauptstraße/Weilheimer Str., Parkplätze an der Schule. Vorab bei VHS Gilching anmelden – Plätze sind begrenzt. Kurs läuft 10:00-13:00 Uhr, danach ist der Nachmittag noch frei."
-      }
+      },
+      "artTags": [
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Future Box – Interaktive Führung",
@@ -890,9 +887,6 @@
       "address": "",
       "description": "Quantencomputer, Raumschiffe, humanoide Roboter: Wie werden wir Menschen neueste Innovationen mit ihren Chancen und Risiken einsetzen, um die Zukunft zu gestalten? Lasst euch durch die Future Box im Forum der Zukunft führen. Führung im Forum der Zukunft.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/future-box-interaktive-fuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -922,7 +916,10 @@
         ],
         "priceInfo": "12€ regulär, 7,50€ ermäßigt (Kinder/Jugendliche bis 17, Studenten, Senioren ab 65). Mitglieder kostenlos.",
         "tips": "40 Min Anfahrt von Pöcking. Tickets UNBEDINGT vorab online buchen – nur 16 Plätze pro Führung! 15 Min vor Start am Check-in erscheinen (Forum der Zukunft, Ludwigsbrücke). S6 ab Possenhofen bis Isartor. Kein nachträglicher Einlass möglich."
-      }
+      },
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Übersichtsführung",
@@ -932,10 +929,6 @@
       "address": "",
       "description": "Lernen Sie die Highlights kennen und erleben Sie unsere Themenvielfalt. Wir führen Sie durch ausgewählte Ausstellungen und zeigen Ihnen beliebte Exponate und erklären aktuelle Themen. Führung durch das Deutsche Museum.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/programm-heute/uebersichtsfuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -962,7 +955,12 @@
         ],
         "priceInfo": "Führung im Museumseintritt enthalten (ca. 15€ Erwachsene, 8€ ermäßigt, Kinder unter 6 frei)",
         "tips": "40 Min Anfahrt von Pöcking. Gut kombinierbar mit Future Box um 10:30 (erst Future Box, dann 14-Uhr-Führung statt 11:30). S6 Possenhofen → Isartor. Für kleinere Kinder zu lang – lieber den Kinderbereich eigenständig erkunden."
-      }
+      },
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Historisches Bobrennen und Führung durchs Bobmuseum",
@@ -972,10 +970,6 @@
       "address": "",
       "description": "Im Rahmen des Gedenkjahres 90 Jahre Olympische Winterspiele: Historisches Bobrennen und Führung durch das Bobmuseum an der legendären Olympia-Bobbahn.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "führung"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/2ab052f4-21b8-4ccd-8f37-a41b1768979f/historisches-bobrennen-und-fuehrung-durchs-bobmuseum",
       "source": "gapa",
       "region": "werdenfels",
@@ -1004,7 +998,12 @@
         ],
         "priceInfo": "Genaue Preise nicht online abrufbar (vermutlich Eintritt Bobmuseum ca. 5-8€, Rennen ggf. kostenlos zuschauen)",
         "tips": "60 Min Anfahrt von Pöcking über A95. Start 13:00 Uhr – nicht zu spät losfahren, Parkplätze an der Bobbahn begrenzt. Warme Kleidung! Gut als Tagesausflug kombinierbar mit Bummel durch Garmisch oder Zugspitz-Blick. Bei Schnee Winterreifen prüfen."
-      }
+      },
+      "artTags": [
+        "kultur",
+        "bildung",
+        "indoor"
+      ]
     },
     {
       "id": 41,
@@ -1021,7 +1020,8 @@
       "source": "poecking.de",
       "artTags": [
         "fest",
-        "indoor"
+        "indoor",
+        "fasching"
       ],
       "isHighlight": false,
       "aiCuration": {
@@ -1130,7 +1130,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
       "description": "Sonderausstellung: Ein stiller Avantgardist in Oberbayern. 5€ zzgl. Eintritt.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -1172,9 +1172,6 @@
       "address": "",
       "description": "Willi live – UND WOVON TRÄUMST DU? Die neue Show über Träume, Mut und das Leben. Für Kinder und alle, die es einmal gewesen sind.",
       "category": "kinder",
-      "tags": [
-        "kinder"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=146&cHash=8abbb6b91b9b8307cba17df37595ecb6",
       "source": "beccult",
       "region": "poecking",
@@ -1202,7 +1199,10 @@
         ],
         "priceInfo": "Tickets über Eventim (genaue Preise auf eventim.de)",
         "tips": "Das Event ist IN PÖCKING – keine Anfahrt nötig! BecCult, Weilheimer Str. 33. Frühzeitig Tickets sichern, Willi Weitzel ist ein Publikumsmagnet. Um 15:00 Uhr – perfekte Nachmittagszeit für Familien. Parkplätze am BecCult begrenzt, ggf. zu Fuß oder mit dem Rad."
-      }
+      },
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Aufführung der Theaterzwerge - Die Träne der Elfe",
@@ -1251,14 +1251,9 @@
       "address": "",
       "description": "Ein Stück gelebte Tradition am Ammersee",
       "category": "familie",
-      "tags": [
-        "tanz",
-        "natur",
-        "brauchtum"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6981f3ab65ab70fff9df049e",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
       "id": 47,
@@ -1284,7 +1279,12 @@
         ],
         "priceInfo": "Eintritt frei. Heiße Getränke und Bratwurstsemmeln an der Außenbar",
         "tips": "Herrsching ist nur ca. 15 Min von Pöcking entfernt. WARM ANZIEHEN – es ist Februar am See! Mütze, Handschuhe, warme Schuhe sind Pflicht. Für Kinder: Vorher erklären, was der Schäfflertanz ist – dann wird's spannender. Von 18:30-20:00 Uhr, danach ggf. noch im Seehof einkehren. Nur alle 7 Jahre – nicht verpassen!"
-      }
+      },
+      "artTags": [
+        "kultur",
+        "natur",
+        "tanz"
+      ]
     },
     {
       "title": "Volleyball Heimspiele in der Nikolaushalle",
@@ -1293,9 +1293,10 @@
       "location": "Herrsching",
       "address": "Nikolausstraße 11, 82211 Herrsching am Ammersee",
       "description": "TSV Herrsching II - FTM Schwabing. Volleyball Heimspiele Herren II, Regionalliga.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
-        "sport"
+        "sport",
+        "volleyball"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2241",
       "source": "herrsching-gemeinde",
@@ -1333,12 +1334,9 @@
       "address": "",
       "description": "Klassikkonzert",
       "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3df1ec880c50d436388e",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 49,
@@ -1363,7 +1361,11 @@
         ],
         "priceInfo": "Nicht auf der Webseite gefunden – Karten vermutlich im Vorverkauf, Preis erfragen.",
         "tips": "Seefeld (Schlosshof 6) ist nur ca. 10-15 Min. von Pöcking mit dem Auto. Sehr kurze Anfahrt! Schöner Winterabend-Ausflug für Paare. Konzertdauer ca. 19-21 Uhr. Parkplätze am Schloss vorhanden."
-      }
+      },
+      "artTags": [
+        "musik",
+        "natur"
+      ]
     },
     {
       "title": "1. Starnberger Ballnacht",
@@ -1375,7 +1377,8 @@
       "category": "erwachsene",
       "artTags": [
         "kultur",
-        "show"
+        "show",
+        "tanz"
       ],
       "url": "https://www.starnberg.de/1-starnberger-ballnacht",
       "source": "schlossberghalle",
@@ -1415,14 +1418,9 @@
       "address": "",
       "description": "Mit der 1. Starnberger Ballnacht erhält eine lange Starnberger Balltradition am Samstag, den 7. Februar 2026, eine stilvolle neue Form.",
       "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur",
-        "brauchtum"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6941226aec880c50d436419a",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 51,
@@ -1449,7 +1447,12 @@
         ],
         "priceInfo": "28€ inkl. Glas Sekt zur Begrüßung. Warme Speisen und Getränke separat.",
         "tips": "Nur 10 Min von Pöcking nach Starnberg! Schlossberghalle, Vogelanger 2. Einlass ab 18:00 mit Sektempfang, Beginn 19:30, Ende ca. 1:00 Uhr. Dresscode: Festliche Abendmode. Karten vorab online bestellen (vr-ticket.de). Taxi zurück einplanen oder Fahrer organisieren."
-      }
+      },
+      "artTags": [
+        "kultur",
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "2. Tutzinger Kurzfilmnacht mit Filmgespräch im Kulturtheater Tutzing",
@@ -1458,15 +1461,10 @@
       "location": "Kirchenstraße 3",
       "address": "",
       "description": "Der Münchner Regisseur und Drehbuchautor Lukas März präsentiert in zwei Blöcken jeweils mehrere Kurzfilme von Nachwuchs-Filmemachern, die sich mit den Themen unserer Zeit auseinandersetzen.",
-      "category": "erwachsene",
-      "tags": [
-        "theater",
-        "kino",
-        "literatur"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=69677121c8652f72520d808d",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 52,
@@ -1493,7 +1491,12 @@
         ],
         "priceInfo": "Nicht online angegeben (vermutlich 8-12€, Infos beim Kulturtheater Tutzing)",
         "tips": "Nur 5-10 Min von Pöcking nach Tutzing! Kirchenstraße 3. Einlass ab 19:00. Leicht mit dem Rad oder Auto erreichbar. Zeitlich nicht mit Ballnacht (ID 51) kombinierbar – beides startet um 19:30. Zwei Blöcke mit Kurzfilmen, ideal für einen entspannten, kurzen Kulturabend."
-      }
+      },
+      "artTags": [
+        "theater",
+        "kultur",
+        "natur"
+      ]
     },
     {
       "title": "Banff Mountain Film Festival World Tour",
@@ -1503,11 +1506,6 @@
       "address": "",
       "description": "Die weltbekannte Banff Mountain Film Festival World Tour macht Station in Garmisch-Partenkirchen. Die Filmtour für Bergfans mit den besten Bergfilmen des Jahres.",
       "category": "familie",
-      "tags": [
-        "kino",
-        "führung",
-        "fest"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/0f077174-18e5-4bab-8e5c-0dc4b4528f11/banff-mountain-film-festival-world-tour",
       "source": "gapa",
       "region": "werdenfels",
@@ -1535,7 +1533,12 @@
         ],
         "priceInfo": "Typisch ca. 20-25 € (Preise nicht direkt abrufbar, Tickets vorab sichern)",
         "tips": "Anfahrt von Pöcking nach Garmisch ca. 1 Stunde über die A95/B2. Rückfahrt spät abends – Winterreifen und ggf. Glatteisgefahr beachten. Ideal als Paar-Abend ohne Kids. Kongresshaus hat gute Parkplätze direkt am Haus."
-      }
+      },
+      "artTags": [
+        "kultur",
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Tanzparty bei Peter Schuh",
@@ -1625,14 +1628,9 @@
       "address": "",
       "description": "Nach über einem Jahrzehnt gemeinsamer Bühnenpräsenz und vier erfolgreichen Studioalben ist es Zeit, die musikalische Reise zu feiern.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "theater",
-        "führung"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=69305e44d5d91861c35733e5",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 56,
@@ -1655,7 +1653,12 @@
         ],
         "priceInfo": "Ticketpreis nicht online gefunden – vermutlich ca. 20–30 € (Vorab-Kauf empfohlen, kleine Location)",
         "tips": "Inning am Ammersee ist nur ca. 20 Min von Pöcking entfernt – sehr kurze Anfahrt. Einlass ab 19:00, Beginn 20:00. Parkplätze vor Ort begrenzt, früh da sein. Babysitter einplanen, wenn Kinder daheim bleiben."
-      }
+      },
+      "artTags": [
+        "musik",
+        "theater",
+        "fest"
+      ]
     },
     {
       "title": "25. Tegernseer Tal Montgolfiade",
@@ -1664,11 +1667,7 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Die beliebte Winter-Freiluftveranstaltung feiert ihr 25-jähriges Jubiläum. Zahlreiche Ballone über dem Tegernsee bewundern oder selber mit dem Ballon abheben. Das Gipfeltreffen der Ballonfahrer vom 1.-8. Februar 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/montgolfiade",
       "source": "tegernsee",
       "region": "tegernsee",
@@ -1697,7 +1696,11 @@
         ],
         "priceInfo": "Zuschauen kostenlos. Ballonfahrt buchbar (ca. 250–350 €/Person), nur für Erwachsene sinnvoll. Keine Eintrittsgebühr für Zuschauer.",
         "tips": "Von Pöcking ca. 50 Min Fahrt. Früh losfahren (Treffpunkt Piloten 08:00), Starts oft morgens bei ruhiger Luft. Warm anziehen! Fernglas und Kamera nicht vergessen. Parkplätze in Bad Wiessee oder Tegernsee nutzen. Falls morgens wetterbedingt abgesagt, Briefing um 12:00 für Nachmittagsstarts – flexibel bleiben. Letzter Veranstaltungstag, also letzte Chance dieses Jahr!"
-      }
+      },
+      "artTags": [
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Nächtliche Welten - Fotoausstellung",
@@ -1707,9 +1710,6 @@
       "address": "",
       "description": "In der Sonderausstellung zeigen Freizeit-Astronomen faszinierende Astrofotos aus den Kategorien Nachtlandschaften, Sonnensystem, Deep Sky und München. Sonderausstellung in der Bibliothek.",
       "category": "familie",
-      "tags": [
-        "kunst"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/naechtliche-welten",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -1736,7 +1736,11 @@
         ],
         "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
         "tips": "40 Min Anfahrt von Pöcking nach München. Am Sonntag Parkhaus an der Ludwigsbrücke oder S-Bahn (Isartor). Lässt sich gut mit den anderen Deutsches-Museum-Events (IDs 59–61) kombinieren – dann lohnt sich die Fahrt."
-      }
+      },
+      "artTags": [
+        "kunst",
+        "indoor"
+      ]
     },
     {
       "title": "Mit WLAN ohne Kamera sehen – Interaktive Ausstellung",
@@ -1746,10 +1750,6 @@
       "address": "",
       "description": "Wussten Sie, dass mit WLAN Bewegungsmuster erkannt werden können? Erkunden Sie diese interaktive Poster-Ausstellung des Science Communication Lab, um mehr zu erfahren. Sonderprogramm für Familien und Jugendliche.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "kinder"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/mit-wlan-ohne-kamera-sehen",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -1777,7 +1777,10 @@
         ],
         "priceInfo": "Im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
         "tips": "Im Science Communication Lab auf Ebene -1 (Eingangsbereich). Gut kombinierbar mit dem restlichen Museumsbesuch. Kein separates Ticket nötig."
-      }
+      },
+      "artTags": [
+        "kunst"
+      ]
     },
     {
       "title": "Future Box – Interaktive Führung",
@@ -1787,9 +1790,6 @@
       "address": "",
       "description": "Quantencomputer, Raumschiffe, humanoide Roboter: Wie werden wir Menschen neueste Innovationen mit ihren Chancen und Risiken einsetzen, um die Zukunft zu gestalten? Lasst euch durch die Future Box im Forum der Zukunft führen. Führung im Forum der Zukunft.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/veranstaltung/future-box-interaktive-fuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -1819,7 +1819,10 @@
         ],
         "priceInfo": "Separates Ticket: 12 € regulär, 7,50 € ermäßigt (zusätzlich zum Museumseintritt, falls man auch ins Haupthaus will)",
         "tips": "ACHTUNG: Nicht im Haupthaus, sondern im Forum der Zukunft an der Ludwigsbrücke! Unbedingt Ticket vorab online buchen – nur 16 Plätze pro Führung. Führung dauert ca. 90 Min. Nicht geeignet für Menschen mit Epilepsie/Fotosensitivität. Nur auf Deutsch. Für Kinder unter 12 nicht empfohlen."
-      }
+      },
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Übersichtsführung",
@@ -1829,10 +1832,6 @@
       "address": "",
       "description": "Lernen Sie die Highlights kennen und erleben Sie unsere Themenvielfalt. Wir führen Sie durch ausgewählte Ausstellungen und zeigen Ihnen beliebte Exponate und erklären aktuelle Themen. Führung durch das Deutsche Museum.",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "führung"
-      ],
       "url": "https://www.deutsches-museum.de/museumsinsel/programm/programm-heute/uebersichtsfuehrung",
       "source": "deutsches-museum",
       "region": "muenchen",
@@ -1858,7 +1857,12 @@
         ],
         "priceInfo": "Führung im Museumseintritt enthalten: Erwachsene 16 €, Familienkarte 33 €, Kinder 6–17 J. 9 €, unter 6 frei",
         "tips": "Jeden Do–So um 11:30 und 14:00 Uhr – kein seltenes Event. 90 Minuten, über alle Ebenen. S-Bahn Isartor ist die nächste Haltestelle. Kinder unter 12 nur in Begleitung Erwachsener. Gut kombinierbar mit Events 58 und 59."
-      }
+      },
+      "artTags": [
+        "kunst",
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "Fasching: Wolfratshausen NARRISCH",
@@ -1910,12 +1914,7 @@
       "location": "Verschiedene Orte",
       "address": "",
       "description": "Ein ebenso seltenes wie eindrucksvolles traditionelles Festival: Der Schäfflertanz findet nur alle sieben Jahre statt. Traditioneller Fasching-Brauch mit Tänzern in historischen Trachten.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "tanz",
-        "brauchtum"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/883013f8-a962-4448-9e8e-dda55ae635a2/schaefflertanz-partenkirchen",
       "source": "gapa",
       "region": "werdenfels",
@@ -1944,7 +1943,13 @@
         ],
         "priceInfo": "Kostenlos (Straßenveranstaltung)",
         "tips": "Von Pöcking ca. 60 Min nach Garmisch-Partenkirchen. Findet nur alle 7 Jahre statt! Perfekt kombinierbar mit dem Fosnachtsumzug (ID 64), der zur gleichen Zeit in Garmisch stattfindet. Warm anziehen, feste Schuhe. Früh losfahren für Parkplatz – Partenkirchen wird voll. P+R oder Bahnhof Garmisch-Partenkirchen nutzen."
-      }
+      },
+      "artTags": [
+        "kultur",
+        "fest",
+        "tanz",
+        "fasching"
+      ]
     },
     {
       "title": "Fosnachtsumzug Garmisch",
@@ -1953,12 +1958,7 @@
       "location": "Fußgängerzone Garmisch",
       "address": "",
       "description": "Großer Faschingsumzug durch die Garmischer Fußgängerzone mit anschließender Live-Musik im Kongresshaus. Traditionelles Fosnacht-Highlight.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "fest",
-        "brauchtum"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/a4731f73-b560-4727-b2ff-ebe438a06464/fosnachtsumzug",
       "source": "gapa",
       "region": "werdenfels",
@@ -1986,7 +1986,13 @@
         ],
         "priceInfo": "Kostenlos (Straßenveranstaltung)",
         "tips": "Gleiche Zeit und gleicher Ort wie der Schäfflertanz (ID 63) – unbedingt kombinieren! Von Pöcking ca. 60 Min. Fußgängerzone Garmisch. Kinder warm einpacken, eventuell Ohrschützer (kann laut werden). Süßigkeiten werden oft geworfen – Tüte mitbringen. Parken am Bahnhof oder P+R."
-      }
+      },
+      "artTags": [
+        "musik",
+        "kultur",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Führung: Ausgesucht. Weitere Werke aus der Sammlung",
@@ -2078,13 +2084,9 @@
       "address": "",
       "description": "Kinderkonzert",
       "category": "kinder",
-      "tags": [
-        "musik",
-        "kinder"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=693d3eebec880c50d4363894",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
       "id": 67,
@@ -2110,7 +2112,10 @@
         ],
         "priceInfo": "Nicht auf der Webseite angegeben – vermutlich 5-10€ (typisch für Kinderkonzerte in der Region)",
         "tips": "Seefeld ist von Pöcking nur ca. 15 Min. entfernt – super erreichbar! Schlosshof 6, Seefeld. Nur 1 Stunde (16-17 Uhr), also gut planbar. Ideal als Sonntagnachmittags-Programm, vorher oder nachher noch ein Spaziergang in Seefeld möglich."
-      }
+      },
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Glück – Junges Forum",
@@ -2163,7 +2168,8 @@
       "category": "erwachsene",
       "artTags": [
         "kultur",
-        "sport"
+        "sport",
+        "tanz"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2148",
       "source": "herrsching-gemeinde",
@@ -2180,16 +2186,16 @@
       "address": "",
       "description": "Zeitgenössisches Tanzvergnügen in Herrsching",
       "category": "familie",
-      "tags": [
-        "kunst",
-        "tanz"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=675967193fcbef0c4a0583b9",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 70
+      "id": 70,
+      "artTags": [
+        "kunst",
+        "tanz"
+      ]
     },
     {
       "title": "Wie viel Arbeit braucht der Mensch? – 7. Tutzinger Depressionstagung",
@@ -2217,15 +2223,15 @@
       "address": "",
       "description": "Gemeinsam schmeckt es einfach besser",
       "category": "familie",
-      "tags": [
-        "kulinarisch"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=697766bd9fc49d222d43a2fe",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 72
+      "id": 72,
+      "artTags": [
+        "kultur"
+      ]
     },
     {
       "title": "Nachbarschaftshilfe - Spielenachmittag",
@@ -2234,8 +2240,10 @@
       "location": "Münsing",
       "address": "Pfarrheim, Holzhausener Str. 4",
       "description": "Spielenachmittag der Agenda 21 Soziales der Gemeinde Münsing",
-      "category": "erwachsene",
-      "artTags": [],
+      "category": "familie",
+      "artTags": [
+        "kultur"
+      ],
       "url": "https://www.heimat-info.de/veranstaltungen/b7c23fdb-3ba4-4171-9a62-bcc4ea9ea64b",
       "source": "muensing-heimat",
       "region": "starnberger-see",
@@ -2342,7 +2350,7 @@
       "location": "München",
       "address": "Grasweg 74, 81373 München",
       "description": "1. Volleyball-Bundesliga: WWK Volleys Herrsching vs. Helios GRIZZLYS Giesen. Spitzenvolleyball live!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "volleyball"
@@ -2398,17 +2406,19 @@
       "location": "Garmischer Straßen",
       "address": "",
       "description": "Traditionelles Werdenfelser Fosnachtstreiben am Unsinnigen Donnerstag. Fasching-Höhepunkt mit Maschkera und Narren in den Garmischer Straßen.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "brauchtum"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/d14342e1-09c6-47d8-ae40-dabc0ae5b0dc/unsinniger-donnerstag",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 82
+      "id": 82,
+      "artTags": [
+        "musik",
+        "kultur",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Großer Kinder-Turnfasching im TSV Starnberg",
@@ -2437,16 +2447,18 @@
       "location": "Berger Straße 5",
       "address": "",
       "description": "ATTENTION LADIES! Am 12. Februar findet wieder unser Weiberfasching statt und wir freuen uns auf kreative Kostüme, tolle Stimmung und viel Girls-Power!",
-      "category": "erwachsene",
-      "tags": [
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=6978d02b9fc49d222d537304",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 84
+      "id": 84,
+      "artTags": [
+        "kunst",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Anna Buchegger – Konzert",
@@ -2486,31 +2498,13 @@
       "id": 86
     },
     {
-      "title": "Weiberfasching",
-      "date": "2026-02-12",
-      "time": "20:00",
-      "location": "BecCult",
-      "address": "",
-      "description": "Weiberfasching im BecCult Pöcking",
-      "category": "erwachsene",
-      "tags": [
-        "fest"
-      ],
-      "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=160&cHash=a689a64783a67432d3c54b648288ada0",
-      "source": "beccult",
-      "region": "poecking",
-      "venue": null,
-      "isHighlight": false,
-      "id": 87
-    },
-    {
       "title": "Kegeln im Pfarrzentrum Sankt Nikolaus",
       "date": "2026-02-13",
       "time": "14:00",
       "location": "Herrsching",
       "address": "Bahnhofstraße 4, 82211 Herrsching am Ammersee",
       "description": "Gemeinsames Kegeln, organisiert vom Seniorenbeirat. 14:00-16:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport"
       ],
@@ -2548,15 +2542,15 @@
       "address": "",
       "description": "Ich bin zwar kein direkter Rüpel, aber die Brennnessel unter den Liebesblumen",
       "category": "familie",
-      "tags": [
-        "natur"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6981f7a365ab70fff9dfd998",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 90
+      "id": 90,
+      "artTags": [
+        "natur"
+      ]
     },
     {
       "title": "Fasching im SC Wörthsee",
@@ -2565,7 +2559,7 @@
       "location": "Wörthsee",
       "address": "Etterschlager Str. 103, 82237 Wörthsee",
       "description": "Faschingsfeier des SC Wörthsee. 19:30-23:30 Uhr. Verkleidung erwünscht!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "fasching"
@@ -2602,16 +2596,16 @@
       "location": "BecCult",
       "address": "",
       "description": "Pöckinger Malle-Party 2026 im BecCult",
-      "category": "erwachsene",
-      "tags": [
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=161&cHash=e2bf700fa8c5d045be0a34a87a160181",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 93
+      "id": 93,
+      "artTags": [
+        "fest"
+      ]
     },
     {
       "title": "Fasching mit der GROUNDLIFT Band",
@@ -2620,17 +2614,19 @@
       "location": "Landsberger Straße 57",
       "address": "",
       "description": "Am 13. Februar rockt für euch die GROUNDLIFT Band wieder unsere Hallen. Diesmal ist Fasching angesagt!",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=69305fb3d5d91861c3573446",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 94
+      "id": 94,
+      "artTags": [
+        "musik",
+        "fest",
+        "indoor",
+        "fasching"
+      ]
     },
     {
       "title": "Vertrau. Über die Unmöglichkeit ohne Vertrauen zu handeln",
@@ -2678,17 +2674,16 @@
       "address": "",
       "description": "Führung durch die Brauerei mit Erklärung der einzelnen Brauprozesse",
       "category": "familie",
-      "tags": [
-        "führung",
-        "natur",
-        "kulinarisch"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=69245abd205b8f3bc566419e",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 97
+      "id": 97,
+      "artTags": [
+        "natur",
+        "bildung"
+      ]
     },
     {
       "title": "Kinderfasching Wolfratshausen",
@@ -2738,13 +2733,15 @@
       "address": "",
       "description": "Hilfe zur Selbstbehandlung bei Kieferbeschwerden und Tinnitus, Schwindel, Kopfschmerzen, Nackenschmerzen",
       "category": "familie",
-      "tags": [],
       "url": "https://www.starnbergammersee.de/detail/id=6967acfbc8652f72520d810c",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 100
+      "id": 100,
+      "artTags": [
+        "gesundheit"
+      ]
     },
     {
       "title": "Viermal Schwarzer Kater – Musical-Abenteuer (Abend)",
@@ -2774,13 +2771,16 @@
       "address": "",
       "description": "Am Valentinstag wird es romantisch im Tierpark Hellabrunn: Bei einer exklusiven Abendfuehrung unter dem Motto Liebe und Beziehungen im Tierreich.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.hellabrunn.de/eventdetailseite/valentinstag-im-tierpark-wenn-die-liebe-durch-den-zoo-spaziert",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 102
+      "id": 102,
+      "artTags": [
+        "natur",
+        "wellness"
+      ]
     },
     {
       "title": "That's amore! Valentins-Candlelight-Dinner",
@@ -2790,13 +2790,15 @@
       "address": "",
       "description": "Valentins-Candlelight-Dinner im Theodor - 14. Februar",
       "category": "familie",
-      "tags": [],
       "url": "https://www.starnbergammersee.de/detail/id=6971d9e59f949426f44be8e8",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 103
+      "id": 103,
+      "artTags": [
+        "wellness"
+      ]
     },
     {
       "title": "Valentinstag in LA VILLA",
@@ -2825,16 +2827,16 @@
       "address": "",
       "description": "Valentinstag mal anders - Glamour Schlager und Discofox Night 2026",
       "category": "erwachsene",
-      "tags": [
-        "musik",
-        "tanz"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=162&cHash=aca99794fdcf70a5b4bce20061b36250",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 105
+      "id": 105,
+      "artTags": [
+        "musik",
+        "tanz"
+      ]
     },
     {
       "title": "We Love MMA 85 - Mixed Martial Arts",
@@ -2844,13 +2846,15 @@
       "address": "",
       "description": "Die haerteste Liga - die haertesten Fighter - live in der Kleinen Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/we-love-mma-85-n4937",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 106
+      "id": 106,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Valentinstag-Special an der Volkssternwarte München",
@@ -2878,17 +2882,17 @@
       "address": "",
       "description": "Julian Schad am 14. Februar 2026 & Klassik 2.0 Quartett im Marstall in Berg. Zu Gast Sopranistin Clara Orif aus Paris. Nach dem Konzert: Afterparty",
       "category": "erwachsene",
-      "tags": [
-        "musik",
-        "fest",
-        "natur"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=69666943f3edc40bae3ad4a1",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 108
+      "id": 108,
+      "artTags": [
+        "musik",
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Starnberger Faschingssause 2026",
@@ -2897,17 +2901,18 @@
       "location": "Berger Straße 5",
       "address": "",
       "description": "Starnberger Faschingssause 2026 präsentiert von der Starnberger Faschingsgesellschaft Perchalla e.V. & DJ Hap",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=67877e6d74da950e18c95ec0",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 109
+      "id": 109,
+      "artTags": [
+        "natur",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Herbert Groenemeyer - mittendrin - akustisch 2026",
@@ -2917,15 +2922,15 @@
       "address": "",
       "description": "Seit gut vier Jahrzehnten gehoert er zu den ganz grossen Kuenstlern der deutschen Musikszene.",
       "category": "familie",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/herbert-gronemeyer-n5395",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 110
+      "id": 110,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Frauengesundheit – Nährstoffe & Bewegung",
@@ -2954,7 +2959,7 @@
       "location": "Bad Kohlgrub",
       "address": "Hörnle, Bad Kohlgrub",
       "description": "Bayernweiter Aktionstag \"Natürlich auf Tour\": Helferinnen und Helfer sind in Tourengebieten der Bayerischen Alpen unterwegs, um Tourengeher und Wanderer über wichtige Naturschutz-Zusammenhänge zu informieren und zu sensibilisieren. Die DAV Sektion Starnberg sucht Helfer für das Hörnle-Gebiet.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "natur",
         "sport",
@@ -2994,17 +2999,18 @@
       "location": "Garmischer Straßen",
       "address": "",
       "description": "Traditionelles Werdenfelser Fosnachtstreiben am Fosnachts-Sonntag. Fasching auf den Garmischer Straßen.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "brauchtum"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/0e629f53-8f0f-4371-b71d-60b9f3e24698/fosnachts-sonntag",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 114
+      "id": 114,
+      "artTags": [
+        "kultur",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Geschichten vom Klimawandel – »Kampberg – mehr als eine Moorsiedlung«",
@@ -3013,7 +3019,7 @@
       "location": "Tutzing",
       "address": "Graf-Vieregg-Straße 14, Tutzing",
       "description": "Ausstellung im Tutzinger Ortsmuseum (läuft bis 15.02.2026, 17:00 Uhr). Die Geschichte Kampbergs beginnt mit der Eiszeit – Landschaft geprägt von Mooren und Moränen. Was bedeutet dies für den Klimawandel und wie wurde die Ortsgeschichte durch die Torfstecherei geprägt? Eintritt: 2€.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "natur",
         "bildung"
@@ -3033,17 +3039,17 @@
       "address": "",
       "description": "Buntes Treiben beim Kinderfasching! Mit Spielen, Tanz und vielen Überraschungen für unsere kleinen Faschingsfans.",
       "category": "kinder",
-      "tags": [
-        "kinder",
-        "fest",
-        "tanz"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=164&cHash=aa7d2c1e19ece5ca9b256fdafc7c9c08",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 116
+      "id": 116,
+      "artTags": [
+        "fest",
+        "tanz",
+        "fasching"
+      ]
     },
     {
       "title": "Kinderfasching im Silberfasan",
@@ -3054,7 +3060,8 @@
       "description": "Spiele und viel Spaß bei fetziger Musik für Kinder. Kostümierte Kinder erwünscht! Mütter und Väter sind willkommen. Eintritt 1,99€.",
       "category": "kinder",
       "artTags": [
-        "fest"
+        "fest",
+        "fasching"
       ],
       "url": "https://sv-inning.de",
       "source": "sv-inning",
@@ -3070,7 +3077,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
       "description": "Sonderausstellung: Ein stiller Avantgardist in Oberbayern. 5€ zzgl. Eintritt.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -3094,7 +3101,8 @@
       "artTags": [
         "yoga",
         "wellness",
-        "meditation"
+        "meditation",
+        "zeremonie"
       ],
       "url": "https://www.studio8amsee.de",
       "source": "yoga-studio8",
@@ -3165,18 +3173,19 @@
       "location": "Mühlbergstraße 4",
       "address": "",
       "description": "In den Faschingsferien drehen wir gemeinsam einen Kurzfilm, bei dem du selbst kreativ werden kannst! Anfänger und Fortgeschrittene Level I",
-      "category": "erwachsene",
-      "tags": [
-        "kino",
-        "workshop",
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.starnbergammersee.de/detail/id=697b27af9fcdb03730df2bd2",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 123
+      "id": 123,
+      "artTags": [
+        "kunst",
+        "bildung",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Starnberger Garderevue",
@@ -3185,10 +3194,11 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Fünf Stunden Faschingsunterhaltung! Geladene und befreundete Faschingsvereine der Umgebung rocken mit atemberaubenden Show-Einlagen die Bühne. Veranstalter: Starnberger Faschingsgesellschaft Perchalla. Einlass 17:30, Eintritt 11€.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "show",
-        "kultur"
+        "kultur",
+        "fasching"
       ],
       "url": "https://www.starnberg.de/starnberger-garderevue",
       "source": "schlossberghalle",
@@ -3205,16 +3215,17 @@
       "address": "",
       "description": "Freuen Sie sich auf ein abwechslungsreiches Programm mit Auftritten der Perchalla-Garden sowie Showeinlagen befreundeter Vereine",
       "category": "familie",
-      "tags": [
-        "natur",
-        "kulinarisch"
-      ],
       "url": "https://www.starnbergammersee.de/detail/id=6978d3ae9fc49d222d53bb24",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 125
+      "id": 125,
+      "artTags": [
+        "natur",
+        "show",
+        "fasching"
+      ]
     },
     {
       "id": 126,
@@ -3228,7 +3239,8 @@
       "artTags": [
         "fest",
         "musik",
-        "indoor"
+        "indoor",
+        "fasching"
       ],
       "url": "https://www.pfc.de/veranstaltungen/",
       "region": "poecking",
@@ -3242,17 +3254,18 @@
       "location": "Garmischer Straßen",
       "address": "",
       "description": "Traditionelles Werdenfelser Fosnachtstreiben am Faschingsdienstag. Letzter großer Fasching-Tag in Garmisch-Partenkirchen.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "brauchtum"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/633b50a2-7efd-411d-9ff2-23f9bd1bf6c7/fosnachts-dienstag",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 127
+      "id": 127,
+      "artTags": [
+        "kultur",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Faschingsskispringen",
@@ -3261,18 +3274,18 @@
       "location": "Olympia Skistadion",
       "address": "",
       "description": "Lustiges Faschings-Skispringen im Olympia Skistadion mit Schäfflertanz und buntem Unterhaltungsprogramm. Freier Eintritt! Skisprung-Highlight der Fasching-Saison.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "tanz",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/1518f610-0c2f-4452-9de8-4a8caf389a79/faschingsskispringen",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 128
+      "id": 128,
+      "artTags": [
+        "fest",
+        "tanz",
+        "fasching"
+      ]
     },
     {
       "title": "RuckiZucki und Kehraus 2026",
@@ -3281,17 +3294,18 @@
       "location": "BecCult",
       "address": "",
       "description": "Faschingsdienstag - wir feiern den letzten Tag der närrischen Zeit mit Musik, guter Stimmung und buntem Treiben. Bei schönem Wetter findet der RuckiZucki draußen am Vorhof vom BecCult statt.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=163&cHash=698e13f43639b48d51524723b6142d71",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 129
+      "id": 129,
+      "artTags": [
+        "musik",
+        "fest",
+        "fasching"
+      ]
     },
     {
       "title": "Diessener Kneipen-Chor",
@@ -3300,17 +3314,17 @@
       "location": "Mühlstraße 12",
       "address": "",
       "description": "Kneipen-Chor im Craftbräu in Diessen",
-      "category": "familie",
-      "tags": [
-        "musik",
-        "kulinarisch"
-      ],
+      "category": "erwachsene",
       "url": "https://www.starnbergammersee.de/detail/id=6647643502d3e043d16976bc",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "ammersee",
       "venue": null,
       "isHighlight": false,
-      "id": 130
+      "id": 130,
+      "artTags": [
+        "musik",
+        "kultur"
+      ]
     },
     {
       "title": "Sinfonietta Isartal – Zwischen Tanz und Tragik",
@@ -3319,10 +3333,11 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Schubert, Coleridge-Taylor und die Unvollendete. Schüler/Studenten frei!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
-        "kultur"
+        "kultur",
+        "tanz"
       ],
       "url": "https://www.wolfratshausen.de/leben-in-wolfratshausen/kultur/veranstaltungen",
       "source": "wolfratshausen",
@@ -3339,15 +3354,15 @@
       "address": "",
       "description": "Der US-Superstar live in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/mgk-n5306",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 132
+      "id": 132,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Mittwochclub der Senioren",
@@ -3357,7 +3372,9 @@
       "address": "Zum Landungssteg 1, 82211 Herrsching am Ammersee",
       "description": "Geselliges Mittagessen beim Mittwochclub der Senioren des Hilfsdienst Herrsching e.V. 12:30-14:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "kultur"
+      ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2356",
       "source": "herrsching-gemeinde",
       "region": "starnberger-see",
@@ -3392,17 +3409,16 @@
       "location": "Bräuhausstraße 1",
       "address": "",
       "description": "Am Aschermittwoch lädt das Restaurant Theodor zum traditionellen Fischessen ein.",
-      "category": "familie",
-      "tags": [
-        "kulinarisch",
-        "brauchtum"
-      ],
+      "category": "erwachsene",
       "url": "https://www.starnbergammersee.de/detail/id=6971e7229f949426f44be901",
       "source": "starnbergammersee",
-      "region": "starnberg-ammersee",
+      "region": "starnberger-see",
       "venue": null,
       "isHighlight": false,
-      "id": 135
+      "id": 135,
+      "artTags": [
+        "kultur"
+      ]
     },
     {
       "title": "BÜRGERTREFF 55+ GASTHOF ZUR POST",
@@ -3412,7 +3428,9 @@
       "address": "Andechsstraße 1, 82211 Herrsching am Ammersee",
       "description": "Bürgertreff für Senioren ab 55 Jahren. Seniorenbeirat Herrsching.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "kultur"
+      ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2228",
       "source": "herrsching-gemeinde",
       "region": "starnberger-see",
@@ -3466,13 +3484,15 @@
       "address": "",
       "description": "Am 20. Februar heisst es im Tierpark Hellabrunn: Ohren spitzen und einkuscheln - wir laden ein zum grossen Lesetag 2026!",
       "category": "familie",
-      "tags": [],
       "url": "https://www.hellabrunn.de/eventdetailseite/lesetag-20-februar-2026-1000-1700-uhr",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 139
+      "id": 139,
+      "artTags": [
+        "natur"
+      ]
     },
     {
       "title": "MuMM! Mut- und Mitmachtage in Starnberg",
@@ -3540,13 +3560,17 @@
       "address": "",
       "description": "Europas beliebteste Pferdeshow gastiert in der Olympiahalle Muenchen.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/cavalluna-n4800",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 143
+      "id": 143,
+      "artTags": [
+        "natur",
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Der Koenig der Loewen - The Music Live in Concert",
@@ -3555,16 +3579,16 @@
       "location": "Kleine Olympiahalle",
       "address": "",
       "description": "Die preisgekroente Musik von Sir Elton John und Hans Zimmer in einem einzigartigen Konzerterlebnis.",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen/der-konig-der-lowen-n5156",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 144
+      "id": 144,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Kulinarische Höhepunkte in LA VILLA",
@@ -3610,9 +3634,10 @@
       "location": "Herrsching",
       "address": "Nikolausstraße 11, 82211 Herrsching am Ammersee",
       "description": "Handballspieltag: 12:30 Damen II, 14:30 Damen I, 16:30 Herren I, 18:30 Herren II. Nikolaushalle.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
-        "sport"
+        "sport",
+        "handball"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2265",
       "source": "herrsching-gemeinde",
@@ -3628,7 +3653,7 @@
       "location": "Bernried",
       "address": "Buchheim Museum der Phantasie",
       "description": "Unsere Kunstvermittlerin führt durch die Ausstellung. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -3649,13 +3674,16 @@
       "address": "",
       "description": "Eine der spektakulaersten Inszenierungen mit Deborah Sasson und Uwe Kroeger als Phantom.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/das-phantom-der-oper-n5115",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 149
+      "id": 149,
+      "artTags": [
+        "musik",
+        "theater"
+      ]
     },
     {
       "title": "Blutspende",
@@ -3665,7 +3693,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -3699,16 +3730,16 @@
       "address": "",
       "description": "Why Do Germans Love the Blues - In diesem Road Movie macht sich ein US-Musiker auf den Weg quer durch Deutschland. Einlass: 18:30 Uhr. Eintritt frei, Spenden erbeten!",
       "category": "familie",
-      "tags": [
-        "musik",
-        "kino"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=154&cHash=0cbe177452729eff08096ceaa8f8d3aa",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 152
+      "id": 152,
+      "artTags": [
+        "musik",
+        "kultur"
+      ]
     },
     {
       "title": "Treffen des Arbeitskreises Energiewende Münsing",
@@ -3774,15 +3805,15 @@
       "address": "",
       "description": "Referent: Hans Helmreich, Autor und Journalist. Vortrag ueber Artenschutz in einem Wildreservat.",
       "category": "familie",
-      "tags": [
-        "literatur"
-      ],
       "url": "https://www.hellabrunn.de/eventdetailseite/eine-reise-in-die-freiheit-wie-funktioniert-artenschutz-in-einem-wildreservat",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 156
+      "id": 156,
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Die Welt der KI",
@@ -3792,15 +3823,16 @@
       "address": "",
       "description": "Eine Veranstaltung in Kooperation mit dem BayernLAB Starnberg und der Stiftung für Pöcking",
       "category": "familie",
-      "tags": [
-        "natur"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=165&cHash=825eb49b62c64d53e45bfd2a8f066bd1",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 157
+      "id": 157,
+      "artTags": [
+        "musik",
+        "natur"
+      ]
     },
     {
       "title": "Eros Ramazzotti - Una Storia Importante World Tour",
@@ -3810,15 +3842,16 @@
       "address": "",
       "description": "Die Pop-Legende kehrt in die Olympiahalle zurueck.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/eros-ramazzotti-n4981",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 158
+      "id": 158,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Pastellmalerei",
@@ -3866,15 +3899,16 @@
       "address": "",
       "description": "Der R&B- und Pop-Star verwandelt die Olympiahalle in einen riesigen Dancefloor.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/jason-derulo-n5021",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 161
+      "id": 161,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Genuss und Entspannung in LA VILLA",
@@ -3921,7 +3955,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Traditionelles Starkbierfest mit Starkbieranstich und Stadtkapelle.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "fest",
         "kultur"
@@ -3978,13 +4012,15 @@
       "address": "",
       "description": "Die spektakulaersten Illusionen aus zehn Jahren auf der Buehne.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/ehrlich-brothers-n4940",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 167
+      "id": 167,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Der fachgerechte Obstbaumschnitt – Theorie + Praxis",
@@ -4012,7 +4048,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Internationale Deutsche Meisterschaft im 30 Minuten Ergorudern. 09:00-17:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport"
       ],
@@ -4031,15 +4067,16 @@
       "address": "",
       "description": "Audi FIS Ski Weltcup Garmisch-Partenkirchen 2026: Herren Abfahrt auf der legendären Kandahar-Strecke. Das 72. Kandahar-Rennen – Ski-Weltcup-Highlight in den Alpen.",
       "category": "familie",
-      "tags": [
-        "sport"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/e4963a3e-b4cb-48e0-8720-da522bdce79f/72--kandahar-rennen-herren-abfahrt",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 170
+      "id": 170,
+      "artTags": [
+        "kultur",
+        "natur"
+      ]
     },
     {
       "title": "Aromatherapie für Schwangerschaft, Baby & Geburt",
@@ -4125,15 +4162,15 @@
       "address": "",
       "description": "Audi FIS Ski Weltcup Garmisch-Partenkirchen 2026: Herren Super-G auf der Kandahar-Strecke. Zweiter Tag des 72. Kandahar-Rennens.",
       "category": "familie",
-      "tags": [
-        "sport"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/3fa12b21-d665-4d82-a11b-62c03d461d85/72--kandahar-rennen-herren-super-g",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 175
+      "id": 175,
+      "artTags": [
+        "kultur"
+      ]
     },
     {
       "title": "Knet-Workshop mit Katharina Neubert",
@@ -4254,7 +4291,7 @@
       "location": "Herrsching",
       "address": "Bahnhofstraße 14, 82211 Herrsching",
       "description": "Infoabend der Jugendfeuerwehr im Feuerwehrhaus Herrsching. Wir freuen uns auf Dich!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "bildung"
       ],
@@ -4272,7 +4309,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Live 3D-Multivision von Stephan Schulz: Von Kapstadt zum Kilimanjaro.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "show",
         "bildung",
@@ -4293,16 +4330,15 @@
       "address": "",
       "description": "Zwischen Pop und Folk, von Indie-Rock ueber Neo-Soul bis Gothic.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/florence-the-machine-n5244",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 184
+      "id": 184,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Film des Monats – Der Held vom Bahnhof Friedrichstraße",
@@ -4367,7 +4403,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Smetanas Moldau, Ravels Klavierkonzert, Debussys La Mer. Schüler/Studenten frei!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
         "kultur"
@@ -4388,7 +4424,7 @@
       "location": "Pöcking",
       "address": "Kath. Pfarrsaal St. Pius, Piusweg 4, 82343 Pöcking",
       "region": "poecking",
-      "category": "erwachsene",
+      "category": "familie",
       "description": "Komödie der Theatergruppe Pöcking – mehrere Vorstellungen bis 22.03.",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
@@ -4424,16 +4460,15 @@
       "address": "",
       "description": "Die Chemnitzer Rap-Rock-Formation auf grosser Tour.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/kraftklub-n5069",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 191
+      "id": 191,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Zukunftsbilder Globaler Gesundheit",
@@ -4555,16 +4590,16 @@
       "address": "",
       "description": "Jamaikas erfolgreichster Musikexport erstmals in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/sean-paul-n5460",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 198
+      "id": 198,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Duftende Schätze – Aromatherapie Workshop",
@@ -4593,7 +4628,7 @@
       "location": "Gilching",
       "address": "Tennishalle TSV Gilching, Talhofstraße 13",
       "description": "Inklusives Tennisturnier für Athleten mit geistiger Behinderung.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "tennis"
@@ -4668,7 +4703,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
       "description": "Film über die Bildwerkstatt des Zeichners und Malers Heinz Butz.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -4689,13 +4724,16 @@
       "address": "",
       "description": "Zusatzshow in der Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/mario-barth-n4915",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 205
+      "id": 205,
+      "artTags": [
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Zusatzkonzert des Symphonieorchesters des BR – Anton Barakhovsky & BRSO Akademie",
@@ -4798,15 +4836,16 @@
       "address": "",
       "description": "Bushido reist ein weiteres Mal durch die grossen Arenen.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/bushido-n5062",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 211
+      "id": 211,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Kopfmodellieren mit Ton",
@@ -4853,15 +4892,15 @@
       "address": "",
       "description": "Die groesste Tournee seiner Karriere fuehrt ihn in die Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/ben-zucker-n4724",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 214
+      "id": 214,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "bosco, bambini: Ein FamilienFest der Fantasie",
@@ -4891,13 +4930,15 @@
       "address": "",
       "description": "Ort voller Inspiration und Empowerment fuer ueber 1.200 Frauen.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen/shine-female-business-summit-2026--n5533",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 216
+      "id": 216,
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "Das Dschungelbuch (Freitag 17 Uhr)",
@@ -4924,7 +4965,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Zum Auftakt von bosco, bambini! geben die beiden international renommierten Musikerinnen ein Familienkonzert",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
         "kultur"
@@ -4964,15 +5005,16 @@
       "address": "",
       "description": "Der niederlaendische Stargeiger verzaubert das Muenchner Publikum.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/andr-rieu-n4916",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 220
+      "id": 220,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Andechser Ostereier-Markt 2026",
@@ -5060,7 +5102,8 @@
       "artTags": [
         "kunst",
         "theater",
-        "bildung"
+        "bildung",
+        "tanz"
       ],
       "url": "https://bosco-gauting.de/veranstaltungen/schule-der-fantasie-workshop-was-fuer-ein-theater",
       "source": "bosco-gauting",
@@ -5076,7 +5119,7 @@
       "location": "München",
       "address": "Odeonsplatz, 80539 München",
       "description": "Das große St. Patrick's Day Festival in München mit Parade, Live-Musik und irischer Kultur. Am 14. März am Odeonsplatz, am 15. März an der Münchner Freiheit.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "fest",
         "kultur",
@@ -5188,7 +5231,7 @@
       "location": "Bernried",
       "address": "Buchheim Museum der Phantasie",
       "description": "Der Künstler Ruprecht von Kaufmann führt persönlich durch seine Ausstellung. Anschließend Buchsignierung. Die Teilnahme kostet 5,00 € zzgl. zum Eintritt",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -5246,16 +5289,16 @@
       "address": "",
       "description": "Orchester, Chor und Solisten interpretieren die Oscar-praemierte Filmmusik von Howard Shore.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "kino"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/der-herr-der-ringe-die-ruckkehr-des-konigs-n4949",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 235
+      "id": 235,
+      "artTags": [
+        "musik",
+        "natur"
+      ]
     },
     {
       "title": "Das Artemis-Programm: Zum Mond und darüber hinaus",
@@ -5282,9 +5325,10 @@
       "location": "Herrsching",
       "address": "Nikolausstraße 11, 82211 Herrsching am Ammersee",
       "description": "TSV Herrsching II - SVS Türkheim. Volleyball Regionalliga.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
-        "sport"
+        "sport",
+        "volleyball"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2242",
       "source": "herrsching-gemeinde",
@@ -5300,7 +5344,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "20 Instrumente gleichzeitig, zweistimmiger Gesang zwischen hinreißend schön und atemberaubend rasant",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "show",
         "musik",
@@ -5376,7 +5420,7 @@
       "location": "München",
       "address": "Münchner Freiheit, 80802 München",
       "description": "Zweiter Tag des St. Patrick's Day Festivals mit Parade und Programm an der Münchner Freiheit.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "fest",
         "kultur",
@@ -5396,9 +5440,10 @@
       "location": "Herrsching",
       "address": "Nikolausstraße 11, 82211 Herrsching am Ammersee",
       "description": "Handballspieltag: 12:30 Damen II, 14:30 Damen I, 16:30 Herren I. Nikolaushalle.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
-        "sport"
+        "sport",
+        "handball"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2266",
       "source": "herrsching-gemeinde",
@@ -5490,15 +5535,15 @@
       "address": "",
       "description": "Der finale Showdown der Trilogie - Zusatzshow.",
       "category": "familie",
-      "tags": [
-        "kino"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen/der-herr-der-ringe-die-ruckkehr-des-konigs-n4949",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 248
+      "id": 248,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "id": 249,
@@ -5509,7 +5554,7 @@
       "location": "Pöcking",
       "address": "Kath. Pfarrsaal St. Pius, Piusweg 4, 82343 Pöcking",
       "region": "poecking",
-      "category": "erwachsene",
+      "category": "familie",
       "description": "Komödie der Theatergruppe Pöcking – Sonntagsvorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
@@ -5547,7 +5592,8 @@
       "category": "erwachsene",
       "artTags": [
         "kultur",
-        "kunst"
+        "kunst",
+        "tanz"
       ],
       "url": "https://www.starnberg.de/taime-less",
       "source": "starnberg-stadt",
@@ -5601,15 +5647,15 @@
       "address": "",
       "description": "Ein visuell wie akustisch grandioses Spektakel in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 254
+      "id": 254,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Fliegende Volksbühne Frankfurt: \"Goethe: Faust 1\"",
@@ -5733,7 +5779,7 @@
       "location": "Wolfratshausen",
       "address": "Trachtenverein Loisachtaler, Hans-Urmiller-Ring 53, 82515 Wolfratshausen",
       "description": "Besinnliches Stück von Max Mell zur Fastenzeit. Auch am 21.03. Eintritt 10€.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "theater",
         "kultur"
@@ -5753,15 +5799,15 @@
       "address": "",
       "description": "Mitreissendes Erlebnis fuer die ganze Familie in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "kinder"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 262
+      "id": 262,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Qigong Workshop",
@@ -5807,7 +5853,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Konzert der Stadtkapelle Starnberg. 20:00-22:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik"
       ],
@@ -5825,7 +5871,7 @@
       "location": "Gauting",
       "address": "bosco Gauting",
       "description": "Klassik-Heimspiel im bosco",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
         "kultur"
@@ -5885,7 +5931,7 @@
       "location": "Pöcking",
       "address": "Kath. Pfarrsaal St. Pius, Piusweg 4, 82343 Pöcking",
       "region": "poecking",
-      "category": "erwachsene",
+      "category": "familie",
       "description": "Komödie der Theatergruppe Pöcking – letzte Vorstellung",
       "url": "https://www.poecking.de/tourismus-und-freizeit/veranstaltungen/veranstaltungskalender",
       "source": "poecking.de",
@@ -5922,15 +5968,16 @@
       "address": "",
       "description": "Comedy? In Pöcking? Moderation: Cornelia Grün",
       "category": "erwachsene",
-      "tags": [
-        "theater"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=155&cHash=7c7d73c5428b497bc1d0b981ae55febb",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 271
+      "id": 271,
+      "artTags": [
+        "kultur",
+        "show"
+      ]
     },
     {
       "title": "The Clarinet Trio Anthology: Daniel Ottensamer, Stephan Koncz, Christoph Traxler",
@@ -5959,15 +6006,15 @@
       "address": "",
       "description": "Clueso bringt seine groessten Hits in die Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 273
+      "id": 273,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Tash Sultana - Return To The Roots",
@@ -5977,13 +6024,15 @@
       "address": "",
       "description": "Erstmals nach drei Jahren wieder in Europa - Auftritt in der Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 274
+      "id": 274,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Videoclub Starnberger See",
@@ -6011,7 +6060,7 @@
       "location": "Starnberg",
       "address": "Museum Starnberger See, Possenhofener Str. 5, 82319 Starnberg",
       "description": "Abendführung durch die Sonderausstellung. 5€ zzgl. Eintritt.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kunst",
         "kultur",
@@ -6032,15 +6081,16 @@
       "address": "",
       "description": "Nach 60 Jahren auf der Buehne die allerletzte Tournee.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 277
+      "id": 277,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Deutscher Ballettwettbewerb",
@@ -6106,7 +6156,7 @@
       "location": "Steinebach (Wörthsee)",
       "address": "Bahnhofstraße, 82237 Landkreis Starnberg",
       "description": "Saisonstart-Tour: Rennrad/Graveltour entlang der Seen über Andechs. 38 km, 380 Hm, Durchschnitt 20 km/h, durchgehend Asphalt. Optional Pause beim Bernhardshof ('Omas Kuchen').",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
         "natur",
@@ -6126,9 +6176,10 @@
       "location": "Herrsching",
       "address": "Nikolausstraße 11, 82211 Herrsching am Ammersee",
       "description": "Handballspieltag: 14:30 Damen II, 16:30 Herren I, 18:30 Damen I. Nikolaushalle.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
-        "sport"
+        "sport",
+        "handball"
       ],
       "url": "https://www.herrsching.de/aktuelles/veranstaltungskalender/veranstaltung?view=publish&item=eventDate&id=2267",
       "source": "herrsching-gemeinde",
@@ -6144,16 +6195,17 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Sechs Stunden lang der ultimative Schlagerspass.",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 283
+      "id": 283,
+      "artTags": [
+        "musik",
+        "wellness"
+      ]
     },
     {
       "title": "Sarah Connor - Live 2026",
@@ -6163,13 +6215,15 @@
       "address": "",
       "description": "Mit neuem Album im Gepaeck in die Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 284
+      "id": 284,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Osterchallenge 2026 - Woche 1",
@@ -6256,16 +6310,16 @@
       "address": "",
       "description": "Buntes Fest fuer die ganze Familie am Ostersonntag.",
       "category": "familie",
-      "tags": [
-        "kinder",
-        "fest"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 289
+      "id": 289,
+      "artTags": [
+        "fest",
+        "wellness"
+      ]
     },
     {
       "title": "Osterchallenge 2026 - Woche 2",
@@ -6294,7 +6348,7 @@
       "location": "Gilching",
       "address": "Marktplatz, 82205 Gilching",
       "description": "Gesellige Feierabend-Radtour, 25-30 km, ca. 3 Stunden inkl. Einkehr. Wöchentlich freitags April-August. Kostenlos.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "radsport",
@@ -6315,15 +6369,15 @@
       "address": "",
       "description": "Feier 10 Jahre happy, holy & confident.",
       "category": "familie",
-      "tags": [
-        "fest"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 292
+      "id": 292,
+      "artTags": [
+        "fest"
+      ]
     },
     {
       "title": "Wechseljahre – Workshop",
@@ -6353,16 +6407,15 @@
       "address": "",
       "description": "Finale Gaensehautmomente mit dem RMC-Symphonieorchester.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 294
+      "id": 294,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Ana und August Zirner – Lesung: Ella und Laura",
@@ -6390,10 +6443,11 @@
       "location": "Gauting",
       "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
       "description": "Wöchentliche Radtour in die Umgebung von Gauting. Abwechselnd naturkundliche Touren und Cappuccino-Touren. Wiederkehrend dienstags.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
-        "natur"
+        "natur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188021-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
@@ -6485,15 +6539,16 @@
       "address": "",
       "description": "Referent: Christian Koebele, Landesbund fuer Vogel- und Naturschutz Muenchen (LBV). Vortrag ueber bedrohte Amphibien in Muenchen.",
       "category": "familie",
-      "tags": [
-        "natur"
-      ],
       "url": "https://www.hellabrunn.de/eventdetailseite/bedrohte-pioniere-wechselkroete-und-laubfrosch-in-muenchen",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 301
+      "id": 301,
+      "artTags": [
+        "natur",
+        "bildung"
+      ]
     },
     {
       "id": 302,
@@ -6541,15 +6596,15 @@
       "address": "",
       "description": "Kevin Parker mit seinem Projekt Tame Impala in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 304
+      "id": 304,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Theater der Ruhr: \"S wie Schädel\"",
@@ -6596,10 +6651,11 @@
       "location": "Gilching",
       "address": "Marktplatz, 82205 Gilching",
       "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
-        "natur"
+        "natur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187667-gilchinger-feierabendtour",
       "source": "adfc-touren",
@@ -6635,15 +6691,15 @@
       "address": "",
       "description": "Das fruehere Mitglied von One Direction in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 309
+      "id": 309,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Spartan Race Muenchen - Beginn Dein Abenteuer",
@@ -6653,16 +6709,17 @@
       "address": "",
       "description": "Urban trifft Natur in historischer Sportstaette.",
       "category": "familie",
-      "tags": [
-        "natur",
-        "sport"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 310
+      "id": 310,
+      "artTags": [
+        "kultur",
+        "sport",
+        "natur"
+      ]
     },
     {
       "title": "Jurassic World: The Experience - Die Ausstellung",
@@ -6672,15 +6729,16 @@
       "address": "",
       "description": "Interaktive Ausstellung in der Kleinen Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "kunst"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 311
+      "id": 311,
+      "artTags": [
+        "kunst",
+        "indoor"
+      ]
     },
     {
       "title": "Yoga & Brunch",
@@ -6709,15 +6767,15 @@
       "address": "",
       "description": "Arena-Tour fuehrt ihn in die Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 313
+      "id": 313,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Simon & Jan: Das Beste",
@@ -6801,10 +6859,11 @@
       "location": "Gauting",
       "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
       "description": "Geführte Radtour in die Umgebung von Gauting. Wechselnd naturkundliche Touren und Cappuccino-Touren.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
-        "natur"
+        "natur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188030-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
@@ -6839,7 +6898,7 @@
       "location": "Gauting",
       "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
       "description": "Zweiwöchentliche Tagestour ab Gauting zu naturkundlich, historisch oder kunsthistorisch interessanten Zielen im Südwesten von München. 50-60 km mit Steigungen, Einkehr inklusive. Rückkehr ca. 16 Uhr. Nichtmitglieder 5€.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
         "natur",
@@ -6860,16 +6919,15 @@
       "address": "",
       "description": "Die weltweit erfolgreichste Abba-Tribute-Show.",
       "category": "familie",
-      "tags": [
-        "führung",
-        "tanz"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 321
+      "id": 321,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "ADFC Gilchinger Feierabendtour",
@@ -6878,10 +6936,11 @@
       "location": "Gilching",
       "address": "Marktplatz, 82205 Gilching",
       "description": "Geführte Feierabend-Radtour in die nähere Umgebung, 20-30 km, oft mit Einkehr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
-        "natur"
+        "natur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187668-gilchinger-feierabendtour",
       "source": "adfc-touren",
@@ -6937,13 +6996,16 @@
       "address": "",
       "description": "Das groesste reine E-Bike Test-Event.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 325
+      "id": 325,
+      "artTags": [
+        "sport",
+        "radsport"
+      ]
     },
     {
       "title": "GaPa Vertical",
@@ -6953,17 +7015,17 @@
       "address": "",
       "description": "Ein Berglauf-Festival der Extraklasse: 650 Höhenmeter und steile Passagen am Weltcup-Hang. GaPa Vertical ist das Sport-Highlight im Frühjahr.",
       "category": "familie",
-      "tags": [
-        "fest",
-        "natur",
-        "sport"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/afaf1fd2-e898-49d2-8f66-8752632de21e/gapa-vertical",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 326
+      "id": 326,
+      "artTags": [
+        "sport",
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "KörperBewusstSein II – Innere Orientierung & Stabilität",
@@ -7014,15 +7076,15 @@
       "address": "",
       "description": "Spektakulaere Freestyle-Motocross-Show.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 329
+      "id": 329,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Uli Singers - Konzert",
@@ -7069,17 +7131,17 @@
       "address": "",
       "description": "Dein Heimatlauf mit 3 verschiedenen Strecken rund um Garmisch-Partenkirchen. Start am Olympia Skistadion. Trail-Running-Festival für alle Levels.",
       "category": "familie",
-      "tags": [
-        "fest",
-        "sport",
-        "brauchtum"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/3f9156fc-0d25-4982-9727-547c6775daf6/rab-gapa-trail",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 332
+      "id": 332,
+      "artTags": [
+        "kultur",
+        "fest",
+        "laufen"
+      ]
     },
     {
       "title": "Blutspende",
@@ -7089,7 +7151,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende-1",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -7105,15 +7170,16 @@
       "address": "",
       "description": "Lesung aus dem aktuellen Roman Eine von uns",
       "category": "erwachsene",
-      "tags": [
-        "literatur"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=156&cHash=5d7d9e07c531225aa730ec48e2d67ab2",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 334
+      "id": 334,
+      "artTags": [
+        "kultur",
+        "bildung"
+      ]
     },
     {
       "title": "5 Seconds Of Summer - Everyone's A Star! World Tour",
@@ -7123,15 +7189,15 @@
       "address": "",
       "description": "Die vier australischen Freunde in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 335
+      "id": 335,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "ADFC Nachmittagstour Gauting",
@@ -7140,10 +7206,11 @@
       "location": "Gauting",
       "address": "Rathaus, Bahnhofstraße 7, 82131 Gauting",
       "description": "Geführte Radtour in die Umgebung von Gauting. Wechselnd naturkundliche Touren und Cappuccino-Touren.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
-        "natur"
+        "natur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/188032-wochentliche-nachmittagstour-in-gauting",
       "source": "adfc-touren",
@@ -7199,15 +7266,16 @@
       "address": "",
       "description": "Rap-Duo in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 339
+      "id": 339,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Michael Patrick Kelly - Tournee 2026",
@@ -7217,16 +7285,16 @@
       "address": "",
       "description": "Der irisch-amerikanische Musiker in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 340
+      "id": 340,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Ramsee – Radtour durch den westlichen Landkreis",
@@ -7235,7 +7303,7 @@
       "location": "Gilching",
       "address": "Am Markt, 82205 Gilching",
       "description": "Rundtour (52 km, 400 Hm) zum verlassenen Dorf Ramsee zwischen Andechs und Wartaweil. Einkehr im Herrschinger Mühlfelder Brauhaus. Anmeldung erforderlich!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "radsport",
@@ -7255,7 +7323,7 @@
       "location": "Wolfratshausen",
       "address": "Parkplatz Isar-Loisach Stadion, Kräuterstraße 29",
       "description": "Traditionelles Anradeln zum Saisonstart des RSC Wolfratshausen.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "radsport"
@@ -7274,11 +7342,12 @@
       "location": "Gilching",
       "address": "Am Markt, 82205 Gilching",
       "description": "Abwechslungsreiche Rundtour (52 km, 400 Hm) durch den westlichen Landkreis zum seit 1860 verlassenen, vom Wald verschluckten Dorf Ramsee. Einkehr im Herrschinger Brauhaus. Anmeldung erforderlich!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "radsport",
         "natur",
-        "kultur"
+        "kultur",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/187880-ramsee",
       "source": "adfc-touren",
@@ -7295,16 +7364,17 @@
       "address": "",
       "description": "Volksmusik modern interpretiert, erstmals in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 344
+      "id": 344,
+      "artTags": [
+        "musik",
+        "natur",
+        "indoor"
+      ]
     },
     {
       "title": "Stressmanagement Workshop",
@@ -7374,7 +7444,8 @@
         "radsport",
         "natur",
         "kultur",
-        "bildung"
+        "bildung",
+        "radtour"
       ],
       "url": "https://touren-termine.adfc.de/radveranstaltung/186565-rote-route-der-via-zeitreise",
       "source": "adfc-touren",
@@ -7464,17 +7535,17 @@
       "location": "BecCult",
       "address": "",
       "description": "Werke von Mozart, Bruch und Dvorak. Solist: Maurice Poschenrieder. Künstlerische Leitung: Anton Bernhard",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "natur"
-      ],
+      "category": "familie",
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=67&cHash=d4a5bd8ff7aac6a788ce384bab2a57be",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 353
+      "id": 353,
+      "artTags": [
+        "musik",
+        "natur"
+      ]
     },
     {
       "title": "GaPa Everesting-Festival",
@@ -7484,17 +7555,17 @@
       "address": "",
       "description": "Premiere für das GaPa Everesting-Festival: 18 Runden am Eckbauer, die Höhenmeter des Mount Everest erlaufen. Solo oder im Team – das ultimative Berg-Festival.",
       "category": "familie",
-      "tags": [
-        "fest",
-        "natur",
-        "sport"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/6348613b-f51d-4808-920f-ab8c52ff7644/gapa-everesting-festival",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 354
+      "id": 354,
+      "artTags": [
+        "natur",
+        "fest",
+        "laufen"
+      ]
     },
     {
       "title": "Konzert der Philharmonie Starnberger See e.V.",
@@ -7503,7 +7574,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Konzert der Philharmonie Starnberger See e.V. 20:00-22:30 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik"
       ],
@@ -7673,17 +7744,17 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Jubilaeumskonzert zum 30-jaehrigen Bestehen.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 364
+      "id": 364,
+      "artTags": [
+        "musik",
+        "sport"
+      ]
     },
     {
       "title": "Milonga La Luz – Tango Argentino",
@@ -7711,15 +7782,16 @@
       "address": "",
       "description": "Der Godfather des Bluesrock in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 366
+      "id": 366,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Lesung: Martina Bogdahn – Mirabellentage",
@@ -7748,17 +7820,17 @@
       "address": "",
       "description": "Dieser besondere Konzertabend ist aus der legendären Aufführung von Tango, Tango im Münchner Hofspielhaus entstanden.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "theater",
-        "führung"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=157&cHash=09cbae3f9f60cde64be8330a9bbcc71d",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 368
+      "id": 368,
+      "artTags": [
+        "musik",
+        "theater",
+        "bildung"
+      ]
     },
     {
       "title": "Woche der Militärmusik 2026",
@@ -7768,16 +7840,16 @@
       "address": "",
       "description": "Vom 18. bis 21. Mai 2026: Die Woche der Militärmusik mit verschiedenen Militärmusikkorps aus ganz Deutschland. Ein besonderes Festival der Blasmusik.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "fest"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/db07af64-6fbf-4407-a90c-a3c4322cd031/woche-der-militaermusik-2026",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 369
+      "id": 369,
+      "artTags": [
+        "musik",
+        "fest"
+      ]
     },
     {
       "title": "Missverstandene Insekten: Wespe, Hornisse und Co.",
@@ -7787,15 +7859,16 @@
       "address": "",
       "description": "Referent: Hans Gressirer, BUND Naturschutz e.V., Kreisgruppe Muenchen. Vortrag ueber missverstandene Insekten.",
       "category": "familie",
-      "tags": [
-        "natur"
-      ],
       "url": "https://www.hellabrunn.de/eventdetailseite/missverstandene-insekten-wespe-hornisse-und-co",
       "source": "hellabrunn",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 370
+      "id": 370,
+      "artTags": [
+        "natur",
+        "bildung"
+      ]
     },
     {
       "title": "Deutsche Heißluftballon-Meisterschaft 2026",
@@ -7804,18 +7877,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Rund 25 Piloten aus der deutschen Rangliste sowie internationale Wettbewerbspiloten messen sich in diesem Highlight-Wettbewerb. Sportliches Festival der Ballonfahrer mit Starts in den frühen Morgenstunden und am späten Nachmittag. 20.-23. Mai 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "kulinarisch",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/sportballon",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 371
+      "id": 371,
+      "artTags": [
+        "sport",
+        "fest"
+      ]
     },
     {
       "title": "HG. Butzko: Der will nicht nur spielen",
@@ -7843,18 +7915,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Rund 25 Piloten aus der deutschen Rangliste sowie internationale Wettbewerbspiloten messen sich in diesem Highlight-Wettbewerb. Sportliches Festival der Ballonfahrer mit Starts in den frühen Morgenstunden und am späten Nachmittag. 20.-23. Mai 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "kulinarisch",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/sportballon",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 373
+      "id": 373,
+      "artTags": [
+        "sport",
+        "fest"
+      ]
     },
     {
       "title": "Deutsche Heißluftballon-Meisterschaft 2026",
@@ -7863,18 +7934,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Rund 25 Piloten aus der deutschen Rangliste sowie internationale Wettbewerbspiloten messen sich in diesem Highlight-Wettbewerb. Sportliches Festival der Ballonfahrer mit Starts in den frühen Morgenstunden und am späten Nachmittag. 20.-23. Mai 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "kulinarisch",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/sportballon",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 374
+      "id": 374,
+      "artTags": [
+        "sport",
+        "fest"
+      ]
     },
     {
       "title": "Lord of the Dance - Live-Tour 2026",
@@ -7884,16 +7954,15 @@
       "address": "",
       "description": "Zum 30-jaehrigen Jubilaeum der erfolgreichsten Tanzproduktion.",
       "category": "familie",
-      "tags": [
-        "führung",
-        "tanz"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 375
+      "id": 375,
+      "artTags": [
+        "tanz"
+      ]
     },
     {
       "title": "Deutsche Heißluftballon-Meisterschaft 2026",
@@ -7902,18 +7971,17 @@
       "location": "Tegernseer Tal",
       "address": "",
       "description": "Rund 25 Piloten aus der deutschen Rangliste sowie internationale Wettbewerbspiloten messen sich in diesem Highlight-Wettbewerb. Sportliches Festival der Ballonfahrer mit Starts in den frühen Morgenstunden und am späten Nachmittag. 20.-23. Mai 2026.",
-      "category": "erwachsene",
-      "tags": [
-        "fest",
-        "kulinarisch",
-        "sport"
-      ],
+      "category": "familie",
       "url": "https://www.tegernsee.com/sportballon",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 376
+      "id": 376,
+      "artTags": [
+        "sport",
+        "fest"
+      ]
     },
     {
       "title": "Fundación Real Madrid Fußballcamp",
@@ -7962,15 +8030,15 @@
       "address": "",
       "description": "Der erfolgreichste Schweizer Kuenstler mit brandneuer Show.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 379
+      "id": 379,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "id": 380,
@@ -7999,15 +8067,16 @@
       "address": "",
       "description": "Frei.Wild auf Tour mit neuem Album.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 381
+      "id": 381,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Mein Buch der Phantasie - Kinder-Ferienkurs",
@@ -8075,7 +8144,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Konzert von Federspiel mit dem Programm Wir und Jetzt. 19:30-22:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik"
       ],
@@ -8094,15 +8163,16 @@
       "address": "",
       "description": "Zwei Open Airs in der Allianz Arena.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 386
+      "id": 386,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Bavaria Königsmarsch – 50 km Nachtwanderung",
@@ -8111,7 +8181,7 @@
       "location": "Starnberger See",
       "address": "Starnberger See, 82319 Starnberg",
       "description": "Kult-Nacht-Ultrawanderung: 50 km rund um den Starnberger See. Max. 300 Teilnehmer. Anlässlich des 140. Todestags von König Ludwig II.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "wandern"
@@ -8130,7 +8200,7 @@
       "location": "Wolfratshausen",
       "address": "Innenhof des Rathauses, Marienplatz 1, 82515 Wolfratshausen",
       "description": "Deutsch-französisch-polnische Band im Rathausinnenhof. Akustische Weltmusik.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
         "kultur"
@@ -8150,13 +8220,16 @@
       "address": "",
       "description": "Gong 96.3 laedt zum groessten Picknick der Stadt.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 389
+      "id": 389,
+      "artTags": [
+        "fest",
+        "natur"
+      ]
     },
     {
       "title": "Yoga & Cake",
@@ -8222,17 +8295,15 @@
       "address": "",
       "description": "6000 Kinder singen im Chor ein eigenes Arena-Konzert.",
       "category": "kinder",
-      "tags": [
-        "musik",
-        "führung",
-        "kinder"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 393
+      "id": 393,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Foo Fighters - TAKE COVER TOUR 2026",
@@ -8241,17 +8312,16 @@
       "location": "Allianz Arena",
       "address": "",
       "description": "Mitreissendes Konzert in der Allianz Arena.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "führung"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 394
+      "id": 394,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Hinterglasmalerei",
@@ -8280,15 +8350,15 @@
       "address": "",
       "description": "Der Salomon Zugspitz Ultra Trail powered by UTMB – eines der größten Trailrunning-Events Europas rund um die Zugspitze. Mehrere Distanzen über mehrere Tage.",
       "category": "familie",
-      "tags": [
-        "tanz"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/b590190e-4d1d-4b55-9fff-9a798f5409a3/salomon-zugspitz-ultratrail-by-utmb",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 396
+      "id": 396,
+      "artTags": [
+        "tanz"
+      ]
     },
     {
       "title": "Johannisfeier Tennis – DJK-SV Berg",
@@ -8336,13 +8406,15 @@
       "address": "",
       "description": "Einer der bekanntesten Comedians Grossbritanniens.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 399
+      "id": 399,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Poetry Slam – Sommer Session (Open Air)",
@@ -8351,7 +8423,7 @@
       "location": "Wolfratshausen",
       "address": "Garten der Stadtbücherei, Hammerschmiedweg 3, 82515 Wolfratshausen",
       "description": "Poetry Slam draußen im Garten! Wortkünstler und Sprachakrobaten.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kultur",
         "show"
@@ -8447,16 +8519,15 @@
       "address": "",
       "description": "Blues-Legende und Italiens erfolgreichster Musiker.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 405
+      "id": 405,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Film im Kino Breitwand: \"Erde\"",
@@ -8504,17 +8575,16 @@
       "location": "Allianz Arena",
       "address": "",
       "description": "Open Air Konzerte in der Allianz Arena.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "führung"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 408
+      "id": 408,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "SUP Yoga Teacher Training (20h)",
@@ -8545,15 +8615,15 @@
       "address": "",
       "description": "Actionpark mit Wohnzimmer-Flair fuer Jung und Alt.",
       "category": "familie",
-      "tags": [
-        "sport"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 410
+      "id": 410,
+      "artTags": [
+        "sport"
+      ]
     },
     {
       "title": "Blutspende",
@@ -8563,7 +8633,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende-1-1",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -8617,17 +8690,17 @@
       "address": "",
       "description": "Weltklasse der Kammermusik beim 36. Internationalen Musikfest am Tegernsee. Begegnungen mit hochkarätigen Solisten, Spitzen-Ensembles und hochbegabten Nachwuchskünstlern. 2.-10. Juli 2026.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "fest",
-        "natur"
-      ],
       "url": "https://musikfest-am-tegernsee.de/",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 414
+      "id": 414,
+      "artTags": [
+        "musik",
+        "natur",
+        "fest"
+      ]
     },
     {
       "title": "Nina Chuba - Live '26",
@@ -8636,16 +8709,16 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Nina Chuba kehrt fuer 3 Konzerte nach Muenchen zurueck.",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 415
+      "id": 415,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Die Toten Hosen - Trink Aus! Wir Muessen Gehen - Tour 2026",
@@ -8655,16 +8728,16 @@
       "address": "",
       "description": "Open Air auf dem Hans-Jochen-Vogel-Platz.",
       "category": "familie",
-      "tags": [
-        "führung",
-        "kulinarisch"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 416
+      "id": 416,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Antigone, Elektra oder Sphinx",
@@ -8806,15 +8879,15 @@
       "address": "",
       "description": "Die erfolgreichste Band Suedkoreas in der Allianz Arena.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 424
+      "id": 424,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Sara Brandhuber – A scheena Schmarrn!",
@@ -8883,15 +8956,15 @@
       "address": "",
       "description": "Der grosse Firmenlauf der Region Muenchen.",
       "category": "familie",
-      "tags": [
-        "sport"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 428
+      "id": 428,
+      "artTags": [
+        "laufen"
+      ]
     },
     {
       "title": "Helene Fischer - 360 Grad Stadion Tour",
@@ -8901,15 +8974,16 @@
       "address": "",
       "description": "Open-Air-Premiere in der Allianz Arena mit 360-Grad-Buehne.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 429
+      "id": 429,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Sommernachtstraum - Einfach immer wieder atraum!",
@@ -8919,13 +8993,17 @@
       "address": "",
       "description": "Muenchens grosses Open-Air-Event im Olympiapark.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 430
+      "id": 430,
+      "artTags": [
+        "musik",
+        "fest",
+        "show"
+      ]
     },
     {
       "title": "Stockschützen Turnier der Vereine Gilching",
@@ -8934,7 +9012,7 @@
       "location": "Gilching",
       "address": "Stockschützenheim, Talhofstr. 1, 82205 Gilching",
       "description": "Turnier für Nicht-Stockschützen-Vereine. Stöcke zum Ausleihen, schöne Sachpreise.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "stockschießen"
@@ -9007,7 +9085,7 @@
       "location": "Gilching",
       "address": "Marktplatz, 82205 Gilching",
       "description": "Ganztages-Radtour von Gilching nach Klais, Schloss Elmau, Lautersee, Ferchensee und Leutaschklamm. 07:00-20:00 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "radsport",
@@ -9028,7 +9106,7 @@
       "location": "Starnberg",
       "address": "Bayerische Seenschifffahrt, Dampfschiffstr. 1, 82319 Starnberg",
       "region": "starnberger-see",
-      "category": "erwachsene",
+      "category": "familie",
       "description": "Entdeckungsreise mit Historikerin, 3-Gänge Menü, Musik und Erzählungen über König Ludwig II.",
       "url": "https://www.seenschifffahrt.de/de/starnberger-see/erlebnisfahrten/",
       "source": "seenschifffahrt.de",
@@ -9046,15 +9124,15 @@
       "address": "",
       "description": "24 Tage Erlebniswelt mit buntem Programm.",
       "category": "familie",
-      "tags": [
-        "fest"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 437
+      "id": 437,
+      "artTags": [
+        "fest"
+      ]
     },
     {
       "title": "Starnberger See Schwimmen – Possenhofen/Leoni",
@@ -9063,7 +9141,7 @@
       "location": "Pöcking",
       "address": "Beach Paradies, Kurt-Stieler-Str., Possenhofen",
       "description": "Freiwasser-Schwimmwettbewerb: 2 km oder 4 km im Starnberger See. Max. 500 Teilnehmer. Ab Jahrgang 2012.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "schwimmen"
@@ -9158,16 +9236,17 @@
       "address": "",
       "description": "Traditionell am letzten Sonntag im August stehen die Rösser im Mittelpunkt. Über 200 Pferde mit restaurierten Wägen und Kutschen ziehen in einem fünf Kilometer langen Zug zum Festplatz. Blaskapellen, Spielmannszüge und Trachtengruppen begleiten das Fest.",
       "category": "familie",
-      "tags": [
-        "fest",
-        "brauchtum"
-      ],
       "url": "https://www.tegernsee.com/rosstag",
       "source": "tegernsee",
       "region": "tegernsee",
       "venue": null,
       "isHighlight": true,
-      "id": 443
+      "id": 443,
+      "artTags": [
+        "musik",
+        "kultur",
+        "fest"
+      ]
     },
     {
       "title": "Blutspende",
@@ -9177,7 +9256,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende-1-1-1",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -9193,16 +9275,16 @@
       "address": "",
       "description": "A$AP Rocky in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 445
+      "id": 445,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "AnnenMayKantereit - Live 2026",
@@ -9211,17 +9293,17 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Grosse Live-Tour mit Konzert in der Olympiahalle.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "führung"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 446
+      "id": 446,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Selbsterfahrung mit Ton",
@@ -9270,13 +9352,15 @@
       "address": "",
       "description": "Ein humoristischer Streifzug zum Schmunzeln und Schunkeln, zum Lachen und Genießen",
       "category": "familie",
-      "tags": [],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=158&cHash=17700f5bf8f90a9e21356d2d3a77e6fb",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 449
+      "id": 449,
+      "artTags": [
+        "kultur"
+      ]
     },
     {
       "title": "Duende – LOISACHJAZZ (Harfe & Elektronik)",
@@ -9327,15 +9411,16 @@
       "address": "",
       "description": "Alternative Rock- und Nu Metal-Band zurueck in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 452
+      "id": 452,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "50 Jahre Handballabteilung – DJK-SV Berg",
@@ -9383,15 +9468,16 @@
       "address": "",
       "description": "Zwei Shows in der Olympiahalle Muenchen.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 455
+      "id": 455,
+      "artTags": [
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Poetry Slam – Herbst Session",
@@ -9400,7 +9486,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Wortkünstler und Sprachakrobaten im Herbst-Wettstreit.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "kultur",
         "show"
@@ -9422,7 +9508,8 @@
       "category": "familie",
       "artTags": [
         "sport",
-        "laufen"
+        "laufen",
+        "tanz"
       ],
       "url": "https://gilching-laeuft.de",
       "source": "gilching-laeuft",
@@ -9476,7 +9563,7 @@
       "location": "Gauting",
       "address": "Gauting (Strecke wird bekanntgegeben)",
       "description": "Traditioneller Staffellauf mit 6 Läufern pro Team. Großes Lauf-Sportfest.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "sport",
         "laufen"
@@ -9495,7 +9582,7 @@
       "location": "Starnberg",
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Tribute-Konzert 'Simon & Garfunkel meets Classic'. 20:00-22:20 Uhr.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik"
       ],
@@ -9533,15 +9620,16 @@
       "address": "",
       "description": "Standup-Comedy an drei Abenden in der Olympiahalle.",
       "category": "erwachsene",
-      "tags": [
-        "theater"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 463
+      "id": 463,
+      "artTags": [
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Lou Hoffner & Gedeon Burkhard – Liebe, Lust und Hexenschuss",
@@ -9550,7 +9638,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Theater-Komödie: Ein alterndes Ehepaar vor den Scherben seiner Ehe. Angriff auf die Lachmuskeln!",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "theater",
         "show"
@@ -9589,15 +9677,15 @@
       "address": "",
       "description": "Reinhold Messner live im Kongresshaus: Berge, an denen Geschichte geschrieben wurde. Ein besonderes Highlight für alle Bergbegeisterten.",
       "category": "familie",
-      "tags": [
-        "natur"
-      ],
       "url": "https://www.gapa-tourismus.de/veranstaltungskalender#/veranstaltungen/BAY/9cb0ae96-0cf7-4ddc-bb97-88c8b01b2d1d/reinhold-messner----weltberge---die-4--dimension-",
       "source": "gapa",
       "region": "werdenfels",
       "venue": null,
       "isHighlight": true,
-      "id": 466
+      "id": 466,
+      "artTags": [
+        "natur"
+      ]
     },
     {
       "title": "The World of Hans Zimmer - A New Dimension",
@@ -9607,16 +9695,15 @@
       "address": "",
       "description": "Die groessten Hits der Filmmusik von Hans Zimmer.",
       "category": "familie",
-      "tags": [
-        "musik",
-        "kino"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 467
+      "id": 467,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "BRUSTMANN, SCHÄFER, HORN - Literatur/Lesung",
@@ -9645,13 +9732,15 @@
       "address": "",
       "description": "Comedienne mit neuem Buehnenprogramm.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 469
+      "id": 469,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Blutspende",
@@ -9661,7 +9750,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende-2",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -9677,17 +9769,17 @@
       "address": "",
       "description": "Erich Kasberger - Was die Welt nicht braucht",
       "category": "erwachsene",
-      "tags": [
-        "theater",
-        "natur",
-        "brauchtum"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=159&cHash=31bfc9d6580319babacf3f3e4662a1bd",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 471
+      "id": 471,
+      "artTags": [
+        "kultur",
+        "natur",
+        "show"
+      ]
     },
     {
       "title": "Malen auf kleinen Leinwänden",
@@ -9716,15 +9808,16 @@
       "address": "",
       "description": "Crossover von Klassik und Rock in der Kleinen Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 473
+      "id": 473,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Disney in Concert - Die Jubilaeumstournee",
@@ -9734,15 +9827,15 @@
       "address": "",
       "description": "Wishes and Wonders in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 474
+      "id": 474,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Let's Dance - Live-Tour 2026",
@@ -9752,16 +9845,16 @@
       "address": "",
       "description": "Leidenschaftliche Tangos und Discofox in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung",
-        "tanz"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 475
+      "id": 475,
+      "artTags": [
+        "indoor",
+        "tanz"
+      ]
     },
     {
       "title": "Nico Santos - Arena Tour 2026",
@@ -9771,15 +9864,16 @@
       "address": "",
       "description": "Singer-Songwriter in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 476
+      "id": 476,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Phantastische Blätterwesen",
@@ -9807,7 +9901,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Live Multivision von Hartmut Krinitz: Leuchttürme, Sandstrände, die raue Küste der Bretagne.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "show",
         "bildung",
@@ -9828,15 +9922,17 @@
       "address": "",
       "description": "Legendaere 90er-Jahre Live-Acts in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "fest"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 479
+      "id": 479,
+      "artTags": [
+        "fest",
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Schlagergang",
@@ -9846,15 +9942,15 @@
       "address": "",
       "description": "Die Schlagergang - Aber bitte mit Schlager!",
       "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.beccult.de/veranstaltungen/veranstaltungen/veranstaltungskalender/veranstaltung?tx_communicecalendar_calendar%5Baction%5D=show&tx_communicecalendar_calendar%5Bcontroller%5D=Event&tx_communicecalendar_calendar%5Bevent%5D=95&cHash=fd25a73e805ca1ad0c28f5ddc69cf192",
       "source": "beccult",
       "region": "poecking",
       "venue": null,
       "isHighlight": false,
-      "id": 480
+      "id": 480,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Der Gott des Gemetzels – Theater auf Bairisch",
@@ -9863,7 +9959,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Yasmina Rezas Kultkomödie in bairischer Sprache. Mit Ina Meling, Cornelia von Fürstenberg u.a.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "theater",
         "kultur"
@@ -9883,15 +9979,15 @@
       "address": "",
       "description": "Bill und Tom Kaulitz in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 482
+      "id": 482,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Andechser Advents- und Spanschachtel-Markt 2026",
@@ -9977,13 +10073,15 @@
       "address": "",
       "description": "Bauchredner und Comedian in der Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 487
+      "id": 487,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "30. LA VILLA Weihnachtsmarkt",
@@ -10012,13 +10110,16 @@
       "address": "",
       "description": "Weihnachtsspektakel der weltberuehmten Sopranistin.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 489
+      "id": 489,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "BAP - Fuenfzig Jahre - Die Zielgerade",
@@ -10027,16 +10128,16 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Jubilaeumskonzert zum 50-jaehrigen Bestehen.",
-      "category": "erwachsene",
-      "tags": [
-        "musik"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 490
+      "id": 490,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Chris Tall - Keep Laughing 2026",
@@ -10046,15 +10147,16 @@
       "address": "",
       "description": "Standup-Comedy in der Olympiahalle.",
       "category": "erwachsene",
-      "tags": [
-        "theater"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 491
+      "id": 491,
+      "artTags": [
+        "show",
+        "indoor"
+      ]
     },
     {
       "title": "Weihnachtsbacken im LA VILLA",
@@ -10101,7 +10203,7 @@
       "location": "Wolfratshausen",
       "address": "Loisachhalle Foyer, Hammerschmiedweg 6, 82515 Wolfratshausen",
       "description": "Weihnachtlicher Swing & Jazz der Extraklasse. Mini Big Band Sound.",
-      "category": "erwachsene",
+      "category": "familie",
       "artTags": [
         "musik",
         "kultur",
@@ -10122,13 +10224,15 @@
       "address": "",
       "description": "Weihnachts-Spektakel in der Olympiahalle.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 495
+      "id": 495,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Wolfgang Krebs – Die Weihnachts-Gala",
@@ -10158,13 +10262,15 @@
       "address": "",
       "description": "Live-Vortrag des renommierten Rechtsmediziners.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 497
+      "id": 497,
+      "artTags": [
+        "bildung"
+      ]
     },
     {
       "title": "PUR - ARENA TOUR 2026",
@@ -10174,15 +10280,15 @@
       "address": "",
       "description": "Die Legenden des deutschen Pop im Advent 2026.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 498
+      "id": 498,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Selbst im Bild",
@@ -10211,15 +10317,15 @@
       "address": "",
       "description": "Einzigartiges Musik-Event: Klassik trifft auf Pop.",
       "category": "familie",
-      "tags": [
-        "musik"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 500
+      "id": 500,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Blutspende",
@@ -10229,7 +10335,10 @@
       "address": "Vogelanger 2, 82319 Starnberg",
       "description": "Blutspendetermin in der Schlossberghalle Starnberg. 16:00-20:00 Uhr.",
       "category": "erwachsene",
-      "artTags": [],
+      "artTags": [
+        "natur",
+        "indoor"
+      ],
       "url": "https://www.starnberg.de/blutspende-2-1",
       "source": "starnberg-stadt",
       "region": "starnberger-see",
@@ -10244,16 +10353,18 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Maenner-Weltmeisterschaft im Handball.",
-      "category": "erwachsene",
-      "tags": [
-        "fest"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 502
+      "id": 502,
+      "artTags": [
+        "sport",
+        "fest",
+        "handball"
+      ]
     },
     {
       "title": "Die Fantastischen Vier - Der letzte Bus - Final Tour 26-28",
@@ -10263,15 +10374,15 @@
       "address": "",
       "description": "Farewell-Tournee mit zwei letzten Auftritten in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 503
+      "id": 503,
+      "artTags": [
+        "indoor"
+      ]
     },
     {
       "title": "Night of Freestyle - Live 2027",
@@ -10281,13 +10392,16 @@
       "address": "",
       "description": "Spektakulaere Freestyle-Artisten.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 504
+      "id": 504,
+      "artTags": [
+        "sport",
+        "show"
+      ]
     },
     {
       "title": "Ina Mueller und Band - Die 6.0 Tour",
@@ -10297,15 +10411,15 @@
       "address": "",
       "description": "Entertainerin mit neuntem Studioalbum auf Tour.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 505
+      "id": 505,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Riverdance - 30 - Die neue Generation",
@@ -10315,15 +10429,15 @@
       "address": "",
       "description": "Irisches Steptanz-Spektakel zum 30-jaehrigen Jubilaeum.",
       "category": "familie",
-      "tags": [
-        "tanz"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 506
+      "id": 506,
+      "artTags": [
+        "tanz"
+      ]
     },
     {
       "title": "One Vision of Queen feat. Marc Martel",
@@ -10333,13 +10447,15 @@
       "address": "",
       "description": "Queen Tribute Show mit stimmlicher Reinkarnation von Freddie Mercury.",
       "category": "familie",
-      "tags": [],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 507
+      "id": 507,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "Oezcan Cosar - VIP",
@@ -10349,15 +10465,15 @@
       "address": "",
       "description": "Comedy die unterhaelt und nachhallt.",
       "category": "erwachsene",
-      "tags": [
-        "theater"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 508
+      "id": 508,
+      "artTags": [
+        "show"
+      ]
     },
     {
       "title": "LEA - Sieben Monde Arena Tour 2027",
@@ -10367,15 +10483,15 @@
       "address": "",
       "description": "Singer-Songwriterin auf grosser Arena Tour.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 509
+      "id": 509,
+      "artTags": [
+        "musik"
+      ]
     },
     {
       "title": "Herbert Groenemeyer - Arena-Tour 2027",
@@ -10384,17 +10500,17 @@
       "location": "Olympiahalle",
       "address": "",
       "description": "Doppelkonzert in der Olympiahalle.",
-      "category": "erwachsene",
-      "tags": [
-        "musik",
-        "führung"
-      ],
+      "category": "familie",
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 510
+      "id": 510,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Andrea Berg - Live 2027",
@@ -10404,16 +10520,15 @@
       "address": "",
       "description": "Imposante Arena-Tour mit 24 Staedten.",
       "category": "familie",
-      "tags": [
-        "führung",
-        "natur"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 511
+      "id": 511,
+      "artTags": [
+        "natur"
+      ]
     },
     {
       "title": "Il Volo - World Tour 2027",
@@ -10423,15 +10538,16 @@
       "address": "",
       "description": "Die drei charmanten Tenoere zurueck in Muenchen.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 512
+      "id": 512,
+      "artTags": [
+        "musik",
+        "show"
+      ]
     },
     {
       "title": "Pizzera & Jaus - Jetz kummst ma auf de Tour",
@@ -10441,15 +10557,16 @@
       "address": "",
       "description": "Austropop-Duo in der Olympiahalle.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 513
+      "id": 513,
+      "artTags": [
+        "musik",
+        "indoor"
+      ]
     },
     {
       "title": "Martin Ruetter - SCHLUSS! AUS!",
@@ -10459,15 +10576,15 @@
       "address": "",
       "description": "Abschiedstournee des Hundeskanzlers.",
       "category": "familie",
-      "tags": [
-        "führung"
-      ],
       "url": "https://www.olympiapark.de/de/veranstaltungen",
       "source": "olympiapark",
       "region": "muenchen",
       "venue": null,
       "isHighlight": false,
-      "id": 514
+      "id": 514,
+      "artTags": [
+        "show"
+      ]
     }
   ],
   "artTags": {

@@ -165,6 +165,7 @@ import Layout from '../layouts/Layout.astro';
       Quelle: DB IRIS API · Fallback: <a href="https://v6.db.transport.rest" target="_blank" rel="noopener">transport.rest API</a>
     </p>
   </div>
+  <div class="chart-tooltip" id="chart-tooltip"></div>
 </main>
 </Layout>
 
@@ -293,6 +294,17 @@ import Layout from '../layouts/Layout.astro';
   /* Footer */
   .s6-meta { font-size: 0.75rem; color: var(--color-text-tertiary, #999); text-align: center; line-height: 1.6; margin-top: var(--space-4); }
   .s6-meta a { color: var(--color-primary); }
+
+  /* ── Chart system ── */
+  :root { --chart-green: #16a34a; --chart-yellow: #d97706; --chart-red: #dc2626; --chart-line: #3b82f6; --chart-rush-bg: rgba(234,179,8,0.08); --chart-grid: rgba(0,0,0,0.06); }
+  :root.dark { --chart-green: #4ade80; --chart-yellow: #fbbf24; --chart-red: #f87171; --chart-line: #60a5fa; --chart-rush-bg: rgba(234,179,8,0.12); --chart-grid: rgba(255,255,255,0.06); }
+  .chart-container { width: 100%; overflow: hidden; }
+  .chart-container svg { width: 100%; height: auto; display: block; }
+  .chart-bar, .dist-bar, .hour-dot { cursor: pointer; }
+  .chart-bar:hover, .dist-bar:hover { opacity: 0.8; }
+  .hour-dot:hover { r: 7; }
+  .chart-tooltip { position: fixed; pointer-events: none; background: var(--color-card); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 8px 12px; font-size: 0.75rem; box-shadow: 0 4px 12px rgba(0,0,0,0.12); z-index: 1000; opacity: 0; transition: opacity 0.15s ease; color: var(--color-text); max-width: 200px; line-height: 1.5; }
+  .chart-tooltip.visible { opacity: 1; }
 </style>
 
 <script>
@@ -400,17 +412,17 @@ import Layout from '../layouts/Layout.astro';
     // Rush hour
     renderRush(d.rushHour);
 
-    // Distribution
-    renderDistribution(d.delayDistribution, total);
+    // Distribution (SVG histogram)
+    renderDistSVG(d.delayDistribution, total);
 
-    // Hourly
-    renderBarChart('hourly-chart', d.byHour, (h: any) => `${String(h.hour).padStart(2, '0')}:00`);
+    // Hourly (SVG line chart)
+    renderHourlyLineChart(d.byHour);
 
     // Weekday
     renderBarChart('weekday-chart', d.byWeekday, (w: any) => WEEKDAYS[w.weekday] || '?');
 
-    // Daily
-    renderBarChart('daily-chart', d.daily, (dd: any) => fmtDate(dd.date));
+    // Daily (SVG stacked bar chart)
+    renderDailyStackedChart(d.daily);
 
     // Worst delays
     renderWorst(d.worstDelays);
@@ -458,55 +470,75 @@ import Layout from '../layouts/Layout.astro';
     }).join('');
   }
 
-  function renderDistribution(dist: any[], total: number) {
+  function renderDistSVG(dist: any[], total: number) {
+    const el = $('dist-chart');
     const bucketOrder = ['exact', '0-1min', '1-2min', '2-3min', '3-4min', '4-5min', '5-10min', '10-20min', '20min+'];
-    const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1 Min', '1-2min': '1–2 Min', '2-3min': '2–3 Min', '3-4min': '3–4 Min', '4-5min': '4–5 Min', '5-10min': '5–10 Min', '10-20min': '10–20 Min', '20min+': '20+ Min' };
-    const bucketColors: Record<string, string> = { exact: '#16a34a', '0-1min': '#22c55e', '1-2min': '#4ade80', '2-3min': '#86efac', '3-4min': '#a3e635', '4-5min': '#84cc16', '5-10min': '#d97706', '10-20min': '#ea580c', '20min+': '#dc2626' };
+    const bucketLabels: Record<string, string> = { exact: 'Exakt', '0-1min': '0–1', '1-2min': '1–2', '2-3min': '2–3', '3-4min': '3–4', '4-5min': '4–5', '5-10min': '5–10', '10-20min': '10–20', '20min+': '20+' };
+    const bucketColors = ['#16a34a', '#22c55e', '#4ade80', '#84cc16', '#a3e635', '#eab308', '#d97706', '#ea580c', '#dc2626'];
 
-    // Separate running trains from cancelled for display
+    const counts: number[] = [];
     let totalCancelled = 0;
-    const cancelledByBucket: string[] = [];
-    const runningCounts: Record<string, number> = {};
-
-    for (const key of bucketOrder) {
+    bucketOrder.forEach((key) => {
       const item = dist.find((d: any) => d.bucket === key);
       const count = item?.count || 0;
       const cc = item?.cancelled_count || 0;
       totalCancelled += cc;
-      runningCounts[key] = count - cc;
-      if (cc > 0) cancelledByBucket.push(`${cc}× ${bucketLabels[key] || key}`);
+      counts.push(count - cc);
+    });
+    const maxCount = Math.max(...counts, 1);
+
+    const pad = { top: 20, right: 10, bottom: 46, left: 36 };
+    const W = 700, H = 240;
+    const cW = W - pad.left - pad.right;
+    const cH = H - pad.top - pad.bottom;
+    const gap = cW / counts.length;
+    const barW = Math.min(44, gap * 0.7);
+
+    let svg = '';
+    // Y grid
+    const yStep = Math.ceil(maxCount / 4) || 1;
+    for (let v = 0; v <= maxCount + yStep; v += yStep) {
+      if (v > maxCount * 1.1) break;
+      const y = pad.top + cH - (v / maxCount) * cH;
+      if (y < pad.top - 5) break;
+      svg += `<line x1="${pad.left}" y1="${y}" x2="${W - pad.right}" y2="${y}" stroke="var(--chart-grid)" stroke-width="1"/>`;
+      svg += `<text x="${pad.left - 6}" y="${y + 3}" text-anchor="end" fill="var(--color-text-secondary)" font-size="10" font-family="'Space Grotesk',sans-serif">${v}</text>`;
     }
 
-    const maxCount = Math.max(...Object.values(runningCounts), 1);
-
-    let html = bucketOrder.map(key => {
-      const running = runningCounts[key];
-      const w = (running / maxCount) * 100;
-      return `<div class="dist-row">
-        <span class="dist-row__label">${bucketLabels[key] || key}</span>
-        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
-          <div style="width:${w}%;height:100%;background:${bucketColors[key] || '#888'}"></div>
-        </div>
-        <span class="dist-row__val">${running}</span>
-      </div>`;
-    }).join('');
-
-    // Add cancelled row
-    if (totalCancelled > 0) {
-      const cw = (totalCancelled / maxCount) * 100;
-      html += `<div class="dist-row" style="margin-top:var(--space-2);padding-top:var(--space-2);border-top:1px dashed var(--color-border-light);">
-        <span class="dist-row__label" style="color:#dc2626;font-weight:600;">Ausfall</span>
-        <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);overflow:hidden;height:20px;">
-          <div style="width:${Math.min(cw, 100)}%;height:100%;background:#dc2626;opacity:0.6;background-image:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(0,0,0,0.15) 3px,rgba(0,0,0,0.15) 6px);"></div>
-        </div>
-        <span class="dist-row__val" style="color:#dc2626;">${totalCancelled}</span>
-      </div>`;
-      if (cancelledByBucket.length > 0) {
-        html += `<p style="font-size:0.6875rem;color:var(--color-text-tertiary, #aaa);margin-top:var(--space-1);">Ausfälle nach letzter Verspätung: ${cancelledByBucket.join(', ')}</p>`;
+    // Bars
+    counts.forEach((count, i) => {
+      const x = pad.left + i * gap + gap / 2 - barW / 2;
+      const barH = maxCount > 0 ? (count / maxCount) * cH : 0;
+      const y = pad.top + cH - barH;
+      if (count > 0) {
+        svg += `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" fill="${bucketColors[i]}" rx="3" class="dist-bar" data-label="${bucketLabels[bucketOrder[i]]}" data-count="${count}"/>`;
+        svg += `<text x="${x + barW / 2}" y="${y - 5}" text-anchor="middle" fill="var(--color-text)" font-size="10" font-weight="600" font-family="'Space Grotesk',sans-serif">${count}</text>`;
       }
-    }
+      svg += `<text x="${pad.left + i * gap + gap / 2}" y="${H - 10}" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9" font-family="'Space Grotesk',sans-serif">${bucketLabels[bucketOrder[i]]}</text>`;
+    });
+    svg += `<text x="${pad.left + cW / 2}" y="${H}" text-anchor="middle" fill="var(--color-text-tertiary, #aaa)" font-size="9">Minuten Verspätung</text>`;
 
-    $('dist-chart').innerHTML = html;
+    let cancelledHtml = '';
+    if (totalCancelled > 0) {
+      cancelledHtml = `<p style="font-size:0.75rem;color:var(--chart-red);margin-top:var(--space-2);text-align:center;">+ ${totalCancelled} Ausfälle (nicht in Verteilung enthalten)</p>`;
+    }
+    el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>${cancelledHtml}`;
+
+    // Tooltip
+    el.querySelectorAll('.dist-bar').forEach(bar => {
+      bar.addEventListener('mouseenter', (e: Event) => {
+        const t = e.target as HTMLElement;
+        const tip = $('chart-tooltip');
+        tip.innerHTML = `<strong>${t.dataset.label} Min</strong><br>${t.dataset.count} Züge`;
+        tip.classList.add('visible');
+      });
+      bar.addEventListener('mousemove', (e: MouseEvent) => {
+        const tip = $('chart-tooltip');
+        tip.style.left = (e.clientX + 12) + 'px';
+        tip.style.top = (e.clientY - 10) + 'px';
+      });
+      bar.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+    });
   }
 
   function renderBarChart(elId: string, rows: any[], labelFn: (r: any) => string) {
@@ -528,6 +560,150 @@ import Layout from '../layouts/Layout.astro';
         <span class="bar-row__val">${pct(r.on_time || 0, total)}%</span>
       </div>`;
     }).join('');
+  }
+
+  function renderDailyStackedChart(daily: any[]) {
+    const el = $('daily-chart');
+    if (!daily || daily.length === 0) { el.innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Daten</p>'; return; }
+
+    const pad = { top: 24, right: 10, bottom: 42, left: 40 };
+    const W = 700, H = 280;
+    const cW = W - pad.left - pad.right;
+    const cH = H - pad.top - pad.bottom;
+    const maxTotal = Math.max(...daily.map((d: any) => (d.on_time || 0) + (d.delayed || 0) + (d.cancelled || 0)), 1);
+    const gap = cW / daily.length;
+    const barW = Math.max(6, Math.min(26, gap * 0.7));
+
+    let svg = '';
+    // Y grid
+    const yStep = Math.ceil(maxTotal / 4) || 1;
+    const yMax = Math.ceil(maxTotal / yStep) * yStep;
+    for (let v = 0; v <= yMax; v += yStep) {
+      const y = pad.top + cH - (v / yMax) * cH;
+      svg += `<line x1="${pad.left}" y1="${y}" x2="${W - pad.right}" y2="${y}" stroke="var(--chart-grid)" stroke-width="1"/>`;
+      svg += `<text x="${pad.left - 6}" y="${y + 3}" text-anchor="end" fill="var(--color-text-secondary)" font-size="10" font-family="'Space Grotesk',sans-serif">${v}</text>`;
+    }
+
+    // Bars
+    const showEvery = daily.length > 14 ? 3 : daily.length > 7 ? 2 : 1;
+    daily.forEach((d: any, i: number) => {
+      const onTime = d.on_time || 0, delayed = d.delayed || 0, cancelled = d.cancelled || 0;
+      const total = onTime + delayed + cancelled;
+      const x = pad.left + i * gap + gap / 2 - barW / 2;
+      const baseY = pad.top + cH;
+      const gH = (onTime / yMax) * cH, yH = (delayed / yMax) * cH, rH = (cancelled / yMax) * cH;
+      const attrs = `class="chart-bar" data-day="${fmtDate(d.date)}" data-ontime="${onTime}" data-delayed="${delayed}" data-cancelled="${cancelled}" data-total="${total}"`;
+      // Invisible hover target for full bar area
+      svg += `<rect x="${x}" y="${baseY - gH - yH - rH}" width="${barW}" height="${gH + yH + rH}" fill="transparent" ${attrs}/>`;
+      if (gH > 0.5) svg += `<rect x="${x}" y="${baseY - gH}" width="${barW}" height="${gH}" fill="var(--chart-green)" rx="1" pointer-events="none"/>`;
+      if (yH > 0.5) svg += `<rect x="${x}" y="${baseY - gH - yH}" width="${barW}" height="${yH}" fill="var(--chart-yellow)" rx="1" pointer-events="none"/>`;
+      if (rH > 0.5) svg += `<rect x="${x}" y="${baseY - gH - yH - rH}" width="${barW}" height="${rH}" fill="var(--chart-red)" rx="1" pointer-events="none"/>`;
+      if (i % showEvery === 0) {
+        svg += `<text x="${pad.left + i * gap + gap / 2}" y="${H - 6}" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9" font-family="'Space Grotesk',sans-serif">${fmtDate(d.date)}</text>`;
+      }
+    });
+
+    // Legend
+    const lx = W - 185;
+    svg += `<rect x="${lx}" y="6" width="10" height="10" rx="2" fill="var(--chart-green)"/><text x="${lx+14}" y="15" font-size="9" fill="var(--color-text-secondary)">Pünktlich</text>`;
+    svg += `<rect x="${lx+70}" y="6" width="10" height="10" rx="2" fill="var(--chart-yellow)"/><text x="${lx+84}" y="15" font-size="9" fill="var(--color-text-secondary)">Verspätet</text>`;
+    svg += `<rect x="${lx+140}" y="6" width="10" height="10" rx="2" fill="var(--chart-red)"/><text x="${lx+154}" y="15" font-size="9" fill="var(--color-text-secondary)">Ausfall</text>`;
+
+    el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>`;
+
+    // Tooltip
+    el.querySelectorAll('.chart-bar').forEach(bar => {
+      bar.addEventListener('mouseenter', (e: Event) => {
+        const t = e.target as HTMLElement;
+        const tip = $('chart-tooltip');
+        const r = t.dataset.total ? pct(parseInt(t.dataset.ontime||'0'), parseInt(t.dataset.total||'1')) : 0;
+        tip.innerHTML = `<strong>${t.dataset.day}</strong><br>✓ ${t.dataset.ontime} pünktlich<br>⚠ ${t.dataset.delayed} verspätet<br>✕ ${t.dataset.cancelled} ausgefallen<br>Rate: ${r}%`;
+        tip.classList.add('visible');
+      });
+      bar.addEventListener('mousemove', (e: MouseEvent) => {
+        const tip = $('chart-tooltip');
+        tip.style.left = (e.clientX + 12) + 'px';
+        tip.style.top = (e.clientY - 10) + 'px';
+      });
+      bar.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+    });
+  }
+
+  function renderHourlyLineChart(byHour: any[]) {
+    const el = $('hourly-chart');
+    if (!byHour || byHour.length === 0) { el.innerHTML = '<p class="text-muted" style="font-size:0.8125rem;">Keine Daten</p>'; return; }
+
+    const hours = byHour.map((h: any) => {
+      const total = (h.on_time || 0) + (h.delayed || 0) + (h.cancelled || 0);
+      return { hour: h.hour, rate: total > 0 ? ((h.on_time || 0) / total) * 100 : 0, total, onTime: h.on_time || 0, delayed: h.delayed || 0, cancelled: h.cancelled || 0 };
+    }).sort((a, b) => a.hour - b.hour);
+
+    const pad = { top: 20, right: 15, bottom: 42, left: 42 };
+    const W = 700, H = 260;
+    const cW = W - pad.left - pad.right;
+    const cH = H - pad.top - pad.bottom;
+    const minH = hours[0].hour, maxH = hours[hours.length - 1].hour;
+    const hRange = maxH - minH || 1;
+    const xS = (h: number) => pad.left + ((h - minH) / hRange) * cW;
+    const yS = (v: number) => pad.top + cH - (v / 100) * cH;
+
+    let svg = '';
+
+    // Rush hour highlight zones
+    [[7, 9], [16, 18]].forEach(([s, e]) => {
+      const x1 = Math.max(xS(s), pad.left), x2 = Math.min(xS(e), W - pad.right);
+      if (x2 > x1) {
+        svg += `<rect x="${x1}" y="${pad.top}" width="${x2 - x1}" height="${cH}" fill="var(--chart-rush-bg)" rx="4"/>`;
+        svg += `<text x="${(x1 + x2) / 2}" y="${pad.top + 14}" text-anchor="middle" fill="var(--color-text-tertiary, #aaa)" font-size="8" font-style="italic">HVZ</text>`;
+      }
+    });
+
+    // Y grid
+    [0, 25, 50, 75, 100].forEach(v => {
+      const y = yS(v);
+      svg += `<line x1="${pad.left}" y1="${y}" x2="${W - pad.right}" y2="${y}" stroke="var(--chart-grid)" stroke-width="1"/>`;
+      svg += `<text x="${pad.left - 6}" y="${y + 3}" text-anchor="end" fill="var(--color-text-secondary)" font-size="10" font-family="'Space Grotesk',sans-serif">${v}%</text>`;
+    });
+
+    // Area fill
+    if (hours.length > 1) {
+      let area = `M ${xS(hours[0].hour)} ${yS(hours[0].rate)}`;
+      hours.slice(1).forEach(h => { area += ` L ${xS(h.hour)} ${yS(h.rate)}`; });
+      area += ` L ${xS(hours[hours.length - 1].hour)} ${yS(0)} L ${xS(hours[0].hour)} ${yS(0)} Z`;
+      svg += `<path d="${area}" fill="var(--chart-line)" opacity="0.07"/>`;
+    }
+
+    // Line
+    if (hours.length > 1) {
+      let line = `M ${xS(hours[0].hour)} ${yS(hours[0].rate)}`;
+      hours.slice(1).forEach(h => { line += ` L ${xS(h.hour)} ${yS(h.rate)}`; });
+      svg += `<path d="${line}" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }
+
+    // Data points + X labels
+    hours.forEach(h => {
+      const cx = xS(h.hour), cy = yS(h.rate);
+      svg += `<circle cx="${cx}" cy="${cy}" r="5" fill="var(--color-card)" stroke="${rateColor(h.rate)}" stroke-width="2.5" class="hour-dot" data-hour="${h.hour}" data-rate="${Math.round(h.rate)}" data-total="${h.total}" data-ontime="${h.onTime}" data-delayed="${h.delayed}" data-cancelled="${h.cancelled}"/>`;
+      svg += `<text x="${cx}" y="${H - 8}" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9" font-family="'Space Grotesk',sans-serif">${String(h.hour).padStart(2, '0')}h</text>`;
+    });
+
+    el.innerHTML = `<div class="chart-container"><svg viewBox="0 0 ${W} ${H}">${svg}</svg></div>`;
+
+    // Tooltip
+    el.querySelectorAll('.hour-dot').forEach(dot => {
+      dot.addEventListener('mouseenter', (e: Event) => {
+        const t = e.target as HTMLElement;
+        const tip = $('chart-tooltip');
+        tip.innerHTML = `<strong>${t.dataset.hour}:00 Uhr</strong><br>Rate: ${t.dataset.rate}%<br>✓ ${t.dataset.ontime} pünktlich<br>⚠ ${t.dataset.delayed} verspätet<br>✕ ${t.dataset.cancelled} ausgefallen`;
+        tip.classList.add('visible');
+      });
+      dot.addEventListener('mousemove', (e: MouseEvent) => {
+        const tip = $('chart-tooltip');
+        tip.style.left = (e.clientX + 12) + 'px';
+        tip.style.top = (e.clientY - 10) + 'px';
+      });
+      dot.addEventListener('mouseleave', () => { $('chart-tooltip').classList.remove('visible'); });
+    });
   }
 
   function renderWorst(delays: any[]) {
