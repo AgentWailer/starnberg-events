@@ -1,9 +1,10 @@
 ---
-// Info ticker for mobile - horizontal scroll with drag + momentum (like weekend carousel)
+// Info ticker for mobile - auto-scroll marquee with drag + momentum pause
 ---
 
-<div class="info-ticker" id="info-ticker" aria-label="Aktuelle Informationen">
+<div class="info-ticker" id="info-ticker" role="marquee" aria-label="Aktuelle Informationen">
   <div class="ticker-track" id="ticker-track">
+    <!-- Content will be duplicated for seamless loop -->
     <div class="ticker-content" id="ticker-content">
       <!-- Wetter -->
       <span class="ticker-item" data-type="weather">
@@ -109,7 +110,10 @@
         <span class="ticker-label">S6 pünktlich</span>
       </a>
 
+      <span class="ticker-divider">|</span>
     </div>
+    <!-- Duplicate for seamless loop -->
+    <div class="ticker-content ticker-clone" aria-hidden="true"></div>
   </div>
 </div>
 
@@ -139,16 +143,8 @@
 
   .ticker-track {
     display: flex;
-    gap: 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Allow content to peek out on the right */
-    padding-right: var(--space-4);
-  }
-
-  .ticker-track::-webkit-scrollbar {
-    display: none;
+    width: max-content;
+    will-change: transform;
   }
 
   .ticker-content {
@@ -273,8 +269,162 @@
   const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,weather_code&daily=sunrise,sunset&timezone=Europe%2FBerlin&forecast_days=1';
   const LIVE_API = 'https://train-tracker.steffenvonlindern-be7.workers.dev/api/live';
 
+  // Ticker state
+  let track: HTMLElement | null = null;
+  let contentWidth = 0;
+  let position = 0;
+  let speed = 50; // pixels per second
+  let lastTime = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startPosition = 0;
+  let animationId: number | null = null;
+
+  // Momentum state
+  let velocityX = 0;
+  let lastDragX = 0;
+  let lastDragTime = 0;
+  let momentumId: number | null = null;
+  let didMove = false;
+
   function formatTime(iso: string): string {
     return new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  // Clone ticker content for seamless loop
+  function setupTickerLoop(): void {
+    const content = document.getElementById('ticker-content');
+    const clone = document.querySelector('.ticker-clone') as HTMLElement;
+    if (content && clone) {
+      clone.innerHTML = content.innerHTML;
+      contentWidth = content.offsetWidth;
+    }
+  }
+
+  // Animation loop (auto-scroll)
+  function animate(currentTime: number): void {
+    if (!track) return;
+
+    if (lastTime === 0) lastTime = currentTime;
+    const delta = (currentTime - lastTime) / 1000;
+    lastTime = currentTime;
+
+    if (!isDragging && !momentumId) {
+      // Auto-scroll when not dragging or coasting
+      position -= speed * delta;
+
+      // Loop when scrolled past content width
+      if (position <= -contentWidth) {
+        position += contentWidth;
+      }
+      if (position > 0) {
+        position -= contentWidth;
+      }
+
+      track.style.transform = `translateX(${position}px)`;
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Momentum coast after drag release
+  function startMomentum(): void {
+    if (!track) return;
+    
+    let v = velocityX * 18; // Scale velocity
+    const friction = 0.95;
+
+    function coast(): void {
+      if (Math.abs(v) < 0.5) {
+        momentumId = null;
+        return;
+      }
+
+      position += v;
+
+      // Keep position in bounds (loop)
+      while (position <= -contentWidth) position += contentWidth;
+      while (position > 0) position -= contentWidth;
+
+      track!.style.transform = `translateX(${position}px)`;
+      v *= friction;
+      momentumId = requestAnimationFrame(coast);
+    }
+
+    if (Math.abs(v) > 1) {
+      momentumId = requestAnimationFrame(coast);
+    }
+  }
+
+  // Setup drag handling with momentum (like weekend carousel)
+  function setupDragHandling(): void {
+    if (!track) return;
+    const ticker = document.getElementById('info-ticker');
+    if (!ticker) return;
+
+    // Pointer events for both touch and mouse
+    ticker.addEventListener('pointerdown', (e: PointerEvent) => {
+      // Cancel any ongoing momentum
+      if (momentumId) {
+        cancelAnimationFrame(momentumId);
+        momentumId = null;
+      }
+
+      isDragging = true;
+      didMove = false;
+      startX = e.clientX;
+      startPosition = position;
+      velocityX = 0;
+      lastDragX = e.clientX;
+      lastDragTime = performance.now();
+
+      ticker.setPointerCapture(e.pointerId);
+    });
+
+    ticker.addEventListener('pointermove', (e: PointerEvent) => {
+      if (!isDragging) return;
+
+      const diff = e.clientX - startX;
+      if (Math.abs(diff) > 3) didMove = true;
+
+      position = startPosition + diff;
+
+      // Keep position in bounds (loop)
+      while (position <= -contentWidth) position += contentWidth;
+      while (position > 0) position -= contentWidth;
+
+      track!.style.transform = `translateX(${position}px)`;
+
+      // Track velocity for momentum
+      const now = performance.now();
+      const dt = now - lastDragTime;
+      if (dt > 0) {
+        const v = (e.clientX - lastDragX) / dt;
+        velocityX = velocityX * 0.7 + v * 0.3; // Smoothed velocity
+      }
+      lastDragX = e.clientX;
+      lastDragTime = now;
+    });
+
+    const endDrag = (e: PointerEvent) => {
+      if (!isDragging) return;
+      isDragging = false;
+      ticker.releasePointerCapture(e.pointerId);
+
+      // Start momentum coast, then auto-scroll resumes
+      startMomentum();
+    };
+
+    ticker.addEventListener('pointerup', endDrag);
+    ticker.addEventListener('pointercancel', endDrag);
+
+    // Prevent clicks after drag
+    ticker.addEventListener('click', (e) => {
+      if (didMove) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
   }
 
   // Load weather data
@@ -289,13 +439,11 @@
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
 
-      // Temperature
       const temp = Math.round(data.current?.temperature_2m || 0);
       document.querySelectorAll('#weather-temp').forEach(el => {
         el.textContent = temp + '°';
       });
 
-      // Sunrise
       const sunrise = data.daily?.sunrise?.[0];
       if (sunrise) {
         document.querySelectorAll('#sunrise-time').forEach(el => {
@@ -303,7 +451,6 @@
         });
       }
 
-      // Sunset
       const sunset = data.daily?.sunset?.[0];
       if (sunset) {
         document.querySelectorAll('#sunset-time').forEach(el => {
@@ -317,17 +464,16 @@
 
   // Load water temperature (seasonal fallback due to CORS)
   async function loadWaterTemp(): Promise<void> {
-    // Seasonal estimate for Starnberger See (CORS prevents direct fetch)
     const month = new Date().getMonth();
     let estimate: number;
     if (month >= 5 && month <= 7) {
-      estimate = 18 + Math.floor(Math.random() * 5); // Summer: 18-22°C
+      estimate = 18 + Math.floor(Math.random() * 5);
     } else if (month >= 3 && month <= 4) {
-      estimate = 8 + Math.floor(Math.random() * 4); // Spring: 8-11°C
+      estimate = 8 + Math.floor(Math.random() * 4);
     } else if (month >= 8 && month <= 10) {
-      estimate = 12 + Math.floor(Math.random() * 4); // Fall: 12-15°C
+      estimate = 12 + Math.floor(Math.random() * 4);
     } else {
-      estimate = 4 + Math.floor(Math.random() * 2); // Winter: 4-5°C
+      estimate = 4 + Math.floor(Math.random() * 2);
     }
 
     document.querySelectorAll('#water-temp').forEach(el => {
@@ -335,7 +481,7 @@
     });
   }
 
-  // Load train departures from our own /api/live
+  // Load train departures
   async function loadTrains(): Promise<void> {
     try {
       const ctrl = new AbortController();
@@ -345,7 +491,7 @@
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      // Filter: only future departures
+
       const now = new Date();
       const nowMins = now.getHours() * 60 + now.getMinutes();
       const isUpcoming = (d: any) => {
@@ -358,13 +504,11 @@
 
       const isTutzingDir = (d: any) => /Tutzing|Feldafing/i.test(d.direction);
 
-      // Next running train per direction
       const toMunich = allDeps.find((d: any) => !isTutzingDir(d) && !d.cancelled);
       const toTutzing = allDeps.find((d: any) => isTutzingDir(d) && !d.cancelled);
       const cancelledMunich = allDeps.find((d: any) => !isTutzingDir(d) && d.cancelled);
       const cancelledTutzing = allDeps.find((d: any) => isTutzingDir(d) && d.cancelled);
 
-      // Format: time + delay + optional cancel warning
       const fmt = (d: any, hasCancellation: boolean) => {
         const time = d.actualTime || d.plannedTime;
         const delayHtml = d.delay > 0 ? `<span class="delay">+${d.delay}</span>` : '';
@@ -386,7 +530,7 @@
     }
   }
 
-  // S6 Punctuality from Worker
+  // S6 Punctuality
   async function loadPunctuality(): Promise<void> {
     try {
       const resp = await fetch('https://train-tracker.steffenvonlindern-be7.workers.dev/api/stats?period=week');
@@ -414,84 +558,23 @@
     } catch (e) { /* silent */ }
   }
 
-  // Mouse drag with momentum (same as weekend carousel)
-  function initTickerDrag(): void {
-    const track = document.getElementById('ticker-track') as HTMLElement | null;
-    if (!track) return;
-
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
-    let velocityX = 0;
-    let lastX = 0;
-    let lastTime = 0;
-    let rafId = 0;
-    let didMove = false;
-
-    // Mouse/pointer drag only (touch has native momentum via -webkit-overflow-scrolling)
-    track.addEventListener('pointerdown', (e: PointerEvent) => {
-      if (e.pointerType === 'touch') return;
-      cancelAnimationFrame(rafId);
-      isDragging = true;
-      didMove = false;
-      startX = e.clientX;
-      scrollStart = track.scrollLeft;
-      velocityX = 0;
-      lastX = startX;
-      lastTime = performance.now();
-      track.style.cursor = 'grabbing';
-      track.setPointerCapture(e.pointerId);
-      e.preventDefault();
-    });
-
-    track.addEventListener('pointermove', (e: PointerEvent) => {
-      if (!isDragging || e.pointerType === 'touch') return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 3) didMove = true;
-      track.scrollLeft = scrollStart - dx;
-
-      const now = performance.now();
-      const dt = now - lastTime;
-      if (dt > 0) {
-        const v = (e.clientX - lastX) / dt;
-        velocityX = velocityX * 0.7 + v * 0.3;
-      }
-      lastX = e.clientX;
-      lastTime = now;
-      e.preventDefault();
-    });
-
-    const end = (e: PointerEvent) => {
-      if (!isDragging || e.pointerType === 'touch') return;
-      isDragging = false;
-      track.style.cursor = 'grab';
-      track.releasePointerCapture(e.pointerId);
-
-      // Momentum coast
-      let v = velocityX * 18;
-      const friction = 0.95;
-      const coast = () => {
-        if (Math.abs(v) < 0.5) return;
-        track.scrollLeft -= v;
-        v *= friction;
-        rafId = requestAnimationFrame(coast);
-      };
-      if (Math.abs(v) > 1) coast();
-    };
-
-    track.addEventListener('pointerup', end);
-    track.addEventListener('pointercancel', end);
-
-    // Prevent clicks after drag
-    track.addEventListener('click', (e) => {
-      if (didMove) { e.preventDefault(); e.stopPropagation(); }
-    }, true);
-
-    track.style.cursor = 'grab';
+  // Update cloned content after data loads
+  function updateClone(): void {
+    const content = document.getElementById('ticker-content');
+    const clone = document.querySelector('.ticker-clone') as HTMLElement;
+    if (content && clone) {
+      clone.innerHTML = content.innerHTML;
+      contentWidth = content.offsetWidth;
+    }
   }
 
   // Initialize
   document.addEventListener('DOMContentLoaded', async () => {
+    track = document.getElementById('ticker-track');
+
+    setupTickerLoop();
+    setupDragHandling();
+
     // Load data
     await Promise.all([
       loadWeather(),
@@ -500,10 +583,23 @@
       loadPunctuality()
     ]);
 
-    // Setup drag scroll (like weekend carousel)
-    initTickerDrag();
+    updateClone();
+
+    // Start auto-scroll animation (respects reduced motion)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animationId = requestAnimationFrame(animate);
+    }
 
     // Refresh trains every minute
-    setInterval(loadTrains, 60000);
+    setInterval(async () => {
+      await loadTrains();
+      updateClone();
+    }, 60000);
+  });
+
+  // Cleanup
+  window.addEventListener('pagehide', () => {
+    if (animationId) cancelAnimationFrame(animationId);
+    if (momentumId) cancelAnimationFrame(momentumId);
   });
 </script>
