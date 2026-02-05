@@ -1235,9 +1235,28 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
         if (canScroll(col, e.deltaY)) return;
       }
 
-      // Page-level scroll: drive header collapse directly (no column scrolling)
-      edgeOffset = Math.max(0, Math.min(headerHeight, edgeOffset + e.deltaY));
-      applyHeaderState();
+      // Page-level scroll: first collapse header, then scroll center column
+      if (e.deltaY > 0) {
+        // Scrolling DOWN
+        if (edgeOffset < headerHeight) {
+          // Phase 1: collapse header
+          edgeOffset = Math.min(headerHeight, edgeOffset + e.deltaY);
+          applyHeaderState();
+        } else {
+          // Phase 2: header fully collapsed → scroll center column
+          centerCol.scrollTop += e.deltaY;
+        }
+      } else {
+        // Scrolling UP
+        if (centerCol.scrollTop > 0) {
+          // Phase 1: scroll center column back up first
+          centerCol.scrollTop += e.deltaY;
+        } else {
+          // Phase 2: center at top → re-expand header
+          edgeOffset = Math.max(0, edgeOffset + e.deltaY);
+          applyHeaderState();
+        }
+      }
     }
 
     // --- Attach/detach listeners ---
