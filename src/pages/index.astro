@@ -433,9 +433,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overscroll-behavior: contain;
       min-height: 0;
       isolation: isolate; /* Stacking context boundary — z-index works within column */
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-border) transparent;
+      scrollbar-width: none;
       touch-action: pan-y;
+    }
+
+    .column-left::-webkit-scrollbar {
+      display: none;
     }
   }
 
@@ -456,23 +459,13 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overflow-y: auto;
       overscroll-behavior: contain;
       min-height: 0;
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-border) transparent;
+      scrollbar-width: none;
       touch-action: pan-y;
       isolation: isolate; /* Stacking context boundary — z-index works within column */
     }
 
     .column-center::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .column-center::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .column-center::-webkit-scrollbar-thumb {
-      background: var(--color-border);
-      border-radius: 2px;
+      display: none;
     }
   }
 
@@ -488,9 +481,12 @@ const weekendTitle = dayOfWeek === 6 ? "Dieses Wochenende" : dayOfWeek === 0 ? "
       overscroll-behavior: contain;
       min-height: 0;
       isolation: isolate; /* Stacking context boundary — z-index works within column */
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-border) transparent;
+      scrollbar-width: none;
       touch-action: pan-y;
+    }
+
+    .column-right::-webkit-scrollbar {
+      display: none;
     }
 
     /* Sticky section headings inside scrollable right sidebar */

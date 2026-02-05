@@ -173,7 +173,19 @@ const { title, description = "Events & Veranstaltungen am Starnberger See" } = A
 
   html {
     scroll-behavior: smooth;
-    overflow-y: scroll; /* Always show scrollbar for consistent layout */
+    overflow-y: scroll;
+  }
+
+  /* Desktop: hide all scrollbars (App Shell with overflow:hidden anyway) */
+  @media (min-width: 1200px) {
+    html {
+      overflow-y: hidden;
+      scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   body {
