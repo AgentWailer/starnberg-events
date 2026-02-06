@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://starnberg-events.pages.dev',
+  site: 'https://pöcking.info', // Production custom domain
   output: 'static',
   integrations: [
     sitemap({
