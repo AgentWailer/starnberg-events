@@ -16,6 +16,7 @@ interface Env {
   DB: D1Database;
   AI: any;  // Workers AI binding
   ANALYTICS_KEY: string;
+  WEATHER_API_KEY: string;  // WeatherAPI.com API key
 }
 
 // ── Types ──────────────────────────────────────────────────────────
@@ -80,7 +81,9 @@ const POSSENHOFEN_ID = '8004874';
 const API_BASE = 'https://v6.db.transport.rest';
 const IRIS_BASE = 'https://iris.noncd.db.de/iris-tts/timetable';
 const EVA_NO = '8004874';
-const WEATHER_API = 'https://api.open-meteo.com/v1/forecast?latitude=47.9983&longitude=11.3397&current=temperature_2m,precipitation,rain,snowfall,weather_code,wind_speed_10m';
+// WeatherAPI.com - more reliable from CF Workers than Open-Meteo (no shared IP rate limits)
+const WEATHER_API_BASE = 'https://api.weatherapi.com/v1/current.json';
+const WEATHER_LOCATION = '47.9983,11.3397';  // Possenhofen coordinates
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -404,24 +407,61 @@ async function fetchIrisDepartures(
 
 // ── Weather (with D1 cache to avoid rate limits) ──────────────────
 
-const WEATHER_CACHE_TTL_MS = 60 * 60 * 1000; // 60 minutes – Open-Meteo free tier has shared IP limits on CF Workers
+const WEATHER_CACHE_TTL_MS = 30 * 60 * 1000; // 30 minutes – WeatherAPI.com is more reliable
 
-async function fetchWeatherRaw(): Promise<WeatherData> {
+/**
+ * Map WeatherAPI.com condition codes to WMO-compatible codes for our existing categorization
+ * https://www.weatherapi.com/docs/weather_conditions.json
+ */
+function mapWeatherApiToWmo(code: number): number {
+  // Clear/Sunny
+  if (code === 1000) return 0;  // klar
+  // Partly cloudy, Cloudy, Overcast
+  if (code >= 1003 && code <= 1009) return 2;  // bewölkt
+  // Mist, Fog, Freezing fog
+  if (code === 1030 || code === 1135 || code === 1147) return 45;  // nebel
+  // Rain variants (patchy rain, light rain, moderate rain, heavy rain, showers)
+  if ([1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(code)) return 61;  // regen
+  // Drizzle variants
+  if ([1072, 1168, 1171].includes(code)) return 51;  // regen (drizzle)
+  // Snow variants
+  if ([1066, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1255, 1258, 1261, 1264].includes(code)) return 71;  // schnee
+  // Sleet
+  if ([1069, 1204, 1207, 1249, 1252].includes(code)) return 66;  // regen (freezing)
+  // Thunder
+  if ([1087, 1273, 1276, 1279, 1282].includes(code)) return 95;  // gewitter
+  // Default: cloudy
+  return 2;
+}
+
+async function fetchWeatherRaw(apiKey: string): Promise<WeatherData> {
+  if (!apiKey) {
+    console.error('[weather] No API key configured');
+    return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
+  }
+  
   try {
-    const resp = await fetch(WEATHER_API, {
+    const url = `${WEATHER_API_BASE}?key=${apiKey}&q=${WEATHER_LOCATION}&aqi=no`;
+    const resp = await fetch(url, {
       headers: { 'User-Agent': 'StarnbergEvents-TrainTracker/1.0' },
     });
     if (!resp.ok) {
-      console.error(`Weather API error: ${resp.status} ${resp.statusText}`);
+      const text = await resp.text();
+      console.error(`Weather API error: ${resp.status} ${resp.statusText} - ${text}`);
       return { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
     }
     const data: any = await resp.json();
     const c = data.current;
+    
+    // Map WeatherAPI.com condition code to WMO-compatible code
+    const conditionCode = c?.condition?.code;
+    const wmoCode = conditionCode ? mapWeatherApiToWmo(conditionCode) : null;
+    
     return {
-      weather_code: c?.weather_code ?? null,
-      temperature: c?.temperature_2m ?? null,
-      precipitation: c?.precipitation ?? null,
-      wind_speed: c?.wind_speed_10m ?? null,
+      weather_code: wmoCode,
+      temperature: c?.temp_c ?? null,
+      precipitation: c?.precip_mm ?? null,
+      wind_speed: c?.wind_kph ?? null,
     };
   } catch (e) {
     console.error('Weather fetch failed:', e);
@@ -431,12 +471,11 @@ async function fetchWeatherRaw(): Promise<WeatherData> {
 
 /**
  * Get weather with D1 cache. Only calls the API if cache is older than 30 min.
- * This avoids hitting Open-Meteo's daily rate limit (shared Cloudflare IPs).
  */
-async function fetchWeather(db?: D1Database): Promise<WeatherData> {
+async function fetchWeather(db: D1Database | undefined, apiKey: string): Promise<WeatherData> {
   const nullWeather: WeatherData = { weather_code: null, temperature: null, precipitation: null, wind_speed: null };
 
-  if (!db) return fetchWeatherRaw();
+  if (!db) return fetchWeatherRaw(apiKey);
 
   try {
     // Check cache
@@ -458,7 +497,7 @@ async function fetchWeather(db?: D1Database): Promise<WeatherData> {
     }
 
     // Fetch fresh
-    const fresh = await fetchWeatherRaw();
+    const fresh = await fetchWeatherRaw(apiKey);
 
     // Only update cache if we got valid data
     if (fresh.weather_code !== null) {
@@ -489,7 +528,7 @@ async function fetchWeather(db?: D1Database): Promise<WeatherData> {
     return fresh;
   } catch (e) {
     console.error('Weather cache error:', e);
-    return fetchWeatherRaw();
+    return fetchWeatherRaw(apiKey);
   }
 }
 
@@ -524,7 +563,7 @@ async function collectDepartures(env: Env): Promise<{ inserted: number; updated:
   const hours = getIrisPlanHours(false); // current + next hour
   const [irisDeps, weather] = await Promise.all([
     fetchIrisDepartures(hours),
-    fetchWeather(env.DB),
+    fetchWeather(env.DB, env.WEATHER_API_KEY),
   ]);
 
   console.log(`[weather] code=${weather.weather_code} temp=${weather.temperature}° precip=${weather.precipitation}mm wind=${weather.wind_speed}km/h`);
